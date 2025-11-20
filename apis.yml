@@ -5,11 +5,13 @@ apis:
   - aid: avalara:avalara
     name: Avalara
     tags:
-      - Taxes
+      - API
     humanURL: ' https://developer.avalara.com/'
     properties:
       - url: ' https://developer.avalara.com/'
         type: Documentation
+      - type: OpenAPI
+        url: properties/avalara-openapi.yml
     description: >-
       Automate compliance with Avalara MCP servers for AI-driven tax workflows
       and APIs. Have your agent call our agent. 
