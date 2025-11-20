@@ -5,7 +5,7 @@ apis:
   - aid: avalara:avalara
     name: Avalara
     tags:
-      - API
+      - Taxes
     humanURL: ' https://developer.avalara.com/'
     properties:
       - url: ' https://developer.avalara.com/'
@@ -157,6 +157,21 @@ common:
     name: Avalara Legal Center
     type: Compliance
     description: 'null'
+  - name: LinkedIn
+    url: https://www.linkedin.com/company/avalara/
+    type: LinkedIn
+  - name: YouTube
+    url: https://www.youtube.com/c/Avalara
+    type: YouTube
+  - name: Postman Workspace
+    url: https://www.postman.com/api-evangelist/avalara/overview
+    type: PostmanWorkspace
+  - name: GitHub Organization
+    url: https://github.com/Avalara
+    type: GitHubOrganization
+  - name: Swagger
+    url: https://github.com/Avalara/Swagger
+    type: Swagger
 created: '2025-11-19'
 modified: '2025-11-20'
 position: Consumer
