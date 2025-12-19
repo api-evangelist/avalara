@@ -16,7 +16,7 @@ Automate compliance with Avalara MCP servers for AI-driven tax workflows and API
 ## Timestamps
 
 - **Created:** 2025-11-19 
-- **Modified:** 2025-11-20 
+- **Modified:** 2025-12-19 
 
 ## APIs
 
@@ -33,6 +33,7 @@ Automate compliance with Avalara MCP servers for AI-driven tax workflows and API
 #### Properties
 
 - [Documentation]( https://developer.avalara.com/)
+- [OpenAPI](properties/avalara-openapi.yml)
 
 ## Common Properties
 
