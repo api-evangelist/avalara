@@ -18,7 +18,7 @@ apis:
 name: Avalara
 tags:
   - Taxes
-type: Index
+type: Contract
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
@@ -184,10 +184,16 @@ common:
     type: Integrations
 created: '2025-11-19'
 modified: '2025-12-19'
-position: Consumer
+position: Consuming
 description: >-
-  Automate compliance with Avalara MCP servers for AI-driven tax workflows and
-  APIs. Have your agent call our agent. 
+  3:32 PMAvalara is a tax compliance software company that automates sales tax,
+  VAT, and other transaction taxes for businesses. It calculates the correct tax
+  rates for each transaction based on location and product type across thousands
+  of jurisdictions, then handles tax return filing and compliance monitoring.
+  Businesses use it because sales tax rules are extremely complex and constantly
+  changing, especially when selling across multiple states or online, and
+  Avalara's automation saves them from having to manually track and comply with
+  thousands of different tax requirements.
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
