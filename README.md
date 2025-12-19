@@ -1,12 +1,12 @@
 # Avalara (avalara)
-Automate compliance with Avalara MCP servers for AI-driven tax workflows and APIs. Have your agent call our agent. 
+3:32 PMAvalara is a tax compliance software company that automates sales tax, VAT, and other transaction taxes for businesses. It calculates the correct tax rates for each transaction based on location and product type across thousands of jurisdictions, then handles tax return filing and compliance monitoring. Businesses use it because sales tax rules are extremely complex and constantly changing, especially when selling across multiple states or online, and Avalara's automation saves them from having to manually track and comply with thousands of different tax requirements.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Index 
-- **Position:** Consumer 
+- **Type:** Contract 
+- **Position:** Consuming 
 - **Access:** 3rd-Party 
 
 ## Tags:
