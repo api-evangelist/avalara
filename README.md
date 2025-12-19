@@ -73,6 +73,8 @@ Automate compliance with Avalara MCP servers for AI-driven tax workflows and API
 - [PostmanWorkspace](https://www.postman.com/api-evangelist/avalara/overview)
 - [GitHubOrganization](https://github.com/Avalara)
 - [Swagger](https://github.com/Avalara/Swagger)
+- [Copilot](https://developer.avalara.com/avi-agent/)
+- [Integrations](https://www.avalara.com/us/en/products/integrations-browse-all.html)
 
 ## Maintainers
 
