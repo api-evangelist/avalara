@@ -10,15 +10,22 @@ apis:
     properties:
       - url: ' https://developer.avalara.com/'
         type: Documentation
-      - url: properties/avalara-openapi.yml
-        type: OpenAPI
     description: >-
       Automate compliance with Avalara MCP servers for AI-driven tax workflows
       and APIs. Have your agent call our agent. 
+  - name: AvaTax APIs
+    description: >-
+      The AvaTax API is a set of application programming interfaces provided by
+      Avalara that allows businesses to integrate automated, real-time sales and
+      use tax, VAT, and GST calculations directly into their own software
+      applications. This allows for seamless and accurate tax compliance for
+      every transaction, regardless of jurisdiction or product type. 
+    humanURL: https://developer.avalara.com/api-reference/avatax/rest/v2/
+    aid: undefined:avatax-apis
 name: Avalara
 tags:
   - Taxes
-type: Contract
+type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
@@ -174,26 +181,12 @@ common:
   - url: https://github.com/Avalara/Swagger
     name: Swagger
     type: Swagger
-  - url: https://developer.avalara.com/avi-agent/
-    name: AI Agents | Avalara Developer
-    type: Copilot
-    description: 'null'
-  - url: https://www.avalara.com/us/en/products/integrations-browse-all.html
-    name: Search or Browse all Avalara Partner Integrations
-    type: Integrations
-    description: 'null'
 created: '2025-11-19'
-modified: '2025-12-31'
-position: Consuming
+modified: '2026-01-12'
+position: Consumer
 description: >-
-  Avalara is a tax compliance software company that automates sales tax, VAT,
-  and other transaction taxes for businesses. It calculates the correct tax
-  rates for each transaction based on location and product type across thousands
-  of jurisdictions, then handles tax return filing and compliance monitoring.
-  Businesses use it because sales tax rules are extremely complex and constantly
-  changing, especially when selling across multiple states or online, and
-  Avalara's automation saves them from having to manually track and comply with
-  thousands of different tax requirements.
+  Automate compliance with Avalara MCP servers for AI-driven tax workflows and
+  APIs. Have your agent call our agent. 
 maintainers:
   - FN: Kin Lane
     email: info@apievangelist.com
