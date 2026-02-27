@@ -1,12 +1,12 @@
 # Avalara (avalara)
-3:32 PMAvalara is a tax compliance software company that automates sales tax, VAT, and other transaction taxes for businesses. It calculates the correct tax rates for each transaction based on location and product type across thousands of jurisdictions, then handles tax return filing and compliance monitoring. Businesses use it because sales tax rules are extremely complex and constantly changing, especially when selling across multiple states or online, and Avalara's automation saves them from having to manually track and comply with thousands of different tax requirements.
+Avalara helps businesses of all sizes get tax compliance right. We deliver cloud-based solutions that work with existing business applications to calculate tax accurately and file returns automatically.
 
 **URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/apis.yml)
 
 ## Scope
 
-- **Type:** Contract 
-- **Position:** Consuming 
+- **Type:** Index 
+- **Position:** Consumer 
 - **Access:** 3rd-Party 
 
 ## Tags:
@@ -16,7 +16,7 @@
 ## Timestamps
 
 - **Created:** 2025-11-19 
-- **Modified:** 2025-12-19 
+- **Modified:** 2026-01-12 
 
 ## APIs
 
@@ -33,7 +33,16 @@ Automate compliance with Avalara MCP servers for AI-driven tax workflows and API
 #### Properties
 
 - [Documentation]( https://developer.avalara.com/)
-- [OpenAPI](properties/avalara-openapi.yml)
+
+### AvaTax APIs
+The AvaTax API is a set of application programming interfaces provided by Avalara that allows businesses to integrate automated, real-time sales and use tax, VAT, and GST calculations directly into their own software applications. This allows for seamless and accurate tax compliance for every transaction, regardless of jurisdiction or product type. 
+
+**Human URL:** [https://developer.avalara.com/api-reference/avatax/rest/v2/](https://developer.avalara.com/api-reference/avatax/rest/v2/)
+
+#### Properties
+
+- [Documentation](https://developer.avalara.com/api-reference/avatax/rest/v2/)
+- [OpenAPI](openapi/avatax-apis-openapi.yml)
 
 ## Common Properties
 
@@ -73,12 +82,13 @@ Automate compliance with Avalara MCP servers for AI-driven tax workflows and API
 - [PostmanWorkspace](https://www.postman.com/api-evangelist/avalara/overview)
 - [GitHubOrganization](https://github.com/Avalara)
 - [Swagger](https://github.com/Avalara/Swagger)
-- [Copilot](https://developer.avalara.com/avi-agent/)
-- [Integrations](https://www.avalara.com/us/en/products/integrations-browse-all.html)
+- [Getting Started](https://developer.avalara.com/get-started/)
 
 ## Maintainers
 
 **FN:** Kin Lane
 
 **Email:** info@apievangelist.com
+**FN:** Avalara Developer Relations
 
+**Email:** developer.relations@avalara.com
