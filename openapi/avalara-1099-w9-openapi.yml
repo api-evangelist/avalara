@@ -1,0 +1,534 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 API
+  description: >-
+    The Avalara 1099 and W-9 API automates collection, validation, and e-filing
+    of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT,
+    1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating,
+    updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+servers:
+  - url: https://api.avalara.com/1099/v1
+    description: 1099 API Production
+  - url: https://api.sbx.avalara.com/1099/v1
+    description: 1099 API Sandbox
+tags:
+  - name: W-9 Forms
+    description: Collect and manage W-9 forms
+  - name: 1099 Forms
+    description: Create and manage 1099 information returns
+  - name: Filing
+    description: E-file forms with the IRS
+  - name: Companies
+    description: Manage payer company records
+security:
+  - bearerAuth: []
+paths:
+  /w9/requests:
+    post:
+      operationId: createW9Request
+      summary: Create a W-9 collection request
+      description: >-
+        Sends a W-9 collection request to a payee, allowing them to submit
+        their taxpayer information electronically.
+      tags:
+        - W-9 Forms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/W9Request'
+      responses:
+        '201':
+          description: W-9 request created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/W9RequestResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+    get:
+      operationId: listW9Requests
+      summary: List W-9 requests
+      tags:
+        - W-9 Forms
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - Pending
+              - Completed
+              - Expired
+        - name: $top
+          in: query
+          schema:
+            type: integer
+        - name: $skip
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of W-9 requests
+  /w9/{w9Id}:
+    get:
+      operationId: getW9
+      summary: Get a completed W-9 form
+      tags:
+        - W-9 Forms
+      parameters:
+        - name: w9Id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: W-9 form details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/W9Form'
+  /forms/1099:
+    post:
+      operationId: create1099Form
+      summary: Create a 1099 form
+      description: >-
+        Creates a new 1099 information return form with payee and
+        payment information.
+      tags:
+        - 1099 Forms
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Form1099'
+      responses:
+        '201':
+          description: 1099 form created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Form1099'
+    get:
+      operationId: list1099Forms
+      summary: List 1099 forms
+      tags:
+        - 1099 Forms
+      parameters:
+        - name: taxYear
+          in: query
+          schema:
+            type: integer
+        - name: formType
+          in: query
+          schema:
+            type: string
+            enum:
+              - 1099-NEC
+              - 1099-MISC
+              - 1099-K
+              - 1099-INT
+              - 1099-DIV
+              - 1099-R
+              - 1099-B
+        - name: status
+          in: query
+          schema:
+            type: string
+        - name: $top
+          in: query
+          schema:
+            type: integer
+        - name: $skip
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of 1099 forms
+  /forms/1099/{formId}:
+    get:
+      operationId: get1099Form
+      summary: Get a 1099 form by ID
+      tags:
+        - 1099 Forms
+      parameters:
+        - name: formId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: 1099 form details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Form1099'
+    put:
+      operationId: update1099Form
+      summary: Update a 1099 form
+      tags:
+        - 1099 Forms
+      parameters:
+        - name: formId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Form1099'
+      responses:
+        '200':
+          description: 1099 form updated
+    delete:
+      operationId: delete1099Form
+      summary: Delete a 1099 form
+      tags:
+        - 1099 Forms
+      parameters:
+        - name: formId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Form deleted
+  /filing/submit:
+    post:
+      operationId: submitFiling
+      summary: Submit forms for e-filing
+      description: >-
+        Submits a batch of completed forms to the IRS for electronic filing.
+        Validates all forms before submission.
+      tags:
+        - Filing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilingSubmission'
+      responses:
+        '202':
+          description: Filing submission accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilingResponse'
+  /filing/{filingId}/status:
+    get:
+      operationId: getFilingStatus
+      summary: Get filing status
+      description: Retrieves the status of an IRS e-filing submission.
+      tags:
+        - Filing
+      parameters:
+        - name: filingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Filing status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilingStatus'
+  /companies:
+    get:
+      operationId: listPayerCompanies
+      summary: List payer companies
+      tags:
+        - Companies
+      responses:
+        '200':
+          description: List of payer companies
+    post:
+      operationId: createPayerCompany
+      summary: Create a payer company
+      tags:
+        - Companies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PayerCompany'
+      responses:
+        '201':
+          description: Company created
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    W9Request:
+      type: object
+      required:
+        - payeeEmail
+        - payeeName
+      properties:
+        payeeEmail:
+          type: string
+          format: email
+        payeeName:
+          type: string
+        companyId:
+          type: string
+        expirationDays:
+          type: integer
+          default: 30
+        message:
+          type: string
+    W9RequestResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        status:
+          type: string
+        payeeEmail:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        expirationDate:
+          type: string
+          format: date-time
+    W9Form:
+      type: object
+      properties:
+        id:
+          type: string
+        payeeName:
+          type: string
+        businessName:
+          type: string
+        taxClassification:
+          type: string
+          enum:
+            - Individual
+            - C_Corporation
+            - S_Corporation
+            - Partnership
+            - Trust
+            - LLC
+            - Other
+        tin:
+          type: string
+          description: Taxpayer Identification Number (masked)
+        tinType:
+          type: string
+          enum:
+            - SSN
+            - EIN
+        address:
+          type: object
+          properties:
+            line1:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            postalCode:
+              type: string
+        signedDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+            - Valid
+            - Expired
+            - Revoked
+    Form1099:
+      type: object
+      properties:
+        id:
+          type: string
+        formType:
+          type: string
+          enum:
+            - 1099-NEC
+            - 1099-MISC
+            - 1099-K
+            - 1099-INT
+            - 1099-DIV
+            - 1099-R
+            - 1099-B
+        taxYear:
+          type: integer
+        payerCompanyId:
+          type: string
+        payee:
+          type: object
+          properties:
+            name:
+              type: string
+            tin:
+              type: string
+            address:
+              type: object
+              properties:
+                line1:
+                  type: string
+                city:
+                  type: string
+                state:
+                  type: string
+                postalCode:
+                  type: string
+        amounts:
+          type: object
+          additionalProperties:
+            type: number
+            format: double
+          description: Box amounts keyed by box number
+        federalTaxWithheld:
+          type: number
+          format: double
+        stateTaxWithheld:
+          type: number
+          format: double
+        status:
+          type: string
+          enum:
+            - Draft
+            - Ready
+            - Filed
+            - Corrected
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
+    FilingSubmission:
+      type: object
+      required:
+        - taxYear
+        - formIds
+      properties:
+        taxYear:
+          type: integer
+        formIds:
+          type: array
+          items:
+            type: string
+        corrected:
+          type: boolean
+          default: false
+    FilingResponse:
+      type: object
+      properties:
+        filingId:
+          type: string
+        status:
+          type: string
+          enum:
+            - Accepted
+            - Processing
+            - Rejected
+        formCount:
+          type: integer
+        submittedDate:
+          type: string
+          format: date-time
+    FilingStatus:
+      type: object
+      properties:
+        filingId:
+          type: string
+        status:
+          type: string
+          enum:
+            - Processing
+            - Accepted
+            - AcceptedWithErrors
+            - Rejected
+        acceptedCount:
+          type: integer
+        rejectedCount:
+          type: integer
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              formId:
+                type: string
+              errorCode:
+                type: string
+              message:
+                type: string
+    PayerCompany:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        ein:
+          type: string
+          description: Employer Identification Number
+        address:
+          type: object
+          properties:
+            line1:
+              type: string
+            city:
+              type: string
+            state:
+              type: string
+            postalCode:
+              type: string
+        contactName:
+          type: string
+        contactPhone:
+          type: string
+        contactEmail:
+          type: string
+          format: email
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string

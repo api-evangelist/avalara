@@ -1,0 +1,570 @@
+openapi: 3.1.0
+info:
+  title: Avalara Excise Platform API
+  description: >-
+    The Avalara Excise Platform API provides an external programmatic interface
+    for excise tax determination on fuel, tobacco, alcohol, and other excise
+    products. It supports tax calculation, business entity management, location
+    configuration, and transaction processing for excise tax compliance across
+    US federal and state jurisdictions.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+externalDocs:
+  description: Excise Platform API Documentation
+  url: https://developer.avalara.com/api-reference/excise/v1/
+servers:
+  - url: https://exciseapi.avalara.com/api/v1
+    description: Excise API Production
+tags:
+  - name: Tax Determination
+    description: Calculate excise taxes on transactions
+  - name: Transactions
+    description: Manage excise tax transactions
+  - name: Business Entities
+    description: Manage business entity records
+  - name: Locations
+    description: Manage business locations
+  - name: Products
+    description: Manage product registrations
+  - name: Licenses
+    description: Manage excise licenses
+security:
+  - bearerAuth: []
+paths:
+  /TaxDetermination:
+    post:
+      operationId: calculateExciseTax
+      summary: Calculate excise taxes
+      description: >-
+        Calculates excise taxes for a transaction containing one or more
+        line items with product, origin, destination, and movement information.
+      tags:
+        - Tax Determination
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaxDeterminationRequest'
+      responses:
+        '200':
+          description: Tax determination results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxDeterminationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /Transactions:
+    get:
+      operationId: listTransactions
+      summary: List excise transactions
+      description: Retrieves a list of excise tax transactions.
+      tags:
+        - Transactions
+      parameters:
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: pageNumber
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of transactions
+    post:
+      operationId: createTransaction
+      summary: Create an excise transaction
+      tags:
+        - Transactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExciseTransaction'
+      responses:
+        '201':
+          description: Transaction created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExciseTransaction'
+  /Transactions/{transactionId}:
+    get:
+      operationId: getTransaction
+      summary: Retrieve an excise transaction
+      tags:
+        - Transactions
+      parameters:
+        - name: transactionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Transaction details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExciseTransaction'
+  /BusinessEntities:
+    get:
+      operationId: listBusinessEntities
+      summary: List business entities
+      tags:
+        - Business Entities
+      responses:
+        '200':
+          description: List of business entities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BusinessEntity'
+    post:
+      operationId: createBusinessEntity
+      summary: Create a business entity
+      tags:
+        - Business Entities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessEntity'
+      responses:
+        '201':
+          description: Business entity created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessEntity'
+  /BusinessEntities/{entityId}:
+    get:
+      operationId: getBusinessEntity
+      summary: Get a business entity by ID
+      tags:
+        - Business Entities
+      parameters:
+        - name: entityId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Business entity details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessEntity'
+    put:
+      operationId: updateBusinessEntity
+      summary: Update a business entity
+      tags:
+        - Business Entities
+      parameters:
+        - name: entityId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessEntity'
+      responses:
+        '200':
+          description: Business entity updated
+    delete:
+      operationId: deleteBusinessEntity
+      summary: Delete a business entity
+      tags:
+        - Business Entities
+      parameters:
+        - name: entityId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Business entity deleted
+  /Locations:
+    get:
+      operationId: listLocations
+      summary: List locations
+      tags:
+        - Locations
+      responses:
+        '200':
+          description: List of locations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExciseLocation'
+    post:
+      operationId: createLocation
+      summary: Create a location
+      tags:
+        - Locations
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExciseLocation'
+      responses:
+        '201':
+          description: Location created
+  /Products:
+    get:
+      operationId: listProducts
+      summary: List registered products
+      tags:
+        - Products
+      responses:
+        '200':
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExciseProduct'
+  /Licenses:
+    get:
+      operationId: listLicenses
+      summary: List excise licenses
+      tags:
+        - Licenses
+      responses:
+        '200':
+          description: List of licenses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExciseLicense'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    TaxDeterminationRequest:
+      type: object
+      required:
+        - effectiveDate
+        - transactionLines
+      properties:
+        effectiveDate:
+          type: string
+          format: date
+          description: Date for tax determination
+        invoiceNumber:
+          type: string
+        invoiceDate:
+          type: string
+          format: date
+        titleTransferCode:
+          type: string
+          enum:
+            - Origin
+            - Destination
+          description: Title transfer point
+        transactionType:
+          type: string
+          description: Type of excise transaction
+        seller:
+          $ref: '#/components/schemas/TransactionParty'
+        buyer:
+          $ref: '#/components/schemas/TransactionParty'
+        transactionLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionLine'
+    TransactionParty:
+      type: object
+      properties:
+        companyId:
+          type: string
+        locationId:
+          type: string
+        name:
+          type: string
+        address:
+          $ref: '#/components/schemas/ExciseAddress'
+        licenseNumber:
+          type: string
+    TransactionLine:
+      type: object
+      properties:
+        lineNumber:
+          type: string
+        productCode:
+          type: string
+          description: Excise product code
+        unitOfMeasure:
+          type: string
+          enum:
+            - GAL
+            - LTR
+            - BBL
+            - TON
+            - EA
+          description: Unit of measure
+        quantity:
+          type: number
+          format: double
+          description: Quantity of product
+        amount:
+          type: number
+          format: double
+          description: Line amount
+        origin:
+          $ref: '#/components/schemas/ExciseAddress'
+        destination:
+          $ref: '#/components/schemas/ExciseAddress'
+        billOfLadingNumber:
+          type: string
+        carrierName:
+          type: string
+        modeOfTransport:
+          type: string
+          enum:
+            - Truck
+            - Pipeline
+            - Rail
+            - Vessel
+    TaxDeterminationResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+            - Success
+            - Error
+            - Partial
+        transactionLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxDeterminationLine'
+        totalTaxAmount:
+          type: number
+          format: double
+    TaxDeterminationLine:
+      type: object
+      properties:
+        lineNumber:
+          type: string
+        productCode:
+          type: string
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExciseTaxDetail'
+        totalTax:
+          type: number
+          format: double
+    ExciseTaxDetail:
+      type: object
+      properties:
+        taxType:
+          type: string
+          description: Type of excise tax
+        jurisdiction:
+          type: string
+          description: Taxing jurisdiction
+        taxRate:
+          type: number
+          format: double
+        taxAmount:
+          type: number
+          format: double
+        taxableAmount:
+          type: number
+          format: double
+        exemptAmount:
+          type: number
+          format: double
+        rateType:
+          type: string
+          enum:
+            - PerUnit
+            - Percentage
+    ExciseTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        invoiceNumber:
+          type: string
+        transactionDate:
+          type: string
+          format: date
+        transactionType:
+          type: string
+        status:
+          type: string
+          enum:
+            - Pending
+            - Committed
+            - Voided
+        totalAmount:
+          type: number
+          format: double
+        totalTax:
+          type: number
+          format: double
+    BusinessEntity:
+      type: object
+      properties:
+        entityId:
+          type: string
+        entityName:
+          type: string
+        entityType:
+          type: string
+        federalIdNumber:
+          type: string
+          description: Federal EIN
+        address:
+          $ref: '#/components/schemas/ExciseAddress'
+        isActive:
+          type: boolean
+    ExciseLocation:
+      type: object
+      properties:
+        locationId:
+          type: string
+        locationName:
+          type: string
+        locationType:
+          type: string
+          enum:
+            - Terminal
+            - Warehouse
+            - BulkPlant
+            - Retail
+            - Blender
+            - Refinery
+        address:
+          $ref: '#/components/schemas/ExciseAddress'
+        irsTerminalCode:
+          type: string
+    ExciseAddress:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+          description: State or province code
+        postalCode:
+          type: string
+        country:
+          type: string
+          description: ISO 3166 country code
+    ExciseProduct:
+      type: object
+      properties:
+        productCode:
+          type: string
+        productName:
+          type: string
+        productCategory:
+          type: string
+          enum:
+            - MotorFuel
+            - Diesel
+            - Aviation
+            - Alcohol
+            - Tobacco
+            - NaturalGas
+            - Other
+        unitOfMeasure:
+          type: string
+    ExciseLicense:
+      type: object
+      properties:
+        licenseId:
+          type: string
+        licenseNumber:
+          type: string
+        licenseType:
+          type: string
+        issuingJurisdiction:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        expirationDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+            - Active
+            - Expired
+            - Suspended
+            - Revoked
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string

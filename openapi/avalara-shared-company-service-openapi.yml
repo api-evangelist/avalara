@@ -1,0 +1,242 @@
+openapi: 3.1.0
+info:
+  title: Avalara Shared Company Service API
+  description: >-
+    The Avalara Shared Company Service API provides scalable APIs for managing
+    canonical company and contact information across Avalara products, enabling
+    creation, retrieval, update, and deletion of company records.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+externalDocs:
+  description: Shared Company Service API Documentation
+  url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+servers:
+  - url: https://api.avalara.com/shared/v1
+    description: Shared Company Service Production
+tags:
+  - name: Companies
+    description: Manage canonical company records
+  - name: Contacts
+    description: Manage company contacts
+security:
+  - bearerAuth: []
+paths:
+  /companies:
+    get:
+      operationId: listCompanies
+      summary: List companies
+      description: Retrieves a list of canonical company records.
+      tags:
+        - Companies
+      parameters:
+        - name: $filter
+          in: query
+          schema:
+            type: string
+        - name: $top
+          in: query
+          schema:
+            type: integer
+        - name: $skip
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of companies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyList'
+    post:
+      operationId: createCompany
+      summary: Create a company record
+      tags:
+        - Companies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SharedCompany'
+      responses:
+        '201':
+          description: Company created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedCompany'
+  /companies/{companyId}:
+    get:
+      operationId: getCompany
+      summary: Get a company by ID
+      tags:
+        - Companies
+      parameters:
+        - name: companyId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Company details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SharedCompany'
+    put:
+      operationId: updateCompany
+      summary: Update a company record
+      tags:
+        - Companies
+      parameters:
+        - name: companyId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SharedCompany'
+      responses:
+        '200':
+          description: Company updated
+    delete:
+      operationId: deleteCompany
+      summary: Delete a company record
+      tags:
+        - Companies
+      parameters:
+        - name: companyId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Company deleted
+  /companies/{companyId}/contacts:
+    get:
+      operationId: listContacts
+      summary: List contacts for a company
+      tags:
+        - Contacts
+      parameters:
+        - name: companyId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of contacts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SharedContact'
+    post:
+      operationId: createContact
+      summary: Create a contact
+      tags:
+        - Contacts
+      parameters:
+        - name: companyId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SharedContact'
+      responses:
+        '201':
+          description: Contact created
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  schemas:
+    CompanyList:
+      type: object
+      properties:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/SharedCompany'
+    SharedCompany:
+      type: object
+      properties:
+        companyId:
+          type: string
+        companyName:
+          type: string
+        companyCode:
+          type: string
+        taxPayerId:
+          type: string
+          description: Tax identification number
+        address:
+          type: object
+          properties:
+            line1:
+              type: string
+            line2:
+              type: string
+            city:
+              type: string
+            region:
+              type: string
+            postalCode:
+              type: string
+            country:
+              type: string
+        phoneNumber:
+          type: string
+        email:
+          type: string
+          format: email
+        isActive:
+          type: boolean
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
+    SharedContact:
+      type: object
+      properties:
+        contactId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phone:
+          type: string
+        title:
+          type: string
+        isPrimary:
+          type: boolean

@@ -1,0 +1,216 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "avalara": "https://developer.avalara.com/schemas/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+
+    "Transaction": {
+      "@id": "avalara:Transaction",
+      "@context": {
+        "code": "avalara:transactionCode",
+        "type": "avalara:documentType",
+        "status": "avalara:transactionStatus",
+        "date": {
+          "@id": "schema:dateCreated",
+          "@type": "xsd:date"
+        },
+        "companyCode": "avalara:companyCode",
+        "customerCode": "avalara:customerCode",
+        "currencyCode": "avalara:currencyCode",
+        "totalAmount": {
+          "@id": "schema:totalPrice",
+          "@type": "xsd:decimal"
+        },
+        "totalTax": {
+          "@id": "avalara:totalTax",
+          "@type": "xsd:decimal"
+        },
+        "totalTaxable": {
+          "@id": "avalara:totalTaxable",
+          "@type": "xsd:decimal"
+        },
+        "totalExempt": {
+          "@id": "avalara:totalExempt",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+
+    "Company": {
+      "@id": "avalara:Company",
+      "@context": {
+        "companyCode": "avalara:companyCode",
+        "name": "schema:name",
+        "taxpayerIdNumber": "avalara:taxpayerIdNumber",
+        "defaultCountry": "avalara:defaultCountry",
+        "baseCurrencyCode": "avalara:baseCurrencyCode",
+        "isActive": {
+          "@id": "avalara:isActive",
+          "@type": "xsd:boolean"
+        },
+        "isDefault": {
+          "@id": "avalara:isDefault",
+          "@type": "xsd:boolean"
+        },
+        "createdDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "modifiedDate": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Address": {
+      "@id": "schema:PostalAddress",
+      "@context": {
+        "line1": "schema:streetAddress",
+        "city": "schema:addressLocality",
+        "region": "schema:addressRegion",
+        "postalCode": "schema:postalCode",
+        "country": "schema:addressCountry",
+        "latitude": {
+          "@id": "schema:latitude",
+          "@type": "xsd:decimal"
+        },
+        "longitude": {
+          "@id": "schema:longitude",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+
+    "LineItem": {
+      "@id": "avalara:LineItem",
+      "@context": {
+        "number": "avalara:lineNumber",
+        "itemCode": "schema:sku",
+        "description": "schema:description",
+        "quantity": {
+          "@id": "schema:amount",
+          "@type": "xsd:decimal"
+        },
+        "amount": {
+          "@id": "schema:price",
+          "@type": "xsd:decimal"
+        },
+        "taxCode": "avalara:taxCode",
+        "tax": {
+          "@id": "avalara:lineTax",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+
+    "Certificate": {
+      "@id": "avalara:Certificate",
+      "@context": {
+        "exemptionNumber": "avalara:exemptionNumber",
+        "exemptionReason": "avalara:exemptionReason",
+        "signedDate": {
+          "@id": "avalara:signedDate",
+          "@type": "xsd:date"
+        },
+        "expirationDate": {
+          "@id": "schema:expires",
+          "@type": "xsd:date"
+        },
+        "status": "avalara:certificateStatus",
+        "exposureZone": "avalara:exposureZone"
+      }
+    },
+
+    "Customer": {
+      "@id": "avalara:Customer",
+      "@context": {
+        "customerCode": "avalara:customerCode",
+        "name": "schema:name",
+        "emailAddress": "schema:email",
+        "phoneNumber": "schema:telephone"
+      }
+    },
+
+    "Nexus": {
+      "@id": "avalara:Nexus",
+      "@context": {
+        "country": "avalara:nexusCountry",
+        "region": "avalara:nexusRegion",
+        "jurisName": "avalara:jurisdictionName",
+        "nexusTypeId": "avalara:nexusType",
+        "effectiveDate": {
+          "@id": "avalara:effectiveDate",
+          "@type": "xsd:date"
+        },
+        "endDate": {
+          "@id": "avalara:endDate",
+          "@type": "xsd:date"
+        }
+      }
+    },
+
+    "TaxCode": {
+      "@id": "avalara:TaxCode",
+      "@context": {
+        "taxCode": "avalara:taxCodeValue",
+        "description": "schema:description",
+        "isPhysical": {
+          "@id": "avalara:isPhysical",
+          "@type": "xsd:boolean"
+        },
+        "isActive": {
+          "@id": "avalara:isActive",
+          "@type": "xsd:boolean"
+        }
+      }
+    },
+
+    "EInvoice": {
+      "@id": "avalara:EInvoice",
+      "@context": {
+        "invoiceNumber": "avalara:invoiceNumber",
+        "dataFormat": "avalara:dataFormat",
+        "status": "avalara:documentStatus",
+        "senderName": "schema:name",
+        "countryCode": "avalara:countryCode",
+        "submissionDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "ExciseTransaction": {
+      "@id": "avalara:ExciseTransaction",
+      "@context": {
+        "productCode": "avalara:productCode",
+        "unitOfMeasure": "avalara:unitOfMeasure",
+        "quantity": {
+          "@id": "schema:amount",
+          "@type": "xsd:decimal"
+        },
+        "totalTax": {
+          "@id": "avalara:totalTax",
+          "@type": "xsd:decimal"
+        }
+      }
+    },
+
+    "HSCode": {
+      "@id": "avalara:HSCode",
+      "@context": {
+        "hsCode": "avalara:hsCodeValue",
+        "description": "schema:description",
+        "confidence": {
+          "@id": "avalara:confidence",
+          "@type": "xsd:decimal"
+        },
+        "chapter": "avalara:chapter",
+        "section": "avalara:section"
+      }
+    }
+  }
+}

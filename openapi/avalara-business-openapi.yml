@@ -1,0 +1,221 @@
+openapi: 3.1.0
+info:
+  title: Avalara Business API
+  description: >-
+    The Avalara Business API provides public APIs for doing business with
+    Avalara, including registering customer accounts and creating sales orders
+    for Avalara services through partner integrations.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+externalDocs:
+  description: Avalara Business API Documentation
+  url: https://developer.avalara.com/api-reference/business/v1/
+servers:
+  - url: https://api.avalara.com/business/v1
+    description: Business API Production
+tags:
+  - name: Accounts
+    description: Register and manage customer accounts
+  - name: Orders
+    description: Create and manage sales orders for Avalara services
+security:
+  - bearerAuth: []
+paths:
+  /accounts:
+    post:
+      operationId: createAccount
+      summary: Register a new customer account
+      description: >-
+        Registers a new customer account with Avalara through a partner
+        integration.
+      tags:
+        - Accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRegistration'
+      responses:
+        '201':
+          description: Account registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /accounts/{accountId}:
+    get:
+      operationId: getAccount
+      summary: Get account details
+      tags:
+        - Accounts
+      parameters:
+        - name: accountId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Account details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+  /orders:
+    post:
+      operationId: createOrder
+      summary: Create a sales order
+      description: Creates a new sales order for Avalara products and services.
+      tags:
+        - Orders
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SalesOrder'
+      responses:
+        '201':
+          description: Order created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+  /orders/{orderId}:
+    get:
+      operationId: getOrder
+      summary: Get order details
+      tags:
+        - Orders
+      parameters:
+        - name: orderId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    AccountRegistration:
+      type: object
+      required:
+        - companyName
+        - email
+      properties:
+        companyName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        address:
+          type: object
+          properties:
+            line1:
+              type: string
+            city:
+              type: string
+            region:
+              type: string
+            postalCode:
+              type: string
+            country:
+              type: string
+        partnerCode:
+          type: string
+    AccountResponse:
+      type: object
+      properties:
+        accountId:
+          type: string
+        accountNumber:
+          type: string
+        companyName:
+          type: string
+        status:
+          type: string
+          enum:
+            - Active
+            - Inactive
+            - Pending
+        createdDate:
+          type: string
+          format: date-time
+    SalesOrder:
+      type: object
+      required:
+        - accountId
+        - products
+      properties:
+        accountId:
+          type: string
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              productCode:
+                type: string
+              quantity:
+                type: integer
+        campaignId:
+          type: string
+    OrderResponse:
+      type: object
+      properties:
+        orderId:
+          type: string
+        accountId:
+          type: string
+        status:
+          type: string
+          enum:
+            - Pending
+            - Confirmed
+            - Completed
+            - Cancelled
+        createdDate:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string

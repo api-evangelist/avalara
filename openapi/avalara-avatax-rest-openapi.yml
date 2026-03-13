@@ -1,0 +1,1947 @@
+openapi: 3.1.0
+info:
+  title: Avalara AvaTax REST API
+  description: >-
+    The AvaTax REST API v2 is Avalara's enterprise tax service providing
+    real-time sales tax, use tax, VAT, and GST calculations. It supports
+    tax calculation for transactions, address validation, exemption
+    certificate management, company and nexus configuration, and
+    comprehensive tax content definitions across all US and international
+    jurisdictions.
+  version: '2.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+externalDocs:
+  description: AvaTax REST API v2 Documentation
+  url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+servers:
+  - url: https://rest.avatax.com
+    description: AvaTax Production
+  - url: https://sandbox-rest.avatax.com
+    description: AvaTax Sandbox
+tags:
+  - name: Transactions
+    description: Create, adjust, commit, and void tax transactions
+  - name: Addresses
+    description: Validate and resolve addresses for tax jurisdiction determination
+  - name: Companies
+    description: Manage company profiles, settings, and configurations
+  - name: Nexus
+    description: Manage tax nexus declarations for companies
+  - name: Certificates
+    description: Manage exemption certificates and CertExpress invitations
+  - name: Customers
+    description: Manage customer records and their certificate associations
+  - name: Items
+    description: Manage product items and their tax classification
+  - name: Locations
+    description: Manage company locations and jurisdictions
+  - name: TaxCodes
+    description: Query and manage Avalara tax codes
+  - name: TaxRules
+    description: Manage tax rules and overrides for companies
+  - name: Accounts
+    description: Manage AvaTax accounts and license keys
+  - name: Definitions
+    description: Query tax content definitions, rates, and jurisdictions
+  - name: Batches
+    description: Submit and manage batch transaction processing
+  - name: Contacts
+    description: Manage company contacts
+  - name: Settings
+    description: Manage company settings
+  - name: Subscriptions
+    description: Query account subscriptions
+  - name: Utilities
+    description: Utility endpoints including ping and health checks
+  - name: MultiDocument
+    description: Multi-document transaction management
+  - name: Reports
+    description: Generate and retrieve tax reports
+  - name: Notices
+    description: Manage tax notices and compliance
+  - name: Free
+    description: Free tax rate lookup endpoints
+security:
+  - basicAuth: []
+  - bearerAuth: []
+paths:
+  /api/v2/transactions/create:
+    post:
+      operationId: createTransaction
+      summary: Create a new transaction
+      description: >-
+        Creates a new tax transaction. This is the primary method for calculating
+        tax on a sale, purchase, or other taxable event. The transaction can be
+        committed immediately or saved as a temporary document.
+      tags:
+        - Transactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTransactionModel'
+      responses:
+        '200':
+          description: Transaction created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}:
+    get:
+      operationId: getTransactionByCode
+      summary: Retrieve a single transaction by code
+      description: >-
+        Retrieves a transaction by its company code and transaction code,
+        optionally including line item details and summary information.
+      tags:
+        - Transactions
+      parameters:
+        - $ref: '#/components/parameters/companyCode'
+        - name: transactionCode
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The transaction code to retrieve
+        - name: $include
+          in: query
+          schema:
+            type: string
+          description: >-
+            Comma-separated list of optional data to include
+            (e.g., Lines, Details, Summary)
+      responses:
+        '200':
+          description: Transaction retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/adjust:
+    post:
+      operationId: adjustTransaction
+      summary: Adjust a committed transaction
+      description: >-
+        Adjusts a committed transaction by replacing it with a modified version.
+        The original transaction is voided and a new adjusted transaction is created.
+      tags:
+        - Transactions
+      parameters:
+        - $ref: '#/components/parameters/companyCode'
+        - name: transactionCode
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdjustTransactionModel'
+      responses:
+        '200':
+          description: Transaction adjusted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/commit:
+    post:
+      operationId: commitTransaction
+      summary: Commit a transaction
+      description: >-
+        Marks a transaction as committed, indicating it has been finalized
+        and should be reported to tax authorities.
+      tags:
+        - Transactions
+      parameters:
+        - $ref: '#/components/parameters/companyCode'
+        - name: transactionCode
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommitTransactionModel'
+      responses:
+        '200':
+          description: Transaction committed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/void:
+    post:
+      operationId: voidTransaction
+      summary: Void a transaction
+      description: >-
+        Voids an existing transaction, removing it from tax reporting.
+        Only uncommitted or committed transactions can be voided.
+      tags:
+        - Transactions
+      parameters:
+        - $ref: '#/components/parameters/companyCode'
+        - name: transactionCode
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoidTransactionModel'
+      responses:
+        '200':
+          description: Transaction voided successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+  /api/v2/transactions/{transactionCode}/refund:
+    post:
+      operationId: refundTransaction
+      summary: Create a refund for a transaction
+      description: >-
+        Creates a refund transaction based on an existing committed transaction.
+        Supports full, partial, percentage, and tax-only refund types.
+      tags:
+        - Transactions
+      parameters:
+        - name: transactionCode
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundTransactionModel'
+      responses:
+        '200':
+          description: Refund transaction created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+  /api/v2/addresses/resolve:
+    post:
+      operationId: resolveAddress
+      summary: Resolve and validate an address
+      description: >-
+        Validates and resolves an address to a standardized format with
+        latitude, longitude, and tax jurisdiction information.
+      tags:
+        - Addresses
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddressValidationInfo'
+      responses:
+        '200':
+          description: Address resolved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AddressResolutionModel'
+  /api/v2/companies:
+    get:
+      operationId: queryCompanies
+      summary: List all companies
+      description: >-
+        Retrieves a list of companies associated with the authenticated account,
+        with support for filtering, sorting, and pagination.
+      tags:
+        - Companies
+      parameters:
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+        - $ref: '#/components/parameters/orderBy'
+      responses:
+        '200':
+          description: List of companies
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchResult_CompanyModel'
+    post:
+      operationId: createCompany
+      summary: Create a new company
+      description: >-
+        Creates a new company within the authenticated account. A company
+        represents a legal entity that can calculate and report taxes.
+      tags:
+        - Companies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyModel'
+      responses:
+        '201':
+          description: Company created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyModel'
+  /api/v2/companies/{id}:
+    get:
+      operationId: getCompany
+      summary: Retrieve a company by ID
+      tags:
+        - Companies
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: $include
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Company details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyModel'
+    put:
+      operationId: updateCompany
+      summary: Update a company
+      tags:
+        - Companies
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyModel'
+      responses:
+        '200':
+          description: Company updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyModel'
+    delete:
+      operationId: deleteCompany
+      summary: Delete a company
+      tags:
+        - Companies
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Company deleted
+  /api/v2/companies/initialize:
+    post:
+      operationId: initializeCompany
+      summary: Initialize a new company with recommended defaults
+      description: >-
+        Creates a new company with all recommended default settings, nexus,
+        and tax configurations for the specified jurisdictions.
+      tags:
+        - Companies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompanyInitializationModel'
+      responses:
+        '200':
+          description: Company initialized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompanyModel'
+  /api/v2/companies/{companyId}/nexus:
+    get:
+      operationId: listNexusByCompany
+      summary: List nexus for a company
+      description: Retrieves all nexus declarations for the specified company.
+      tags:
+        - Nexus
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of nexus declarations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchResult_NexusModel'
+    post:
+      operationId: createNexus
+      summary: Create nexus for a company
+      tags:
+        - Nexus
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/NexusModel'
+      responses:
+        '201':
+          description: Nexus created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NexusModel'
+  /api/v2/companies/{companyId}/certificates:
+    get:
+      operationId: queryCertificates
+      summary: List certificates for a company
+      description: >-
+        Retrieves exemption certificates associated with the specified company.
+      tags:
+        - Certificates
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of certificates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchResult_CertificateModel'
+    post:
+      operationId: createCertificate
+      summary: Create a new certificate
+      tags:
+        - Certificates
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CertificateModel'
+      responses:
+        '201':
+          description: Certificate created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CertificateModel'
+  /api/v2/companies/{companyId}/customers:
+    get:
+      operationId: queryCustomers
+      summary: List customers for a company
+      tags:
+        - Customers
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of customers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchResult_CustomerModel'
+    post:
+      operationId: createCustomer
+      summary: Create a new customer
+      tags:
+        - Customers
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CustomerModel'
+      responses:
+        '201':
+          description: Customer created
+  /api/v2/companies/{companyId}/items:
+    get:
+      operationId: queryItems
+      summary: List items for a company
+      tags:
+        - Items
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchResult_ItemModel'
+    post:
+      operationId: createItems
+      summary: Create items for a company
+      tags:
+        - Items
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ItemModel'
+      responses:
+        '201':
+          description: Items created
+  /api/v2/companies/{companyId}/locations:
+    get:
+      operationId: queryLocations
+      summary: List locations for a company
+      tags:
+        - Locations
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of locations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchResult_LocationModel'
+    post:
+      operationId: createLocations
+      summary: Create locations for a company
+      tags:
+        - Locations
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/LocationModel'
+      responses:
+        '201':
+          description: Locations created
+  /api/v2/definitions/taxcodes:
+    get:
+      operationId: listTaxCodes
+      summary: List all tax codes
+      description: >-
+        Retrieves the full list of Avalara-supported tax codes for product
+        and service classification.
+      tags:
+        - Definitions
+      parameters:
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of tax codes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchResult_TaxCodeModel'
+  /api/v2/definitions/nexus/{country}:
+    get:
+      operationId: listNexusByCountry
+      summary: List nexus options for a country
+      tags:
+        - Definitions
+      parameters:
+        - name: country
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Nexus options for country
+  /api/v2/definitions/jurisdictions:
+    get:
+      operationId: listJurisdictions
+      summary: List all jurisdictions
+      tags:
+        - Definitions
+      parameters:
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of jurisdictions
+  /api/v2/definitions/countries:
+    get:
+      operationId: listCountries
+      summary: List all countries supported by AvaTax
+      tags:
+        - Definitions
+      parameters:
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of countries
+  /api/v2/definitions/entityusecodes:
+    get:
+      operationId: listEntityUseCodes
+      summary: List all entity use codes
+      description: >-
+        Returns the full list of entity use codes that can be applied to
+        transactions to indicate exemptions or special tax handling.
+      tags:
+        - Definitions
+      parameters:
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of entity use codes
+  /api/v2/taxrates/byaddress:
+    get:
+      operationId: taxRatesByAddress
+      summary: Get tax rates by address
+      description: >-
+        Free tax rates lookup by street address. Returns the estimated
+        combined tax rate for a given location.
+      tags:
+        - Free
+      parameters:
+        - name: line1
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Street address line 1
+        - name: city
+          in: query
+          schema:
+            type: string
+        - name: region
+          in: query
+          required: true
+          schema:
+            type: string
+          description: State or province code
+        - name: postalCode
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: country
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Two-character ISO 3166 country code
+      responses:
+        '200':
+          description: Tax rate information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxRateModel'
+  /api/v2/taxrates/bypostalcode:
+    get:
+      operationId: taxRatesByPostalCode
+      summary: Get tax rates by postal code
+      description: >-
+        Free tax rates lookup by postal code. Returns estimated
+        combined tax rate for a given postal code.
+      tags:
+        - Free
+      parameters:
+        - name: country
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: postalCode
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Tax rate information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxRateModel'
+  /api/v2/companies/{companyId}/batches:
+    get:
+      operationId: listBatches
+      summary: List batches for a company
+      tags:
+        - Batches
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of batches
+    post:
+      operationId: createBatch
+      summary: Create a new batch
+      tags:
+        - Batches
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchModel'
+      responses:
+        '201':
+          description: Batch created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchModel'
+  /api/v2/companies/{companyId}/taxrules:
+    get:
+      operationId: listTaxRules
+      summary: List tax rules for a company
+      tags:
+        - TaxRules
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of tax rules
+    post:
+      operationId: createTaxRules
+      summary: Create tax rules for a company
+      tags:
+        - TaxRules
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TaxRuleModel'
+      responses:
+        '201':
+          description: Tax rules created
+  /api/v2/companies/{companyId}/settings:
+    get:
+      operationId: listSettings
+      summary: List settings for a company
+      tags:
+        - Settings
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of settings
+  /api/v2/accounts/{id}:
+    get:
+      operationId: getAccount
+      summary: Retrieve a single account
+      tags:
+        - Accounts
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: $include
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Account details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountModel'
+  /api/v2/accounts:
+    get:
+      operationId: queryAccounts
+      summary: List all accounts
+      tags:
+        - Accounts
+      parameters:
+        - $ref: '#/components/parameters/filter'
+        - $ref: '#/components/parameters/top'
+        - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of accounts
+  /api/v2/accounts/{id}/subscriptions:
+    get:
+      operationId: listSubscriptionsByAccount
+      summary: List subscriptions for an account
+      tags:
+        - Subscriptions
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+        - $ref: '#/components/parameters/filter'
+      responses:
+        '200':
+          description: List of subscriptions
+  /api/v2/companies/{companyId}/reports:
+    get:
+      operationId: listReports
+      summary: List reports for a company
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/companyId'
+      responses:
+        '200':
+          description: List of reports
+  /api/v2/reports/{id}:
+    get:
+      operationId: getReport
+      summary: Retrieve a single report
+      tags:
+        - Reports
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Report details
+  /api/v2/multidocument/transactions/create:
+    post:
+      operationId: createMultiDocumentTransaction
+      summary: Create a multi-document transaction
+      description: >-
+        Creates a transaction that spans multiple companies or jurisdictions,
+        managing related documents as a single group.
+      tags:
+        - MultiDocument
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMultiDocumentModel'
+      responses:
+        '200':
+          description: Multi-document transaction created
+  /api/v2/utilities/ping:
+    get:
+      operationId: ping
+      summary: Test connectivity and authentication
+      description: >-
+        Tests connectivity to the AvaTax service and validates
+        authentication credentials.
+      tags:
+        - Utilities
+      security: []
+      responses:
+        '200':
+          description: Ping successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PingResultModel'
+  /api/v2/utilities/subscriptions:
+    get:
+      operationId: listMySubscriptions
+      summary: List subscriptions for the current account
+      tags:
+        - Utilities
+      responses:
+        '200':
+          description: Subscriptions for authenticated account
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: >-
+        Use your AvaTax username/password or accountId/licenseKey
+        as basic auth credentials
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+  parameters:
+    companyCode:
+      name: companyCode
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The company code identifying the company
+    companyId:
+      name: companyId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The numeric ID of the company
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
+    orderBy:
+      name: $orderBy
+      in: query
+      schema:
+        type: string
+      description: Field name for sorting results
+  responses:
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResult'
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResult'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResult'
+  schemas:
+    CreateTransactionModel:
+      type: object
+      required:
+        - type
+        - companyCode
+        - date
+        - customerCode
+        - lines
+      properties:
+        type:
+          type: string
+          enum:
+            - SalesOrder
+            - SalesInvoice
+            - PurchaseOrder
+            - PurchaseInvoice
+            - ReturnOrder
+            - ReturnInvoice
+          description: The type of document to create
+        companyCode:
+          type: string
+          description: Company code of the company creating this transaction
+        date:
+          type: string
+          format: date
+          description: Date of the transaction
+        customerCode:
+          type: string
+          description: Unique code identifying the customer
+        commit:
+          type: boolean
+          default: false
+          description: Whether to commit the transaction immediately
+        currencyCode:
+          type: string
+          description: Three-character ISO 4217 currency code
+        addresses:
+          type: object
+          properties:
+            shipFrom:
+              $ref: '#/components/schemas/AddressInfo'
+            shipTo:
+              $ref: '#/components/schemas/AddressInfo'
+            pointOfOrderOrigin:
+              $ref: '#/components/schemas/AddressInfo'
+            pointOfOrderAcceptance:
+              $ref: '#/components/schemas/AddressInfo'
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemModel'
+          description: Line items for the transaction
+    TransactionModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique ID of the transaction
+        code:
+          type: string
+          description: Transaction code
+        companyId:
+          type: integer
+          description: Company ID that owns this transaction
+        date:
+          type: string
+          format: date
+          description: Date of the transaction
+        status:
+          type: string
+          enum:
+            - Temporary
+            - Saved
+            - Posted
+            - Committed
+            - Cancelled
+            - Adjusted
+          description: Current status of the transaction
+        type:
+          type: string
+          description: Document type
+        totalAmount:
+          type: number
+          format: double
+          description: Total amount of the transaction before tax
+        totalTax:
+          type: number
+          format: double
+          description: Total tax calculated for the transaction
+        totalTaxable:
+          type: number
+          format: double
+          description: Total taxable amount
+        totalExempt:
+          type: number
+          format: double
+          description: Total exempt amount
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionLineModel'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionAddressModel'
+        summary:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionSummary'
+    LineItemModel:
+      type: object
+      required:
+        - amount
+      properties:
+        number:
+          type: string
+          description: Line number within the transaction
+        quantity:
+          type: number
+          format: double
+          default: 1
+          description: Quantity of items
+        amount:
+          type: number
+          format: double
+          description: Total amount for this line
+        taxCode:
+          type: string
+          description: Tax code for this line item
+        itemCode:
+          type: string
+          description: Item code for the product or service
+        description:
+          type: string
+          description: Description of the line item
+        addresses:
+          type: object
+          properties:
+            shipFrom:
+              $ref: '#/components/schemas/AddressInfo'
+            shipTo:
+              $ref: '#/components/schemas/AddressInfo'
+        exemptionCode:
+          type: string
+          description: Exemption code for tax-exempt purchases
+    TransactionLineModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        lineNumber:
+          type: string
+        lineAmount:
+          type: number
+          format: double
+        tax:
+          type: number
+          format: double
+        taxableAmount:
+          type: number
+          format: double
+        exemptAmount:
+          type: number
+          format: double
+        taxCode:
+          type: string
+        itemCode:
+          type: string
+    TransactionAddressModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        line1:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    TransactionSummary:
+      type: object
+      properties:
+        country:
+          type: string
+        region:
+          type: string
+        jurisType:
+          type: string
+        jurisCode:
+          type: string
+        jurisName:
+          type: string
+        taxType:
+          type: string
+        rate:
+          type: number
+          format: double
+        tax:
+          type: number
+          format: double
+        taxable:
+          type: number
+          format: double
+        exempt:
+          type: number
+          format: double
+    AddressInfo:
+      type: object
+      properties:
+        line1:
+          type: string
+          description: Street address line 1
+        line2:
+          type: string
+          description: Street address line 2
+        line3:
+          type: string
+          description: Street address line 3
+        city:
+          type: string
+          description: City name
+        region:
+          type: string
+          description: State, province, or region code
+        postalCode:
+          type: string
+          description: Postal code or ZIP code
+        country:
+          type: string
+          description: Two-character ISO 3166 country code
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    AddressValidationInfo:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        line3:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        textCase:
+          type: string
+          enum:
+            - Default
+            - Upper
+            - Mixed
+    AddressResolutionModel:
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/AddressInfo'
+        validatedAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressInfo'
+        coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+              format: double
+            longitude:
+              type: number
+              format: double
+        resolutionQuality:
+          type: string
+          enum:
+            - NotCoded
+            - External
+            - CountryCentroid
+            - RegionCentroid
+            - PartialCentroid
+            - PostalCentroidGood
+            - PostalCentroidBetter
+            - PostalCentroidBest
+            - Intersection
+            - Interpolated
+            - Rooftop
+        taxAuthorities:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxAuthorityInfo'
+    TaxAuthorityInfo:
+      type: object
+      properties:
+        avalaraId:
+          type: string
+        jurisdictionName:
+          type: string
+        jurisdictionType:
+          type: string
+        signatureCode:
+          type: string
+    AdjustTransactionModel:
+      type: object
+      required:
+        - adjustmentReason
+        - newTransaction
+      properties:
+        adjustmentReason:
+          type: string
+          enum:
+            - NotAdjusted
+            - SourcingIssue
+            - ReconciledWithGeneralLedger
+            - ExemptCertApplied
+            - PriceAdjusted
+            - ProductReturned
+            - ProductExchanged
+            - BadDebt
+            - Other
+        adjustmentDescription:
+          type: string
+        newTransaction:
+          $ref: '#/components/schemas/CreateTransactionModel'
+    CommitTransactionModel:
+      type: object
+      required:
+        - commit
+      properties:
+        commit:
+          type: boolean
+          description: Set to true to commit the transaction
+    VoidTransactionModel:
+      type: object
+      required:
+        - code
+      properties:
+        code:
+          type: string
+          enum:
+            - Unspecified
+            - PostFailed
+            - DocDeleted
+            - DocVoided
+            - AdjustmentCancelled
+          description: Reason for voiding the transaction
+    RefundTransactionModel:
+      type: object
+      required:
+        - refundTransactionCode
+        - refundDate
+        - refundType
+      properties:
+        refundTransactionCode:
+          type: string
+        refundDate:
+          type: string
+          format: date
+        refundType:
+          type: string
+          enum:
+            - Full
+            - Partial
+            - Percentage
+            - TaxOnly
+        refundPercentage:
+          type: number
+          format: double
+        refundLines:
+          type: array
+          items:
+            type: string
+    CompanyModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique identifier for the company
+        companyCode:
+          type: string
+          description: Short code identifying this company
+        name:
+          type: string
+          description: Display name of the company
+        isDefault:
+          type: boolean
+          description: Whether this is the default company for the account
+        isActive:
+          type: boolean
+        taxpayerIdNumber:
+          type: string
+          description: Tax identification number (EIN, TIN)
+        hasProfile:
+          type: boolean
+        isReportingEntity:
+          type: boolean
+        defaultCountry:
+          type: string
+          description: Default country for this company
+        baseCurrencyCode:
+          type: string
+          description: Default currency code
+        sstEffDate:
+          type: string
+          format: date
+        roundingLevelId:
+          type: string
+          enum:
+            - Line
+            - Document
+        sstPId:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
+    CompanyInitializationModel:
+      type: object
+      required:
+        - name
+        - companyCode
+        - taxpayerIdNumber
+        - line1
+        - city
+        - region
+        - postalCode
+        - country
+      properties:
+        name:
+          type: string
+        companyCode:
+          type: string
+        taxpayerIdNumber:
+          type: string
+        line1:
+          type: string
+        line2:
+          type: string
+        line3:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        title:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        mobileNumber:
+          type: string
+    NexusModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        companyId:
+          type: integer
+        country:
+          type: string
+          description: Two-character ISO 3166 country code
+        region:
+          type: string
+          description: State or province code
+        jurisTypeId:
+          type: string
+          enum:
+            - STA
+            - CTY
+            - CIT
+            - STJ
+            - CNT
+        jurisdictionTypeId:
+          type: string
+        jurisCode:
+          type: string
+        jurisName:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        nexusTypeId:
+          type: string
+          enum:
+            - None
+            - SalesOrSellersUseTax
+            - SalesTax
+            - SSTVolunteer
+            - SSTNonVolunteer
+        hasLocalNexus:
+          type: boolean
+    CertificateModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        companyId:
+          type: integer
+        signedDate:
+          type: string
+          format: date
+        expirationDate:
+          type: string
+          format: date
+        exemptionNumber:
+          type: string
+        exemptPercentage:
+          type: number
+          format: double
+        exemptionReason:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        status:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
+    CustomerModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        companyId:
+          type: integer
+        customerCode:
+          type: string
+        name:
+          type: string
+        line1:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        emailAddress:
+          type: string
+        phoneNumber:
+          type: string
+    ItemModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        companyId:
+          type: integer
+        itemCode:
+          type: string
+          description: Unique code for this item
+        taxCode:
+          type: string
+          description: Avalara tax code for this item
+        description:
+          type: string
+        category:
+          type: string
+    LocationModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        companyId:
+          type: integer
+        locationCode:
+          type: string
+        description:
+          type: string
+        addressTypeId:
+          type: string
+          enum:
+            - Firm
+            - Location
+            - Salesperson
+        addressCategoryId:
+          type: string
+          enum:
+            - Storefront
+            - MainOffice
+            - Warehouse
+            - Salesperson
+            - Other
+        line1:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+    TaxCodeModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        companyId:
+          type: integer
+        taxCode:
+          type: string
+        taxCodeTypeId:
+          type: string
+        description:
+          type: string
+        isPhysical:
+          type: boolean
+        isActive:
+          type: boolean
+    TaxRuleModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        companyId:
+          type: integer
+        taxCodeId:
+          type: integer
+        taxCode:
+          type: string
+        stateFIPS:
+          type: string
+        jurisName:
+          type: string
+        jurisCode:
+          type: string
+        jurisTypeId:
+          type: string
+        rateTypeId:
+          type: string
+        ruleTypeId:
+          type: string
+        isAllJuris:
+          type: boolean
+    BatchModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        companyId:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+            - AvaCertUpdate
+            - AvaCertUpdateAll
+            - BatchMaintenance
+            - CompanyLocationImport
+            - DocumentImport
+            - ExemptCertImport
+            - ItemImport
+            - SalesAuditExport
+            - SstpTestDeckImport
+            - TaxRuleImport
+            - TransactionImport
+            - UPCBulkImport
+            - UPCBulkDelete
+        status:
+          type: string
+          enum:
+            - Waiting
+            - SystemErrors
+            - Cancelled
+            - Completed
+            - Creating
+            - Deleted
+            - Errors
+            - Paused
+            - Processing
+            - ReadyToDelete
+        recordCount:
+          type: integer
+        currentRecord:
+          type: integer
+        createdDate:
+          type: string
+          format: date-time
+    AccountModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        accountStatusId:
+          type: string
+          enum:
+            - Inactive
+            - Active
+            - Test
+            - New
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
+    TaxRateModel:
+      type: object
+      properties:
+        totalRate:
+          type: number
+          format: double
+          description: Total combined tax rate
+        rates:
+          type: array
+          items:
+            type: object
+            properties:
+              rate:
+                type: number
+                format: double
+              name:
+                type: string
+              type:
+                type: string
+                enum:
+                  - Country
+                  - State
+                  - County
+                  - City
+                  - Special
+    CreateMultiDocumentModel:
+      type: object
+      properties:
+        code:
+          type: string
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/MultiDocumentLineItemModel'
+    MultiDocumentLineItemModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        reportingLocationCode:
+          type: string
+        number:
+          type: string
+        quantity:
+          type: number
+          format: double
+        amount:
+          type: number
+          format: double
+        taxCode:
+          type: string
+        addresses:
+          type: object
+          properties:
+            shipFrom:
+              $ref: '#/components/schemas/AddressInfo'
+            shipTo:
+              $ref: '#/components/schemas/AddressInfo'
+    PingResultModel:
+      type: object
+      properties:
+        version:
+          type: string
+          description: AvaTax API version
+        authenticated:
+          type: boolean
+          description: Whether the request was authenticated
+        authenticationType:
+          type: string
+          enum:
+            - None
+            - UsernamePassword
+            - AccountIdLicenseKey
+            - OpenIdBearerToken
+          description: Type of authentication used
+        authenticatedUserName:
+          type: string
+          description: Username of the authenticated user
+        authenticatedUserId:
+          type: integer
+          description: User ID of the authenticated user
+        authenticatedAccountId:
+          type: integer
+          description: Account ID of the authenticated user
+        crmid:
+          type: string
+    FetchResult_CompanyModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyModel'
+    FetchResult_NexusModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/NexusModel'
+    FetchResult_CertificateModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/CertificateModel'
+    FetchResult_CustomerModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerModel'
+    FetchResult_ItemModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemModel'
+    FetchResult_LocationModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationModel'
+    FetchResult_TaxCodeModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxCodeModel'
+    ErrorResult:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+            message:
+              type: string
+              description: Human-readable error message
+            target:
+              type: string
+              description: The component that generated the error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  number:
+                    type: integer
+                  message:
+                    type: string
+                  description:
+                    type: string
+                  faultCode:
+                    type: string
+                  helpLink:
+                    type: string
+                  severity:
+                    type: string
+                    enum:
+                      - Error
+                      - Warning
+                      - Exception

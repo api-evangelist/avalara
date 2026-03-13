@@ -1,0 +1,153 @@
+openapi: 3.1.0
+info:
+  title: Avalara Activation Service API
+  description: >-
+    The Avalara Activation Service API allows technology partners to retrieve
+    the status of their registrations within the Avalara Compliance Cloud
+    platform, providing endpoints for listing all registrations and retrieving
+    individual registration details.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+externalDocs:
+  description: Activation Service API Documentation
+  url: https://developer.avalara.com/api-reference/activationService/activationService/
+servers:
+  - url: https://api.avalara.com/activation/v1
+    description: Activation Service API Production
+tags:
+  - name: Registrations
+    description: Manage partner registrations
+security:
+  - bearerAuth: []
+paths:
+  /registrations:
+    get:
+      operationId: listRegistrations
+      summary: List all registrations
+      description: Retrieves all registrations for the authenticated partner.
+      tags:
+        - Registrations
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - Pending
+              - Active
+              - Expired
+              - Cancelled
+        - name: $top
+          in: query
+          schema:
+            type: integer
+        - name: $skip
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of registrations
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegistrationList'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /registrations/{registrationId}:
+    get:
+      operationId: getRegistration
+      summary: Get a registration by ID
+      description: Retrieves details for a specific registration.
+      tags:
+        - Registrations
+      parameters:
+        - name: registrationId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Registration details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Registration'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    RegistrationList:
+      type: object
+      properties:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Registration'
+    Registration:
+      type: object
+      properties:
+        registrationId:
+          type: string
+        partnerId:
+          type: string
+        companyName:
+          type: string
+        status:
+          type: string
+          enum:
+            - Pending
+            - Active
+            - Expired
+            - Cancelled
+        product:
+          type: string
+          description: Avalara product registered for
+        accountId:
+          type: string
+        activationDate:
+          type: string
+          format: date-time
+        expirationDate:
+          type: string
+          format: date-time
+        createdDate:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string

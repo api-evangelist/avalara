@@ -1,0 +1,332 @@
+openapi: 3.1.0
+info:
+  title: Avalara Item Classification API
+  description: >-
+    The Avalara Item Classification API allows businesses subscribed to the
+    Item Classification service to submit products for automated classification,
+    retrieve corresponding HS Codes, and manage classification requests. It
+    supports both storage and non-storage subscription models for product
+    classification across international trade jurisdictions.
+  version: '2.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+externalDocs:
+  description: Item Classification API Documentation
+  url: https://developer.avalara.com/api-reference/item-classification/v2/
+servers:
+  - url: https://api.avalara.com/classification/v2
+    description: Item Classification API Production
+  - url: https://api.sbx.avalara.com/classification/v2
+    description: Item Classification API Sandbox
+tags:
+  - name: Classification Requests
+    description: Submit and manage product classification requests
+  - name: HS Codes
+    description: Retrieve HS Code classification results
+security:
+  - bearerAuth: []
+paths:
+  /classification-requests:
+    post:
+      operationId: createClassificationRequest
+      summary: Submit products for classification
+      description: >-
+        Submits one or more products for HS Code classification. Products
+        are classified based on their descriptions and attributes for the
+        specified destination country.
+      tags:
+        - Classification Requests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClassificationRequest'
+      responses:
+        '202':
+          description: Classification request accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRequestResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      operationId: listClassificationRequests
+      summary: List classification requests
+      description: Retrieves a list of submitted classification requests and their statuses.
+      tags:
+        - Classification Requests
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - Pending
+              - InProgress
+              - Completed
+              - Failed
+        - name: $top
+          in: query
+          schema:
+            type: integer
+        - name: $skip
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of classification requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRequestList'
+  /classification-requests/{requestId}:
+    get:
+      operationId: getClassificationRequest
+      summary: Get classification request status
+      description: Retrieves the status and results of a classification request.
+      tags:
+        - Classification Requests
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Classification request details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationRequestDetail'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /classification-requests/{requestId}/results:
+    get:
+      operationId: getClassificationResults
+      summary: Get classification results
+      description: >-
+        Retrieves the HS Code classification results for a completed
+        classification request.
+      tags:
+        - HS Codes
+      parameters:
+        - name: requestId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Classification results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationResultList'
+  /hs-codes/{hsCode}:
+    get:
+      operationId: getHSCodeDetails
+      summary: Get HS Code details
+      description: Retrieves detailed information for a specific HS Code.
+      tags:
+        - HS Codes
+      parameters:
+        - name: hsCode
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The HS Code to look up
+        - name: country
+          in: query
+          schema:
+            type: string
+          description: ISO 3166-1 alpha-2 country code for country-specific details
+      responses:
+        '200':
+          description: HS Code details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HSCodeDetail'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ClassificationRequest:
+      type: object
+      required:
+        - items
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationItem'
+        destinationCountry:
+          type: string
+          description: ISO 3166-1 alpha-2 destination country code
+    ClassificationItem:
+      type: object
+      required:
+        - description
+      properties:
+        itemCode:
+          type: string
+          description: Unique item identifier
+        description:
+          type: string
+          description: Product description for classification
+        summary:
+          type: string
+          description: Short product summary
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
+          description: Additional product attributes for classification
+    ClassificationRequestResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        status:
+          type: string
+          enum:
+            - Pending
+            - InProgress
+        itemCount:
+          type: integer
+        submittedDate:
+          type: string
+          format: date-time
+    ClassificationRequestList:
+      type: object
+      properties:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationRequestSummary'
+    ClassificationRequestSummary:
+      type: object
+      properties:
+        requestId:
+          type: string
+        status:
+          type: string
+        itemCount:
+          type: integer
+        submittedDate:
+          type: string
+          format: date-time
+        completedDate:
+          type: string
+          format: date-time
+    ClassificationRequestDetail:
+      type: object
+      properties:
+        requestId:
+          type: string
+        status:
+          type: string
+          enum:
+            - Pending
+            - InProgress
+            - Completed
+            - Failed
+        itemCount:
+          type: integer
+        classifiedCount:
+          type: integer
+        submittedDate:
+          type: string
+          format: date-time
+        completedDate:
+          type: string
+          format: date-time
+    ClassificationResultList:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationResult'
+    ClassificationResult:
+      type: object
+      properties:
+        itemCode:
+          type: string
+        description:
+          type: string
+        hsCode:
+          type: string
+          description: Classified HS Code
+        hsCodeDescription:
+          type: string
+        confidence:
+          type: number
+          format: double
+          description: Classification confidence score (0-1)
+        country:
+          type: string
+    HSCodeDetail:
+      type: object
+      properties:
+        hsCode:
+          type: string
+        description:
+          type: string
+        chapter:
+          type: string
+        section:
+          type: string
+        parentCode:
+          type: string
+        dutyRate:
+          type: string
+        unitOfMeasure:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string

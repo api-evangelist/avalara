@@ -1,0 +1,504 @@
+openapi: 3.1.0
+info:
+  title: Avalara E-Invoicing REST API
+  description: >-
+    The Avalara E-Invoicing REST API supports electronic invoicing compliance
+    workflows for cross-border and domestic transactions. It enables submission,
+    validation, and management of e-invoices in compliance with mandates from
+    tax authorities worldwide, supporting formats like UBL, Peppol, and
+    country-specific standards.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+externalDocs:
+  description: E-Invoicing API Documentation
+  url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+servers:
+  - url: https://api.avalara.com/einvoicing/v1
+    description: E-Invoicing API Production
+  - url: https://api.sbx.avalara.com/einvoicing/v1
+    description: E-Invoicing API Sandbox
+tags:
+  - name: Documents
+    description: Submit and manage e-invoice documents
+  - name: Mandates
+    description: Query e-invoicing mandate definitions
+  - name: Interop
+    description: Interoperability and network exchange
+security:
+  - bearerAuth: []
+paths:
+  /documents:
+    post:
+      operationId: submitDocument
+      summary: Submit an e-invoice document
+      description: >-
+        Submits an electronic invoice document for validation and delivery
+        to the appropriate tax authority or recipient network.
+      tags:
+        - Documents
+      parameters:
+        - name: avalara-version
+          in: header
+          required: true
+          schema:
+            type: string
+            default: '1.0'
+          description: API version header
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitDocumentRequest'
+      responses:
+        '202':
+          description: Document accepted for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentSubmissionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      operationId: listDocuments
+      summary: List submitted documents
+      description: Retrieves a list of submitted e-invoice documents with filtering.
+      tags:
+        - Documents
+      parameters:
+        - name: avalara-version
+          in: header
+          required: true
+          schema:
+            type: string
+            default: '1.0'
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - Pending
+              - Accepted
+              - Rejected
+              - Error
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: flow
+          in: query
+          schema:
+            type: string
+            enum:
+              - out
+              - in
+          description: Document flow direction (outbound or inbound)
+        - name: count
+          in: query
+          schema:
+            type: boolean
+          description: Include total count in response
+        - name: $top
+          in: query
+          schema:
+            type: integer
+            default: 50
+        - name: $skip
+          in: query
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of documents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentList'
+  /documents/{documentId}:
+    get:
+      operationId: getDocument
+      summary: Retrieve a document by ID
+      description: Retrieves the status and details of a submitted e-invoice document.
+      tags:
+        - Documents
+      parameters:
+        - name: avalara-version
+          in: header
+          required: true
+          schema:
+            type: string
+            default: '1.0'
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Document details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDetail'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /documents/{documentId}/status:
+    get:
+      operationId: getDocumentStatus
+      summary: Get document processing status
+      description: Returns the current processing status of a submitted document.
+      tags:
+        - Documents
+      parameters:
+        - name: avalara-version
+          in: header
+          required: true
+          schema:
+            type: string
+            default: '1.0'
+        - name: documentId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Document status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentStatus'
+  /mandates:
+    get:
+      operationId: listMandates
+      summary: List e-invoicing mandates
+      description: >-
+        Retrieves a list of e-invoicing mandate definitions that describe
+        compliance requirements by country and document type.
+      tags:
+        - Mandates
+      parameters:
+        - name: avalara-version
+          in: header
+          required: true
+          schema:
+            type: string
+            default: '1.0'
+        - name: $top
+          in: query
+          schema:
+            type: integer
+        - name: $skip
+          in: query
+          schema:
+            type: integer
+        - name: $filter
+          in: query
+          schema:
+            type: string
+          description: OData filter expression
+        - name: count
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: List of mandates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MandateList'
+  /interop/documents:
+    post:
+      operationId: submitInteropDocument
+      summary: Submit a document via interoperability network
+      description: >-
+        Submits a document through the interoperability network (e.g., Peppol)
+        for delivery to the recipient.
+      tags:
+        - Interop
+      parameters:
+        - name: avalara-version
+          in: header
+          required: true
+          schema:
+            type: string
+            default: '1.0'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InteropDocumentRequest'
+      responses:
+        '202':
+          description: Document accepted for interop delivery
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentSubmissionResponse'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    SubmitDocumentRequest:
+      type: object
+      required:
+        - dataFormat
+        - data
+      properties:
+        dataFormat:
+          type: string
+          enum:
+            - ubl-invoice
+            - ubl-creditnote
+            - cii
+          description: Format of the e-invoice document
+        dataFormatVersion:
+          type: string
+          description: Version of the data format
+        data:
+          type: string
+          description: Base64-encoded document content or raw UBL/CII XML
+        metadata:
+          type: object
+          properties:
+            workflowId:
+              type: string
+              description: Workflow identifier for the mandate
+            countryCode:
+              type: string
+              description: ISO 3166-1 alpha-2 country code
+            countryMandate:
+              type: string
+              description: Country mandate identifier
+    DocumentSubmissionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Document submission ID
+        status:
+          type: string
+          enum:
+            - Pending
+            - Accepted
+            - Rejected
+            - Error
+        statusDate:
+          type: string
+          format: date-time
+    DocumentList:
+      type: object
+      properties:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentSummary'
+    DocumentSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        documentType:
+          type: string
+        invoiceNumber:
+          type: string
+        senderName:
+          type: string
+        recipientName:
+          type: string
+        submissionDate:
+          type: string
+          format: date-time
+        countryCode:
+          type: string
+    DocumentDetail:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        dataFormat:
+          type: string
+        documentType:
+          type: string
+        invoiceNumber:
+          type: string
+        invoiceDate:
+          type: string
+          format: date
+        sender:
+          $ref: '#/components/schemas/Party'
+        recipient:
+          $ref: '#/components/schemas/Party'
+        totalAmount:
+          type: number
+          format: double
+        currencyCode:
+          type: string
+        countryCode:
+          type: string
+        submissionDate:
+          type: string
+          format: date-time
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentEvent'
+    DocumentStatus:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+            - Pending
+            - Accepted
+            - Rejected
+            - Error
+        statusDate:
+          type: string
+          format: date-time
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentEvent'
+    DocumentEvent:
+      type: object
+      properties:
+        eventDate:
+          type: string
+          format: date-time
+        eventType:
+          type: string
+        message:
+          type: string
+    Party:
+      type: object
+      properties:
+        name:
+          type: string
+        identifier:
+          type: string
+          description: Tax identification number
+        identifierScheme:
+          type: string
+          description: Identifier scheme (e.g., VAT)
+        address:
+          type: object
+          properties:
+            line1:
+              type: string
+            city:
+              type: string
+            region:
+              type: string
+            postalCode:
+              type: string
+            countryCode:
+              type: string
+    MandateList:
+      type: object
+      properties:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Mandate'
+    Mandate:
+      type: object
+      properties:
+        mandateId:
+          type: string
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+        countryName:
+          type: string
+        description:
+          type: string
+        supportedDocumentTypes:
+          type: array
+          items:
+            type: string
+        inputFormats:
+          type: array
+          items:
+            type: string
+        workflowId:
+          type: string
+    InteropDocumentRequest:
+      type: object
+      required:
+        - dataFormat
+        - data
+        - recipientIdentifier
+      properties:
+        dataFormat:
+          type: string
+        data:
+          type: string
+        recipientIdentifier:
+          type: string
+          description: Recipient identifier on the interop network
+        recipientIdentifierScheme:
+          type: string
+          description: Identifier scheme (e.g., peppol)
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            target:
+              type: string

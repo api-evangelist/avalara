@@ -1,0 +1,480 @@
+openapi: 3.1.0
+info:
+  title: Avalara AvaTax Brazil API
+  description: >-
+    The AvaTax Brazil API provides tax calculation, electronic invoice (NF-e,
+    NFS-e, NFC-e) issuance, and transaction management for businesses with
+    a physical presence in Brazil. It supports Brazilian federal, state, and
+    municipal taxes including ICMS, IPI, PIS, COFINS, ISS, and more.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+externalDocs:
+  description: AvaTax Brazil API Documentation
+  url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+servers:
+  - url: https://avataxbr-sandbox.avalarabrasil.com.br/v3
+    description: AvaTax Brazil Sandbox
+tags:
+  - name: Tax Calculation
+    description: Calculate Brazilian taxes on transactions
+  - name: Electronic Invoices
+    description: Issue and manage electronic fiscal documents
+  - name: Transactions
+    description: Manage tax transactions
+  - name: Companies
+    description: Manage company configurations for Brazil
+security:
+  - bearerAuth: []
+paths:
+  /calculations:
+    post:
+      operationId: calculateTax
+      summary: Calculate Brazilian taxes
+      description: >-
+        Calculates applicable Brazilian taxes for a transaction including
+        ICMS, IPI, PIS, COFINS, ISS, and other applicable taxes based on
+        product type, origin, and destination.
+      tags:
+        - Tax Calculation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculationRequest'
+      responses:
+        '200':
+          description: Tax calculation results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /invoices:
+    post:
+      operationId: createInvoice
+      summary: Issue an electronic invoice
+      description: >-
+        Issues a new electronic fiscal document (NF-e, NFS-e, or NFC-e)
+        to Brazilian tax authorities (SEFAZ).
+      tags:
+        - Electronic Invoices
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceRequest'
+      responses:
+        '201':
+          description: Invoice issued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceResponse'
+    get:
+      operationId: listInvoices
+      summary: List electronic invoices
+      tags:
+        - Electronic Invoices
+      parameters:
+        - name: startDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: endDate
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - Authorized
+              - Cancelled
+              - Denied
+              - Pending
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of invoices
+  /invoices/{invoiceId}:
+    get:
+      operationId: getInvoice
+      summary: Get an invoice by ID
+      tags:
+        - Electronic Invoices
+      parameters:
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Invoice details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceResponse'
+  /invoices/{invoiceId}/cancel:
+    post:
+      operationId: cancelInvoice
+      summary: Cancel an electronic invoice
+      description: Submits a cancellation request for an authorized invoice.
+      tags:
+        - Electronic Invoices
+      parameters:
+        - name: invoiceId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: Cancellation reason
+      responses:
+        '200':
+          description: Invoice cancelled
+  /transactions:
+    get:
+      operationId: listTransactions
+      summary: List transactions
+      tags:
+        - Transactions
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of transactions
+  /companies:
+    get:
+      operationId: listCompanies
+      summary: List companies configured for Brazil
+      tags:
+        - Companies
+      responses:
+        '200':
+          description: List of companies
+    post:
+      operationId: createCompany
+      summary: Create a company configuration
+      tags:
+        - Companies
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BrazilCompany'
+      responses:
+        '201':
+          description: Company created
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer token authentication
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    CalculationRequest:
+      type: object
+      required:
+        - header
+        - lines
+      properties:
+        header:
+          type: object
+          properties:
+            transactionType:
+              type: string
+              enum:
+                - Sale
+                - Purchase
+                - Return
+                - Transfer
+            companyLocation:
+              type: string
+              description: Company establishment code
+            documentCode:
+              type: string
+            transactionDate:
+              type: string
+              format: date
+            currency:
+              type: string
+              default: BRL
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalculationLine'
+    CalculationLine:
+      type: object
+      properties:
+        lineCode:
+          type: string
+        itemCode:
+          type: string
+        numberOfItems:
+          type: number
+          format: double
+        lineAmount:
+          type: number
+          format: double
+        itemDescription:
+          type: string
+        ncmCode:
+          type: string
+          description: NCM (Nomenclatura Comum do Mercosul) code
+        cstCode:
+          type: string
+          description: CST (Codigo de Situacao Tributaria) code
+        cfopCode:
+          type: string
+          description: CFOP (Codigo Fiscal de Operacoes e Prestacoes) code
+        originState:
+          type: string
+          description: Origin state code (UF)
+        destinationState:
+          type: string
+          description: Destination state code (UF)
+    CalculationResponse:
+      type: object
+      properties:
+        header:
+          type: object
+          properties:
+            transactionId:
+              type: string
+            status:
+              type: string
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalculationResultLine'
+    CalculationResultLine:
+      type: object
+      properties:
+        lineCode:
+          type: string
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrazilTaxDetail'
+        totalTax:
+          type: number
+          format: double
+    BrazilTaxDetail:
+      type: object
+      properties:
+        taxType:
+          type: string
+          enum:
+            - ICMS
+            - ICMS_ST
+            - IPI
+            - PIS
+            - COFINS
+            - ISS
+            - CSLL
+            - IRRF
+            - INSS
+            - IOF
+          description: Brazilian tax type
+        taxBase:
+          type: number
+          format: double
+        taxRate:
+          type: number
+          format: double
+        taxAmount:
+          type: number
+          format: double
+        exemptAmount:
+          type: number
+          format: double
+        cstCode:
+          type: string
+    InvoiceRequest:
+      type: object
+      properties:
+        invoiceType:
+          type: string
+          enum:
+            - NF-e
+            - NFS-e
+            - NFC-e
+            - CT-e
+          description: Electronic document type
+        companyId:
+          type: string
+        transactionDate:
+          type: string
+          format: date-time
+        buyer:
+          $ref: '#/components/schemas/BrazilParty'
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceLine'
+    InvoiceLine:
+      type: object
+      properties:
+        lineNumber:
+          type: integer
+        itemCode:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: number
+          format: double
+        unitPrice:
+          type: number
+          format: double
+        ncmCode:
+          type: string
+        cfopCode:
+          type: string
+    InvoiceResponse:
+      type: object
+      properties:
+        invoiceId:
+          type: string
+        accessKey:
+          type: string
+          description: 44-digit NF-e access key
+        invoiceNumber:
+          type: integer
+        series:
+          type: integer
+        status:
+          type: string
+          enum:
+            - Authorized
+            - Cancelled
+            - Denied
+            - Pending
+        protocolNumber:
+          type: string
+        issuanceDate:
+          type: string
+          format: date-time
+    BrazilParty:
+      type: object
+      properties:
+        name:
+          type: string
+        cnpj:
+          type: string
+          description: Company tax ID (CNPJ)
+        cpf:
+          type: string
+          description: Individual tax ID (CPF)
+        stateRegistration:
+          type: string
+          description: Inscricao Estadual
+        municipalRegistration:
+          type: string
+          description: Inscricao Municipal
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+            number:
+              type: string
+            complement:
+              type: string
+            neighborhood:
+              type: string
+            city:
+              type: string
+            cityCode:
+              type: string
+              description: IBGE city code
+            state:
+              type: string
+              description: State code (UF)
+            postalCode:
+              type: string
+            country:
+              type: string
+    BrazilCompany:
+      type: object
+      properties:
+        companyId:
+          type: string
+        name:
+          type: string
+        cnpj:
+          type: string
+        stateRegistration:
+          type: string
+        municipalRegistration:
+          type: string
+        taxRegime:
+          type: string
+          enum:
+            - SimplesNacional
+            - LucroPresumido
+            - LucroReal
+        state:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string

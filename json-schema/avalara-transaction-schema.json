@@ -1,0 +1,278 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.avalara.com/schemas/avalara/transaction.json",
+  "title": "Avalara Tax Transaction",
+  "description": "A tax transaction represents a taxable event such as a sale, purchase, or return processed through the AvaTax API. It contains header-level information, line items, calculated tax amounts, and jurisdiction details.",
+  "type": "object",
+  "required": ["type", "companyCode", "date", "customerCode", "lines"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the transaction"
+    },
+    "code": {
+      "type": "string",
+      "description": "Unique transaction code assigned by the client or auto-generated"
+    },
+    "companyCode": {
+      "type": "string",
+      "description": "Code identifying the company that owns this transaction"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["SalesOrder", "SalesInvoice", "PurchaseOrder", "PurchaseInvoice", "ReturnOrder", "ReturnInvoice"],
+      "description": "The document type for this transaction"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Temporary", "Saved", "Posted", "Committed", "Cancelled", "Adjusted"],
+      "description": "Current lifecycle status of the transaction"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the transaction"
+    },
+    "customerCode": {
+      "type": "string",
+      "description": "Unique code identifying the customer for this transaction"
+    },
+    "currencyCode": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "Three-character ISO 4217 currency code"
+    },
+    "commit": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether the transaction should be committed immediately"
+    },
+    "totalAmount": {
+      "type": "number",
+      "description": "Total amount of the transaction before tax"
+    },
+    "totalTax": {
+      "type": "number",
+      "description": "Total tax calculated for the transaction"
+    },
+    "totalTaxable": {
+      "type": "number",
+      "description": "Total taxable amount"
+    },
+    "totalExempt": {
+      "type": "number",
+      "description": "Total exempt amount"
+    },
+    "totalDiscount": {
+      "type": "number",
+      "description": "Total discount applied"
+    },
+    "totalTaxCalculated": {
+      "type": "number",
+      "description": "Total tax calculated before any adjustments"
+    },
+    "addresses": {
+      "type": "object",
+      "description": "Address information for the transaction",
+      "properties": {
+        "shipFrom": {
+          "$ref": "#/$defs/Address"
+        },
+        "shipTo": {
+          "$ref": "#/$defs/Address"
+        },
+        "pointOfOrderOrigin": {
+          "$ref": "#/$defs/Address"
+        },
+        "pointOfOrderAcceptance": {
+          "$ref": "#/$defs/Address"
+        }
+      }
+    },
+    "lines": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/TransactionLine"
+      },
+      "description": "Line items included in this transaction"
+    },
+    "summary": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/TaxSummary"
+      },
+      "description": "Tax summary broken down by jurisdiction"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the transaction was created"
+    },
+    "modifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the transaction was last modified"
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "description": "A physical address used for tax jurisdiction determination",
+      "properties": {
+        "line1": {
+          "type": "string",
+          "description": "Street address line 1"
+        },
+        "line2": {
+          "type": "string",
+          "description": "Street address line 2"
+        },
+        "line3": {
+          "type": "string",
+          "description": "Street address line 3"
+        },
+        "city": {
+          "type": "string",
+          "description": "City name"
+        },
+        "region": {
+          "type": "string",
+          "description": "State, province, or region code"
+        },
+        "postalCode": {
+          "type": "string",
+          "description": "Postal code or ZIP code"
+        },
+        "country": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$",
+          "description": "Two-character ISO 3166 country code"
+        },
+        "latitude": {
+          "type": "number",
+          "minimum": -90,
+          "maximum": 90
+        },
+        "longitude": {
+          "type": "number",
+          "minimum": -180,
+          "maximum": 180
+        }
+      }
+    },
+    "TransactionLine": {
+      "type": "object",
+      "description": "A single line item within a tax transaction",
+      "required": ["amount"],
+      "properties": {
+        "number": {
+          "type": "string",
+          "description": "Line number within the transaction"
+        },
+        "quantity": {
+          "type": "number",
+          "minimum": 0,
+          "default": 1,
+          "description": "Quantity of items"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Total amount for this line"
+        },
+        "taxCode": {
+          "type": "string",
+          "description": "Avalara tax code for this line item"
+        },
+        "itemCode": {
+          "type": "string",
+          "description": "Product or service item code"
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the line item"
+        },
+        "discountAmount": {
+          "type": "number",
+          "description": "Discount amount applied to this line"
+        },
+        "exemptionCode": {
+          "type": "string",
+          "description": "Exemption code for tax-exempt purchases"
+        },
+        "tax": {
+          "type": "number",
+          "description": "Calculated tax for this line"
+        },
+        "taxableAmount": {
+          "type": "number",
+          "description": "Taxable amount after exemptions"
+        },
+        "exemptAmount": {
+          "type": "number",
+          "description": "Amount exempt from tax"
+        },
+        "addresses": {
+          "type": "object",
+          "properties": {
+            "shipFrom": {
+              "$ref": "#/$defs/Address"
+            },
+            "shipTo": {
+              "$ref": "#/$defs/Address"
+            }
+          }
+        }
+      }
+    },
+    "TaxSummary": {
+      "type": "object",
+      "description": "Tax calculation summary for a specific jurisdiction",
+      "properties": {
+        "country": {
+          "type": "string",
+          "description": "Country code"
+        },
+        "region": {
+          "type": "string",
+          "description": "State or province code"
+        },
+        "jurisType": {
+          "type": "string",
+          "enum": ["Country", "State", "County", "City", "Special"],
+          "description": "Jurisdiction type"
+        },
+        "jurisCode": {
+          "type": "string",
+          "description": "Jurisdiction code"
+        },
+        "jurisName": {
+          "type": "string",
+          "description": "Jurisdiction name"
+        },
+        "taxType": {
+          "type": "string",
+          "description": "Type of tax (e.g., Sales, Use, VAT)"
+        },
+        "rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Tax rate as a decimal"
+        },
+        "tax": {
+          "type": "number",
+          "description": "Tax amount for this jurisdiction"
+        },
+        "taxable": {
+          "type": "number",
+          "description": "Taxable amount in this jurisdiction"
+        },
+        "exempt": {
+          "type": "number",
+          "description": "Exempt amount in this jurisdiction"
+        }
+      }
+    }
+  }
+}

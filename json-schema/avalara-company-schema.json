@@ -1,0 +1,200 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.avalara.com/schemas/avalara/company.json",
+  "title": "Avalara Company",
+  "description": "A company represents a legal entity within AvaTax that can calculate and report taxes. Companies contain locations, nexus declarations, items, and other tax configuration data.",
+  "type": "object",
+  "required": ["companyCode", "name"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the company"
+    },
+    "companyCode": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 25,
+      "description": "Short code identifying this company in transactions"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 250,
+      "description": "Display name of the company"
+    },
+    "accountId": {
+      "type": "integer",
+      "description": "Account ID that owns this company"
+    },
+    "parentCompanyId": {
+      "type": "integer",
+      "description": "Parent company ID for multi-company hierarchies"
+    },
+    "isDefault": {
+      "type": "boolean",
+      "description": "Whether this is the default company for the account"
+    },
+    "isActive": {
+      "type": "boolean",
+      "description": "Whether the company is currently active"
+    },
+    "taxpayerIdNumber": {
+      "type": "string",
+      "description": "Tax identification number (EIN, TIN, VAT number)"
+    },
+    "hasProfile": {
+      "type": "boolean",
+      "description": "Whether the company has a completed tax profile"
+    },
+    "isReportingEntity": {
+      "type": "boolean",
+      "description": "Whether this company is a reporting entity"
+    },
+    "defaultCountry": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "Two-character ISO 3166 country code for the default country"
+    },
+    "baseCurrencyCode": {
+      "type": "string",
+      "pattern": "^[A-Z]{3}$",
+      "description": "Three-character ISO 4217 currency code"
+    },
+    "roundingLevelId": {
+      "type": "string",
+      "enum": ["Line", "Document"],
+      "description": "Level at which tax rounding is applied"
+    },
+    "address": {
+      "$ref": "#/$defs/Address"
+    },
+    "nexus": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Nexus"
+      },
+      "description": "Nexus declarations for this company"
+    },
+    "locations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/Location"
+      },
+      "description": "Physical locations belonging to this company"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the company was created"
+    },
+    "modifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time the company was last modified"
+    }
+  },
+  "$defs": {
+    "Address": {
+      "type": "object",
+      "description": "A physical address",
+      "properties": {
+        "line1": {
+          "type": "string"
+        },
+        "line2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string",
+          "pattern": "^[A-Z]{2}$"
+        }
+      }
+    },
+    "Nexus": {
+      "type": "object",
+      "description": "A nexus declaration indicating tax obligation in a jurisdiction",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "country": {
+          "type": "string",
+          "description": "Two-character ISO 3166 country code"
+        },
+        "region": {
+          "type": "string",
+          "description": "State or province code"
+        },
+        "jurisTypeId": {
+          "type": "string",
+          "enum": ["STA", "CTY", "CIT", "STJ", "CNT"]
+        },
+        "jurisCode": {
+          "type": "string"
+        },
+        "jurisName": {
+          "type": "string"
+        },
+        "nexusTypeId": {
+          "type": "string",
+          "enum": ["None", "SalesOrSellersUseTax", "SalesTax", "SSTVolunteer", "SSTNonVolunteer"]
+        },
+        "effectiveDate": {
+          "type": "string",
+          "format": "date"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "Location": {
+      "type": "object",
+      "description": "A physical location belonging to a company",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "locationCode": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "addressTypeId": {
+          "type": "string",
+          "enum": ["Firm", "Location", "Salesperson"]
+        },
+        "addressCategoryId": {
+          "type": "string",
+          "enum": ["Storefront", "MainOffice", "Warehouse", "Salesperson", "Other"]
+        },
+        "line1": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,352 @@
+openapi: 3.1.0
+info:
+  title: Avalara VAT Reporting API
+  description: >-
+    The Avalara VAT Reporting API orchestrates end-to-end VAT compliance
+    workflows including onboarding, file ingress, error handling, filing of
+    VAT Returns, EC Listings, Intrastat, and transaction reporting across
+    multiple jurisdictions.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+externalDocs:
+  description: VAT Reporting API Documentation
+  url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+servers:
+  - url: https://api.avalara.com/vat-reporting/v1
+    description: VAT Reporting API Production
+tags:
+  - name: Returns
+    description: Manage and file VAT returns
+  - name: Transactions
+    description: Submit and manage VAT transactions
+  - name: Onboarding
+    description: Onboard companies for VAT reporting
+  - name: Filing Calendar
+    description: Manage VAT filing obligations and calendars
+security:
+  - bearerAuth: []
+paths:
+  /returns:
+    get:
+      operationId: listReturns
+      summary: List VAT returns
+      description: Retrieves VAT returns with optional filtering by status and period.
+      tags:
+        - Returns
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - Draft
+              - Submitted
+              - Accepted
+              - Rejected
+        - name: periodStart
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: periodEnd
+          in: query
+          schema:
+            type: string
+            format: date
+        - name: countryCode
+          in: query
+          schema:
+            type: string
+        - name: $top
+          in: query
+          schema:
+            type: integer
+        - name: $skip
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of VAT returns
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReturnList'
+  /returns/{returnId}:
+    get:
+      operationId: getReturn
+      summary: Get a VAT return by ID
+      tags:
+        - Returns
+      parameters:
+        - name: returnId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: VAT return details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VATReturn'
+  /returns/{returnId}/submit:
+    post:
+      operationId: submitReturn
+      summary: Submit a VAT return for filing
+      description: Submits a finalized VAT return to the relevant tax authority.
+      tags:
+        - Returns
+      parameters:
+        - name: returnId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Return submitted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VATReturn'
+  /transactions:
+    post:
+      operationId: submitTransactions
+      summary: Submit VAT transactions
+      description: >-
+        Submits a batch of transactions for VAT reporting. Transactions
+        are validated and processed for inclusion in VAT returns.
+      tags:
+        - Transactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionBatch'
+      responses:
+        '202':
+          description: Transactions accepted for processing
+    get:
+      operationId: listTransactions
+      summary: List submitted transactions
+      tags:
+        - Transactions
+      parameters:
+        - name: $top
+          in: query
+          schema:
+            type: integer
+        - name: $skip
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of transactions
+  /onboarding:
+    post:
+      operationId: onboardCompany
+      summary: Onboard a company for VAT reporting
+      description: >-
+        Initiates the onboarding process for a company to begin VAT
+        reporting in one or more jurisdictions.
+      tags:
+        - Onboarding
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OnboardingRequest'
+      responses:
+        '201':
+          description: Onboarding initiated
+  /filing-calendars:
+    get:
+      operationId: listFilingCalendars
+      summary: List filing calendar obligations
+      description: >-
+        Retrieves the filing calendar showing due dates and obligations
+        for each jurisdiction and filing period.
+      tags:
+        - Filing Calendar
+      parameters:
+        - name: countryCode
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Filing calendar entries
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/FilingCalendarEntry'
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+  schemas:
+    ReturnList:
+      type: object
+      properties:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/VATReturn'
+    VATReturn:
+      type: object
+      properties:
+        returnId:
+          type: string
+        companyId:
+          type: string
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+        vatRegistrationNumber:
+          type: string
+        returnType:
+          type: string
+          enum:
+            - VATReturn
+            - ECListing
+            - Intrastat
+        periodStart:
+          type: string
+          format: date
+        periodEnd:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+            - Draft
+            - Submitted
+            - Accepted
+            - Rejected
+        totalOutputVAT:
+          type: number
+          format: double
+        totalInputVAT:
+          type: number
+          format: double
+        netVATDue:
+          type: number
+          format: double
+        submissionDate:
+          type: string
+          format: date-time
+        currency:
+          type: string
+    TransactionBatch:
+      type: object
+      properties:
+        companyId:
+          type: string
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/VATTransaction'
+    VATTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        transactionDate:
+          type: string
+          format: date
+        transactionType:
+          type: string
+          enum:
+            - Sale
+            - Purchase
+            - IntraCommunitySupply
+            - IntraCommunityAcquisition
+            - Export
+            - Import
+        invoiceNumber:
+          type: string
+        supplierVATNumber:
+          type: string
+        customerVATNumber:
+          type: string
+        countryCode:
+          type: string
+        netAmount:
+          type: number
+          format: double
+        vatRate:
+          type: number
+          format: double
+        vatAmount:
+          type: number
+          format: double
+        currency:
+          type: string
+    OnboardingRequest:
+      type: object
+      required:
+        - companyId
+        - countries
+      properties:
+        companyId:
+          type: string
+        companyName:
+          type: string
+        countries:
+          type: array
+          items:
+            type: object
+            properties:
+              countryCode:
+                type: string
+              vatRegistrationNumber:
+                type: string
+              filingFrequency:
+                type: string
+                enum:
+                  - Monthly
+                  - Quarterly
+                  - Annual
+    FilingCalendarEntry:
+      type: object
+      properties:
+        countryCode:
+          type: string
+        returnType:
+          type: string
+        filingFrequency:
+          type: string
+        periodStart:
+          type: string
+          format: date
+        periodEnd:
+          type: string
+          format: date
+        dueDate:
+          type: string
+          format: date
+        status:
+          type: string
+          enum:
+            - Upcoming
+            - Due
+            - Overdue
+            - Filed

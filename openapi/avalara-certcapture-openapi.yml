@@ -1,0 +1,522 @@
+openapi: 3.1.0
+info:
+  title: Avalara CertCapture API
+  description: >-
+    The Avalara CertCapture RESTful API provides document management for
+    tax-exempt sales, including managing exemption certificates, customer
+    records, custom attributes, authentication tokens, and eCommerce token
+    generation. It supports the full certificate lifecycle from creation
+    through validation and expiry tracking.
+  version: '2.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+externalDocs:
+  description: CertCapture API Documentation
+  url: https://developer.avalara.com/api-reference/CertCapture/v2/
+servers:
+  - url: https://api.certcapture.com/v2
+    description: CertCapture API Production
+tags:
+  - name: Certificates
+    description: Manage exemption certificates
+  - name: Customers
+    description: Manage customer records
+  - name: Attributes
+    description: Manage certificate attributes and custom fields
+  - name: Authentication
+    description: Token management and authentication
+  - name: eCommerce
+    description: eCommerce token generation for certificate collection
+security:
+  - basicAuth: []
+paths:
+  /certificates:
+    get:
+      operationId: listCertificates
+      summary: List certificates
+      description: Retrieves a filtered list of exemption certificates.
+      tags:
+        - Certificates
+      parameters:
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum:
+              - Active
+              - Expired
+              - Revoked
+              - Pending
+        - name: customerId
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+            default: 50
+      responses:
+        '200':
+          description: List of certificates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateListResponse'
+    post:
+      operationId: createCertificate
+      summary: Create a certificate
+      description: Creates a new exemption certificate record.
+      tags:
+        - Certificates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateCreateRequest'
+      responses:
+        '201':
+          description: Certificate created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /certificates/{certificateId}:
+    get:
+      operationId: getCertificate
+      summary: Get a certificate
+      description: Retrieves a single certificate by its ID.
+      tags:
+        - Certificates
+      parameters:
+        - name: certificateId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Certificate details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateCertificate
+      summary: Update a certificate
+      tags:
+        - Certificates
+      parameters:
+        - name: certificateId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateCreateRequest'
+      responses:
+        '200':
+          description: Certificate updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+    delete:
+      operationId: deleteCertificate
+      summary: Delete a certificate
+      tags:
+        - Certificates
+      parameters:
+        - name: certificateId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Certificate deleted
+  /certificates/{certificateId}/attachment:
+    get:
+      operationId: getCertificateAttachment
+      summary: Download certificate attachment
+      description: Downloads the PDF or image attachment for a certificate.
+      tags:
+        - Certificates
+      parameters:
+        - name: certificateId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Certificate attachment
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+    post:
+      operationId: uploadCertificateAttachment
+      summary: Upload certificate attachment
+      tags:
+        - Certificates
+      parameters:
+        - name: certificateId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Attachment uploaded
+  /customers:
+    get:
+      operationId: listCustomers
+      summary: List customers
+      tags:
+        - Customers
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: pageSize
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of customers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerListResponse'
+    post:
+      operationId: createCustomer
+      summary: Create a customer
+      tags:
+        - Customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertCaptureCustomer'
+      responses:
+        '201':
+          description: Customer created
+  /customers/{customerId}:
+    get:
+      operationId: getCustomer
+      summary: Get a customer by ID
+      tags:
+        - Customers
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Customer details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertCaptureCustomer'
+    put:
+      operationId: updateCustomer
+      summary: Update a customer
+      tags:
+        - Customers
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertCaptureCustomer'
+      responses:
+        '200':
+          description: Customer updated
+  /customers/{customerId}/certificates:
+    get:
+      operationId: getCustomerCertificates
+      summary: List certificates for a customer
+      tags:
+        - Customers
+      parameters:
+        - name: customerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of customer certificates
+  /attributes:
+    get:
+      operationId: listAttributes
+      summary: List certificate attributes
+      tags:
+        - Attributes
+      responses:
+        '200':
+          description: List of attributes
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CertAttribute'
+  /auth/token:
+    post:
+      operationId: getAuthToken
+      summary: Get authentication token
+      description: Generates an authentication token for API access.
+      tags:
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':
+          description: Authentication token
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  expiresAt:
+                    type: string
+                    format: date-time
+  /ecommerce/token:
+    post:
+      operationId: generateEcommerceToken
+      summary: Generate eCommerce token
+      description: >-
+        Generates a token for embedding the CertCapture certificate
+        collection widget in eCommerce checkout flows.
+      tags:
+        - eCommerce
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customerCode:
+                  type: string
+                companyId:
+                  type: integer
+      responses:
+        '200':
+          description: eCommerce token generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  expiresAt:
+                    type: string
+                    format: date-time
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: CertCapture API credentials
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    Certificate:
+      type: object
+      properties:
+        id:
+          type: string
+        certificateNumber:
+          type: string
+        status:
+          type: string
+          enum:
+            - Active
+            - Expired
+            - Revoked
+            - Pending
+        signedDate:
+          type: string
+          format: date
+        expirationDate:
+          type: string
+          format: date
+        exemptionNumber:
+          type: string
+        exemptionReason:
+          type: string
+        exemptPercentage:
+          type: number
+          format: double
+        exposureZone:
+          type: string
+          description: Jurisdiction where the exemption applies
+        customer:
+          $ref: '#/components/schemas/CertCaptureCustomer'
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
+    CertificateCreateRequest:
+      type: object
+      required:
+        - exemptionReason
+        - exposureZone
+      properties:
+        exemptionNumber:
+          type: string
+        exemptionReason:
+          type: string
+        exposureZone:
+          type: string
+        signedDate:
+          type: string
+          format: date
+        expirationDate:
+          type: string
+          format: date
+        exemptPercentage:
+          type: number
+          format: double
+        customerCode:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CertAttribute'
+    CertificateListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Certificate'
+    CertCaptureCustomer:
+      type: object
+      properties:
+        id:
+          type: string
+        customerCode:
+          type: string
+        name:
+          type: string
+        line1:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        emailAddress:
+          type: string
+        phoneNumber:
+          type: string
+    CustomerListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/CertCaptureCustomer'
+    CertAttribute:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        isSystemCode:
+          type: boolean
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
