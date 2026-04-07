@@ -24,14 +24,14 @@ servers:
   - url: https://api.sbx.avalara.com/1099/v1
     description: 1099 API Sandbox
 tags:
-  - name: W-9 Forms
-    description: Collect and manage W-9 forms
   - name: 1099 Forms
     description: Create and manage 1099 information returns
-  - name: Filing
-    description: E-file forms with the IRS
   - name: Companies
     description: Manage payer company records
+  - name: Filing
+    description: E-file forms with the IRS
+  - name: W-9 Forms
+    description: Collect and manage W-9 forms
 security:
   - bearerAuth: []
 paths:

@@ -26,48 +26,42 @@ servers:
   - url: https://sandbox-rest.avatax.com
     description: AvaTax Sandbox
 tags:
-  - name: Transactions
-    description: Create, adjust, commit, and void tax transactions
+  - name: Accounts
+    description: Manage AvaTax accounts and license keys
   - name: Addresses
     description: Validate and resolve addresses for tax jurisdiction determination
-  - name: Companies
-    description: Manage company profiles, settings, and configurations
-  - name: Nexus
-    description: Manage tax nexus declarations for companies
+  - name: Batches
+    description: Submit and manage batch transaction processing
   - name: Certificates
     description: Manage exemption certificates and CertExpress invitations
+  - name: Companies
+    description: Manage company profiles, settings, and configurations
   - name: Customers
     description: Manage customer records and their certificate associations
+  - name: Definitions
+    description: Query tax content definitions, rates, and jurisdictions
+  - name: Free
+    description: Free tax rate lookup endpoints
   - name: Items
     description: Manage product items and their tax classification
   - name: Locations
     description: Manage company locations and jurisdictions
-  - name: TaxCodes
-    description: Query and manage Avalara tax codes
-  - name: TaxRules
-    description: Manage tax rules and overrides for companies
-  - name: Accounts
-    description: Manage AvaTax accounts and license keys
-  - name: Definitions
-    description: Query tax content definitions, rates, and jurisdictions
-  - name: Batches
-    description: Submit and manage batch transaction processing
-  - name: Contacts
-    description: Manage company contacts
+  - name: MultiDocument
+    description: Multi-document transaction management
+  - name: Nexus
+    description: Manage tax nexus declarations for companies
+  - name: Reports
+    description: Generate and retrieve tax reports
   - name: Settings
     description: Manage company settings
   - name: Subscriptions
     description: Query account subscriptions
+  - name: TaxRules
+    description: Manage tax rules and overrides for companies
+  - name: Transactions
+    description: Create, adjust, commit, and void tax transactions
   - name: Utilities
     description: Utility endpoints including ping and health checks
-  - name: MultiDocument
-    description: Multi-document transaction management
-  - name: Reports
-    description: Generate and retrieve tax reports
-  - name: Notices
-    description: Manage tax notices and compliance
-  - name: Free
-    description: Free tax rate lookup endpoints
 security:
   - basicAuth: []
   - bearerAuth: []

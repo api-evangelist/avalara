@@ -27,10 +27,10 @@ servers:
 tags:
   - name: Documents
     description: Submit and manage e-invoice documents
-  - name: Mandates
-    description: Query e-invoicing mandate definitions
   - name: Interop
     description: Interoperability and network exchange
+  - name: Mandates
+    description: Query e-invoicing mandate definitions
 security:
   - bearerAuth: []
 paths:

@@ -23,18 +23,18 @@ servers:
   - url: https://exciseapi.avalara.com/api/v1
     description: Excise API Production
 tags:
-  - name: Tax Determination
-    description: Calculate excise taxes on transactions
-  - name: Transactions
-    description: Manage excise tax transactions
   - name: Business Entities
     description: Manage business entity records
+  - name: Licenses
+    description: Manage excise licenses
   - name: Locations
     description: Manage business locations
   - name: Products
     description: Manage product registrations
-  - name: Licenses
-    description: Manage excise licenses
+  - name: Tax Determination
+    description: Calculate excise taxes on transactions
+  - name: Transactions
+    description: Manage excise tax transactions
 security:
   - bearerAuth: []
 paths:

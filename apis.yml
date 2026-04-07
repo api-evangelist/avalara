@@ -1,6 +1,5 @@
 aid: avalara
-url: 
-  https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/apis.yml
+url: https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/apis.yml
 apis:
   - aid: avalara:avalara
     name: Avalara
@@ -16,8 +15,8 @@ apis:
   - aid: avalara:avatax-apis
     name: AvaTax APIs
     tags:
-      - Taxes
       - Sales Tax
+      - Taxes
       - VAT
     humanURL: https://developer.avalara.com/api-reference/avatax/rest/v2/
     description: >-
@@ -34,26 +33,21 @@ apis:
   - aid: avalara:avatax-soap-api
     name: AvaTax SOAP API
     tags:
-      - Taxes
       - SOAP
+      - Taxes
     humanURL: https://developer.avalara.com/api-reference/avatax/soap/
-    description: The AvaTax SOAP API exposes the most commonly used features for
-      interacting with the AvaTax service, allowing calculation of tax, 
-      modification of documents, and validation of addresses.
+    description: The AvaTax SOAP API exposes the most commonly used features for interacting with the AvaTax service, allowing calculation of tax, modification of documents, and validation of addresses.
     properties:
       - url: https://developer.avalara.com/api-reference/avatax/soap/
         type: Documentation
   - aid: avalara:communications-api
     name: Communications Tax API
     tags:
-      - Taxes
       - Communications
+      - Taxes
       - Telecom
     humanURL: https://developer.avalara.com/api-reference/communications/v2/
-    description: The Avalara Communications Tax API (SaasPro) provides 
-      communications tax calculations using information provided by jurisdiction
-      codes, enabling tax calculations on invoices and line items, jurisdiction 
-      determination via geocoding, and profile customization.
+    description: The Avalara Communications Tax API (SaasPro) provides communications tax calculations using information provided by jurisdiction codes, enabling tax calculations on invoices and line items, jurisdiction determination via geocoding, and profile customization.
     properties:
       - url: https://developer.avalara.com/api-reference/communications/v2/
         type: Documentation
@@ -62,13 +56,10 @@ apis:
   - aid: avalara:excise-tax-api
     name: Excise Platform API
     tags:
-      - Taxes
       - Excise
+      - Taxes
     humanURL: https://developer.avalara.com/api-reference/excise/v1/
-    description: The Excise Platform API provides an external programmatic 
-      interface for the Avalara Excise application, enabling excise tax 
-      calculation and management, business entity imports, location management, 
-      and other tax compliance operations through REST API endpoints.
+    description: The Excise Platform API provides an external programmatic interface for the Avalara Excise application, enabling excise tax calculation and management, business entity imports, location management, and other tax compliance operations through REST API endpoints.
     properties:
       - url: https://developer.avalara.com/api-reference/excise/v1/
         type: Documentation
@@ -77,15 +68,11 @@ apis:
   - aid: avalara:item-classification-api
     name: Item Classification API
     tags:
-      - Taxes
       - Classification
       - HS Codes
-    humanURL: 
-      https://developer.avalara.com/api-reference/item-classification/v2/
-    description: The Avalara Item Classification API allows users subscribed to 
-      the Item Classification service to submit products for classification and 
-      retrieve the corresponding HS Codes, with support for storage and 
-      non-storage subscription models.
+      - Taxes
+    humanURL: https://developer.avalara.com/api-reference/item-classification/v2/
+    description: The Avalara Item Classification API allows users subscribed to the Item Classification service to submit products for classification and retrieve the corresponding HS Codes, with support for storage and non-storage subscription models.
     properties:
       - url: https://developer.avalara.com/api-reference/item-classification/v2/
         type: Documentation
@@ -94,28 +81,21 @@ apis:
   - aid: avalara:tax-content-for-retail-api
     name: Avalara Tax Content for Retail Configuration API
     tags:
-      - Taxes
-      - Retail
       - Point of Sale
+      - Retail
+      - Taxes
     humanURL: https://developer.avalara.com/api-reference/cgpos/cfg/
-    description: The Avalara Tax Content for Retail Configuration API automates 
-      tax content delivery for brick-and-mortar businesses, enabling management 
-      of configurations, communications, jobs, onboarding, and user roles for 
-      point-of-sale tax content.
+    description: The Avalara Tax Content for Retail Configuration API automates tax content delivery for brick-and-mortar businesses, enabling management of configurations, communications, jobs, onboarding, and user roles for point-of-sale tax content.
     properties:
       - url: https://developer.avalara.com/api-reference/cgpos/cfg/
         type: Documentation
   - aid: avalara:avatax-brazil-api
     name: AvaTax Brazil API
     tags:
-      - Taxes
       - Brazil
+      - Taxes
     humanURL: https://developer.avalara.com/api-reference/avatax-brazil/v1/
-    description: The AvaTax Brazil API exposes the most commonly used services 
-      for interacting with AvaTax-Brazil, allowing calculation of taxes, issuing
-      electronic invoice documents, and modifying existing transactions when 
-      allowed by tax authorities for businesses with a physical presence in 
-      Brazil.
+    description: The AvaTax Brazil API exposes the most commonly used services for interacting with AvaTax-Brazil, allowing calculation of taxes, issuing electronic invoice documents, and modifying existing transactions when allowed by tax authorities for businesses with a physical presence in Brazil.
     properties:
       - url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
         type: Documentation
@@ -124,14 +104,11 @@ apis:
   - aid: avalara:vat-reporting-api
     name: VAT Reporting API
     tags:
+      - Reporting
       - Taxes
       - VAT
-      - Reporting
     humanURL: https://developer.avalara.com/api-reference/vat-reporting/v1/
-    description: The Avalara VAT Reporting API orchestrates end-to-end VAT 
-      compliance workflows including onboarding, file ingress, error handling, 
-      filing of VAT Returns, EC Listings, Intrastat, and transaction reporting 
-      across multiple jurisdictions.
+    description: The Avalara VAT Reporting API orchestrates end-to-end VAT compliance workflows including onboarding, file ingress, error handling, filing of VAT Returns, EC Listings, Intrastat, and transaction reporting across multiple jurisdictions.
     properties:
       - url: https://developer.avalara.com/api-reference/vat-reporting/v1/
         type: Documentation
@@ -140,14 +117,11 @@ apis:
   - aid: avalara:mylodgetax-api
     name: MyLodgeTax API
     tags:
-      - Taxes
       - Lodging
       - Short-Term Rental
+      - Taxes
     humanURL: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
-    description: The MyLodgeTax API provides sales and lodging tax compliance 
-      for short-term property rentals, offering partners access to summarized 
-      tax responsibilities for property owners by marketplace including direct 
-      listings and marketplace bookings.
+    description: The MyLodgeTax API provides sales and lodging tax compliance for short-term property rentals, offering partners access to summarized tax responsibilities for property owners by marketplace including direct listings and marketplace bookings.
     properties:
       - url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
         type: Documentation
@@ -156,14 +130,11 @@ apis:
   - aid: avalara:certcapture-api
     name: CertCapture API
     tags:
-      - Taxes
       - Certificates
       - Exemptions
+      - Taxes
     humanURL: https://developer.avalara.com/api-reference/CertCapture/v2/
-    description: The Avalara CertCapture RESTful API provides document 
-      management for tax-exempt sales, including managing certificates, 
-      attributes, custom fields, customers, authentication tokens, and eCommerce
-      token generation for CertCapture 6.X and beyond.
+    description: The Avalara CertCapture RESTful API provides document management for tax-exempt sales, including managing certificates, attributes, custom fields, customers, authentication tokens, and eCommerce token generation for CertCapture 6.X and beyond.
     properties:
       - url: https://developer.avalara.com/api-reference/CertCapture/v2/
         type: Documentation
@@ -172,14 +143,11 @@ apis:
   - aid: avalara:e-invoicing-api
     name: E-Invoicing REST API
     tags:
-      - Taxes
-      - E-Invoicing
       - Compliance
+      - E-Invoicing
+      - Taxes
     humanURL: https://developer.avalara.com/api-reference/e-invoicing/v1.0
-    description: The Avalara E-Invoicing REST API supports sending data within 
-      the Alpha scope for e-Invoicing compliance use cases, enabling technology 
-      partners to integrate e-invoicing workflows for cross-border and domestic 
-      compliance.
+    description: The Avalara E-Invoicing REST API supports sending data within the Alpha scope for e-Invoicing compliance use cases, enabling technology partners to integrate e-invoicing workflows for cross-border and domestic compliance.
     properties:
       - url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
         type: Documentation
@@ -188,30 +156,23 @@ apis:
   - aid: avalara:activation-service-api
     name: Activation Service API
     tags:
-      - Taxes
       - Registration
-    humanURL: 
-      https://developer.avalara.com/api-reference/activationService/activationService/
-    description: The Avalara Activation Service API allows technology partners 
-      to retrieve the status of their registrations within the Avalara 
-      Compliance Cloud platform, providing endpoints for listing all 
-      registrations and retrieving individual registration details.
+      - Taxes
+    humanURL: https://developer.avalara.com/api-reference/activationService/activationService/
+    description: The Avalara Activation Service API allows technology partners to retrieve the status of their registrations within the Avalara Compliance Cloud platform, providing endpoints for listing all registrations and retrieving individual registration details.
     properties:
-      - url: 
-          https://developer.avalara.com/api-reference/activationService/activationService/
+      - url: https://developer.avalara.com/api-reference/activationService/activationService/
         type: Documentation
       - type: OpenAPI
         url: openapi/avalara-activation-service-openapi.yml
   - aid: avalara:business-api
     name: Avalara Business API
     tags:
-      - Taxes
       - Business
       - Orders
+      - Taxes
     humanURL: https://developer.avalara.com/api-reference/business/v1/
-    description: The Avalara Business API provides public APIs for doing 
-      business with Avalara, including registering customer accounts and 
-      creating sales orders for Avalara services through partner integrations.
+    description: The Avalara Business API provides public APIs for doing business with Avalara, including registering customer accounts and creating sales orders for Avalara services through partner integrations.
     properties:
       - url: https://developer.avalara.com/api-reference/business/v1/
         type: Documentation
@@ -220,14 +181,11 @@ apis:
   - aid: avalara:portal-oauth-api
     name: Portal OAuth API
     tags:
-      - Taxes
       - Authentication
       - OAuth
+      - Taxes
     humanURL: https://developer.avalara.com/api-reference/oauth/oauth/
-    description: The Avalara Portal OAuth API provides OAuth token generation 
-      and session management endpoints for implementing authentication in 
-      Avalara platform integrations, supporting credential-based authentication 
-      and SAML assertions.
+    description: The Avalara Portal OAuth API provides OAuth token generation and session management endpoints for implementing authentication in Avalara platform integrations, supporting credential-based authentication and SAML assertions.
     properties:
       - url: https://developer.avalara.com/api-reference/oauth/oauth/
         type: Documentation
@@ -236,111 +194,79 @@ apis:
   - aid: avalara:shared-company-service-api
     name: Shared Company Service API
     tags:
-      - Taxes
       - Company Management
-    humanURL: 
-      https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
-    description: The Avalara Shared Company Service API provides scalable APIs 
-      for managing canonical company and contact information across Avalara 
-      products, enabling creation, retrieval, update, and deletion of company 
-      records.
+      - Taxes
+    humanURL: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+    description: The Avalara Shared Company Service API provides scalable APIs for managing canonical company and contact information across Avalara products, enabling creation, retrieval, update, and deletion of company records.
     properties:
-      - url: 
-          https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+      - url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
         type: Documentation
       - type: OpenAPI
         url: openapi/avalara-shared-company-service-openapi.yml
   - aid: avalara:hs-code-classification-api
     name: Automated Tariff Code Classification API
     tags:
-      - Taxes
-      - Tariff
-      - HS Codes
       - Classification
-    humanURL: 
-      https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
-    description: The Avalara HSCode and AvataxCode Classification API classifies
-      products into Harmonized System Codes (HS Codes) and Avalara Tax Codes, 
-      providing tariff code predictions based on product information and 
-      destination country with confidence levels.
+      - HS Codes
+      - Tariff
+      - Taxes
+    humanURL: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+    description: The Avalara HSCode and AvataxCode Classification API classifies products into Harmonized System Codes (HS Codes) and Avalara Tax Codes, providing tariff code predictions based on product information and destination country with confidence levels.
     properties:
-      - url: 
-          https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+      - url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
         type: Documentation
       - type: OpenAPI
         url: openapi/avalara-hs-code-classification-openapi.yml
   - aid: avalara:self-serve-tariff-classification-api
     name: Self-Serve Tariff Classification API
     tags:
-      - Taxes
-      - Tariff
       - Cross-Border
-    humanURL: 
-      https://developer.avalara.com/api-reference/selfservicetarrifclassification/selfservicetarrifclassification/
-    description: The Avalara Cross Border Tariff Content API classifies products
-      based on provided product information for the specified country of 
-      destination, supporting interactive classification dialogues, trade data 
-      access, certificate generation, and data downloads.
+      - Tariff
+      - Taxes
+    humanURL: https://developer.avalara.com/api-reference/selfservicetarrifclassification/selfservicetarrifclassification/
+    description: The Avalara Cross Border Tariff Content API classifies products based on provided product information for the specified country of destination, supporting interactive classification dialogues, trade data access, certificate generation, and data downloads.
     properties:
-      - url: 
-          https://developer.avalara.com/api-reference/selfservicetarrifclassification/selfservicetarrifclassification/
+      - url: https://developer.avalara.com/api-reference/selfservicetarrifclassification/selfservicetarrifclassification/
         type: Documentation
   - aid: avalara:1099-w9-api
     name: 1099 & W-9 API
     tags:
-      - Taxes
-      - 1099
-      - W-9
       - Tax Forms
-    humanURL: 
-      https://developer.avalara.com/api-reference/avalara1099/avalara1099/
-    description: The Avalara 1099 and W-9 API automates collection, validation, 
-      and e-filing of IRS forms including 1099 variants, 1095 forms, W-2, and 
-      1042-S, providing endpoints for creating, updating, and managing various 
-      IRS forms for US and foreign companies.
+      - Taxes
+      - W-9
+    humanURL: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+    description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants, 1095 forms, W-2, and 1042-S, providing endpoints for creating, updating, and managing various IRS forms for US and foreign companies.
     properties:
-      - url: 
-          https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+      - url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
         type: Documentation
       - type: OpenAPI
         url: openapi/avalara-1099-w9-openapi.yml
   - aid: avalara:license-guidance-order-api
     name: License Guidance Order API
     tags:
-      - Taxes
       - Licensing
       - Registration
-    humanURL: 
-      https://developer.avalara.com/api-reference/registration-and-licensing/license-guidance-order/license-guidance-order/
-    description: The Avalara License Guidance Order API enables placing Avalara 
-      License Guidance orders and populating questionnaire responses with known 
-      business information, returning order confirmation details including 
-      unique order URLs and numbers.
+      - Taxes
+    humanURL: https://developer.avalara.com/api-reference/registration-and-licensing/license-guidance-order/license-guidance-order/
+    description: The Avalara License Guidance Order API enables placing Avalara License Guidance orders and populating questionnaire responses with known business information, returning order confirmation details including unique order URLs and numbers.
     properties:
-      - url: 
-          https://developer.avalara.com/api-reference/registration-and-licensing/license-guidance-order/license-guidance-order/
+      - url: https://developer.avalara.com/api-reference/registration-and-licensing/license-guidance-order/license-guidance-order/
         type: Documentation
 name: Avalara
 tags:
   - Taxes
 type: Index
-image: 
-  https://www.avalara.com/us/en/about/newsroom/media-kit/_jcr_content/root/responsivegrid/responsivegrid/columncontrol/par2/image.coreimg.svg/1614712826993/avalara-logo.svg
+image: https://www.avalara.com/us/en/about/newsroom/media-kit/_jcr_content/root/responsivegrid/responsivegrid/columncontrol/par2/image.coreimg.svg/1614712826993/avalara-logo.svg
 access: 3rd-Party
 common:
   - url: https://developer.avalara.com/sdk/
     name: AvaTax Software Development Kit | Avalara Developer
     type: SDKs
-    description: The Avalara unified SDK provides a set of SDKs that cover 
-      multiple Avalara APIs. A unified SDK allows partners & customer developers
-      to download one SDK and easily add on additional Avalara features and 
-      services.
+    description: The Avalara unified SDK provides a set of SDKs that cover multiple Avalara APIs. A unified SDK allows partners & customer developers to download one SDK and easily add on additional Avalara features and services.
   - url: https://developer.avalara.com/developer-community/
     name: Avalara Developer Communities | Avalara Developer
     type: Community
-    description: Become a part of the growing developer community building on 
-      the Avalara developer platform where you can get help, provide feedback, 
-      brainstorm ideas, make connections, and get inspired.
+    description: Become a part of the growing developer community building on the Avalara developer platform where you can get help, provide feedback, brainstorm ideas, make connections, and get inspired.
   - url: https://developer.avalara.com/blogs/
     name: Developer Blog | Avalara Developer
     type: Blog
@@ -349,8 +275,7 @@ common:
     name: AvaTax API Support | Avalara Developer
     type: Support
     description: 'null'
-  - url: 
-      https://knowledge.avalara.com/bundle/xti1670300535545/page/contact_avalara_support.html
+  - url: https://knowledge.avalara.com/bundle/xti1670300535545/page/contact_avalara_support.html
     name: Contact Avalara Support
     type: Contact
     description: 'null'
@@ -385,11 +310,7 @@ common:
   - url: https://developer.avalara.com/mcp-servers/
     name: MCP Servers | Avalara Developer
     type: MCPServers
-    description: Avalara Model Context Protocol (MCP) servers connect AI 
-      applications with Avalaras tax compliance systems in a standardized way. 
-      MCP servers allow partners and developers to integrate AI-driven tax 
-      workflows, automate cross-border compliance, and access Avalaras regularly
-      updated tax content.
+    description: Avalara Model Context Protocol (MCP) servers connect AI applications with Avalaras tax compliance systems in a standardized way. MCP servers allow partners and developers to integrate AI-driven tax workflows, automate cross-border compliance, and access Avalaras regularly updated tax content.
   - url: https://developer.avalara.com/freeTrial/
     name: Start Your 90-Day AvaTax Free Trial | Avalara Developer
     type: Trial
@@ -458,8 +379,7 @@ common:
     name: Buy | Avalara
     type: SignUp
     description: 'null'
-  - url: 
-      https://legal.avalara.com/compliance?_gl=1*1hevp4p*_gcl_au*MTM1NDY3OTg2MC4xNzYzNjY2Njc5LjEzNjM2NTU5NjEuMTc2MzY2ODQ1OC4xNzYzNjY4NzA3
+  - url: https://legal.avalara.com/compliance?_gl=1*1hevp4p*_gcl_au*MTM1NDY3OTg2MC4xNzYzNjY2Njc5LjEzNjM2NTU5NjEuMTc2MzY2ODQ1OC4xNzYzNjY4NzA3
     name: Avalara Legal Center
     type: Compliance
     description: 'null'
@@ -492,8 +412,7 @@ common:
     name: REST Error Codes | Avalara Developer
     type: Errors
     description: 'null'
-  - url: 
-      https://developer.avalara.com/ecommerce-integration-guide/sales-tax-badge/authentication-in-avatax/sandbox-vs-production/
+  - url: https://developer.avalara.com/ecommerce-integration-guide/sales-tax-badge/authentication-in-avatax/sandbox-vs-production/
     name: Sandbox vs Production Environments | Avalara Developer
     type: Sandbox
     description: 'null'
@@ -521,9 +440,7 @@ common:
 created: '2025-11-19'
 modified: '2026-03-16'
 position: Consumer
-description: Avalara helps businesses of all sizes get tax compliance right. We 
-  deliver cloud-based solutions that work with existing business applications to
-  calculate tax accurately and file returns automatically.
+description: Avalara helps businesses of all sizes get tax compliance right. We deliver cloud-based solutions that work with existing business applications to calculate tax accurately and file returns automatically.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

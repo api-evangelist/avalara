@@ -23,14 +23,14 @@ servers:
   - url: https://communicationsua.avalara.net
     description: Communications API Production
 tags:
-  - name: Tax Calculation
-    description: Calculate communications taxes on transactions
-  - name: Geocoding
-    description: Determine tax jurisdictions from addresses
   - name: Customization
     description: Manage tax profiles, exemptions, and overrides
+  - name: Geocoding
+    description: Determine tax jurisdictions from addresses
   - name: Lookup
     description: Look up service and transaction type information
+  - name: Tax Calculation
+    description: Calculate communications taxes on transactions
 security:
   - basicAuth: []
 paths:

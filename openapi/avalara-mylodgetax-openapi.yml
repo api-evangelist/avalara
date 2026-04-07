@@ -22,12 +22,12 @@ servers:
   - url: https://api.avalara.com/mylodgetax/v1
     description: MyLodgeTax API Production
 tags:
-  - name: Tax Rates
-    description: Look up lodging tax rates by location
-  - name: Properties
-    description: Manage rental property registrations
   - name: Obligations
     description: View filing obligations and tax responsibilities
+  - name: Properties
+    description: Manage rental property registrations
+  - name: Tax Rates
+    description: Look up lodging tax rates by location
 security:
   - bearerAuth: []
 paths:

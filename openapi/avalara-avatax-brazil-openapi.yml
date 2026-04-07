@@ -22,14 +22,14 @@ servers:
   - url: https://avataxbr-sandbox.avalarabrasil.com.br/v3
     description: AvaTax Brazil Sandbox
 tags:
-  - name: Tax Calculation
-    description: Calculate Brazilian taxes on transactions
-  - name: Electronic Invoices
-    description: Issue and manage electronic fiscal documents
-  - name: Transactions
-    description: Manage tax transactions
   - name: Companies
     description: Manage company configurations for Brazil
+  - name: Electronic Invoices
+    description: Issue and manage electronic fiscal documents
+  - name: Tax Calculation
+    description: Calculate Brazilian taxes on transactions
+  - name: Transactions
+    description: Manage tax transactions
 security:
   - bearerAuth: []
 paths:

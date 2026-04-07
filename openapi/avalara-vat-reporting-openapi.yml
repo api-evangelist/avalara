@@ -22,14 +22,14 @@ servers:
   - url: https://api.avalara.com/vat-reporting/v1
     description: VAT Reporting API Production
 tags:
+  - name: Filing Calendar
+    description: Manage VAT filing obligations and calendars
+  - name: Onboarding
+    description: Onboard companies for VAT reporting
   - name: Returns
     description: Manage and file VAT returns
   - name: Transactions
     description: Submit and manage VAT transactions
-  - name: Onboarding
-    description: Onboard companies for VAT reporting
-  - name: Filing Calendar
-    description: Manage VAT filing obligations and calendars
 security:
   - bearerAuth: []
 paths:

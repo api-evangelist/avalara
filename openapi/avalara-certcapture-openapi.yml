@@ -23,14 +23,14 @@ servers:
   - url: https://api.certcapture.com/v2
     description: CertCapture API Production
 tags:
-  - name: Certificates
-    description: Manage exemption certificates
-  - name: Customers
-    description: Manage customer records
   - name: Attributes
     description: Manage certificate attributes and custom fields
   - name: Authentication
     description: Token management and authentication
+  - name: Certificates
+    description: Manage exemption certificates
+  - name: Customers
+    description: Manage customer records
   - name: eCommerce
     description: eCommerce token generation for certificate collection
 security:
