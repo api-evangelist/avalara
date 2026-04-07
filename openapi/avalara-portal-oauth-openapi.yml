@@ -28,7 +28,7 @@ paths:
   /connect/token:
     post:
       operationId: getToken
-      summary: Obtain an access token
+      summary: Avalara Obtain an access token
       description: >-
         Obtains an OAuth 2.0 access token using client credentials, authorization
         code, or SAML assertion grant types.
@@ -92,7 +92,7 @@ paths:
   /connect/authorize:
     get:
       operationId: authorize
-      summary: Authorization endpoint
+      summary: Avalara Authorization endpoint
       description: >-
         Initiates the OAuth 2.0 authorization code flow by redirecting
         the user to the Avalara login page.
@@ -130,7 +130,7 @@ paths:
   /connect/revocation:
     post:
       operationId: revokeToken
-      summary: Revoke a token
+      summary: Avalara Revoke a token
       description: Revokes an active access or refresh token.
       tags:
         - Authentication

@@ -35,7 +35,7 @@ paths:
   /classification-requests:
     post:
       operationId: createClassificationRequest
-      summary: Submit products for classification
+      summary: Avalara Submit products for classification
       description: >-
         Submits one or more products for HS Code classification. Products
         are classified based on their descriptions and attributes for the
@@ -61,7 +61,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     get:
       operationId: listClassificationRequests
-      summary: List classification requests
+      summary: Avalara List classification requests
       description: Retrieves a list of submitted classification requests and their statuses.
       tags:
         - Classification Requests
@@ -93,7 +93,7 @@ paths:
   /classification-requests/{requestId}:
     get:
       operationId: getClassificationRequest
-      summary: Get classification request status
+      summary: Avalara Get classification request status
       description: Retrieves the status and results of a classification request.
       tags:
         - Classification Requests
@@ -115,7 +115,7 @@ paths:
   /classification-requests/{requestId}/results:
     get:
       operationId: getClassificationResults
-      summary: Get classification results
+      summary: Avalara Get classification results
       description: >-
         Retrieves the HS Code classification results for a completed
         classification request.
@@ -137,7 +137,7 @@ paths:
   /hs-codes/{hsCode}:
     get:
       operationId: getHSCodeDetails
-      summary: Get HS Code details
+      summary: Avalara Get HS Code details
       description: Retrieves detailed information for a specific HS Code.
       tags:
         - HS Codes

@@ -36,7 +36,7 @@ paths:
   /returns:
     get:
       operationId: listReturns
-      summary: List VAT returns
+      summary: Avalara List VAT returns
       description: Retrieves VAT returns with optional filtering by status and period.
       tags:
         - Returns
@@ -82,7 +82,7 @@ paths:
   /returns/{returnId}:
     get:
       operationId: getReturn
-      summary: Get a VAT return by ID
+      summary: Avalara Get a VAT return by ID
       tags:
         - Returns
       parameters:
@@ -101,7 +101,7 @@ paths:
   /returns/{returnId}/submit:
     post:
       operationId: submitReturn
-      summary: Submit a VAT return for filing
+      summary: Avalara Submit a VAT return for filing
       description: Submits a finalized VAT return to the relevant tax authority.
       tags:
         - Returns
@@ -121,7 +121,7 @@ paths:
   /transactions:
     post:
       operationId: submitTransactions
-      summary: Submit VAT transactions
+      summary: Avalara Submit VAT transactions
       description: >-
         Submits a batch of transactions for VAT reporting. Transactions
         are validated and processed for inclusion in VAT returns.
@@ -138,7 +138,7 @@ paths:
           description: Transactions accepted for processing
     get:
       operationId: listTransactions
-      summary: List submitted transactions
+      summary: Avalara List submitted transactions
       tags:
         - Transactions
       parameters:
@@ -156,7 +156,7 @@ paths:
   /onboarding:
     post:
       operationId: onboardCompany
-      summary: Onboard a company for VAT reporting
+      summary: Avalara Onboard a company for VAT reporting
       description: >-
         Initiates the onboarding process for a company to begin VAT
         reporting in one or more jurisdictions.
@@ -174,7 +174,7 @@ paths:
   /filing-calendars:
     get:
       operationId: listFilingCalendars
-      summary: List filing calendar obligations
+      summary: Avalara List filing calendar obligations
       description: >-
         Retrieves the filing calendar showing due dates and obligations
         for each jurisdiction and filing period.

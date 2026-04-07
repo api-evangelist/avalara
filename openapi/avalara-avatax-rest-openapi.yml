@@ -75,7 +75,7 @@ paths:
   /api/v2/transactions/create:
     post:
       operationId: createTransaction
-      summary: Create a new transaction
+      summary: Avalara Create a new transaction
       description: >-
         Creates a new tax transaction. This is the primary method for calculating
         tax on a sale, purchase, or other taxable event. The transaction can be
@@ -102,7 +102,7 @@ paths:
   /api/v2/companies/{companyCode}/transactions/{transactionCode}:
     get:
       operationId: getTransactionByCode
-      summary: Retrieve a single transaction by code
+      summary: Avalara Retrieve a single transaction by code
       description: >-
         Retrieves a transaction by its company code and transaction code,
         optionally including line item details and summary information.
@@ -135,7 +135,7 @@ paths:
   /api/v2/companies/{companyCode}/transactions/{transactionCode}/adjust:
     post:
       operationId: adjustTransaction
-      summary: Adjust a committed transaction
+      summary: Avalara Adjust a committed transaction
       description: >-
         Adjusts a committed transaction by replacing it with a modified version.
         The original transaction is voided and a new adjusted transaction is created.
@@ -164,7 +164,7 @@ paths:
   /api/v2/companies/{companyCode}/transactions/{transactionCode}/commit:
     post:
       operationId: commitTransaction
-      summary: Commit a transaction
+      summary: Avalara Commit a transaction
       description: >-
         Marks a transaction as committed, indicating it has been finalized
         and should be reported to tax authorities.
@@ -193,7 +193,7 @@ paths:
   /api/v2/companies/{companyCode}/transactions/{transactionCode}/void:
     post:
       operationId: voidTransaction
-      summary: Void a transaction
+      summary: Avalara Void a transaction
       description: >-
         Voids an existing transaction, removing it from tax reporting.
         Only uncommitted or committed transactions can be voided.
@@ -222,7 +222,7 @@ paths:
   /api/v2/transactions/{transactionCode}/refund:
     post:
       operationId: refundTransaction
-      summary: Create a refund for a transaction
+      summary: Avalara Create a refund for a transaction
       description: >-
         Creates a refund transaction based on an existing committed transaction.
         Supports full, partial, percentage, and tax-only refund types.
@@ -250,7 +250,7 @@ paths:
   /api/v2/addresses/resolve:
     post:
       operationId: resolveAddress
-      summary: Resolve and validate an address
+      summary: Avalara Resolve and validate an address
       description: >-
         Validates and resolves an address to a standardized format with
         latitude, longitude, and tax jurisdiction information.
@@ -272,7 +272,7 @@ paths:
   /api/v2/companies:
     get:
       operationId: queryCompanies
-      summary: List all companies
+      summary: Avalara List all companies
       description: >-
         Retrieves a list of companies associated with the authenticated account,
         with support for filtering, sorting, and pagination.
@@ -292,7 +292,7 @@ paths:
                 $ref: '#/components/schemas/FetchResult_CompanyModel'
     post:
       operationId: createCompany
-      summary: Create a new company
+      summary: Avalara Create a new company
       description: >-
         Creates a new company within the authenticated account. A company
         represents a legal entity that can calculate and report taxes.
@@ -314,7 +314,7 @@ paths:
   /api/v2/companies/{id}:
     get:
       operationId: getCompany
-      summary: Retrieve a company by ID
+      summary: Avalara Retrieve a company by ID
       tags:
         - Companies
       parameters:
@@ -336,7 +336,7 @@ paths:
                 $ref: '#/components/schemas/CompanyModel'
     put:
       operationId: updateCompany
-      summary: Update a company
+      summary: Avalara Update a company
       tags:
         - Companies
       parameters:
@@ -360,7 +360,7 @@ paths:
                 $ref: '#/components/schemas/CompanyModel'
     delete:
       operationId: deleteCompany
-      summary: Delete a company
+      summary: Avalara Delete a company
       tags:
         - Companies
       parameters:
@@ -375,7 +375,7 @@ paths:
   /api/v2/companies/initialize:
     post:
       operationId: initializeCompany
-      summary: Initialize a new company with recommended defaults
+      summary: Avalara Initialize a new company with recommended defaults
       description: >-
         Creates a new company with all recommended default settings, nexus,
         and tax configurations for the specified jurisdictions.
@@ -397,7 +397,7 @@ paths:
   /api/v2/companies/{companyId}/nexus:
     get:
       operationId: listNexusByCompany
-      summary: List nexus for a company
+      summary: Avalara List nexus for a company
       description: Retrieves all nexus declarations for the specified company.
       tags:
         - Nexus
@@ -415,7 +415,7 @@ paths:
                 $ref: '#/components/schemas/FetchResult_NexusModel'
     post:
       operationId: createNexus
-      summary: Create nexus for a company
+      summary: Avalara Create nexus for a company
       tags:
         - Nexus
       parameters:
@@ -440,7 +440,7 @@ paths:
   /api/v2/companies/{companyId}/certificates:
     get:
       operationId: queryCertificates
-      summary: List certificates for a company
+      summary: Avalara List certificates for a company
       description: >-
         Retrieves exemption certificates associated with the specified company.
       tags:
@@ -459,7 +459,7 @@ paths:
                 $ref: '#/components/schemas/FetchResult_CertificateModel'
     post:
       operationId: createCertificate
-      summary: Create a new certificate
+      summary: Avalara Create a new certificate
       tags:
         - Certificates
       parameters:
@@ -484,7 +484,7 @@ paths:
   /api/v2/companies/{companyId}/customers:
     get:
       operationId: queryCustomers
-      summary: List customers for a company
+      summary: Avalara List customers for a company
       tags:
         - Customers
       parameters:
@@ -501,7 +501,7 @@ paths:
                 $ref: '#/components/schemas/FetchResult_CustomerModel'
     post:
       operationId: createCustomer
-      summary: Create a new customer
+      summary: Avalara Create a new customer
       tags:
         - Customers
       parameters:
@@ -520,7 +520,7 @@ paths:
   /api/v2/companies/{companyId}/items:
     get:
       operationId: queryItems
-      summary: List items for a company
+      summary: Avalara List items for a company
       tags:
         - Items
       parameters:
@@ -537,7 +537,7 @@ paths:
                 $ref: '#/components/schemas/FetchResult_ItemModel'
     post:
       operationId: createItems
-      summary: Create items for a company
+      summary: Avalara Create items for a company
       tags:
         - Items
       parameters:
@@ -556,7 +556,7 @@ paths:
   /api/v2/companies/{companyId}/locations:
     get:
       operationId: queryLocations
-      summary: List locations for a company
+      summary: Avalara List locations for a company
       tags:
         - Locations
       parameters:
@@ -573,7 +573,7 @@ paths:
                 $ref: '#/components/schemas/FetchResult_LocationModel'
     post:
       operationId: createLocations
-      summary: Create locations for a company
+      summary: Avalara Create locations for a company
       tags:
         - Locations
       parameters:
@@ -592,7 +592,7 @@ paths:
   /api/v2/definitions/taxcodes:
     get:
       operationId: listTaxCodes
-      summary: List all tax codes
+      summary: Avalara List all tax codes
       description: >-
         Retrieves the full list of Avalara-supported tax codes for product
         and service classification.
@@ -612,7 +612,7 @@ paths:
   /api/v2/definitions/nexus/{country}:
     get:
       operationId: listNexusByCountry
-      summary: List nexus options for a country
+      summary: Avalara List nexus options for a country
       tags:
         - Definitions
       parameters:
@@ -627,7 +627,7 @@ paths:
   /api/v2/definitions/jurisdictions:
     get:
       operationId: listJurisdictions
-      summary: List all jurisdictions
+      summary: Avalara List all jurisdictions
       tags:
         - Definitions
       parameters:
@@ -640,7 +640,7 @@ paths:
   /api/v2/definitions/countries:
     get:
       operationId: listCountries
-      summary: List all countries supported by AvaTax
+      summary: Avalara List all countries supported by AvaTax
       tags:
         - Definitions
       parameters:
@@ -653,7 +653,7 @@ paths:
   /api/v2/definitions/entityusecodes:
     get:
       operationId: listEntityUseCodes
-      summary: List all entity use codes
+      summary: Avalara List all entity use codes
       description: >-
         Returns the full list of entity use codes that can be applied to
         transactions to indicate exemptions or special tax handling.
@@ -669,7 +669,7 @@ paths:
   /api/v2/taxrates/byaddress:
     get:
       operationId: taxRatesByAddress
-      summary: Get tax rates by address
+      summary: Avalara Get tax rates by address
       description: >-
         Free tax rates lookup by street address. Returns the estimated
         combined tax rate for a given location.
@@ -713,7 +713,7 @@ paths:
   /api/v2/taxrates/bypostalcode:
     get:
       operationId: taxRatesByPostalCode
-      summary: Get tax rates by postal code
+      summary: Avalara Get tax rates by postal code
       description: >-
         Free tax rates lookup by postal code. Returns estimated
         combined tax rate for a given postal code.
@@ -740,7 +740,7 @@ paths:
   /api/v2/companies/{companyId}/batches:
     get:
       operationId: listBatches
-      summary: List batches for a company
+      summary: Avalara List batches for a company
       tags:
         - Batches
       parameters:
@@ -753,7 +753,7 @@ paths:
           description: List of batches
     post:
       operationId: createBatch
-      summary: Create a new batch
+      summary: Avalara Create a new batch
       tags:
         - Batches
       parameters:
@@ -774,7 +774,7 @@ paths:
   /api/v2/companies/{companyId}/taxrules:
     get:
       operationId: listTaxRules
-      summary: List tax rules for a company
+      summary: Avalara List tax rules for a company
       tags:
         - TaxRules
       parameters:
@@ -787,7 +787,7 @@ paths:
           description: List of tax rules
     post:
       operationId: createTaxRules
-      summary: Create tax rules for a company
+      summary: Avalara Create tax rules for a company
       tags:
         - TaxRules
       parameters:
@@ -806,7 +806,7 @@ paths:
   /api/v2/companies/{companyId}/settings:
     get:
       operationId: listSettings
-      summary: List settings for a company
+      summary: Avalara List settings for a company
       tags:
         - Settings
       parameters:
@@ -820,7 +820,7 @@ paths:
   /api/v2/accounts/{id}:
     get:
       operationId: getAccount
-      summary: Retrieve a single account
+      summary: Avalara Retrieve a single account
       tags:
         - Accounts
       parameters:
@@ -843,7 +843,7 @@ paths:
   /api/v2/accounts:
     get:
       operationId: queryAccounts
-      summary: List all accounts
+      summary: Avalara List all accounts
       tags:
         - Accounts
       parameters:
@@ -856,7 +856,7 @@ paths:
   /api/v2/accounts/{id}/subscriptions:
     get:
       operationId: listSubscriptionsByAccount
-      summary: List subscriptions for an account
+      summary: Avalara List subscriptions for an account
       tags:
         - Subscriptions
       parameters:
@@ -872,7 +872,7 @@ paths:
   /api/v2/companies/{companyId}/reports:
     get:
       operationId: listReports
-      summary: List reports for a company
+      summary: Avalara List reports for a company
       tags:
         - Reports
       parameters:
@@ -883,7 +883,7 @@ paths:
   /api/v2/reports/{id}:
     get:
       operationId: getReport
-      summary: Retrieve a single report
+      summary: Avalara Retrieve a single report
       tags:
         - Reports
       parameters:
@@ -898,7 +898,7 @@ paths:
   /api/v2/multidocument/transactions/create:
     post:
       operationId: createMultiDocumentTransaction
-      summary: Create a multi-document transaction
+      summary: Avalara Create a multi-document transaction
       description: >-
         Creates a transaction that spans multiple companies or jurisdictions,
         managing related documents as a single group.
@@ -916,7 +916,7 @@ paths:
   /api/v2/utilities/ping:
     get:
       operationId: ping
-      summary: Test connectivity and authentication
+      summary: Avalara Test connectivity and authentication
       description: >-
         Tests connectivity to the AvaTax service and validates
         authentication credentials.
@@ -933,7 +933,7 @@ paths:
   /api/v2/utilities/subscriptions:
     get:
       operationId: listMySubscriptions
-      summary: List subscriptions for the current account
+      summary: Avalara List subscriptions for the current account
       tags:
         - Utilities
       responses:

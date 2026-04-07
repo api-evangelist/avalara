@@ -31,7 +31,7 @@ paths:
   /companies:
     get:
       operationId: listCompanies
-      summary: List companies
+      summary: Avalara List companies
       description: Retrieves a list of canonical company records.
       tags:
         - Companies
@@ -57,7 +57,7 @@ paths:
                 $ref: '#/components/schemas/CompanyList'
     post:
       operationId: createCompany
-      summary: Create a company record
+      summary: Avalara Create a company record
       tags:
         - Companies
       requestBody:
@@ -76,7 +76,7 @@ paths:
   /companies/{companyId}:
     get:
       operationId: getCompany
-      summary: Get a company by ID
+      summary: Avalara Get a company by ID
       tags:
         - Companies
       parameters:
@@ -94,7 +94,7 @@ paths:
                 $ref: '#/components/schemas/SharedCompany'
     put:
       operationId: updateCompany
-      summary: Update a company record
+      summary: Avalara Update a company record
       tags:
         - Companies
       parameters:
@@ -114,7 +114,7 @@ paths:
           description: Company updated
     delete:
       operationId: deleteCompany
-      summary: Delete a company record
+      summary: Avalara Delete a company record
       tags:
         - Companies
       parameters:
@@ -129,7 +129,7 @@ paths:
   /companies/{companyId}/contacts:
     get:
       operationId: listContacts
-      summary: List contacts for a company
+      summary: Avalara List contacts for a company
       tags:
         - Contacts
       parameters:
@@ -149,7 +149,7 @@ paths:
                   $ref: '#/components/schemas/SharedContact'
     post:
       operationId: createContact
-      summary: Create a contact
+      summary: Avalara Create a contact
       tags:
         - Contacts
       parameters:

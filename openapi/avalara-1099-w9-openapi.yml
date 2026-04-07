@@ -38,7 +38,7 @@ paths:
   /w9/requests:
     post:
       operationId: createW9Request
-      summary: Create a W-9 collection request
+      summary: Avalara Create a W-9 collection request
       description: >-
         Sends a W-9 collection request to a payee, allowing them to submit
         their taxpayer information electronically.
@@ -61,7 +61,7 @@ paths:
           $ref: '#/components/responses/BadRequest'
     get:
       operationId: listW9Requests
-      summary: List W-9 requests
+      summary: Avalara List W-9 requests
       tags:
         - W-9 Forms
       parameters:
@@ -87,7 +87,7 @@ paths:
   /w9/{w9Id}:
     get:
       operationId: getW9
-      summary: Get a completed W-9 form
+      summary: Avalara Get a completed W-9 form
       tags:
         - W-9 Forms
       parameters:
@@ -106,7 +106,7 @@ paths:
   /forms/1099:
     post:
       operationId: create1099Form
-      summary: Create a 1099 form
+      summary: Avalara Create a 1099 form
       description: >-
         Creates a new 1099 information return form with payee and
         payment information.
@@ -127,7 +127,7 @@ paths:
                 $ref: '#/components/schemas/Form1099'
     get:
       operationId: list1099Forms
-      summary: List 1099 forms
+      summary: Avalara List 1099 forms
       tags:
         - 1099 Forms
       parameters:
@@ -165,7 +165,7 @@ paths:
   /forms/1099/{formId}:
     get:
       operationId: get1099Form
-      summary: Get a 1099 form by ID
+      summary: Avalara Get a 1099 form by ID
       tags:
         - 1099 Forms
       parameters:
@@ -183,7 +183,7 @@ paths:
                 $ref: '#/components/schemas/Form1099'
     put:
       operationId: update1099Form
-      summary: Update a 1099 form
+      summary: Avalara Update a 1099 form
       tags:
         - 1099 Forms
       parameters:
@@ -203,7 +203,7 @@ paths:
           description: 1099 form updated
     delete:
       operationId: delete1099Form
-      summary: Delete a 1099 form
+      summary: Avalara Delete a 1099 form
       tags:
         - 1099 Forms
       parameters:
@@ -218,7 +218,7 @@ paths:
   /filing/submit:
     post:
       operationId: submitFiling
-      summary: Submit forms for e-filing
+      summary: Avalara Submit forms for e-filing
       description: >-
         Submits a batch of completed forms to the IRS for electronic filing.
         Validates all forms before submission.
@@ -240,7 +240,7 @@ paths:
   /filing/{filingId}/status:
     get:
       operationId: getFilingStatus
-      summary: Get filing status
+      summary: Avalara Get filing status
       description: Retrieves the status of an IRS e-filing submission.
       tags:
         - Filing
@@ -260,7 +260,7 @@ paths:
   /companies:
     get:
       operationId: listPayerCompanies
-      summary: List payer companies
+      summary: Avalara List payer companies
       tags:
         - Companies
       responses:
@@ -268,7 +268,7 @@ paths:
           description: List of payer companies
     post:
       operationId: createPayerCompany
-      summary: Create a payer company
+      summary: Avalara Create a payer company
       tags:
         - Companies
       requestBody:

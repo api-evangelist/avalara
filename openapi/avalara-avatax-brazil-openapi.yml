@@ -36,7 +36,7 @@ paths:
   /calculations:
     post:
       operationId: calculateTax
-      summary: Calculate Brazilian taxes
+      summary: Avalara Calculate Brazilian taxes
       description: >-
         Calculates applicable Brazilian taxes for a transaction including
         ICMS, IPI, PIS, COFINS, ISS, and other applicable taxes based on
@@ -63,7 +63,7 @@ paths:
   /invoices:
     post:
       operationId: createInvoice
-      summary: Issue an electronic invoice
+      summary: Avalara Issue an electronic invoice
       description: >-
         Issues a new electronic fiscal document (NF-e, NFS-e, or NFC-e)
         to Brazilian tax authorities (SEFAZ).
@@ -84,7 +84,7 @@ paths:
                 $ref: '#/components/schemas/InvoiceResponse'
     get:
       operationId: listInvoices
-      summary: List electronic invoices
+      summary: Avalara List electronic invoices
       tags:
         - Electronic Invoices
       parameters:
@@ -121,7 +121,7 @@ paths:
   /invoices/{invoiceId}:
     get:
       operationId: getInvoice
-      summary: Get an invoice by ID
+      summary: Avalara Get an invoice by ID
       tags:
         - Electronic Invoices
       parameters:
@@ -140,7 +140,7 @@ paths:
   /invoices/{invoiceId}/cancel:
     post:
       operationId: cancelInvoice
-      summary: Cancel an electronic invoice
+      summary: Avalara Cancel an electronic invoice
       description: Submits a cancellation request for an authorized invoice.
       tags:
         - Electronic Invoices
@@ -166,7 +166,7 @@ paths:
   /transactions:
     get:
       operationId: listTransactions
-      summary: List transactions
+      summary: Avalara List transactions
       tags:
         - Transactions
       parameters:
@@ -184,7 +184,7 @@ paths:
   /companies:
     get:
       operationId: listCompanies
-      summary: List companies configured for Brazil
+      summary: Avalara List companies configured for Brazil
       tags:
         - Companies
       responses:
@@ -192,7 +192,7 @@ paths:
           description: List of companies
     post:
       operationId: createCompany
-      summary: Create a company configuration
+      summary: Avalara Create a company configuration
       tags:
         - Companies
       requestBody:

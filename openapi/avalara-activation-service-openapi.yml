@@ -30,7 +30,7 @@ paths:
   /registrations:
     get:
       operationId: listRegistrations
-      summary: List all registrations
+      summary: Avalara List all registrations
       description: Retrieves all registrations for the authenticated partner.
       tags:
         - Registrations
@@ -64,7 +64,7 @@ paths:
   /registrations/{registrationId}:
     get:
       operationId: getRegistration
-      summary: Get a registration by ID
+      summary: Avalara Get a registration by ID
       description: Retrieves details for a specific registration.
       tags:
         - Registrations

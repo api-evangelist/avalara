@@ -37,7 +37,7 @@ paths:
   /documents:
     post:
       operationId: submitDocument
-      summary: Submit an e-invoice document
+      summary: Avalara Submit an e-invoice document
       description: >-
         Submits an electronic invoice document for validation and delivery
         to the appropriate tax authority or recipient network.
@@ -70,7 +70,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     get:
       operationId: listDocuments
-      summary: List submitted documents
+      summary: Avalara List submitted documents
       description: Retrieves a list of submitted e-invoice documents with filtering.
       tags:
         - Documents
@@ -133,7 +133,7 @@ paths:
   /documents/{documentId}:
     get:
       operationId: getDocument
-      summary: Retrieve a document by ID
+      summary: Avalara Retrieve a document by ID
       description: Retrieves the status and details of a submitted e-invoice document.
       tags:
         - Documents
@@ -161,7 +161,7 @@ paths:
   /documents/{documentId}/status:
     get:
       operationId: getDocumentStatus
-      summary: Get document processing status
+      summary: Avalara Get document processing status
       description: Returns the current processing status of a submitted document.
       tags:
         - Documents
@@ -187,7 +187,7 @@ paths:
   /mandates:
     get:
       operationId: listMandates
-      summary: List e-invoicing mandates
+      summary: Avalara List e-invoicing mandates
       description: >-
         Retrieves a list of e-invoicing mandate definitions that describe
         compliance requirements by country and document type.
@@ -227,7 +227,7 @@ paths:
   /interop/documents:
     post:
       operationId: submitInteropDocument
-      summary: Submit a document via interoperability network
+      summary: Avalara Submit a document via interoperability network
       description: >-
         Submits a document through the interoperability network (e.g., Peppol)
         for delivery to the recipient.

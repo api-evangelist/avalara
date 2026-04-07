@@ -39,7 +39,7 @@ paths:
   /certificates:
     get:
       operationId: listCertificates
-      summary: List certificates
+      summary: Avalara List certificates
       description: Retrieves a filtered list of exemption certificates.
       tags:
         - Certificates
@@ -76,7 +76,7 @@ paths:
                 $ref: '#/components/schemas/CertificateListResponse'
     post:
       operationId: createCertificate
-      summary: Create a certificate
+      summary: Avalara Create a certificate
       description: Creates a new exemption certificate record.
       tags:
         - Certificates
@@ -98,7 +98,7 @@ paths:
   /certificates/{certificateId}:
     get:
       operationId: getCertificate
-      summary: Get a certificate
+      summary: Avalara Get a certificate
       description: Retrieves a single certificate by its ID.
       tags:
         - Certificates
@@ -119,7 +119,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateCertificate
-      summary: Update a certificate
+      summary: Avalara Update a certificate
       tags:
         - Certificates
       parameters:
@@ -143,7 +143,7 @@ paths:
                 $ref: '#/components/schemas/Certificate'
     delete:
       operationId: deleteCertificate
-      summary: Delete a certificate
+      summary: Avalara Delete a certificate
       tags:
         - Certificates
       parameters:
@@ -158,7 +158,7 @@ paths:
   /certificates/{certificateId}/attachment:
     get:
       operationId: getCertificateAttachment
-      summary: Download certificate attachment
+      summary: Avalara Download certificate attachment
       description: Downloads the PDF or image attachment for a certificate.
       tags:
         - Certificates
@@ -178,7 +178,7 @@ paths:
                 format: binary
     post:
       operationId: uploadCertificateAttachment
-      summary: Upload certificate attachment
+      summary: Avalara Upload certificate attachment
       tags:
         - Certificates
       parameters:
@@ -203,7 +203,7 @@ paths:
   /customers:
     get:
       operationId: listCustomers
-      summary: List customers
+      summary: Avalara List customers
       tags:
         - Customers
       parameters:
@@ -224,7 +224,7 @@ paths:
                 $ref: '#/components/schemas/CustomerListResponse'
     post:
       operationId: createCustomer
-      summary: Create a customer
+      summary: Avalara Create a customer
       tags:
         - Customers
       requestBody:
@@ -239,7 +239,7 @@ paths:
   /customers/{customerId}:
     get:
       operationId: getCustomer
-      summary: Get a customer by ID
+      summary: Avalara Get a customer by ID
       tags:
         - Customers
       parameters:
@@ -257,7 +257,7 @@ paths:
                 $ref: '#/components/schemas/CertCaptureCustomer'
     put:
       operationId: updateCustomer
-      summary: Update a customer
+      summary: Avalara Update a customer
       tags:
         - Customers
       parameters:
@@ -278,7 +278,7 @@ paths:
   /customers/{customerId}/certificates:
     get:
       operationId: getCustomerCertificates
-      summary: List certificates for a customer
+      summary: Avalara List certificates for a customer
       tags:
         - Customers
       parameters:
@@ -293,7 +293,7 @@ paths:
   /attributes:
     get:
       operationId: listAttributes
-      summary: List certificate attributes
+      summary: Avalara List certificate attributes
       tags:
         - Attributes
       responses:
@@ -308,7 +308,7 @@ paths:
   /auth/token:
     post:
       operationId: getAuthToken
-      summary: Get authentication token
+      summary: Avalara Get authentication token
       description: Generates an authentication token for API access.
       tags:
         - Authentication
@@ -343,7 +343,7 @@ paths:
   /ecommerce/token:
     post:
       operationId: generateEcommerceToken
-      summary: Generate eCommerce token
+      summary: Avalara Generate eCommerce token
       description: >-
         Generates a token for embedding the CertCapture certificate
         collection widget in eCommerce checkout flows.

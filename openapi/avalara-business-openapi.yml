@@ -31,7 +31,7 @@ paths:
   /accounts:
     post:
       operationId: createAccount
-      summary: Register a new customer account
+      summary: Avalara Register a new customer account
       description: >-
         Registers a new customer account with Avalara through a partner
         integration.
@@ -55,7 +55,7 @@ paths:
   /accounts/{accountId}:
     get:
       operationId: getAccount
-      summary: Get account details
+      summary: Avalara Get account details
       tags:
         - Accounts
       parameters:
@@ -74,7 +74,7 @@ paths:
   /orders:
     post:
       operationId: createOrder
-      summary: Create a sales order
+      summary: Avalara Create a sales order
       description: Creates a new sales order for Avalara products and services.
       tags:
         - Orders
@@ -94,7 +94,7 @@ paths:
   /orders/{orderId}:
     get:
       operationId: getOrder
-      summary: Get order details
+      summary: Avalara Get order details
       tags:
         - Orders
       parameters:

@@ -30,7 +30,7 @@ paths:
   /classify:
     post:
       operationId: classifyProduct
-      summary: Classify a product
+      summary: Avalara Classify a product
       description: >-
         Classifies a product into HS Code and Avalara Tax Code based on
         the provided product description, attributes, and destination country.
@@ -55,7 +55,7 @@ paths:
   /classify/batch:
     post:
       operationId: classifyBatch
-      summary: Classify a batch of products
+      summary: Avalara Classify a batch of products
       description: Classifies multiple products in a single request.
       tags:
         - Classification
@@ -87,7 +87,7 @@ paths:
   /hscodes/{hsCode}:
     get:
       operationId: getHSCode
-      summary: Look up an HS Code
+      summary: Avalara Look up an HS Code
       description: Retrieves details for a specific HS Code.
       tags:
         - Classification
@@ -112,7 +112,7 @@ paths:
   /hscodes/{hsCode}/hierarchy:
     get:
       operationId: getHSCodeHierarchy
-      summary: Get HS Code hierarchy
+      summary: Avalara Get HS Code hierarchy
       description: >-
         Returns the full hierarchy for an HS Code from chapter through
         heading, subheading, and national tariff line.

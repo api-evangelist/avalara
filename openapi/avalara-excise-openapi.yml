@@ -41,7 +41,7 @@ paths:
   /TaxDetermination:
     post:
       operationId: calculateExciseTax
-      summary: Calculate excise taxes
+      summary: Avalara Calculate excise taxes
       description: >-
         Calculates excise taxes for a transaction containing one or more
         line items with product, origin, destination, and movement information.
@@ -67,7 +67,7 @@ paths:
   /Transactions:
     get:
       operationId: listTransactions
-      summary: List excise transactions
+      summary: Avalara List excise transactions
       description: Retrieves a list of excise tax transactions.
       tags:
         - Transactions
@@ -97,7 +97,7 @@ paths:
           description: List of transactions
     post:
       operationId: createTransaction
-      summary: Create an excise transaction
+      summary: Avalara Create an excise transaction
       tags:
         - Transactions
       requestBody:
@@ -116,7 +116,7 @@ paths:
   /Transactions/{transactionId}:
     get:
       operationId: getTransaction
-      summary: Retrieve an excise transaction
+      summary: Avalara Retrieve an excise transaction
       tags:
         - Transactions
       parameters:
@@ -135,7 +135,7 @@ paths:
   /BusinessEntities:
     get:
       operationId: listBusinessEntities
-      summary: List business entities
+      summary: Avalara List business entities
       tags:
         - Business Entities
       responses:
@@ -149,7 +149,7 @@ paths:
                   $ref: '#/components/schemas/BusinessEntity'
     post:
       operationId: createBusinessEntity
-      summary: Create a business entity
+      summary: Avalara Create a business entity
       tags:
         - Business Entities
       requestBody:
@@ -168,7 +168,7 @@ paths:
   /BusinessEntities/{entityId}:
     get:
       operationId: getBusinessEntity
-      summary: Get a business entity by ID
+      summary: Avalara Get a business entity by ID
       tags:
         - Business Entities
       parameters:
@@ -186,7 +186,7 @@ paths:
                 $ref: '#/components/schemas/BusinessEntity'
     put:
       operationId: updateBusinessEntity
-      summary: Update a business entity
+      summary: Avalara Update a business entity
       tags:
         - Business Entities
       parameters:
@@ -206,7 +206,7 @@ paths:
           description: Business entity updated
     delete:
       operationId: deleteBusinessEntity
-      summary: Delete a business entity
+      summary: Avalara Delete a business entity
       tags:
         - Business Entities
       parameters:
@@ -221,7 +221,7 @@ paths:
   /Locations:
     get:
       operationId: listLocations
-      summary: List locations
+      summary: Avalara List locations
       tags:
         - Locations
       responses:
@@ -235,7 +235,7 @@ paths:
                   $ref: '#/components/schemas/ExciseLocation'
     post:
       operationId: createLocation
-      summary: Create a location
+      summary: Avalara Create a location
       tags:
         - Locations
       requestBody:
@@ -250,7 +250,7 @@ paths:
   /Products:
     get:
       operationId: listProducts
-      summary: List registered products
+      summary: Avalara List registered products
       tags:
         - Products
       responses:
@@ -265,7 +265,7 @@ paths:
   /Licenses:
     get:
       operationId: listLicenses
-      summary: List excise licenses
+      summary: Avalara List excise licenses
       tags:
         - Licenses
       responses:
