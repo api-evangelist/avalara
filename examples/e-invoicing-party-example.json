@@ -1,0 +1,12 @@
+{
+  "name": "Sample Name",
+  "identifier": "sample-value",
+  "identifierScheme": "sample-value",
+  "address": {
+    "line1": "sample-value",
+    "city": "sample-value",
+    "region": "sample-value",
+    "postalCode": "US",
+    "countryCode": "US"
+  }
+}

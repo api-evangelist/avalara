@@ -1,0 +1,13 @@
+{
+  "filingId": "12345",
+  "status": "Processing",
+  "acceptedCount": 42,
+  "rejectedCount": 42,
+  "errors": [
+    {
+      "formId": "12345",
+      "errorCode": "US",
+      "message": "sample-value"
+    }
+  ]
+}

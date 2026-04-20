@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-refund-transaction-model-structure.json",
+  "description": "RefundTransactionModel schema from Avalara API",
+  "type": "object",
+  "required": [
+    "refundTransactionCode",
+    "refundDate",
+    "refundType"
+  ],
+  "properties": {
+    "refundTransactionCode": {
+      "type": "string"
+    },
+    "refundDate": {
+      "type": "date"
+    },
+    "refundType": {
+      "type": "string",
+      "enum": [
+        "Full",
+        "Partial",
+        "Percentage",
+        "TaxOnly"
+      ]
+    },
+    "refundPercentage": {
+      "type": "double"
+    },
+    "refundLines": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "name": "RefundTransactionModel"
+}

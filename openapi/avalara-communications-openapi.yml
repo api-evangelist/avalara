@@ -20,30 +20,30 @@ externalDocs:
   description: Communications Tax API Documentation
   url: https://developer.avalara.com/api-reference/communications/v2/
 servers:
-  - url: https://communicationsua.avalara.net
-    description: Communications API Production
+- url: https://communicationsua.avalara.net
+  description: Communications API Production
 tags:
-  - name: Customization
-    description: Manage tax profiles, exemptions, and overrides
-  - name: Geocoding
-    description: Determine tax jurisdictions from addresses
-  - name: Lookup
-    description: Look up service and transaction type information
-  - name: Tax Calculation
-    description: Calculate communications taxes on transactions
+- name: Customization
+  description: Manage tax profiles, exemptions, and overrides
+- name: Geocoding
+  description: Determine tax jurisdictions from addresses
+- name: Lookup
+  description: Look up service and transaction type information
+- name: Tax Calculation
+  description: Calculate communications taxes on transactions
 security:
-  - basicAuth: []
+- basicAuth: []
 paths:
   /api/v2/afc/CalcTaxes:
     post:
       operationId: calcTaxes
-      summary: Avalara Calculate taxes on a transaction
+      summary: Avalara Calculate Taxes on a Transaction
       description: >-
         Calculates communications taxes for one or more line items based on
         transaction type, service type, and jurisdiction information. Supports
         both individual and batch tax calculations.
       tags:
-        - Tax Calculation
+      - Tax Calculation
       requestBody:
         required: true
         content:
@@ -64,12 +64,12 @@ paths:
   /api/v2/afc/commit:
     post:
       operationId: commitTransaction
-      summary: Avalara Commit a transaction
+      summary: Avalara Commit a Transaction
       description: >-
         Commits a previously calculated transaction, finalizing it for
         tax reporting purposes.
       tags:
-        - Tax Calculation
+      - Tax Calculation
       requestBody:
         required: true
         content:
@@ -86,12 +86,12 @@ paths:
   /api/v2/afc/CalcAdj:
     post:
       operationId: calcAdjustment
-      summary: Avalara Calculate adjustment taxes
+      summary: Avalara Calculate Adjustment Taxes
       description: >-
         Calculates taxes for adjustments (credits, refunds) on previously
         committed transactions.
       tags:
-        - Tax Calculation
+      - Tax Calculation
       requestBody:
         required: true
         content:
@@ -108,12 +108,12 @@ paths:
   /api/v2/geo/Geocode:
     post:
       operationId: geocode
-      summary: Avalara Geocode an address
+      summary: Avalara Geocode an Address
       description: >-
         Determines the tax jurisdiction for a given address using geocoding.
         Returns jurisdiction codes (PCode, FIPS) needed for tax calculations.
       tags:
-        - Geocoding
+      - Geocoding
       requestBody:
         required: true
         content:
@@ -130,31 +130,31 @@ paths:
   /api/v2/afc/PCode/{pcode}:
     get:
       operationId: getPCodeInfo
-      summary: Avalara Get PCode jurisdiction information
+      summary: Avalara Get PCode Jurisdiction Information
       description: >-
         Retrieves detailed jurisdiction information for a given PCode
         (proprietary jurisdiction code).
       tags:
-        - Lookup
+      - Lookup
       parameters:
-        - name: pcode
-          in: path
-          required: true
-          schema:
-            type: integer
-          description: The PCode to look up
+      - name: pcode
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The PCode to look up
       responses:
         '200':
           description: PCode jurisdiction details
   /api/v2/afc/tspairs:
     get:
       operationId: getTransactionServicePairs
-      summary: Avalara List transaction/service type pairs
+      summary: Avalara List Transaction/service Type Pairs
       description: >-
         Returns all valid transaction type and service type pairs that
         can be used for tax calculations.
       tags:
-        - Lookup
+      - Lookup
       responses:
         '200':
           description: List of transaction/service type pairs
@@ -167,26 +167,26 @@ paths:
   /api/v2/afc/taxtype/{taxType}:
     get:
       operationId: getTaxTypeInfo
-      summary: Avalara Get tax type details
+      summary: Avalara Get Tax Type Details
       description: Retrieves details for a specific tax type identifier.
       tags:
-        - Lookup
+      - Lookup
       parameters:
-        - name: taxType
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: taxType
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         '200':
           description: Tax type details
   /api/v2/afc/serviceinfo:
     get:
       operationId: getServiceInfo
-      summary: Avalara Get service information
+      summary: Avalara Get Service Information
       description: Returns version and status information for the Communications API.
       tags:
-        - Lookup
+      - Lookup
       security: []
       responses:
         '200':
@@ -198,19 +198,19 @@ paths:
   /api/v2/afc/customization/profiles:
     get:
       operationId: getProfiles
-      summary: Avalara List tax profiles
+      summary: Avalara List Tax Profiles
       description: Retrieves all configured tax profiles for the client.
       tags:
-        - Customization
+      - Customization
       responses:
         '200':
           description: List of tax profiles
     post:
       operationId: createProfile
-      summary: Avalara Create a tax profile
+      summary: Avalara Create a Tax Profile
       description: Creates a new tax profile with custom bundles and overrides.
       tags:
-        - Customization
+      - Customization
       requestBody:
         required: true
         content:
@@ -223,18 +223,18 @@ paths:
   /api/v2/afc/customization/exclusions:
     get:
       operationId: getExclusions
-      summary: Avalara List tax exclusions
+      summary: Avalara List Tax Exclusions
       description: Retrieves configured tax exclusions.
       tags:
-        - Customization
+      - Customization
       responses:
         '200':
           description: List of exclusions
     post:
       operationId: createExclusion
-      summary: Avalara Create a tax exclusion
+      summary: Avalara Create a Tax Exclusion
       tags:
-        - Customization
+      - Customization
       requestBody:
         required: true
         content:
@@ -268,8 +268,8 @@ components:
     CalcTaxesRequest:
       type: object
       required:
-        - cmpn
-        - inv
+      - cmpn
+      - inv
       properties:
         cmpn:
           $ref: '#/components/schemas/CompanyData'

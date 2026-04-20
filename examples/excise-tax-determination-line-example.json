@@ -1,0 +1,8 @@
+{
+  "lineNumber": "sample-value",
+  "productCode": "US",
+  "taxes": [
+    "sample-value"
+  ],
+  "totalTax": 100.0
+}

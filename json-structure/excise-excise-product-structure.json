@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/excise-excise-product-structure.json",
+  "description": "ExciseProduct schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "productCode": {
+      "type": "string"
+    },
+    "productName": {
+      "type": "string"
+    },
+    "productCategory": {
+      "type": "string",
+      "enum": [
+        "MotorFuel",
+        "Diesel",
+        "Aviation",
+        "Alcohol",
+        "Tobacco",
+        "NaturalGas",
+        "Other"
+      ]
+    },
+    "unitOfMeasure": {
+      "type": "string"
+    }
+  },
+  "name": "ExciseProduct"
+}

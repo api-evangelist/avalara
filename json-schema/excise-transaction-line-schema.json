@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/excise-transaction-line-schema.json",
+  "title": "TransactionLine",
+  "description": "TransactionLine schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "lineNumber": {
+      "type": "string"
+    },
+    "productCode": {
+      "type": "string",
+      "description": "Excise product code"
+    },
+    "unitOfMeasure": {
+      "type": "string",
+      "enum": [
+        "GAL",
+        "LTR",
+        "BBL",
+        "TON",
+        "EA"
+      ],
+      "description": "Unit of measure"
+    },
+    "quantity": {
+      "type": "number",
+      "format": "double",
+      "description": "Quantity of product"
+    },
+    "amount": {
+      "type": "number",
+      "format": "double",
+      "description": "Line amount"
+    },
+    "origin": {
+      "$ref": "#/components/schemas/ExciseAddress"
+    },
+    "destination": {
+      "$ref": "#/components/schemas/ExciseAddress"
+    },
+    "billOfLadingNumber": {
+      "type": "string"
+    },
+    "carrierName": {
+      "type": "string"
+    },
+    "modeOfTransport": {
+      "type": "string",
+      "enum": [
+        "Truck",
+        "Pipeline",
+        "Rail",
+        "Vessel"
+      ]
+    }
+  }
+}

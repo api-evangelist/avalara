@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-brazil-calculation-result-line-structure.json",
+  "description": "CalculationResultLine schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "lineCode": {
+      "type": "string"
+    },
+    "taxes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/BrazilTaxDetail"
+      }
+    },
+    "totalTax": {
+      "type": "double"
+    }
+  },
+  "name": "CalculationResultLine"
+}

@@ -1,0 +1,8 @@
+{
+  "itemCode": "US",
+  "description": "Sample description",
+  "predictions": [
+    "sample-value"
+  ],
+  "avataxCode": "US"
+}

@@ -1,0 +1,17 @@
+{
+  "type": "SalesOrder",
+  "companyCode": "US",
+  "date": "2025-04-15",
+  "customerCode": "US",
+  "commit": false,
+  "currencyCode": "US",
+  "addresses": {
+    "shipFrom": "sample-value",
+    "shipTo": "sample-value",
+    "pointOfOrderOrigin": "sample-value",
+    "pointOfOrderAcceptance": "sample-value"
+  },
+  "lines": [
+    "sample-value"
+  ]
+}

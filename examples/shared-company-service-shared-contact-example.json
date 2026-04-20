@@ -1,0 +1,9 @@
+{
+  "contactId": "12345",
+  "firstName": "Sample Name",
+  "lastName": "Sample Name",
+  "email": "user@example.com",
+  "phone": "sample-value",
+  "title": "sample-value",
+  "isPrimary": true
+}

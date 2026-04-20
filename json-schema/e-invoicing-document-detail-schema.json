@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/e-invoicing-document-detail-schema.json",
+  "title": "DocumentDetail",
+  "description": "DocumentDetail schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "dataFormat": {
+      "type": "string"
+    },
+    "documentType": {
+      "type": "string"
+    },
+    "invoiceNumber": {
+      "type": "string"
+    },
+    "invoiceDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "sender": {
+      "$ref": "#/components/schemas/Party"
+    },
+    "recipient": {
+      "$ref": "#/components/schemas/Party"
+    },
+    "totalAmount": {
+      "type": "number",
+      "format": "double"
+    },
+    "currencyCode": {
+      "type": "string"
+    },
+    "countryCode": {
+      "type": "string"
+    },
+    "submissionDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DocumentEvent"
+      }
+    }
+  }
+}

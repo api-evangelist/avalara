@@ -1,0 +1,8 @@
+{
+  "invoiceType": "NF-e",
+  "companyId": "12345",
+  "transactionDate": "2025-04-15T14:30:00Z",
+  "lines": [
+    "sample-value"
+  ]
+}

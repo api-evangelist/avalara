@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/e-invoicing-document-status-structure.json",
+  "description": "DocumentStatus schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Accepted",
+        "Rejected",
+        "Error"
+      ]
+    },
+    "statusDate": {
+      "type": "datetime"
+    },
+    "events": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DocumentEvent"
+      }
+    }
+  },
+  "name": "DocumentStatus"
+}

@@ -1,0 +1,13 @@
+{
+  "transactionId": "12345",
+  "transactionDate": "2025-04-15",
+  "transactionType": "Sale",
+  "invoiceNumber": "sample-value",
+  "supplierVATNumber": "sample-value",
+  "customerVATNumber": "sample-value",
+  "countryCode": "US",
+  "netAmount": 100.0,
+  "vatRate": 100.0,
+  "vatAmount": 100.0,
+  "currency": "sample-value"
+}

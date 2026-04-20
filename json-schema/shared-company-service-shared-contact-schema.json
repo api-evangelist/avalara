@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/shared-company-service-shared-contact-schema.json",
+  "title": "SharedContact",
+  "description": "SharedContact schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "contactId": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "isPrimary": {
+      "type": "boolean"
+    }
+  }
+}

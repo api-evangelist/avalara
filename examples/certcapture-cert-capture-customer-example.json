@@ -1,0 +1,12 @@
+{
+  "id": "12345",
+  "customerCode": "US",
+  "name": "Sample Name",
+  "line1": "sample-value",
+  "city": "sample-value",
+  "region": "sample-value",
+  "postalCode": "US",
+  "country": "sample-value",
+  "emailAddress": "user@example.com",
+  "phoneNumber": "sample-value"
+}

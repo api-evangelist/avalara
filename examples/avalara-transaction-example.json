@@ -1,0 +1,31 @@
+{
+  "id": 42,
+  "code": "US",
+  "companyCode": "US",
+  "type": "SalesOrder",
+  "status": "Temporary",
+  "date": "2025-04-15",
+  "customerCode": "US",
+  "currencyCode": "US",
+  "commit": false,
+  "totalAmount": 100.0,
+  "totalTax": 100.0,
+  "totalTaxable": 100.0,
+  "totalExempt": 100.0,
+  "totalDiscount": 100.0,
+  "totalTaxCalculated": 100.0,
+  "addresses": {
+    "shipFrom": "sample-value",
+    "shipTo": "sample-value",
+    "pointOfOrderOrigin": "sample-value",
+    "pointOfOrderAcceptance": "sample-value"
+  },
+  "lines": [
+    "sample-value"
+  ],
+  "summary": [
+    "sample-value"
+  ],
+  "createdDate": "2025-04-15T14:30:00Z",
+  "modifiedDate": "2025-04-15T14:30:00Z"
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/communications-company-data-structure.json",
+  "description": "CompanyData schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "bscl": {
+      "type": "int32",
+      "description": "Business class (0=ILEC, 1=CLEC, etc.)"
+    },
+    "svcl": {
+      "type": "int32",
+      "description": "Service class (0=Primary Local, 1=Primary Long Distance)"
+    },
+    "fclt": {
+      "type": "boolean",
+      "description": "Facilities-based indicator"
+    },
+    "frch": {
+      "type": "boolean",
+      "description": "Franchise indicator"
+    },
+    "reg": {
+      "type": "boolean",
+      "description": "Regulated indicator"
+    }
+  },
+  "name": "CompanyData"
+}

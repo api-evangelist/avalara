@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/business-account-registration-schema.json",
+  "title": "AccountRegistration",
+  "description": "AccountRegistration schema from Avalara API",
+  "type": "object",
+  "required": [
+    "companyName",
+    "email"
+  ],
+  "properties": {
+    "companyName": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "line1": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "partnerCode": {
+      "type": "string"
+    }
+  }
+}

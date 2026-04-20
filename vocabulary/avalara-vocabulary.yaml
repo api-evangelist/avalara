@@ -1,0 +1,403 @@
+vocabulary: 1.0.0
+info:
+  provider: Avalara
+  description: Unified vocabulary for Avalara tax compliance APIs covering sales tax, VAT, exemptions, e-invoicing, tariff classification, and cross-border compliance.
+  created: '2026-04-19'
+  modified: '2026-04-19'
+operational:
+  apis:
+  - name: AvaTax REST API
+    namespace: avatax
+    version: v2
+    baseUrl: https://rest.avatax.com
+    status: active
+  - name: CertCapture API
+    namespace: certcapture
+    version: v2
+    baseUrl: https://api.certcapture.com
+    status: active
+  - name: E-Invoicing API
+    namespace: einvoicing
+    version: v1
+    baseUrl: https://einvoicing.api.avalara.com
+    status: active
+  - name: Communications Tax API
+    namespace: communications
+    version: v2
+    baseUrl: https://communications.api.avalara.com
+    status: active
+  - name: Excise Platform API
+    namespace: excise
+    version: v1
+    baseUrl: https://excise.api.avalara.com
+    status: active
+  - name: HS Code Classification API
+    namespace: hsclassification
+    version: v1
+    baseUrl: https://api.avalara.com
+    status: active
+  - name: Item Classification API
+    namespace: itemclassification
+    version: v2
+    baseUrl: https://api.avalara.com
+    status: active
+  - name: VAT Reporting API
+    namespace: vatreporting
+    version: v1
+    baseUrl: https://api.avalara.com
+    status: active
+  - name: 1099 & W-9 API
+    namespace: forms1099
+    version: v1
+    baseUrl: https://api.avalara.com
+    status: active
+  - name: MyLodgeTax API
+    namespace: mylodgetax
+    version: v1
+    baseUrl: https://api.avalara.com
+    status: active
+  resources:
+  - name: transactions
+    apis:
+    - avatax
+    actions:
+    - create
+    - list
+    - get
+    - void
+    - commit
+    description: Tax calculation transactions
+  - name: companies
+    apis:
+    - avatax
+    actions:
+    - create
+    - list
+    - get
+    - update
+    description: Company accounts and settings
+  - name: addresses
+    apis:
+    - avatax
+    actions:
+    - resolve
+    description: Postal address validation and jurisdiction lookup
+  - name: certificates
+    apis:
+    - certcapture
+    actions:
+    - create
+    - list
+    - get
+    - update
+    - delete
+    description: Tax exemption certificates
+  - name: customers
+    apis:
+    - certcapture
+    actions:
+    - create
+    - list
+    - get
+    description: Customer accounts for certificate management
+  - name: mandates
+    apis:
+    - einvoicing
+    actions:
+    - list
+    description: E-invoicing compliance mandates by country
+  - name: documents
+    apis:
+    - einvoicing
+    actions:
+    - submit
+    - list
+    - get
+    description: E-invoice document submissions
+  - name: hs-codes
+    apis:
+    - hsclassification
+    - itemclassification
+    actions:
+    - classify
+    - list
+    description: Harmonized System Code classification
+  - name: forms-1099
+    apis:
+    - forms1099
+    actions:
+    - create
+    - list
+    - update
+    - file
+    description: IRS 1099 and W-9 form management
+  actions:
+  - name: create
+    httpMethod: POST
+    pattern: write
+    description: Create a new resource
+  - name: list
+    httpMethod: GET
+    pattern: read
+    description: List a collection of resources
+  - name: get
+    httpMethod: GET
+    pattern: read
+    description: Get a specific resource by ID
+  - name: update
+    httpMethod: PUT
+    pattern: write
+    description: Update an existing resource
+  - name: delete
+    httpMethod: DELETE
+    pattern: destructive
+    description: Delete a resource
+  - name: void
+    httpMethod: POST
+    pattern: write
+    description: Void a tax transaction
+  - name: commit
+    httpMethod: POST
+    pattern: write
+    description: Commit a transaction to the ledger
+  - name: resolve
+    httpMethod: GET
+    pattern: query
+    description: Resolve and validate an address
+  - name: classify
+    httpMethod: POST
+    pattern: query
+    description: Classify a product into HS or tax codes
+  - name: file
+    httpMethod: POST
+    pattern: write
+    description: File a tax return or form
+  - name: submit
+    httpMethod: POST
+    pattern: write
+    description: Submit a document for compliance
+  schemas:
+    core:
+    - name: TransactionModel
+      description: Complete tax transaction with line items and calculated taxes
+    - name: CreateTransactionModel
+      description: Request model for creating a tax calculation transaction
+    - name: CompanyModel
+      description: Company account information and tax settings
+    exemptions:
+    - name: Certificate
+      description: Tax exemption certificate document
+    - name: Customer
+      description: CertCapture customer account
+    einvoicing:
+    - name: Mandate
+      description: E-invoicing compliance mandate definition
+    - name: Document
+      description: E-invoice document submission
+    classification:
+    - name: HSCodeClassification
+      description: Product HS code classification result with confidence
+    - name: ItemClassificationRequest
+      description: Item classification request with product information
+  parameters:
+    pagination:
+    - name: $top
+      type: integer
+      description: Number of records to return (AvaTax OData pagination)
+    - name: $skip
+      type: integer
+      description: Number of records to skip (AvaTax OData pagination)
+    identifiers:
+    - name: companyId
+      type: integer
+      description: Avalara company ID
+    - name: companyCode
+      type: string
+      description: User-defined company code
+    - name: transactionCode
+      type: string
+      description: Customer-assigned transaction code
+    - name: accountId
+      type: integer
+      description: Avalara account ID
+    filters:
+    - name: $filter
+      type: string
+      description: OData filter expression
+    - name: dateFilter
+      type: string
+      format: date
+      description: Filter transactions by date
+    - name: country
+      type: string
+      description: ISO country code filter
+  enums:
+    document-types:
+    - SalesOrder
+    - SalesInvoice
+    - ReturnOrder
+    - ReturnInvoice
+    - PurchaseOrder
+    - PurchaseInvoice
+    document-statuses:
+    - Temporary
+    - Saved
+    - Posted
+    - Committed
+    - Cancelled
+    tax-types:
+    - SalesAndUse
+    - VAT
+    - GST
+    - Excise
+    - Communications
+    certificate-statuses:
+    - Active
+    - Expired
+    - Revoked
+    - Pending
+  authentication:
+    schemes:
+    - name: Basic Auth
+      description: Base64-encoded username:password for AvaTax REST API
+    - name: Bearer Token
+      description: OAuth 2.0 Bearer token for other Avalara APIs
+capability:
+  workflows:
+  - name: Tax Compliance Automation
+    file: capabilities/avalara-tax-compliance.yaml
+    description: Sales tax calculation, certificate management, and e-invoicing
+    apisCombined:
+    - AvaTax
+    - CertCapture
+    - E-Invoicing
+    toolCount: 9
+    personas:
+    - Tax Manager
+    - Finance Director
+  - name: Cross-Border Trade Compliance
+    file: capabilities/avalara-cross-border-compliance.yaml
+    description: Import duties, VAT, and e-invoicing for international trade
+    apisCombined:
+    - AvaTax
+    - E-Invoicing
+    toolCount: 3
+    personas:
+    - International Trade Manager
+  personas:
+  - id: tax-manager
+    name: Tax Manager
+    description: Manages sales tax compliance, exemption certificates, and returns filing
+    workflows:
+    - Tax Compliance Automation
+  - id: finance-director
+    name: Finance Director
+    description: Oversees tax strategy, compliance automation, and cost optimization
+    workflows:
+    - Tax Compliance Automation
+  - id: erp-developer
+    name: ERP Developer
+    description: Integrates Avalara APIs into ERP and billing systems
+    workflows:
+    - Tax Compliance Automation
+    - Cross-Border Trade Compliance
+  - id: international-trade-manager
+    name: International Trade Manager
+    description: Manages cross-border compliance, tariff classification, and e-invoicing
+    workflows:
+    - Cross-Border Trade Compliance
+  domains:
+  - name: Sales Tax Calculation
+    description: Real-time tax calculation across US and global jurisdictions
+    resources:
+    - transactions
+    - addresses
+  - name: Exemption Management
+    description: Tax exemption certificate collection and validation
+    resources:
+    - certificates
+    - customers
+  - name: E-Invoicing Compliance
+    description: Country-specific e-invoicing mandate compliance
+    resources:
+    - mandates
+    - documents
+  - name: Product Classification
+    description: HS code and tax code classification for products
+    resources:
+    - hs-codes
+  - name: Tax Reporting
+    description: VAT returns, 1099 filing, and lodging tax reporting
+    resources:
+    - forms-1099
+  namespaces:
+  - name: avatax
+    type: consumed
+    port:
+  - name: certcapture
+    type: consumed
+    port:
+  - name: einvoicing
+    type: consumed
+    port:
+  - name: avalara-compliance-api
+    type: rest
+    port: 8080
+  - name: avalara-compliance-mcp
+    type: mcp
+    port: 9090
+  - name: avalara-crossborder-api
+    type: rest
+    port: 8081
+  - name: avalara-crossborder-mcp
+    type: mcp
+    port: 9091
+  binds:
+  - name: AVALARA_USERNAME
+    description: Avalara AvaTax API username (account number)
+  - name: AVALARA_PASSWORD
+    description: Avalara AvaTax API license key
+  - name: CERTCAPTURE_TOKEN
+    description: CertCapture API Bearer token
+  - name: AVALARA_BEARER_TOKEN
+    description: Avalara OAuth Bearer token for e-invoicing and other APIs
+crossReference:
+- resource: transactions
+  operations:
+  - create
+  - list
+  - void
+  workflows:
+  - Tax Compliance Automation
+  - Cross-Border Trade Compliance
+  personas:
+  - Tax Manager
+  - ERP Developer
+  - International Trade Manager
+- resource: certificates
+  operations:
+  - create
+  - list
+  - get
+  workflows:
+  - Tax Compliance Automation
+  personas:
+  - Tax Manager
+- resource: documents
+  operations:
+  - submit
+  - list
+  workflows:
+  - Tax Compliance Automation
+  - Cross-Border Trade Compliance
+  personas:
+  - International Trade Manager
+  - Finance Director
+- resource: mandates
+  operations:
+  - list
+  workflows:
+  - Cross-Border Trade Compliance
+  personas:
+  - International Trade Manager
+  - ERP Developer

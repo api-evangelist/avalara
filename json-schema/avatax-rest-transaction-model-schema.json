@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-rest-transaction-model-schema.json",
+  "title": "TransactionModel",
+  "description": "TransactionModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64",
+      "description": "Unique ID of the transaction"
+    },
+    "code": {
+      "type": "string",
+      "description": "Transaction code"
+    },
+    "companyId": {
+      "type": "integer",
+      "description": "Company ID that owns this transaction"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the transaction"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Temporary",
+        "Saved",
+        "Posted",
+        "Committed",
+        "Cancelled",
+        "Adjusted"
+      ],
+      "description": "Current status of the transaction"
+    },
+    "type": {
+      "type": "string",
+      "description": "Document type"
+    },
+    "totalAmount": {
+      "type": "number",
+      "format": "double",
+      "description": "Total amount of the transaction before tax"
+    },
+    "totalTax": {
+      "type": "number",
+      "format": "double",
+      "description": "Total tax calculated for the transaction"
+    },
+    "totalTaxable": {
+      "type": "number",
+      "format": "double",
+      "description": "Total taxable amount"
+    },
+    "totalExempt": {
+      "type": "number",
+      "format": "double",
+      "description": "Total exempt amount"
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TransactionLineModel"
+      }
+    },
+    "addresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TransactionAddressModel"
+      }
+    },
+    "summary": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TransactionSummary"
+      }
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/excise-business-entity-structure.json",
+  "description": "BusinessEntity schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "entityId": {
+      "type": "string"
+    },
+    "entityName": {
+      "type": "string"
+    },
+    "entityType": {
+      "type": "string"
+    },
+    "federalIdNumber": {
+      "type": "string",
+      "description": "Federal EIN"
+    },
+    "address": {
+      "$ref": "#/components/schemas/ExciseAddress"
+    },
+    "isActive": {
+      "type": "boolean"
+    }
+  },
+  "name": "BusinessEntity"
+}

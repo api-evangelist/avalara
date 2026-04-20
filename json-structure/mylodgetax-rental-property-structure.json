@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/mylodgetax-rental-property-structure.json",
+  "description": "RentalProperty schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "propertyId": {
+      "type": "string"
+    },
+    "propertyName": {
+      "type": "string"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "line1": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "listingPlatforms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Platforms where the property is listed (e.g., Airbnb, VRBO)"
+    },
+    "propertyType": {
+      "type": "string",
+      "enum": [
+        "House",
+        "Apartment",
+        "Condo",
+        "Room",
+        "Other"
+      ]
+    }
+  },
+  "name": "RentalProperty"
+}

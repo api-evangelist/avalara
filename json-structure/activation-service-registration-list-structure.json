@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/activation-service-registration-list-structure.json",
+  "description": "RegistrationList schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "@recordSetCount": {
+      "type": "int32"
+    },
+    "value": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Registration"
+      }
+    }
+  },
+  "name": "RegistrationList"
+}

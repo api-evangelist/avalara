@@ -1,0 +1,15 @@
+{
+  "returnId": "12345",
+  "companyId": "12345",
+  "countryCode": "US",
+  "vatRegistrationNumber": "sample-value",
+  "returnType": "VATReturn",
+  "periodStart": "2025-04-15",
+  "periodEnd": "2025-04-15",
+  "status": "Draft",
+  "totalOutputVAT": 100.0,
+  "totalInputVAT": 100.0,
+  "netVATDue": 100.0,
+  "submissionDate": "2025-04-15T14:30:00Z",
+  "currency": "sample-value"
+}

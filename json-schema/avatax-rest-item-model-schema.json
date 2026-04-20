@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-rest-item-model-schema.json",
+  "title": "ItemModel",
+  "description": "ItemModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "format": "int64"
+    },
+    "companyId": {
+      "type": "integer"
+    },
+    "itemCode": {
+      "type": "string",
+      "description": "Unique code for this item"
+    },
+    "taxCode": {
+      "type": "string",
+      "description": "Avalara tax code for this item"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string"
+    }
+  }
+}

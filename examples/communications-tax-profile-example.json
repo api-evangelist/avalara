@@ -1,0 +1,11 @@
+{
+  "profileId": 42,
+  "profileName": "Sample Name",
+  "description": "Sample description",
+  "bundles": [
+    {
+      "bundleId": 42,
+      "bundleName": "Sample Name"
+    }
+  ]
+}

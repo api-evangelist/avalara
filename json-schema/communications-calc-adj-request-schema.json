@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/communications-calc-adj-request-schema.json",
+  "title": "CalcAdjRequest",
+  "description": "CalcAdjRequest schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "cmpn": {
+      "$ref": "#/components/schemas/CompanyData"
+    },
+    "inv": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Invoice"
+      }
+    },
+    "adj": {
+      "type": "object",
+      "properties": {
+        "disc": {
+          "type": "integer",
+          "description": "Discount type"
+        },
+        "adj": {
+          "type": "integer",
+          "description": "Adjustment method"
+        }
+      }
+    }
+  }
+}

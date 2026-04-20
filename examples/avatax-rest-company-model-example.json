@@ -1,0 +1,17 @@
+{
+  "id": 42,
+  "companyCode": "US",
+  "name": "Sample Name",
+  "isDefault": true,
+  "isActive": true,
+  "taxpayerIdNumber": "sample-value",
+  "hasProfile": true,
+  "isReportingEntity": true,
+  "defaultCountry": "sample-value",
+  "baseCurrencyCode": "US",
+  "sstEffDate": "2025-04-15",
+  "roundingLevelId": "Line",
+  "sstPId": "12345",
+  "createdDate": "2025-04-15T14:30:00Z",
+  "modifiedDate": "2025-04-15T14:30:00Z"
+}

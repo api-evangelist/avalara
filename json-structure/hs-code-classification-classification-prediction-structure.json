@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/hs-code-classification-classification-prediction-structure.json",
+  "description": "ClassificationPrediction schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "hsCode": {
+      "type": "string",
+      "description": "Predicted HS Code"
+    },
+    "description": {
+      "type": "string",
+      "description": "HS Code description"
+    },
+    "confidence": {
+      "type": "double",
+      "description": "Confidence score (0-1)"
+    },
+    "parentCode": {
+      "type": "string"
+    }
+  },
+  "name": "ClassificationPrediction"
+}

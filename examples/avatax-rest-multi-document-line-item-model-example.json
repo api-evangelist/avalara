@@ -1,0 +1,12 @@
+{
+  "companyCode": "US",
+  "reportingLocationCode": "US",
+  "number": "sample-value",
+  "quantity": 100.0,
+  "amount": 100.0,
+  "taxCode": "US",
+  "addresses": {
+    "shipFrom": "sample-value",
+    "shipTo": "sample-value"
+  }
+}

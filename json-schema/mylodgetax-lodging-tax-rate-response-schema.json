@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/mylodgetax-lodging-tax-rate-response-schema.json",
+  "title": "LodgingTaxRateResponse",
+  "description": "LodgingTaxRateResponse schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "totalRate": {
+      "type": "number",
+      "format": "double",
+      "description": "Total combined lodging tax rate"
+    },
+    "rates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "jurisdiction": {
+            "type": "string"
+          },
+          "jurisdictionType": {
+            "type": "string",
+            "enum": [
+              "State",
+              "County",
+              "City",
+              "District"
+            ]
+          },
+          "taxName": {
+            "type": "string"
+          },
+          "rate": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      }
+    }
+  }
+}

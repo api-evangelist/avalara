@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/shared-company-service-shared-company-schema.json",
+  "title": "SharedCompany",
+  "description": "SharedCompany schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "companyId": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "companyCode": {
+      "type": "string"
+    },
+    "taxPayerId": {
+      "type": "string",
+      "description": "Tax identification number"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "line1": {
+          "type": "string"
+        },
+        "line2": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "region": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "isActive": {
+      "type": "boolean"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modifiedDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

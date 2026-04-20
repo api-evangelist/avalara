@@ -19,24 +19,24 @@ externalDocs:
   description: HS Code Classification API Documentation
   url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
 servers:
-  - url: https://api.avalara.com/classification/v1
-    description: HS Code Classification API Production
+- url: https://api.avalara.com/classification/v1
+  description: HS Code Classification API Production
 tags:
-  - name: Classification
-    description: Classify products into HS Codes and tax codes
+- name: Classification
+  description: Classify products into HS Codes and tax codes
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /classify:
     post:
       operationId: classifyProduct
-      summary: Avalara Classify a product
+      summary: Avalara Classify a Product
       description: >-
         Classifies a product into HS Code and Avalara Tax Code based on
         the provided product description, attributes, and destination country.
         Returns predictions with confidence scores.
       tags:
-        - Classification
+      - Classification
       requestBody:
         required: true
         content:
@@ -55,10 +55,10 @@ paths:
   /classify/batch:
     post:
       operationId: classifyBatch
-      summary: Avalara Classify a batch of products
+      summary: Avalara Classify a Batch of Products
       description: Classifies multiple products in a single request.
       tags:
-        - Classification
+      - Classification
       requestBody:
         required: true
         content:
@@ -87,21 +87,21 @@ paths:
   /hscodes/{hsCode}:
     get:
       operationId: getHSCode
-      summary: Avalara Look up an HS Code
+      summary: Avalara Look Up an HS Code
       description: Retrieves details for a specific HS Code.
       tags:
-        - Classification
+      - Classification
       parameters:
-        - name: hsCode
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: country
-          in: query
-          schema:
-            type: string
-          description: Country for country-specific tariff details
+      - name: hsCode
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: country
+        in: query
+        schema:
+          type: string
+        description: Country for country-specific tariff details
       responses:
         '200':
           description: HS Code details
@@ -112,22 +112,22 @@ paths:
   /hscodes/{hsCode}/hierarchy:
     get:
       operationId: getHSCodeHierarchy
-      summary: Avalara Get HS Code hierarchy
+      summary: Avalara Get HS Code Hierarchy
       description: >-
         Returns the full hierarchy for an HS Code from chapter through
         heading, subheading, and national tariff line.
       tags:
-        - Classification
+      - Classification
       parameters:
-        - name: hsCode
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: country
-          in: query
-          schema:
-            type: string
+      - name: hsCode
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: country
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: HS Code hierarchy
@@ -153,8 +153,8 @@ components:
     ClassifyRequest:
       type: object
       required:
-        - description
-        - destinationCountry
+      - description
+      - destinationCountry
       properties:
         description:
           type: string
@@ -212,11 +212,11 @@ components:
         level:
           type: string
           enum:
-            - Section
-            - Chapter
-            - Heading
-            - Subheading
-            - TariffLine
+          - Section
+          - Chapter
+          - Heading
+          - Subheading
+          - TariffLine
         parentCode:
           type: string
         dutyRate:

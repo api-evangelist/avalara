@@ -1,0 +1,13 @@
+{
+  "id": 42,
+  "companyId": 42,
+  "locationCode": "US",
+  "description": "Sample description",
+  "addressTypeId": "Firm",
+  "addressCategoryId": "Storefront",
+  "line1": "sample-value",
+  "city": "sample-value",
+  "region": "sample-value",
+  "postalCode": "US",
+  "country": "sample-value"
+}

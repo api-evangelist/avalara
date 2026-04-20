@@ -20,28 +20,28 @@ externalDocs:
   description: Item Classification API Documentation
   url: https://developer.avalara.com/api-reference/item-classification/v2/
 servers:
-  - url: https://api.avalara.com/classification/v2
-    description: Item Classification API Production
-  - url: https://api.sbx.avalara.com/classification/v2
-    description: Item Classification API Sandbox
+- url: https://api.avalara.com/classification/v2
+  description: Item Classification API Production
+- url: https://api.sbx.avalara.com/classification/v2
+  description: Item Classification API Sandbox
 tags:
-  - name: Classification Requests
-    description: Submit and manage product classification requests
-  - name: HS Codes
-    description: Retrieve HS Code classification results
+- name: Classification Requests
+  description: Submit and manage product classification requests
+- name: HS Codes
+  description: Retrieve HS Code classification results
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /classification-requests:
     post:
       operationId: createClassificationRequest
-      summary: Avalara Submit products for classification
+      summary: Avalara Submit Products for Classification
       description: >-
         Submits one or more products for HS Code classification. Products
         are classified based on their descriptions and attributes for the
         specified destination country.
       tags:
-        - Classification Requests
+      - Classification Requests
       requestBody:
         required: true
         content:
@@ -61,28 +61,28 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     get:
       operationId: listClassificationRequests
-      summary: Avalara List classification requests
+      summary: Avalara List Classification Requests
       description: Retrieves a list of submitted classification requests and their statuses.
       tags:
-        - Classification Requests
+      - Classification Requests
       parameters:
-        - name: status
-          in: query
-          schema:
-            type: string
-            enum:
-              - Pending
-              - InProgress
-              - Completed
-              - Failed
-        - name: $top
-          in: query
-          schema:
-            type: integer
-        - name: $skip
-          in: query
-          schema:
-            type: integer
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Pending
+          - InProgress
+          - Completed
+          - Failed
+      - name: $top
+        in: query
+        schema:
+          type: integer
+      - name: $skip
+        in: query
+        schema:
+          type: integer
       responses:
         '200':
           description: List of classification requests
@@ -93,16 +93,16 @@ paths:
   /classification-requests/{requestId}:
     get:
       operationId: getClassificationRequest
-      summary: Avalara Get classification request status
+      summary: Avalara Get Classification Request Status
       description: Retrieves the status and results of a classification request.
       tags:
-        - Classification Requests
+      - Classification Requests
       parameters:
-        - name: requestId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: requestId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Classification request details
@@ -115,18 +115,18 @@ paths:
   /classification-requests/{requestId}/results:
     get:
       operationId: getClassificationResults
-      summary: Avalara Get classification results
+      summary: Avalara Get Classification Results
       description: >-
         Retrieves the HS Code classification results for a completed
         classification request.
       tags:
-        - HS Codes
+      - HS Codes
       parameters:
-        - name: requestId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: requestId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Classification results
@@ -137,22 +137,22 @@ paths:
   /hs-codes/{hsCode}:
     get:
       operationId: getHSCodeDetails
-      summary: Avalara Get HS Code details
+      summary: Avalara Get HS Code Details
       description: Retrieves detailed information for a specific HS Code.
       tags:
-        - HS Codes
+      - HS Codes
       parameters:
-        - name: hsCode
-          in: path
-          required: true
-          schema:
-            type: string
-          description: The HS Code to look up
-        - name: country
-          in: query
-          schema:
-            type: string
-          description: ISO 3166-1 alpha-2 country code for country-specific details
+      - name: hsCode
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The HS Code to look up
+      - name: country
+        in: query
+        schema:
+          type: string
+        description: ISO 3166-1 alpha-2 country code for country-specific details
       responses:
         '200':
           description: HS Code details
@@ -189,7 +189,7 @@ components:
     ClassificationRequest:
       type: object
       required:
-        - items
+      - items
       properties:
         items:
           type: array
@@ -201,7 +201,7 @@ components:
     ClassificationItem:
       type: object
       required:
-        - description
+      - description
       properties:
         itemCode:
           type: string
@@ -225,8 +225,8 @@ components:
         status:
           type: string
           enum:
-            - Pending
-            - InProgress
+          - Pending
+          - InProgress
         itemCount:
           type: integer
         submittedDate:
@@ -264,10 +264,10 @@ components:
         status:
           type: string
           enum:
-            - Pending
-            - InProgress
-            - Completed
-            - Failed
+          - Pending
+          - InProgress
+          - Completed
+          - Failed
         itemCount:
           type: integer
         classifiedCount:

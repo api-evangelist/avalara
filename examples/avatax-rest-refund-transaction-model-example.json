@@ -1,0 +1,9 @@
+{
+  "refundTransactionCode": "US",
+  "refundDate": "2025-04-15",
+  "refundType": "Full",
+  "refundPercentage": 100.0,
+  "refundLines": [
+    "sample-value"
+  ]
+}

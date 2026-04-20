@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/communications-calc-taxes-request-schema.json",
+  "title": "CalcTaxesRequest",
+  "description": "CalcTaxesRequest schema from Avalara API",
+  "type": "object",
+  "required": [
+    "cmpn",
+    "inv"
+  ],
+  "properties": {
+    "cmpn": {
+      "$ref": "#/components/schemas/CompanyData"
+    },
+    "inv": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Invoice"
+      },
+      "description": "Array of invoices to calculate taxes for"
+    }
+  }
+}

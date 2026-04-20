@@ -1,0 +1,7 @@
+{
+  "access_token": "sample-value",
+  "token_type": "Bearer",
+  "expires_in": 42,
+  "scope": "sample-value",
+  "refresh_token": "sample-value"
+}

@@ -1,0 +1,9 @@
+{
+  "id": 42,
+  "companyId": 42,
+  "taxCode": "US",
+  "taxCodeTypeId": "12345",
+  "description": "Sample description",
+  "isPhysical": true,
+  "isActive": true
+}

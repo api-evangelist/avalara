@@ -1,0 +1,10 @@
+{
+  "id": 42,
+  "lineNumber": "sample-value",
+  "lineAmount": 100.0,
+  "tax": 100.0,
+  "taxableAmount": 100.0,
+  "exemptAmount": 100.0,
+  "taxCode": "US",
+  "itemCode": "US"
+}

@@ -1,0 +1,9 @@
+{
+  "hsCode": "US",
+  "description": "Sample description",
+  "chapter": "sample-value",
+  "section": "sample-value",
+  "parentCode": "US",
+  "dutyRate": "sample-value",
+  "unitOfMeasure": "sample-value"
+}

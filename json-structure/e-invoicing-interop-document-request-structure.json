@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/e-invoicing-interop-document-request-structure.json",
+  "description": "InteropDocumentRequest schema from Avalara API",
+  "type": "object",
+  "required": [
+    "dataFormat",
+    "data",
+    "recipientIdentifier"
+  ],
+  "properties": {
+    "dataFormat": {
+      "type": "string"
+    },
+    "data": {
+      "type": "string"
+    },
+    "recipientIdentifier": {
+      "type": "string",
+      "description": "Recipient identifier on the interop network"
+    },
+    "recipientIdentifierScheme": {
+      "type": "string",
+      "description": "Identifier scheme (e.g., peppol)"
+    }
+  },
+  "name": "InteropDocumentRequest"
+}

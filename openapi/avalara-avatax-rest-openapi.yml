@@ -21,61 +21,61 @@ externalDocs:
   description: AvaTax REST API v2 Documentation
   url: https://developer.avalara.com/api-reference/avatax/rest/v2/
 servers:
-  - url: https://rest.avatax.com
-    description: AvaTax Production
-  - url: https://sandbox-rest.avatax.com
-    description: AvaTax Sandbox
+- url: https://rest.avatax.com
+  description: AvaTax Production
+- url: https://sandbox-rest.avatax.com
+  description: AvaTax Sandbox
 tags:
-  - name: Accounts
-    description: Manage AvaTax accounts and license keys
-  - name: Addresses
-    description: Validate and resolve addresses for tax jurisdiction determination
-  - name: Batches
-    description: Submit and manage batch transaction processing
-  - name: Certificates
-    description: Manage exemption certificates and CertExpress invitations
-  - name: Companies
-    description: Manage company profiles, settings, and configurations
-  - name: Customers
-    description: Manage customer records and their certificate associations
-  - name: Definitions
-    description: Query tax content definitions, rates, and jurisdictions
-  - name: Free
-    description: Free tax rate lookup endpoints
-  - name: Items
-    description: Manage product items and their tax classification
-  - name: Locations
-    description: Manage company locations and jurisdictions
-  - name: MultiDocument
-    description: Multi-document transaction management
-  - name: Nexus
-    description: Manage tax nexus declarations for companies
-  - name: Reports
-    description: Generate and retrieve tax reports
-  - name: Settings
-    description: Manage company settings
-  - name: Subscriptions
-    description: Query account subscriptions
-  - name: TaxRules
-    description: Manage tax rules and overrides for companies
-  - name: Transactions
-    description: Create, adjust, commit, and void tax transactions
-  - name: Utilities
-    description: Utility endpoints including ping and health checks
+- name: Accounts
+  description: Manage AvaTax accounts and license keys
+- name: Addresses
+  description: Validate and resolve addresses for tax jurisdiction determination
+- name: Batches
+  description: Submit and manage batch transaction processing
+- name: Certificates
+  description: Manage exemption certificates and CertExpress invitations
+- name: Companies
+  description: Manage company profiles, settings, and configurations
+- name: Customers
+  description: Manage customer records and their certificate associations
+- name: Definitions
+  description: Query tax content definitions, rates, and jurisdictions
+- name: Free
+  description: Free tax rate lookup endpoints
+- name: Items
+  description: Manage product items and their tax classification
+- name: Locations
+  description: Manage company locations and jurisdictions
+- name: MultiDocument
+  description: Multi-document transaction management
+- name: Nexus
+  description: Manage tax nexus declarations for companies
+- name: Reports
+  description: Generate and retrieve tax reports
+- name: Settings
+  description: Manage company settings
+- name: Subscriptions
+  description: Query account subscriptions
+- name: TaxRules
+  description: Manage tax rules and overrides for companies
+- name: Transactions
+  description: Create, adjust, commit, and void tax transactions
+- name: Utilities
+  description: Utility endpoints including ping and health checks
 security:
-  - basicAuth: []
-  - bearerAuth: []
+- basicAuth: []
+- bearerAuth: []
 paths:
   /api/v2/transactions/create:
     post:
       operationId: createTransaction
-      summary: Avalara Create a new transaction
+      summary: Avalara Create a New Transaction
       description: >-
         Creates a new tax transaction. This is the primary method for calculating
         tax on a sale, purchase, or other taxable event. The transaction can be
         committed immediately or saved as a temporary document.
       tags:
-        - Transactions
+      - Transactions
       requestBody:
         required: true
         content:
@@ -96,27 +96,27 @@ paths:
   /api/v2/companies/{companyCode}/transactions/{transactionCode}:
     get:
       operationId: getTransactionByCode
-      summary: Avalara Retrieve a single transaction by code
+      summary: Avalara Retrieve a Single Transaction by Code
       description: >-
         Retrieves a transaction by its company code and transaction code,
         optionally including line item details and summary information.
       tags:
-        - Transactions
+      - Transactions
       parameters:
-        - $ref: '#/components/parameters/companyCode'
-        - name: transactionCode
-          in: path
-          required: true
-          schema:
-            type: string
-          description: The transaction code to retrieve
-        - name: $include
-          in: query
-          schema:
-            type: string
-          description: >-
-            Comma-separated list of optional data to include
-            (e.g., Lines, Details, Summary)
+      - $ref: '#/components/parameters/companyCode'
+      - name: transactionCode
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The transaction code to retrieve
+      - name: $include
+        in: query
+        schema:
+          type: string
+        description: >-
+          Comma-separated list of optional data to include
+          (e.g., Lines, Details, Summary)
       responses:
         '200':
           description: Transaction retrieved successfully
@@ -129,19 +129,19 @@ paths:
   /api/v2/companies/{companyCode}/transactions/{transactionCode}/adjust:
     post:
       operationId: adjustTransaction
-      summary: Avalara Adjust a committed transaction
+      summary: Avalara Adjust a Committed Transaction
       description: >-
         Adjusts a committed transaction by replacing it with a modified version.
         The original transaction is voided and a new adjusted transaction is created.
       tags:
-        - Transactions
+      - Transactions
       parameters:
-        - $ref: '#/components/parameters/companyCode'
-        - name: transactionCode
-          in: path
-          required: true
-          schema:
-            type: string
+      - $ref: '#/components/parameters/companyCode'
+      - name: transactionCode
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -158,19 +158,19 @@ paths:
   /api/v2/companies/{companyCode}/transactions/{transactionCode}/commit:
     post:
       operationId: commitTransaction
-      summary: Avalara Commit a transaction
+      summary: Avalara Commit a Transaction
       description: >-
         Marks a transaction as committed, indicating it has been finalized
         and should be reported to tax authorities.
       tags:
-        - Transactions
+      - Transactions
       parameters:
-        - $ref: '#/components/parameters/companyCode'
-        - name: transactionCode
-          in: path
-          required: true
-          schema:
-            type: string
+      - $ref: '#/components/parameters/companyCode'
+      - name: transactionCode
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -187,19 +187,19 @@ paths:
   /api/v2/companies/{companyCode}/transactions/{transactionCode}/void:
     post:
       operationId: voidTransaction
-      summary: Avalara Void a transaction
+      summary: Avalara Void a Transaction
       description: >-
         Voids an existing transaction, removing it from tax reporting.
         Only uncommitted or committed transactions can be voided.
       tags:
-        - Transactions
+      - Transactions
       parameters:
-        - $ref: '#/components/parameters/companyCode'
-        - name: transactionCode
-          in: path
-          required: true
-          schema:
-            type: string
+      - $ref: '#/components/parameters/companyCode'
+      - name: transactionCode
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -216,18 +216,18 @@ paths:
   /api/v2/transactions/{transactionCode}/refund:
     post:
       operationId: refundTransaction
-      summary: Avalara Create a refund for a transaction
+      summary: Avalara Create a Refund for a Transaction
       description: >-
         Creates a refund transaction based on an existing committed transaction.
         Supports full, partial, percentage, and tax-only refund types.
       tags:
-        - Transactions
+      - Transactions
       parameters:
-        - name: transactionCode
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: transactionCode
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -244,12 +244,12 @@ paths:
   /api/v2/addresses/resolve:
     post:
       operationId: resolveAddress
-      summary: Avalara Resolve and validate an address
+      summary: Avalara Resolve and Validate an Address
       description: >-
         Validates and resolves an address to a standardized format with
         latitude, longitude, and tax jurisdiction information.
       tags:
-        - Addresses
+      - Addresses
       requestBody:
         required: true
         content:
@@ -266,17 +266,17 @@ paths:
   /api/v2/companies:
     get:
       operationId: queryCompanies
-      summary: Avalara List all companies
+      summary: Avalara List All Companies
       description: >-
         Retrieves a list of companies associated with the authenticated account,
         with support for filtering, sorting, and pagination.
       tags:
-        - Companies
+      - Companies
       parameters:
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
-        - $ref: '#/components/parameters/orderBy'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/orderBy'
       responses:
         '200':
           description: List of companies
@@ -286,12 +286,12 @@ paths:
                 $ref: '#/components/schemas/FetchResult_CompanyModel'
     post:
       operationId: createCompany
-      summary: Avalara Create a new company
+      summary: Avalara Create a New Company
       description: >-
         Creates a new company within the authenticated account. A company
         represents a legal entity that can calculate and report taxes.
       tags:
-        - Companies
+      - Companies
       requestBody:
         required: true
         content:
@@ -308,19 +308,19 @@ paths:
   /api/v2/companies/{id}:
     get:
       operationId: getCompany
-      summary: Avalara Retrieve a company by ID
+      summary: Avalara Retrieve a Company by ID
       tags:
-        - Companies
+      - Companies
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-        - name: $include
-          in: query
-          schema:
-            type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: $include
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Company details
@@ -330,15 +330,15 @@ paths:
                 $ref: '#/components/schemas/CompanyModel'
     put:
       operationId: updateCompany
-      summary: Avalara Update a company
+      summary: Avalara Update a Company
       tags:
-        - Companies
+      - Companies
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       requestBody:
         required: true
         content:
@@ -354,27 +354,27 @@ paths:
                 $ref: '#/components/schemas/CompanyModel'
     delete:
       operationId: deleteCompany
-      summary: Avalara Delete a company
+      summary: Avalara Delete a Company
       tags:
-        - Companies
+      - Companies
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         '200':
           description: Company deleted
   /api/v2/companies/initialize:
     post:
       operationId: initializeCompany
-      summary: Avalara Initialize a new company with recommended defaults
+      summary: Avalara Initialize a New Company with Recommended Defaults
       description: >-
         Creates a new company with all recommended default settings, nexus,
         and tax configurations for the specified jurisdictions.
       tags:
-        - Companies
+      - Companies
       requestBody:
         required: true
         content:
@@ -391,15 +391,15 @@ paths:
   /api/v2/companies/{companyId}/nexus:
     get:
       operationId: listNexusByCompany
-      summary: Avalara List nexus for a company
+      summary: Avalara List Nexus for a Company
       description: Retrieves all nexus declarations for the specified company.
       tags:
-        - Nexus
+      - Nexus
       parameters:
-        - $ref: '#/components/parameters/companyId'
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
       responses:
         '200':
           description: List of nexus declarations
@@ -409,11 +409,11 @@ paths:
                 $ref: '#/components/schemas/FetchResult_NexusModel'
     post:
       operationId: createNexus
-      summary: Avalara Create nexus for a company
+      summary: Avalara Create Nexus for a Company
       tags:
-        - Nexus
+      - Nexus
       parameters:
-        - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/companyId'
       requestBody:
         required: true
         content:
@@ -434,16 +434,16 @@ paths:
   /api/v2/companies/{companyId}/certificates:
     get:
       operationId: queryCertificates
-      summary: Avalara List certificates for a company
+      summary: Avalara List Certificates for a Company
       description: >-
         Retrieves exemption certificates associated with the specified company.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - $ref: '#/components/parameters/companyId'
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
       responses:
         '200':
           description: List of certificates
@@ -453,11 +453,11 @@ paths:
                 $ref: '#/components/schemas/FetchResult_CertificateModel'
     post:
       operationId: createCertificate
-      summary: Avalara Create a new certificate
+      summary: Avalara Create a New Certificate
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/companyId'
       requestBody:
         required: true
         content:
@@ -478,14 +478,14 @@ paths:
   /api/v2/companies/{companyId}/customers:
     get:
       operationId: queryCustomers
-      summary: Avalara List customers for a company
+      summary: Avalara List Customers for a Company
       tags:
-        - Customers
+      - Customers
       parameters:
-        - $ref: '#/components/parameters/companyId'
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
       responses:
         '200':
           description: List of customers
@@ -495,11 +495,11 @@ paths:
                 $ref: '#/components/schemas/FetchResult_CustomerModel'
     post:
       operationId: createCustomer
-      summary: Avalara Create a new customer
+      summary: Avalara Create a New Customer
       tags:
-        - Customers
+      - Customers
       parameters:
-        - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/companyId'
       requestBody:
         required: true
         content:
@@ -514,14 +514,14 @@ paths:
   /api/v2/companies/{companyId}/items:
     get:
       operationId: queryItems
-      summary: Avalara List items for a company
+      summary: Avalara List Items for a Company
       tags:
-        - Items
+      - Items
       parameters:
-        - $ref: '#/components/parameters/companyId'
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
       responses:
         '200':
           description: List of items
@@ -531,11 +531,11 @@ paths:
                 $ref: '#/components/schemas/FetchResult_ItemModel'
     post:
       operationId: createItems
-      summary: Avalara Create items for a company
+      summary: Avalara Create Items for a Company
       tags:
-        - Items
+      - Items
       parameters:
-        - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/companyId'
       requestBody:
         required: true
         content:
@@ -550,14 +550,14 @@ paths:
   /api/v2/companies/{companyId}/locations:
     get:
       operationId: queryLocations
-      summary: Avalara List locations for a company
+      summary: Avalara List Locations for a Company
       tags:
-        - Locations
+      - Locations
       parameters:
-        - $ref: '#/components/parameters/companyId'
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
       responses:
         '200':
           description: List of locations
@@ -567,11 +567,11 @@ paths:
                 $ref: '#/components/schemas/FetchResult_LocationModel'
     post:
       operationId: createLocations
-      summary: Avalara Create locations for a company
+      summary: Avalara Create Locations for a Company
       tags:
-        - Locations
+      - Locations
       parameters:
-        - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/companyId'
       requestBody:
         required: true
         content:
@@ -586,16 +586,16 @@ paths:
   /api/v2/definitions/taxcodes:
     get:
       operationId: listTaxCodes
-      summary: Avalara List all tax codes
+      summary: Avalara List All Tax Codes
       description: >-
         Retrieves the full list of Avalara-supported tax codes for product
         and service classification.
       tags:
-        - Definitions
+      - Definitions
       parameters:
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
       responses:
         '200':
           description: List of tax codes
@@ -606,97 +606,97 @@ paths:
   /api/v2/definitions/nexus/{country}:
     get:
       operationId: listNexusByCountry
-      summary: Avalara List nexus options for a country
+      summary: Avalara List Nexus Options for a Country
       tags:
-        - Definitions
+      - Definitions
       parameters:
-        - name: country
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: country
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Nexus options for country
   /api/v2/definitions/jurisdictions:
     get:
       operationId: listJurisdictions
-      summary: Avalara List all jurisdictions
+      summary: Avalara List All Jurisdictions
       tags:
-        - Definitions
+      - Definitions
       parameters:
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
       responses:
         '200':
           description: List of jurisdictions
   /api/v2/definitions/countries:
     get:
       operationId: listCountries
-      summary: Avalara List all countries supported by AvaTax
+      summary: Avalara List All Countries Supported by AvaTax
       tags:
-        - Definitions
+      - Definitions
       parameters:
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
       responses:
         '200':
           description: List of countries
   /api/v2/definitions/entityusecodes:
     get:
       operationId: listEntityUseCodes
-      summary: Avalara List all entity use codes
+      summary: Avalara List All Entity Use Codes
       description: >-
         Returns the full list of entity use codes that can be applied to
         transactions to indicate exemptions or special tax handling.
       tags:
-        - Definitions
+      - Definitions
       parameters:
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
       responses:
         '200':
           description: List of entity use codes
   /api/v2/taxrates/byaddress:
     get:
       operationId: taxRatesByAddress
-      summary: Avalara Get tax rates by address
+      summary: Avalara Get Tax Rates by Address
       description: >-
         Free tax rates lookup by street address. Returns the estimated
         combined tax rate for a given location.
       tags:
-        - Free
+      - Free
       parameters:
-        - name: line1
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Street address line 1
-        - name: city
-          in: query
-          schema:
-            type: string
-        - name: region
-          in: query
-          required: true
-          schema:
-            type: string
-          description: State or province code
-        - name: postalCode
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: country
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Two-character ISO 3166 country code
+      - name: line1
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Street address line 1
+      - name: city
+        in: query
+        schema:
+          type: string
+      - name: region
+        in: query
+        required: true
+        schema:
+          type: string
+        description: State or province code
+      - name: postalCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: country
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Two-character ISO 3166 country code
       responses:
         '200':
           description: Tax rate information
@@ -707,23 +707,23 @@ paths:
   /api/v2/taxrates/bypostalcode:
     get:
       operationId: taxRatesByPostalCode
-      summary: Avalara Get tax rates by postal code
+      summary: Avalara Get Tax Rates by Postal Code
       description: >-
         Free tax rates lookup by postal code. Returns estimated
         combined tax rate for a given postal code.
       tags:
-        - Free
+      - Free
       parameters:
-        - name: country
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: postalCode
-          in: query
-          required: true
-          schema:
-            type: string
+      - name: country
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: postalCode
+        in: query
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Tax rate information
@@ -734,24 +734,24 @@ paths:
   /api/v2/companies/{companyId}/batches:
     get:
       operationId: listBatches
-      summary: Avalara List batches for a company
+      summary: Avalara List Batches for a Company
       tags:
-        - Batches
+      - Batches
       parameters:
-        - $ref: '#/components/parameters/companyId'
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
       responses:
         '200':
           description: List of batches
     post:
       operationId: createBatch
-      summary: Avalara Create a new batch
+      summary: Avalara Create a New Batch
       tags:
-        - Batches
+      - Batches
       parameters:
-        - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/companyId'
       requestBody:
         required: true
         content:
@@ -768,24 +768,24 @@ paths:
   /api/v2/companies/{companyId}/taxrules:
     get:
       operationId: listTaxRules
-      summary: Avalara List tax rules for a company
+      summary: Avalara List Tax Rules for a Company
       tags:
-        - TaxRules
+      - TaxRules
       parameters:
-        - $ref: '#/components/parameters/companyId'
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
       responses:
         '200':
           description: List of tax rules
     post:
       operationId: createTaxRules
-      summary: Avalara Create tax rules for a company
+      summary: Avalara Create Tax Rules for a Company
       tags:
-        - TaxRules
+      - TaxRules
       parameters:
-        - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/companyId'
       requestBody:
         required: true
         content:
@@ -800,33 +800,33 @@ paths:
   /api/v2/companies/{companyId}/settings:
     get:
       operationId: listSettings
-      summary: Avalara List settings for a company
+      summary: Avalara List Settings for a Company
       tags:
-        - Settings
+      - Settings
       parameters:
-        - $ref: '#/components/parameters/companyId'
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
       responses:
         '200':
           description: List of settings
   /api/v2/accounts/{id}:
     get:
       operationId: getAccount
-      summary: Avalara Retrieve a single account
+      summary: Avalara Retrieve a Single Account
       tags:
-        - Accounts
+      - Accounts
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-        - name: $include
-          in: query
-          schema:
-            type: string
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: $include
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Account details
@@ -837,67 +837,67 @@ paths:
   /api/v2/accounts:
     get:
       operationId: queryAccounts
-      summary: Avalara List all accounts
+      summary: Avalara List All Accounts
       tags:
-        - Accounts
+      - Accounts
       parameters:
-        - $ref: '#/components/parameters/filter'
-        - $ref: '#/components/parameters/top'
-        - $ref: '#/components/parameters/skip'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
       responses:
         '200':
           description: List of accounts
   /api/v2/accounts/{id}/subscriptions:
     get:
       operationId: listSubscriptionsByAccount
-      summary: Avalara List subscriptions for an account
+      summary: Avalara List Subscriptions for an Account
       tags:
-        - Subscriptions
+      - Subscriptions
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
-        - $ref: '#/components/parameters/filter'
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - $ref: '#/components/parameters/filter'
       responses:
         '200':
           description: List of subscriptions
   /api/v2/companies/{companyId}/reports:
     get:
       operationId: listReports
-      summary: Avalara List reports for a company
+      summary: Avalara List Reports for a Company
       tags:
-        - Reports
+      - Reports
       parameters:
-        - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/companyId'
       responses:
         '200':
           description: List of reports
   /api/v2/reports/{id}:
     get:
       operationId: getReport
-      summary: Avalara Retrieve a single report
+      summary: Avalara Retrieve a Single Report
       tags:
-        - Reports
+      - Reports
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: integer
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       responses:
         '200':
           description: Report details
   /api/v2/multidocument/transactions/create:
     post:
       operationId: createMultiDocumentTransaction
-      summary: Avalara Create a multi-document transaction
+      summary: Avalara Create a Multi-document Transaction
       description: >-
         Creates a transaction that spans multiple companies or jurisdictions,
         managing related documents as a single group.
       tags:
-        - MultiDocument
+      - MultiDocument
       requestBody:
         required: true
         content:
@@ -910,12 +910,12 @@ paths:
   /api/v2/utilities/ping:
     get:
       operationId: ping
-      summary: Avalara Test connectivity and authentication
+      summary: Avalara Test Connectivity and Authentication
       description: >-
         Tests connectivity to the AvaTax service and validates
         authentication credentials.
       tags:
-        - Utilities
+      - Utilities
       security: []
       responses:
         '200':
@@ -927,9 +927,9 @@ paths:
   /api/v2/utilities/subscriptions:
     get:
       operationId: listMySubscriptions
-      summary: Avalara List subscriptions for the current account
+      summary: Avalara List Subscriptions for the Current Account
       tags:
-        - Utilities
+      - Utilities
       responses:
         '200':
           description: Subscriptions for authenticated account
@@ -1009,21 +1009,21 @@ components:
     CreateTransactionModel:
       type: object
       required:
-        - type
-        - companyCode
-        - date
-        - customerCode
-        - lines
+      - type
+      - companyCode
+      - date
+      - customerCode
+      - lines
       properties:
         type:
           type: string
           enum:
-            - SalesOrder
-            - SalesInvoice
-            - PurchaseOrder
-            - PurchaseInvoice
-            - ReturnOrder
-            - ReturnInvoice
+          - SalesOrder
+          - SalesInvoice
+          - PurchaseOrder
+          - PurchaseInvoice
+          - ReturnOrder
+          - ReturnInvoice
           description: The type of document to create
         companyCode:
           type: string
@@ -1078,12 +1078,12 @@ components:
         status:
           type: string
           enum:
-            - Temporary
-            - Saved
-            - Posted
-            - Committed
-            - Cancelled
-            - Adjusted
+          - Temporary
+          - Saved
+          - Posted
+          - Committed
+          - Cancelled
+          - Adjusted
           description: Current status of the transaction
         type:
           type: string
@@ -1119,7 +1119,7 @@ components:
     LineItemModel:
       type: object
       required:
-        - amount
+      - amount
       properties:
         number:
           type: string
@@ -1275,9 +1275,9 @@ components:
         textCase:
           type: string
           enum:
-            - Default
-            - Upper
-            - Mixed
+          - Default
+          - Upper
+          - Mixed
     AddressResolutionModel:
       type: object
       properties:
@@ -1299,17 +1299,17 @@ components:
         resolutionQuality:
           type: string
           enum:
-            - NotCoded
-            - External
-            - CountryCentroid
-            - RegionCentroid
-            - PartialCentroid
-            - PostalCentroidGood
-            - PostalCentroidBetter
-            - PostalCentroidBest
-            - Intersection
-            - Interpolated
-            - Rooftop
+          - NotCoded
+          - External
+          - CountryCentroid
+          - RegionCentroid
+          - PartialCentroid
+          - PostalCentroidGood
+          - PostalCentroidBetter
+          - PostalCentroidBest
+          - Intersection
+          - Interpolated
+          - Rooftop
         taxAuthorities:
           type: array
           items:
@@ -1328,21 +1328,21 @@ components:
     AdjustTransactionModel:
       type: object
       required:
-        - adjustmentReason
-        - newTransaction
+      - adjustmentReason
+      - newTransaction
       properties:
         adjustmentReason:
           type: string
           enum:
-            - NotAdjusted
-            - SourcingIssue
-            - ReconciledWithGeneralLedger
-            - ExemptCertApplied
-            - PriceAdjusted
-            - ProductReturned
-            - ProductExchanged
-            - BadDebt
-            - Other
+          - NotAdjusted
+          - SourcingIssue
+          - ReconciledWithGeneralLedger
+          - ExemptCertApplied
+          - PriceAdjusted
+          - ProductReturned
+          - ProductExchanged
+          - BadDebt
+          - Other
         adjustmentDescription:
           type: string
         newTransaction:
@@ -1350,7 +1350,7 @@ components:
     CommitTransactionModel:
       type: object
       required:
-        - commit
+      - commit
       properties:
         commit:
           type: boolean
@@ -1358,23 +1358,23 @@ components:
     VoidTransactionModel:
       type: object
       required:
-        - code
+      - code
       properties:
         code:
           type: string
           enum:
-            - Unspecified
-            - PostFailed
-            - DocDeleted
-            - DocVoided
-            - AdjustmentCancelled
+          - Unspecified
+          - PostFailed
+          - DocDeleted
+          - DocVoided
+          - AdjustmentCancelled
           description: Reason for voiding the transaction
     RefundTransactionModel:
       type: object
       required:
-        - refundTransactionCode
-        - refundDate
-        - refundType
+      - refundTransactionCode
+      - refundDate
+      - refundType
       properties:
         refundTransactionCode:
           type: string
@@ -1384,10 +1384,10 @@ components:
         refundType:
           type: string
           enum:
-            - Full
-            - Partial
-            - Percentage
-            - TaxOnly
+          - Full
+          - Partial
+          - Percentage
+          - TaxOnly
         refundPercentage:
           type: number
           format: double
@@ -1431,8 +1431,8 @@ components:
         roundingLevelId:
           type: string
           enum:
-            - Line
-            - Document
+          - Line
+          - Document
         sstPId:
           type: string
         createdDate:
@@ -1444,14 +1444,14 @@ components:
     CompanyInitializationModel:
       type: object
       required:
-        - name
-        - companyCode
-        - taxpayerIdNumber
-        - line1
-        - city
-        - region
-        - postalCode
-        - country
+      - name
+      - companyCode
+      - taxpayerIdNumber
+      - line1
+      - city
+      - region
+      - postalCode
+      - country
       properties:
         name:
           type: string
@@ -1501,11 +1501,11 @@ components:
         jurisTypeId:
           type: string
           enum:
-            - STA
-            - CTY
-            - CIT
-            - STJ
-            - CNT
+          - STA
+          - CTY
+          - CIT
+          - STJ
+          - CNT
         jurisdictionTypeId:
           type: string
         jurisCode:
@@ -1521,11 +1521,11 @@ components:
         nexusTypeId:
           type: string
           enum:
-            - None
-            - SalesOrSellersUseTax
-            - SalesTax
-            - SSTVolunteer
-            - SSTNonVolunteer
+          - None
+          - SalesOrSellersUseTax
+          - SalesTax
+          - SSTVolunteer
+          - SSTNonVolunteer
         hasLocalNexus:
           type: boolean
     CertificateModel:
@@ -1618,17 +1618,17 @@ components:
         addressTypeId:
           type: string
           enum:
-            - Firm
-            - Location
-            - Salesperson
+          - Firm
+          - Location
+          - Salesperson
         addressCategoryId:
           type: string
           enum:
-            - Storefront
-            - MainOffice
-            - Warehouse
-            - Salesperson
-            - Other
+          - Storefront
+          - MainOffice
+          - Warehouse
+          - Salesperson
+          - Other
         line1:
           type: string
         city:
@@ -1693,32 +1693,32 @@ components:
         type:
           type: string
           enum:
-            - AvaCertUpdate
-            - AvaCertUpdateAll
-            - BatchMaintenance
-            - CompanyLocationImport
-            - DocumentImport
-            - ExemptCertImport
-            - ItemImport
-            - SalesAuditExport
-            - SstpTestDeckImport
-            - TaxRuleImport
-            - TransactionImport
-            - UPCBulkImport
-            - UPCBulkDelete
+          - AvaCertUpdate
+          - AvaCertUpdateAll
+          - BatchMaintenance
+          - CompanyLocationImport
+          - DocumentImport
+          - ExemptCertImport
+          - ItemImport
+          - SalesAuditExport
+          - SstpTestDeckImport
+          - TaxRuleImport
+          - TransactionImport
+          - UPCBulkImport
+          - UPCBulkDelete
         status:
           type: string
           enum:
-            - Waiting
-            - SystemErrors
-            - Cancelled
-            - Completed
-            - Creating
-            - Deleted
-            - Errors
-            - Paused
-            - Processing
-            - ReadyToDelete
+          - Waiting
+          - SystemErrors
+          - Cancelled
+          - Completed
+          - Creating
+          - Deleted
+          - Errors
+          - Paused
+          - Processing
+          - ReadyToDelete
         recordCount:
           type: integer
         currentRecord:
@@ -1742,10 +1742,10 @@ components:
         accountStatusId:
           type: string
           enum:
-            - Inactive
-            - Active
-            - Test
-            - New
+          - Inactive
+          - Active
+          - Test
+          - New
         createdDate:
           type: string
           format: date-time
@@ -1772,11 +1772,11 @@ components:
               type:
                 type: string
                 enum:
-                  - Country
-                  - State
-                  - County
-                  - City
-                  - Special
+                - Country
+                - State
+                - County
+                - City
+                - Special
     CreateMultiDocumentModel:
       type: object
       properties:
@@ -1822,10 +1822,10 @@ components:
         authenticationType:
           type: string
           enum:
-            - None
-            - UsernamePassword
-            - AccountIdLicenseKey
-            - OpenIdBearerToken
+          - None
+          - UsernamePassword
+          - AccountIdLicenseKey
+          - OpenIdBearerToken
           description: Type of authentication used
         authenticatedUserName:
           type: string
@@ -1936,6 +1936,6 @@ components:
                   severity:
                     type: string
                     enum:
-                      - Error
-                      - Warning
-                      - Exception
+                    - Error
+                    - Warning
+                    - Exception

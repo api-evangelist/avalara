@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/certcapture-customer-list-response-structure.json",
+  "description": "CustomerListResponse schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "totalCount": {
+      "type": "int32"
+    },
+    "value": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CertCaptureCustomer"
+      }
+    }
+  },
+  "name": "CustomerListResponse"
+}

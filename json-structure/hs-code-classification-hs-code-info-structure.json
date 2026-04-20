@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/hs-code-classification-hs-code-info-structure.json",
+  "description": "HSCodeInfo schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "hsCode": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "Section",
+        "Chapter",
+        "Heading",
+        "Subheading",
+        "TariffLine"
+      ]
+    },
+    "parentCode": {
+      "type": "string"
+    },
+    "dutyRate": {
+      "type": "string"
+    },
+    "unitOfMeasure": {
+      "type": "string"
+    }
+  },
+  "name": "HSCodeInfo"
+}

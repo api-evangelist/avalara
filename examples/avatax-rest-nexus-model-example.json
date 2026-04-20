@@ -1,0 +1,14 @@
+{
+  "id": 42,
+  "companyId": 42,
+  "country": "sample-value",
+  "region": "sample-value",
+  "jurisTypeId": "STA",
+  "jurisdictionTypeId": "12345",
+  "jurisCode": "US",
+  "jurisName": "Sample Name",
+  "effectiveDate": "2025-04-15",
+  "endDate": "2025-04-15",
+  "nexusTypeId": "None",
+  "hasLocalNexus": true
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/e-invoicing-document-list-schema.json",
+  "title": "DocumentList",
+  "description": "DocumentList schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "@recordSetCount": {
+      "type": "integer"
+    },
+    "value": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/DocumentSummary"
+      }
+    }
+  }
+}

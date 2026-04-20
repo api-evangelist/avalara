@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/communications-service-info-structure.json",
+  "description": "ServiceInfo schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "serverTime": {
+      "type": "datetime"
+    },
+    "buildVersion": {
+      "type": "string"
+    }
+  },
+  "name": "ServiceInfo"
+}

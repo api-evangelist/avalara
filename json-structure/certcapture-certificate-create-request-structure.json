@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/certcapture-certificate-create-request-structure.json",
+  "description": "CertificateCreateRequest schema from Avalara API",
+  "type": "object",
+  "required": [
+    "exemptionReason",
+    "exposureZone"
+  ],
+  "properties": {
+    "exemptionNumber": {
+      "type": "string"
+    },
+    "exemptionReason": {
+      "type": "string"
+    },
+    "exposureZone": {
+      "type": "string"
+    },
+    "signedDate": {
+      "type": "date"
+    },
+    "expirationDate": {
+      "type": "date"
+    },
+    "exemptPercentage": {
+      "type": "double"
+    },
+    "customerCode": {
+      "type": "string"
+    },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CertAttribute"
+      }
+    }
+  },
+  "name": "CertificateCreateRequest"
+}

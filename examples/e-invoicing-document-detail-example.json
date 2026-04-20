@@ -1,0 +1,15 @@
+{
+  "id": "12345",
+  "status": "Active",
+  "dataFormat": "sample-value",
+  "documentType": "sample-value",
+  "invoiceNumber": "sample-value",
+  "invoiceDate": "2025-04-15",
+  "totalAmount": 100.0,
+  "currencyCode": "US",
+  "countryCode": "US",
+  "submissionDate": "2025-04-15T14:30:00Z",
+  "events": [
+    "sample-value"
+  ]
+}

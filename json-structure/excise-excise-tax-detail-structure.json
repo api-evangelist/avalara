@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/excise-excise-tax-detail-structure.json",
+  "description": "ExciseTaxDetail schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "taxType": {
+      "type": "string",
+      "description": "Type of excise tax"
+    },
+    "jurisdiction": {
+      "type": "string",
+      "description": "Taxing jurisdiction"
+    },
+    "taxRate": {
+      "type": "double"
+    },
+    "taxAmount": {
+      "type": "double"
+    },
+    "taxableAmount": {
+      "type": "double"
+    },
+    "exemptAmount": {
+      "type": "double"
+    },
+    "rateType": {
+      "type": "string",
+      "enum": [
+        "PerUnit",
+        "Percentage"
+      ]
+    }
+  },
+  "name": "ExciseTaxDetail"
+}

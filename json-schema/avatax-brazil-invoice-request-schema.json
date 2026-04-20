@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-brazil-invoice-request-schema.json",
+  "title": "InvoiceRequest",
+  "description": "InvoiceRequest schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "invoiceType": {
+      "type": "string",
+      "enum": [
+        "NF-e",
+        "NFS-e",
+        "NFC-e",
+        "CT-e"
+      ],
+      "description": "Electronic document type"
+    },
+    "companyId": {
+      "type": "string"
+    },
+    "transactionDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "buyer": {
+      "$ref": "#/components/schemas/BrazilParty"
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/InvoiceLine"
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "id": 42,
+  "companyCode": "US",
+  "name": "Sample Name",
+  "accountId": 42,
+  "parentCompanyId": 42,
+  "isDefault": true,
+  "isActive": true,
+  "taxpayerIdNumber": "sample-value",
+  "hasProfile": true,
+  "isReportingEntity": true,
+  "defaultCountry": "sample-value",
+  "baseCurrencyCode": "US",
+  "roundingLevelId": "Line",
+  "nexus": [
+    "sample-value"
+  ],
+  "locations": [
+    "sample-value"
+  ],
+  "createdDate": "2025-04-15T14:30:00Z",
+  "modifiedDate": "2025-04-15T14:30:00Z"
+}

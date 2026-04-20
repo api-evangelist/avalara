@@ -1,0 +1,16 @@
+{
+  "id": "12345",
+  "payeeName": "Sample Name",
+  "businessName": "Sample Name",
+  "taxClassification": "Individual",
+  "tin": "sample-value",
+  "tinType": "SSN",
+  "address": {
+    "line1": "sample-value",
+    "city": "sample-value",
+    "state": "sample-value",
+    "postalCode": "US"
+  },
+  "signedDate": "2025-04-15",
+  "status": "Valid"
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/communications-line-item-schema.json",
+  "title": "LineItem",
+  "description": "LineItem schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "ref": {
+      "type": "string",
+      "description": "Line item reference"
+    },
+    "from": {
+      "$ref": "#/components/schemas/Location"
+    },
+    "to": {
+      "$ref": "#/components/schemas/Location"
+    },
+    "chg": {
+      "type": "number",
+      "format": "double",
+      "description": "Charge amount"
+    },
+    "line": {
+      "type": "integer",
+      "description": "Number of lines"
+    },
+    "loc": {
+      "type": "integer",
+      "description": "Number of locations"
+    },
+    "min": {
+      "type": "number",
+      "format": "double",
+      "description": "Minutes"
+    },
+    "sale": {
+      "type": "integer",
+      "description": "Sale type (0=Wholesale, 1=Retail, 2=Consumed)"
+    },
+    "tran": {
+      "type": "integer",
+      "description": "Transaction type"
+    },
+    "serv": {
+      "type": "integer",
+      "description": "Service type"
+    }
+  }
+}

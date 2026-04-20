@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/item-classification-hs-code-detail-structure.json",
+  "description": "HSCodeDetail schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "hsCode": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "chapter": {
+      "type": "string"
+    },
+    "section": {
+      "type": "string"
+    },
+    "parentCode": {
+      "type": "string"
+    },
+    "dutyRate": {
+      "type": "string"
+    },
+    "unitOfMeasure": {
+      "type": "string"
+    }
+  },
+  "name": "HSCodeDetail"
+}

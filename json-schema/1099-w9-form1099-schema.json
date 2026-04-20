@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/1099-w9-form1099-schema.json",
+  "title": "Form1099",
+  "description": "Form1099 schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "formType": {
+      "type": "string",
+      "enum": [
+        "1099-NEC",
+        "1099-MISC",
+        "1099-K",
+        "1099-INT",
+        "1099-DIV",
+        "1099-R",
+        "1099-B"
+      ]
+    },
+    "taxYear": {
+      "type": "integer"
+    },
+    "payerCompanyId": {
+      "type": "string"
+    },
+    "payee": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "tin": {
+          "type": "string"
+        },
+        "address": {
+          "type": "object",
+          "properties": {
+            "line1": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            },
+            "state": {
+              "type": "string"
+            },
+            "postalCode": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "amounts": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "format": "double"
+      },
+      "description": "Box amounts keyed by box number"
+    },
+    "federalTaxWithheld": {
+      "type": "number",
+      "format": "double"
+    },
+    "stateTaxWithheld": {
+      "type": "number",
+      "format": "double"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Draft",
+        "Ready",
+        "Filed",
+        "Corrected"
+      ]
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modifiedDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

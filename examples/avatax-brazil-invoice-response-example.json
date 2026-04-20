@@ -1,0 +1,9 @@
+{
+  "invoiceId": "12345",
+  "accessKey": "sample-value",
+  "invoiceNumber": 42,
+  "series": 42,
+  "status": "Authorized",
+  "protocolNumber": "sample-value",
+  "issuanceDate": "2025-04-15T14:30:00Z"
+}

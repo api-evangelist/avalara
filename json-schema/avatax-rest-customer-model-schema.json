@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-rest-customer-model-schema.json",
+  "title": "CustomerModel",
+  "description": "CustomerModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "companyId": {
+      "type": "integer"
+    },
+    "customerCode": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "line1": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "emailAddress": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    }
+  }
+}

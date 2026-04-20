@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-ping-result-model-structure.json",
+  "description": "PingResultModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "AvaTax API version"
+    },
+    "authenticated": {
+      "type": "boolean",
+      "description": "Whether the request was authenticated"
+    },
+    "authenticationType": {
+      "type": "string",
+      "enum": [
+        "None",
+        "UsernamePassword",
+        "AccountIdLicenseKey",
+        "OpenIdBearerToken"
+      ],
+      "description": "Type of authentication used"
+    },
+    "authenticatedUserName": {
+      "type": "string",
+      "description": "Username of the authenticated user"
+    },
+    "authenticatedUserId": {
+      "type": "int32",
+      "description": "User ID of the authenticated user"
+    },
+    "authenticatedAccountId": {
+      "type": "int32",
+      "description": "Account ID of the authenticated user"
+    },
+    "crmid": {
+      "type": "string"
+    }
+  },
+  "name": "PingResultModel"
+}

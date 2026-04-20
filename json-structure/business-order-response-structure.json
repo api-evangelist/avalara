@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/business-order-response-structure.json",
+  "description": "OrderResponse schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "orderId": {
+      "type": "string"
+    },
+    "accountId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Confirmed",
+        "Completed",
+        "Cancelled"
+      ]
+    },
+    "createdDate": {
+      "type": "datetime"
+    }
+  },
+  "name": "OrderResponse"
+}

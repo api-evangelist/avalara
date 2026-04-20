@@ -1,0 +1,7 @@
+{
+  "status": "Success",
+  "transactionLines": [
+    "sample-value"
+  ],
+  "totalTaxAmount": 100.0
+}

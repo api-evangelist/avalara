@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/vat-reporting-onboarding-request-schema.json",
+  "title": "OnboardingRequest",
+  "description": "OnboardingRequest schema from Avalara API",
+  "type": "object",
+  "required": [
+    "companyId",
+    "countries"
+  ],
+  "properties": {
+    "companyId": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "countries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "countryCode": {
+            "type": "string"
+          },
+          "vatRegistrationNumber": {
+            "type": "string"
+          },
+          "filingFrequency": {
+            "type": "string",
+            "enum": [
+              "Monthly",
+              "Quarterly",
+              "Annual"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

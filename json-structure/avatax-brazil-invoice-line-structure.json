@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-brazil-invoice-line-structure.json",
+  "description": "InvoiceLine schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "lineNumber": {
+      "type": "int32"
+    },
+    "itemCode": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "double"
+    },
+    "unitPrice": {
+      "type": "double"
+    },
+    "ncmCode": {
+      "type": "string"
+    },
+    "cfopCode": {
+      "type": "string"
+    }
+  },
+  "name": "InvoiceLine"
+}

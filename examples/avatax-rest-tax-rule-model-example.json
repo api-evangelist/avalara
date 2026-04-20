@@ -1,0 +1,13 @@
+{
+  "id": 42,
+  "companyId": 42,
+  "taxCodeId": 42,
+  "taxCode": "US",
+  "stateFIPS": "sample-value",
+  "jurisName": "Sample Name",
+  "jurisCode": "US",
+  "jurisTypeId": "12345",
+  "rateTypeId": "12345",
+  "ruleTypeId": "12345",
+  "isAllJuris": true
+}

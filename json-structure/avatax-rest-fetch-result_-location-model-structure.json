@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-fetch-result_-location-model-structure.json",
+  "description": "FetchResult_LocationModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "@recordsetCount": {
+      "type": "int32"
+    },
+    "value": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LocationModel"
+      }
+    }
+  },
+  "name": "FetchResult_LocationModel"
+}

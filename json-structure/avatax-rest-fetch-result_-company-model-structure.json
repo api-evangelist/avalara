@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-fetch-result_-company-model-structure.json",
+  "description": "FetchResult_CompanyModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "@recordsetCount": {
+      "type": "int32"
+    },
+    "value": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CompanyModel"
+      }
+    }
+  },
+  "name": "FetchResult_CompanyModel"
+}

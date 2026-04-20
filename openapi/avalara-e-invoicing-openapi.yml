@@ -20,37 +20,37 @@ externalDocs:
   description: E-Invoicing API Documentation
   url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
 servers:
-  - url: https://api.avalara.com/einvoicing/v1
-    description: E-Invoicing API Production
-  - url: https://api.sbx.avalara.com/einvoicing/v1
-    description: E-Invoicing API Sandbox
+- url: https://api.avalara.com/einvoicing/v1
+  description: E-Invoicing API Production
+- url: https://api.sbx.avalara.com/einvoicing/v1
+  description: E-Invoicing API Sandbox
 tags:
-  - name: Documents
-    description: Submit and manage e-invoice documents
-  - name: Interop
-    description: Interoperability and network exchange
-  - name: Mandates
-    description: Query e-invoicing mandate definitions
+- name: Documents
+  description: Submit and manage e-invoice documents
+- name: Interop
+  description: Interoperability and network exchange
+- name: Mandates
+  description: Query e-invoicing mandate definitions
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /documents:
     post:
       operationId: submitDocument
-      summary: Avalara Submit an e-invoice document
+      summary: Avalara Submit an E-invoice Document
       description: >-
         Submits an electronic invoice document for validation and delivery
         to the appropriate tax authority or recipient network.
       tags:
-        - Documents
+      - Documents
       parameters:
-        - name: avalara-version
-          in: header
-          required: true
-          schema:
-            type: string
-            default: '1.0'
-          description: API version header
+      - name: avalara-version
+        in: header
+        required: true
+        schema:
+          type: string
+          default: '1.0'
+        description: API version header
       requestBody:
         required: true
         content:
@@ -70,59 +70,59 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     get:
       operationId: listDocuments
-      summary: Avalara List submitted documents
+      summary: Avalara List Submitted Documents
       description: Retrieves a list of submitted e-invoice documents with filtering.
       tags:
-        - Documents
+      - Documents
       parameters:
-        - name: avalara-version
-          in: header
-          required: true
-          schema:
-            type: string
-            default: '1.0'
-        - name: status
-          in: query
-          schema:
-            type: string
-            enum:
-              - Pending
-              - Accepted
-              - Rejected
-              - Error
-        - name: startDate
-          in: query
-          schema:
-            type: string
-            format: date
-        - name: endDate
-          in: query
-          schema:
-            type: string
-            format: date
-        - name: flow
-          in: query
-          schema:
-            type: string
-            enum:
-              - out
-              - in
-          description: Document flow direction (outbound or inbound)
-        - name: count
-          in: query
-          schema:
-            type: boolean
-          description: Include total count in response
-        - name: $top
-          in: query
-          schema:
-            type: integer
-            default: 50
-        - name: $skip
-          in: query
-          schema:
-            type: integer
-            default: 0
+      - name: avalara-version
+        in: header
+        required: true
+        schema:
+          type: string
+          default: '1.0'
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Pending
+          - Accepted
+          - Rejected
+          - Error
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: flow
+        in: query
+        schema:
+          type: string
+          enum:
+          - out
+          - in
+        description: Document flow direction (outbound or inbound)
+      - name: count
+        in: query
+        schema:
+          type: boolean
+        description: Include total count in response
+      - name: $top
+        in: query
+        schema:
+          type: integer
+          default: 50
+      - name: $skip
+        in: query
+        schema:
+          type: integer
+          default: 0
       responses:
         '200':
           description: List of documents
@@ -133,22 +133,22 @@ paths:
   /documents/{documentId}:
     get:
       operationId: getDocument
-      summary: Avalara Retrieve a document by ID
+      summary: Avalara Retrieve a Document by ID
       description: Retrieves the status and details of a submitted e-invoice document.
       tags:
-        - Documents
+      - Documents
       parameters:
-        - name: avalara-version
-          in: header
-          required: true
-          schema:
-            type: string
-            default: '1.0'
-        - name: documentId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: avalara-version
+        in: header
+        required: true
+        schema:
+          type: string
+          default: '1.0'
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Document details
@@ -161,22 +161,22 @@ paths:
   /documents/{documentId}/status:
     get:
       operationId: getDocumentStatus
-      summary: Avalara Get document processing status
+      summary: Avalara Get Document Processing Status
       description: Returns the current processing status of a submitted document.
       tags:
-        - Documents
+      - Documents
       parameters:
-        - name: avalara-version
-          in: header
-          required: true
-          schema:
-            type: string
-            default: '1.0'
-        - name: documentId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: avalara-version
+        in: header
+        required: true
+        schema:
+          type: string
+          default: '1.0'
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Document status
@@ -187,36 +187,36 @@ paths:
   /mandates:
     get:
       operationId: listMandates
-      summary: Avalara List e-invoicing mandates
+      summary: Avalara List E-invoicing Mandates
       description: >-
         Retrieves a list of e-invoicing mandate definitions that describe
         compliance requirements by country and document type.
       tags:
-        - Mandates
+      - Mandates
       parameters:
-        - name: avalara-version
-          in: header
-          required: true
-          schema:
-            type: string
-            default: '1.0'
-        - name: $top
-          in: query
-          schema:
-            type: integer
-        - name: $skip
-          in: query
-          schema:
-            type: integer
-        - name: $filter
-          in: query
-          schema:
-            type: string
-          description: OData filter expression
-        - name: count
-          in: query
-          schema:
-            type: boolean
+      - name: avalara-version
+        in: header
+        required: true
+        schema:
+          type: string
+          default: '1.0'
+      - name: $top
+        in: query
+        schema:
+          type: integer
+      - name: $skip
+        in: query
+        schema:
+          type: integer
+      - name: $filter
+        in: query
+        schema:
+          type: string
+        description: OData filter expression
+      - name: count
+        in: query
+        schema:
+          type: boolean
       responses:
         '200':
           description: List of mandates
@@ -227,19 +227,19 @@ paths:
   /interop/documents:
     post:
       operationId: submitInteropDocument
-      summary: Avalara Submit a document via interoperability network
+      summary: Avalara Submit a Document via Interoperability Network
       description: >-
         Submits a document through the interoperability network (e.g., Peppol)
         for delivery to the recipient.
       tags:
-        - Interop
+      - Interop
       parameters:
-        - name: avalara-version
-          in: header
-          required: true
-          schema:
-            type: string
-            default: '1.0'
+      - name: avalara-version
+        in: header
+        required: true
+        schema:
+          type: string
+          default: '1.0'
       requestBody:
         required: true
         content:
@@ -282,15 +282,15 @@ components:
     SubmitDocumentRequest:
       type: object
       required:
-        - dataFormat
-        - data
+      - dataFormat
+      - data
       properties:
         dataFormat:
           type: string
           enum:
-            - ubl-invoice
-            - ubl-creditnote
-            - cii
+          - ubl-invoice
+          - ubl-creditnote
+          - cii
           description: Format of the e-invoice document
         dataFormatVersion:
           type: string
@@ -319,10 +319,10 @@ components:
         status:
           type: string
           enum:
-            - Pending
-            - Accepted
-            - Rejected
-            - Error
+          - Pending
+          - Accepted
+          - Rejected
+          - Error
         statusDate:
           type: string
           format: date-time
@@ -397,10 +397,10 @@ components:
         status:
           type: string
           enum:
-            - Pending
-            - Accepted
-            - Rejected
-            - Error
+          - Pending
+          - Accepted
+          - Rejected
+          - Error
         statusDate:
           type: string
           format: date-time
@@ -476,9 +476,9 @@ components:
     InteropDocumentRequest:
       type: object
       required:
-        - dataFormat
-        - data
-        - recipientIdentifier
+      - dataFormat
+      - data
+      - recipientIdentifier
       properties:
         dataFormat:
           type: string

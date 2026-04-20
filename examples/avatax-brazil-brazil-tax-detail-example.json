@@ -1,0 +1,8 @@
+{
+  "taxType": "ICMS",
+  "taxBase": 100.0,
+  "taxRate": 100.0,
+  "taxAmount": 100.0,
+  "exemptAmount": 100.0,
+  "cstCode": "US"
+}

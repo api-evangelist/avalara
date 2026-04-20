@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/excise-excise-location-schema.json",
+  "title": "ExciseLocation",
+  "description": "ExciseLocation schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "locationId": {
+      "type": "string"
+    },
+    "locationName": {
+      "type": "string"
+    },
+    "locationType": {
+      "type": "string",
+      "enum": [
+        "Terminal",
+        "Warehouse",
+        "BulkPlant",
+        "Retail",
+        "Blender",
+        "Refinery"
+      ]
+    },
+    "address": {
+      "$ref": "#/components/schemas/ExciseAddress"
+    },
+    "irsTerminalCode": {
+      "type": "string"
+    }
+  }
+}

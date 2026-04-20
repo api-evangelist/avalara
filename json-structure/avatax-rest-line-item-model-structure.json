@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-line-item-model-structure.json",
+  "description": "LineItemModel schema from Avalara API",
+  "type": "object",
+  "required": [
+    "amount"
+  ],
+  "properties": {
+    "number": {
+      "type": "string",
+      "description": "Line number within the transaction"
+    },
+    "quantity": {
+      "type": "double",
+      "default": 1,
+      "description": "Quantity of items"
+    },
+    "amount": {
+      "type": "double",
+      "description": "Total amount for this line"
+    },
+    "taxCode": {
+      "type": "string",
+      "description": "Tax code for this line item"
+    },
+    "itemCode": {
+      "type": "string",
+      "description": "Item code for the product or service"
+    },
+    "description": {
+      "type": "string",
+      "description": "Description of the line item"
+    },
+    "addresses": {
+      "type": "object",
+      "properties": {
+        "shipFrom": {
+          "$ref": "#/components/schemas/AddressInfo"
+        },
+        "shipTo": {
+          "$ref": "#/components/schemas/AddressInfo"
+        }
+      }
+    },
+    "exemptionCode": {
+      "type": "string",
+      "description": "Exemption code for tax-exempt purchases"
+    }
+  },
+  "name": "LineItemModel"
+}

@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/vat-reporting-vat-return-structure.json",
+  "description": "VATReturn schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "returnId": {
+      "type": "string"
+    },
+    "companyId": {
+      "type": "string"
+    },
+    "countryCode": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code"
+    },
+    "vatRegistrationNumber": {
+      "type": "string"
+    },
+    "returnType": {
+      "type": "string",
+      "enum": [
+        "VATReturn",
+        "ECListing",
+        "Intrastat"
+      ]
+    },
+    "periodStart": {
+      "type": "date"
+    },
+    "periodEnd": {
+      "type": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Draft",
+        "Submitted",
+        "Accepted",
+        "Rejected"
+      ]
+    },
+    "totalOutputVAT": {
+      "type": "double"
+    },
+    "totalInputVAT": {
+      "type": "double"
+    },
+    "netVATDue": {
+      "type": "double"
+    },
+    "submissionDate": {
+      "type": "datetime"
+    },
+    "currency": {
+      "type": "string"
+    }
+  },
+  "name": "VATReturn"
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/1099-w9-filing-response-schema.json",
+  "title": "FilingResponse",
+  "description": "FilingResponse schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "filingId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Accepted",
+        "Processing",
+        "Rejected"
+      ]
+    },
+    "formCount": {
+      "type": "integer"
+    },
+    "submittedDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

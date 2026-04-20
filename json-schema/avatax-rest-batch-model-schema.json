@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-rest-batch-model-schema.json",
+  "title": "BatchModel",
+  "description": "BatchModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "companyId": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "AvaCertUpdate",
+        "AvaCertUpdateAll",
+        "BatchMaintenance",
+        "CompanyLocationImport",
+        "DocumentImport",
+        "ExemptCertImport",
+        "ItemImport",
+        "SalesAuditExport",
+        "SstpTestDeckImport",
+        "TaxRuleImport",
+        "TransactionImport",
+        "UPCBulkImport",
+        "UPCBulkDelete"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Waiting",
+        "SystemErrors",
+        "Cancelled",
+        "Completed",
+        "Creating",
+        "Deleted",
+        "Errors",
+        "Paused",
+        "Processing",
+        "ReadyToDelete"
+      ]
+    },
+    "recordCount": {
+      "type": "integer"
+    },
+    "currentRecord": {
+      "type": "integer"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

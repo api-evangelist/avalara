@@ -1,0 +1,9 @@
+{
+  "id": 42,
+  "name": "Sample Name",
+  "effectiveDate": "2025-04-15",
+  "endDate": "2025-04-15",
+  "accountStatusId": "Inactive",
+  "createdDate": "2025-04-15T14:30:00Z",
+  "modifiedDate": "2025-04-15T14:30:00Z"
+}

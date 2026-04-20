@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-account-model-structure.json",
+  "description": "AccountModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32"
+    },
+    "name": {
+      "type": "string"
+    },
+    "effectiveDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "accountStatusId": {
+      "type": "string",
+      "enum": [
+        "Inactive",
+        "Active",
+        "Test",
+        "New"
+      ]
+    },
+    "createdDate": {
+      "type": "datetime"
+    },
+    "modifiedDate": {
+      "type": "datetime"
+    }
+  },
+  "name": "AccountModel"
+}

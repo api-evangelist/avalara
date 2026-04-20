@@ -19,30 +19,30 @@ externalDocs:
   description: AvaTax Brazil API Documentation
   url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
 servers:
-  - url: https://avataxbr-sandbox.avalarabrasil.com.br/v3
-    description: AvaTax Brazil Sandbox
+- url: https://avataxbr-sandbox.avalarabrasil.com.br/v3
+  description: AvaTax Brazil Sandbox
 tags:
-  - name: Companies
-    description: Manage company configurations for Brazil
-  - name: Electronic Invoices
-    description: Issue and manage electronic fiscal documents
-  - name: Tax Calculation
-    description: Calculate Brazilian taxes on transactions
-  - name: Transactions
-    description: Manage tax transactions
+- name: Companies
+  description: Manage company configurations for Brazil
+- name: Electronic Invoices
+  description: Issue and manage electronic fiscal documents
+- name: Tax Calculation
+  description: Calculate Brazilian taxes on transactions
+- name: Transactions
+  description: Manage tax transactions
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /calculations:
     post:
       operationId: calculateTax
-      summary: Avalara Calculate Brazilian taxes
+      summary: Avalara Calculate Brazilian Taxes
       description: >-
         Calculates applicable Brazilian taxes for a transaction including
         ICMS, IPI, PIS, COFINS, ISS, and other applicable taxes based on
         product type, origin, and destination.
       tags:
-        - Tax Calculation
+      - Tax Calculation
       requestBody:
         required: true
         content:
@@ -63,12 +63,12 @@ paths:
   /invoices:
     post:
       operationId: createInvoice
-      summary: Avalara Issue an electronic invoice
+      summary: Avalara Issue an Electronic Invoice
       description: >-
         Issues a new electronic fiscal document (NF-e, NFS-e, or NFC-e)
         to Brazilian tax authorities (SEFAZ).
       tags:
-        - Electronic Invoices
+      - Electronic Invoices
       requestBody:
         required: true
         content:
@@ -84,52 +84,52 @@ paths:
                 $ref: '#/components/schemas/InvoiceResponse'
     get:
       operationId: listInvoices
-      summary: Avalara List electronic invoices
+      summary: Avalara List Electronic Invoices
       tags:
-        - Electronic Invoices
+      - Electronic Invoices
       parameters:
-        - name: startDate
-          in: query
-          schema:
-            type: string
-            format: date
-        - name: endDate
-          in: query
-          schema:
-            type: string
-            format: date
-        - name: status
-          in: query
-          schema:
-            type: string
-            enum:
-              - Authorized
-              - Cancelled
-              - Denied
-              - Pending
-        - name: page
-          in: query
-          schema:
-            type: integer
-        - name: pageSize
-          in: query
-          schema:
-            type: integer
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Authorized
+          - Cancelled
+          - Denied
+          - Pending
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
       responses:
         '200':
           description: List of invoices
   /invoices/{invoiceId}:
     get:
       operationId: getInvoice
-      summary: Avalara Get an invoice by ID
+      summary: Avalara Get an Invoice by ID
       tags:
-        - Electronic Invoices
+      - Electronic Invoices
       parameters:
-        - name: invoiceId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: invoiceId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Invoice details
@@ -140,16 +140,16 @@ paths:
   /invoices/{invoiceId}/cancel:
     post:
       operationId: cancelInvoice
-      summary: Avalara Cancel an electronic invoice
+      summary: Avalara Cancel an Electronic Invoice
       description: Submits a cancellation request for an authorized invoice.
       tags:
-        - Electronic Invoices
+      - Electronic Invoices
       parameters:
-        - name: invoiceId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: invoiceId
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -166,35 +166,35 @@ paths:
   /transactions:
     get:
       operationId: listTransactions
-      summary: Avalara List transactions
+      summary: Avalara List Transactions
       tags:
-        - Transactions
+      - Transactions
       parameters:
-        - name: page
-          in: query
-          schema:
-            type: integer
-        - name: pageSize
-          in: query
-          schema:
-            type: integer
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
       responses:
         '200':
           description: List of transactions
   /companies:
     get:
       operationId: listCompanies
-      summary: Avalara List companies configured for Brazil
+      summary: Avalara List Companies Configured for Brazil
       tags:
-        - Companies
+      - Companies
       responses:
         '200':
           description: List of companies
     post:
       operationId: createCompany
-      summary: Avalara Create a company configuration
+      summary: Avalara Create a Company Configuration
       tags:
-        - Companies
+      - Companies
       requestBody:
         required: true
         content:
@@ -227,8 +227,8 @@ components:
     CalculationRequest:
       type: object
       required:
-        - header
-        - lines
+      - header
+      - lines
       properties:
         header:
           type: object
@@ -236,10 +236,10 @@ components:
             transactionType:
               type: string
               enum:
-                - Sale
-                - Purchase
-                - Return
-                - Transfer
+              - Sale
+              - Purchase
+              - Return
+              - Transfer
             companyLocation:
               type: string
               description: Company establishment code
@@ -317,16 +317,16 @@ components:
         taxType:
           type: string
           enum:
-            - ICMS
-            - ICMS_ST
-            - IPI
-            - PIS
-            - COFINS
-            - ISS
-            - CSLL
-            - IRRF
-            - INSS
-            - IOF
+          - ICMS
+          - ICMS_ST
+          - IPI
+          - PIS
+          - COFINS
+          - ISS
+          - CSLL
+          - IRRF
+          - INSS
+          - IOF
           description: Brazilian tax type
         taxBase:
           type: number
@@ -348,10 +348,10 @@ components:
         invoiceType:
           type: string
           enum:
-            - NF-e
-            - NFS-e
-            - NFC-e
-            - CT-e
+          - NF-e
+          - NFS-e
+          - NFC-e
+          - CT-e
           description: Electronic document type
         companyId:
           type: string
@@ -398,10 +398,10 @@ components:
         status:
           type: string
           enum:
-            - Authorized
-            - Cancelled
-            - Denied
-            - Pending
+          - Authorized
+          - Cancelled
+          - Denied
+          - Pending
         protocolNumber:
           type: string
         issuanceDate:
@@ -463,9 +463,9 @@ components:
         taxRegime:
           type: string
           enum:
-            - SimplesNacional
-            - LucroPresumido
-            - LucroReal
+          - SimplesNacional
+          - LucroPresumido
+          - LucroReal
         state:
           type: string
     ErrorResponse:

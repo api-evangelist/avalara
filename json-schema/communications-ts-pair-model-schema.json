@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/communications-ts-pair-model-schema.json",
+  "title": "TSPairModel",
+  "description": "TSPairModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "TransactionType": {
+      "type": "integer",
+      "description": "Transaction type ID"
+    },
+    "TransactionTypeDescription": {
+      "type": "string"
+    },
+    "ServiceType": {
+      "type": "integer",
+      "description": "Service type ID"
+    },
+    "ServiceTypeDescription": {
+      "type": "string"
+    }
+  }
+}

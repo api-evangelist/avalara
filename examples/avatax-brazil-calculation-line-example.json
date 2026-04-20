@@ -1,0 +1,12 @@
+{
+  "lineCode": "US",
+  "itemCode": "US",
+  "numberOfItems": 100.0,
+  "lineAmount": 100.0,
+  "itemDescription": "Sample description",
+  "ncmCode": "US",
+  "cstCode": "US",
+  "cfopCode": "US",
+  "originState": "sample-value",
+  "destinationState": "sample-value"
+}

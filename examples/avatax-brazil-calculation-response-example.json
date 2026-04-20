@@ -1,0 +1,9 @@
+{
+  "header": {
+    "transactionId": "12345",
+    "status": "Active"
+  },
+  "lines": [
+    "sample-value"
+  ]
+}

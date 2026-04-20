@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/activation-service-registration-structure.json",
+  "description": "Registration schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "registrationId": {
+      "type": "string"
+    },
+    "partnerId": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Active",
+        "Expired",
+        "Cancelled"
+      ]
+    },
+    "product": {
+      "type": "string",
+      "description": "Avalara product registered for"
+    },
+    "accountId": {
+      "type": "string"
+    },
+    "activationDate": {
+      "type": "datetime"
+    },
+    "expirationDate": {
+      "type": "datetime"
+    },
+    "createdDate": {
+      "type": "datetime"
+    }
+  },
+  "name": "Registration"
+}

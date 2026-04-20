@@ -1,0 +1,10 @@
+{
+  "ref": "sample-value",
+  "chg": 100.0,
+  "line": 42,
+  "loc": 42,
+  "min": 100.0,
+  "sale": 42,
+  "tran": 42,
+  "serv": 42
+}

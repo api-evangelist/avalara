@@ -1,0 +1,10 @@
+{
+  "totalRate": 100.0,
+  "rates": [
+    {
+      "rate": 100.0,
+      "name": "Sample Name",
+      "type": "Country"
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "inv": [
+    "sample-value"
+  ],
+  "adj": {
+    "disc": 42,
+    "adj": 42
+  }
+}

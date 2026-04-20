@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/mylodgetax-filing-obligation-schema.json",
+  "title": "FilingObligation",
+  "description": "FilingObligation schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "jurisdiction": {
+      "type": "string"
+    },
+    "taxType": {
+      "type": "string"
+    },
+    "filingFrequency": {
+      "type": "string",
+      "enum": [
+        "Monthly",
+        "Quarterly",
+        "Annual"
+      ]
+    },
+    "nextDueDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "registrationRequired": {
+      "type": "boolean"
+    },
+    "registrationUrl": {
+      "type": "string"
+    }
+  }
+}

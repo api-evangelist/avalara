@@ -1,0 +1,22 @@
+{
+  "id": "12345",
+  "formType": "1099-NEC",
+  "taxYear": 42,
+  "payerCompanyId": "12345",
+  "payee": {
+    "name": "Sample Name",
+    "tin": "sample-value",
+    "address": {
+      "line1": "sample-value",
+      "city": "sample-value",
+      "state": "sample-value",
+      "postalCode": "US"
+    }
+  },
+  "amounts": {},
+  "federalTaxWithheld": 100.0,
+  "stateTaxWithheld": 100.0,
+  "status": "Draft",
+  "createdDate": "2025-04-15T14:30:00Z",
+  "modifiedDate": "2025-04-15T14:30:00Z"
+}

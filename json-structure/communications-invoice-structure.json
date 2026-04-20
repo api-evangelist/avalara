@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/communications-invoice-structure.json",
+  "description": "Invoice schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "doc": {
+      "type": "string",
+      "description": "Document code"
+    },
+    "cmmt": {
+      "type": "boolean",
+      "description": "Commit indicator"
+    },
+    "bill": {
+      "$ref": "#/components/schemas/Location"
+    },
+    "cust": {
+      "type": "int32",
+      "description": "Customer type"
+    },
+    "date": {
+      "type": "datetime",
+      "description": "Invoice date"
+    },
+    "itms": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LineItem"
+      },
+      "description": "Line items on the invoice"
+    }
+  },
+  "name": "Invoice"
+}

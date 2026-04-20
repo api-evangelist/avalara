@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/business-account-response-schema.json",
+  "title": "AccountResponse",
+  "description": "AccountResponse schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string"
+    },
+    "accountNumber": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Inactive",
+        "Pending"
+      ]
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

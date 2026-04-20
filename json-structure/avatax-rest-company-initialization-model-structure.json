@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-company-initialization-model-structure.json",
+  "description": "CompanyInitializationModel schema from Avalara API",
+  "type": "object",
+  "required": [
+    "name",
+    "companyCode",
+    "taxpayerIdNumber",
+    "line1",
+    "city",
+    "region",
+    "postalCode",
+    "country"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "companyCode": {
+      "type": "string"
+    },
+    "taxpayerIdNumber": {
+      "type": "string"
+    },
+    "line1": {
+      "type": "string"
+    },
+    "line2": {
+      "type": "string"
+    },
+    "line3": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "firstName": {
+      "type": "string"
+    },
+    "lastName": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    },
+    "mobileNumber": {
+      "type": "string"
+    }
+  },
+  "name": "CompanyInitializationModel"
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/1099-w9-w9-request-structure.json",
+  "description": "W9Request schema from Avalara API",
+  "type": "object",
+  "required": [
+    "payeeEmail",
+    "payeeName"
+  ],
+  "properties": {
+    "payeeEmail": {
+      "type": "string",
+      "format": "email"
+    },
+    "payeeName": {
+      "type": "string"
+    },
+    "companyId": {
+      "type": "string"
+    },
+    "expirationDays": {
+      "type": "int32",
+      "default": 30
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "name": "W9Request"
+}

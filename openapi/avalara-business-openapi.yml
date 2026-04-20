@@ -18,25 +18,25 @@ externalDocs:
   description: Avalara Business API Documentation
   url: https://developer.avalara.com/api-reference/business/v1/
 servers:
-  - url: https://api.avalara.com/business/v1
-    description: Business API Production
+- url: https://api.avalara.com/business/v1
+  description: Business API Production
 tags:
-  - name: Accounts
-    description: Register and manage customer accounts
-  - name: Orders
-    description: Create and manage sales orders for Avalara services
+- name: Accounts
+  description: Register and manage customer accounts
+- name: Orders
+  description: Create and manage sales orders for Avalara services
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /accounts:
     post:
       operationId: createAccount
-      summary: Avalara Register a new customer account
+      summary: Avalara Register a New Customer Account
       description: >-
         Registers a new customer account with Avalara through a partner
         integration.
       tags:
-        - Accounts
+      - Accounts
       requestBody:
         required: true
         content:
@@ -55,15 +55,15 @@ paths:
   /accounts/{accountId}:
     get:
       operationId: getAccount
-      summary: Avalara Get account details
+      summary: Avalara Get Account Details
       tags:
-        - Accounts
+      - Accounts
       parameters:
-        - name: accountId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Account details
@@ -74,10 +74,10 @@ paths:
   /orders:
     post:
       operationId: createOrder
-      summary: Avalara Create a sales order
+      summary: Avalara Create a Sales Order
       description: Creates a new sales order for Avalara products and services.
       tags:
-        - Orders
+      - Orders
       requestBody:
         required: true
         content:
@@ -94,15 +94,15 @@ paths:
   /orders/{orderId}:
     get:
       operationId: getOrder
-      summary: Avalara Get order details
+      summary: Avalara Get Order Details
       tags:
-        - Orders
+      - Orders
       parameters:
-        - name: orderId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: orderId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Order details
@@ -126,8 +126,8 @@ components:
     AccountRegistration:
       type: object
       required:
-        - companyName
-        - email
+      - companyName
+      - email
       properties:
         companyName:
           type: string
@@ -167,17 +167,17 @@ components:
         status:
           type: string
           enum:
-            - Active
-            - Inactive
-            - Pending
+          - Active
+          - Inactive
+          - Pending
         createdDate:
           type: string
           format: date-time
     SalesOrder:
       type: object
       required:
-        - accountId
-        - products
+      - accountId
+      - products
       properties:
         accountId:
           type: string
@@ -202,10 +202,10 @@ components:
         status:
           type: string
           enum:
-            - Pending
-            - Confirmed
-            - Completed
-            - Cancelled
+          - Pending
+          - Confirmed
+          - Completed
+          - Cancelled
         createdDate:
           type: string
           format: date-time

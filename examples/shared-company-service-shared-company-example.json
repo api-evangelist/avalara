@@ -1,0 +1,18 @@
+{
+  "companyId": "12345",
+  "companyName": "Sample Name",
+  "companyCode": "US",
+  "taxPayerId": "12345",
+  "address": {
+    "line1": "sample-value",
+    "line2": "sample-value",
+    "city": "sample-value",
+    "region": "sample-value",
+    "postalCode": "US"
+  },
+  "phoneNumber": "sample-value",
+  "email": "user@example.com",
+  "isActive": true,
+  "createdDate": "2025-04-15T14:30:00Z",
+  "modifiedDate": "2025-04-15T14:30:00Z"
+}

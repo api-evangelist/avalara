@@ -1,0 +1,12 @@
+{
+  "exemptionNumber": "sample-value",
+  "exemptionReason": "sample-value",
+  "exposureZone": "sample-value",
+  "signedDate": "2025-04-15",
+  "expirationDate": "2025-04-15",
+  "exemptPercentage": 100.0,
+  "customerCode": "US",
+  "attributes": [
+    "sample-value"
+  ]
+}

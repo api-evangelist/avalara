@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-transaction-address-model-structure.json",
+  "description": "TransactionAddressModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int64"
+    },
+    "line1": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "double"
+    },
+    "longitude": {
+      "type": "double"
+    }
+  },
+  "name": "TransactionAddressModel"
+}

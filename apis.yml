@@ -431,14 +431,76 @@ common:
   - url: https://twitter.com/avalara
     name: X (Twitter)
     type: X
-  - type: JSON-LD
+  - type: JSONLD
     url: json-ld/avalara-context.jsonld
   - type: JSONSchema
     url: json-schema/avalara-transaction-schema.json
   - type: JSONSchema
     url: json-schema/avalara-company-schema.json
+  - type: SpectralRules
+    url: https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/rules/avalara-spectral-rules.yml
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/vocabulary/avalara-vocabulary.yaml
+  - type: NaftikoCapability
+    url: https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/capabilities/avalara-tax-compliance.yaml
+  - type: NaftikoCapability
+    url: https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/capabilities/avalara-cross-border-compliance.yaml
+  - type: Features
+    data:
+      - name: Real-Time Tax Calculation
+        description: Instant sales tax, VAT, and GST calculations for every transaction across all jurisdictions globally.
+      - name: Exemption Certificate Management
+        description: Automated collection, validation, and storage of tax exemption certificates through CertCapture.
+      - name: E-Invoicing Compliance
+        description: Country-specific e-invoicing mandate support for cross-border and domestic compliance workflows.
+      - name: Address Validation
+        description: Postal address validation and tax jurisdiction determination for US and international addresses.
+      - name: HS Code Classification
+        description: AI-powered Harmonized System Code and Avalara Tax Code classification for products.
+      - name: MCP Server Support
+        description: Model Context Protocol servers connecting AI applications with Avalara tax compliance systems.
+      - name: OData Query Support
+        description: AvaTax REST API supports OData query parameters including filter, top, skip, and orderBy.
+      - name: Sandbox Environment
+        description: Dedicated sandbox environment at sandbox-rest.avatax.com for testing without production impact.
+  - type: UseCases
+    data:
+      - name: E-Commerce Tax Compliance
+        description: Automatically calculate and collect sales tax on every transaction across all US jurisdictions.
+      - name: Exemption Certificate Automation
+        description: Digitally collect and validate tax exemption certificates from B2B customers at checkout.
+      - name: Cross-Border Import Duties
+        description: Calculate import duties, customs fees, and VAT for international shipments.
+      - name: E-Invoicing Mandates
+        description: Comply with country-specific e-invoicing requirements for EU, LATAM, and APAC markets.
+      - name: 1099 Form Filing
+        description: Automate collection and e-filing of 1099, W-9, W-2, and 1042-S forms with the IRS.
+      - name: Communications Tax
+        description: Calculate telecom and communications taxes for voice, data, VoIP, and streaming services.
+      - name: Lodging Tax Management
+        description: Manage short-term rental lodging taxes across all US jurisdictions for marketplaces.
+      - name: VAT Return Filing
+        description: Automate VAT return preparation and filing across European and global jurisdictions.
+  - type: Integrations
+    data:
+      - name: Salesforce
+        description: Native Salesforce integration for tax calculation in CPQ, billing, and order management.
+      - name: SAP
+        description: SAP ERP integration for automated tax calculation in S/4HANA and Business One.
+      - name: NetSuite
+        description: NetSuite SuiteApp integration for sales tax automation within the ERP.
+      - name: Shopify
+        description: Shopify integration for automated sales tax calculation and exemption management.
+      - name: WooCommerce
+        description: WooCommerce plugin for WordPress e-commerce sales tax automation.
+      - name: QuickBooks
+        description: QuickBooks integration for small business sales tax calculation and filing.
+      - name: Magento
+        description: Adobe Commerce (Magento) integration for tax calculation in e-commerce.
+      - name: Microsoft Dynamics
+        description: Microsoft Dynamics 365 integration for enterprise tax automation.
 created: '2025-11-19'
-modified: '2026-03-16'
+modified: '2026-04-19'
 position: Consumer
 description: Avalara helps businesses of all sizes get tax compliance right. We deliver cloud-based solutions that work with existing business applications to calculate tax accurately and file returns automatically.
 maintainers:

@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/portal-oauth-o-auth-error-structure.json",
+  "description": "OAuthError schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "error": {
+      "type": "string",
+      "enum": [
+        "invalid_request",
+        "invalid_client",
+        "invalid_grant",
+        "unauthorized_client",
+        "unsupported_grant_type",
+        "invalid_scope"
+      ]
+    },
+    "error_description": {
+      "type": "string"
+    }
+  },
+  "name": "OAuthError"
+}

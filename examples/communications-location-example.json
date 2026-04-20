@@ -1,0 +1,9 @@
+{
+  "pcd": 42,
+  "ctry": "sample-value",
+  "st": "sample-value",
+  "cty": "sample-value",
+  "zip": "sample-value",
+  "geo": true,
+  "addr": "sample-value"
+}

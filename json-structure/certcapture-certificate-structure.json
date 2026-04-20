@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/certcapture-certificate-structure.json",
+  "description": "Certificate schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "certificateNumber": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Expired",
+        "Revoked",
+        "Pending"
+      ]
+    },
+    "signedDate": {
+      "type": "date"
+    },
+    "expirationDate": {
+      "type": "date"
+    },
+    "exemptionNumber": {
+      "type": "string"
+    },
+    "exemptionReason": {
+      "type": "string"
+    },
+    "exemptPercentage": {
+      "type": "double"
+    },
+    "exposureZone": {
+      "type": "string",
+      "description": "Jurisdiction where the exemption applies"
+    },
+    "customer": {
+      "$ref": "#/components/schemas/CertCaptureCustomer"
+    },
+    "createdDate": {
+      "type": "datetime"
+    },
+    "modifiedDate": {
+      "type": "datetime"
+    }
+  },
+  "name": "Certificate"
+}

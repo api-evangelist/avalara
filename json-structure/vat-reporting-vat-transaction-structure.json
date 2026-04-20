@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/vat-reporting-vat-transaction-structure.json",
+  "description": "VATTransaction schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "transactionId": {
+      "type": "string"
+    },
+    "transactionDate": {
+      "type": "date"
+    },
+    "transactionType": {
+      "type": "string",
+      "enum": [
+        "Sale",
+        "Purchase",
+        "IntraCommunitySupply",
+        "IntraCommunityAcquisition",
+        "Export",
+        "Import"
+      ]
+    },
+    "invoiceNumber": {
+      "type": "string"
+    },
+    "supplierVATNumber": {
+      "type": "string"
+    },
+    "customerVATNumber": {
+      "type": "string"
+    },
+    "countryCode": {
+      "type": "string"
+    },
+    "netAmount": {
+      "type": "double"
+    },
+    "vatRate": {
+      "type": "double"
+    },
+    "vatAmount": {
+      "type": "double"
+    },
+    "currency": {
+      "type": "string"
+    }
+  },
+  "name": "VATTransaction"
+}

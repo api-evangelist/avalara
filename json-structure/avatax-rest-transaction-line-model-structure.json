@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-transaction-line-model-structure.json",
+  "description": "TransactionLineModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int64"
+    },
+    "lineNumber": {
+      "type": "string"
+    },
+    "lineAmount": {
+      "type": "double"
+    },
+    "tax": {
+      "type": "double"
+    },
+    "taxableAmount": {
+      "type": "double"
+    },
+    "exemptAmount": {
+      "type": "double"
+    },
+    "taxCode": {
+      "type": "string"
+    },
+    "itemCode": {
+      "type": "string"
+    }
+  },
+  "name": "TransactionLineModel"
+}

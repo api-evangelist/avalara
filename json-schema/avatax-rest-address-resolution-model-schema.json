@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-rest-address-resolution-model-schema.json",
+  "title": "AddressResolutionModel",
+  "description": "AddressResolutionModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "address": {
+      "$ref": "#/components/schemas/AddressInfo"
+    },
+    "validatedAddresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AddressInfo"
+      }
+    },
+    "coordinates": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "resolutionQuality": {
+      "type": "string",
+      "enum": [
+        "NotCoded",
+        "External",
+        "CountryCentroid",
+        "RegionCentroid",
+        "PartialCentroid",
+        "PostalCentroidGood",
+        "PostalCentroidBetter",
+        "PostalCentroidBest",
+        "Intersection",
+        "Interpolated",
+        "Rooftop"
+      ]
+    },
+    "taxAuthorities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TaxAuthorityInfo"
+      }
+    }
+  }
+}

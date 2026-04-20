@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/item-classification-classification-request-detail-schema.json",
+  "title": "ClassificationRequestDetail",
+  "description": "ClassificationRequestDetail schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "InProgress",
+        "Completed",
+        "Failed"
+      ]
+    },
+    "itemCount": {
+      "type": "integer"
+    },
+    "classifiedCount": {
+      "type": "integer"
+    },
+    "submittedDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completedDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

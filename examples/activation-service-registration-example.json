@@ -1,0 +1,11 @@
+{
+  "registrationId": "12345",
+  "partnerId": "12345",
+  "companyName": "Sample Name",
+  "status": "Pending",
+  "product": "sample-value",
+  "accountId": "12345",
+  "activationDate": "2025-04-15T14:30:00Z",
+  "expirationDate": "2025-04-15T14:30:00Z",
+  "createdDate": "2025-04-15T14:30:00Z"
+}

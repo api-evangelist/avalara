@@ -1,0 +1,10 @@
+{
+  "dataFormat": "ubl-invoice",
+  "dataFormatVersion": "sample-value",
+  "data": "sample-value",
+  "metadata": {
+    "workflowId": "12345",
+    "countryCode": "US",
+    "countryMandate": "sample-value"
+  }
+}

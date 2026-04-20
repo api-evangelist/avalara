@@ -1,0 +1,10 @@
+{
+  "accountId": "12345",
+  "products": [
+    {
+      "productCode": "US",
+      "quantity": 42
+    }
+  ],
+  "campaignId": "12345"
+}

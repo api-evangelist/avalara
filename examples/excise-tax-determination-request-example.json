@@ -1,0 +1,10 @@
+{
+  "effectiveDate": "2025-04-15",
+  "invoiceNumber": "sample-value",
+  "invoiceDate": "2025-04-15",
+  "titleTransferCode": "Origin",
+  "transactionType": "sample-value",
+  "transactionLines": [
+    "sample-value"
+  ]
+}

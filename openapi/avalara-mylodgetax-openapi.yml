@@ -19,54 +19,54 @@ externalDocs:
   description: MyLodgeTax API Documentation
   url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
 servers:
-  - url: https://api.avalara.com/mylodgetax/v1
-    description: MyLodgeTax API Production
+- url: https://api.avalara.com/mylodgetax/v1
+  description: MyLodgeTax API Production
 tags:
-  - name: Obligations
-    description: View filing obligations and tax responsibilities
-  - name: Properties
-    description: Manage rental property registrations
-  - name: Tax Rates
-    description: Look up lodging tax rates by location
+- name: Obligations
+  description: View filing obligations and tax responsibilities
+- name: Properties
+  description: Manage rental property registrations
+- name: Tax Rates
+  description: Look up lodging tax rates by location
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /tax-rates:
     get:
       operationId: getLodgingTaxRates
-      summary: Avalara Get lodging tax rates
+      summary: Avalara Get Lodging Tax Rates
       description: >-
         Returns applicable lodging and short-term rental tax rates for a
         given property location, broken down by jurisdiction.
       tags:
-        - Tax Rates
+      - Tax Rates
       parameters:
-        - name: line1
-          in: query
-          required: true
-          schema:
-            type: string
-          description: Street address
-        - name: city
-          in: query
-          schema:
-            type: string
-        - name: region
-          in: query
-          required: true
-          schema:
-            type: string
-          description: State or province
-        - name: postalCode
-          in: query
-          required: true
-          schema:
-            type: string
-        - name: country
-          in: query
-          required: true
-          schema:
-            type: string
+      - name: line1
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Street address
+      - name: city
+        in: query
+        schema:
+          type: string
+      - name: region
+        in: query
+        required: true
+        schema:
+          type: string
+        description: State or province
+      - name: postalCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: country
+        in: query
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Lodging tax rates
@@ -77,9 +77,9 @@ paths:
   /properties:
     get:
       operationId: listProperties
-      summary: Avalara List registered properties
+      summary: Avalara List Registered Properties
       tags:
-        - Properties
+      - Properties
       responses:
         '200':
           description: List of properties
@@ -91,9 +91,9 @@ paths:
                   $ref: '#/components/schemas/RentalProperty'
     post:
       operationId: registerProperty
-      summary: Avalara Register a rental property
+      summary: Avalara Register a Rental Property
       tags:
-        - Properties
+      - Properties
       requestBody:
         required: true
         content:
@@ -106,18 +106,18 @@ paths:
   /properties/{propertyId}/obligations:
     get:
       operationId: getPropertyObligations
-      summary: Avalara Get filing obligations for a property
+      summary: Avalara Get Filing Obligations for a Property
       description: >-
         Returns a summary of tax filing obligations for a registered
         property, including which taxes apply and filing frequencies.
       tags:
-        - Obligations
+      - Obligations
       parameters:
-        - name: propertyId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: propertyId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Filing obligations
@@ -150,10 +150,10 @@ components:
               jurisdictionType:
                 type: string
                 enum:
-                  - State
-                  - County
-                  - City
-                  - District
+                - State
+                - County
+                - City
+                - District
               taxName:
                 type: string
               rate:
@@ -187,11 +187,11 @@ components:
         propertyType:
           type: string
           enum:
-            - House
-            - Apartment
-            - Condo
-            - Room
-            - Other
+          - House
+          - Apartment
+          - Condo
+          - Room
+          - Other
     FilingObligation:
       type: object
       properties:
@@ -202,9 +202,9 @@ components:
         filingFrequency:
           type: string
           enum:
-            - Monthly
-            - Quarterly
-            - Annual
+          - Monthly
+          - Quarterly
+          - Annual
         nextDueDate:
           type: string
           format: date

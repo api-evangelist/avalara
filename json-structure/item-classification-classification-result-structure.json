@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/item-classification-classification-result-structure.json",
+  "description": "ClassificationResult schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "itemCode": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "hsCode": {
+      "type": "string",
+      "description": "Classified HS Code"
+    },
+    "hsCodeDescription": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "double",
+      "description": "Classification confidence score (0-1)"
+    },
+    "country": {
+      "type": "string"
+    }
+  },
+  "name": "ClassificationResult"
+}

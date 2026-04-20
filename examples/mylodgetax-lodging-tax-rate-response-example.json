@@ -1,0 +1,11 @@
+{
+  "totalRate": 100.0,
+  "rates": [
+    {
+      "jurisdiction": "sample-value",
+      "jurisdictionType": "State",
+      "taxName": "Sample Name",
+      "rate": 100.0
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-rest-create-transaction-model-schema.json",
+  "title": "CreateTransactionModel",
+  "description": "CreateTransactionModel schema from Avalara API",
+  "type": "object",
+  "required": [
+    "type",
+    "companyCode",
+    "date",
+    "customerCode",
+    "lines"
+  ],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "SalesOrder",
+        "SalesInvoice",
+        "PurchaseOrder",
+        "PurchaseInvoice",
+        "ReturnOrder",
+        "ReturnInvoice"
+      ],
+      "description": "The type of document to create"
+    },
+    "companyCode": {
+      "type": "string",
+      "description": "Company code of the company creating this transaction"
+    },
+    "date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date of the transaction"
+    },
+    "customerCode": {
+      "type": "string",
+      "description": "Unique code identifying the customer"
+    },
+    "commit": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether to commit the transaction immediately"
+    },
+    "currencyCode": {
+      "type": "string",
+      "description": "Three-character ISO 4217 currency code"
+    },
+    "addresses": {
+      "type": "object",
+      "properties": {
+        "shipFrom": {
+          "$ref": "#/components/schemas/AddressInfo"
+        },
+        "shipTo": {
+          "$ref": "#/components/schemas/AddressInfo"
+        },
+        "pointOfOrderOrigin": {
+          "$ref": "#/components/schemas/AddressInfo"
+        },
+        "pointOfOrderAcceptance": {
+          "$ref": "#/components/schemas/AddressInfo"
+        }
+      }
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LineItemModel"
+      },
+      "description": "Line items for the transaction"
+    }
+  }
+}

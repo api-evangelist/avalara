@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-brazil-invoice-response-schema.json",
+  "title": "InvoiceResponse",
+  "description": "InvoiceResponse schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "invoiceId": {
+      "type": "string"
+    },
+    "accessKey": {
+      "type": "string",
+      "description": "44-digit NF-e access key"
+    },
+    "invoiceNumber": {
+      "type": "integer"
+    },
+    "series": {
+      "type": "integer"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Authorized",
+        "Cancelled",
+        "Denied",
+        "Pending"
+      ]
+    },
+    "protocolNumber": {
+      "type": "string"
+    },
+    "issuanceDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

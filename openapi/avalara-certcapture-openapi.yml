@@ -20,53 +20,53 @@ externalDocs:
   description: CertCapture API Documentation
   url: https://developer.avalara.com/api-reference/CertCapture/v2/
 servers:
-  - url: https://api.certcapture.com/v2
-    description: CertCapture API Production
+- url: https://api.certcapture.com/v2
+  description: CertCapture API Production
 tags:
-  - name: Attributes
-    description: Manage certificate attributes and custom fields
-  - name: Authentication
-    description: Token management and authentication
-  - name: Certificates
-    description: Manage exemption certificates
-  - name: Customers
-    description: Manage customer records
-  - name: eCommerce
-    description: eCommerce token generation for certificate collection
+- name: Attributes
+  description: Manage certificate attributes and custom fields
+- name: Authentication
+  description: Token management and authentication
+- name: Certificates
+  description: Manage exemption certificates
+- name: Customers
+  description: Manage customer records
+- name: eCommerce
+  description: eCommerce token generation for certificate collection
 security:
-  - basicAuth: []
+- basicAuth: []
 paths:
   /certificates:
     get:
       operationId: listCertificates
-      summary: Avalara List certificates
+      summary: Avalara List Certificates
       description: Retrieves a filtered list of exemption certificates.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - name: status
-          in: query
-          schema:
-            type: string
-            enum:
-              - Active
-              - Expired
-              - Revoked
-              - Pending
-        - name: customerId
-          in: query
-          schema:
-            type: string
-        - name: page
-          in: query
-          schema:
-            type: integer
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            type: integer
-            default: 50
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Active
+          - Expired
+          - Revoked
+          - Pending
+      - name: customerId
+        in: query
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          default: 50
       responses:
         '200':
           description: List of certificates
@@ -76,10 +76,10 @@ paths:
                 $ref: '#/components/schemas/CertificateListResponse'
     post:
       operationId: createCertificate
-      summary: Avalara Create a certificate
+      summary: Avalara Create a Certificate
       description: Creates a new exemption certificate record.
       tags:
-        - Certificates
+      - Certificates
       requestBody:
         required: true
         content:
@@ -98,16 +98,16 @@ paths:
   /certificates/{certificateId}:
     get:
       operationId: getCertificate
-      summary: Avalara Get a certificate
+      summary: Avalara Get a Certificate
       description: Retrieves a single certificate by its ID.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - name: certificateId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: certificateId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Certificate details
@@ -119,15 +119,15 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: updateCertificate
-      summary: Avalara Update a certificate
+      summary: Avalara Update a Certificate
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - name: certificateId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: certificateId
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -143,31 +143,31 @@ paths:
                 $ref: '#/components/schemas/Certificate'
     delete:
       operationId: deleteCertificate
-      summary: Avalara Delete a certificate
+      summary: Avalara Delete a Certificate
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - name: certificateId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: certificateId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '204':
           description: Certificate deleted
   /certificates/{certificateId}/attachment:
     get:
       operationId: getCertificateAttachment
-      summary: Avalara Download certificate attachment
+      summary: Avalara Download Certificate Attachment
       description: Downloads the PDF or image attachment for a certificate.
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - name: certificateId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: certificateId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Certificate attachment
@@ -178,15 +178,15 @@ paths:
                 format: binary
     post:
       operationId: uploadCertificateAttachment
-      summary: Avalara Upload certificate attachment
+      summary: Avalara Upload Certificate Attachment
       tags:
-        - Certificates
+      - Certificates
       parameters:
-        - name: certificateId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: certificateId
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -203,18 +203,18 @@ paths:
   /customers:
     get:
       operationId: listCustomers
-      summary: Avalara List customers
+      summary: Avalara List Customers
       tags:
-        - Customers
+      - Customers
       parameters:
-        - name: page
-          in: query
-          schema:
-            type: integer
-        - name: pageSize
-          in: query
-          schema:
-            type: integer
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
       responses:
         '200':
           description: List of customers
@@ -224,9 +224,9 @@ paths:
                 $ref: '#/components/schemas/CustomerListResponse'
     post:
       operationId: createCustomer
-      summary: Avalara Create a customer
+      summary: Avalara Create a Customer
       tags:
-        - Customers
+      - Customers
       requestBody:
         required: true
         content:
@@ -239,15 +239,15 @@ paths:
   /customers/{customerId}:
     get:
       operationId: getCustomer
-      summary: Avalara Get a customer by ID
+      summary: Avalara Get a Customer by ID
       tags:
-        - Customers
+      - Customers
       parameters:
-        - name: customerId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Customer details
@@ -257,15 +257,15 @@ paths:
                 $ref: '#/components/schemas/CertCaptureCustomer'
     put:
       operationId: updateCustomer
-      summary: Avalara Update a customer
+      summary: Avalara Update a Customer
       tags:
-        - Customers
+      - Customers
       parameters:
-        - name: customerId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -278,24 +278,24 @@ paths:
   /customers/{customerId}/certificates:
     get:
       operationId: getCustomerCertificates
-      summary: Avalara List certificates for a customer
+      summary: Avalara List Certificates for a Customer
       tags:
-        - Customers
+      - Customers
       parameters:
-        - name: customerId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: List of customer certificates
   /attributes:
     get:
       operationId: listAttributes
-      summary: Avalara List certificate attributes
+      summary: Avalara List Certificate Attributes
       tags:
-        - Attributes
+      - Attributes
       responses:
         '200':
           description: List of attributes
@@ -308,10 +308,10 @@ paths:
   /auth/token:
     post:
       operationId: getAuthToken
-      summary: Avalara Get authentication token
+      summary: Avalara Get Authentication Token
       description: Generates an authentication token for API access.
       tags:
-        - Authentication
+      - Authentication
       security: []
       requestBody:
         required: true
@@ -320,8 +320,8 @@ paths:
             schema:
               type: object
               required:
-                - username
-                - password
+              - username
+              - password
               properties:
                 username:
                   type: string
@@ -343,12 +343,12 @@ paths:
   /ecommerce/token:
     post:
       operationId: generateEcommerceToken
-      summary: Avalara Generate eCommerce token
+      summary: Avalara Generate ECommerce Token
       description: >-
         Generates a token for embedding the CertCapture certificate
         collection widget in eCommerce checkout flows.
       tags:
-        - eCommerce
+      - eCommerce
       requestBody:
         required: true
         content:
@@ -403,10 +403,10 @@ components:
         status:
           type: string
           enum:
-            - Active
-            - Expired
-            - Revoked
-            - Pending
+          - Active
+          - Expired
+          - Revoked
+          - Pending
         signedDate:
           type: string
           format: date
@@ -434,8 +434,8 @@ components:
     CertificateCreateRequest:
       type: object
       required:
-        - exemptionReason
-        - exposureZone
+      - exemptionReason
+      - exposureZone
       properties:
         exemptionNumber:
           type: string

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/excise-tax-determination-response-structure.json",
+  "description": "TaxDeterminationResponse schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "Success",
+        "Error",
+        "Partial"
+      ]
+    },
+    "transactionLines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TaxDeterminationLine"
+      }
+    },
+    "totalTaxAmount": {
+      "type": "double"
+    }
+  },
+  "name": "TaxDeterminationResponse"
+}

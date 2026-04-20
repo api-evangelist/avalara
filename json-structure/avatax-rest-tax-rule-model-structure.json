@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-tax-rule-model-structure.json",
+  "description": "TaxRuleModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32"
+    },
+    "companyId": {
+      "type": "int32"
+    },
+    "taxCodeId": {
+      "type": "int32"
+    },
+    "taxCode": {
+      "type": "string"
+    },
+    "stateFIPS": {
+      "type": "string"
+    },
+    "jurisName": {
+      "type": "string"
+    },
+    "jurisCode": {
+      "type": "string"
+    },
+    "jurisTypeId": {
+      "type": "string"
+    },
+    "rateTypeId": {
+      "type": "string"
+    },
+    "ruleTypeId": {
+      "type": "string"
+    },
+    "isAllJuris": {
+      "type": "boolean"
+    }
+  },
+  "name": "TaxRuleModel"
+}

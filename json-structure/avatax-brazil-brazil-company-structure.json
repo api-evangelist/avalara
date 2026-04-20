@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-brazil-brazil-company-structure.json",
+  "description": "BrazilCompany schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "companyId": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "cnpj": {
+      "type": "string"
+    },
+    "stateRegistration": {
+      "type": "string"
+    },
+    "municipalRegistration": {
+      "type": "string"
+    },
+    "taxRegime": {
+      "type": "string",
+      "enum": [
+        "SimplesNacional",
+        "LucroPresumido",
+        "LucroReal"
+      ]
+    },
+    "state": {
+      "type": "string"
+    }
+  },
+  "name": "BrazilCompany"
+}

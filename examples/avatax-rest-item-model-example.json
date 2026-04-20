@@ -1,0 +1,8 @@
+{
+  "id": 42,
+  "companyId": 42,
+  "itemCode": "US",
+  "taxCode": "US",
+  "description": "Sample description",
+  "category": "sample-value"
+}

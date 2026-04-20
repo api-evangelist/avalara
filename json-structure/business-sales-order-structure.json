@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/business-sales-order-structure.json",
+  "description": "SalesOrder schema from Avalara API",
+  "type": "object",
+  "required": [
+    "accountId",
+    "products"
+  ],
+  "properties": {
+    "accountId": {
+      "type": "string"
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "int32"
+          }
+        }
+      }
+    },
+    "campaignId": {
+      "type": "string"
+    }
+  },
+  "name": "SalesOrder"
+}

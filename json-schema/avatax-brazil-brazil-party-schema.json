@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-brazil-brazil-party-schema.json",
+  "title": "BrazilParty",
+  "description": "BrazilParty schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "cnpj": {
+      "type": "string",
+      "description": "Company tax ID (CNPJ)"
+    },
+    "cpf": {
+      "type": "string",
+      "description": "Individual tax ID (CPF)"
+    },
+    "stateRegistration": {
+      "type": "string",
+      "description": "Inscricao Estadual"
+    },
+    "municipalRegistration": {
+      "type": "string",
+      "description": "Inscricao Municipal"
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "street": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "complement": {
+          "type": "string"
+        },
+        "neighborhood": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "cityCode": {
+          "type": "string",
+          "description": "IBGE city code"
+        },
+        "state": {
+          "type": "string",
+          "description": "State code (UF)"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

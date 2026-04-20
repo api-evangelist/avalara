@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/e-invoicing-document-submission-response-structure.json",
+  "description": "DocumentSubmissionResponse schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Document submission ID"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Accepted",
+        "Rejected",
+        "Error"
+      ]
+    },
+    "statusDate": {
+      "type": "datetime"
+    }
+  },
+  "name": "DocumentSubmissionResponse"
+}

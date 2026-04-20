@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/certcapture-cert-attribute-structure.json",
+  "description": "CertAttribute schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "isSystemCode": {
+      "type": "boolean"
+    }
+  },
+  "name": "CertAttribute"
+}

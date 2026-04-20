@@ -1,0 +1,18 @@
+{
+  "name": "Sample Name",
+  "companyCode": "US",
+  "taxpayerIdNumber": "sample-value",
+  "line1": "sample-value",
+  "line2": "sample-value",
+  "line3": "sample-value",
+  "city": "sample-value",
+  "region": "sample-value",
+  "postalCode": "US",
+  "country": "sample-value",
+  "firstName": "Sample Name",
+  "lastName": "Sample Name",
+  "title": "sample-value",
+  "email": "user@example.com",
+  "phoneNumber": "sample-value",
+  "mobileNumber": "sample-value"
+}

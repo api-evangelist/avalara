@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/hs-code-classification-classify-response-structure.json",
+  "description": "ClassifyResponse schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "itemCode": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "predictions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ClassificationPrediction"
+      }
+    },
+    "avataxCode": {
+      "type": "string",
+      "description": "Recommended Avalara tax code"
+    }
+  },
+  "name": "ClassifyResponse"
+}

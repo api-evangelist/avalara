@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-rest-void-transaction-model-schema.json",
+  "title": "VoidTransactionModel",
+  "description": "VoidTransactionModel schema from Avalara API",
+  "type": "object",
+  "required": [
+    "code"
+  ],
+  "properties": {
+    "code": {
+      "type": "string",
+      "enum": [
+        "Unspecified",
+        "PostFailed",
+        "DocDeleted",
+        "DocVoided",
+        "AdjustmentCancelled"
+      ],
+      "description": "Reason for voiding the transaction"
+    }
+  }
+}

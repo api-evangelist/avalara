@@ -1,0 +1,13 @@
+{
+  "validatedAddresses": [
+    "sample-value"
+  ],
+  "coordinates": {
+    "latitude": 100.0,
+    "longitude": 100.0
+  },
+  "resolutionQuality": "NotCoded",
+  "taxAuthorities": [
+    "sample-value"
+  ]
+}

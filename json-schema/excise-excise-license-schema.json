@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/excise-excise-license-schema.json",
+  "title": "ExciseLicense",
+  "description": "ExciseLicense schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "licenseId": {
+      "type": "string"
+    },
+    "licenseNumber": {
+      "type": "string"
+    },
+    "licenseType": {
+      "type": "string"
+    },
+    "issuingJurisdiction": {
+      "type": "string"
+    },
+    "effectiveDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "expirationDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Expired",
+        "Suspended",
+        "Revoked"
+      ]
+    }
+  }
+}

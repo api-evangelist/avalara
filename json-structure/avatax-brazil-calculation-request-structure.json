@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-brazil-calculation-request-structure.json",
+  "description": "CalculationRequest schema from Avalara API",
+  "type": "object",
+  "required": [
+    "header",
+    "lines"
+  ],
+  "properties": {
+    "header": {
+      "type": "object",
+      "properties": {
+        "transactionType": {
+          "type": "string",
+          "enum": [
+            "Sale",
+            "Purchase",
+            "Return",
+            "Transfer"
+          ]
+        },
+        "companyLocation": {
+          "type": "string",
+          "description": "Company establishment code"
+        },
+        "documentCode": {
+          "type": "string"
+        },
+        "transactionDate": {
+          "type": "date"
+        },
+        "currency": {
+          "type": "string",
+          "default": "BRL"
+        }
+      }
+    },
+    "lines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CalculationLine"
+      }
+    }
+  },
+  "name": "CalculationRequest"
+}

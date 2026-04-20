@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-tax-authority-info-structure.json",
+  "description": "TaxAuthorityInfo schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "avalaraId": {
+      "type": "string"
+    },
+    "jurisdictionName": {
+      "type": "string"
+    },
+    "jurisdictionType": {
+      "type": "string"
+    },
+    "signatureCode": {
+      "type": "string"
+    }
+  },
+  "name": "TaxAuthorityInfo"
+}

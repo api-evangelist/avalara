@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/e-invoicing-submit-document-request-schema.json",
+  "title": "SubmitDocumentRequest",
+  "description": "SubmitDocumentRequest schema from Avalara API",
+  "type": "object",
+  "required": [
+    "dataFormat",
+    "data"
+  ],
+  "properties": {
+    "dataFormat": {
+      "type": "string",
+      "enum": [
+        "ubl-invoice",
+        "ubl-creditnote",
+        "cii"
+      ],
+      "description": "Format of the e-invoice document"
+    },
+    "dataFormatVersion": {
+      "type": "string",
+      "description": "Version of the data format"
+    },
+    "data": {
+      "type": "string",
+      "description": "Base64-encoded document content or raw UBL/CII XML"
+    },
+    "metadata": {
+      "type": "object",
+      "properties": {
+        "workflowId": {
+          "type": "string",
+          "description": "Workflow identifier for the mandate"
+        },
+        "countryCode": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code"
+        },
+        "countryMandate": {
+          "type": "string",
+          "description": "Country mandate identifier"
+        }
+      }
+    }
+  }
+}

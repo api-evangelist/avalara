@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/business-sales-order-schema.json",
+  "title": "SalesOrder",
+  "description": "SalesOrder schema from Avalara API",
+  "type": "object",
+  "required": [
+    "accountId",
+    "products"
+  ],
+  "properties": {
+    "accountId": {
+      "type": "string"
+    },
+    "products": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "productCode": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "campaignId": {
+      "type": "string"
+    }
+  }
+}

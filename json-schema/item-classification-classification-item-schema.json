@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/item-classification-classification-item-schema.json",
+  "title": "ClassificationItem",
+  "description": "ClassificationItem schema from Avalara API",
+  "type": "object",
+  "required": [
+    "description"
+  ],
+  "properties": {
+    "itemCode": {
+      "type": "string",
+      "description": "Unique item identifier"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description for classification"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Short product summary"
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Additional product attributes for classification"
+    }
+  }
+}

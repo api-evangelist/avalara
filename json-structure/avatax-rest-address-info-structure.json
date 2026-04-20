@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-address-info-structure.json",
+  "description": "AddressInfo schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "line1": {
+      "type": "string",
+      "description": "Street address line 1"
+    },
+    "line2": {
+      "type": "string",
+      "description": "Street address line 2"
+    },
+    "line3": {
+      "type": "string",
+      "description": "Street address line 3"
+    },
+    "city": {
+      "type": "string",
+      "description": "City name"
+    },
+    "region": {
+      "type": "string",
+      "description": "State, province, or region code"
+    },
+    "postalCode": {
+      "type": "string",
+      "description": "Postal code or ZIP code"
+    },
+    "country": {
+      "type": "string",
+      "description": "Two-character ISO 3166 country code"
+    },
+    "latitude": {
+      "type": "double"
+    },
+    "longitude": {
+      "type": "double"
+    }
+  },
+  "name": "AddressInfo"
+}

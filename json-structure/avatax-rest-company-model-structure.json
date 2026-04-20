@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-company-model-structure.json",
+  "description": "CompanyModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": "Unique identifier for the company"
+    },
+    "companyCode": {
+      "type": "string",
+      "description": "Short code identifying this company"
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the company"
+    },
+    "isDefault": {
+      "type": "boolean",
+      "description": "Whether this is the default company for the account"
+    },
+    "isActive": {
+      "type": "boolean"
+    },
+    "taxpayerIdNumber": {
+      "type": "string",
+      "description": "Tax identification number (EIN, TIN)"
+    },
+    "hasProfile": {
+      "type": "boolean"
+    },
+    "isReportingEntity": {
+      "type": "boolean"
+    },
+    "defaultCountry": {
+      "type": "string",
+      "description": "Default country for this company"
+    },
+    "baseCurrencyCode": {
+      "type": "string",
+      "description": "Default currency code"
+    },
+    "sstEffDate": {
+      "type": "date"
+    },
+    "roundingLevelId": {
+      "type": "string",
+      "enum": [
+        "Line",
+        "Document"
+      ]
+    },
+    "sstPId": {
+      "type": "string"
+    },
+    "createdDate": {
+      "type": "datetime"
+    },
+    "modifiedDate": {
+      "type": "datetime"
+    }
+  },
+  "name": "CompanyModel"
+}

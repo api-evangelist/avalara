@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-rest-multi-document-line-item-model-schema.json",
+  "title": "MultiDocumentLineItemModel",
+  "description": "MultiDocumentLineItemModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "companyCode": {
+      "type": "string"
+    },
+    "reportingLocationCode": {
+      "type": "string"
+    },
+    "number": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "number",
+      "format": "double"
+    },
+    "amount": {
+      "type": "number",
+      "format": "double"
+    },
+    "taxCode": {
+      "type": "string"
+    },
+    "addresses": {
+      "type": "object",
+      "properties": {
+        "shipFrom": {
+          "$ref": "#/components/schemas/AddressInfo"
+        },
+        "shipTo": {
+          "$ref": "#/components/schemas/AddressInfo"
+        }
+      }
+    }
+  }
+}

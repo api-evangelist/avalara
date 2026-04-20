@@ -1,0 +1,18 @@
+{
+  "bill": true,
+  "cmpl": true,
+  "tm": 100.0,
+  "calc": 42,
+  "cat": "sample-value",
+  "cid": 42,
+  "name": "Sample Name",
+  "exm": 100.0,
+  "lns": 42,
+  "min": 100.0,
+  "pcd": 42,
+  "rate": 100.0,
+  "sur": true,
+  "tax": 100.0,
+  "lvl": 42,
+  "tid": 42
+}

@@ -1,0 +1,17 @@
+{
+  "ref": "sample-value",
+  "cass": {
+    "addr": "sample-value",
+    "city": "sample-value",
+    "st": "sample-value",
+    "zip": "sample-value"
+  },
+  "cBlk": "sample-value",
+  "cTrc": "sample-value",
+  "err": "sample-value",
+  "geo": true,
+  "lat": 100.0,
+  "long": 100.0,
+  "pcd": 42,
+  "fips": "sample-value"
+}

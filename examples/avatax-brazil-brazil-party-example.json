@@ -1,0 +1,14 @@
+{
+  "name": "Sample Name",
+  "cnpj": "sample-value",
+  "cpf": "sample-value",
+  "stateRegistration": "sample-value",
+  "municipalRegistration": "sample-value",
+  "address": {
+    "street": "sample-value",
+    "number": "sample-value",
+    "complement": "sample-value",
+    "neighborhood": "sample-value",
+    "city": "sample-value"
+  }
+}

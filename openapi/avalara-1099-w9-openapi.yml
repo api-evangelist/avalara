@@ -19,31 +19,31 @@ externalDocs:
   description: 1099 & W-9 API Documentation
   url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
 servers:
-  - url: https://api.avalara.com/1099/v1
-    description: 1099 API Production
-  - url: https://api.sbx.avalara.com/1099/v1
-    description: 1099 API Sandbox
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
 tags:
-  - name: 1099 Forms
-    description: Create and manage 1099 information returns
-  - name: Companies
-    description: Manage payer company records
-  - name: Filing
-    description: E-file forms with the IRS
-  - name: W-9 Forms
-    description: Collect and manage W-9 forms
+- name: 1099 Forms
+  description: Create and manage 1099 information returns
+- name: Companies
+  description: Manage payer company records
+- name: Filing
+  description: E-file forms with the IRS
+- name: W-9 Forms
+  description: Collect and manage W-9 forms
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /w9/requests:
     post:
       operationId: createW9Request
-      summary: Avalara Create a W-9 collection request
+      summary: Avalara Create a W-9 Collection Request
       description: >-
         Sends a W-9 collection request to a payee, allowing them to submit
         their taxpayer information electronically.
       tags:
-        - W-9 Forms
+      - W-9 Forms
       requestBody:
         required: true
         content:
@@ -61,41 +61,41 @@ paths:
           $ref: '#/components/responses/BadRequest'
     get:
       operationId: listW9Requests
-      summary: Avalara List W-9 requests
+      summary: Avalara List W-9 Requests
       tags:
-        - W-9 Forms
+      - W-9 Forms
       parameters:
-        - name: status
-          in: query
-          schema:
-            type: string
-            enum:
-              - Pending
-              - Completed
-              - Expired
-        - name: $top
-          in: query
-          schema:
-            type: integer
-        - name: $skip
-          in: query
-          schema:
-            type: integer
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Pending
+          - Completed
+          - Expired
+      - name: $top
+        in: query
+        schema:
+          type: integer
+      - name: $skip
+        in: query
+        schema:
+          type: integer
       responses:
         '200':
           description: List of W-9 requests
   /w9/{w9Id}:
     get:
       operationId: getW9
-      summary: Avalara Get a completed W-9 form
+      summary: Avalara Get a Completed W-9 Form
       tags:
-        - W-9 Forms
+      - W-9 Forms
       parameters:
-        - name: w9Id
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: w9Id
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: W-9 form details
@@ -106,12 +106,12 @@ paths:
   /forms/1099:
     post:
       operationId: create1099Form
-      summary: Avalara Create a 1099 form
+      summary: Avalara Create a 1099 Form
       description: >-
         Creates a new 1099 information return form with payee and
         payment information.
       tags:
-        - 1099 Forms
+      - 1099 Forms
       requestBody:
         required: true
         content:
@@ -127,53 +127,53 @@ paths:
                 $ref: '#/components/schemas/Form1099'
     get:
       operationId: list1099Forms
-      summary: Avalara List 1099 forms
+      summary: Avalara List 1099 Forms
       tags:
-        - 1099 Forms
+      - 1099 Forms
       parameters:
-        - name: taxYear
-          in: query
-          schema:
-            type: integer
-        - name: formType
-          in: query
-          schema:
-            type: string
-            enum:
-              - 1099-NEC
-              - 1099-MISC
-              - 1099-K
-              - 1099-INT
-              - 1099-DIV
-              - 1099-R
-              - 1099-B
-        - name: status
-          in: query
-          schema:
-            type: string
-        - name: $top
-          in: query
-          schema:
-            type: integer
-        - name: $skip
-          in: query
-          schema:
-            type: integer
+      - name: taxYear
+        in: query
+        schema:
+          type: integer
+      - name: formType
+        in: query
+        schema:
+          type: string
+          enum:
+          - 1099-NEC
+          - 1099-MISC
+          - 1099-K
+          - 1099-INT
+          - 1099-DIV
+          - 1099-R
+          - 1099-B
+      - name: status
+        in: query
+        schema:
+          type: string
+      - name: $top
+        in: query
+        schema:
+          type: integer
+      - name: $skip
+        in: query
+        schema:
+          type: integer
       responses:
         '200':
           description: List of 1099 forms
   /forms/1099/{formId}:
     get:
       operationId: get1099Form
-      summary: Avalara Get a 1099 form by ID
+      summary: Avalara Get a 1099 Form by ID
       tags:
-        - 1099 Forms
+      - 1099 Forms
       parameters:
-        - name: formId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: formId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: 1099 form details
@@ -183,15 +183,15 @@ paths:
                 $ref: '#/components/schemas/Form1099'
     put:
       operationId: update1099Form
-      summary: Avalara Update a 1099 form
+      summary: Avalara Update a 1099 Form
       tags:
-        - 1099 Forms
+      - 1099 Forms
       parameters:
-        - name: formId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: formId
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -203,27 +203,27 @@ paths:
           description: 1099 form updated
     delete:
       operationId: delete1099Form
-      summary: Avalara Delete a 1099 form
+      summary: Avalara Delete a 1099 Form
       tags:
-        - 1099 Forms
+      - 1099 Forms
       parameters:
-        - name: formId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: formId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '204':
           description: Form deleted
   /filing/submit:
     post:
       operationId: submitFiling
-      summary: Avalara Submit forms for e-filing
+      summary: Avalara Submit Forms for E-filing
       description: >-
         Submits a batch of completed forms to the IRS for electronic filing.
         Validates all forms before submission.
       tags:
-        - Filing
+      - Filing
       requestBody:
         required: true
         content:
@@ -240,16 +240,16 @@ paths:
   /filing/{filingId}/status:
     get:
       operationId: getFilingStatus
-      summary: Avalara Get filing status
+      summary: Avalara Get Filing Status
       description: Retrieves the status of an IRS e-filing submission.
       tags:
-        - Filing
+      - Filing
       parameters:
-        - name: filingId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: filingId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Filing status
@@ -260,17 +260,17 @@ paths:
   /companies:
     get:
       operationId: listPayerCompanies
-      summary: Avalara List payer companies
+      summary: Avalara List Payer Companies
       tags:
-        - Companies
+      - Companies
       responses:
         '200':
           description: List of payer companies
     post:
       operationId: createPayerCompany
-      summary: Avalara Create a payer company
+      summary: Avalara Create a Payer Company
       tags:
-        - Companies
+      - Companies
       requestBody:
         required: true
         content:
@@ -297,8 +297,8 @@ components:
     W9Request:
       type: object
       required:
-        - payeeEmail
-        - payeeName
+      - payeeEmail
+      - payeeName
       properties:
         payeeEmail:
           type: string
@@ -339,21 +339,21 @@ components:
         taxClassification:
           type: string
           enum:
-            - Individual
-            - C_Corporation
-            - S_Corporation
-            - Partnership
-            - Trust
-            - LLC
-            - Other
+          - Individual
+          - C_Corporation
+          - S_Corporation
+          - Partnership
+          - Trust
+          - LLC
+          - Other
         tin:
           type: string
           description: Taxpayer Identification Number (masked)
         tinType:
           type: string
           enum:
-            - SSN
-            - EIN
+          - SSN
+          - EIN
         address:
           type: object
           properties:
@@ -371,9 +371,9 @@ components:
         status:
           type: string
           enum:
-            - Valid
-            - Expired
-            - Revoked
+          - Valid
+          - Expired
+          - Revoked
     Form1099:
       type: object
       properties:
@@ -382,13 +382,13 @@ components:
         formType:
           type: string
           enum:
-            - 1099-NEC
-            - 1099-MISC
-            - 1099-K
-            - 1099-INT
-            - 1099-DIV
-            - 1099-R
-            - 1099-B
+          - 1099-NEC
+          - 1099-MISC
+          - 1099-K
+          - 1099-INT
+          - 1099-DIV
+          - 1099-R
+          - 1099-B
         taxYear:
           type: integer
         payerCompanyId:
@@ -426,10 +426,10 @@ components:
         status:
           type: string
           enum:
-            - Draft
-            - Ready
-            - Filed
-            - Corrected
+          - Draft
+          - Ready
+          - Filed
+          - Corrected
         createdDate:
           type: string
           format: date-time
@@ -439,8 +439,8 @@ components:
     FilingSubmission:
       type: object
       required:
-        - taxYear
-        - formIds
+      - taxYear
+      - formIds
       properties:
         taxYear:
           type: integer
@@ -459,9 +459,9 @@ components:
         status:
           type: string
           enum:
-            - Accepted
-            - Processing
-            - Rejected
+          - Accepted
+          - Processing
+          - Rejected
         formCount:
           type: integer
         submittedDate:
@@ -475,10 +475,10 @@ components:
         status:
           type: string
           enum:
-            - Processing
-            - Accepted
-            - AcceptedWithErrors
-            - Rejected
+          - Processing
+          - Accepted
+          - AcceptedWithErrors
+          - Rejected
         acceptedCount:
           type: integer
         rejectedCount:

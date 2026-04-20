@@ -1,0 +1,10 @@
+{
+  "id": 42,
+  "companyId": 42,
+  "name": "Sample Name",
+  "type": "AvaCertUpdate",
+  "status": "Waiting",
+  "recordCount": 42,
+  "currentRecord": 42,
+  "createdDate": "2025-04-15T14:30:00Z"
+}

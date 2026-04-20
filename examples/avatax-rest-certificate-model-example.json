@@ -1,0 +1,15 @@
+{
+  "id": 42,
+  "companyId": 42,
+  "signedDate": "2025-04-15",
+  "expirationDate": "2025-04-15",
+  "exemptionNumber": "sample-value",
+  "exemptPercentage": 100.0,
+  "exemptionReason": {
+    "id": 42,
+    "name": "Sample Name"
+  },
+  "status": "Active",
+  "createdDate": "2025-04-15T14:30:00Z",
+  "modifiedDate": "2025-04-15T14:30:00Z"
+}

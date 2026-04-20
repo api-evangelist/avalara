@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/excise-tax-determination-request-structure.json",
+  "description": "TaxDeterminationRequest schema from Avalara API",
+  "type": "object",
+  "required": [
+    "effectiveDate",
+    "transactionLines"
+  ],
+  "properties": {
+    "effectiveDate": {
+      "type": "date",
+      "description": "Date for tax determination"
+    },
+    "invoiceNumber": {
+      "type": "string"
+    },
+    "invoiceDate": {
+      "type": "date"
+    },
+    "titleTransferCode": {
+      "type": "string",
+      "enum": [
+        "Origin",
+        "Destination"
+      ],
+      "description": "Title transfer point"
+    },
+    "transactionType": {
+      "type": "string",
+      "description": "Type of excise transaction"
+    },
+    "seller": {
+      "$ref": "#/components/schemas/TransactionParty"
+    },
+    "buyer": {
+      "$ref": "#/components/schemas/TransactionParty"
+    },
+    "transactionLines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TransactionLine"
+      }
+    }
+  },
+  "name": "TaxDeterminationRequest"
+}

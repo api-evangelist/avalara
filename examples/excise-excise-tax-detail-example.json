@@ -1,0 +1,9 @@
+{
+  "taxType": "sample-value",
+  "jurisdiction": "sample-value",
+  "taxRate": 100.0,
+  "taxAmount": 100.0,
+  "taxableAmount": 100.0,
+  "exemptAmount": 100.0,
+  "rateType": "PerUnit"
+}

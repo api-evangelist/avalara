@@ -1,0 +1,8 @@
+{
+  "itemCode": "US",
+  "description": "Sample description",
+  "hsCode": "US",
+  "hsCodeDescription": "US",
+  "confidence": 100.0,
+  "country": "sample-value"
+}

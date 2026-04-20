@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/item-classification-classification-request-summary-structure.json",
+  "description": "ClassificationRequestSummary schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "itemCount": {
+      "type": "int32"
+    },
+    "submittedDate": {
+      "type": "datetime"
+    },
+    "completedDate": {
+      "type": "datetime"
+    }
+  },
+  "name": "ClassificationRequestSummary"
+}

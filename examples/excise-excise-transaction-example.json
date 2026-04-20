@@ -1,0 +1,9 @@
+{
+  "transactionId": "12345",
+  "invoiceNumber": "sample-value",
+  "transactionDate": "2025-04-15",
+  "transactionType": "sample-value",
+  "status": "Pending",
+  "totalAmount": 100.0,
+  "totalTax": 100.0
+}

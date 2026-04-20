@@ -1,0 +1,10 @@
+{
+  "id": 42,
+  "line1": "sample-value",
+  "city": "sample-value",
+  "region": "sample-value",
+  "postalCode": "US",
+  "country": "sample-value",
+  "latitude": 100.0,
+  "longitude": 100.0
+}

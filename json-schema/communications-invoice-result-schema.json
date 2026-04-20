@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/communications-invoice-result-schema.json",
+  "title": "InvoiceResult",
+  "description": "InvoiceResult schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "doc": {
+      "type": "string",
+      "description": "Document code"
+    },
+    "itms": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LineItemResult"
+      }
+    }
+  }
+}

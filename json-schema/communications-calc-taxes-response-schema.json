@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/communications-calc-taxes-response-schema.json",
+  "title": "CalcTaxesResponse",
+  "description": "CalcTaxesResponse schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "inv": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/InvoiceResult"
+      }
+    }
+  }
+}

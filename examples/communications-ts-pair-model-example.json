@@ -1,0 +1,6 @@
+{
+  "TransactionType": 42,
+  "TransactionTypeDescription": "Sample description",
+  "ServiceType": 42,
+  "ServiceTypeDescription": "Sample description"
+}

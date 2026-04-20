@@ -1,0 +1,87 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Avalara Cross-Border Trade Compliance
+  description: Workflow for cross-border trade combining tariff classification, VAT calculation, and e-invoicing mandates. Used by international trade teams and importers/exporters to automate customs
+    and tax compliance.
+  tags:
+  - Avalara
+  - Cross-Border
+  - Tariff
+  - HS Codes
+  - E-Invoicing
+  - VAT
+  created: '2026-04-19'
+  modified: '2026-04-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_USERNAME: AVALARA_USERNAME
+    AVALARA_PASSWORD: AVALARA_PASSWORD
+    AVALARA_BEARER_TOKEN: AVALARA_BEARER_TOKEN
+capability:
+  consumes:
+  - import: avatax
+    location: ./shared/avatax.yaml
+  - import: einvoicing
+    location: ./shared/einvoicing.yaml
+  exposes:
+  - type: rest
+    port: 8081
+    namespace: avalara-crossborder-api
+    description: REST API for cross-border trade compliance.
+    resources:
+    - path: /v1/transactions
+      name: transactions
+      description: Cross-border tax calculations
+      operations:
+      - method: POST
+        name: calculate-import-duties
+        description: Calculate import duties and VAT for cross-border shipment
+        call: avatax.create-transaction
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/einvoicing/mandates
+      name: mandates
+      description: E-invoicing mandates by country
+      operations:
+      - method: GET
+        name: list-mandates
+        description: List country e-invoicing mandates
+        call: einvoicing.list-mandates
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9091
+    namespace: avalara-crossborder-mcp
+    transport: http
+    description: MCP server for AI-assisted cross-border compliance.
+    tools:
+    - name: calculate-import-duties
+      description: Calculate import duties, customs fees, and VAT for cross-border shipments
+      hints:
+        readOnly: false
+        openWorld: true
+      call: avatax.create-transaction
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: check-country-einvoicing-mandate
+      description: Check e-invoicing compliance requirements for a destination country
+      hints:
+        readOnly: true
+        openWorld: true
+      call: einvoicing.list-mandates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: submit-cross-border-einvoice
+      description: Submit a cross-border e-invoice for customs and VAT compliance
+      hints:
+        readOnly: false
+        openWorld: true
+      call: einvoicing.submit-document
+      outputParameters:
+      - type: object
+        mapping: $.

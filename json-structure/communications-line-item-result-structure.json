@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/communications-line-item-result-structure.json",
+  "description": "LineItemResult schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "ref": {
+      "type": "string",
+      "description": "Line item reference"
+    },
+    "txs": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TaxResult"
+      }
+    }
+  },
+  "name": "LineItemResult"
+}

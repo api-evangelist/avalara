@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/excise-excise-address-schema.json",
+  "title": "ExciseAddress",
+  "description": "ExciseAddress schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "line1": {
+      "type": "string"
+    },
+    "line2": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string",
+      "description": "State or province code"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO 3166 country code"
+    }
+  }
+}

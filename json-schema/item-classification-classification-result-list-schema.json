@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/item-classification-classification-result-list-schema.json",
+  "title": "ClassificationResultList",
+  "description": "ClassificationResultList schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ClassificationResult"
+      }
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/communications-geocode-request-schema.json",
+  "title": "GeocodeRequest",
+  "description": "GeocodeRequest schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "ref": {
+      "type": "string",
+      "description": "Reference ID"
+    },
+    "cass": {
+      "type": "boolean",
+      "description": "Whether to return CASS-certified address"
+    },
+    "addr": {
+      "type": "string",
+      "description": "Street address"
+    },
+    "city": {
+      "type": "string"
+    },
+    "st": {
+      "type": "string",
+      "description": "State abbreviation"
+    },
+    "zip": {
+      "type": "string",
+      "description": "ZIP code"
+    }
+  }
+}

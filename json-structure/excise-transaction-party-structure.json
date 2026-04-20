@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/excise-transaction-party-structure.json",
+  "description": "TransactionParty schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "companyId": {
+      "type": "string"
+    },
+    "locationId": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "$ref": "#/components/schemas/ExciseAddress"
+    },
+    "licenseNumber": {
+      "type": "string"
+    }
+  },
+  "name": "TransactionParty"
+}

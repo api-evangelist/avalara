@@ -1,0 +1,9 @@
+{
+  "version": "sample-value",
+  "authenticated": true,
+  "authenticationType": "None",
+  "authenticatedUserName": "Sample Name",
+  "authenticatedUserId": 42,
+  "authenticatedAccountId": 42,
+  "crmid": "12345"
+}

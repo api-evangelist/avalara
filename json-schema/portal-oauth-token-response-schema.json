@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/portal-oauth-token-response-schema.json",
+  "title": "TokenResponse",
+  "description": "TokenResponse schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "type": "string",
+      "description": "The OAuth 2.0 access token"
+    },
+    "token_type": {
+      "type": "string",
+      "enum": [
+        "Bearer"
+      ]
+    },
+    "expires_in": {
+      "type": "integer",
+      "description": "Token expiry time in seconds"
+    },
+    "scope": {
+      "type": "string",
+      "description": "Granted scopes"
+    },
+    "refresh_token": {
+      "type": "string",
+      "description": "Refresh token (if applicable)"
+    }
+  }
+}

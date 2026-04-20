@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/communications-calc-adj-request-structure.json",
+  "description": "CalcAdjRequest schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "cmpn": {
+      "$ref": "#/components/schemas/CompanyData"
+    },
+    "inv": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Invoice"
+      }
+    },
+    "adj": {
+      "type": "object",
+      "properties": {
+        "disc": {
+          "type": "int32",
+          "description": "Discount type"
+        },
+        "adj": {
+          "type": "int32",
+          "description": "Adjustment method"
+        }
+      }
+    }
+  },
+  "name": "CalcAdjRequest"
+}

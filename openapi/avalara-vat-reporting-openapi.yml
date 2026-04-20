@@ -19,59 +19,59 @@ externalDocs:
   description: VAT Reporting API Documentation
   url: https://developer.avalara.com/api-reference/vat-reporting/v1/
 servers:
-  - url: https://api.avalara.com/vat-reporting/v1
-    description: VAT Reporting API Production
+- url: https://api.avalara.com/vat-reporting/v1
+  description: VAT Reporting API Production
 tags:
-  - name: Filing Calendar
-    description: Manage VAT filing obligations and calendars
-  - name: Onboarding
-    description: Onboard companies for VAT reporting
-  - name: Returns
-    description: Manage and file VAT returns
-  - name: Transactions
-    description: Submit and manage VAT transactions
+- name: Filing Calendar
+  description: Manage VAT filing obligations and calendars
+- name: Onboarding
+  description: Onboard companies for VAT reporting
+- name: Returns
+  description: Manage and file VAT returns
+- name: Transactions
+  description: Submit and manage VAT transactions
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /returns:
     get:
       operationId: listReturns
-      summary: Avalara List VAT returns
+      summary: Avalara List VAT Returns
       description: Retrieves VAT returns with optional filtering by status and period.
       tags:
-        - Returns
+      - Returns
       parameters:
-        - name: status
-          in: query
-          schema:
-            type: string
-            enum:
-              - Draft
-              - Submitted
-              - Accepted
-              - Rejected
-        - name: periodStart
-          in: query
-          schema:
-            type: string
-            format: date
-        - name: periodEnd
-          in: query
-          schema:
-            type: string
-            format: date
-        - name: countryCode
-          in: query
-          schema:
-            type: string
-        - name: $top
-          in: query
-          schema:
-            type: integer
-        - name: $skip
-          in: query
-          schema:
-            type: integer
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Draft
+          - Submitted
+          - Accepted
+          - Rejected
+      - name: periodStart
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: periodEnd
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: countryCode
+        in: query
+        schema:
+          type: string
+      - name: $top
+        in: query
+        schema:
+          type: integer
+      - name: $skip
+        in: query
+        schema:
+          type: integer
       responses:
         '200':
           description: List of VAT returns
@@ -82,15 +82,15 @@ paths:
   /returns/{returnId}:
     get:
       operationId: getReturn
-      summary: Avalara Get a VAT return by ID
+      summary: Avalara Get a VAT Return by ID
       tags:
-        - Returns
+      - Returns
       parameters:
-        - name: returnId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: returnId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: VAT return details
@@ -101,16 +101,16 @@ paths:
   /returns/{returnId}/submit:
     post:
       operationId: submitReturn
-      summary: Avalara Submit a VAT return for filing
+      summary: Avalara Submit a VAT Return for Filing
       description: Submits a finalized VAT return to the relevant tax authority.
       tags:
-        - Returns
+      - Returns
       parameters:
-        - name: returnId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: returnId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Return submitted
@@ -121,12 +121,12 @@ paths:
   /transactions:
     post:
       operationId: submitTransactions
-      summary: Avalara Submit VAT transactions
+      summary: Avalara Submit VAT Transactions
       description: >-
         Submits a batch of transactions for VAT reporting. Transactions
         are validated and processed for inclusion in VAT returns.
       tags:
-        - Transactions
+      - Transactions
       requestBody:
         required: true
         content:
@@ -138,30 +138,30 @@ paths:
           description: Transactions accepted for processing
     get:
       operationId: listTransactions
-      summary: Avalara List submitted transactions
+      summary: Avalara List Submitted Transactions
       tags:
-        - Transactions
+      - Transactions
       parameters:
-        - name: $top
-          in: query
-          schema:
-            type: integer
-        - name: $skip
-          in: query
-          schema:
-            type: integer
+      - name: $top
+        in: query
+        schema:
+          type: integer
+      - name: $skip
+        in: query
+        schema:
+          type: integer
       responses:
         '200':
           description: List of transactions
   /onboarding:
     post:
       operationId: onboardCompany
-      summary: Avalara Onboard a company for VAT reporting
+      summary: Avalara Onboard a Company for VAT Reporting
       description: >-
         Initiates the onboarding process for a company to begin VAT
         reporting in one or more jurisdictions.
       tags:
-        - Onboarding
+      - Onboarding
       requestBody:
         required: true
         content:
@@ -174,17 +174,17 @@ paths:
   /filing-calendars:
     get:
       operationId: listFilingCalendars
-      summary: Avalara List filing calendar obligations
+      summary: Avalara List Filing Calendar Obligations
       description: >-
         Retrieves the filing calendar showing due dates and obligations
         for each jurisdiction and filing period.
       tags:
-        - Filing Calendar
+      - Filing Calendar
       parameters:
-        - name: countryCode
-          in: query
-          schema:
-            type: string
+      - name: countryCode
+        in: query
+        schema:
+          type: string
       responses:
         '200':
           description: Filing calendar entries
@@ -225,9 +225,9 @@ components:
         returnType:
           type: string
           enum:
-            - VATReturn
-            - ECListing
-            - Intrastat
+          - VATReturn
+          - ECListing
+          - Intrastat
         periodStart:
           type: string
           format: date
@@ -237,10 +237,10 @@ components:
         status:
           type: string
           enum:
-            - Draft
-            - Submitted
-            - Accepted
-            - Rejected
+          - Draft
+          - Submitted
+          - Accepted
+          - Rejected
         totalOutputVAT:
           type: number
           format: double
@@ -275,12 +275,12 @@ components:
         transactionType:
           type: string
           enum:
-            - Sale
-            - Purchase
-            - IntraCommunitySupply
-            - IntraCommunityAcquisition
-            - Export
-            - Import
+          - Sale
+          - Purchase
+          - IntraCommunitySupply
+          - IntraCommunityAcquisition
+          - Export
+          - Import
         invoiceNumber:
           type: string
         supplierVATNumber:
@@ -303,8 +303,8 @@ components:
     OnboardingRequest:
       type: object
       required:
-        - companyId
-        - countries
+      - companyId
+      - countries
       properties:
         companyId:
           type: string
@@ -322,9 +322,9 @@ components:
               filingFrequency:
                 type: string
                 enum:
-                  - Monthly
-                  - Quarterly
-                  - Annual
+                - Monthly
+                - Quarterly
+                - Annual
     FilingCalendarEntry:
       type: object
       properties:
@@ -346,7 +346,7 @@ components:
         status:
           type: string
           enum:
-            - Upcoming
-            - Due
-            - Overdue
-            - Filed
+          - Upcoming
+          - Due
+          - Overdue
+          - Filed

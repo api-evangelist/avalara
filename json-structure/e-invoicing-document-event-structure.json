@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/e-invoicing-document-event-structure.json",
+  "description": "DocumentEvent schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "eventDate": {
+      "type": "datetime"
+    },
+    "eventType": {
+      "type": "string"
+    },
+    "message": {
+      "type": "string"
+    }
+  },
+  "name": "DocumentEvent"
+}

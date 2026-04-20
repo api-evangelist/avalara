@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-rest-tax-rate-model-schema.json",
+  "title": "TaxRateModel",
+  "description": "TaxRateModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "totalRate": {
+      "type": "number",
+      "format": "double",
+      "description": "Total combined tax rate"
+    },
+    "rates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "rate": {
+            "type": "number",
+            "format": "double"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Country",
+              "State",
+              "County",
+              "City",
+              "Special"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

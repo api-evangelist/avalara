@@ -18,36 +18,36 @@ externalDocs:
   description: Shared Company Service API Documentation
   url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
 servers:
-  - url: https://api.avalara.com/shared/v1
-    description: Shared Company Service Production
+- url: https://api.avalara.com/shared/v1
+  description: Shared Company Service Production
 tags:
-  - name: Companies
-    description: Manage canonical company records
-  - name: Contacts
-    description: Manage company contacts
+- name: Companies
+  description: Manage canonical company records
+- name: Contacts
+  description: Manage company contacts
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /companies:
     get:
       operationId: listCompanies
-      summary: Avalara List companies
+      summary: Avalara List Companies
       description: Retrieves a list of canonical company records.
       tags:
-        - Companies
+      - Companies
       parameters:
-        - name: $filter
-          in: query
-          schema:
-            type: string
-        - name: $top
-          in: query
-          schema:
-            type: integer
-        - name: $skip
-          in: query
-          schema:
-            type: integer
+      - name: $filter
+        in: query
+        schema:
+          type: string
+      - name: $top
+        in: query
+        schema:
+          type: integer
+      - name: $skip
+        in: query
+        schema:
+          type: integer
       responses:
         '200':
           description: List of companies
@@ -57,9 +57,9 @@ paths:
                 $ref: '#/components/schemas/CompanyList'
     post:
       operationId: createCompany
-      summary: Avalara Create a company record
+      summary: Avalara Create a Company Record
       tags:
-        - Companies
+      - Companies
       requestBody:
         required: true
         content:
@@ -76,15 +76,15 @@ paths:
   /companies/{companyId}:
     get:
       operationId: getCompany
-      summary: Avalara Get a company by ID
+      summary: Avalara Get a Company by ID
       tags:
-        - Companies
+      - Companies
       parameters:
-        - name: companyId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: companyId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Company details
@@ -94,15 +94,15 @@ paths:
                 $ref: '#/components/schemas/SharedCompany'
     put:
       operationId: updateCompany
-      summary: Avalara Update a company record
+      summary: Avalara Update a Company Record
       tags:
-        - Companies
+      - Companies
       parameters:
-        - name: companyId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: companyId
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -114,30 +114,30 @@ paths:
           description: Company updated
     delete:
       operationId: deleteCompany
-      summary: Avalara Delete a company record
+      summary: Avalara Delete a Company Record
       tags:
-        - Companies
+      - Companies
       parameters:
-        - name: companyId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: companyId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '204':
           description: Company deleted
   /companies/{companyId}/contacts:
     get:
       operationId: listContacts
-      summary: Avalara List contacts for a company
+      summary: Avalara List Contacts for a Company
       tags:
-        - Contacts
+      - Contacts
       parameters:
-        - name: companyId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: companyId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: List of contacts
@@ -149,15 +149,15 @@ paths:
                   $ref: '#/components/schemas/SharedContact'
     post:
       operationId: createContact
-      summary: Avalara Create a contact
+      summary: Avalara Create a Contact
       tags:
-        - Contacts
+      - Contacts
       parameters:
-        - name: companyId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: companyId
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:

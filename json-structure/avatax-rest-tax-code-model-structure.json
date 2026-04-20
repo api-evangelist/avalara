@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-tax-code-model-structure.json",
+  "description": "TaxCodeModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32"
+    },
+    "companyId": {
+      "type": "int32"
+    },
+    "taxCode": {
+      "type": "string"
+    },
+    "taxCodeTypeId": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "isPhysical": {
+      "type": "boolean"
+    },
+    "isActive": {
+      "type": "boolean"
+    }
+  },
+  "name": "TaxCodeModel"
+}

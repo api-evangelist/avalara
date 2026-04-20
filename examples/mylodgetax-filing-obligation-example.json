@@ -1,0 +1,8 @@
+{
+  "jurisdiction": "sample-value",
+  "taxType": "sample-value",
+  "filingFrequency": "Monthly",
+  "nextDueDate": "2025-04-15",
+  "registrationRequired": true,
+  "registrationUrl": "sample-value"
+}

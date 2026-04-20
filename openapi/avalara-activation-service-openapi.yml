@@ -19,39 +19,39 @@ externalDocs:
   description: Activation Service API Documentation
   url: https://developer.avalara.com/api-reference/activationService/activationService/
 servers:
-  - url: https://api.avalara.com/activation/v1
-    description: Activation Service API Production
+- url: https://api.avalara.com/activation/v1
+  description: Activation Service API Production
 tags:
-  - name: Registrations
-    description: Manage partner registrations
+- name: Registrations
+  description: Manage partner registrations
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /registrations:
     get:
       operationId: listRegistrations
-      summary: Avalara List all registrations
+      summary: Avalara List All Registrations
       description: Retrieves all registrations for the authenticated partner.
       tags:
-        - Registrations
+      - Registrations
       parameters:
-        - name: status
-          in: query
-          schema:
-            type: string
-            enum:
-              - Pending
-              - Active
-              - Expired
-              - Cancelled
-        - name: $top
-          in: query
-          schema:
-            type: integer
-        - name: $skip
-          in: query
-          schema:
-            type: integer
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Pending
+          - Active
+          - Expired
+          - Cancelled
+      - name: $top
+        in: query
+        schema:
+          type: integer
+      - name: $skip
+        in: query
+        schema:
+          type: integer
       responses:
         '200':
           description: List of registrations
@@ -64,16 +64,16 @@ paths:
   /registrations/{registrationId}:
     get:
       operationId: getRegistration
-      summary: Avalara Get a registration by ID
+      summary: Avalara Get a Registration by ID
       description: Retrieves details for a specific registration.
       tags:
-        - Registrations
+      - Registrations
       parameters:
-        - name: registrationId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: registrationId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Registration details
@@ -123,10 +123,10 @@ components:
         status:
           type: string
           enum:
-            - Pending
-            - Active
-            - Expired
-            - Cancelled
+          - Pending
+          - Active
+          - Expired
+          - Cancelled
         product:
           type: string
           description: Avalara product registered for

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/item-classification-hs-code-detail-schema.json",
+  "title": "HSCodeDetail",
+  "description": "HSCodeDetail schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "hsCode": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "chapter": {
+      "type": "string"
+    },
+    "section": {
+      "type": "string"
+    },
+    "parentCode": {
+      "type": "string"
+    },
+    "dutyRate": {
+      "type": "string"
+    },
+    "unitOfMeasure": {
+      "type": "string"
+    }
+  }
+}

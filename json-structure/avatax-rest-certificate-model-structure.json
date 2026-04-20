@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-certificate-model-structure.json",
+  "description": "CertificateModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32"
+    },
+    "companyId": {
+      "type": "int32"
+    },
+    "signedDate": {
+      "type": "date"
+    },
+    "expirationDate": {
+      "type": "date"
+    },
+    "exemptionNumber": {
+      "type": "string"
+    },
+    "exemptPercentage": {
+      "type": "double"
+    },
+    "exemptionReason": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "int32"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "status": {
+      "type": "string"
+    },
+    "createdDate": {
+      "type": "datetime"
+    },
+    "modifiedDate": {
+      "type": "datetime"
+    }
+  },
+  "name": "CertificateModel"
+}

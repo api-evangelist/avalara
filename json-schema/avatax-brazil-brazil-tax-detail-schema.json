@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-brazil-brazil-tax-detail-schema.json",
+  "title": "BrazilTaxDetail",
+  "description": "BrazilTaxDetail schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "taxType": {
+      "type": "string",
+      "enum": [
+        "ICMS",
+        "ICMS_ST",
+        "IPI",
+        "PIS",
+        "COFINS",
+        "ISS",
+        "CSLL",
+        "IRRF",
+        "INSS",
+        "IOF"
+      ],
+      "description": "Brazilian tax type"
+    },
+    "taxBase": {
+      "type": "number",
+      "format": "double"
+    },
+    "taxRate": {
+      "type": "number",
+      "format": "double"
+    },
+    "taxAmount": {
+      "type": "number",
+      "format": "double"
+    },
+    "exemptAmount": {
+      "type": "number",
+      "format": "double"
+    },
+    "cstCode": {
+      "type": "string"
+    }
+  }
+}

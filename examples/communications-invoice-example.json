@@ -1,0 +1,9 @@
+{
+  "doc": "sample-value",
+  "cmmt": true,
+  "cust": 42,
+  "date": "2025-04-15T14:30:00Z",
+  "itms": [
+    "sample-value"
+  ]
+}

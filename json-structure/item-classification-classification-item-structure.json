@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/item-classification-classification-item-structure.json",
+  "description": "ClassificationItem schema from Avalara API",
+  "type": "object",
+  "required": [
+    "description"
+  ],
+  "properties": {
+    "itemCode": {
+      "type": "string",
+      "description": "Unique item identifier"
+    },
+    "description": {
+      "type": "string",
+      "description": "Product description for classification"
+    },
+    "summary": {
+      "type": "string",
+      "description": "Short product summary"
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Additional product attributes for classification"
+    }
+  },
+  "name": "ClassificationItem"
+}

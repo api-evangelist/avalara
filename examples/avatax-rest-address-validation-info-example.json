@@ -1,0 +1,10 @@
+{
+  "line1": "sample-value",
+  "line2": "sample-value",
+  "line3": "sample-value",
+  "city": "sample-value",
+  "region": "sample-value",
+  "postalCode": "US",
+  "country": "sample-value",
+  "textCase": "Default"
+}

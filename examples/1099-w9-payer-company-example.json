@@ -1,0 +1,14 @@
+{
+  "id": "12345",
+  "name": "Sample Name",
+  "ein": "sample-value",
+  "address": {
+    "line1": "sample-value",
+    "city": "sample-value",
+    "state": "sample-value",
+    "postalCode": "US"
+  },
+  "contactName": "Sample Name",
+  "contactPhone": "sample-value",
+  "contactEmail": "user@example.com"
+}

@@ -1,0 +1,12 @@
+{
+  "header": {
+    "transactionType": "Sale",
+    "companyLocation": "sample-value",
+    "documentCode": "US",
+    "transactionDate": "2025-04-15",
+    "currency": "BRL"
+  },
+  "lines": [
+    "sample-value"
+  ]
+}

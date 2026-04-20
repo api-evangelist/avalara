@@ -1,0 +1,16 @@
+{
+  "error": {
+    "code": "US",
+    "message": "sample-value",
+    "target": "sample-value",
+    "details": [
+      {
+        "code": "US",
+        "number": 42,
+        "message": "sample-value",
+        "description": "Sample description",
+        "faultCode": "US"
+      }
+    ]
+  }
+}

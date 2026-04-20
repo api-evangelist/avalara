@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/avatax-rest-fetch-result_-item-model-schema.json",
+  "title": "FetchResult_ItemModel",
+  "description": "FetchResult_ItemModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "@recordsetCount": {
+      "type": "integer"
+    },
+    "value": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ItemModel"
+      }
+    }
+  }
+}

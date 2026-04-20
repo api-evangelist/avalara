@@ -1,0 +1,10 @@
+{
+  "lineNumber": "sample-value",
+  "productCode": "US",
+  "unitOfMeasure": "GAL",
+  "quantity": 100.0,
+  "amount": 100.0,
+  "billOfLadingNumber": "sample-value",
+  "carrierName": "Sample Name",
+  "modeOfTransport": "Truck"
+}

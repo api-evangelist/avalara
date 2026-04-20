@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-error-result-structure.json",
+  "description": "ErrorResult schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "error": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "Machine-readable error code"
+        },
+        "message": {
+          "type": "string",
+          "description": "Human-readable error message"
+        },
+        "target": {
+          "type": "string",
+          "description": "The component that generated the error"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "string"
+              },
+              "number": {
+                "type": "int32"
+              },
+              "message": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "faultCode": {
+                "type": "string"
+              },
+              "helpLink": {
+                "type": "string"
+              },
+              "severity": {
+                "type": "string",
+                "enum": [
+                  "Error",
+                  "Warning",
+                  "Exception"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "name": "ErrorResult"
+}

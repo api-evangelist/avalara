@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/1099-w9-filing-submission-schema.json",
+  "title": "FilingSubmission",
+  "description": "FilingSubmission schema from Avalara API",
+  "type": "object",
+  "required": [
+    "taxYear",
+    "formIds"
+  ],
+  "properties": {
+    "taxYear": {
+      "type": "integer"
+    },
+    "formIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "corrected": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

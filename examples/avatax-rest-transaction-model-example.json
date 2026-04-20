@@ -1,0 +1,21 @@
+{
+  "id": 42,
+  "code": "US",
+  "companyId": 42,
+  "date": "2025-04-15",
+  "status": "Temporary",
+  "type": "sample-value",
+  "totalAmount": 100.0,
+  "totalTax": 100.0,
+  "totalTaxable": 100.0,
+  "totalExempt": 100.0,
+  "lines": [
+    "sample-value"
+  ],
+  "addresses": [
+    "sample-value"
+  ],
+  "summary": [
+    "sample-value"
+  ]
+}

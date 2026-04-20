@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-brazil-calculation-line-structure.json",
+  "description": "CalculationLine schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "lineCode": {
+      "type": "string"
+    },
+    "itemCode": {
+      "type": "string"
+    },
+    "numberOfItems": {
+      "type": "double"
+    },
+    "lineAmount": {
+      "type": "double"
+    },
+    "itemDescription": {
+      "type": "string"
+    },
+    "ncmCode": {
+      "type": "string",
+      "description": "NCM (Nomenclatura Comum do Mercosul) code"
+    },
+    "cstCode": {
+      "type": "string",
+      "description": "CST (Codigo de Situacao Tributaria) code"
+    },
+    "cfopCode": {
+      "type": "string",
+      "description": "CFOP (Codigo Fiscal de Operacoes e Prestacoes) code"
+    },
+    "originState": {
+      "type": "string",
+      "description": "Origin state code (UF)"
+    },
+    "destinationState": {
+      "type": "string",
+      "description": "Destination state code (UF)"
+    }
+  },
+  "name": "CalculationLine"
+}

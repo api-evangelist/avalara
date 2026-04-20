@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/e-invoicing-document-summary-structure.json",
+  "description": "DocumentSummary schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "documentType": {
+      "type": "string"
+    },
+    "invoiceNumber": {
+      "type": "string"
+    },
+    "senderName": {
+      "type": "string"
+    },
+    "recipientName": {
+      "type": "string"
+    },
+    "submissionDate": {
+      "type": "datetime"
+    },
+    "countryCode": {
+      "type": "string"
+    }
+  },
+  "name": "DocumentSummary"
+}

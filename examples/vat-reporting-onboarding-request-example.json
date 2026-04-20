@@ -1,0 +1,11 @@
+{
+  "companyId": "12345",
+  "companyName": "Sample Name",
+  "countries": [
+    {
+      "countryCode": "US",
+      "vatRegistrationNumber": "sample-value",
+      "filingFrequency": "Monthly"
+    }
+  ]
+}

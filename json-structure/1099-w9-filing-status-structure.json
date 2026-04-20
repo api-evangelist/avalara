@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/1099-w9-filing-status-structure.json",
+  "description": "FilingStatus schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "filingId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Processing",
+        "Accepted",
+        "AcceptedWithErrors",
+        "Rejected"
+      ]
+    },
+    "acceptedCount": {
+      "type": "int32"
+    },
+    "rejectedCount": {
+      "type": "int32"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "formId": {
+            "type": "string"
+          },
+          "errorCode": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "name": "FilingStatus"
+}

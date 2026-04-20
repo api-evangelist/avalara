@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-adjust-transaction-model-structure.json",
+  "description": "AdjustTransactionModel schema from Avalara API",
+  "type": "object",
+  "required": [
+    "adjustmentReason",
+    "newTransaction"
+  ],
+  "properties": {
+    "adjustmentReason": {
+      "type": "string",
+      "enum": [
+        "NotAdjusted",
+        "SourcingIssue",
+        "ReconciledWithGeneralLedger",
+        "ExemptCertApplied",
+        "PriceAdjusted",
+        "ProductReturned",
+        "ProductExchanged",
+        "BadDebt",
+        "Other"
+      ]
+    },
+    "adjustmentDescription": {
+      "type": "string"
+    },
+    "newTransaction": {
+      "$ref": "#/components/schemas/CreateTransactionModel"
+    }
+  },
+  "name": "AdjustTransactionModel"
+}

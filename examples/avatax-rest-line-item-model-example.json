@@ -1,0 +1,13 @@
+{
+  "number": "sample-value",
+  "quantity": 1,
+  "amount": 100.0,
+  "taxCode": "US",
+  "itemCode": "US",
+  "description": "Sample description",
+  "addresses": {
+    "shipFrom": "sample-value",
+    "shipTo": "sample-value"
+  },
+  "exemptionCode": "US"
+}

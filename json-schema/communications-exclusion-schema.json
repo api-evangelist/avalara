@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/communications-exclusion-schema.json",
+  "title": "Exclusion",
+  "description": "Exclusion schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "excl": {
+      "type": "integer",
+      "description": "Exclusion type"
+    },
+    "ctry": {
+      "type": "string"
+    },
+    "st": {
+      "type": "string"
+    },
+    "excl_name": {
+      "type": "string"
+    }
+  }
+}

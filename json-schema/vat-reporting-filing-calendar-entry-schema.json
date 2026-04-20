@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/vat-reporting-filing-calendar-entry-schema.json",
+  "title": "FilingCalendarEntry",
+  "description": "FilingCalendarEntry schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "countryCode": {
+      "type": "string"
+    },
+    "returnType": {
+      "type": "string"
+    },
+    "filingFrequency": {
+      "type": "string"
+    },
+    "periodStart": {
+      "type": "string",
+      "format": "date"
+    },
+    "periodEnd": {
+      "type": "string",
+      "format": "date"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Upcoming",
+        "Due",
+        "Overdue",
+        "Filed"
+      ]
+    }
+  }
+}

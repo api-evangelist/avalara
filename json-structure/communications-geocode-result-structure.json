@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/communications-geocode-result-structure.json",
+  "description": "GeocodeResult schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "ref": {
+      "type": "string"
+    },
+    "cass": {
+      "type": "object",
+      "properties": {
+        "addr": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "st": {
+          "type": "string"
+        },
+        "zip": {
+          "type": "string"
+        }
+      }
+    },
+    "cBlk": {
+      "type": "string",
+      "description": "Census block group"
+    },
+    "cTrc": {
+      "type": "string",
+      "description": "Census tract"
+    },
+    "err": {
+      "type": "string",
+      "description": "Error message if geocoding failed"
+    },
+    "geo": {
+      "type": "boolean",
+      "description": "Whether geocoding was successful"
+    },
+    "lat": {
+      "type": "double"
+    },
+    "long": {
+      "type": "double"
+    },
+    "pcd": {
+      "type": "int32",
+      "description": "PCode for the determined jurisdiction"
+    },
+    "fips": {
+      "type": "string",
+      "description": "FIPS code"
+    }
+  },
+  "name": "GeocodeResult"
+}

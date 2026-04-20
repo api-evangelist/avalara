@@ -1,0 +1,7 @@
+{
+  "payeeEmail": "user@example.com",
+  "payeeName": "Sample Name",
+  "companyId": "12345",
+  "expirationDays": 30,
+  "message": "sample-value"
+}

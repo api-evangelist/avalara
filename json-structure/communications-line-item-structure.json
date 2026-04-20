@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/communications-line-item-structure.json",
+  "description": "LineItem schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "ref": {
+      "type": "string",
+      "description": "Line item reference"
+    },
+    "from": {
+      "$ref": "#/components/schemas/Location"
+    },
+    "to": {
+      "$ref": "#/components/schemas/Location"
+    },
+    "chg": {
+      "type": "double",
+      "description": "Charge amount"
+    },
+    "line": {
+      "type": "int32",
+      "description": "Number of lines"
+    },
+    "loc": {
+      "type": "int32",
+      "description": "Number of locations"
+    },
+    "min": {
+      "type": "double",
+      "description": "Minutes"
+    },
+    "sale": {
+      "type": "int32",
+      "description": "Sale type (0=Wholesale, 1=Retail, 2=Consumed)"
+    },
+    "tran": {
+      "type": "int32",
+      "description": "Transaction type"
+    },
+    "serv": {
+      "type": "int32",
+      "description": "Service type"
+    }
+  },
+  "name": "LineItem"
+}

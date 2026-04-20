@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/vat-reporting-transaction-batch-schema.json",
+  "title": "TransactionBatch",
+  "description": "TransactionBatch schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "companyId": {
+      "type": "string"
+    },
+    "transactions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/VATTransaction"
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/e-invoicing-mandate-schema.json",
+  "title": "Mandate",
+  "description": "Mandate schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "mandateId": {
+      "type": "string"
+    },
+    "countryCode": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code"
+    },
+    "countryName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "supportedDocumentTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inputFormats": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "workflowId": {
+      "type": "string"
+    }
+  }
+}

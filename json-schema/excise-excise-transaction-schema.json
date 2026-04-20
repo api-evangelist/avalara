@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/excise-excise-transaction-schema.json",
+  "title": "ExciseTransaction",
+  "description": "ExciseTransaction schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "transactionId": {
+      "type": "string"
+    },
+    "invoiceNumber": {
+      "type": "string"
+    },
+    "transactionDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "transactionType": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Committed",
+        "Voided"
+      ]
+    },
+    "totalAmount": {
+      "type": "number",
+      "format": "double"
+    },
+    "totalTax": {
+      "type": "number",
+      "format": "double"
+    }
+  }
+}

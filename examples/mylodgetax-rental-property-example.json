@@ -1,0 +1,15 @@
+{
+  "propertyId": "12345",
+  "propertyName": "Sample Name",
+  "address": {
+    "line1": "sample-value",
+    "city": "sample-value",
+    "region": "sample-value",
+    "postalCode": "US",
+    "country": "sample-value"
+  },
+  "listingPlatforms": [
+    "sample-value"
+  ],
+  "propertyType": "House"
+}

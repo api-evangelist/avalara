@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/1099-w9-w9-form-schema.json",
+  "title": "W9Form",
+  "description": "W9Form schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "payeeName": {
+      "type": "string"
+    },
+    "businessName": {
+      "type": "string"
+    },
+    "taxClassification": {
+      "type": "string",
+      "enum": [
+        "Individual",
+        "C_Corporation",
+        "S_Corporation",
+        "Partnership",
+        "Trust",
+        "LLC",
+        "Other"
+      ]
+    },
+    "tin": {
+      "type": "string",
+      "description": "Taxpayer Identification Number (masked)"
+    },
+    "tinType": {
+      "type": "string",
+      "enum": [
+        "SSN",
+        "EIN"
+      ]
+    },
+    "address": {
+      "type": "object",
+      "properties": {
+        "line1": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        }
+      }
+    },
+    "signedDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Valid",
+        "Expired",
+        "Revoked"
+      ]
+    }
+  }
+}

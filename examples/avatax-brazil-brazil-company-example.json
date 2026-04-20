@@ -1,0 +1,9 @@
+{
+  "companyId": "12345",
+  "name": "Sample Name",
+  "cnpj": "sample-value",
+  "stateRegistration": "sample-value",
+  "municipalRegistration": "sample-value",
+  "taxRegime": "SimplesNacional",
+  "state": "sample-value"
+}

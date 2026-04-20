@@ -1,0 +1,12 @@
+{
+  "country": "sample-value",
+  "region": "sample-value",
+  "jurisType": "sample-value",
+  "jurisCode": "US",
+  "jurisName": "Sample Name",
+  "taxType": "sample-value",
+  "rate": 100.0,
+  "tax": 100.0,
+  "taxable": 100.0,
+  "exempt": 100.0
+}

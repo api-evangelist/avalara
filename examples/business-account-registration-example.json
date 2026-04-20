@@ -1,0 +1,15 @@
+{
+  "companyName": "Sample Name",
+  "firstName": "Sample Name",
+  "lastName": "Sample Name",
+  "email": "user@example.com",
+  "phoneNumber": "sample-value",
+  "address": {
+    "line1": "sample-value",
+    "city": "sample-value",
+    "region": "sample-value",
+    "postalCode": "US",
+    "country": "sample-value"
+  },
+  "partnerCode": "US"
+}

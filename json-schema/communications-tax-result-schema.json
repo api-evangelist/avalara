@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-schema/communications-tax-result-schema.json",
+  "title": "TaxResult",
+  "description": "TaxResult schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "bill": {
+      "type": "boolean",
+      "description": "Billable flag"
+    },
+    "cmpl": {
+      "type": "boolean",
+      "description": "Compliance flag"
+    },
+    "tm": {
+      "type": "number",
+      "format": "double",
+      "description": "Taxable measure"
+    },
+    "calc": {
+      "type": "integer",
+      "description": "Calculation type"
+    },
+    "cat": {
+      "type": "string",
+      "description": "Tax category"
+    },
+    "cid": {
+      "type": "integer",
+      "description": "Category ID"
+    },
+    "name": {
+      "type": "string",
+      "description": "Tax name"
+    },
+    "exm": {
+      "type": "number",
+      "format": "double",
+      "description": "Exempt amount"
+    },
+    "lns": {
+      "type": "integer",
+      "description": "Lines"
+    },
+    "min": {
+      "type": "number",
+      "format": "double",
+      "description": "Minutes"
+    },
+    "pcd": {
+      "type": "integer",
+      "description": "PCode"
+    },
+    "rate": {
+      "type": "number",
+      "format": "double",
+      "description": "Tax rate"
+    },
+    "sur": {
+      "type": "boolean",
+      "description": "Surcharge flag"
+    },
+    "tax": {
+      "type": "number",
+      "format": "double",
+      "description": "Tax amount"
+    },
+    "lvl": {
+      "type": "integer",
+      "description": "Tax level (Federal, State, County, Local)"
+    },
+    "tid": {
+      "type": "integer",
+      "description": "Tax type ID"
+    }
+  }
+}

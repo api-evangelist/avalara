@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-nexus-model-structure.json",
+  "description": "NexusModel schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32"
+    },
+    "companyId": {
+      "type": "int32"
+    },
+    "country": {
+      "type": "string",
+      "description": "Two-character ISO 3166 country code"
+    },
+    "region": {
+      "type": "string",
+      "description": "State or province code"
+    },
+    "jurisTypeId": {
+      "type": "string",
+      "enum": [
+        "STA",
+        "CTY",
+        "CIT",
+        "STJ",
+        "CNT"
+      ]
+    },
+    "jurisdictionTypeId": {
+      "type": "string"
+    },
+    "jurisCode": {
+      "type": "string"
+    },
+    "jurisName": {
+      "type": "string"
+    },
+    "effectiveDate": {
+      "type": "date"
+    },
+    "endDate": {
+      "type": "date"
+    },
+    "nexusTypeId": {
+      "type": "string",
+      "enum": [
+        "None",
+        "SalesOrSellersUseTax",
+        "SalesTax",
+        "SSTVolunteer",
+        "SSTNonVolunteer"
+      ]
+    },
+    "hasLocalNexus": {
+      "type": "boolean"
+    }
+  },
+  "name": "NexusModel"
+}

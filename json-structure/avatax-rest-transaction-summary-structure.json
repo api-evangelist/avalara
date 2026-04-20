@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-transaction-summary-structure.json",
+  "description": "TransactionSummary schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "country": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "jurisType": {
+      "type": "string"
+    },
+    "jurisCode": {
+      "type": "string"
+    },
+    "jurisName": {
+      "type": "string"
+    },
+    "taxType": {
+      "type": "string"
+    },
+    "rate": {
+      "type": "double"
+    },
+    "tax": {
+      "type": "double"
+    },
+    "taxable": {
+      "type": "double"
+    },
+    "exempt": {
+      "type": "double"
+    }
+  },
+  "name": "TransactionSummary"
+}

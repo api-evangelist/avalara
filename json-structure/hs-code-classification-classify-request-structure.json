@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/hs-code-classification-classify-request-structure.json",
+  "description": "ClassifyRequest schema from Avalara API",
+  "type": "object",
+  "required": [
+    "description",
+    "destinationCountry"
+  ],
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "Product description for classification"
+    },
+    "destinationCountry": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 destination country"
+    },
+    "originCountry": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 origin country"
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Additional product attributes"
+    },
+    "itemCode": {
+      "type": "string",
+      "description": "Product identifier"
+    }
+  },
+  "name": "ClassifyRequest"
+}

@@ -1,0 +1,13 @@
+{
+  "mandateId": "12345",
+  "countryCode": "US",
+  "countryName": "Sample Name",
+  "description": "Sample description",
+  "supportedDocumentTypes": [
+    "sample-value"
+  ],
+  "inputFormats": [
+    "sample-value"
+  ],
+  "workflowId": "12345"
+}

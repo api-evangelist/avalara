@@ -20,33 +20,33 @@ externalDocs:
   description: Excise Platform API Documentation
   url: https://developer.avalara.com/api-reference/excise/v1/
 servers:
-  - url: https://exciseapi.avalara.com/api/v1
-    description: Excise API Production
+- url: https://exciseapi.avalara.com/api/v1
+  description: Excise API Production
 tags:
-  - name: Business Entities
-    description: Manage business entity records
-  - name: Licenses
-    description: Manage excise licenses
-  - name: Locations
-    description: Manage business locations
-  - name: Products
-    description: Manage product registrations
-  - name: Tax Determination
-    description: Calculate excise taxes on transactions
-  - name: Transactions
-    description: Manage excise tax transactions
+- name: Business Entities
+  description: Manage business entity records
+- name: Licenses
+  description: Manage excise licenses
+- name: Locations
+  description: Manage business locations
+- name: Products
+  description: Manage product registrations
+- name: Tax Determination
+  description: Calculate excise taxes on transactions
+- name: Transactions
+  description: Manage excise tax transactions
 security:
-  - bearerAuth: []
+- bearerAuth: []
 paths:
   /TaxDetermination:
     post:
       operationId: calculateExciseTax
-      summary: Avalara Calculate excise taxes
+      summary: Avalara Calculate Excise Taxes
       description: >-
         Calculates excise taxes for a transaction containing one or more
         line items with product, origin, destination, and movement information.
       tags:
-        - Tax Determination
+      - Tax Determination
       requestBody:
         required: true
         content:
@@ -67,39 +67,39 @@ paths:
   /Transactions:
     get:
       operationId: listTransactions
-      summary: Avalara List excise transactions
+      summary: Avalara List Excise Transactions
       description: Retrieves a list of excise tax transactions.
       tags:
-        - Transactions
+      - Transactions
       parameters:
-        - name: startDate
-          in: query
-          schema:
-            type: string
-            format: date
-        - name: endDate
-          in: query
-          schema:
-            type: string
-            format: date
-        - name: pageNumber
-          in: query
-          schema:
-            type: integer
-            default: 1
-        - name: pageSize
-          in: query
-          schema:
-            type: integer
-            default: 50
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: pageNumber
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          default: 50
       responses:
         '200':
           description: List of transactions
     post:
       operationId: createTransaction
-      summary: Avalara Create an excise transaction
+      summary: Avalara Create an Excise Transaction
       tags:
-        - Transactions
+      - Transactions
       requestBody:
         required: true
         content:
@@ -116,15 +116,15 @@ paths:
   /Transactions/{transactionId}:
     get:
       operationId: getTransaction
-      summary: Avalara Retrieve an excise transaction
+      summary: Avalara Retrieve an Excise Transaction
       tags:
-        - Transactions
+      - Transactions
       parameters:
-        - name: transactionId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: transactionId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Transaction details
@@ -135,9 +135,9 @@ paths:
   /BusinessEntities:
     get:
       operationId: listBusinessEntities
-      summary: Avalara List business entities
+      summary: Avalara List Business Entities
       tags:
-        - Business Entities
+      - Business Entities
       responses:
         '200':
           description: List of business entities
@@ -149,9 +149,9 @@ paths:
                   $ref: '#/components/schemas/BusinessEntity'
     post:
       operationId: createBusinessEntity
-      summary: Avalara Create a business entity
+      summary: Avalara Create a Business Entity
       tags:
-        - Business Entities
+      - Business Entities
       requestBody:
         required: true
         content:
@@ -168,15 +168,15 @@ paths:
   /BusinessEntities/{entityId}:
     get:
       operationId: getBusinessEntity
-      summary: Avalara Get a business entity by ID
+      summary: Avalara Get a Business Entity by ID
       tags:
-        - Business Entities
+      - Business Entities
       parameters:
-        - name: entityId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: entityId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Business entity details
@@ -186,15 +186,15 @@ paths:
                 $ref: '#/components/schemas/BusinessEntity'
     put:
       operationId: updateBusinessEntity
-      summary: Avalara Update a business entity
+      summary: Avalara Update a Business Entity
       tags:
-        - Business Entities
+      - Business Entities
       parameters:
-        - name: entityId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: entityId
+        in: path
+        required: true
+        schema:
+          type: string
       requestBody:
         required: true
         content:
@@ -206,24 +206,24 @@ paths:
           description: Business entity updated
     delete:
       operationId: deleteBusinessEntity
-      summary: Avalara Delete a business entity
+      summary: Avalara Delete a Business Entity
       tags:
-        - Business Entities
+      - Business Entities
       parameters:
-        - name: entityId
-          in: path
-          required: true
-          schema:
-            type: string
+      - name: entityId
+        in: path
+        required: true
+        schema:
+          type: string
       responses:
         '204':
           description: Business entity deleted
   /Locations:
     get:
       operationId: listLocations
-      summary: Avalara List locations
+      summary: Avalara List Locations
       tags:
-        - Locations
+      - Locations
       responses:
         '200':
           description: List of locations
@@ -235,9 +235,9 @@ paths:
                   $ref: '#/components/schemas/ExciseLocation'
     post:
       operationId: createLocation
-      summary: Avalara Create a location
+      summary: Avalara Create a Location
       tags:
-        - Locations
+      - Locations
       requestBody:
         required: true
         content:
@@ -250,9 +250,9 @@ paths:
   /Products:
     get:
       operationId: listProducts
-      summary: Avalara List registered products
+      summary: Avalara List Registered Products
       tags:
-        - Products
+      - Products
       responses:
         '200':
           description: List of products
@@ -265,9 +265,9 @@ paths:
   /Licenses:
     get:
       operationId: listLicenses
-      summary: Avalara List excise licenses
+      summary: Avalara List Excise Licenses
       tags:
-        - Licenses
+      - Licenses
       responses:
         '200':
           description: List of licenses
@@ -300,8 +300,8 @@ components:
     TaxDeterminationRequest:
       type: object
       required:
-        - effectiveDate
-        - transactionLines
+      - effectiveDate
+      - transactionLines
       properties:
         effectiveDate:
           type: string
@@ -315,8 +315,8 @@ components:
         titleTransferCode:
           type: string
           enum:
-            - Origin
-            - Destination
+          - Origin
+          - Destination
           description: Title transfer point
         transactionType:
           type: string
@@ -353,11 +353,11 @@ components:
         unitOfMeasure:
           type: string
           enum:
-            - GAL
-            - LTR
-            - BBL
-            - TON
-            - EA
+          - GAL
+          - LTR
+          - BBL
+          - TON
+          - EA
           description: Unit of measure
         quantity:
           type: number
@@ -378,19 +378,19 @@ components:
         modeOfTransport:
           type: string
           enum:
-            - Truck
-            - Pipeline
-            - Rail
-            - Vessel
+          - Truck
+          - Pipeline
+          - Rail
+          - Vessel
     TaxDeterminationResponse:
       type: object
       properties:
         status:
           type: string
           enum:
-            - Success
-            - Error
-            - Partial
+          - Success
+          - Error
+          - Partial
         transactionLines:
           type: array
           items:
@@ -436,8 +436,8 @@ components:
         rateType:
           type: string
           enum:
-            - PerUnit
-            - Percentage
+          - PerUnit
+          - Percentage
     ExciseTransaction:
       type: object
       properties:
@@ -453,9 +453,9 @@ components:
         status:
           type: string
           enum:
-            - Pending
-            - Committed
-            - Voided
+          - Pending
+          - Committed
+          - Voided
         totalAmount:
           type: number
           format: double
@@ -488,12 +488,12 @@ components:
         locationType:
           type: string
           enum:
-            - Terminal
-            - Warehouse
-            - BulkPlant
-            - Retail
-            - Blender
-            - Refinery
+          - Terminal
+          - Warehouse
+          - BulkPlant
+          - Retail
+          - Blender
+          - Refinery
         address:
           $ref: '#/components/schemas/ExciseAddress'
         irsTerminalCode:
@@ -525,13 +525,13 @@ components:
         productCategory:
           type: string
           enum:
-            - MotorFuel
-            - Diesel
-            - Aviation
-            - Alcohol
-            - Tobacco
-            - NaturalGas
-            - Other
+          - MotorFuel
+          - Diesel
+          - Aviation
+          - Alcohol
+          - Tobacco
+          - NaturalGas
+          - Other
         unitOfMeasure:
           type: string
     ExciseLicense:
@@ -554,10 +554,10 @@ components:
         status:
           type: string
           enum:
-            - Active
-            - Expired
-            - Suspended
-            - Revoked
+          - Active
+          - Expired
+          - Suspended
+          - Revoked
     ErrorResponse:
       type: object
       properties:

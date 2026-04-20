@@ -1,0 +1,7 @@
+{
+  "entityId": "12345",
+  "entityName": "Sample Name",
+  "entityType": "sample-value",
+  "federalIdNumber": "sample-value",
+  "isActive": true
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/item-classification-classification-request-response-structure.json",
+  "description": "ClassificationRequestResponse schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "InProgress"
+      ]
+    },
+    "itemCount": {
+      "type": "int32"
+    },
+    "submittedDate": {
+      "type": "datetime"
+    }
+  },
+  "name": "ClassificationRequestResponse"
+}

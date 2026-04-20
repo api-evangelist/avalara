@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/avatax-rest-commit-transaction-model-structure.json",
+  "description": "CommitTransactionModel schema from Avalara API",
+  "type": "object",
+  "required": [
+    "commit"
+  ],
+  "properties": {
+    "commit": {
+      "type": "boolean",
+      "description": "Set to true to commit the transaction"
+    }
+  },
+  "name": "CommitTransactionModel"
+}

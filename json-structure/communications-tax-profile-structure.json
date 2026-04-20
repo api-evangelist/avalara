@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/communications-tax-profile-structure.json",
+  "description": "TaxProfile schema from Avalara API",
+  "type": "object",
+  "properties": {
+    "profileId": {
+      "type": "int32"
+    },
+    "profileName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "bundles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "bundleId": {
+            "type": "int32"
+          },
+          "bundleName": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "name": "TaxProfile"
+}

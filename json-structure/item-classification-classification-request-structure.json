@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/json-structure/item-classification-classification-request-structure.json",
+  "description": "ClassificationRequest schema from Avalara API",
+  "type": "object",
+  "required": [
+    "items"
+  ],
+  "properties": {
+    "items": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ClassificationItem"
+      }
+    },
+    "destinationCountry": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 destination country code"
+    }
+  },
+  "name": "ClassificationRequest"
+}
