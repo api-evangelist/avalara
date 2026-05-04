@@ -1,0 +1,276 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+provider: Avalara
+providerId: avalara
+publisherName: Avalara
+serviceCategory: API
+created: '2026-05-04'
+modified: '2026-05-04'
+tags:
+  - Taxes
+  - FinOps
+  - Cost Management
+  - FOCUS
+description: FinOps framework definition for the Avalara API surface. Provides a FOCUS-aligned mapping
+  for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
+principles:
+  - name: Visibility
+    description: Make API consumption costs visible to engineering, product, and finance teams in near
+      real-time.
+  - name: Allocation
+    description: Tag every chargeable API call with the consuming team, environment, application, and
+      feature so cost can be allocated.
+  - name: Optimization
+    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
+      cost per useful unit of work.
+  - name: Accountability
+    description: Establish budget owners and chargeback or showback flows for each consuming team.
+domains:
+  - name: Understand Usage and Cost
+    capabilities:
+      - Data Ingestion
+      - Allocation
+      - Reporting and Analytics
+      - Anomaly Management
+  - name: Quantify Business Value
+    capabilities:
+      - Planning and Estimating
+      - Forecasting
+      - Budgeting
+      - Benchmarking
+      - Unit Economics
+  - name: Optimize Usage and Cost
+    capabilities:
+      - Architecting for Cloud
+      - Rate Optimization
+      - Workload Optimization
+      - Cloud Sustainability
+      - Licensing and SaaS
+  - name: Manage the FinOps Practice
+    capabilities:
+      - FinOps Practice Operations
+      - FinOps Education and Enablement
+      - Invoicing and Chargeback
+      - Onboarding Workloads
+      - Intersecting Disciplines
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Credit
+    - Adjustment
+  chargeFrequency: Recurring
+focusColumns:
+  ServiceName: Avalara
+  ServiceCategory: Developer Tools / API
+  ProviderName: Avalara
+  PublisherName: Avalara
+  InvoiceIssuerName: Avalara
+  PricingCategory: Usage-Based
+  PricingUnit: request
+  BillingCurrency: USD
+  ChargeCategory: Usage
+meters:
+  - name: api_requests
+    description: Count of billable API requests
+    unit: request
+    aggregation: sum
+    dimensions:
+      - api
+      - endpoint
+      - tier
+      - region
+      - consumer
+  - name: data_egress
+    description: Bytes returned over the network in API responses
+    unit: GB
+    aggregation: sum
+    dimensions:
+      - api
+      - region
+      - consumer
+  - name: compute_seconds
+    description: Server-side compute consumed by the request, where applicable
+    unit: second
+    aggregation: sum
+    dimensions:
+      - api
+      - endpoint
+      - tier
+apis:
+  - name: Avalara
+    baseURL: ''
+    tags:
+      - Taxes
+    serviceName: Avalara
+    serviceCategory: API
+  - name: AvaTax APIs
+    baseURL: ''
+    tags:
+      - Sales Tax
+      - Taxes
+      - VAT
+    serviceName: AvaTax APIs
+    serviceCategory: API
+  - name: AvaTax SOAP API
+    baseURL: ''
+    tags:
+      - SOAP
+      - Taxes
+    serviceName: AvaTax SOAP API
+    serviceCategory: API
+  - name: Communications Tax API
+    baseURL: ''
+    tags:
+      - Communications
+      - Taxes
+      - Telecom
+    serviceName: Communications Tax API
+    serviceCategory: API
+  - name: Excise Platform API
+    baseURL: ''
+    tags:
+      - Excise
+      - Taxes
+    serviceName: Excise Platform API
+    serviceCategory: API
+  - name: Item Classification API
+    baseURL: ''
+    tags:
+      - Classification
+      - HS Codes
+      - Taxes
+    serviceName: Item Classification API
+    serviceCategory: API
+  - name: Avalara Tax Content for Retail Configuration API
+    baseURL: ''
+    tags:
+      - Point of Sale
+      - Retail
+      - Taxes
+    serviceName: Avalara Tax Content for Retail Configuration API
+    serviceCategory: API
+  - name: AvaTax Brazil API
+    baseURL: ''
+    tags:
+      - Brazil
+      - Taxes
+    serviceName: AvaTax Brazil API
+    serviceCategory: API
+  - name: VAT Reporting API
+    baseURL: ''
+    tags:
+      - Reporting
+      - Taxes
+      - VAT
+    serviceName: VAT Reporting API
+    serviceCategory: API
+  - name: MyLodgeTax API
+    baseURL: ''
+    tags:
+      - Lodging
+      - Short-Term Rental
+      - Taxes
+    serviceName: MyLodgeTax API
+    serviceCategory: API
+  - name: CertCapture API
+    baseURL: ''
+    tags:
+      - Certificates
+      - Exemptions
+      - Taxes
+    serviceName: CertCapture API
+    serviceCategory: API
+  - name: E-Invoicing REST API
+    baseURL: ''
+    tags:
+      - Compliance
+      - E-Invoicing
+      - Taxes
+    serviceName: E-Invoicing REST API
+    serviceCategory: API
+  - name: Activation Service API
+    baseURL: ''
+    tags:
+      - Registration
+      - Taxes
+    serviceName: Activation Service API
+    serviceCategory: API
+  - name: Avalara Business API
+    baseURL: ''
+    tags:
+      - Business
+      - Orders
+      - Taxes
+    serviceName: Avalara Business API
+    serviceCategory: API
+  - name: Portal OAuth API
+    baseURL: ''
+    tags:
+      - Authentication
+      - OAuth
+      - Taxes
+    serviceName: Portal OAuth API
+    serviceCategory: API
+  - name: Shared Company Service API
+    baseURL: ''
+    tags:
+      - Company Management
+      - Taxes
+    serviceName: Shared Company Service API
+    serviceCategory: API
+  - name: Automated Tariff Code Classification API
+    baseURL: ''
+    tags:
+      - Classification
+      - HS Codes
+      - Tariff
+      - Taxes
+    serviceName: Automated Tariff Code Classification API
+    serviceCategory: API
+  - name: Self-Serve Tariff Classification API
+    baseURL: ''
+    tags:
+      - Cross-Border
+      - Tariff
+      - Taxes
+    serviceName: Self-Serve Tariff Classification API
+    serviceCategory: API
+  - name: 1099 & W-9 API
+    baseURL: ''
+    tags:
+      - Tax Forms
+      - Taxes
+      - W-9
+    serviceName: 1099 & W-9 API
+    serviceCategory: API
+  - name: License Guidance Order API
+    baseURL: ''
+    tags:
+      - Licensing
+      - Registration
+      - Taxes
+    serviceName: License Guidance Order API
+    serviceCategory: API
+unitEconomics:
+  - name: Cost per 1K Requests
+    metric: billed_cost / (api_requests / 1000)
+    target: TBD
+  - name: Cost per Active Consumer
+    metric: billed_cost / active_consumers
+    target: TBD
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
+  - FN: Avalara Developer Relations
+    email: developer.relations@avalara.com
