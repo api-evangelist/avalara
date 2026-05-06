@@ -1,8 +1,8 @@
-naftiko: 1.0.0-alpha1
+naftiko: 1.0.0-alpha2
 info:
   label: Avalara Cross-Border Trade Compliance
-  description: Workflow for cross-border trade combining tariff classification, VAT calculation, and e-invoicing mandates. Used by international trade teams and importers/exporters to automate customs
-    and tax compliance.
+  description: Workflow for cross-border trade combining tariff classification, VAT calculation, and e-invoicing mandates.
+    Used by international trade teams and importers/exporters to automate customs and tax compliance.
   tags:
   - Avalara
   - Cross-Border
@@ -11,7 +11,7 @@ info:
   - E-Invoicing
   - VAT
   created: '2026-04-19'
-  modified: '2026-04-19'
+  modified: '2026-05-06'
 binds:
 - namespace: env
   keys:
@@ -20,10 +20,99 @@ binds:
     AVALARA_BEARER_TOKEN: AVALARA_BEARER_TOKEN
 capability:
   consumes:
-  - import: avatax
-    location: ./shared/avatax.yaml
-  - import: einvoicing
-    location: ./shared/einvoicing.yaml
+  - type: http
+    namespace: avatax
+    baseUri: https://rest.avatax.com
+    description: AvaTax REST v2 API
+    authentication:
+      type: basic
+      username: '{{AVALARA_USERNAME}}'
+      password: '{{AVALARA_PASSWORD}}'
+    resources:
+    - name: transactions
+      path: /api/v2/companies/{companyCode}/transactions
+      description: Tax transactions
+      operations:
+      - name: create-transaction
+        method: POST
+        description: Create a transaction and calculate tax
+        inputParameters:
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+          description: Company code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: list-transactions
+        method: GET
+        description: List transactions for a company
+        inputParameters:
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+          description: Company code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: addresses
+      path: /api/v2/addresses/resolve
+      description: Address validation and tax jurisdiction determination
+      operations:
+      - name: resolve-address
+        method: GET
+        description: Validate and resolve a US or Canada address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  - type: http
+    namespace: einvoicing
+    baseUri: https://einvoicing.api.avalara.com
+    description: Avalara E-Invoicing REST API
+    authentication:
+      type: bearer
+      token: '{{AVALARA_BEARER_TOKEN}}'
+    resources:
+    - name: mandates
+      path: /einvoicing/v1/mandates
+      description: E-invoicing mandates by country
+      operations:
+      - name: list-mandates
+        method: GET
+        description: List supported e-invoicing mandates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: documents
+      path: /einvoicing/v1/documents
+      description: E-invoicing document submissions
+      operations:
+      - name: submit-document
+        method: POST
+        description: Submit an e-invoice document for compliance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: list-documents
+        method: GET
+        description: List submitted e-invoice documents
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
   exposes:
   - type: rest
     port: 8081
