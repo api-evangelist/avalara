@@ -503,6 +503,26 @@ created: '2025-11-19'
 modified: '2026-04-19'
 position: Consumer
 description: Avalara helps businesses of all sizes get tax compliance right. We deliver cloud-based solutions that work with existing business applications to calculate tax accurately and file returns automatically.
+integrations:
+  - name: Avalara
+  - name: Developer
+  - name: down arrow
+  - name: arrow
+  - name: check
+  - name: APIs
+  - name: MCP servers
+  - name: A2A
+  - name: AvaTax
+  - name: AvaTax Brazil
+  - name: AvaTax Cross-Border
+  - name: AvaTax for Communications
+  - name: AvaTax for Excise
+  - name: Avalara Tax Content
+  - name: Tariff Code Classification
+  - name: Avalara Partners
+  - name: Webinars
+  - name: Blogs
+  - name: University
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
