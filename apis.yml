@@ -399,7 +399,7 @@ common:
     name: Swagger
     type: Swagger
   - url: https://developer.avalara.com/get-started/
-    type: Getting Started
+    type: GettingStarted
   - url: https://status.avalara.com/
     name: Avalara Status
     type: StatusPage
