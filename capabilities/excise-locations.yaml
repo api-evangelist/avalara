@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara Excise Platform API — Locations
+  description: 'Avalara Excise Platform API — Locations. 2 operations. Lead operation: Avalara List Locations. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Locations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: excise-locations
+    baseUri: https://exciseapi.avalara.com/api/v1
+    description: Avalara Excise Platform API — Locations business capability. Self-contained, no shared references.
+    resources:
+    - name: Locations
+      path: /Locations
+      operations:
+      - name: listlocations
+        method: GET
+        description: Avalara List Locations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createlocation
+        method: POST
+        description: Avalara Create a Location
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: excise-locations-rest
+    port: 8080
+    description: REST adapter for Avalara Excise Platform API — Locations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/locations
+      name: locations
+      description: REST surface for Locations.
+      operations:
+      - method: GET
+        name: listlocations
+        description: Avalara List Locations
+        call: excise-locations.listlocations
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createlocation
+        description: Avalara Create a Location
+        call: excise-locations.createlocation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: excise-locations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara Excise Platform API — Locations. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-list-locations
+      description: Avalara List Locations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: excise-locations.listlocations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-create-location
+      description: Avalara Create a Location
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: excise-locations.createlocation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

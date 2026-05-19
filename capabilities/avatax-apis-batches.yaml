@@ -1,0 +1,464 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — Batches
+  description: 'Avalara AvaTax APIs — Batches. 8 operations. Lead operation: Avalara QueryBatches. Self-contained Naftiko
+    capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Batches
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-batches
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — Batches business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-batches
+      path: /api/v2/batches
+      operations:
+      - name: get
+        method: GET
+        description: Avalara QueryBatches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+    - name: api-v2-companies-companyId-batches
+      path: /api/v2/companies/{companyId}/batches
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateBatches
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: get
+        method: GET
+        description: Avalara ListBatchesByCompany
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyId-batches-transactions
+      path: /api/v2/companies/{companyId}/batches/transactions
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateTransactionBatch
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyId-batches-batchId-files-id-attachment
+      path: /api/v2/companies/{companyId}/batches/{batchId}/files/{id}/attachment
+      operations:
+      - name: get
+        method: GET
+        description: Avalara DownloadBatch
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: batchId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyId-batches-id
+      path: /api/v2/companies/{companyId}/batches/{id}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteBatch
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: get
+        method: GET
+        description: Avalara GetBatch
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyId-batches-id-cancel
+      path: /api/v2/companies/{companyId}/batches/{id}/cancel
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CancelBatch
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-batches-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — Batches. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v2/batches
+      name: api-v2-batches
+      description: REST surface for api-v2-batches.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara QueryBatches
+        call: avatax-apis-batches.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/batches
+      name: api-v2-companies-companyid-batches
+      description: REST surface for api-v2-companies-companyId-batches.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateBatches
+        call: avatax-apis-batches.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara ListBatchesByCompany
+        call: avatax-apis-batches.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/batches/transactions
+      name: api-v2-companies-companyid-batches-transactions
+      description: REST surface for api-v2-companies-companyId-batches-transactions.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateTransactionBatch
+        call: avatax-apis-batches.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/batches/{batchid}/files/{id}/attachment
+      name: api-v2-companies-companyid-batches-batchid-files-id-attachment
+      description: REST surface for api-v2-companies-companyId-batches-batchId-files-id-attachment.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara DownloadBatch
+        call: avatax-apis-batches.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          batchId: rest.batchId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/batches/{id}
+      name: api-v2-companies-companyid-batches-id
+      description: REST surface for api-v2-companies-companyId-batches-id.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteBatch
+        call: avatax-apis-batches.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara GetBatch
+        call: avatax-apis-batches.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/batches/{id}/cancel
+      name: api-v2-companies-companyid-batches-id-cancel
+      description: REST surface for api-v2-companies-companyId-batches-id-cancel.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CancelBatch
+        call: avatax-apis-batches.post
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-batches-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — Batches. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: avalara-querybatches
+      description: Avalara QueryBatches
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-batches.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-createbatches
+      description: Avalara CreateBatches
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-batches.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-listbatchesbycompany
+      description: Avalara ListBatchesByCompany
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-batches.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-createtransactionbatch
+      description: Avalara CreateTransactionBatch
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-batches.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-downloadbatch
+      description: Avalara DownloadBatch
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-batches.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        batchId: tools.batchId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deletebatch
+      description: Avalara DeleteBatch
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-batches.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getbatch
+      description: Avalara GetBatch
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-batches.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-cancelbatch
+      description: Avalara CancelBatch
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-batches.post
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

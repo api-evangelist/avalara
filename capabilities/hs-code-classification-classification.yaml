@@ -1,0 +1,216 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara Automated Tariff Code Classification API — Classification
+  description: 'Avalara Automated Tariff Code Classification API — Classification. 4 operations. Lead operation: Avalara Classify
+    a Product. Self-contained Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Classification
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: hs-code-classification-classification
+    baseUri: https://api.avalara.com/classification/v1
+    description: Avalara Automated Tariff Code Classification API — Classification business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: classify
+      path: /classify
+      operations:
+      - name: classifyproduct
+        method: POST
+        description: Avalara Classify a Product
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: classify-batch
+      path: /classify/batch
+      operations:
+      - name: classifybatch
+        method: POST
+        description: Avalara Classify a Batch of Products
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: hscodes-hsCode
+      path: /hscodes/{hsCode}
+      operations:
+      - name: gethscode
+        method: GET
+        description: Avalara Look Up an HS Code
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: hsCode
+          in: path
+          type: string
+          required: true
+        - name: country
+          in: query
+          type: string
+          description: Country for country-specific tariff details
+    - name: hscodes-hsCode-hierarchy
+      path: /hscodes/{hsCode}/hierarchy
+      operations:
+      - name: gethscodehierarchy
+        method: GET
+        description: Avalara Get HS Code Hierarchy
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: hsCode
+          in: path
+          type: string
+          required: true
+        - name: country
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: hs-code-classification-classification-rest
+    port: 8080
+    description: REST adapter for Avalara Automated Tariff Code Classification API — Classification. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/classify
+      name: classify
+      description: REST surface for classify.
+      operations:
+      - method: POST
+        name: classifyproduct
+        description: Avalara Classify a Product
+        call: hs-code-classification-classification.classifyproduct
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/classify/batch
+      name: classify-batch
+      description: REST surface for classify-batch.
+      operations:
+      - method: POST
+        name: classifybatch
+        description: Avalara Classify a Batch of Products
+        call: hs-code-classification-classification.classifybatch
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hscodes/{hscode}
+      name: hscodes-hscode
+      description: REST surface for hscodes-hsCode.
+      operations:
+      - method: GET
+        name: gethscode
+        description: Avalara Look Up an HS Code
+        call: hs-code-classification-classification.gethscode
+        with:
+          hsCode: rest.hsCode
+          country: rest.country
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hscodes/{hscode}/hierarchy
+      name: hscodes-hscode-hierarchy
+      description: REST surface for hscodes-hsCode-hierarchy.
+      operations:
+      - method: GET
+        name: gethscodehierarchy
+        description: Avalara Get HS Code Hierarchy
+        call: hs-code-classification-classification.gethscodehierarchy
+        with:
+          hsCode: rest.hsCode
+          country: rest.country
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: hs-code-classification-classification-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara Automated Tariff Code Classification API — Classification. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: avalara-classify-product
+      description: Avalara Classify a Product
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: hs-code-classification-classification.classifyproduct
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-classify-batch-products
+      description: Avalara Classify a Batch of Products
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: hs-code-classification-classification.classifybatch
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-look-up-hs-code
+      description: Avalara Look Up an HS Code
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hs-code-classification-classification.gethscode
+      with:
+        hsCode: tools.hsCode
+        country: tools.country
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-get-hs-code-hierarchy
+      description: Avalara Get HS Code Hierarchy
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: hs-code-classification-classification.gethscodehierarchy
+      with:
+        hsCode: tools.hsCode
+        country: tools.country
+      outputParameters:
+      - type: object
+        mapping: $.

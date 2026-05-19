@@ -1,0 +1,79 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax REST API — Subscriptions
+  description: 'Avalara AvaTax REST API — Subscriptions. 1 operations. Lead operation: Avalara List Subscriptions for an Account.
+    Self-contained Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Subscriptions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-rest-subscriptions
+    baseUri: https://rest.avatax.com
+    description: Avalara AvaTax REST API — Subscriptions business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-accounts-id-subscriptions
+      path: /api/v2/accounts/{id}/subscriptions
+      operations:
+      - name: listsubscriptionsbyaccount
+        method: GET
+        description: Avalara List Subscriptions for an Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: integer
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: avatax-rest-subscriptions-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax REST API — Subscriptions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/accounts/{id}/subscriptions
+      name: api-v2-accounts-id-subscriptions
+      description: REST surface for api-v2-accounts-id-subscriptions.
+      operations:
+      - method: GET
+        name: listsubscriptionsbyaccount
+        description: Avalara List Subscriptions for an Account
+        call: avatax-rest-subscriptions.listsubscriptionsbyaccount
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-rest-subscriptions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax REST API — Subscriptions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-list-subscriptions-account
+      description: Avalara List Subscriptions for an Account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-rest-subscriptions.listsubscriptionsbyaccount
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,342 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — JurisdictionOverrides
+  description: 'Avalara AvaTax APIs — JurisdictionOverrides. 6 operations. Lead operation: Avalara CreateJurisdictionOverrides.
+    Self-contained Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - JurisdictionOverrides
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-jurisdictionoverrides
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — JurisdictionOverrides business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-accounts-accountId-jurisdictionoverrides
+      path: /api/v2/accounts/{accountId}/jurisdictionoverrides
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateJurisdictionOverrides
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: get
+        method: GET
+        description: Avalara ListJurisdictionOverridesByAccount
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: accountId
+          in: path
+          type: string
+          required: true
+    - name: api-v2-accounts-accountId-jurisdictionoverrides-id
+      path: /api/v2/accounts/{accountId}/jurisdictionoverrides/{id}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteJurisdictionOverride
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: get
+        method: GET
+        description: Avalara GetJurisdictionOverride
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: put
+        method: PUT
+        description: Avalara UpdateJurisdictionOverride
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-jurisdictionoverrides
+      path: /api/v2/jurisdictionoverrides
+      operations:
+      - name: get
+        method: GET
+        description: Avalara QueryJurisdictionOverrides
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-jurisdictionoverrides-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — JurisdictionOverrides. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/accounts/{accountid}/jurisdictionoverrides
+      name: api-v2-accounts-accountid-jurisdictionoverrides
+      description: REST surface for api-v2-accounts-accountId-jurisdictionoverrides.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateJurisdictionOverrides
+        call: avatax-apis-jurisdictionoverrides.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          accountId: rest.accountId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara ListJurisdictionOverridesByAccount
+        call: avatax-apis-jurisdictionoverrides.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/accounts/{accountid}/jurisdictionoverrides/{id}
+      name: api-v2-accounts-accountid-jurisdictionoverrides-id
+      description: REST surface for api-v2-accounts-accountId-jurisdictionoverrides-id.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteJurisdictionOverride
+        call: avatax-apis-jurisdictionoverrides.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          accountId: rest.accountId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara GetJurisdictionOverride
+        call: avatax-apis-jurisdictionoverrides.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          accountId: rest.accountId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Avalara UpdateJurisdictionOverride
+        call: avatax-apis-jurisdictionoverrides.put
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          accountId: rest.accountId
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/jurisdictionoverrides
+      name: api-v2-jurisdictionoverrides
+      description: REST surface for api-v2-jurisdictionoverrides.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara QueryJurisdictionOverrides
+        call: avatax-apis-jurisdictionoverrides.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-jurisdictionoverrides-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — JurisdictionOverrides. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: avalara-createjurisdictionoverrides
+      description: Avalara CreateJurisdictionOverrides
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-jurisdictionoverrides.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        accountId: tools.accountId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-listjurisdictionoverridesbyaccount
+      description: Avalara ListJurisdictionOverridesByAccount
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-jurisdictionoverrides.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        accountId: tools.accountId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deletejurisdictionoverride
+      description: Avalara DeleteJurisdictionOverride
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-jurisdictionoverrides.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        accountId: tools.accountId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getjurisdictionoverride
+      description: Avalara GetJurisdictionOverride
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-jurisdictionoverrides.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        accountId: tools.accountId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-updatejurisdictionoverride
+      description: Avalara UpdateJurisdictionOverride
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: avatax-apis-jurisdictionoverrides.put
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        accountId: tools.accountId
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-queryjurisdictionoverrides
+      description: Avalara QueryJurisdictionOverrides
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-jurisdictionoverrides.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+      outputParameters:
+      - type: object
+        mapping: $.

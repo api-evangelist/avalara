@@ -1,0 +1,607 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — Accounts
+  description: 'Avalara AvaTax APIs — Accounts. 11 operations. Lead operation: Avalara QueryAccounts. Self-contained Naftiko
+    capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Accounts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-accounts
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — Accounts business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-accounts
+      path: /api/v2/accounts
+      operations:
+      - name: get
+        method: GET
+        description: Avalara QueryAccounts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+    - name: api-v2-accounts-id
+      path: /api/v2/accounts/{id}
+      operations:
+      - name: get
+        method: GET
+        description: Avalara GetAccount
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: api-v2-accounts-id-activate
+      path: /api/v2/accounts/{id}/activate
+      operations:
+      - name: post
+        method: POST
+        description: Avalara ActivateAccount
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-accounts-id-audit
+      path: /api/v2/accounts/{id}/audit
+      operations:
+      - name: get
+        method: GET
+        description: Avalara AuditAccount
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: api-v2-accounts-id-configuration
+      path: /api/v2/accounts/{id}/configuration
+      operations:
+      - name: get
+        method: GET
+        description: Avalara GetAccountConfiguration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: post
+        method: POST
+        description: Avalara SetAccountConfiguration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-accounts-id-licensekey
+      path: /api/v2/accounts/{id}/licensekey
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateLicenseKey
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-accounts-id-licensekey-licensekeyname
+      path: /api/v2/accounts/{id}/licensekey/{licensekeyname}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteLicenseKey
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: licensekeyname
+          in: path
+          type: string
+          required: true
+      - name: get
+        method: GET
+        description: Avalara GetLicenseKey
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: licensekeyname
+          in: path
+          type: string
+          required: true
+    - name: api-v2-accounts-id-licensekeys
+      path: /api/v2/accounts/{id}/licensekeys
+      operations:
+      - name: get
+        method: GET
+        description: Avalara GetLicenseKeys
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: api-v2-accounts-id-resetlicensekey
+      path: /api/v2/accounts/{id}/resetlicensekey
+      operations:
+      - name: post
+        method: POST
+        description: Avalara AccountResetLicenseKey
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-accounts-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — Accounts. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/accounts
+      name: api-v2-accounts
+      description: REST surface for api-v2-accounts.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara QueryAccounts
+        call: avatax-apis-accounts.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/accounts/{id}
+      name: api-v2-accounts-id
+      description: REST surface for api-v2-accounts-id.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara GetAccount
+        call: avatax-apis-accounts.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/accounts/{id}/activate
+      name: api-v2-accounts-id-activate
+      description: REST surface for api-v2-accounts-id-activate.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara ActivateAccount
+        call: avatax-apis-accounts.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/accounts/{id}/audit
+      name: api-v2-accounts-id-audit
+      description: REST surface for api-v2-accounts-id-audit.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara AuditAccount
+        call: avatax-apis-accounts.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/accounts/{id}/configuration
+      name: api-v2-accounts-id-configuration
+      description: REST surface for api-v2-accounts-id-configuration.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara GetAccountConfiguration
+        call: avatax-apis-accounts.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Avalara SetAccountConfiguration
+        call: avatax-apis-accounts.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/accounts/{id}/licensekey
+      name: api-v2-accounts-id-licensekey
+      description: REST surface for api-v2-accounts-id-licensekey.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateLicenseKey
+        call: avatax-apis-accounts.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/accounts/{id}/licensekey/{licensekeyname}
+      name: api-v2-accounts-id-licensekey-licensekeyname
+      description: REST surface for api-v2-accounts-id-licensekey-licensekeyname.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteLicenseKey
+        call: avatax-apis-accounts.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+          licensekeyname: rest.licensekeyname
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara GetLicenseKey
+        call: avatax-apis-accounts.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+          licensekeyname: rest.licensekeyname
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/accounts/{id}/licensekeys
+      name: api-v2-accounts-id-licensekeys
+      description: REST surface for api-v2-accounts-id-licensekeys.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara GetLicenseKeys
+        call: avatax-apis-accounts.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/accounts/{id}/resetlicensekey
+      name: api-v2-accounts-id-resetlicensekey
+      description: REST surface for api-v2-accounts-id-resetlicensekey.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara AccountResetLicenseKey
+        call: avatax-apis-accounts.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-accounts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — Accounts. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: avalara-queryaccounts
+      description: Avalara QueryAccounts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-accounts.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getaccount
+      description: Avalara GetAccount
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-accounts.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-activateaccount
+      description: Avalara ActivateAccount
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-accounts.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-auditaccount
+      description: Avalara AuditAccount
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-accounts.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getaccountconfiguration
+      description: Avalara GetAccountConfiguration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-accounts.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-setaccountconfiguration
+      description: Avalara SetAccountConfiguration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-accounts.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-createlicensekey
+      description: Avalara CreateLicenseKey
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-accounts.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deletelicensekey
+      description: Avalara DeleteLicenseKey
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-accounts.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+        licensekeyname: tools.licensekeyname
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getlicensekey
+      description: Avalara GetLicenseKey
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-accounts.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+        licensekeyname: tools.licensekeyname
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getlicensekeys
+      description: Avalara GetLicenseKeys
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-accounts.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-accountresetlicensekey
+      description: Avalara AccountResetLicenseKey
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-accounts.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

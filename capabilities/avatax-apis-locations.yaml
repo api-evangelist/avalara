@@ -1,0 +1,687 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — Locations
+  description: 'Avalara AvaTax APIs — Locations. 12 operations. Lead operation: Avalara CreateLocations. Self-contained Naftiko
+    capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Locations
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-locations
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — Locations business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-companies-companyId-locations
+      path: /api/v2/companies/{companyId}/locations
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateLocations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: get
+        method: GET
+        description: Avalara ListLocationsByCompany
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyId-locations-id
+      path: /api/v2/companies/{companyId}/locations/{id}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteLocation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: get
+        method: GET
+        description: Avalara GetLocation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: put
+        method: PUT
+        description: Avalara UpdateLocation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyId-locations-id-validate
+      path: /api/v2/companies/{companyId}/locations/{id}/validate
+      operations:
+      - name: get
+        method: GET
+        description: Avalara ValidateLocation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyId-locations-locationId-parameters
+      path: /api/v2/companies/{companyId}/locations/{locationId}/parameters
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateLocationParameters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: locationId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: get
+        method: GET
+        description: Avalara ListLocationParameters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: locationId
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyId-locations-locationId-parameters-id
+      path: /api/v2/companies/{companyId}/locations/{locationId}/parameters/{id}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteLocationParameter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: locationId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: get
+        method: GET
+        description: Avalara GetLocationParameter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: locationId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: put
+        method: PUT
+        description: Avalara UpdateLocationParameter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: locationId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-locations
+      path: /api/v2/locations
+      operations:
+      - name: get
+        method: GET
+        description: Avalara QueryLocations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-locations-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — Locations. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/companies/{companyid}/locations
+      name: api-v2-companies-companyid-locations
+      description: REST surface for api-v2-companies-companyId-locations.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateLocations
+        call: avatax-apis-locations.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara ListLocationsByCompany
+        call: avatax-apis-locations.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/locations/{id}
+      name: api-v2-companies-companyid-locations-id
+      description: REST surface for api-v2-companies-companyId-locations-id.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteLocation
+        call: avatax-apis-locations.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara GetLocation
+        call: avatax-apis-locations.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Avalara UpdateLocation
+        call: avatax-apis-locations.put
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/locations/{id}/validate
+      name: api-v2-companies-companyid-locations-id-validate
+      description: REST surface for api-v2-companies-companyId-locations-id-validate.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara ValidateLocation
+        call: avatax-apis-locations.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/locations/{locationid}/parameters
+      name: api-v2-companies-companyid-locations-locationid-parameters
+      description: REST surface for api-v2-companies-companyId-locations-locationId-parameters.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateLocationParameters
+        call: avatax-apis-locations.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          locationId: rest.locationId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara ListLocationParameters
+        call: avatax-apis-locations.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          locationId: rest.locationId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/locations/{locationid}/parameters/{id}
+      name: api-v2-companies-companyid-locations-locationid-parameters-id
+      description: REST surface for api-v2-companies-companyId-locations-locationId-parameters-id.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteLocationParameter
+        call: avatax-apis-locations.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          locationId: rest.locationId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara GetLocationParameter
+        call: avatax-apis-locations.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          locationId: rest.locationId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Avalara UpdateLocationParameter
+        call: avatax-apis-locations.put
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          locationId: rest.locationId
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/locations
+      name: api-v2-locations
+      description: REST surface for api-v2-locations.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara QueryLocations
+        call: avatax-apis-locations.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-locations-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — Locations. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: avalara-createlocations
+      description: Avalara CreateLocations
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-locations.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-listlocationsbycompany
+      description: Avalara ListLocationsByCompany
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-locations.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deletelocation
+      description: Avalara DeleteLocation
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-locations.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getlocation
+      description: Avalara GetLocation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-locations.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-updatelocation
+      description: Avalara UpdateLocation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: avatax-apis-locations.put
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-validatelocation
+      description: Avalara ValidateLocation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-locations.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-createlocationparameters
+      description: Avalara CreateLocationParameters
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-locations.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        locationId: tools.locationId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-listlocationparameters
+      description: Avalara ListLocationParameters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-locations.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        locationId: tools.locationId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deletelocationparameter
+      description: Avalara DeleteLocationParameter
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-locations.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        locationId: tools.locationId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getlocationparameter
+      description: Avalara GetLocationParameter
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-locations.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        locationId: tools.locationId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-updatelocationparameter
+      description: Avalara UpdateLocationParameter
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: avatax-apis-locations.put
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        locationId: tools.locationId
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-querylocations
+      description: Avalara QueryLocations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-locations.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+      outputParameters:
+      - type: object
+        mapping: $.

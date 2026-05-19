@@ -1,0 +1,165 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara Communications Tax API — Tax Calculation
+  description: 'Avalara Communications Tax API — Tax Calculation. 3 operations. Lead operation: Avalara Calculate Adjustment
+    Taxes. Self-contained Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Tax Calculation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: communications-tax-calculation
+    baseUri: https://communicationsua.avalara.net
+    description: Avalara Communications Tax API — Tax Calculation business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-afc-CalcAdj
+      path: /api/v2/afc/CalcAdj
+      operations:
+      - name: calcadjustment
+        method: POST
+        description: Avalara Calculate Adjustment Taxes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-afc-CalcTaxes
+      path: /api/v2/afc/CalcTaxes
+      operations:
+      - name: calctaxes
+        method: POST
+        description: Avalara Calculate Taxes on a Transaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-afc-commit
+      path: /api/v2/afc/commit
+      operations:
+      - name: committransaction
+        method: POST
+        description: Avalara Commit a Transaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: communications-tax-calculation-rest
+    port: 8080
+    description: REST adapter for Avalara Communications Tax API — Tax Calculation. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/afc/calcadj
+      name: api-v2-afc-calcadj
+      description: REST surface for api-v2-afc-CalcAdj.
+      operations:
+      - method: POST
+        name: calcadjustment
+        description: Avalara Calculate Adjustment Taxes
+        call: communications-tax-calculation.calcadjustment
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/afc/calctaxes
+      name: api-v2-afc-calctaxes
+      description: REST surface for api-v2-afc-CalcTaxes.
+      operations:
+      - method: POST
+        name: calctaxes
+        description: Avalara Calculate Taxes on a Transaction
+        call: communications-tax-calculation.calctaxes
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/afc/commit
+      name: api-v2-afc-commit
+      description: REST surface for api-v2-afc-commit.
+      operations:
+      - method: POST
+        name: committransaction
+        description: Avalara Commit a Transaction
+        call: communications-tax-calculation.committransaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: communications-tax-calculation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara Communications Tax API — Tax Calculation. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: avalara-calculate-adjustment-taxes
+      description: Avalara Calculate Adjustment Taxes
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: communications-tax-calculation.calcadjustment
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-calculate-taxes-transaction
+      description: Avalara Calculate Taxes on a Transaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: communications-tax-calculation.calctaxes
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-commit-transaction
+      description: Avalara Commit a Transaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: communications-tax-calculation.committransaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

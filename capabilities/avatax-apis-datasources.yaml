@@ -1,0 +1,342 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — DataSources
+  description: 'Avalara AvaTax APIs — DataSources. 6 operations. Lead operation: Avalara CreateDataSources. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - DataSources
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-datasources
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — DataSources business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-companies-companyId-datasources
+      path: /api/v2/companies/{companyId}/datasources
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateDataSources
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: get
+        method: GET
+        description: Avalara ListDataSources
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyId-datasources-id
+      path: /api/v2/companies/{companyId}/datasources/{id}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteDataSource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: get
+        method: GET
+        description: Avalara GetDataSourceById
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: put
+        method: PUT
+        description: Avalara UpdateDataSource
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-datasources
+      path: /api/v2/datasources
+      operations:
+      - name: get
+        method: GET
+        description: Avalara QueryDataSources
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-datasources-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — DataSources. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/companies/{companyid}/datasources
+      name: api-v2-companies-companyid-datasources
+      description: REST surface for api-v2-companies-companyId-datasources.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateDataSources
+        call: avatax-apis-datasources.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara ListDataSources
+        call: avatax-apis-datasources.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/datasources/{id}
+      name: api-v2-companies-companyid-datasources-id
+      description: REST surface for api-v2-companies-companyId-datasources-id.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteDataSource
+        call: avatax-apis-datasources.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara GetDataSourceById
+        call: avatax-apis-datasources.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Avalara UpdateDataSource
+        call: avatax-apis-datasources.put
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/datasources
+      name: api-v2-datasources
+      description: REST surface for api-v2-datasources.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara QueryDataSources
+        call: avatax-apis-datasources.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-datasources-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — DataSources. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-createdatasources
+      description: Avalara CreateDataSources
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-datasources.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-listdatasources
+      description: Avalara ListDataSources
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-datasources.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deletedatasource
+      description: Avalara DeleteDataSource
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-datasources.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getdatasourcebyid
+      description: Avalara GetDataSourceById
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-datasources.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-updatedatasource
+      description: Avalara UpdateDataSource
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: avatax-apis-datasources.put
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-querydatasources
+      description: Avalara QueryDataSources
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-datasources.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+      outputParameters:
+      - type: object
+        mapping: $.

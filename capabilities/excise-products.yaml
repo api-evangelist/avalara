@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara Excise Platform API — Products
+  description: 'Avalara Excise Platform API — Products. 1 operations. Lead operation: Avalara List Registered Products. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Products
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: excise-products
+    baseUri: https://exciseapi.avalara.com/api/v1
+    description: Avalara Excise Platform API — Products business capability. Self-contained, no shared references.
+    resources:
+    - name: Products
+      path: /Products
+      operations:
+      - name: listproducts
+        method: GET
+        description: Avalara List Registered Products
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: excise-products-rest
+    port: 8080
+    description: REST adapter for Avalara Excise Platform API — Products. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/products
+      name: products
+      description: REST surface for Products.
+      operations:
+      - method: GET
+        name: listproducts
+        description: Avalara List Registered Products
+        call: excise-products.listproducts
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: excise-products-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara Excise Platform API — Products. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-list-registered-products
+      description: Avalara List Registered Products
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: excise-products.listproducts
+      outputParameters:
+      - type: object
+        mapping: $.

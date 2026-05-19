@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax REST API — Addresses
+  description: 'Avalara AvaTax REST API — Addresses. 1 operations. Lead operation: Avalara Resolve and Validate an Address.
+    Self-contained Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Addresses
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-rest-addresses
+    baseUri: https://rest.avatax.com
+    description: Avalara AvaTax REST API — Addresses business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-addresses-resolve
+      path: /api/v2/addresses/resolve
+      operations:
+      - name: resolveaddress
+        method: POST
+        description: Avalara Resolve and Validate an Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: avatax-rest-addresses-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax REST API — Addresses. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/addresses/resolve
+      name: api-v2-addresses-resolve
+      description: REST surface for api-v2-addresses-resolve.
+      operations:
+      - method: POST
+        name: resolveaddress
+        description: Avalara Resolve and Validate an Address
+        call: avatax-rest-addresses.resolveaddress
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-rest-addresses-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax REST API — Addresses. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-resolve-and-validate-address
+      description: Avalara Resolve and Validate an Address
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: avatax-rest-addresses.resolveaddress
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

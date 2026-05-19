@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax REST API — Settings
+  description: 'Avalara AvaTax REST API — Settings. 1 operations. Lead operation: Avalara List Settings for a Company. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Settings
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-rest-settings
+    baseUri: https://rest.avatax.com
+    description: Avalara AvaTax REST API — Settings business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-companies-companyId-settings
+      path: /api/v2/companies/{companyId}/settings
+      operations:
+      - name: listsettings
+        method: GET
+        description: Avalara List Settings for a Company
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: avatax-rest-settings-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax REST API — Settings. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/companies/{companyid}/settings
+      name: api-v2-companies-companyid-settings
+      description: REST surface for api-v2-companies-companyId-settings.
+      operations:
+      - method: GET
+        name: listsettings
+        description: Avalara List Settings for a Company
+        call: avatax-rest-settings.listsettings
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-rest-settings-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax REST API — Settings. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-list-settings-company
+      description: Avalara List Settings for a Company
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-rest-settings.listsettings
+      outputParameters:
+      - type: object
+        mapping: $.

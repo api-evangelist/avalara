@@ -1,0 +1,118 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara VAT Reporting API — Transactions
+  description: 'Avalara VAT Reporting API — Transactions. 2 operations. Lead operation: Avalara Submit VAT Transactions. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Transactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: vat-reporting-transactions
+    baseUri: https://api.avalara.com/vat-reporting/v1
+    description: Avalara VAT Reporting API — Transactions business capability. Self-contained, no shared references.
+    resources:
+    - name: transactions
+      path: /transactions
+      operations:
+      - name: submittransactions
+        method: POST
+        description: Avalara Submit VAT Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listtransactions
+        method: GET
+        description: Avalara List Submitted Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: $top
+          in: query
+          type: integer
+        - name: $skip
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: vat-reporting-transactions-rest
+    port: 8080
+    description: REST adapter for Avalara VAT Reporting API — Transactions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/transactions
+      name: transactions
+      description: REST surface for transactions.
+      operations:
+      - method: POST
+        name: submittransactions
+        description: Avalara Submit VAT Transactions
+        call: vat-reporting-transactions.submittransactions
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listtransactions
+        description: Avalara List Submitted Transactions
+        call: vat-reporting-transactions.listtransactions
+        with:
+          $top: rest.$top
+          $skip: rest.$skip
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: vat-reporting-transactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara VAT Reporting API — Transactions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: avalara-submit-vat-transactions
+      description: Avalara Submit VAT Transactions
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: vat-reporting-transactions.submittransactions
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-list-submitted-transactions
+      description: Avalara List Submitted Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: vat-reporting-transactions.listtransactions
+      with:
+        $top: tools.$top
+        $skip: tools.$skip
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,342 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — Contacts
+  description: 'Avalara AvaTax APIs — Contacts. 6 operations. Lead operation: Avalara CreateContacts. Self-contained Naftiko
+    capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Contacts
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-contacts
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — Contacts business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-companies-companyId-contacts
+      path: /api/v2/companies/{companyId}/contacts
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateContacts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: get
+        method: GET
+        description: Avalara ListContactsByCompany
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyId-contacts-id
+      path: /api/v2/companies/{companyId}/contacts/{id}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteContact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: get
+        method: GET
+        description: Avalara GetContact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: put
+        method: PUT
+        description: Avalara UpdateContact
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-contacts
+      path: /api/v2/contacts
+      operations:
+      - name: get
+        method: GET
+        description: Avalara QueryContacts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-contacts-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — Contacts. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/companies/{companyid}/contacts
+      name: api-v2-companies-companyid-contacts
+      description: REST surface for api-v2-companies-companyId-contacts.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateContacts
+        call: avatax-apis-contacts.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara ListContactsByCompany
+        call: avatax-apis-contacts.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/contacts/{id}
+      name: api-v2-companies-companyid-contacts-id
+      description: REST surface for api-v2-companies-companyId-contacts-id.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteContact
+        call: avatax-apis-contacts.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara GetContact
+        call: avatax-apis-contacts.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Avalara UpdateContact
+        call: avatax-apis-contacts.put
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/contacts
+      name: api-v2-contacts
+      description: REST surface for api-v2-contacts.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara QueryContacts
+        call: avatax-apis-contacts.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-contacts-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — Contacts. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: avalara-createcontacts
+      description: Avalara CreateContacts
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-contacts.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-listcontactsbycompany
+      description: Avalara ListContactsByCompany
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-contacts.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deletecontact
+      description: Avalara DeleteContact
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-contacts.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getcontact
+      description: Avalara GetContact
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-contacts.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-updatecontact
+      description: Avalara UpdateContact
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: avatax-apis-contacts.put
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-querycontacts
+      description: Avalara QueryContacts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-contacts.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+      outputParameters:
+      - type: object
+        mapping: $.

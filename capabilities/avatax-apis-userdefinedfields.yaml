@@ -1,0 +1,194 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — UserDefinedFields
+  description: 'Avalara AvaTax APIs — UserDefinedFields. 3 operations. Lead operation: Avalara ListUserDefinedFieldsByCompanyId.
+    Self-contained Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - UserDefinedFields
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-userdefinedfields
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — UserDefinedFields business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-companies-companyId-userdefinedfields
+      path: /api/v2/companies/{companyId}/userdefinedfields
+      operations:
+      - name: get
+        method: GET
+        description: Avalara ListUserDefinedFieldsByCompanyId
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+      - name: post
+        method: POST
+        description: Avalara UpdateUserDefinedField
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyId-userdefinedfields-id
+      path: /api/v2/companies/{companyId}/userdefinedfields/{id}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteUserDefinedField
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-userdefinedfields-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — UserDefinedFields. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/companies/{companyid}/userdefinedfields
+      name: api-v2-companies-companyid-userdefinedfields
+      description: REST surface for api-v2-companies-companyId-userdefinedfields.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara ListUserDefinedFieldsByCompanyId
+        call: avatax-apis-userdefinedfields.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Avalara UpdateUserDefinedField
+        call: avatax-apis-userdefinedfields.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/userdefinedfields/{id}
+      name: api-v2-companies-companyid-userdefinedfields-id
+      description: REST surface for api-v2-companies-companyId-userdefinedfields-id.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteUserDefinedField
+        call: avatax-apis-userdefinedfields.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-userdefinedfields-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — UserDefinedFields. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-listuserdefinedfieldsbycompanyid
+      description: Avalara ListUserDefinedFieldsByCompanyId
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-userdefinedfields.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-updateuserdefinedfield
+      description: Avalara UpdateUserDefinedField
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-userdefinedfields.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deleteuserdefinedfield
+      description: Avalara DeleteUserDefinedField
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-userdefinedfields.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

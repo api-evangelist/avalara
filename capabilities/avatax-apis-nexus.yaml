@@ -1,0 +1,848 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — Nexus
+  description: 'Avalara AvaTax APIs — Nexus. 15 operations. Lead operation: Avalara CreateNexus. Self-contained Naftiko capability
+    covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Nexus
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-nexus
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — Nexus business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-companies-companyId-nexus
+      path: /api/v2/companies/{companyId}/nexus
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateNexus
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: get
+        method: GET
+        description: Avalara ListNexusByCompany
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyId-nexus-byTaxTypeGroup-taxTypeGroup
+      path: /api/v2/companies/{companyId}/nexus/byTaxTypeGroup/{taxTypeGroup}
+      operations:
+      - name: get
+        method: GET
+        description: Avalara ListNexusByCompanyAndTaxTypeGroup
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: taxTypeGroup
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyId-nexus-byaddress
+      path: /api/v2/companies/{companyId}/nexus/byaddress
+      operations:
+      - name: post
+        method: POST
+        description: Avalara DeclareNexusByAddress
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyId-nexus-byform-formCode
+      path: /api/v2/companies/{companyId}/nexus/byform/{formCode}
+      operations:
+      - name: get
+        method: GET
+        description: Avalara GetNexusByFormCode
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: formCode
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyId-nexus-id
+      path: /api/v2/companies/{companyId}/nexus/{id}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteNexus
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: get
+        method: GET
+        description: Avalara GetNexus
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: put
+        method: PUT
+        description: Avalara UpdateNexus
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyId-nexus-nexusId-parameters
+      path: /api/v2/companies/{companyId}/nexus/{nexusId}/parameters
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateNexusParameters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: nexusId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteNexusParameters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: nexusId
+          in: path
+          type: string
+          required: true
+      - name: get
+        method: GET
+        description: Avalara ListNexusParameters
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: nexusId
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyId-nexus-nexusId-parameters-id
+      path: /api/v2/companies/{companyId}/nexus/{nexusId}/parameters/{id}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteNexusParameter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: nexusId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: get
+        method: GET
+        description: Avalara GetNexusParameter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: nexusId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: put
+        method: PUT
+        description: Avalara UpdateNexusParameter
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyId
+          in: path
+          type: string
+          required: true
+        - name: nexusId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-nexus
+      path: /api/v2/nexus
+      operations:
+      - name: get
+        method: GET
+        description: Avalara QueryNexus
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-nexus-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — Nexus. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v2/companies/{companyid}/nexus
+      name: api-v2-companies-companyid-nexus
+      description: REST surface for api-v2-companies-companyId-nexus.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateNexus
+        call: avatax-apis-nexus.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara ListNexusByCompany
+        call: avatax-apis-nexus.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/nexus/bytaxtypegroup/{taxtypegroup}
+      name: api-v2-companies-companyid-nexus-bytaxtypegroup-taxtypegroup
+      description: REST surface for api-v2-companies-companyId-nexus-byTaxTypeGroup-taxTypeGroup.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara ListNexusByCompanyAndTaxTypeGroup
+        call: avatax-apis-nexus.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          taxTypeGroup: rest.taxTypeGroup
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/nexus/byaddress
+      name: api-v2-companies-companyid-nexus-byaddress
+      description: REST surface for api-v2-companies-companyId-nexus-byaddress.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara DeclareNexusByAddress
+        call: avatax-apis-nexus.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/nexus/byform/{formcode}
+      name: api-v2-companies-companyid-nexus-byform-formcode
+      description: REST surface for api-v2-companies-companyId-nexus-byform-formCode.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara GetNexusByFormCode
+        call: avatax-apis-nexus.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          formCode: rest.formCode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/nexus/{id}
+      name: api-v2-companies-companyid-nexus-id
+      description: REST surface for api-v2-companies-companyId-nexus-id.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteNexus
+        call: avatax-apis-nexus.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara GetNexus
+        call: avatax-apis-nexus.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Avalara UpdateNexus
+        call: avatax-apis-nexus.put
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/nexus/{nexusid}/parameters
+      name: api-v2-companies-companyid-nexus-nexusid-parameters
+      description: REST surface for api-v2-companies-companyId-nexus-nexusId-parameters.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateNexusParameters
+        call: avatax-apis-nexus.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          nexusId: rest.nexusId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteNexusParameters
+        call: avatax-apis-nexus.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          nexusId: rest.nexusId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara ListNexusParameters
+        call: avatax-apis-nexus.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          nexusId: rest.nexusId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companyid}/nexus/{nexusid}/parameters/{id}
+      name: api-v2-companies-companyid-nexus-nexusid-parameters-id
+      description: REST surface for api-v2-companies-companyId-nexus-nexusId-parameters-id.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteNexusParameter
+        call: avatax-apis-nexus.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          nexusId: rest.nexusId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara GetNexusParameter
+        call: avatax-apis-nexus.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          nexusId: rest.nexusId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Avalara UpdateNexusParameter
+        call: avatax-apis-nexus.put
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyId: rest.companyId
+          nexusId: rest.nexusId
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/nexus
+      name: api-v2-nexus
+      description: REST surface for api-v2-nexus.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara QueryNexus
+        call: avatax-apis-nexus.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-nexus-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — Nexus. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: avalara-createnexus
+      description: Avalara CreateNexus
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-nexus.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-listnexusbycompany
+      description: Avalara ListNexusByCompany
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-nexus.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-listnexusbycompanyandtaxtypegroup
+      description: Avalara ListNexusByCompanyAndTaxTypeGroup
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-nexus.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        taxTypeGroup: tools.taxTypeGroup
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-declarenexusbyaddress
+      description: Avalara DeclareNexusByAddress
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-nexus.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getnexusbyformcode
+      description: Avalara GetNexusByFormCode
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-nexus.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        formCode: tools.formCode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deletenexus
+      description: Avalara DeleteNexus
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-nexus.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getnexus
+      description: Avalara GetNexus
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-nexus.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-updatenexus
+      description: Avalara UpdateNexus
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: avatax-apis-nexus.put
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-createnexusparameters
+      description: Avalara CreateNexusParameters
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-nexus.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        nexusId: tools.nexusId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deletenexusparameters
+      description: Avalara DeleteNexusParameters
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-nexus.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        nexusId: tools.nexusId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-listnexusparameters
+      description: Avalara ListNexusParameters
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-nexus.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        nexusId: tools.nexusId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deletenexusparameter
+      description: Avalara DeleteNexusParameter
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-nexus.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        nexusId: tools.nexusId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getnexusparameter
+      description: Avalara GetNexusParameter
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-nexus.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        nexusId: tools.nexusId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-updatenexusparameter
+      description: Avalara UpdateNexusParameter
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: avatax-apis-nexus.put
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyId: tools.companyId
+        nexusId: tools.nexusId
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-querynexus
+      description: Avalara QueryNexus
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-nexus.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+      outputParameters:
+      - type: object
+        mapping: $.

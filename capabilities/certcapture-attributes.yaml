@@ -1,0 +1,71 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara CertCapture API — Attributes
+  description: 'Avalara CertCapture API — Attributes. 1 operations. Lead operation: Avalara List Certificate Attributes. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Attributes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: certcapture-attributes
+    baseUri: https://api.certcapture.com/v2
+    description: Avalara CertCapture API — Attributes business capability. Self-contained, no shared references.
+    resources:
+    - name: attributes
+      path: /attributes
+      operations:
+      - name: listattributes
+        method: GET
+        description: Avalara List Certificate Attributes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: certcapture-attributes-rest
+    port: 8080
+    description: REST adapter for Avalara CertCapture API — Attributes. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/attributes
+      name: attributes
+      description: REST surface for attributes.
+      operations:
+      - method: GET
+        name: listattributes
+        description: Avalara List Certificate Attributes
+        call: certcapture-attributes.listattributes
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: certcapture-attributes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara CertCapture API — Attributes. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-list-certificate-attributes
+      description: Avalara List Certificate Attributes
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: certcapture-attributes.listattributes
+      outputParameters:
+      - type: object
+        mapping: $.

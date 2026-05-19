@@ -1,0 +1,154 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — Provisioning
+  description: 'Avalara AvaTax APIs — Provisioning. 2 operations. Lead operation: Avalara RequestNewAccount. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Provisioning
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-provisioning
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — Provisioning business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-accounts-request
+      path: /api/v2/accounts/request
+      operations:
+      - name: post
+        method: POST
+        description: Avalara RequestNewAccount
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-accounts-id-entitlements-offer
+      path: /api/v2/accounts/{id}/entitlements/{offer}
+      operations:
+      - name: post
+        method: POST
+        description: Avalara RequestNewEntitlement
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: offer
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-provisioning-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — Provisioning. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/accounts/request
+      name: api-v2-accounts-request
+      description: REST surface for api-v2-accounts-request.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara RequestNewAccount
+        call: avatax-apis-provisioning.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/accounts/{id}/entitlements/{offer}
+      name: api-v2-accounts-id-entitlements-offer
+      description: REST surface for api-v2-accounts-id-entitlements-offer.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara RequestNewEntitlement
+        call: avatax-apis-provisioning.post
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+          offer: rest.offer
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-provisioning-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — Provisioning. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-requestnewaccount
+      description: Avalara RequestNewAccount
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-provisioning.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-requestnewentitlement
+      description: Avalara RequestNewEntitlement
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-provisioning.post
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+        offer: tools.offer
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

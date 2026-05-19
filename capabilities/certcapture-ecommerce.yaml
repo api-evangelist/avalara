@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara CertCapture API — eCommerce
+  description: 'Avalara CertCapture API — eCommerce. 1 operations. Lead operation: Avalara Generate ECommerce Token. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - eCommerce
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: certcapture-ecommerce
+    baseUri: https://api.certcapture.com/v2
+    description: Avalara CertCapture API — eCommerce business capability. Self-contained, no shared references.
+    resources:
+    - name: ecommerce-token
+      path: /ecommerce/token
+      operations:
+      - name: generateecommercetoken
+        method: POST
+        description: Avalara Generate ECommerce Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: certcapture-ecommerce-rest
+    port: 8080
+    description: REST adapter for Avalara CertCapture API — eCommerce. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/ecommerce/token
+      name: ecommerce-token
+      description: REST surface for ecommerce-token.
+      operations:
+      - method: POST
+        name: generateecommercetoken
+        description: Avalara Generate ECommerce Token
+        call: certcapture-ecommerce.generateecommercetoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: certcapture-ecommerce-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara CertCapture API — eCommerce. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-generate-ecommerce-token
+      description: Avalara Generate ECommerce Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: certcapture-ecommerce.generateecommercetoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

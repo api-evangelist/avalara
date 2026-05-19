@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax REST API — MultiDocument
+  description: 'Avalara AvaTax REST API — MultiDocument. 1 operations. Lead operation: Avalara Create a Multi-document Transaction.
+    Self-contained Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - MultiDocument
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-rest-multidocument
+    baseUri: https://rest.avatax.com
+    description: Avalara AvaTax REST API — MultiDocument business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-multidocument-transactions-create
+      path: /api/v2/multidocument/transactions/create
+      operations:
+      - name: createmultidocumenttransaction
+        method: POST
+        description: Avalara Create a Multi-document Transaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: avatax-rest-multidocument-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax REST API — MultiDocument. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/multidocument/transactions/create
+      name: api-v2-multidocument-transactions-create
+      description: REST surface for api-v2-multidocument-transactions-create.
+      operations:
+      - method: POST
+        name: createmultidocumenttransaction
+        description: Avalara Create a Multi-document Transaction
+        call: avatax-rest-multidocument.createmultidocumenttransaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-rest-multidocument-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax REST API — MultiDocument. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-create-multi-document-transaction
+      description: Avalara Create a Multi-document Transaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-rest-multidocument.createmultidocumenttransaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

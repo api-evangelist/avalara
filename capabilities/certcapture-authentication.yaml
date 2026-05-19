@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara CertCapture API — Authentication
+  description: 'Avalara CertCapture API — Authentication. 1 operations. Lead operation: Avalara Get Authentication Token.
+    Self-contained Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Authentication
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: certcapture-authentication
+    baseUri: https://api.certcapture.com/v2
+    description: Avalara CertCapture API — Authentication business capability. Self-contained, no shared references.
+    resources:
+    - name: auth-token
+      path: /auth/token
+      operations:
+      - name: getauthtoken
+        method: POST
+        description: Avalara Get Authentication Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: certcapture-authentication-rest
+    port: 8080
+    description: REST adapter for Avalara CertCapture API — Authentication. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/auth/token
+      name: auth-token
+      description: REST surface for auth-token.
+      operations:
+      - method: POST
+        name: getauthtoken
+        description: Avalara Get Authentication Token
+        call: certcapture-authentication.getauthtoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: certcapture-authentication-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara CertCapture API — Authentication. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: avalara-get-authentication-token
+      description: Avalara Get Authentication Token
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: certcapture-authentication.getauthtoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

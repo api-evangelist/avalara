@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax Brazil API — Tax Calculation
+  description: 'Avalara AvaTax Brazil API — Tax Calculation. 1 operations. Lead operation: Avalara Calculate Brazilian Taxes.
+    Self-contained Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Tax Calculation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-brazil-tax-calculation
+    baseUri: https://avataxbr-sandbox.avalarabrasil.com.br/v3
+    description: Avalara AvaTax Brazil API — Tax Calculation business capability. Self-contained, no shared references.
+    resources:
+    - name: calculations
+      path: /calculations
+      operations:
+      - name: calculatetax
+        method: POST
+        description: Avalara Calculate Brazilian Taxes
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: avatax-brazil-tax-calculation-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax Brazil API — Tax Calculation. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/calculations
+      name: calculations
+      description: REST surface for calculations.
+      operations:
+      - method: POST
+        name: calculatetax
+        description: Avalara Calculate Brazilian Taxes
+        call: avatax-brazil-tax-calculation.calculatetax
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-brazil-tax-calculation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax Brazil API — Tax Calculation. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: avalara-calculate-brazilian-taxes
+      description: Avalara Calculate Brazilian Taxes
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-brazil-tax-calculation.calculatetax
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

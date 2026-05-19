@@ -1,0 +1,169 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara Excise Platform API — Transactions
+  description: 'Avalara Excise Platform API — Transactions. 3 operations. Lead operation: Avalara List Excise Transactions.
+    Self-contained Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Transactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: excise-transactions
+    baseUri: https://exciseapi.avalara.com/api/v1
+    description: Avalara Excise Platform API — Transactions business capability. Self-contained, no shared references.
+    resources:
+    - name: Transactions
+      path: /Transactions
+      operations:
+      - name: listtransactions
+        method: GET
+        description: Avalara List Excise Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: startDate
+          in: query
+          type: string
+        - name: endDate
+          in: query
+          type: string
+        - name: pageNumber
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+      - name: createtransaction
+        method: POST
+        description: Avalara Create an Excise Transaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: Transactions-transactionId
+      path: /Transactions/{transactionId}
+      operations:
+      - name: gettransaction
+        method: GET
+        description: Avalara Retrieve an Excise Transaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: transactionId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: excise-transactions-rest
+    port: 8080
+    description: REST adapter for Avalara Excise Platform API — Transactions. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/transactions
+      name: transactions
+      description: REST surface for Transactions.
+      operations:
+      - method: GET
+        name: listtransactions
+        description: Avalara List Excise Transactions
+        call: excise-transactions.listtransactions
+        with:
+          startDate: rest.startDate
+          endDate: rest.endDate
+          pageNumber: rest.pageNumber
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createtransaction
+        description: Avalara Create an Excise Transaction
+        call: excise-transactions.createtransaction
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/transactions/{transactionid}
+      name: transactions-transactionid
+      description: REST surface for Transactions-transactionId.
+      operations:
+      - method: GET
+        name: gettransaction
+        description: Avalara Retrieve an Excise Transaction
+        call: excise-transactions.gettransaction
+        with:
+          transactionId: rest.transactionId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: excise-transactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara Excise Platform API — Transactions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: avalara-list-excise-transactions
+      description: Avalara List Excise Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: excise-transactions.listtransactions
+      with:
+        startDate: tools.startDate
+        endDate: tools.endDate
+        pageNumber: tools.pageNumber
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-create-excise-transaction
+      description: Avalara Create an Excise Transaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: excise-transactions.createtransaction
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-retrieve-excise-transaction
+      description: Avalara Retrieve an Excise Transaction
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: excise-transactions.gettransaction
+      with:
+        transactionId: tools.transactionId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,270 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — AvaFileForms
+  description: 'Avalara AvaTax APIs — AvaFileForms. 5 operations. Lead operation: Avalara CreateAvaFileForms. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - AvaFileForms
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-avafileforms
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — AvaFileForms business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-avafileforms
+      path: /api/v2/avafileforms
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateAvaFileForms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+      - name: get
+        method: GET
+        description: Avalara QueryAvaFileForms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+    - name: api-v2-avafileforms-id
+      path: /api/v2/avafileforms/{id}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteAvaFileForm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: get
+        method: GET
+        description: Avalara GetAvaFileForm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: put
+        method: PUT
+        description: Avalara UpdateAvaFileForm
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-avafileforms-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — AvaFileForms. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/avafileforms
+      name: api-v2-avafileforms
+      description: REST surface for api-v2-avafileforms.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateAvaFileForms
+        call: avatax-apis-avafileforms.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara QueryAvaFileForms
+        call: avatax-apis-avafileforms.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/avafileforms/{id}
+      name: api-v2-avafileforms-id
+      description: REST surface for api-v2-avafileforms-id.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteAvaFileForm
+        call: avatax-apis-avafileforms.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Avalara GetAvaFileForm
+        call: avatax-apis-avafileforms.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: put
+        description: Avalara UpdateAvaFileForm
+        call: avatax-apis-avafileforms.put
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-avafileforms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — AvaFileForms. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-createavafileforms
+      description: Avalara CreateAvaFileForms
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-avafileforms.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-queryavafileforms
+      description: Avalara QueryAvaFileForms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-avafileforms.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deleteavafileform
+      description: Avalara DeleteAvaFileForm
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-avafileforms.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getavafileform
+      description: Avalara GetAvaFileForm
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-avafileforms.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-updateavafileform
+      description: Avalara UpdateAvaFileForm
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: avatax-apis-avafileforms.put
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,183 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — Subscriptions
+  description: 'Avalara AvaTax APIs — Subscriptions. 3 operations. Lead operation: Avalara ListSubscriptionsByAccount. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Subscriptions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-subscriptions
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — Subscriptions business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-accounts-accountId-subscriptions
+      path: /api/v2/accounts/{accountId}/subscriptions
+      operations:
+      - name: get
+        method: GET
+        description: Avalara ListSubscriptionsByAccount
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: accountId
+          in: path
+          type: string
+          required: true
+    - name: api-v2-accounts-accountId-subscriptions-id
+      path: /api/v2/accounts/{accountId}/subscriptions/{id}
+      operations:
+      - name: get
+        method: GET
+        description: Avalara GetSubscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: accountId
+          in: path
+          type: string
+          required: true
+        - name: id
+          in: path
+          type: string
+          required: true
+    - name: api-v2-subscriptions
+      path: /api/v2/subscriptions
+      operations:
+      - name: get
+        method: GET
+        description: Avalara QuerySubscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-subscriptions-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — Subscriptions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/accounts/{accountid}/subscriptions
+      name: api-v2-accounts-accountid-subscriptions
+      description: REST surface for api-v2-accounts-accountId-subscriptions.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara ListSubscriptionsByAccount
+        call: avatax-apis-subscriptions.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          accountId: rest.accountId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/accounts/{accountid}/subscriptions/{id}
+      name: api-v2-accounts-accountid-subscriptions-id
+      description: REST surface for api-v2-accounts-accountId-subscriptions-id.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara GetSubscription
+        call: avatax-apis-subscriptions.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          accountId: rest.accountId
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/subscriptions
+      name: api-v2-subscriptions
+      description: REST surface for api-v2-subscriptions.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara QuerySubscriptions
+        call: avatax-apis-subscriptions.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-subscriptions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — Subscriptions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-listsubscriptionsbyaccount
+      description: Avalara ListSubscriptionsByAccount
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-subscriptions.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        accountId: tools.accountId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getsubscription
+      description: Avalara GetSubscription
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-subscriptions.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        accountId: tools.accountId
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-querysubscriptions
+      description: Avalara QuerySubscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-subscriptions.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+      outputParameters:
+      - type: object
+        mapping: $.

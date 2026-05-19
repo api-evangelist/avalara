@@ -1,0 +1,83 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax Brazil API — Transactions
+  description: 'Avalara AvaTax Brazil API — Transactions. 1 operations. Lead operation: Avalara List Transactions. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Transactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-brazil-transactions
+    baseUri: https://avataxbr-sandbox.avalarabrasil.com.br/v3
+    description: Avalara AvaTax Brazil API — Transactions business capability. Self-contained, no shared references.
+    resources:
+    - name: transactions
+      path: /transactions
+      operations:
+      - name: listtransactions
+        method: GET
+        description: Avalara List Transactions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: avatax-brazil-transactions-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax Brazil API — Transactions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/transactions
+      name: transactions
+      description: REST surface for transactions.
+      operations:
+      - method: GET
+        name: listtransactions
+        description: Avalara List Transactions
+        call: avatax-brazil-transactions.listtransactions
+        with:
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-brazil-transactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax Brazil API — Transactions. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: avalara-list-transactions
+      description: Avalara List Transactions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-brazil-transactions.listtransactions
+      with:
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,171 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — Utilities
+  description: 'Avalara AvaTax APIs — Utilities. 3 operations. Lead operation: Avalara Ping. Self-contained Naftiko capability
+    covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Utilities
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-utilities
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — Utilities business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-utilities-ping
+      path: /api/v2/utilities/ping
+      operations:
+      - name: get
+        method: GET
+        description: Avalara Ping
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+    - name: api-v2-utilities-subscriptions
+      path: /api/v2/utilities/subscriptions
+      operations:
+      - name: get
+        method: GET
+        description: Avalara ListMySubscriptions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+    - name: api-v2-utilities-subscriptions-serviceTypeId
+      path: /api/v2/utilities/subscriptions/{serviceTypeId}
+      operations:
+      - name: get
+        method: GET
+        description: Avalara GetMySubscription
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: serviceTypeId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-utilities-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — Utilities. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/utilities/ping
+      name: api-v2-utilities-ping
+      description: REST surface for api-v2-utilities-ping.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara Ping
+        call: avatax-apis-utilities.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/utilities/subscriptions
+      name: api-v2-utilities-subscriptions
+      description: REST surface for api-v2-utilities-subscriptions.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara ListMySubscriptions
+        call: avatax-apis-utilities.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/utilities/subscriptions/{servicetypeid}
+      name: api-v2-utilities-subscriptions-servicetypeid
+      description: REST surface for api-v2-utilities-subscriptions-serviceTypeId.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara GetMySubscription
+        call: avatax-apis-utilities.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          serviceTypeId: rest.serviceTypeId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-utilities-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — Utilities. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: avalara-ping
+      description: Avalara Ping
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-utilities.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-listmysubscriptions
+      description: Avalara ListMySubscriptions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-utilities.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getmysubscription
+      description: Avalara GetMySubscription
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-utilities.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        serviceTypeId: tools.serviceTypeId
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,242 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara CertCapture API — Customers
+  description: 'Avalara CertCapture API — Customers. 5 operations. Lead operation: Avalara List Customers. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Customers
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: certcapture-customers
+    baseUri: https://api.certcapture.com/v2
+    description: Avalara CertCapture API — Customers business capability. Self-contained, no shared references.
+    resources:
+    - name: customers
+      path: /customers
+      operations:
+      - name: listcustomers
+        method: GET
+        description: Avalara List Customers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+      - name: createcustomer
+        method: POST
+        description: Avalara Create a Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: customers-customerId
+      path: /customers/{customerId}
+      operations:
+      - name: getcustomer
+        method: GET
+        description: Avalara Get a Customer by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customerId
+          in: path
+          type: string
+          required: true
+      - name: updatecustomer
+        method: PUT
+        description: Avalara Update a Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customerId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: customers-customerId-certificates
+      path: /customers/{customerId}/certificates
+      operations:
+      - name: getcustomercertificates
+        method: GET
+        description: Avalara List Certificates for a Customer
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customerId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: certcapture-customers-rest
+    port: 8080
+    description: REST adapter for Avalara CertCapture API — Customers. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/customers
+      name: customers
+      description: REST surface for customers.
+      operations:
+      - method: GET
+        name: listcustomers
+        description: Avalara List Customers
+        call: certcapture-customers.listcustomers
+        with:
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcustomer
+        description: Avalara Create a Customer
+        call: certcapture-customers.createcustomer
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/customers/{customerid}
+      name: customers-customerid
+      description: REST surface for customers-customerId.
+      operations:
+      - method: GET
+        name: getcustomer
+        description: Avalara Get a Customer by ID
+        call: certcapture-customers.getcustomer
+        with:
+          customerId: rest.customerId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecustomer
+        description: Avalara Update a Customer
+        call: certcapture-customers.updatecustomer
+        with:
+          customerId: rest.customerId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/customers/{customerid}/certificates
+      name: customers-customerid-certificates
+      description: REST surface for customers-customerId-certificates.
+      operations:
+      - method: GET
+        name: getcustomercertificates
+        description: Avalara List Certificates for a Customer
+        call: certcapture-customers.getcustomercertificates
+        with:
+          customerId: rest.customerId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: certcapture-customers-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara CertCapture API — Customers. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-list-customers
+      description: Avalara List Customers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: certcapture-customers.listcustomers
+      with:
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-create-customer
+      description: Avalara Create a Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: certcapture-customers.createcustomer
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-get-customer-id
+      description: Avalara Get a Customer by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: certcapture-customers.getcustomer
+      with:
+        customerId: tools.customerId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-update-customer
+      description: Avalara Update a Customer
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: certcapture-customers.updatecustomer
+      with:
+        customerId: tools.customerId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-list-certificates-customer
+      description: Avalara List Certificates for a Customer
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: certcapture-customers.getcustomercertificates
+      with:
+        customerId: tools.customerId
+      outputParameters:
+      - type: object
+        mapping: $.

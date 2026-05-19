@@ -1,0 +1,104 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara MyLodgeTax API — Tax Rates
+  description: 'Avalara MyLodgeTax API — Tax Rates. 1 operations. Lead operation: Avalara Get Lodging Tax Rates. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Tax Rates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mylodgetax-tax-rates
+    baseUri: https://api.avalara.com/mylodgetax/v1
+    description: Avalara MyLodgeTax API — Tax Rates business capability. Self-contained, no shared references.
+    resources:
+    - name: tax-rates
+      path: /tax-rates
+      operations:
+      - name: getlodgingtaxrates
+        method: GET
+        description: Avalara Get Lodging Tax Rates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: line1
+          in: query
+          type: string
+          description: Street address
+          required: true
+        - name: city
+          in: query
+          type: string
+        - name: region
+          in: query
+          type: string
+          description: State or province
+          required: true
+        - name: postalCode
+          in: query
+          type: string
+          required: true
+        - name: country
+          in: query
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: mylodgetax-tax-rates-rest
+    port: 8080
+    description: REST adapter for Avalara MyLodgeTax API — Tax Rates. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/tax-rates
+      name: tax-rates
+      description: REST surface for tax-rates.
+      operations:
+      - method: GET
+        name: getlodgingtaxrates
+        description: Avalara Get Lodging Tax Rates
+        call: mylodgetax-tax-rates.getlodgingtaxrates
+        with:
+          line1: rest.line1
+          city: rest.city
+          region: rest.region
+          postalCode: rest.postalCode
+          country: rest.country
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mylodgetax-tax-rates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara MyLodgeTax API — Tax Rates. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-get-lodging-tax-rates
+      description: Avalara Get Lodging Tax Rates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mylodgetax-tax-rates.getlodgingtaxrates
+      with:
+        line1: tools.line1
+        city: tools.city
+        region: tools.region
+        postalCode: tools.postalCode
+        country: tools.country
+      outputParameters:
+      - type: object
+        mapping: $.

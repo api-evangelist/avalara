@@ -1,0 +1,243 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — Notices
+  description: 'Avalara AvaTax APIs — Notices. 4 operations. Lead operation: Avalara CreateNoticeResponsibilityType. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Notices
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-notices
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — Notices business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-notices-responsibilities
+      path: /api/v2/notices/responsibilities
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateNoticeResponsibilityType
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-notices-responsibilities-responsibilityId
+      path: /api/v2/notices/responsibilities/{responsibilityId}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteNoticeResponsibilityType
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: responsibilityId
+          in: path
+          type: string
+          required: true
+    - name: api-v2-notices-rootcauses
+      path: /api/v2/notices/rootcauses
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateNoticeRootCauseType
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-notices-rootcauses-rootCauseId
+      path: /api/v2/notices/rootcauses/{rootCauseId}
+      operations:
+      - name: delete
+        method: DELETE
+        description: Avalara DeleteNoticeRootCauseType
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: rootCauseId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-notices-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — Notices. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/api/v2/notices/responsibilities
+      name: api-v2-notices-responsibilities
+      description: REST surface for api-v2-notices-responsibilities.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateNoticeResponsibilityType
+        call: avatax-apis-notices.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/notices/responsibilities/{responsibilityid}
+      name: api-v2-notices-responsibilities-responsibilityid
+      description: REST surface for api-v2-notices-responsibilities-responsibilityId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteNoticeResponsibilityType
+        call: avatax-apis-notices.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          responsibilityId: rest.responsibilityId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/notices/rootcauses
+      name: api-v2-notices-rootcauses
+      description: REST surface for api-v2-notices-rootcauses.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateNoticeRootCauseType
+        call: avatax-apis-notices.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/notices/rootcauses/{rootcauseid}
+      name: api-v2-notices-rootcauses-rootcauseid
+      description: REST surface for api-v2-notices-rootcauses-rootCauseId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Avalara DeleteNoticeRootCauseType
+        call: avatax-apis-notices.delete
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          rootCauseId: rest.rootCauseId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-notices-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — Notices. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: avalara-createnoticeresponsibilitytype
+      description: Avalara CreateNoticeResponsibilityType
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-notices.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deletenoticeresponsibilitytype
+      description: Avalara DeleteNoticeResponsibilityType
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-notices.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        responsibilityId: tools.responsibilityId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-createnoticerootcausetype
+      description: Avalara CreateNoticeRootCauseType
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-notices.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deletenoticerootcausetype
+      description: Avalara DeleteNoticeRootCauseType
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: avatax-apis-notices.delete
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        rootCauseId: tools.rootCauseId
+      outputParameters:
+      - type: object
+        mapping: $.

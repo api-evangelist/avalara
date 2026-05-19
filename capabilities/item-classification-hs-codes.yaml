@@ -1,0 +1,127 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara Item Classification API — HS Codes
+  description: 'Avalara Item Classification API — HS Codes. 2 operations. Lead operation: Avalara Get Classification Results.
+    Self-contained Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - HS Codes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: item-classification-hs-codes
+    baseUri: https://api.avalara.com/classification/v2
+    description: Avalara Item Classification API — HS Codes business capability. Self-contained, no shared references.
+    resources:
+    - name: classification-requests-requestId-results
+      path: /classification-requests/{requestId}/results
+      operations:
+      - name: getclassificationresults
+        method: GET
+        description: Avalara Get Classification Results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: requestId
+          in: path
+          type: string
+          required: true
+    - name: hs-codes-hsCode
+      path: /hs-codes/{hsCode}
+      operations:
+      - name: gethscodedetails
+        method: GET
+        description: Avalara Get HS Code Details
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: hsCode
+          in: path
+          type: string
+          description: The HS Code to look up
+          required: true
+        - name: country
+          in: query
+          type: string
+          description: ISO 3166-1 alpha-2 country code for country-specific details
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: item-classification-hs-codes-rest
+    port: 8080
+    description: REST adapter for Avalara Item Classification API — HS Codes. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/classification-requests/{requestid}/results
+      name: classification-requests-requestid-results
+      description: REST surface for classification-requests-requestId-results.
+      operations:
+      - method: GET
+        name: getclassificationresults
+        description: Avalara Get Classification Results
+        call: item-classification-hs-codes.getclassificationresults
+        with:
+          requestId: rest.requestId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/hs-codes/{hscode}
+      name: hs-codes-hscode
+      description: REST surface for hs-codes-hsCode.
+      operations:
+      - method: GET
+        name: gethscodedetails
+        description: Avalara Get HS Code Details
+        call: item-classification-hs-codes.gethscodedetails
+        with:
+          hsCode: rest.hsCode
+          country: rest.country
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: item-classification-hs-codes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara Item Classification API — HS Codes. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: avalara-get-classification-results
+      description: Avalara Get Classification Results
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: item-classification-hs-codes.getclassificationresults
+      with:
+        requestId: tools.requestId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-get-hs-code-details
+      description: Avalara Get HS Code Details
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: item-classification-hs-codes.gethscodedetails
+      with:
+        hsCode: tools.hsCode
+        country: tools.country
+      outputParameters:
+      - type: object
+        mapping: $.

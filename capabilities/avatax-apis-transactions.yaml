@@ -1,0 +1,1445 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax APIs — Transactions
+  description: 'Avalara AvaTax APIs — Transactions. 24 operations. Lead operation: Avalara AddLines. Self-contained Naftiko
+    capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Transactions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-apis-transactions
+    baseUri: http://{{baseurl}}
+    description: Avalara AvaTax APIs — Transactions business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-companies-transactions-lines-add
+      path: /api/v2/companies/transactions/lines/add
+      operations:
+      - name: post
+        method: POST
+        description: Avalara AddLines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-transactions-lines-delete
+      path: /api/v2/companies/transactions/lines/delete
+      operations:
+      - name: post
+        method: POST
+        description: Avalara DeleteLines
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyCode-AllVariance
+      path: /api/v2/companies/{companyCode}/AllVariance
+      operations:
+      - name: get
+        method: GET
+        description: Avalara GetAllVarianceReportByCompanyCode
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyCode-transactions
+      path: /api/v2/companies/{companyCode}/transactions
+      operations:
+      - name: get
+        method: GET
+        description: Avalara ListTransactionsByCompany
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyCode-transactions-transactionCode
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}
+      operations:
+      - name: get
+        method: GET
+        description: Avalara GetTransactionByCode
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyCode-transactions-transactionCode-adjust
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/adjust
+      operations:
+      - name: post
+        method: POST
+        description: Avalara AdjustTransaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyCode-transactions-transactionCode-audit
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/audit
+      operations:
+      - name: get
+        method: GET
+        description: Avalara AuditTransaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyCode-transactions-transactionCode-changecode
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/changecode
+      operations:
+      - name: post
+        method: POST
+        description: Avalara ChangeTransactionCode
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyCode-transactions-transactionCode-commit
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/commit
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CommitTransaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyCode-transactions-transactionCode-lock
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/lock
+      operations:
+      - name: post
+        method: POST
+        description: Avalara LockTransaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyCode-transactions-transactionCode-refund
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/refund
+      operations:
+      - name: post
+        method: POST
+        description: Avalara RefundTransaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyCode-transactions-transactionCode-settle
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/settle
+      operations:
+      - name: post
+        method: POST
+        description: Avalara SettleTransaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyCode-transactions-transactionCode-types-documentType
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/types/{documentType}
+      operations:
+      - name: get
+        method: GET
+        description: Avalara GetTransactionByCodeAndType
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+        - name: documentType
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyCode-transactions-transactionCode-types-documentType-aud
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/types/{documentType}/audit
+      operations:
+      - name: get
+        method: GET
+        description: Avalara AuditTransactionWithType
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+        - name: documentType
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyCode-transactions-transactionCode-uncommit
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/uncommit
+      operations:
+      - name: post
+        method: POST
+        description: Avalara UncommitTransaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyCode-transactions-transactionCode-unvoid
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/unvoid
+      operations:
+      - name: post
+        method: POST
+        description: Avalara UnvoidTransaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyCode-transactions-transactionCode-verify
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/verify
+      operations:
+      - name: post
+        method: POST
+        description: Avalara VerifyTransaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyCode-transactions-transactionCode-void
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/void
+      operations:
+      - name: post
+        method: POST
+        description: Avalara VoidTransaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-companies-companyCode-transactions-transactionId-variance
+      path: /api/v2/companies/{companyCode}/transactions/{transactionId}/variance
+      operations:
+      - name: get
+        method: GET
+        description: Avalara GetVarianceReportByCompanyCodeByTransactionId
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: transactionId
+          in: path
+          type: string
+          required: true
+    - name: api-v2-companies-companyCode-variance
+      path: /api/v2/companies/{companyCode}/variance
+      operations:
+      - name: post
+        method: POST
+        description: Avalara VarianceReport
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: companyCode
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-transactions-create
+      path: /api/v2/transactions/create
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateTransaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-transactions-createoradjust
+      path: /api/v2/transactions/createoradjust
+      operations:
+      - name: post
+        method: POST
+        description: Avalara CreateOrAdjustTransaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-transactions-lock
+      path: /api/v2/transactions/lock
+      operations:
+      - name: post
+        method: POST
+        description: Avalara BulkLockTransaction
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: Content-Type
+          in: header
+          type: string
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: api-v2-transactions-id
+      path: /api/v2/transactions/{id}
+      operations:
+      - name: get
+        method: GET
+        description: Avalara GetTransactionById
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: X-Avalara-Client
+          in: header
+          type: string
+          description: Identifies the software you are using to call this API. For more information on the client header,
+            see [Client Headers](https://developer.avalara.com/avatax/cli
+        - name: id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: avatax-apis-transactions-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax APIs — Transactions. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/companies/transactions/lines/add
+      name: api-v2-companies-transactions-lines-add
+      description: REST surface for api-v2-companies-transactions-lines-add.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara AddLines
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/transactions/lines/delete
+      name: api-v2-companies-transactions-lines-delete
+      description: REST surface for api-v2-companies-transactions-lines-delete.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara DeleteLines
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/allvariance
+      name: api-v2-companies-companycode-allvariance
+      description: REST surface for api-v2-companies-companyCode-AllVariance.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara GetAllVarianceReportByCompanyCode
+        call: avatax-apis-transactions.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions
+      name: api-v2-companies-companycode-transactions
+      description: REST surface for api-v2-companies-companyCode-transactions.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara ListTransactionsByCompany
+        call: avatax-apis-transactions.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}
+      name: api-v2-companies-companycode-transactions-transactioncode
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara GetTransactionByCode
+        call: avatax-apis-transactions.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}/adjust
+      name: api-v2-companies-companycode-transactions-transactioncode-adjust
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode-adjust.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara AdjustTransaction
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}/audit
+      name: api-v2-companies-companycode-transactions-transactioncode-audit
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode-audit.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara AuditTransaction
+        call: avatax-apis-transactions.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}/changecode
+      name: api-v2-companies-companycode-transactions-transactioncode-changecode
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode-changecode.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara ChangeTransactionCode
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}/commit
+      name: api-v2-companies-companycode-transactions-transactioncode-commit
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode-commit.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CommitTransaction
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}/lock
+      name: api-v2-companies-companycode-transactions-transactioncode-lock
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode-lock.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara LockTransaction
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}/refund
+      name: api-v2-companies-companycode-transactions-transactioncode-refund
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode-refund.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara RefundTransaction
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}/settle
+      name: api-v2-companies-companycode-transactions-transactioncode-settle
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode-settle.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara SettleTransaction
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}/types/{documenttype}
+      name: api-v2-companies-companycode-transactions-transactioncode-types-documenttype
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode-types-documentType.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara GetTransactionByCodeAndType
+        call: avatax-apis-transactions.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+          documentType: rest.documentType
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}/types/{documenttype}/audit
+      name: api-v2-companies-companycode-transactions-transactioncode-types-documenttype-aud
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode-types-documentType-aud.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara AuditTransactionWithType
+        call: avatax-apis-transactions.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+          documentType: rest.documentType
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}/uncommit
+      name: api-v2-companies-companycode-transactions-transactioncode-uncommit
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode-uncommit.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara UncommitTransaction
+        call: avatax-apis-transactions.post
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}/unvoid
+      name: api-v2-companies-companycode-transactions-transactioncode-unvoid
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode-unvoid.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara UnvoidTransaction
+        call: avatax-apis-transactions.post
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}/verify
+      name: api-v2-companies-companycode-transactions-transactioncode-verify
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode-verify.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara VerifyTransaction
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactioncode}/void
+      name: api-v2-companies-companycode-transactions-transactioncode-void
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionCode-void.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara VoidTransaction
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionCode: rest.transactionCode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/transactions/{transactionid}/variance
+      name: api-v2-companies-companycode-transactions-transactionid-variance
+      description: REST surface for api-v2-companies-companyCode-transactions-transactionId-variance.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara GetVarianceReportByCompanyCodeByTransactionId
+        call: avatax-apis-transactions.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          transactionId: rest.transactionId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/companies/{companycode}/variance
+      name: api-v2-companies-companycode-variance
+      description: REST surface for api-v2-companies-companyCode-variance.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara VarianceReport
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          companyCode: rest.companyCode
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/transactions/create
+      name: api-v2-transactions-create
+      description: REST surface for api-v2-transactions-create.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateTransaction
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/transactions/createoradjust
+      name: api-v2-transactions-createoradjust
+      description: REST surface for api-v2-transactions-createoradjust.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara CreateOrAdjustTransaction
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/transactions/lock
+      name: api-v2-transactions-lock
+      description: REST surface for api-v2-transactions-lock.
+      operations:
+      - method: POST
+        name: post
+        description: Avalara BulkLockTransaction
+        call: avatax-apis-transactions.post
+        with:
+          Content-Type: rest.Content-Type
+          X-Avalara-Client: rest.X-Avalara-Client
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/transactions/{id}
+      name: api-v2-transactions-id
+      description: REST surface for api-v2-transactions-id.
+      operations:
+      - method: GET
+        name: get
+        description: Avalara GetTransactionById
+        call: avatax-apis-transactions.get
+        with:
+          X-Avalara-Client: rest.X-Avalara-Client
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-apis-transactions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax APIs — Transactions. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-addlines
+      description: Avalara AddLines
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-deletelines
+      description: Avalara DeleteLines
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getallvariancereportbycompanycode
+      description: Avalara GetAllVarianceReportByCompanyCode
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-transactions.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-listtransactionsbycompany
+      description: Avalara ListTransactionsByCompany
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-transactions.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-gettransactionbycode
+      description: Avalara GetTransactionByCode
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-transactions.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-adjusttransaction
+      description: Avalara AdjustTransaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-audittransaction
+      description: Avalara AuditTransaction
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-transactions.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-changetransactioncode
+      description: Avalara ChangeTransactionCode
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-committransaction
+      description: Avalara CommitTransaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-locktransaction
+      description: Avalara LockTransaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-refundtransaction
+      description: Avalara RefundTransaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-settletransaction
+      description: Avalara SettleTransaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-gettransactionbycodeandtype
+      description: Avalara GetTransactionByCodeAndType
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-transactions.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+        documentType: tools.documentType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-audittransactionwithtype
+      description: Avalara AuditTransactionWithType
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-transactions.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+        documentType: tools.documentType
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-uncommittransaction
+      description: Avalara UncommitTransaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-unvoidtransaction
+      description: Avalara UnvoidTransaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-verifytransaction
+      description: Avalara VerifyTransaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-voidtransaction
+      description: Avalara VoidTransaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionCode: tools.transactionCode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-getvariancereportbycompanycodebytransactionid
+      description: Avalara GetVarianceReportByCompanyCodeByTransactionId
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-transactions.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        transactionId: tools.transactionId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-variancereport
+      description: Avalara VarianceReport
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        companyCode: tools.companyCode
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-createtransaction
+      description: Avalara CreateTransaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-createoradjusttransaction
+      description: Avalara CreateOrAdjustTransaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-bulklocktransaction
+      description: Avalara BulkLockTransaction
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-apis-transactions.post
+      with:
+        Content-Type: tools.Content-Type
+        X-Avalara-Client: tools.X-Avalara-Client
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-gettransactionbyid
+      description: Avalara GetTransactionById
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-apis-transactions.get
+      with:
+        X-Avalara-Client: tools.X-Avalara-Client
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

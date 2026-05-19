@@ -1,0 +1,249 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara 1099 & W-9 API — 1099 Forms
+  description: 'Avalara 1099 & W-9 API — 1099 Forms. 5 operations. Lead operation: Avalara Create a 1099 Form. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - 1099 Forms
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: 1099-w9-1099-forms
+    baseUri: https://api.avalara.com/1099/v1
+    description: Avalara 1099 & W-9 API — 1099 Forms business capability. Self-contained, no shared references.
+    resources:
+    - name: forms-1099
+      path: /forms/1099
+      operations:
+      - name: create1099form
+        method: POST
+        description: Avalara Create a 1099 Form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: list1099forms
+        method: GET
+        description: Avalara List 1099 Forms
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: taxYear
+          in: query
+          type: integer
+        - name: formType
+          in: query
+          type: string
+        - name: status
+          in: query
+          type: string
+        - name: $top
+          in: query
+          type: integer
+        - name: $skip
+          in: query
+          type: integer
+    - name: forms-1099-formId
+      path: /forms/1099/{formId}
+      operations:
+      - name: get1099form
+        method: GET
+        description: Avalara Get a 1099 Form by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: formId
+          in: path
+          type: string
+          required: true
+      - name: update1099form
+        method: PUT
+        description: Avalara Update a 1099 Form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: formId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: delete1099form
+        method: DELETE
+        description: Avalara Delete a 1099 Form
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: formId
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: 1099-w9-1099-forms-rest
+    port: 8080
+    description: REST adapter for Avalara 1099 & W-9 API — 1099 Forms. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/forms/1099
+      name: forms-1099
+      description: REST surface for forms-1099.
+      operations:
+      - method: POST
+        name: create1099form
+        description: Avalara Create a 1099 Form
+        call: 1099-w9-1099-forms.create1099form
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: list1099forms
+        description: Avalara List 1099 Forms
+        call: 1099-w9-1099-forms.list1099forms
+        with:
+          taxYear: rest.taxYear
+          formType: rest.formType
+          status: rest.status
+          $top: rest.$top
+          $skip: rest.$skip
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/forms/1099/{formid}
+      name: forms-1099-formid
+      description: REST surface for forms-1099-formId.
+      operations:
+      - method: GET
+        name: get1099form
+        description: Avalara Get a 1099 Form by ID
+        call: 1099-w9-1099-forms.get1099form
+        with:
+          formId: rest.formId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: update1099form
+        description: Avalara Update a 1099 Form
+        call: 1099-w9-1099-forms.update1099form
+        with:
+          formId: rest.formId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: delete1099form
+        description: Avalara Delete a 1099 Form
+        call: 1099-w9-1099-forms.delete1099form
+        with:
+          formId: rest.formId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: 1099-w9-1099-forms-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara 1099 & W-9 API — 1099 Forms. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-create-1099-form
+      description: Avalara Create a 1099 Form
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: 1099-w9-1099-forms.create1099form
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-list-1099-forms
+      description: Avalara List 1099 Forms
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: 1099-w9-1099-forms.list1099forms
+      with:
+        taxYear: tools.taxYear
+        formType: tools.formType
+        status: tools.status
+        $top: tools.$top
+        $skip: tools.$skip
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-get-1099-form-id
+      description: Avalara Get a 1099 Form by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: 1099-w9-1099-forms.get1099form
+      with:
+        formId: tools.formId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-update-1099-form
+      description: Avalara Update a 1099 Form
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: 1099-w9-1099-forms.update1099form
+      with:
+        formId: tools.formId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-delete-1099-form
+      description: Avalara Delete a 1099 Form
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: 1099-w9-1099-forms.delete1099form
+      with:
+        formId: tools.formId
+      outputParameters:
+      - type: object
+        mapping: $.

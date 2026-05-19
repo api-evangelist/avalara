@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax REST API — Utilities
+  description: 'Avalara AvaTax REST API — Utilities. 2 operations. Lead operation: Avalara Test Connectivity and Authentication.
+    Self-contained Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Utilities
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-rest-utilities
+    baseUri: https://rest.avatax.com
+    description: Avalara AvaTax REST API — Utilities business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-utilities-ping
+      path: /api/v2/utilities/ping
+      operations:
+      - name: ping
+        method: GET
+        description: Avalara Test Connectivity and Authentication
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: api-v2-utilities-subscriptions
+      path: /api/v2/utilities/subscriptions
+      operations:
+      - name: listmysubscriptions
+        method: GET
+        description: Avalara List Subscriptions for the Current Account
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: avatax-rest-utilities-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax REST API — Utilities. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/utilities/ping
+      name: api-v2-utilities-ping
+      description: REST surface for api-v2-utilities-ping.
+      operations:
+      - method: GET
+        name: ping
+        description: Avalara Test Connectivity and Authentication
+        call: avatax-rest-utilities.ping
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/api/v2/utilities/subscriptions
+      name: api-v2-utilities-subscriptions
+      description: REST surface for api-v2-utilities-subscriptions.
+      operations:
+      - method: GET
+        name: listmysubscriptions
+        description: Avalara List Subscriptions for the Current Account
+        call: avatax-rest-utilities.listmysubscriptions
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-rest-utilities-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax REST API — Utilities. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-test-connectivity-and-authentication
+      description: Avalara Test Connectivity and Authentication
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-rest-utilities.ping
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-list-subscriptions-current-account
+      description: Avalara List Subscriptions for the Current Account
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-rest-utilities.listmysubscriptions
+      outputParameters:
+      - type: object
+        mapping: $.

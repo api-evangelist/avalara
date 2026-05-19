@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara Communications Tax API — Geocoding
+  description: 'Avalara Communications Tax API — Geocoding. 1 operations. Lead operation: Avalara Geocode an Address. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Geocoding
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: communications-geocoding
+    baseUri: https://communicationsua.avalara.net
+    description: Avalara Communications Tax API — Geocoding business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-geo-Geocode
+      path: /api/v2/geo/Geocode
+      operations:
+      - name: geocode
+        method: POST
+        description: Avalara Geocode an Address
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: communications-geocoding-rest
+    port: 8080
+    description: REST adapter for Avalara Communications Tax API — Geocoding. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/geo/geocode
+      name: api-v2-geo-geocode
+      description: REST surface for api-v2-geo-Geocode.
+      operations:
+      - method: POST
+        name: geocode
+        description: Avalara Geocode an Address
+        call: communications-geocoding.geocode
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: communications-geocoding-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara Communications Tax API — Geocoding. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: avalara-geocode-address
+      description: Avalara Geocode an Address
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: communications-geocoding.geocode
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,105 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara AvaTax REST API — Nexus
+  description: 'Avalara AvaTax REST API — Nexus. 2 operations. Lead operation: Avalara List Nexus for a Company. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Nexus
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avatax-rest-nexus
+    baseUri: https://rest.avatax.com
+    description: Avalara AvaTax REST API — Nexus business capability. Self-contained, no shared references.
+    resources:
+    - name: api-v2-companies-companyId-nexus
+      path: /api/v2/companies/{companyId}/nexus
+      operations:
+      - name: listnexusbycompany
+        method: GET
+        description: Avalara List Nexus for a Company
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createnexus
+        method: POST
+        description: Avalara Create Nexus for a Company
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.AVALARA_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: avatax-rest-nexus-rest
+    port: 8080
+    description: REST adapter for Avalara AvaTax REST API — Nexus. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/api/v2/companies/{companyid}/nexus
+      name: api-v2-companies-companyid-nexus
+      description: REST surface for api-v2-companies-companyId-nexus.
+      operations:
+      - method: GET
+        name: listnexusbycompany
+        description: Avalara List Nexus for a Company
+        call: avatax-rest-nexus.listnexusbycompany
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createnexus
+        description: Avalara Create Nexus for a Company
+        call: avatax-rest-nexus.createnexus
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: avatax-rest-nexus-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara AvaTax REST API — Nexus. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: avalara-list-nexus-company
+      description: Avalara List Nexus for a Company
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: avatax-rest-nexus.listnexusbycompany
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-create-nexus-company
+      description: Avalara Create Nexus for a Company
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: avatax-rest-nexus.createnexus
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

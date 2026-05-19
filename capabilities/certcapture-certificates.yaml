@@ -1,0 +1,327 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Avalara CertCapture API — Certificates
+  description: 'Avalara CertCapture API — Certificates. 7 operations. Lead operation: Avalara List Certificates. Self-contained
+    Naftiko capability covering one Avalara business surface.'
+  tags:
+  - Avalara
+  - Certificates
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: certcapture-certificates
+    baseUri: https://api.certcapture.com/v2
+    description: Avalara CertCapture API — Certificates business capability. Self-contained, no shared references.
+    resources:
+    - name: certificates
+      path: /certificates
+      operations:
+      - name: listcertificates
+        method: GET
+        description: Avalara List Certificates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: status
+          in: query
+          type: string
+        - name: customerId
+          in: query
+          type: string
+        - name: page
+          in: query
+          type: integer
+        - name: pageSize
+          in: query
+          type: integer
+      - name: createcertificate
+        method: POST
+        description: Avalara Create a Certificate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: certificates-certificateId
+      path: /certificates/{certificateId}
+      operations:
+      - name: getcertificate
+        method: GET
+        description: Avalara Get a Certificate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: certificateId
+          in: path
+          type: string
+          required: true
+      - name: updatecertificate
+        method: PUT
+        description: Avalara Update a Certificate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: certificateId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletecertificate
+        method: DELETE
+        description: Avalara Delete a Certificate
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: certificateId
+          in: path
+          type: string
+          required: true
+    - name: certificates-certificateId-attachment
+      path: /certificates/{certificateId}/attachment
+      operations:
+      - name: getcertificateattachment
+        method: GET
+        description: Avalara Download Certificate Attachment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: certificateId
+          in: path
+          type: string
+          required: true
+      - name: uploadcertificateattachment
+        method: POST
+        description: Avalara Upload Certificate Attachment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: certificateId
+          in: path
+          type: string
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: basic
+      username: '{{env.AVALARA_USER}}'
+      password: '{{env.AVALARA_PASS}}'
+  exposes:
+  - type: rest
+    namespace: certcapture-certificates-rest
+    port: 8080
+    description: REST adapter for Avalara CertCapture API — Certificates. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/certificates
+      name: certificates
+      description: REST surface for certificates.
+      operations:
+      - method: GET
+        name: listcertificates
+        description: Avalara List Certificates
+        call: certcapture-certificates.listcertificates
+        with:
+          status: rest.status
+          customerId: rest.customerId
+          page: rest.page
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createcertificate
+        description: Avalara Create a Certificate
+        call: certcapture-certificates.createcertificate
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/certificates/{certificateid}
+      name: certificates-certificateid
+      description: REST surface for certificates-certificateId.
+      operations:
+      - method: GET
+        name: getcertificate
+        description: Avalara Get a Certificate
+        call: certcapture-certificates.getcertificate
+        with:
+          certificateId: rest.certificateId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatecertificate
+        description: Avalara Update a Certificate
+        call: certcapture-certificates.updatecertificate
+        with:
+          certificateId: rest.certificateId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletecertificate
+        description: Avalara Delete a Certificate
+        call: certcapture-certificates.deletecertificate
+        with:
+          certificateId: rest.certificateId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/certificates/{certificateid}/attachment
+      name: certificates-certificateid-attachment
+      description: REST surface for certificates-certificateId-attachment.
+      operations:
+      - method: GET
+        name: getcertificateattachment
+        description: Avalara Download Certificate Attachment
+        call: certcapture-certificates.getcertificateattachment
+        with:
+          certificateId: rest.certificateId
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: uploadcertificateattachment
+        description: Avalara Upload Certificate Attachment
+        call: certcapture-certificates.uploadcertificateattachment
+        with:
+          certificateId: rest.certificateId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: certcapture-certificates-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Avalara CertCapture API — Certificates. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: avalara-list-certificates
+      description: Avalara List Certificates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: certcapture-certificates.listcertificates
+      with:
+        status: tools.status
+        customerId: tools.customerId
+        page: tools.page
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-create-certificate
+      description: Avalara Create a Certificate
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: certcapture-certificates.createcertificate
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-get-certificate
+      description: Avalara Get a Certificate
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: certcapture-certificates.getcertificate
+      with:
+        certificateId: tools.certificateId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-update-certificate
+      description: Avalara Update a Certificate
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: certcapture-certificates.updatecertificate
+      with:
+        certificateId: tools.certificateId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-delete-certificate
+      description: Avalara Delete a Certificate
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: certcapture-certificates.deletecertificate
+      with:
+        certificateId: tools.certificateId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-download-certificate-attachment
+      description: Avalara Download Certificate Attachment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: certcapture-certificates.getcertificateattachment
+      with:
+        certificateId: tools.certificateId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: avalara-upload-certificate-attachment
+      description: Avalara Upload Certificate Attachment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: certcapture-certificates.uploadcertificateattachment
+      with:
+        certificateId: tools.certificateId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
