@@ -1,0 +1,107 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apply AvaTax to Sage Intacct AR transactions
+  description: For each Sage Intacct AR invoice, call AvaTax to determine sales tax and post the result back into the Intacct AR detail with a matched tax code.
+  tags:
+  - Avalara
+  - Integration
+  - Accounting
+  - sage-intacct
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+    SAGE_INTACCT_API_KEY: SAGE_INTACCT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avalara
+    baseUri: https://rest.avatax.com
+    description: Avalara API operations consumed by this integration.
+    resources:
+    - name: api-v2-transactions-create
+      path: /api/v2/transactions/create
+      operations:
+      - name: createtransaction
+        method: POST
+        description: AvaTax — compute tax for the Intacct AR invoice.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-definitions-taxcodes
+      path: /api/v2/definitions/taxcodes
+      operations:
+      - name: listtaxcodes
+        method: GET
+        description: AvaTax — fetch valid AvaTax codes for mapping into Intacct.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+  - type: http
+    namespace: sage-intacct
+    baseUri: https://api.intacct.com
+    description: Sage Intacct API operations consumed by this integration.
+    resources:
+    - name: ia-xml-xmlgw-phtml
+      path: /ia/xml/xmlgw.phtml
+      operations:
+      - name: createarinvoice
+        method: POST
+        description: 'Sage Intacct API: createArInvoice'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: avalara-sage-intacct-mcp
+    description: MCP adapter for the avalara-sage-intacct integration.
+    tools:
+    - name: avalara_sage_intacct
+      description: Execute the avalara sage intacct integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: avalara-sage-intacct-rest
+    port: 8080
+    description: REST adapter for the avalara-sage-intacct integration.
+    resources:
+    - path: /avalara-sage-intacct
+      name: avalara-sage-intacct
+      description: REST surface for the avalara-sage-intacct integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the avalara-sage-intacct integration.
+        call: avalara_sage_intacct
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

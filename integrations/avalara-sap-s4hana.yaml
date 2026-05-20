@@ -1,0 +1,139 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: VAT determination for SAP S/4HANA via Avalara
+  description: Route SAP S/4HANA sales-document tax events through AvaTax for EU VAT and global indirect-tax determination, replacing per-country rate tables.
+  tags:
+  - Avalara
+  - Integration
+  - ERP
+  - sap-s4hana
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+    SAP_S4HANA_API_KEY: SAP_S4HANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avalara
+    baseUri: https://rest.avatax.com
+    description: Avalara API operations consumed by this integration.
+    resources:
+    - name: api-v2-transactions-create
+      path: /api/v2/transactions/create
+      operations:
+      - name: createtransaction
+        method: POST
+        description: AvaTax — calculate VAT for the SAP sales document.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-companies-companycode-transactions-transactioncode-co
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/commit
+      operations:
+      - name: committransaction
+        method: POST
+        description: AvaTax — commit the VAT transaction once the SAP document posts.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: companyCode
+          in: path
+          type: string
+          description: Path parameter companyCode.
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          description: Path parameter transactionCode.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: sap-s4hana
+    baseUri: https://yourhost.s4hana.cloud.sap
+    description: SAP S/4HANA Cloud SD API operations consumed by this integration.
+    resources:
+    - name: sap-opu-odata-sap-api-sales-order-srv-a-salesorder-salesorde
+      path: /sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder('{SalesOrder}')
+      operations:
+      - name: getsalesorder
+        method: GET
+        description: 'SAP S/4HANA Cloud SD API: getSalesOrder'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: SalesOrder
+          in: path
+          type: string
+          description: Path parameter SalesOrder.
+          required: true
+    - name: sap-opu-odata-sap-api-sales-order-srv-a-salesorder
+      path: /sap/opu/odata/sap/API_SALES_ORDER_SRV/A_SalesOrder
+      operations:
+      - name: createsalesorder
+        method: POST
+        description: 'SAP S/4HANA Cloud SD API: createSalesOrder'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: avalara-sap-s4hana-mcp
+    description: MCP adapter for the avalara-sap-s4hana integration.
+    tools:
+    - name: avalara_sap_s4hana
+      description: Execute the avalara sap s4hana integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: avalara-sap-s4hana-rest
+    port: 8080
+    description: REST adapter for the avalara-sap-s4hana integration.
+    resources:
+    - path: /avalara-sap-s4hana
+      name: avalara-sap-s4hana
+      description: REST surface for the avalara-sap-s4hana integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the avalara-sap-s4hana integration.
+        call: avalara_sap_s4hana
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

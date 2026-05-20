@@ -1,0 +1,146 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Surface Avalara CertCapture exemptions inside Salesforce Accounts
+  description: When a Salesforce Account is opened, fetch the matching CertCapture customer and active certificates so reps see exempt status without leaving Salesforce, and any new certificate uploaded in Salesforce is pushed into CertCapture.
+  tags:
+  - Avalara
+  - Integration
+  - Compliance
+  - certcapture-salesforce
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+    CERTCAPTURE_SALESFORCE_API_KEY: CERTCAPTURE_SALESFORCE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avalara
+    baseUri: https://rest.avatax.com
+    description: Avalara API operations consumed by this integration.
+    resources:
+    - name: customers
+      path: /customers
+      operations:
+      - name: querycertcapturecustomers
+        method: GET
+        description: CertCapture — search customers by external code / email.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: customers-customerid-certificates
+      path: /customers/{customerId}/certificates
+      operations:
+      - name: listcertificatesforcustomer
+        method: GET
+        description: CertCapture — list active exemption certificates for the customer.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: customerId
+          in: path
+          type: string
+          description: Path parameter customerId.
+          required: true
+    - name: certificates
+      path: /certificates
+      operations:
+      - name: createcertificate
+        method: POST
+        description: CertCapture — create a new exemption certificate from a Salesforce upload.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: certcapture-salesforce
+    baseUri: https://yourinstance.my.salesforce.com
+    description: Salesforce REST API operations consumed by this integration.
+    resources:
+    - name: services-data-v60-0-sobjects-account-id
+      path: /services/data/v60.0/sobjects/Account/{id}
+      operations:
+      - name: getaccount
+        method: GET
+        description: 'Salesforce REST API: getAccount'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Path parameter id.
+          required: true
+    - name: services-data-v60-0-sobjects-account-id
+      path: /services/data/v60.0/sobjects/Account/{id}
+      operations:
+      - name: updateaccount
+        method: PATCH
+        description: 'Salesforce REST API: updateAccount'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Path parameter id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: avalara-certcapture-salesforce-mcp
+    description: MCP adapter for the avalara-certcapture-salesforce integration.
+    tools:
+    - name: avalara_certcapture_salesforce
+      description: Execute the avalara certcapture salesforce integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: avalara-certcapture-salesforce-rest
+    port: 8080
+    description: REST adapter for the avalara-certcapture-salesforce integration.
+    resources:
+    - path: /avalara-certcapture-salesforce
+      name: avalara-certcapture-salesforce
+      description: REST surface for the avalara-certcapture-salesforce integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the avalara-certcapture-salesforce integration.
+        call: avalara_certcapture_salesforce
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

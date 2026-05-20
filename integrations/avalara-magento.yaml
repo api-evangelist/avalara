@@ -1,0 +1,139 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Replace Magento native tax with Avalara AvaTax
+  description: Replace Magento's built-in tax engine with AvaTax for every quote-to-order so multi-jurisdiction U.S. sales tax is correct.
+  tags:
+  - Avalara
+  - Integration
+  - E-commerce
+  - magento
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+    MAGENTO_API_KEY: MAGENTO_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avalara
+    baseUri: https://rest.avatax.com
+    description: Avalara API operations consumed by this integration.
+    resources:
+    - name: api-v2-transactions-create
+      path: /api/v2/transactions/create
+      operations:
+      - name: createtransaction
+        method: POST
+        description: AvaTax — compute tax for the Magento quote.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-companies-companycode-transactions-transactioncode-co
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/commit
+      operations:
+      - name: committransaction
+        method: POST
+        description: AvaTax — commit the transaction on order placement.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: companyCode
+          in: path
+          type: string
+          description: Path parameter companyCode.
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          description: Path parameter transactionCode.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: magento
+    baseUri: https://yourstore.com
+    description: Magento REST API operations consumed by this integration.
+    resources:
+    - name: rest-v1-orders-id
+      path: /rest/V1/orders/{id}
+      operations:
+      - name: getorder
+        method: GET
+        description: 'Magento REST API: getOrder'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Path parameter id.
+          required: true
+    - name: rest-v1-orders
+      path: /rest/V1/orders
+      operations:
+      - name: createorder
+        method: POST
+        description: 'Magento REST API: createOrder'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: avalara-magento-mcp
+    description: MCP adapter for the avalara-magento integration.
+    tools:
+    - name: avalara_magento
+      description: Execute the avalara magento integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: avalara-magento-rest
+    port: 8080
+    description: REST adapter for the avalara-magento integration.
+    resources:
+    - path: /avalara-magento
+      name: avalara-magento
+      description: REST surface for the avalara-magento integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the avalara-magento integration.
+        call: avalara_magento
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

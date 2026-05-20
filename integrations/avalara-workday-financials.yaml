@@ -1,0 +1,139 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Push AvaTax tax determination into Workday Financials
+  description: For Workday Financials customer invoices, call AvaTax to determine tax then post the tax detail back to the Workday Customer Invoice so finance reporting and Returns stay aligned.
+  tags:
+  - Avalara
+  - Integration
+  - ERP
+  - workday-financials
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+    WORKDAY_FINANCIALS_API_KEY: WORKDAY_FINANCIALS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avalara
+    baseUri: https://rest.avatax.com
+    description: Avalara API operations consumed by this integration.
+    resources:
+    - name: api-v2-transactions-create
+      path: /api/v2/transactions/create
+      operations:
+      - name: createtransaction
+        method: POST
+        description: AvaTax — calculate tax for the Workday customer invoice.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-companies-companycode-transactions-transactioncode-co
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/commit
+      operations:
+      - name: committransaction
+        method: POST
+        description: AvaTax — commit the transaction when Workday posts the invoice.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: companyCode
+          in: path
+          type: string
+          description: Path parameter companyCode.
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          description: Path parameter transactionCode.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: workday-financials
+    baseUri: https://yourhost.workday.com
+    description: Workday Financial Management API operations consumed by this integration.
+    resources:
+    - name: ccx-api-financialmanagement-v1-customerinvoices-id
+      path: /ccx/api/financialManagement/v1/customerInvoices/{ID}
+      operations:
+      - name: getcustomerinvoice
+        method: GET
+        description: 'Workday Financial Management API: getCustomerInvoice'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ID
+          in: path
+          type: string
+          description: Path parameter ID.
+          required: true
+    - name: ccx-api-financialmanagement-v1-customerinvoices
+      path: /ccx/api/financialManagement/v1/customerInvoices
+      operations:
+      - name: createcustomerinvoice
+        method: POST
+        description: 'Workday Financial Management API: createCustomerInvoice'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: avalara-workday-financials-mcp
+    description: MCP adapter for the avalara-workday-financials integration.
+    tools:
+    - name: avalara_workday_financials
+      description: Execute the avalara workday financials integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: avalara-workday-financials-rest
+    port: 8080
+    description: REST adapter for the avalara-workday-financials integration.
+    resources:
+    - path: /avalara-workday-financials
+      name: avalara-workday-financials
+      description: REST surface for the avalara-workday-financials integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the avalara-workday-financials integration.
+        call: avalara_workday_financials
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

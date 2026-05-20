@@ -1,0 +1,144 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Drive Microsoft Dynamics 365 sales tax from Avalara
+  description: For Dynamics 365 sales orders, replace the native tax engine with AvaTax so U.S. multi-state and EU VAT determination is centralized.
+  tags:
+  - Avalara
+  - Integration
+  - ERP
+  - microsoft-dynamics
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+    MICROSOFT_DYNAMICS_API_KEY: MICROSOFT_DYNAMICS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avalara
+    baseUri: https://rest.avatax.com
+    description: Avalara API operations consumed by this integration.
+    resources:
+    - name: api-v2-transactions-create
+      path: /api/v2/transactions/create
+      operations:
+      - name: createtransaction
+        method: POST
+        description: AvaTax — calculate tax for the Dynamics 365 sales order.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-companies-companycode-transactions-transactioncode-co
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/commit
+      operations:
+      - name: committransaction
+        method: POST
+        description: AvaTax — commit on order confirmation.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: companyCode
+          in: path
+          type: string
+          description: Path parameter companyCode.
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          description: Path parameter transactionCode.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: microsoft-dynamics
+    baseUri: https://yourorg.api.crm.dynamics.com
+    description: Microsoft Dynamics 365 API operations consumed by this integration.
+    resources:
+    - name: api-data-v9-2-salesorders-id
+      path: /api/data/v9.2/salesorders({id})
+      operations:
+      - name: getsalesorder
+        method: GET
+        description: 'Microsoft Dynamics 365 API: getSalesOrder'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Path parameter id.
+          required: true
+    - name: api-data-v9-2-salesorders-id
+      path: /api/data/v9.2/salesorders({id})
+      operations:
+      - name: updatesalesorder
+        method: PATCH
+        description: 'Microsoft Dynamics 365 API: updateSalesOrder'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Path parameter id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: avalara-microsoft-dynamics-mcp
+    description: MCP adapter for the avalara-microsoft-dynamics integration.
+    tools:
+    - name: avalara_microsoft_dynamics
+      description: Execute the avalara microsoft dynamics integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: avalara-microsoft-dynamics-rest
+    port: 8080
+    description: REST adapter for the avalara-microsoft-dynamics integration.
+    resources:
+    - path: /avalara-microsoft-dynamics
+      name: avalara-microsoft-dynamics
+      description: REST surface for the avalara-microsoft-dynamics integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the avalara-microsoft-dynamics integration.
+        call: avalara_microsoft_dynamics
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

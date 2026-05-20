@@ -1,0 +1,149 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Push Avalara tax lines into QuickBooks Online invoices
+  description: For each AvaTax-committed transaction, write the matching tax line into a QuickBooks Online invoice so the GL stays in sync with what Returns will file.
+  tags:
+  - Avalara
+  - Integration
+  - Accounting
+  - quickbooks
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+    QUICKBOOKS_API_KEY: QUICKBOOKS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avalara
+    baseUri: https://rest.avatax.com
+    description: Avalara API operations consumed by this integration.
+    resources:
+    - name: api-v2-transactions-create
+      path: /api/v2/transactions/create
+      operations:
+      - name: createtransaction
+        method: POST
+        description: AvaTax — calculate tax for the QBO invoice.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-companies-companycode-transactions-transactioncode-co
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/commit
+      operations:
+      - name: committransaction
+        method: POST
+        description: AvaTax — commit the transaction on invoice send.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: companyCode
+          in: path
+          type: string
+          description: Path parameter companyCode.
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          description: Path parameter transactionCode.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: quickbooks
+    baseUri: https://quickbooks.api.intuit.com
+    description: QuickBooks Online API operations consumed by this integration.
+    resources:
+    - name: v3-company-realmid-invoice
+      path: /v3/company/{realmId}/invoice
+      operations:
+      - name: createinvoice
+        method: POST
+        description: 'QuickBooks Online API: createInvoice'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: realmId
+          in: path
+          type: string
+          description: Path parameter realmId.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v3-company-realmid-invoice-invoiceid
+      path: /v3/company/{realmId}/invoice/{invoiceId}
+      operations:
+      - name: getinvoice
+        method: GET
+        description: 'QuickBooks Online API: getInvoice'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: realmId
+          in: path
+          type: string
+          description: Path parameter realmId.
+          required: true
+        - name: invoiceId
+          in: path
+          type: string
+          description: Path parameter invoiceId.
+          required: true
+  exposes:
+  - type: mcp
+    namespace: avalara-quickbooks-mcp
+    description: MCP adapter for the avalara-quickbooks integration.
+    tools:
+    - name: avalara_quickbooks
+      description: Execute the avalara quickbooks integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: avalara-quickbooks-rest
+    port: 8080
+    description: REST adapter for the avalara-quickbooks integration.
+    resources:
+    - path: /avalara-quickbooks
+      name: avalara-quickbooks
+      description: REST surface for the avalara-quickbooks integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the avalara-quickbooks integration.
+        call: avalara_quickbooks
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

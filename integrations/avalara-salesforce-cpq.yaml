@@ -1,0 +1,134 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tax-aware quotes in Salesforce CPQ via Avalara
+  description: When a Salesforce CPQ Quote is generated, call AvaTax to determine the correct line-item tax and write it back to the SBQQ__Quote__c record so reps see a tax-accurate quote.
+  tags:
+  - Avalara
+  - Integration
+  - CPQ
+  - salesforce-cpq
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+    SALESFORCE_CPQ_API_KEY: SALESFORCE_CPQ_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avalara
+    baseUri: https://rest.avatax.com
+    description: Avalara API operations consumed by this integration.
+    resources:
+    - name: api-v2-transactions-create
+      path: /api/v2/transactions/create
+      operations:
+      - name: createtransaction
+        method: POST
+        description: AvaTax — calculate tax for the Salesforce CPQ quote.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-companies-companyid-customers
+      path: /api/v2/companies/{companyId}/customers
+      operations:
+      - name: querycustomers
+        method: GET
+        description: AvaTax — look up the exemption / tax profile of the customer.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: companyId
+          in: path
+          type: string
+          description: Path parameter companyId.
+          required: true
+  - type: http
+    namespace: salesforce-cpq
+    baseUri: https://yourinstance.my.salesforce.com
+    description: Salesforce CPQ REST API operations consumed by this integration.
+    resources:
+    - name: services-data-v60-0-sobjects-sbqq-quote-c-id
+      path: /services/data/v60.0/sobjects/SBQQ__Quote__c/{id}
+      operations:
+      - name: getquote
+        method: GET
+        description: 'Salesforce CPQ REST API: getQuote'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Path parameter id.
+          required: true
+    - name: services-data-v60-0-sobjects-sbqq-quote-c-id
+      path: /services/data/v60.0/sobjects/SBQQ__Quote__c/{id}
+      operations:
+      - name: updatequote
+        method: PATCH
+        description: 'Salesforce CPQ REST API: updateQuote'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Path parameter id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: avalara-salesforce-cpq-mcp
+    description: MCP adapter for the avalara-salesforce-cpq integration.
+    tools:
+    - name: avalara_salesforce_cpq
+      description: Execute the avalara salesforce cpq integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: avalara-salesforce-cpq-rest
+    port: 8080
+    description: REST adapter for the avalara-salesforce-cpq integration.
+    resources:
+    - path: /avalara-salesforce-cpq
+      name: avalara-salesforce-cpq
+      description: REST surface for the avalara-salesforce-cpq integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the avalara-salesforce-cpq integration.
+        call: avalara_salesforce_cpq
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

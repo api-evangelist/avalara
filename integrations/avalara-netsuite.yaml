@@ -1,0 +1,166 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sync AvaTax transactions into NetSuite invoices
+  description: For each NetSuite invoice posted, mirror it as a committed AvaTax transaction so Returns has the underlying liability and NetSuite has the right tax lines.
+  tags:
+  - Avalara
+  - Integration
+  - ERP
+  - netsuite
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+    NETSUITE_API_KEY: NETSUITE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avalara
+    baseUri: https://rest.avatax.com
+    description: Avalara API operations consumed by this integration.
+    resources:
+    - name: api-v2-transactions-create
+      path: /api/v2/transactions/create
+      operations:
+      - name: createtransaction
+        method: POST
+        description: AvaTax — create a tax transaction matching the NetSuite invoice.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-companies-companycode-transactions-transactioncode-co
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/commit
+      operations:
+      - name: committransaction
+        method: POST
+        description: AvaTax — commit the transaction once the invoice is finalized.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: companyCode
+          in: path
+          type: string
+          description: Path parameter companyCode.
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          description: Path parameter transactionCode.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-companies-companycode-transactions-transactioncode-ad
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/adjust
+      operations:
+      - name: adjusttransaction
+        method: POST
+        description: AvaTax — adjust the tax transaction when the NetSuite invoice is edited.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: companyCode
+          in: path
+          type: string
+          description: Path parameter companyCode.
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          description: Path parameter transactionCode.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: netsuite
+    baseUri: https://yourcompany.suitetalk.api.netsuite.com
+    description: NetSuite SuiteTalk REST operations consumed by this integration.
+    resources:
+    - name: services-rest-record-v1-invoice-id
+      path: /services/rest/record/v1/invoice/{id}
+      operations:
+      - name: getinvoice
+        method: GET
+        description: 'NetSuite SuiteTalk REST: getInvoice'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Path parameter id.
+          required: true
+    - name: services-rest-record-v1-invoice
+      path: /services/rest/record/v1/invoice
+      operations:
+      - name: createinvoice
+        method: POST
+        description: 'NetSuite SuiteTalk REST: createInvoice'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: avalara-netsuite-mcp
+    description: MCP adapter for the avalara-netsuite integration.
+    tools:
+    - name: avalara_netsuite
+      description: Execute the avalara netsuite integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: avalara-netsuite-rest
+    port: 8080
+    description: REST adapter for the avalara-netsuite integration.
+    resources:
+    - path: /avalara-netsuite
+      name: avalara-netsuite
+      description: REST surface for the avalara-netsuite integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the avalara-netsuite integration.
+        call: avalara_netsuite
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

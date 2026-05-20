@@ -1,0 +1,144 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apply Avalara AvaTax to BigCommerce carts
+  description: When a BigCommerce cart updates, call AvaTax to compute line-level tax and write the rates back so checkout shows the correct totals.
+  tags:
+  - Avalara
+  - Integration
+  - E-commerce
+  - bigcommerce
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+    BIGCOMMERCE_API_KEY: BIGCOMMERCE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avalara
+    baseUri: https://rest.avatax.com
+    description: Avalara API operations consumed by this integration.
+    resources:
+    - name: api-v2-transactions-create
+      path: /api/v2/transactions/create
+      operations:
+      - name: createtransaction
+        method: POST
+        description: AvaTax — calculate tax for the BigCommerce cart.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-addresses-resolve
+      path: /api/v2/addresses/resolve
+      operations:
+      - name: resolveaddress
+        method: POST
+        description: AvaTax — resolve the customer shipping address.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: bigcommerce
+    baseUri: https://api.bigcommerce.com
+    description: BigCommerce v3 API operations consumed by this integration.
+    resources:
+    - name: stores-store-hash-v3-carts-cartid
+      path: /stores/{store_hash}/v3/carts/{cartId}
+      operations:
+      - name: getcart
+        method: GET
+        description: 'BigCommerce v3 API: getCart'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_hash
+          in: path
+          type: string
+          description: Path parameter store_hash.
+          required: true
+        - name: cartId
+          in: path
+          type: string
+          description: Path parameter cartId.
+          required: true
+    - name: stores-store-hash-v3-carts-cartid
+      path: /stores/{store_hash}/v3/carts/{cartId}
+      operations:
+      - name: updatecart
+        method: PUT
+        description: 'BigCommerce v3 API: updateCart'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: store_hash
+          in: path
+          type: string
+          description: Path parameter store_hash.
+          required: true
+        - name: cartId
+          in: path
+          type: string
+          description: Path parameter cartId.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: avalara-bigcommerce-mcp
+    description: MCP adapter for the avalara-bigcommerce integration.
+    tools:
+    - name: avalara_bigcommerce
+      description: Execute the avalara bigcommerce integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: avalara-bigcommerce-rest
+    port: 8080
+    description: REST adapter for the avalara-bigcommerce integration.
+    resources:
+    - path: /avalara-bigcommerce
+      name: avalara-bigcommerce
+      description: REST surface for the avalara-bigcommerce integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the avalara-bigcommerce integration.
+        call: avalara_bigcommerce
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

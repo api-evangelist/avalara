@@ -1,0 +1,139 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Calculate Avalara sales tax for Shopify orders
+  description: For each Shopify order, call AvaTax createTransaction to determine sales tax, then commit on order fulfillment so Avalara Returns can file accurately.
+  tags:
+  - Avalara
+  - Integration
+  - E-commerce
+  - shopify
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    AVALARA_API_KEY: AVALARA_API_KEY
+    SHOPIFY_API_KEY: SHOPIFY_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: avalara
+    baseUri: https://rest.avatax.com
+    description: Avalara API operations consumed by this integration.
+    resources:
+    - name: api-v2-transactions-create
+      path: /api/v2/transactions/create
+      operations:
+      - name: createtransaction
+        method: POST
+        description: AvaTax — create a tax transaction for the Shopify order.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-v2-companies-companycode-transactions-transactioncode-co
+      path: /api/v2/companies/{companyCode}/transactions/{transactionCode}/commit
+      operations:
+      - name: committransaction
+        method: POST
+        description: AvaTax — commit the transaction so it counts for filing.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: companyCode
+          in: path
+          type: string
+          description: Path parameter companyCode.
+          required: true
+        - name: transactionCode
+          in: path
+          type: string
+          description: Path parameter transactionCode.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: shopify
+    baseUri: https://yourshop.myshopify.com
+    description: Shopify Admin REST API operations consumed by this integration.
+    resources:
+    - name: admin-api-2024-04-orders-order-id-json
+      path: /admin/api/2024-04/orders/{order_id}.json
+      operations:
+      - name: getorder
+        method: GET
+        description: 'Shopify Admin REST API: getOrder'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: order_id
+          in: path
+          type: string
+          description: Path parameter order_id.
+          required: true
+    - name: admin-api-2024-04-orders-json
+      path: /admin/api/2024-04/orders.json
+      operations:
+      - name: createorder
+        method: POST
+        description: 'Shopify Admin REST API: createOrder'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: avalara-shopify-mcp
+    description: MCP adapter for the avalara-shopify integration.
+    tools:
+    - name: avalara_shopify
+      description: Execute the avalara shopify integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: avalara-shopify-rest
+    port: 8080
+    description: REST adapter for the avalara-shopify integration.
+    resources:
+    - path: /avalara-shopify
+      name: avalara-shopify
+      description: REST surface for the avalara-shopify integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the avalara-shopify integration.
+        call: avalara_shopify
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
