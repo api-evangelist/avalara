@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ClassifyRequest",
+  "title": "ClassifyRequest",
+  "type": "object",
+  "required": [
+    "description",
+    "destinationCountry"
+  ],
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "Product description for classification"
+    },
+    "destinationCountry": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 destination country"
+    },
+    "originCountry": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 origin country"
+    },
+    "attributes": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      },
+      "description": "Additional product attributes"
+    },
+    "itemCode": {
+      "type": "string",
+      "description": "Product identifier"
+    }
+  }
+}

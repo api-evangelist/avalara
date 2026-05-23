@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AddressInfo",
+  "title": "AddressInfo",
+  "type": "object",
+  "properties": {
+    "line1": {
+      "type": "string",
+      "description": "Street address line 1"
+    },
+    "line2": {
+      "type": "string",
+      "description": "Street address line 2"
+    },
+    "line3": {
+      "type": "string",
+      "description": "Street address line 3"
+    },
+    "city": {
+      "type": "string",
+      "description": "City name"
+    },
+    "region": {
+      "type": "string",
+      "description": "State, province, or region code"
+    },
+    "postalCode": {
+      "type": "string",
+      "description": "Postal code or ZIP code"
+    },
+    "country": {
+      "type": "string",
+      "description": "Two-character ISO 3166 country code"
+    },
+    "latitude": {
+      "type": "number",
+      "format": "double"
+    },
+    "longitude": {
+      "type": "number",
+      "format": "double"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FetchResult_ItemModel",
+  "title": "FetchResult_ItemModel",
+  "type": "object",
+  "properties": {
+    "@recordsetCount": {
+      "type": "integer"
+    },
+    "value": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ItemModel"
+      }
+    }
+  }
+}

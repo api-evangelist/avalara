@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TokenResponse",
+  "title": "TokenResponse",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "type": "string",
+      "description": "The OAuth 2.0 access token"
+    },
+    "token_type": {
+      "type": "string",
+      "enum": [
+        "Bearer"
+      ]
+    },
+    "expires_in": {
+      "type": "integer",
+      "description": "Token expiry time in seconds"
+    },
+    "scope": {
+      "type": "string",
+      "description": "Granted scopes"
+    },
+    "refresh_token": {
+      "type": "string",
+      "description": "Refresh token (if applicable)"
+    }
+  }
+}

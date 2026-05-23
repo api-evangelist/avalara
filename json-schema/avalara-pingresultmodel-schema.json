@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PingResultModel",
+  "title": "PingResultModel",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "string",
+      "description": "AvaTax API version"
+    },
+    "authenticated": {
+      "type": "boolean",
+      "description": "Whether the request was authenticated"
+    },
+    "authenticationType": {
+      "type": "string",
+      "enum": [
+        "None",
+        "UsernamePassword",
+        "AccountIdLicenseKey",
+        "OpenIdBearerToken"
+      ],
+      "description": "Type of authentication used"
+    },
+    "authenticatedUserName": {
+      "type": "string",
+      "description": "Username of the authenticated user"
+    },
+    "authenticatedUserId": {
+      "type": "integer",
+      "description": "User ID of the authenticated user"
+    },
+    "authenticatedAccountId": {
+      "type": "integer",
+      "description": "Account ID of the authenticated user"
+    },
+    "crmid": {
+      "type": "string"
+    }
+  }
+}

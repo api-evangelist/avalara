@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AdjustTransactionModel",
+  "title": "AdjustTransactionModel",
+  "type": "object",
+  "required": [
+    "adjustmentReason",
+    "newTransaction"
+  ],
+  "properties": {
+    "adjustmentReason": {
+      "type": "string",
+      "enum": [
+        "NotAdjusted",
+        "SourcingIssue",
+        "ReconciledWithGeneralLedger",
+        "ExemptCertApplied",
+        "PriceAdjusted",
+        "ProductReturned",
+        "ProductExchanged",
+        "BadDebt",
+        "Other"
+      ]
+    },
+    "adjustmentDescription": {
+      "type": "string"
+    },
+    "newTransaction": {
+      "$ref": "#/components/schemas/CreateTransactionModel"
+    }
+  }
+}

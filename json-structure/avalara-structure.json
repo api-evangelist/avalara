@@ -1,0 +1,3251 @@
+{
+  "provider": "Avalara",
+  "providerId": "avalara",
+  "kind": "json-structure",
+  "description": "Structural overview of the Avalara API surface; extracted from openapi/.",
+  "schemaCount": 0,
+  "operationCount": 360,
+  "schemas": [],
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/api/v2/accounts/{id}/resetlicensekey",
+      "operationId": null,
+      "summary": "Avalara AccountResetLicenseKey",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/accounts/{id}/activate",
+      "operationId": null,
+      "summary": "Avalara ActivateAccount",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts/{id}/audit",
+      "operationId": null,
+      "summary": "Avalara AuditAccount",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/accounts/{id}/licensekey",
+      "operationId": null,
+      "summary": "Avalara CreateLicenseKey",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts/{id}/licensekey/{licensekeyname}",
+      "operationId": null,
+      "summary": "Avalara GetLicenseKey",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/accounts/{id}/licensekey/{licensekeyname}",
+      "operationId": null,
+      "summary": "Avalara DeleteLicenseKey",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts/{id}",
+      "operationId": null,
+      "summary": "Avalara GetAccount",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/accounts/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateAccount",
+      "tags": [
+        "Registrar"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/accounts/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteAccount",
+      "tags": [
+        "Registrar"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts/{id}/configuration",
+      "operationId": null,
+      "summary": "Avalara GetAccountConfiguration",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/accounts/{id}/configuration",
+      "operationId": null,
+      "summary": "Avalara SetAccountConfiguration",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts/{id}/licensekeys",
+      "operationId": null,
+      "summary": "Avalara GetLicenseKeys",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts",
+      "operationId": null,
+      "summary": "Avalara QueryAccounts",
+      "tags": [
+        "Accounts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/accounts",
+      "operationId": null,
+      "summary": "Avalara CreateAccount",
+      "tags": [
+        "Registrar"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/addresses/resolve",
+      "operationId": null,
+      "summary": "Avalara ResolveAddress",
+      "tags": [
+        "Addresses"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/addresses/resolve",
+      "operationId": null,
+      "summary": "Avalara ResolveAddressPost",
+      "tags": [
+        "Addresses"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/advancedrules/accounts/{accountId}/companies/{companyId}/lookupFiles",
+      "operationId": null,
+      "summary": "Avalara GetCompanyLookupFiles",
+      "tags": [
+        "AdvancedRules"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/advancedrules/accounts/{accountId}/companies/{companyId}/lookupFiles",
+      "operationId": null,
+      "summary": "Avalara CreateCompanyLookupFile",
+      "tags": [
+        "AdvancedRules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/advancedrules/accounts/{accountId}/lookupFiles/{id}",
+      "operationId": null,
+      "summary": "Avalara GetLookupFile",
+      "tags": [
+        "AdvancedRules"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/advancedrules/accounts/{accountId}/lookupFiles/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateLookupFile",
+      "tags": [
+        "AdvancedRules"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/advancedrules/accounts/{accountId}/lookupFiles/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteLookupFile",
+      "tags": [
+        "AdvancedRules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/avafileforms",
+      "operationId": null,
+      "summary": "Avalara QueryAvaFileForms",
+      "tags": [
+        "AvaFileForms"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/avafileforms",
+      "operationId": null,
+      "summary": "Avalara CreateAvaFileForms",
+      "tags": [
+        "AvaFileForms"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/avafileforms/{id}",
+      "operationId": null,
+      "summary": "Avalara GetAvaFileForm",
+      "tags": [
+        "AvaFileForms"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/avafileforms/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateAvaFileForm",
+      "tags": [
+        "AvaFileForms"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/avafileforms/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteAvaFileForm",
+      "tags": [
+        "AvaFileForms"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/batches/{id}/cancel",
+      "operationId": null,
+      "summary": "Avalara CancelBatch",
+      "tags": [
+        "Batches"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/batches",
+      "operationId": null,
+      "summary": "Avalara ListBatchesByCompany",
+      "tags": [
+        "Batches"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/batches",
+      "operationId": null,
+      "summary": "Avalara CreateBatches",
+      "tags": [
+        "Batches"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/batches/transactions",
+      "operationId": null,
+      "summary": "Avalara CreateTransactionBatch",
+      "tags": [
+        "Batches"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/batches/{id}",
+      "operationId": null,
+      "summary": "Avalara GetBatch",
+      "tags": [
+        "Batches"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/batches/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteBatch",
+      "tags": [
+        "Batches"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/batches/{batchId}/files/{id}/attachment",
+      "operationId": null,
+      "summary": "Avalara DownloadBatch",
+      "tags": [
+        "Batches"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/batches",
+      "operationId": null,
+      "summary": "Avalara QueryBatches",
+      "tags": [
+        "Batches"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/customers/{customerCode}/certexpressinvites",
+      "operationId": null,
+      "summary": "Avalara CreateCertExpressInvitation",
+      "tags": [
+        "CertExpressInvites"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/customers/{customerCode}/certexpressinvites/{id}",
+      "operationId": null,
+      "summary": "Avalara GetCertExpressInvitation",
+      "tags": [
+        "CertExpressInvites"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/certexpressinvites",
+      "operationId": null,
+      "summary": "Avalara ListCertExpressInvitations",
+      "tags": [
+        "CertExpressInvites"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/certificates",
+      "operationId": null,
+      "summary": "Avalara QueryCertificates",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/certificates",
+      "operationId": null,
+      "summary": "Avalara CreateCertificates",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/certificates/{id}",
+      "operationId": null,
+      "summary": "Avalara GetCertificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/certificates/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateCertificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/certificates/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteCertificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/certificates/{id}/attachment",
+      "operationId": null,
+      "summary": "Avalara DownloadCertificateImage",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/certificates/{id}/attachment",
+      "operationId": null,
+      "summary": "Avalara UploadCertificateImage",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/certificates/setup",
+      "operationId": null,
+      "summary": "Avalara GetCertificateSetup",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/certificates/setup",
+      "operationId": null,
+      "summary": "Avalara RequestCertificateSetup",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/certificates/{id}/attributes/link",
+      "operationId": null,
+      "summary": "Avalara LinkAttributesToCertificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/certificates/{id}/customers/link",
+      "operationId": null,
+      "summary": "Avalara LinkCustomersToCertificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/certificates/{id}/attributes",
+      "operationId": null,
+      "summary": "Avalara ListAttributesForCertificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/certificates/{id}/customers",
+      "operationId": null,
+      "summary": "Avalara ListCustomersForCertificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/certificates/{id}/attributes/unlink",
+      "operationId": null,
+      "summary": "Avalara UnlinkAttributesFromCertificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/certificates/{id}/customers/unlink",
+      "operationId": null,
+      "summary": "Avalara UnlinkCustomersFromCertificate",
+      "tags": [
+        "Certificates"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{id}/certify",
+      "operationId": null,
+      "summary": "Avalara CertifyIntegration",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{id}/filingstatus",
+      "operationId": null,
+      "summary": "Avalara GetFilingStatus",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{id}/filingstatus",
+      "operationId": null,
+      "summary": "Avalara ChangeFilingStatus",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/initialize",
+      "operationId": null,
+      "summary": "Avalara CompanyInitialize",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies",
+      "operationId": null,
+      "summary": "Avalara QueryCompanies",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies",
+      "operationId": null,
+      "summary": "Avalara CreateCompanies",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/parameters",
+      "operationId": null,
+      "summary": "Avalara ListCompanyParameterDetails",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/parameters",
+      "operationId": null,
+      "summary": "Avalara CreateCompanyParameters",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{id}/funding/setup",
+      "operationId": null,
+      "summary": "Avalara CreateFundingRequest",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{id}",
+      "operationId": null,
+      "summary": "Avalara GetCompany",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateCompany",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteCompany",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/parameters/{id}",
+      "operationId": null,
+      "summary": "Avalara GetCompanyParameterDetail",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/parameters/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateCompanyParameterDetail",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/parameters/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteCompanyParameter",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/funding/configuration",
+      "operationId": null,
+      "summary": "Avalara FundingConfigurationByCompany",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/funding/configurations",
+      "operationId": null,
+      "summary": "Avalara FundingConfigurationsByCompanyAndCurrency",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{id}/configuration",
+      "operationId": null,
+      "summary": "Avalara GetCompanyConfiguration",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{id}/configuration",
+      "operationId": null,
+      "summary": "Avalara SetCompanyConfiguration",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{id}/paymentdetails/{periodyear}/{periodmonth}",
+      "operationId": null,
+      "summary": "Avalara ListACHEntryDetailsForCompany",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{id}/funding",
+      "operationId": null,
+      "summary": "Avalara ListFundingRequestsByCompany",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/mrs",
+      "operationId": null,
+      "summary": "Avalara ListMrsCompanies",
+      "tags": [
+        "Companies"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/contacts",
+      "operationId": null,
+      "summary": "Avalara ListContactsByCompany",
+      "tags": [
+        "Contacts"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/contacts",
+      "operationId": null,
+      "summary": "Avalara CreateContacts",
+      "tags": [
+        "Contacts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/contacts/{id}",
+      "operationId": null,
+      "summary": "Avalara GetContact",
+      "tags": [
+        "Contacts"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/contacts/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateContact",
+      "tags": [
+        "Contacts"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/contacts/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteContact",
+      "tags": [
+        "Contacts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/contacts",
+      "operationId": null,
+      "summary": "Avalara QueryContacts",
+      "tags": [
+        "Contacts"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/customers",
+      "operationId": null,
+      "summary": "Avalara QueryCustomers",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/customers",
+      "operationId": null,
+      "summary": "Avalara CreateCustomers",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/customers/{customerCode}",
+      "operationId": null,
+      "summary": "Avalara GetCustomer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/customers/{customerCode}",
+      "operationId": null,
+      "summary": "Avalara UpdateCustomer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/customers/{customerCode}",
+      "operationId": null,
+      "summary": "Avalara DeleteCustomer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/customers/{customerCode}/attributes/link",
+      "operationId": null,
+      "summary": "Avalara LinkAttributesToCustomer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/customers/{customerCode}/certificates/link",
+      "operationId": null,
+      "summary": "Avalara LinkCertificatesToCustomer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/customers/billto/{code}/shipto/link",
+      "operationId": null,
+      "summary": "Avalara LinkShipToCustomersToBillCustomer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/customers/{customerCode}/attributes",
+      "operationId": null,
+      "summary": "Avalara ListAttributesForCustomer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/customers/{customerCode}/certificates",
+      "operationId": null,
+      "summary": "Avalara ListCertificatesForCustomer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/customers/{customerCode}/certificates/{country}/{region}",
+      "operationId": null,
+      "summary": "Avalara ListValidCertificatesForCustomer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/customers/{customerCode}/attributes/unlink",
+      "operationId": null,
+      "summary": "Avalara UnlinkAttributesFromCustomer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/customers/{customerCode}/certificates/unlink",
+      "operationId": null,
+      "summary": "Avalara UnlinkCertificatesFromCustomer",
+      "tags": [
+        "Customers"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/datasources",
+      "operationId": null,
+      "summary": "Avalara ListDataSources",
+      "tags": [
+        "DataSources"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/datasources",
+      "operationId": null,
+      "summary": "Avalara CreateDataSources",
+      "tags": [
+        "DataSources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/datasources/{id}",
+      "operationId": null,
+      "summary": "Avalara GetDataSourceById",
+      "tags": [
+        "DataSources"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/datasources/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateDataSource",
+      "tags": [
+        "DataSources"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/datasources/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteDataSource",
+      "tags": [
+        "DataSources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/datasources",
+      "operationId": null,
+      "summary": "Avalara QueryDataSources",
+      "tags": [
+        "DataSources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/crossborder/{country}/{hsCode}/hierarchy",
+      "operationId": null,
+      "summary": "Avalara GetCrossBorderCode",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/filingcalendars/loginverifiers/{form}",
+      "operationId": null,
+      "summary": "Avalara GetLoginVerifierByForm",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/listallmarketplacelocations",
+      "operationId": null,
+      "summary": "Avalara ListAllMarketplaceLocations",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/avafileforms",
+      "operationId": null,
+      "summary": "Avalara ListAvaFileForms",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/certificateattributes",
+      "operationId": null,
+      "summary": "Avalara ListCertificateAttributes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/certificateexemptreasons",
+      "operationId": null,
+      "summary": "Avalara ListCertificateExemptReasons",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/certificateexposurezones",
+      "operationId": null,
+      "summary": "Avalara ListCertificateExposureZones",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/classification/parametersusage",
+      "operationId": null,
+      "summary": "Avalara ListClassificationParametersUsage",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/communications/transactiontypes/{id}/servicetypes",
+      "operationId": null,
+      "summary": "Avalara ListCommunicationsServiceTypes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/communications/tspairs",
+      "operationId": null,
+      "summary": "Avalara ListCommunicationsTSPairs",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/communications/transactiontypes",
+      "operationId": null,
+      "summary": "Avalara ListCommunicationsTransactionTypes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/countries",
+      "operationId": null,
+      "summary": "Avalara ListCountries",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/coverletters",
+      "operationId": null,
+      "summary": "Avalara ListCoverLetters",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/crossborder/{country}/{hsCode}",
+      "operationId": null,
+      "summary": "Avalara ListCrossBorderCodes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/crossborder/sections",
+      "operationId": null,
+      "summary": "Avalara ListCrossBorderSections",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/currencies",
+      "operationId": null,
+      "summary": "Avalara ListCurrencies",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/entityusecodes",
+      "operationId": null,
+      "summary": "Avalara ListEntityUseCodes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/filingfrequencies",
+      "operationId": null,
+      "summary": "Avalara ListFilingFrequencies",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/jurisdictionTypes/countries/{country}/taxtypes/{taxTypeId}/taxsubtypes/{taxSubTypeId}",
+      "operationId": null,
+      "summary": "Avalara ListJurisdictionTypesByRateTypeTaxTypeMapping",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/jurisdictions",
+      "operationId": null,
+      "summary": "Avalara ListJurisdictions",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/jurisdictionsnearaddress",
+      "operationId": null,
+      "summary": "Avalara ListJurisdictionsByAddress",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/jurisdictions/countries/{country}/taxtypes/{taxTypeId}/taxsubtypes/{taxSubTypeId}",
+      "operationId": null,
+      "summary": "Avalara ListJurisdictionsByRateTypeTaxTypeMapping",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/locationquestions",
+      "operationId": null,
+      "summary": "Avalara ListLocationQuestionsByAddress",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/filingcalendars/loginverifiers",
+      "operationId": null,
+      "summary": "Avalara ListLoginVerifiers",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/marketplacelocations",
+      "operationId": null,
+      "summary": "Avalara ListMarketplaceLocations",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/nexus",
+      "operationId": null,
+      "summary": "Avalara ListNexus",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/nexus/byaddress",
+      "operationId": null,
+      "summary": "Avalara ListNexusByAddress",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/nexus/{country}",
+      "operationId": null,
+      "summary": "Avalara ListNexusByCountry",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/nexus/{country}/{region}",
+      "operationId": null,
+      "summary": "Avalara ListNexusByCountryAndRegion",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/nexus/byform/{formCode}",
+      "operationId": null,
+      "summary": "Avalara ListNexusByFormCode",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/nexus/bytaxtypegroup/{taxTypeGroup}",
+      "operationId": null,
+      "summary": "Avalara ListNexusByTaxTypeGroup",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/nexustaxtypegroups",
+      "operationId": null,
+      "summary": "Avalara ListNexusTaxTypeGroups",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/noticecustomerfundingoptions",
+      "operationId": null,
+      "summary": "Avalara ListNoticeCustomerFundingOptions",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/noticecustomertypes",
+      "operationId": null,
+      "summary": "Avalara ListNoticeCustomerTypes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/noticefilingtypes",
+      "operationId": null,
+      "summary": "Avalara ListNoticeFilingtypes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/noticepriorities",
+      "operationId": null,
+      "summary": "Avalara ListNoticePriorities",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/noticereasons",
+      "operationId": null,
+      "summary": "Avalara ListNoticeReasons",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/noticeresponsibilities",
+      "operationId": null,
+      "summary": "Avalara ListNoticeResponsibilities",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/noticerootcauses",
+      "operationId": null,
+      "summary": "Avalara ListNoticeRootCauses",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/noticestatuses",
+      "operationId": null,
+      "summary": "Avalara ListNoticeStatuses",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/noticetypes",
+      "operationId": null,
+      "summary": "Avalara ListNoticeTypes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/parameters",
+      "operationId": null,
+      "summary": "Avalara ListParameters",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/accounts/{accountId}/parameters",
+      "operationId": null,
+      "summary": "Avalara ListParametersByAccount",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/parameters/byitem/{companyCode}/{itemCode}",
+      "operationId": null,
+      "summary": "Avalara ListParametersByItem",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/parametersusage",
+      "operationId": null,
+      "summary": "Avalara ListParametersUsage",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/permissions",
+      "operationId": null,
+      "summary": "Avalara ListPermissions",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/postalcodes",
+      "operationId": null,
+      "summary": "Avalara ListPostalCodes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/preferredprograms",
+      "operationId": null,
+      "summary": "Avalara ListPreferredPrograms",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/productclassificationsystems",
+      "operationId": null,
+      "summary": "Avalara ListProductClassificationSystems",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/productclassificationsystems/bycompany/{companyCode}",
+      "operationId": null,
+      "summary": "Avalara ListProductClassificationSystemsByCompany",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/countries/{country}/ratetypes",
+      "operationId": null,
+      "summary": "Avalara ListRateTypesByCountry",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/countries/{country}/taxtypes/{taxTypeId}/taxsubtypes/{taxSubTypeId}/ratetypes",
+      "operationId": null,
+      "summary": "Avalara ListRateTypesByCountryTaxTypeTaxSubType",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/regions",
+      "operationId": null,
+      "summary": "Avalara ListRegions",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/countries/{country}/regions",
+      "operationId": null,
+      "summary": "Avalara ListRegionsByCountry",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/companies/{companyId}/countries/{country}/regions/taxtypes/{taxTypeId}/taxsubtypes/{taxSubTypeId}/rateTypeId/{rateTypeId}/jurisdictionTypeId/{jurisdictionTypeId}",
+      "operationId": null,
+      "summary": "Avalara ListRegionsByCountryAndTaxTypeAndTaxSubTypeAndRateType",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/resourcefiletypes",
+      "operationId": null,
+      "summary": "Avalara ListResourceFileTypes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/returns/parametersusage",
+      "operationId": null,
+      "summary": "Avalara ListReturnsParametersUsage",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/securityroles",
+      "operationId": null,
+      "summary": "Avalara ListSecurityRoles",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/subscriptiontypes",
+      "operationId": null,
+      "summary": "Avalara ListSubscriptionTypes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/tags",
+      "operationId": null,
+      "summary": "Avalara ListTags",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/taxauthorities",
+      "operationId": null,
+      "summary": "Avalara ListTaxAuthorities",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/taxauthorityforms",
+      "operationId": null,
+      "summary": "Avalara ListTaxAuthorityForms",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/taxauthoritytypes",
+      "operationId": null,
+      "summary": "Avalara ListTaxAuthorityTypes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/taxcodetypes",
+      "operationId": null,
+      "summary": "Avalara ListTaxCodeTypes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/taxcodes",
+      "operationId": null,
+      "summary": "Avalara ListTaxCodes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/taxforms",
+      "operationId": null,
+      "summary": "Avalara ListTaxForms",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/taxsubtypes",
+      "operationId": null,
+      "summary": "Avalara ListTaxSubTypes",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/taxsubtypes/countries/{country}/taxtypes/{taxTypeId}",
+      "operationId": null,
+      "summary": "Avalara ListTaxSubTypesByCountryAndTaxType",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/taxsubtypes/{jurisdictionCode}/{region}",
+      "operationId": null,
+      "summary": "Avalara ListTaxSubTypesByJurisdictionAndRegion",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/taxtypegroups",
+      "operationId": null,
+      "summary": "Avalara ListTaxTypeGroups",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/taxtypes/countries/{country}",
+      "operationId": null,
+      "summary": "Avalara ListTaxTypesByNexusAndCountry",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/unitofbasis/countries/{country}/taxtypes/{taxTypeId}/taxsubtypes/{taxSubTypeId}",
+      "operationId": null,
+      "summary": "Avalara ListUnitOfBasisByCountryAndTaxTypeAndTaxSubTypeAndRateType",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/definitions/unitofmeasurements",
+      "operationId": null,
+      "summary": "Avalara ListUnitOfMeasurement",
+      "tags": [
+        "Definitions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/distancethresholds",
+      "operationId": null,
+      "summary": "Avalara ListDistanceThresholds",
+      "tags": [
+        "DistanceThresholds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/distancethresholds",
+      "operationId": null,
+      "summary": "Avalara CreateDistanceThreshold",
+      "tags": [
+        "DistanceThresholds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/distancethresholds/{id}",
+      "operationId": null,
+      "summary": "Avalara GetDistanceThreshold",
+      "tags": [
+        "DistanceThresholds"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/distancethresholds/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateDistanceThreshold",
+      "tags": [
+        "DistanceThresholds"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/distancethresholds/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteDistanceThreshold",
+      "tags": [
+        "DistanceThresholds"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/distancethresholds",
+      "operationId": null,
+      "summary": "Avalara QueryDistanceThresholds",
+      "tags": [
+        "DistanceThresholds"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/ecommercetokens",
+      "operationId": null,
+      "summary": "Avalara CreateECommerceToken",
+      "tags": [
+        "ECommerceToken"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/ecommercetokens",
+      "operationId": null,
+      "summary": "Avalara RefreshECommerceToken",
+      "tags": [
+        "ECommerceToken"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/firmclientlinkages/{id}/approve",
+      "operationId": null,
+      "summary": "Avalara ApproveFirmClientLinkage",
+      "tags": [
+        "FirmClientLinkages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/firmclientlinkages/createandlinkclient",
+      "operationId": null,
+      "summary": "Avalara CreateAndLinkNewFirmClientAccount",
+      "tags": [
+        "FirmClientLinkages"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/firmclientlinkages",
+      "operationId": null,
+      "summary": "Avalara ListFirmClientLinkage",
+      "tags": [
+        "FirmClientLinkages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/firmclientlinkages",
+      "operationId": null,
+      "summary": "Avalara CreateFirmClientLinkage",
+      "tags": [
+        "FirmClientLinkages"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/firmclientlinkages/{id}",
+      "operationId": null,
+      "summary": "Avalara GetFirmClientLinkage",
+      "tags": [
+        "FirmClientLinkages"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/firmclientlinkages/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteFirmClientLinkage",
+      "tags": [
+        "FirmClientLinkages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/firmclientlinkages/{id}/reject",
+      "operationId": null,
+      "summary": "Avalara RejectFirmClientLinkage",
+      "tags": [
+        "FirmClientLinkages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/firmclientlinkages/{id}/reset",
+      "operationId": null,
+      "summary": "Avalara ResetFirmClientLinkage",
+      "tags": [
+        "FirmClientLinkages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/firmclientlinkages/{id}/revoke",
+      "operationId": null,
+      "summary": "Avalara RevokeFirmClientLinkage",
+      "tags": [
+        "FirmClientLinkages"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/accounts/freetrials/request",
+      "operationId": null,
+      "summary": "Avalara RequestFreeTrial",
+      "tags": [
+        "Free"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/fundingrequests/{id}/widget",
+      "operationId": null,
+      "summary": "Avalara ActivateFundingRequest",
+      "tags": [
+        "FundingRequests"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/fundingrequests/{id}",
+      "operationId": null,
+      "summary": "Avalara FundingRequestStatus",
+      "tags": [
+        "FundingRequests"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/classifications",
+      "operationId": null,
+      "summary": "Avalara ListItemClassifications",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/classifications",
+      "operationId": null,
+      "summary": "Avalara CreateItemClassifications",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/classifications",
+      "operationId": null,
+      "summary": "Avalara BatchDeleteItemClassifications",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/parameters",
+      "operationId": null,
+      "summary": "Avalara ListItemParameters",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/parameters",
+      "operationId": null,
+      "summary": "Avalara CreateItemParameters",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/parameters",
+      "operationId": null,
+      "summary": "Avalara BatchDeleteItemParameters",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/items/upload",
+      "operationId": null,
+      "summary": "Avalara BulkUploadItems",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/tags",
+      "operationId": null,
+      "summary": "Avalara GetItemTags",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/tags",
+      "operationId": null,
+      "summary": "Avalara CreateItemTags",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/tags",
+      "operationId": null,
+      "summary": "Avalara DeleteItemTags",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/items",
+      "operationId": null,
+      "summary": "Avalara ListItemsByCompany",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/items",
+      "operationId": null,
+      "summary": "Avalara CreateItems",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/classificationrequests/taxcode",
+      "operationId": null,
+      "summary": "Avalara GetClassificationStatus",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/classificationrequests/taxcode",
+      "operationId": null,
+      "summary": "Avalara CreateTaxCodeClassificationRequest",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/itemcatalogue/{itemCode}",
+      "operationId": null,
+      "summary": "Avalara DeleteCatalogueItem",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/items/{id}",
+      "operationId": null,
+      "summary": "Avalara GetItem",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/items/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateItem",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/items/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteItem",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/classifications/{id}",
+      "operationId": null,
+      "summary": "Avalara GetItemClassification",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/classifications/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateItemClassification",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/classifications/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteItemClassification",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/parameters/{id}",
+      "operationId": null,
+      "summary": "Avalara GetItemParameter",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/parameters/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateItemParameter",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/parameters/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteItemParameter",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/items/{itemId}/tags/{itemTagDetailId}",
+      "operationId": null,
+      "summary": "Avalara DeleteItemTag",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/items/{itemCode}/premiumClassification/{systemCode}",
+      "operationId": null,
+      "summary": "Avalara GetPremiumClassification",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/classificationrequests/taxcode/{requestId}/recommendations",
+      "operationId": null,
+      "summary": "Avalara GetTaxCodeRecommendations",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/items/{itemCode}/restrictions/import/{countryOfImport}",
+      "operationId": null,
+      "summary": "Avalara ListImportRestrictions",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/items",
+      "operationId": null,
+      "summary": "Avalara QueryItems",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/items/bytags/{tag}",
+      "operationId": null,
+      "summary": "Avalara QueryItemsByTag",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/itemcatalogue",
+      "operationId": null,
+      "summary": "Avalara SyncItemCatalogue",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/items/sync",
+      "operationId": null,
+      "summary": "Avalara SyncItems",
+      "tags": [
+        "Items"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts/{accountId}/jurisdictionoverrides",
+      "operationId": null,
+      "summary": "Avalara ListJurisdictionOverridesByAccount",
+      "tags": [
+        "JurisdictionOverrides"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/accounts/{accountId}/jurisdictionoverrides",
+      "operationId": null,
+      "summary": "Avalara CreateJurisdictionOverrides",
+      "tags": [
+        "JurisdictionOverrides"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}",
+      "operationId": null,
+      "summary": "Avalara GetJurisdictionOverride",
+      "tags": [
+        "JurisdictionOverrides"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateJurisdictionOverride",
+      "tags": [
+        "JurisdictionOverrides"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/accounts/{accountId}/jurisdictionoverrides/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteJurisdictionOverride",
+      "tags": [
+        "JurisdictionOverrides"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/jurisdictionoverrides",
+      "operationId": null,
+      "summary": "Avalara QueryJurisdictionOverrides",
+      "tags": [
+        "JurisdictionOverrides"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/locations/{locationId}/parameters",
+      "operationId": null,
+      "summary": "Avalara ListLocationParameters",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/locations/{locationId}/parameters",
+      "operationId": null,
+      "summary": "Avalara CreateLocationParameters",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/locations",
+      "operationId": null,
+      "summary": "Avalara ListLocationsByCompany",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/locations",
+      "operationId": null,
+      "summary": "Avalara CreateLocations",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/locations/{id}",
+      "operationId": null,
+      "summary": "Avalara GetLocation",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/locations/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateLocation",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/locations/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteLocation",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/locations/{locationId}/parameters/{id}",
+      "operationId": null,
+      "summary": "Avalara GetLocationParameter",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/locations/{locationId}/parameters/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateLocationParameter",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/locations/{locationId}/parameters/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteLocationParameter",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/locations",
+      "operationId": null,
+      "summary": "Avalara QueryLocations",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/locations/{id}/validate",
+      "operationId": null,
+      "summary": "Avalara ValidateLocation",
+      "tags": [
+        "Locations"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/transactions/multidocument/{code}/type/{type}/adjust",
+      "operationId": null,
+      "summary": "Avalara AdjustMultiDocumentTransaction",
+      "tags": [
+        "MultiDocument"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/transactions/multidocument/{code}/type/{type}/audit",
+      "operationId": null,
+      "summary": "Avalara AuditMultiDocumentTransaction",
+      "tags": [
+        "MultiDocument"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/transactions/multidocument/commit",
+      "operationId": null,
+      "summary": "Avalara CommitMultiDocumentTransaction",
+      "tags": [
+        "MultiDocument"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/transactions/multidocument",
+      "operationId": null,
+      "summary": "Avalara ListMultiDocumentTransactions",
+      "tags": [
+        "MultiDocument"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/transactions/multidocument",
+      "operationId": null,
+      "summary": "Avalara CreateMultiDocumentTransaction",
+      "tags": [
+        "MultiDocument"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/transactions/multidocument/{code}/type/{type}",
+      "operationId": null,
+      "summary": "Avalara GetMultiDocumentTransactionByCodeAndType",
+      "tags": [
+        "MultiDocument"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/transactions/multidocument/{id}",
+      "operationId": null,
+      "summary": "Avalara GetMultiDocumentTransactionById",
+      "tags": [
+        "MultiDocument"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/transactions/multidocument/{code}/type/{type}/refund",
+      "operationId": null,
+      "summary": "Avalara RefundMultiDocumentTransaction",
+      "tags": [
+        "MultiDocument"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/transactions/multidocument/verify",
+      "operationId": null,
+      "summary": "Avalara VerifyMultiDocumentTransaction",
+      "tags": [
+        "MultiDocument"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/transactions/multidocument/{code}/type/{type}/void",
+      "operationId": null,
+      "summary": "Avalara VoidMultiDocumentTransaction",
+      "tags": [
+        "MultiDocument"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/nexus",
+      "operationId": null,
+      "summary": "Avalara ListNexusByCompany",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/nexus",
+      "operationId": null,
+      "summary": "Avalara CreateNexus",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/nexus/{nexusId}/parameters",
+      "operationId": null,
+      "summary": "Avalara ListNexusParameters",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/nexus/{nexusId}/parameters",
+      "operationId": null,
+      "summary": "Avalara CreateNexusParameters",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/nexus/{nexusId}/parameters",
+      "operationId": null,
+      "summary": "Avalara DeleteNexusParameters",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/nexus/byaddress",
+      "operationId": null,
+      "summary": "Avalara DeclareNexusByAddress",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/nexus/{id}",
+      "operationId": null,
+      "summary": "Avalara GetNexus",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/nexus/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateNexus",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/nexus/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteNexus",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/nexus/{nexusId}/parameters/{id}",
+      "operationId": null,
+      "summary": "Avalara GetNexusParameter",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/nexus/{nexusId}/parameters/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateNexusParameter",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/nexus/{nexusId}/parameters/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteNexusParameter",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/nexus/byform/{formCode}",
+      "operationId": null,
+      "summary": "Avalara GetNexusByFormCode",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/nexus/byTaxTypeGroup/{taxTypeGroup}",
+      "operationId": null,
+      "summary": "Avalara ListNexusByCompanyAndTaxTypeGroup",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/nexus",
+      "operationId": null,
+      "summary": "Avalara QueryNexus",
+      "tags": [
+        "Nexus"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/notices/responsibilities",
+      "operationId": null,
+      "summary": "Avalara CreateNoticeResponsibilityType",
+      "tags": [
+        "Notices"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/notices/rootcauses",
+      "operationId": null,
+      "summary": "Avalara CreateNoticeRootCauseType",
+      "tags": [
+        "Notices"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/notices/responsibilities/{responsibilityId}",
+      "operationId": null,
+      "summary": "Avalara DeleteNoticeResponsibilityType",
+      "tags": [
+        "Notices"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/notices/rootcauses/{rootCauseId}",
+      "operationId": null,
+      "summary": "Avalara DeleteNoticeRootCauseType",
+      "tags": [
+        "Notices"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/notifications/{id}/dismiss",
+      "operationId": null,
+      "summary": "Avalara DismissNotification",
+      "tags": [
+        "Notifications"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/notifications/{id}",
+      "operationId": null,
+      "summary": "Avalara GetNotification",
+      "tags": [
+        "Notifications"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/notifications/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateNotification",
+      "tags": [
+        "Registrar"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/notifications/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteNotification",
+      "tags": [
+        "Registrar"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/notifications",
+      "operationId": null,
+      "summary": "Avalara ListNotifications",
+      "tags": [
+        "Notifications"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/notifications",
+      "operationId": null,
+      "summary": "Avalara CreateNotifications",
+      "tags": [
+        "Registrar"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/accounts/request",
+      "operationId": null,
+      "summary": "Avalara RequestNewAccount",
+      "tags": [
+        "Provisioning"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/accounts/{id}/entitlements/{offer}",
+      "operationId": null,
+      "summary": "Avalara RequestNewEntitlement",
+      "tags": [
+        "Provisioning"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts/{accountId}/subscriptions",
+      "operationId": null,
+      "summary": "Avalara ListSubscriptionsByAccount",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/accounts/{accountId}/subscriptions",
+      "operationId": null,
+      "summary": "Avalara CreateSubscriptions",
+      "tags": [
+        "Registrar"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts/{accountId}/subscriptions/{id}",
+      "operationId": null,
+      "summary": "Avalara GetSubscription",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/accounts/{accountId}/subscriptions/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateSubscription",
+      "tags": [
+        "Registrar"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/accounts/{accountId}/subscriptions/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteSubscription",
+      "tags": [
+        "Registrar"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/servicetypes/servicetypes",
+      "operationId": null,
+      "summary": "Avalara ListServiceTypes",
+      "tags": [
+        "Registrar"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/passwords/{userId}/reset",
+      "operationId": null,
+      "summary": "Avalara ResetPassword",
+      "tags": [
+        "Registrar"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/reports/{id}/attachment",
+      "operationId": null,
+      "summary": "Avalara DownloadReport",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/reports/{id}",
+      "operationId": null,
+      "summary": "Avalara GetReport",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/reports/exportdocumentline/initiate",
+      "operationId": null,
+      "summary": "Avalara InitiateExportDocumentLineReport",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/reports",
+      "operationId": null,
+      "summary": "Avalara ListReports",
+      "tags": [
+        "Reports"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/settings",
+      "operationId": null,
+      "summary": "Avalara ListSettingsByCompany",
+      "tags": [
+        "Settings"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/settings",
+      "operationId": null,
+      "summary": "Avalara CreateSettings",
+      "tags": [
+        "Settings"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/settings/{id}",
+      "operationId": null,
+      "summary": "Avalara GetSetting",
+      "tags": [
+        "Settings"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/settings/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateSetting",
+      "tags": [
+        "Settings"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/settings/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteSetting",
+      "tags": [
+        "Settings"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/settings",
+      "operationId": null,
+      "summary": "Avalara QuerySettings",
+      "tags": [
+        "Settings"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/subscriptions",
+      "operationId": null,
+      "summary": "Avalara QuerySubscriptions",
+      "tags": [
+        "Subscriptions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/taxcodes",
+      "operationId": null,
+      "summary": "Avalara ListTaxCodesByCompany",
+      "tags": [
+        "TaxCodes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/taxcodes",
+      "operationId": null,
+      "summary": "Avalara CreateTaxCodes",
+      "tags": [
+        "TaxCodes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/taxcodes/{id}",
+      "operationId": null,
+      "summary": "Avalara GetTaxCode",
+      "tags": [
+        "TaxCodes"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/taxcodes/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateTaxCode",
+      "tags": [
+        "TaxCodes"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/taxcodes/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteTaxCode",
+      "tags": [
+        "TaxCodes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/taxcodes",
+      "operationId": null,
+      "summary": "Avalara QueryTaxCodes",
+      "tags": [
+        "TaxCodes"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/pointofsaledata/build",
+      "operationId": null,
+      "summary": "Avalara BuildTaxContentFile",
+      "tags": [
+        "TaxContent"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/locations/{id}/pointofsaledata",
+      "operationId": null,
+      "summary": "Avalara BuildTaxContentFileForLocation",
+      "tags": [
+        "TaxContent"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/taxratesbyzipcode/download/{date}",
+      "operationId": null,
+      "summary": "Avalara DownloadTaxRatesByZipCode",
+      "tags": [
+        "TaxContent"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/taxrates/byaddress",
+      "operationId": null,
+      "summary": "Avalara TaxRatesByAddress",
+      "tags": [
+        "TaxContent"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/taxrates/bypostalcode",
+      "operationId": null,
+      "summary": "Avalara TaxRatesByPostalCode",
+      "tags": [
+        "TaxContent"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/countryCoefficients",
+      "operationId": null,
+      "summary": "Avalara CreateCountryCoefficients",
+      "tags": [
+        "TaxRules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/taxrules",
+      "operationId": null,
+      "summary": "Avalara ListTaxRules",
+      "tags": [
+        "TaxRules"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/taxrules",
+      "operationId": null,
+      "summary": "Avalara CreateTaxRules",
+      "tags": [
+        "TaxRules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/taxrules/{id}",
+      "operationId": null,
+      "summary": "Avalara GetTaxRule",
+      "tags": [
+        "TaxRules"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/taxrules/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateTaxRule",
+      "tags": [
+        "TaxRules"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/taxrules/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteTaxRule",
+      "tags": [
+        "TaxRules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/{country}/CountryCoefficients",
+      "operationId": null,
+      "summary": "Avalara ListCountryCoefficients",
+      "tags": [
+        "TaxRules"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/taxrules",
+      "operationId": null,
+      "summary": "Avalara QueryTaxRules",
+      "tags": [
+        "TaxRules"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/transactions/lines/add",
+      "operationId": null,
+      "summary": "Avalara AddLines",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}/adjust",
+      "operationId": null,
+      "summary": "Avalara AdjustTransaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}/audit",
+      "operationId": null,
+      "summary": "Avalara AuditTransaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}/types/{documentType}/audit",
+      "operationId": null,
+      "summary": "Avalara AuditTransactionWithType",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/transactions/lock",
+      "operationId": null,
+      "summary": "Avalara BulkLockTransaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}/changecode",
+      "operationId": null,
+      "summary": "Avalara ChangeTransactionCode",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}/commit",
+      "operationId": null,
+      "summary": "Avalara CommitTransaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/transactions/createoradjust",
+      "operationId": null,
+      "summary": "Avalara CreateOrAdjustTransaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/transactions/create",
+      "operationId": null,
+      "summary": "Avalara CreateTransaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/transactions/lines/delete",
+      "operationId": null,
+      "summary": "Avalara DeleteLines",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyCode}/AllVariance",
+      "operationId": null,
+      "summary": "Avalara GetAllVarianceReportByCompanyCode",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}",
+      "operationId": null,
+      "summary": "Avalara GetTransactionByCode",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}/types/{documentType}",
+      "operationId": null,
+      "summary": "Avalara GetTransactionByCodeAndType",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/transactions/{id}",
+      "operationId": null,
+      "summary": "Avalara GetTransactionById",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionId}/variance",
+      "operationId": null,
+      "summary": "Avalara GetVarianceReportByCompanyCodeByTransactionId",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyCode}/transactions",
+      "operationId": null,
+      "summary": "Avalara ListTransactionsByCompany",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}/lock",
+      "operationId": null,
+      "summary": "Avalara LockTransaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}/refund",
+      "operationId": null,
+      "summary": "Avalara RefundTransaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}/settle",
+      "operationId": null,
+      "summary": "Avalara SettleTransaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}/uncommit",
+      "operationId": null,
+      "summary": "Avalara UncommitTransaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}/unvoid",
+      "operationId": null,
+      "summary": "Avalara UnvoidTransaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyCode}/variance",
+      "operationId": null,
+      "summary": "Avalara VarianceReport",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}/verify",
+      "operationId": null,
+      "summary": "Avalara VerifyTransaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyCode}/transactions/{transactionCode}/void",
+      "operationId": null,
+      "summary": "Avalara VoidTransaction",
+      "tags": [
+        "Transactions"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/upcs",
+      "operationId": null,
+      "summary": "Avalara ListUPCsByCompany",
+      "tags": [
+        "Upcs"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/upcs",
+      "operationId": null,
+      "summary": "Avalara CreateUPCs",
+      "tags": [
+        "Upcs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/upcs/{id}",
+      "operationId": null,
+      "summary": "Avalara GetUPC",
+      "tags": [
+        "Upcs"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/companies/{companyId}/upcs/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateUPC",
+      "tags": [
+        "Upcs"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/upcs/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteUPC",
+      "tags": [
+        "Upcs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/upcs",
+      "operationId": null,
+      "summary": "Avalara QueryUPCs",
+      "tags": [
+        "Upcs"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/companies/{companyId}/userdefinedfields/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteUserDefinedField",
+      "tags": [
+        "UserDefinedFields"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/companies/{companyId}/userdefinedfields",
+      "operationId": null,
+      "summary": "Avalara ListUserDefinedFieldsByCompanyId",
+      "tags": [
+        "UserDefinedFields"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/companies/{companyId}/userdefinedfields",
+      "operationId": null,
+      "summary": "Avalara UpdateUserDefinedField",
+      "tags": [
+        "UserDefinedFields"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/passwords",
+      "operationId": null,
+      "summary": "Avalara ChangePassword",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts/{accountId}/users",
+      "operationId": null,
+      "summary": "Avalara ListUsersByAccount",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/api/v2/accounts/{accountId}/users",
+      "operationId": null,
+      "summary": "Avalara CreateUsers",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts/{accountId}/users/{id}",
+      "operationId": null,
+      "summary": "Avalara GetUser",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v2/accounts/{accountId}/users/{id}",
+      "operationId": null,
+      "summary": "Avalara UpdateUser",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v2/accounts/{accountId}/users/{id}",
+      "operationId": null,
+      "summary": "Avalara DeleteUser",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/accounts/{accountId}/users/{id}/entitlements",
+      "operationId": null,
+      "summary": "Avalara GetUserEntitlements",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/users",
+      "operationId": null,
+      "summary": "Avalara QueryUsers",
+      "tags": [
+        "Users"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/utilities/subscriptions/{serviceTypeId}",
+      "operationId": null,
+      "summary": "Avalara GetMySubscription",
+      "tags": [
+        "Utilities"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/utilities/subscriptions",
+      "operationId": null,
+      "summary": "Avalara ListMySubscriptions",
+      "tags": [
+        "Utilities"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/api/v2/utilities/ping",
+      "operationId": null,
+      "summary": "Avalara Ping",
+      "tags": [
+        "Utilities"
+      ]
+    }
+  ]
+}

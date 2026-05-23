@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BrazilTaxDetail",
+  "title": "BrazilTaxDetail",
+  "type": "object",
+  "properties": {
+    "taxType": {
+      "type": "string",
+      "enum": [
+        "ICMS",
+        "ICMS_ST",
+        "IPI",
+        "PIS",
+        "COFINS",
+        "ISS",
+        "CSLL",
+        "IRRF",
+        "INSS",
+        "IOF"
+      ],
+      "description": "Brazilian tax type"
+    },
+    "taxBase": {
+      "type": "number",
+      "format": "double"
+    },
+    "taxRate": {
+      "type": "number",
+      "format": "double"
+    },
+    "taxAmount": {
+      "type": "number",
+      "format": "double"
+    },
+    "exemptAmount": {
+      "type": "number",
+      "format": "double"
+    },
+    "cstCode": {
+      "type": "string"
+    }
+  }
+}

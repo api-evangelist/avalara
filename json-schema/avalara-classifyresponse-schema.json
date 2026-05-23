@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ClassifyResponse",
+  "title": "ClassifyResponse",
+  "type": "object",
+  "properties": {
+    "itemCode": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "predictions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ClassificationPrediction"
+      }
+    },
+    "avataxCode": {
+      "type": "string",
+      "description": "Recommended Avalara tax code"
+    }
+  }
+}

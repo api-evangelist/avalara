@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/OnboardingRequest",
+  "title": "OnboardingRequest",
+  "type": "object",
+  "required": [
+    "companyId",
+    "countries"
+  ],
+  "properties": {
+    "companyId": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "countries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "countryCode": {
+            "type": "string"
+          },
+          "vatRegistrationNumber": {
+            "type": "string"
+          },
+          "filingFrequency": {
+            "type": "string",
+            "enum": [
+              "Monthly",
+              "Quarterly",
+              "Annual"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FilingSubmission",
+  "title": "FilingSubmission",
+  "type": "object",
+  "required": [
+    "taxYear",
+    "formIds"
+  ],
+  "properties": {
+    "taxYear": {
+      "type": "integer"
+    },
+    "formIds": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "corrected": {
+      "type": "boolean",
+      "default": false
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Registration",
+  "title": "Registration",
+  "type": "object",
+  "properties": {
+    "registrationId": {
+      "type": "string"
+    },
+    "partnerId": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Active",
+        "Expired",
+        "Cancelled"
+      ]
+    },
+    "product": {
+      "type": "string",
+      "description": "Avalara product registered for"
+    },
+    "accountId": {
+      "type": "string"
+    },
+    "activationDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expirationDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

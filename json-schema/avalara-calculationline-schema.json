@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CalculationLine",
+  "title": "CalculationLine",
+  "type": "object",
+  "properties": {
+    "lineCode": {
+      "type": "string"
+    },
+    "itemCode": {
+      "type": "string"
+    },
+    "numberOfItems": {
+      "type": "number",
+      "format": "double"
+    },
+    "lineAmount": {
+      "type": "number",
+      "format": "double"
+    },
+    "itemDescription": {
+      "type": "string"
+    },
+    "ncmCode": {
+      "type": "string",
+      "description": "NCM (Nomenclatura Comum do Mercosul) code"
+    },
+    "cstCode": {
+      "type": "string",
+      "description": "CST (Codigo de Situacao Tributaria) code"
+    },
+    "cfopCode": {
+      "type": "string",
+      "description": "CFOP (Codigo Fiscal de Operacoes e Prestacoes) code"
+    },
+    "originState": {
+      "type": "string",
+      "description": "Origin state code (UF)"
+    },
+    "destinationState": {
+      "type": "string",
+      "description": "Destination state code (UF)"
+    }
+  }
+}

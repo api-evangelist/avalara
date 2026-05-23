@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/NexusModel",
+  "title": "NexusModel",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "companyId": {
+      "type": "integer"
+    },
+    "country": {
+      "type": "string",
+      "description": "Two-character ISO 3166 country code"
+    },
+    "region": {
+      "type": "string",
+      "description": "State or province code"
+    },
+    "jurisTypeId": {
+      "type": "string",
+      "enum": [
+        "STA",
+        "CTY",
+        "CIT",
+        "STJ",
+        "CNT"
+      ]
+    },
+    "jurisdictionTypeId": {
+      "type": "string"
+    },
+    "jurisCode": {
+      "type": "string"
+    },
+    "jurisName": {
+      "type": "string"
+    },
+    "effectiveDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "endDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "nexusTypeId": {
+      "type": "string",
+      "enum": [
+        "None",
+        "SalesOrSellersUseTax",
+        "SalesTax",
+        "SSTVolunteer",
+        "SSTNonVolunteer"
+      ]
+    },
+    "hasLocalNexus": {
+      "type": "boolean"
+    }
+  }
+}

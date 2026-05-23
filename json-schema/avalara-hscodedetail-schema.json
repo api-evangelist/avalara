@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HSCodeDetail",
+  "title": "HSCodeDetail",
+  "type": "object",
+  "properties": {
+    "hsCode": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "chapter": {
+      "type": "string"
+    },
+    "section": {
+      "type": "string"
+    },
+    "parentCode": {
+      "type": "string"
+    },
+    "dutyRate": {
+      "type": "string"
+    },
+    "unitOfMeasure": {
+      "type": "string"
+    }
+  }
+}

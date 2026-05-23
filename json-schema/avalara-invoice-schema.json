@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Invoice",
+  "title": "Invoice",
+  "type": "object",
+  "properties": {
+    "doc": {
+      "type": "string",
+      "description": "Document code"
+    },
+    "cmmt": {
+      "type": "boolean",
+      "description": "Commit indicator"
+    },
+    "bill": {
+      "$ref": "#/components/schemas/Location"
+    },
+    "cust": {
+      "type": "integer",
+      "description": "Customer type"
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Invoice date"
+    },
+    "itms": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/LineItem"
+      },
+      "description": "Line items on the invoice"
+    }
+  }
+}

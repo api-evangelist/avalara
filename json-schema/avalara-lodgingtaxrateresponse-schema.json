@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/LodgingTaxRateResponse",
+  "title": "LodgingTaxRateResponse",
+  "type": "object",
+  "properties": {
+    "totalRate": {
+      "type": "number",
+      "format": "double",
+      "description": "Total combined lodging tax rate"
+    },
+    "rates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "jurisdiction": {
+            "type": "string"
+          },
+          "jurisdictionType": {
+            "type": "string",
+            "enum": [
+              "State",
+              "County",
+              "City",
+              "District"
+            ]
+          },
+          "taxName": {
+            "type": "string"
+          },
+          "rate": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      }
+    }
+  }
+}

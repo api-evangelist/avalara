@@ -1,0 +1,42 @@
+name: Avalara Domain Vocabulary
+provider: Avalara
+providerId: avalara
+description: Tag-derived vocabulary for the Avalara API surface; sourced from openapi/ tags.
+terms:
+- term: Accounts
+- term: Addresses
+- term: AdvancedRules
+- term: AvaFileForms
+- term: Batches
+- term: CertExpressInvites
+- term: Certificates
+- term: Companies
+- term: Contacts
+- term: Customers
+- term: DataSources
+- term: Definitions
+- term: DistanceThresholds
+- term: ECommerceToken
+- term: FirmClientLinkages
+- term: Free
+- term: FundingRequests
+- term: Items
+- term: JurisdictionOverrides
+- term: Locations
+- term: MultiDocument
+- term: Nexus
+- term: Notices
+- term: Notifications
+- term: Provisioning
+- term: Registrar
+- term: Reports
+- term: Settings
+- term: Subscriptions
+- term: TaxCodes
+- term: TaxContent
+- term: TaxRules
+- term: Transactions
+- term: Upcs
+- term: UserDefinedFields
+- term: Users
+- term: Utilities

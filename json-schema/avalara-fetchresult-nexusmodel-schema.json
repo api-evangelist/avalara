@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FetchResult_NexusModel",
+  "title": "FetchResult_NexusModel",
+  "type": "object",
+  "properties": {
+    "@recordsetCount": {
+      "type": "integer"
+    },
+    "value": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/NexusModel"
+      }
+    }
+  }
+}

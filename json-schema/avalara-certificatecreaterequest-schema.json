@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CertificateCreateRequest",
+  "title": "CertificateCreateRequest",
+  "type": "object",
+  "required": [
+    "exemptionReason",
+    "exposureZone"
+  ],
+  "properties": {
+    "exemptionNumber": {
+      "type": "string"
+    },
+    "exemptionReason": {
+      "type": "string"
+    },
+    "exposureZone": {
+      "type": "string"
+    },
+    "signedDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "expirationDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "exemptPercentage": {
+      "type": "number",
+      "format": "double"
+    },
+    "customerCode": {
+      "type": "string"
+    },
+    "attributes": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/CertAttribute"
+      }
+    }
+  }
+}

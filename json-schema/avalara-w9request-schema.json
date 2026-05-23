@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/W9Request",
+  "title": "W9Request",
+  "type": "object",
+  "required": [
+    "payeeEmail",
+    "payeeName"
+  ],
+  "properties": {
+    "payeeEmail": {
+      "type": "string",
+      "format": "email"
+    },
+    "payeeName": {
+      "type": "string"
+    },
+    "companyId": {
+      "type": "string"
+    },
+    "expirationDays": {
+      "type": "integer",
+      "default": 30
+    },
+    "message": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DocumentSubmissionResponse",
+  "title": "DocumentSubmissionResponse",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Document submission ID"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "Accepted",
+        "Rejected",
+        "Error"
+      ]
+    },
+    "statusDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

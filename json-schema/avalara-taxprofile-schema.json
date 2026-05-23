@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaxProfile",
+  "title": "TaxProfile",
+  "type": "object",
+  "properties": {
+    "profileId": {
+      "type": "integer"
+    },
+    "profileName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "bundles": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "bundleId": {
+            "type": "integer"
+          },
+          "bundleName": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

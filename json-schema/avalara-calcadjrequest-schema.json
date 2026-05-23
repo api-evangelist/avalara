@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CalcAdjRequest",
+  "title": "CalcAdjRequest",
+  "type": "object",
+  "properties": {
+    "cmpn": {
+      "$ref": "#/components/schemas/CompanyData"
+    },
+    "inv": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Invoice"
+      }
+    },
+    "adj": {
+      "type": "object",
+      "properties": {
+        "disc": {
+          "type": "integer",
+          "description": "Discount type"
+        },
+        "adj": {
+          "type": "integer",
+          "description": "Adjustment method"
+        }
+      }
+    }
+  }
+}

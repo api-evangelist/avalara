@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ClassificationRequestSummary",
+  "title": "ClassificationRequestSummary",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "itemCount": {
+      "type": "integer"
+    },
+    "submittedDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completedDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AccountResponse",
+  "title": "AccountResponse",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string"
+    },
+    "accountNumber": {
+      "type": "string"
+    },
+    "companyName": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Inactive",
+        "Pending"
+      ]
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

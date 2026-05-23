@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DocumentSummary",
+  "title": "DocumentSummary",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "documentType": {
+      "type": "string"
+    },
+    "invoiceNumber": {
+      "type": "string"
+    },
+    "senderName": {
+      "type": "string"
+    },
+    "recipientName": {
+      "type": "string"
+    },
+    "submissionDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "countryCode": {
+      "type": "string"
+    }
+  }
+}

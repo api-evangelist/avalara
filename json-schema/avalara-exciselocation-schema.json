@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExciseLocation",
+  "title": "ExciseLocation",
+  "type": "object",
+  "properties": {
+    "locationId": {
+      "type": "string"
+    },
+    "locationName": {
+      "type": "string"
+    },
+    "locationType": {
+      "type": "string",
+      "enum": [
+        "Terminal",
+        "Warehouse",
+        "BulkPlant",
+        "Retail",
+        "Blender",
+        "Refinery"
+      ]
+    },
+    "address": {
+      "$ref": "#/components/schemas/ExciseAddress"
+    },
+    "irsTerminalCode": {
+      "type": "string"
+    }
+  }
+}

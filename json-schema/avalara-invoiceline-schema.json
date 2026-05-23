@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InvoiceLine",
+  "title": "InvoiceLine",
+  "type": "object",
+  "properties": {
+    "lineNumber": {
+      "type": "integer"
+    },
+    "itemCode": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "number",
+      "format": "double"
+    },
+    "unitPrice": {
+      "type": "number",
+      "format": "double"
+    },
+    "ncmCode": {
+      "type": "string"
+    },
+    "cfopCode": {
+      "type": "string"
+    }
+  }
+}

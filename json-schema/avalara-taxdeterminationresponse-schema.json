@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaxDeterminationResponse",
+  "title": "TaxDeterminationResponse",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [
+        "Success",
+        "Error",
+        "Partial"
+      ]
+    },
+    "transactionLines": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TaxDeterminationLine"
+      }
+    },
+    "totalTaxAmount": {
+      "type": "number",
+      "format": "double"
+    }
+  }
+}

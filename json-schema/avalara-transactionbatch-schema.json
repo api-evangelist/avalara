@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransactionBatch",
+  "title": "TransactionBatch",
+  "type": "object",
+  "properties": {
+    "companyId": {
+      "type": "string"
+    },
+    "transactions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/VATTransaction"
+      }
+    }
+  }
+}

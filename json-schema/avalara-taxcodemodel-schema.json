@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaxCodeModel",
+  "title": "TaxCodeModel",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "companyId": {
+      "type": "integer"
+    },
+    "taxCode": {
+      "type": "string"
+    },
+    "taxCodeTypeId": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "isPhysical": {
+      "type": "boolean"
+    },
+    "isActive": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CertCaptureCustomer",
+  "title": "CertCaptureCustomer",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "customerCode": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "line1": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "region": {
+      "type": "string"
+    },
+    "postalCode": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "emailAddress": {
+      "type": "string"
+    },
+    "phoneNumber": {
+      "type": "string"
+    }
+  }
+}

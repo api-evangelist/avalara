@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ClassificationRequestDetail",
+  "title": "ClassificationRequestDetail",
+  "type": "object",
+  "properties": {
+    "requestId": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Pending",
+        "InProgress",
+        "Completed",
+        "Failed"
+      ]
+    },
+    "itemCount": {
+      "type": "integer"
+    },
+    "classifiedCount": {
+      "type": "integer"
+    },
+    "submittedDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "completedDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

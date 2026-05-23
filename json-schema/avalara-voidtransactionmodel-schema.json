@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/VoidTransactionModel",
+  "title": "VoidTransactionModel",
+  "type": "object",
+  "required": [
+    "code"
+  ],
+  "properties": {
+    "code": {
+      "type": "string",
+      "enum": [
+        "Unspecified",
+        "PostFailed",
+        "DocDeleted",
+        "DocVoided",
+        "AdjustmentCancelled"
+      ],
+      "description": "Reason for voiding the transaction"
+    }
+  }
+}

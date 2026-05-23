@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Mandate",
+  "title": "Mandate",
+  "type": "object",
+  "properties": {
+    "mandateId": {
+      "type": "string"
+    },
+    "countryCode": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code"
+    },
+    "countryName": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "supportedDocumentTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "inputFormats": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "workflowId": {
+      "type": "string"
+    }
+  }
+}

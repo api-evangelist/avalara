@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TransactionParty",
+  "title": "TransactionParty",
+  "type": "object",
+  "properties": {
+    "companyId": {
+      "type": "string"
+    },
+    "locationId": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "$ref": "#/components/schemas/ExciseAddress"
+    },
+    "licenseNumber": {
+      "type": "string"
+    }
+  }
+}

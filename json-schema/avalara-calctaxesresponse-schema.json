@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CalcTaxesResponse",
+  "title": "CalcTaxesResponse",
+  "type": "object",
+  "properties": {
+    "inv": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/InvoiceResult"
+      }
+    }
+  }
+}

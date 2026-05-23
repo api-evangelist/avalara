@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/MultiDocumentLineItemModel",
+  "title": "MultiDocumentLineItemModel",
+  "type": "object",
+  "properties": {
+    "companyCode": {
+      "type": "string"
+    },
+    "reportingLocationCode": {
+      "type": "string"
+    },
+    "number": {
+      "type": "string"
+    },
+    "quantity": {
+      "type": "number",
+      "format": "double"
+    },
+    "amount": {
+      "type": "number",
+      "format": "double"
+    },
+    "taxCode": {
+      "type": "string"
+    },
+    "addresses": {
+      "type": "object",
+      "properties": {
+        "shipFrom": {
+          "$ref": "#/components/schemas/AddressInfo"
+        },
+        "shipTo": {
+          "$ref": "#/components/schemas/AddressInfo"
+        }
+      }
+    }
+  }
+}

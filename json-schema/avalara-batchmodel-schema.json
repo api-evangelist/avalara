@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BatchModel",
+  "title": "BatchModel",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "companyId": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "AvaCertUpdate",
+        "AvaCertUpdateAll",
+        "BatchMaintenance",
+        "CompanyLocationImport",
+        "DocumentImport",
+        "ExemptCertImport",
+        "ItemImport",
+        "SalesAuditExport",
+        "SstpTestDeckImport",
+        "TaxRuleImport",
+        "TransactionImport",
+        "UPCBulkImport",
+        "UPCBulkDelete"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Waiting",
+        "SystemErrors",
+        "Cancelled",
+        "Completed",
+        "Creating",
+        "Deleted",
+        "Errors",
+        "Paused",
+        "Processing",
+        "ReadyToDelete"
+      ]
+    },
+    "recordCount": {
+      "type": "integer"
+    },
+    "currentRecord": {
+      "type": "integer"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

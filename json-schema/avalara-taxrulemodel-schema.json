@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TaxRuleModel",
+  "title": "TaxRuleModel",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "companyId": {
+      "type": "integer"
+    },
+    "taxCodeId": {
+      "type": "integer"
+    },
+    "taxCode": {
+      "type": "string"
+    },
+    "stateFIPS": {
+      "type": "string"
+    },
+    "jurisName": {
+      "type": "string"
+    },
+    "jurisCode": {
+      "type": "string"
+    },
+    "jurisTypeId": {
+      "type": "string"
+    },
+    "rateTypeId": {
+      "type": "string"
+    },
+    "ruleTypeId": {
+      "type": "string"
+    },
+    "isAllJuris": {
+      "type": "boolean"
+    }
+  }
+}

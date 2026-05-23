@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/BusinessEntity",
+  "title": "BusinessEntity",
+  "type": "object",
+  "properties": {
+    "entityId": {
+      "type": "string"
+    },
+    "entityName": {
+      "type": "string"
+    },
+    "entityType": {
+      "type": "string"
+    },
+    "federalIdNumber": {
+      "type": "string",
+      "description": "Federal EIN"
+    },
+    "address": {
+      "$ref": "#/components/schemas/ExciseAddress"
+    },
+    "isActive": {
+      "type": "boolean"
+    }
+  }
+}

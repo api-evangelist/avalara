@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FilingCalendarEntry",
+  "title": "FilingCalendarEntry",
+  "type": "object",
+  "properties": {
+    "countryCode": {
+      "type": "string"
+    },
+    "returnType": {
+      "type": "string"
+    },
+    "filingFrequency": {
+      "type": "string"
+    },
+    "periodStart": {
+      "type": "string",
+      "format": "date"
+    },
+    "periodEnd": {
+      "type": "string",
+      "format": "date"
+    },
+    "dueDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Upcoming",
+        "Due",
+        "Overdue",
+        "Filed"
+      ]
+    }
+  }
+}

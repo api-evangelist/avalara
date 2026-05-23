@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/InteropDocumentRequest",
+  "title": "InteropDocumentRequest",
+  "type": "object",
+  "required": [
+    "dataFormat",
+    "data",
+    "recipientIdentifier"
+  ],
+  "properties": {
+    "dataFormat": {
+      "type": "string"
+    },
+    "data": {
+      "type": "string"
+    },
+    "recipientIdentifier": {
+      "type": "string",
+      "description": "Recipient identifier on the interop network"
+    },
+    "recipientIdentifierScheme": {
+      "type": "string",
+      "description": "Identifier scheme (e.g., peppol)"
+    }
+  }
+}

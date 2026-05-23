@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CalcTaxesRequest",
+  "title": "CalcTaxesRequest",
+  "type": "object",
+  "required": [
+    "cmpn",
+    "inv"
+  ],
+  "properties": {
+    "cmpn": {
+      "$ref": "#/components/schemas/CompanyData"
+    },
+    "inv": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/Invoice"
+      },
+      "description": "Array of invoices to calculate taxes for"
+    }
+  }
+}

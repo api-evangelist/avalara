@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/HSCodeInfo",
+  "title": "HSCodeInfo",
+  "type": "object",
+  "properties": {
+    "hsCode": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "level": {
+      "type": "string",
+      "enum": [
+        "Section",
+        "Chapter",
+        "Heading",
+        "Subheading",
+        "TariffLine"
+      ]
+    },
+    "parentCode": {
+      "type": "string"
+    },
+    "dutyRate": {
+      "type": "string"
+    },
+    "unitOfMeasure": {
+      "type": "string"
+    }
+  }
+}

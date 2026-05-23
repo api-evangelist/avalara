@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/TSPairModel",
+  "title": "TSPairModel",
+  "type": "object",
+  "properties": {
+    "TransactionType": {
+      "type": "integer",
+      "description": "Transaction type ID"
+    },
+    "TransactionTypeDescription": {
+      "type": "string"
+    },
+    "ServiceType": {
+      "type": "integer",
+      "description": "Service type ID"
+    },
+    "ServiceTypeDescription": {
+      "type": "string"
+    }
+  }
+}

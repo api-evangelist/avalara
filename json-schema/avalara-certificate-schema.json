@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Certificate",
+  "title": "Certificate",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "certificateNumber": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Active",
+        "Expired",
+        "Revoked",
+        "Pending"
+      ]
+    },
+    "signedDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "expirationDate": {
+      "type": "string",
+      "format": "date"
+    },
+    "exemptionNumber": {
+      "type": "string"
+    },
+    "exemptionReason": {
+      "type": "string"
+    },
+    "exemptPercentage": {
+      "type": "number",
+      "format": "double"
+    },
+    "exposureZone": {
+      "type": "string",
+      "description": "Jurisdiction where the exemption applies"
+    },
+    "customer": {
+      "$ref": "#/components/schemas/CertCaptureCustomer"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modifiedDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

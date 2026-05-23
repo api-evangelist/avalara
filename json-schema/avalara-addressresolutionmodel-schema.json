@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/AddressResolutionModel",
+  "title": "AddressResolutionModel",
+  "type": "object",
+  "properties": {
+    "address": {
+      "$ref": "#/components/schemas/AddressInfo"
+    },
+    "validatedAddresses": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/AddressInfo"
+      }
+    },
+    "coordinates": {
+      "type": "object",
+      "properties": {
+        "latitude": {
+          "type": "number",
+          "format": "double"
+        },
+        "longitude": {
+          "type": "number",
+          "format": "double"
+        }
+      }
+    },
+    "resolutionQuality": {
+      "type": "string",
+      "enum": [
+        "NotCoded",
+        "External",
+        "CountryCentroid",
+        "RegionCentroid",
+        "PartialCentroid",
+        "PostalCentroidGood",
+        "PostalCentroidBetter",
+        "PostalCentroidBest",
+        "Intersection",
+        "Interpolated",
+        "Rooftop"
+      ]
+    },
+    "taxAuthorities": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/TaxAuthorityInfo"
+      }
+    }
+  }
+}

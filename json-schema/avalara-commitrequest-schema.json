@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CommitRequest",
+  "title": "CommitRequest",
+  "type": "object",
+  "properties": {
+    "doc": {
+      "type": "string",
+      "description": "Document code to commit"
+    },
+    "cmmt": {
+      "type": "boolean",
+      "description": "Commit flag (true to commit)"
+    }
+  }
+}

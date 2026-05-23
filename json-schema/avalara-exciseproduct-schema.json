@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ExciseProduct",
+  "title": "ExciseProduct",
+  "type": "object",
+  "properties": {
+    "productCode": {
+      "type": "string"
+    },
+    "productName": {
+      "type": "string"
+    },
+    "productCategory": {
+      "type": "string",
+      "enum": [
+        "MotorFuel",
+        "Diesel",
+        "Aviation",
+        "Alcohol",
+        "Tobacco",
+        "NaturalGas",
+        "Other"
+      ]
+    },
+    "unitOfMeasure": {
+      "type": "string"
+    }
+  }
+}

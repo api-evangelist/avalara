@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CommitTransactionModel",
+  "title": "CommitTransactionModel",
+  "type": "object",
+  "required": [
+    "commit"
+  ],
+  "properties": {
+    "commit": {
+      "type": "boolean",
+      "description": "Set to true to commit the transaction"
+    }
+  }
+}
