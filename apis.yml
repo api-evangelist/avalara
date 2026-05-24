@@ -715,6 +715,8 @@ common:
     description: Adobe Commerce (Magento) integration for tax calculation in e-commerce.
   - name: Microsoft Dynamics
     description: Microsoft Dynamics 365 integration for enterprise tax automation.
+- type: LLMsTxt
+  url: https://developer.avalara.com/llms.txt
 created: '2025-11-19'
 modified: '2026-05-19'
 position: Consumer
