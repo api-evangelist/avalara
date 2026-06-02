@@ -305,6 +305,8 @@ apis:
     type: Documentation
   - type: OpenAPI
     url: openapi/avalara-certcapture-openapi.yml
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
   - type: NaftikoCapability
     url: capabilities/certcapture-attributes.yaml
   - type: NaftikoCapability
@@ -718,7 +720,7 @@ common:
 - type: LLMsTxt
   url: https://developer.avalara.com/llms.txt
 created: '2025-11-19'
-modified: '2026-05-19'
+modified: '2026-05-30'
 position: Consumer
 description: Avalara helps businesses of all sizes get tax compliance right. We deliver cloud-based solutions that work with
   existing business applications to calculate tax accurately and file returns automatically.

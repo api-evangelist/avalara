@@ -1,0 +1,188 @@
+asyncapi: '2.6.0'
+id: 'urn:com:avalara:certcapture:sqs'
+info:
+  title: Avalara CertCapture AWS SQS Notifications
+  version: '2.0.0'
+  description: >-
+    AsyncAPI description of the Avalara CertCapture event surface. CertCapture
+    does not publish HTTP webhooks; instead, Avalara provisions a unique
+    per-client AWS SQS queue and publishes change-notification messages to it
+    whenever a certificate or customer is created, updated, or deleted from
+    within the CertCapture application. Subscribers poll the SQS queue, read
+    the lightweight change message, and then fetch the full resource from the
+    CertCapture v2 REST API using the included identifier.
+
+
+    Only the surface explicitly documented by Avalara at
+    https://developer.avalara.com/api-reference/CertCapture/v2/aws-sqs-integration/
+    is modeled here. No webhook events have been fabricated. AvaTax, Returns,
+    E-Invoicing, 1099 & W-9, Communications, and other Avalara products do not
+    publish a documented async/webhook surface as of the date of this document
+    and are therefore not represented in this specification.
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+  license:
+    name: Avalara Developer Terms
+    url: https://developer.avalara.com/
+
+defaultContentType: application/json
+
+servers:
+  production:
+    url: sqs.{region}.amazonaws.com
+    protocol: sqs
+    description: >-
+      Per-client Amazon SQS queue provisioned by Avalara CertCapture. The
+      queue ARN / URL and the AWS region are issued to the client by Avalara
+      when SQS integration is requested as part of CertCapture REST API
+      integration.
+    variables:
+      region:
+        description: AWS region in which the per-client SQS queue is hosted.
+        default: us-east-1
+
+channels:
+  certcapture/change-notifications:
+    description: >-
+      Per-client SQS queue that receives change notifications for Certificates
+      and Customers managed in CertCapture. A single queue carries both
+      resource types; the resource is identified by the populated `certificate`
+      or `customer` object on each message.
+    subscribe:
+      operationId: receiveCertCaptureChangeNotification
+      summary: Receive a CertCapture change notification.
+      description: >-
+        Receive an SQS message published by CertCapture whenever a Certificate
+        or a Customer is created (`add`), updated (`update`), or deleted
+        (`delete`). The message body is a lightweight pointer containing the
+        client identifier, the action, and the identifier of the affected
+        resource. Consumers should follow up with a GET against the
+        CertCapture v2 REST API (e.g. `GET /v2/certificates/{id}` or
+        `GET /v2/customers/{id}`) to retrieve the full resource state.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/CertificateChangeNotification'
+          - $ref: '#/components/messages/CustomerChangeNotification'
+
+components:
+  messages:
+    CertificateChangeNotification:
+      name: CertificateChangeNotification
+      title: Certificate Change Notification
+      summary: >-
+        Emitted when a Certificate is created, updated, or deleted in
+        CertCapture.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/CertificateChangePayload'
+      examples:
+        - name: CertificateUpdated
+          summary: A certificate's "Signed Date" field was changed.
+          payload:
+            client_id: 123
+            action: update
+            certificate:
+              id: 300
+
+    CustomerChangeNotification:
+      name: CustomerChangeNotification
+      title: Customer Change Notification
+      summary: >-
+        Emitted when a Customer is created, updated, or deleted in
+        CertCapture.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/CustomerChangePayload'
+      examples:
+        - name: CustomerUpdated
+          summary: A customer record was modified.
+          payload:
+            client_id: 123
+            action: update
+            customer:
+              id: 123
+              customer_number: 123abc
+
+  schemas:
+    Action:
+      type: string
+      description: >-
+        Type of change that occurred to the resource in CertCapture. Per the
+        Avalara documentation the action values published on the queue are
+        `add` (creation), `update` (modification), and `delete` (removal).
+      enum:
+        - add
+        - update
+        - delete
+
+    CertificateChangePayload:
+      type: object
+      additionalProperties: false
+      required:
+        - client_id
+        - action
+        - certificate
+      properties:
+        client_id:
+          type: integer
+          description: Unique CertCapture client identifier the change applies to.
+          example: 123
+        action:
+          $ref: '#/components/schemas/Action'
+        certificate:
+          type: object
+          additionalProperties: false
+          required:
+            - id
+          properties:
+            id:
+              type: integer
+              description: >-
+                CertCapture certificate identifier. Use this with
+                `GET /v2/certificates/{id}` to retrieve full certificate
+                state.
+              example: 300
+
+    CustomerChangePayload:
+      type: object
+      additionalProperties: false
+      required:
+        - client_id
+        - action
+        - customer
+      properties:
+        client_id:
+          type: integer
+          description: Unique CertCapture client identifier the change applies to.
+          example: 123
+        action:
+          $ref: '#/components/schemas/Action'
+        customer:
+          type: object
+          additionalProperties: false
+          required:
+            - id
+          properties:
+            id:
+              type: integer
+              description: >-
+                CertCapture customer identifier. Use this with
+                `GET /v2/customers/{id}` to retrieve full customer state.
+              example: 123
+            customer_number:
+              type: string
+              description: >-
+                Alphanumeric customer reference assigned in CertCapture.
+              example: 123abc
+
+  securitySchemes:
+    awsSignatureV4:
+      type: httpApiKey
+      description: >-
+        Consumers authenticate to the per-client SQS queue using AWS Signature
+        v4 with the IAM credentials Avalara grants for the queue. SQS access
+        is governed by AWS IAM; CertCapture does not issue its own queue
+        credentials beyond what is provisioned in AWS.
+      name: Authorization
+      in: header
