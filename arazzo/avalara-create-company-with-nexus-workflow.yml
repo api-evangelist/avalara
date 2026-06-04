@@ -1,0 +1,112 @@
+arazzo: 1.0.1
+info:
+  title: Avalara Create Company With Nexus
+  summary: Create a new company and declare its first tax nexus, then confirm the nexus list.
+  description: >-
+    Stands up a new tax-calculating legal entity in AvaTax and immediately
+    declares where it has a tax obligation. The workflow creates a company,
+    adds one or more nexus declarations for that company by its numeric id, and
+    then reads back the company's nexus list to confirm the declaration was
+    persisted. Every step spells out its request inline so the flow can be read
+    and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: avataxApi
+  url: ../openapi/avalara-avatax-rest-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-company-with-nexus
+  summary: Create a company and add a tax nexus declaration to it.
+  description: >-
+    Creates a company within the authenticated account, then declares a tax
+    nexus for that company in a given country and region, and finally lists the
+    nexus declarations to verify the result.
+  inputs:
+    type: object
+    required:
+    - companyCode
+    - name
+    - country
+    - region
+    properties:
+      companyCode:
+        type: string
+        description: Short code identifying the new company.
+      name:
+        type: string
+        description: Display name of the company.
+      taxpayerIdNumber:
+        type: string
+        description: Tax identification number (EIN, TIN) for the company.
+      defaultCountry:
+        type: string
+        description: Default two-character ISO 3166 country code for the company.
+      country:
+        type: string
+        description: Two-character ISO 3166 country code for the nexus declaration.
+      region:
+        type: string
+        description: State or province code for the nexus declaration.
+      nexusTypeId:
+        type: string
+        description: Type of nexus to declare (e.g. SalesOrSellersUseTax).
+      effectiveDate:
+        type: string
+        description: Date the nexus declaration becomes effective (YYYY-MM-DD).
+  steps:
+  - stepId: createCompany
+    description: >-
+      Create the company that will own the nexus declaration and any future
+      transactions.
+    operationId: createCompany
+    requestBody:
+      contentType: application/json
+      payload:
+        companyCode: $inputs.companyCode
+        name: $inputs.name
+        taxpayerIdNumber: $inputs.taxpayerIdNumber
+        defaultCountry: $inputs.defaultCountry
+        isActive: true
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      companyId: $response.body#/id
+      companyCode: $response.body#/companyCode
+  - stepId: declareNexus
+    description: >-
+      Declare a tax nexus for the newly created company in the supplied country
+      and region.
+    operationId: createNexus
+    parameters:
+    - name: companyId
+      in: path
+      value: $steps.createCompany.outputs.companyId
+    requestBody:
+      contentType: application/json
+      payload:
+      - country: $inputs.country
+        region: $inputs.region
+        nexusTypeId: $inputs.nexusTypeId
+        effectiveDate: $inputs.effectiveDate
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      nexusId: $response.body#/0/id
+  - stepId: confirmNexus
+    description: >-
+      List the nexus declarations for the company to confirm the new nexus is
+      present.
+    operationId: listNexusByCompany
+    parameters:
+    - name: companyId
+      in: path
+      value: $steps.createCompany.outputs.companyId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      nexusList: $response.body#/value
+      nexusCount: $response.body#/@recordsetCount
+  outputs:
+    companyId: $steps.createCompany.outputs.companyId
+    nexusId: $steps.declareNexus.outputs.nexusId
+    nexusList: $steps.confirmNexus.outputs.nexusList

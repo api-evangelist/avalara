@@ -1,0 +1,123 @@
+arazzo: 1.0.1
+info:
+  title: Avalara Estimate Rate Then Quote
+  summary: Get a free estimated rate for an address, then create a full transaction quote there.
+  description: >-
+    Pairs Avalara's free rate-lookup endpoint with a full transaction
+    calculation. The workflow first calls the free tax-rates-by-address endpoint
+    to get an estimated combined rate for a location, then creates an
+    uncommitted sales order shipping to that same address to produce an accurate
+    line-level tax quote that can be compared against the estimate. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: avataxApi
+  url: ../openapi/avalara-avatax-rest-openapi.yml
+  type: openapi
+workflows:
+- workflowId: estimate-then-quote
+  summary: Estimate a rate by address, then produce an accurate transaction quote.
+  description: >-
+    Looks up the free estimated combined tax rate for an address, then creates
+    an uncommitted sales order shipping to that address for an accurate quote.
+  inputs:
+    type: object
+    required:
+    - line1
+    - region
+    - postalCode
+    - country
+    - companyCode
+    - customerCode
+    - date
+    - amount
+    properties:
+      line1:
+        type: string
+        description: Street address line 1 to estimate and ship to.
+      city:
+        type: string
+        description: City of the address.
+      region:
+        type: string
+        description: State or province code.
+      postalCode:
+        type: string
+        description: Postal code of the address.
+      country:
+        type: string
+        description: Two-character ISO 3166 country code.
+      companyCode:
+        type: string
+        description: Company code creating the quote.
+      customerCode:
+        type: string
+        description: Customer code for the quote.
+      date:
+        type: string
+        description: Date of the quote (YYYY-MM-DD).
+      amount:
+        type: number
+        description: Line amount to quote tax on.
+      taxCode:
+        type: string
+        description: Avalara tax code to apply to the line.
+  steps:
+  - stepId: estimateRate
+    description: >-
+      Look up the free estimated combined tax rate for the supplied street
+      address.
+    operationId: taxRatesByAddress
+    parameters:
+    - name: line1
+      in: query
+      value: $inputs.line1
+    - name: city
+      in: query
+      value: $inputs.city
+    - name: region
+      in: query
+      value: $inputs.region
+    - name: postalCode
+      in: query
+      value: $inputs.postalCode
+    - name: country
+      in: query
+      value: $inputs.country
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      estimatedRate: $response.body#/totalRate
+  - stepId: quote
+    description: >-
+      Create an uncommitted sales order shipping to the same address to produce
+      an accurate line-level tax quote.
+    operationId: createTransaction
+    requestBody:
+      contentType: application/json
+      payload:
+        type: SalesOrder
+        companyCode: $inputs.companyCode
+        date: $inputs.date
+        customerCode: $inputs.customerCode
+        commit: false
+        addresses:
+          shipTo:
+            line1: $inputs.line1
+            city: $inputs.city
+            region: $inputs.region
+            postalCode: $inputs.postalCode
+            country: $inputs.country
+        lines:
+        - amount: $inputs.amount
+          taxCode: $inputs.taxCode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transactionCode: $response.body#/code
+      totalTax: $response.body#/totalTax
+  outputs:
+    estimatedRate: $steps.estimateRate.outputs.estimatedRate
+    transactionCode: $steps.quote.outputs.transactionCode
+    actualTax: $steps.quote.outputs.totalTax

@@ -1,0 +1,113 @@
+arazzo: 1.0.1
+info:
+  title: Avalara Initialize Company With Defaults
+  summary: Initialize a company with recommended defaults, then add an extra nexus declaration.
+  description: >-
+    Uses AvaTax's company initialization endpoint to create a company along
+    with its recommended default settings, nexus, and tax configuration in a
+    single call, then layers on an additional nexus declaration for another
+    jurisdiction. Every step spells out its request inline so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: avataxApi
+  url: ../openapi/avalara-avatax-rest-openapi.yml
+  type: openapi
+workflows:
+- workflowId: initialize-company
+  summary: Initialize a fully-configured company and add a second nexus.
+  description: >-
+    Creates a company with recommended defaults via the initialize endpoint,
+    then declares an additional tax nexus for that company in a second
+    jurisdiction.
+  inputs:
+    type: object
+    required:
+    - name
+    - companyCode
+    - taxpayerIdNumber
+    - line1
+    - city
+    - region
+    - postalCode
+    - country
+    properties:
+      name:
+        type: string
+        description: Display name of the company.
+      companyCode:
+        type: string
+        description: Short code identifying the company.
+      taxpayerIdNumber:
+        type: string
+        description: Tax identification number (EIN, TIN).
+      line1:
+        type: string
+        description: Street address line 1 of the company's primary location.
+      city:
+        type: string
+        description: City of the company's primary location.
+      region:
+        type: string
+        description: State or province code of the company's primary location.
+      postalCode:
+        type: string
+        description: Postal code of the company's primary location.
+      country:
+        type: string
+        description: Two-character ISO 3166 country code of the primary location.
+      email:
+        type: string
+        description: Contact email for the company.
+      extraNexusCountry:
+        type: string
+        description: Country code for the additional nexus declaration.
+      extraNexusRegion:
+        type: string
+        description: Region code for the additional nexus declaration.
+  steps:
+  - stepId: initializeCompany
+    description: >-
+      Create the company with all recommended default settings, nexus, and tax
+      configuration for the supplied jurisdiction.
+    operationId: initializeCompany
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.name
+        companyCode: $inputs.companyCode
+        taxpayerIdNumber: $inputs.taxpayerIdNumber
+        line1: $inputs.line1
+        city: $inputs.city
+        region: $inputs.region
+        postalCode: $inputs.postalCode
+        country: $inputs.country
+        email: $inputs.email
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      companyId: $response.body#/id
+      companyCode: $response.body#/companyCode
+  - stepId: addExtraNexus
+    description: >-
+      Declare an additional tax nexus for the initialized company in a second
+      jurisdiction.
+    operationId: createNexus
+    parameters:
+    - name: companyId
+      in: path
+      value: $steps.initializeCompany.outputs.companyId
+    requestBody:
+      contentType: application/json
+      payload:
+      - country: $inputs.extraNexusCountry
+        region: $inputs.extraNexusRegion
+        nexusTypeId: SalesOrSellersUseTax
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      nexusId: $response.body#/0/id
+  outputs:
+    companyId: $steps.initializeCompany.outputs.companyId
+    companyCode: $steps.initializeCompany.outputs.companyCode
+    extraNexusId: $steps.addExtraNexus.outputs.nexusId

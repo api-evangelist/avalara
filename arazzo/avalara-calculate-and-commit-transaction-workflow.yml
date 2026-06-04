@@ -1,0 +1,160 @@
+arazzo: 1.0.1
+info:
+  title: Avalara Calculate and Commit a Transaction
+  summary: Validate the ship-to address, calculate tax on a sale, commit it, then read it back.
+  description: >-
+    The canonical AvaTax sales-tax flow. The workflow first resolves and
+    validates the destination address so the transaction is sourced to the
+    correct jurisdiction, then creates a sales invoice that calculates tax,
+    commits that transaction so it is finalized for reporting, and finally
+    retrieves the committed transaction by code to confirm its status and tax
+    totals. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: avataxApi
+  url: ../openapi/avalara-avatax-rest-openapi.yml
+  type: openapi
+workflows:
+- workflowId: calculate-and-commit-transaction
+  summary: Resolve address, create a sales invoice, commit it, and retrieve it.
+  description: >-
+    Validates the ship-to address, creates a tax-calculating sales invoice
+    transaction, commits it for reporting, and reads the committed transaction
+    back by its code.
+  inputs:
+    type: object
+    required:
+    - companyCode
+    - customerCode
+    - date
+    - line1
+    - city
+    - region
+    - postalCode
+    - country
+    - amount
+    properties:
+      companyCode:
+        type: string
+        description: Company code creating the transaction.
+      customerCode:
+        type: string
+        description: Unique code identifying the customer.
+      date:
+        type: string
+        description: Date of the transaction (YYYY-MM-DD).
+      line1:
+        type: string
+        description: Ship-to street address line 1.
+      city:
+        type: string
+        description: Ship-to city.
+      region:
+        type: string
+        description: Ship-to state or province code.
+      postalCode:
+        type: string
+        description: Ship-to postal code.
+      country:
+        type: string
+        description: Ship-to two-character ISO 3166 country code.
+      amount:
+        type: number
+        description: Total amount of the single line item.
+      taxCode:
+        type: string
+        description: Avalara tax code to apply to the line item.
+  steps:
+  - stepId: resolveAddress
+    description: >-
+      Validate and resolve the ship-to address to a standardized, geocoded form
+      before calculating tax.
+    operationId: resolveAddress
+    requestBody:
+      contentType: application/json
+      payload:
+        line1: $inputs.line1
+        city: $inputs.city
+        region: $inputs.region
+        postalCode: $inputs.postalCode
+        country: $inputs.country
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      resolutionQuality: $response.body#/resolutionQuality
+  - stepId: createTransaction
+    description: >-
+      Create a sales invoice transaction with a single line item, calculating
+      tax for the resolved ship-to address. The transaction is created
+      uncommitted so it can be committed in the next step.
+    operationId: createTransaction
+    requestBody:
+      contentType: application/json
+      payload:
+        type: SalesInvoice
+        companyCode: $inputs.companyCode
+        date: $inputs.date
+        customerCode: $inputs.customerCode
+        commit: false
+        addresses:
+          shipTo:
+            line1: $inputs.line1
+            city: $inputs.city
+            region: $inputs.region
+            postalCode: $inputs.postalCode
+            country: $inputs.country
+        lines:
+        - amount: $inputs.amount
+          taxCode: $inputs.taxCode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transactionCode: $response.body#/code
+      totalTax: $response.body#/totalTax
+      status: $response.body#/status
+  - stepId: commitTransaction
+    description: >-
+      Commit the freshly created transaction so it is finalized and eligible for
+      tax reporting.
+    operationId: commitTransaction
+    parameters:
+    - name: companyCode
+      in: path
+      value: $inputs.companyCode
+    - name: transactionCode
+      in: path
+      value: $steps.createTransaction.outputs.transactionCode
+    requestBody:
+      contentType: application/json
+      payload:
+        commit: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+  - stepId: getTransaction
+    description: >-
+      Retrieve the committed transaction by code, including summary details, to
+      confirm its committed status and tax totals.
+    operationId: getTransactionByCode
+    parameters:
+    - name: companyCode
+      in: path
+      value: $inputs.companyCode
+    - name: transactionCode
+      in: path
+      value: $steps.createTransaction.outputs.transactionCode
+    - name: $include
+      in: query
+      value: Lines,Summary
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      status: $response.body#/status
+      totalTax: $response.body#/totalTax
+      totalAmount: $response.body#/totalAmount
+  outputs:
+    transactionCode: $steps.createTransaction.outputs.transactionCode
+    finalStatus: $steps.getTransaction.outputs.status
+    totalTax: $steps.getTransaction.outputs.totalTax

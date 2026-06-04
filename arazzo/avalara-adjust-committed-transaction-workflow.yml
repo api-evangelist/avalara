@@ -1,0 +1,113 @@
+arazzo: 1.0.1
+info:
+  title: Avalara Adjust a Committed Transaction
+  summary: Retrieve a committed transaction and adjust it with a corrected, documented replacement.
+  description: >-
+    Adjusts a transaction that has already been committed without losing its
+    audit trail. The workflow retrieves the committed transaction by code to
+    confirm its current state, then submits an adjustment with a documented
+    reason that voids the original and creates a corrected replacement in a
+    single operation. Every step spells out its request inline so the flow can
+    be read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: avataxApi
+  url: ../openapi/avalara-avatax-rest-openapi.yml
+  type: openapi
+workflows:
+- workflowId: adjust-committed-transaction
+  summary: Adjust a committed transaction with a corrected replacement document.
+  description: >-
+    Looks up a committed transaction by code, then adjusts it by supplying an
+    adjustment reason and a corrected replacement transaction.
+  inputs:
+    type: object
+    required:
+    - companyCode
+    - transactionCode
+    - adjustmentReason
+    - customerCode
+    - date
+    - amount
+    properties:
+      companyCode:
+        type: string
+        description: Company code that owns the transaction.
+      transactionCode:
+        type: string
+        description: Code of the committed transaction to adjust.
+      adjustmentReason:
+        type: string
+        description: Documented reason for the adjustment (e.g. PriceAdjusted).
+      adjustmentDescription:
+        type: string
+        description: Free-text description of the adjustment.
+      customerCode:
+        type: string
+        description: Customer code for the corrected transaction.
+      date:
+        type: string
+        description: Date of the corrected transaction (YYYY-MM-DD).
+      amount:
+        type: number
+        description: Corrected total amount for the line item.
+      taxCode:
+        type: string
+        description: Avalara tax code for the corrected line item.
+  steps:
+  - stepId: getOriginal
+    description: >-
+      Retrieve the committed transaction by code, including its lines, to
+      confirm what is being adjusted.
+    operationId: getTransactionByCode
+    parameters:
+    - name: companyCode
+      in: path
+      value: $inputs.companyCode
+    - name: transactionCode
+      in: path
+      value: $inputs.transactionCode
+    - name: $include
+      in: query
+      value: Lines
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      originalStatus: $response.body#/status
+      originalAmount: $response.body#/totalAmount
+  - stepId: adjust
+    description: >-
+      Adjust the committed transaction by supplying a documented reason and a
+      corrected replacement transaction.
+    operationId: adjustTransaction
+    parameters:
+    - name: companyCode
+      in: path
+      value: $inputs.companyCode
+    - name: transactionCode
+      in: path
+      value: $inputs.transactionCode
+    requestBody:
+      contentType: application/json
+      payload:
+        adjustmentReason: $inputs.adjustmentReason
+        adjustmentDescription: $inputs.adjustmentDescription
+        newTransaction:
+          type: SalesInvoice
+          companyCode: $inputs.companyCode
+          date: $inputs.date
+          customerCode: $inputs.customerCode
+          commit: true
+          lines:
+          - amount: $inputs.amount
+            taxCode: $inputs.taxCode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      adjustedStatus: $response.body#/status
+      adjustedTotalTax: $response.body#/totalTax
+      adjustedTransactionCode: $response.body#/code
+  outputs:
+    originalStatus: $steps.getOriginal.outputs.originalStatus
+    adjustedTransactionCode: $steps.adjust.outputs.adjustedTransactionCode
+    adjustedTotalTax: $steps.adjust.outputs.adjustedTotalTax

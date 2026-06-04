@@ -1,0 +1,135 @@
+arazzo: 1.0.1
+info:
+  title: Avalara Quick Tax Quote
+  summary: Create an uncommitted sales order to quote tax, then branch on whether tax was charged.
+  description: >-
+    Produces a non-binding tax quote for a cart or checkout without committing
+    anything to tax reporting. The workflow creates an uncommitted SalesOrder
+    transaction, which calculates tax as a quote, then branches: when tax was
+    charged it retrieves the full jurisdiction summary, and when the order came
+    back fully exempt it ends early. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: avataxApi
+  url: ../openapi/avalara-avatax-rest-openapi.yml
+  type: openapi
+workflows:
+- workflowId: quick-tax-quote
+  summary: Quote tax with an uncommitted sales order and branch on the result.
+  description: >-
+    Creates an uncommitted SalesOrder to calculate a tax quote, then either
+    fetches the jurisdiction-level summary when tax was charged or ends when the
+    order is fully exempt.
+  inputs:
+    type: object
+    required:
+    - companyCode
+    - customerCode
+    - date
+    - line1
+    - city
+    - region
+    - postalCode
+    - country
+    - amount
+    properties:
+      companyCode:
+        type: string
+        description: Company code creating the quote.
+      customerCode:
+        type: string
+        description: Unique code identifying the customer.
+      date:
+        type: string
+        description: Date of the quote (YYYY-MM-DD).
+      line1:
+        type: string
+        description: Ship-to street address line 1.
+      city:
+        type: string
+        description: Ship-to city.
+      region:
+        type: string
+        description: Ship-to state or province code.
+      postalCode:
+        type: string
+        description: Ship-to postal code.
+      country:
+        type: string
+        description: Ship-to two-character ISO 3166 country code.
+      amount:
+        type: number
+        description: Total amount of the line item being quoted.
+      taxCode:
+        type: string
+        description: Avalara tax code to apply to the line item.
+  steps:
+  - stepId: quoteTax
+    description: >-
+      Create an uncommitted SalesOrder transaction so AvaTax calculates tax as a
+      non-binding quote.
+    operationId: createTransaction
+    requestBody:
+      contentType: application/json
+      payload:
+        type: SalesOrder
+        companyCode: $inputs.companyCode
+        date: $inputs.date
+        customerCode: $inputs.customerCode
+        commit: false
+        addresses:
+          shipTo:
+            line1: $inputs.line1
+            city: $inputs.city
+            region: $inputs.region
+            postalCode: $inputs.postalCode
+            country: $inputs.country
+        lines:
+        - amount: $inputs.amount
+          taxCode: $inputs.taxCode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transactionCode: $response.body#/code
+      totalTax: $response.body#/totalTax
+      totalTaxable: $response.body#/totalTaxable
+    onSuccess:
+    - name: taxCharged
+      type: goto
+      stepId: getQuoteSummary
+      criteria:
+      - context: $response.body
+        condition: $.totalTax > 0
+        type: jsonpath
+    - name: fullyExempt
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.totalTax == 0
+        type: jsonpath
+  - stepId: getQuoteSummary
+    description: >-
+      Retrieve the quoted transaction with its jurisdiction-level summary so the
+      caller can see how the tax breaks down by authority.
+    operationId: getTransactionByCode
+    parameters:
+    - name: companyCode
+      in: path
+      value: $inputs.companyCode
+    - name: transactionCode
+      in: path
+      value: $steps.quoteTax.outputs.transactionCode
+    - name: $include
+      in: query
+      value: Summary
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      summary: $response.body#/summary
+      totalTax: $response.body#/totalTax
+  outputs:
+    transactionCode: $steps.quoteTax.outputs.transactionCode
+    totalTax: $steps.quoteTax.outputs.totalTax
+    summary: $steps.getQuoteSummary.outputs.summary

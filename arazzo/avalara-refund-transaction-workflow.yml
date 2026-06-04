@@ -1,0 +1,93 @@
+arazzo: 1.0.1
+info:
+  title: Avalara Refund a Transaction
+  summary: Look up a committed sale, then issue a refund transaction against it.
+  description: >-
+    Issues a refund for a previously committed sale. The workflow retrieves the
+    original transaction by code to confirm it exists and is committed, then
+    creates a refund transaction against it, supporting full, partial,
+    percentage, or tax-only refund types. Every step spells out its request
+    inline so the flow can be read and executed without opening the underlying
+    OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: avataxApi
+  url: ../openapi/avalara-avatax-rest-openapi.yml
+  type: openapi
+workflows:
+- workflowId: refund-transaction
+  summary: Retrieve a committed transaction and create a refund against it.
+  description: >-
+    Looks up a committed transaction by code, then creates a refund transaction
+    using the supplied refund type and date.
+  inputs:
+    type: object
+    required:
+    - companyCode
+    - transactionCode
+    - refundTransactionCode
+    - refundDate
+    - refundType
+    properties:
+      companyCode:
+        type: string
+        description: Company code that owns the original transaction.
+      transactionCode:
+        type: string
+        description: Code of the committed transaction to refund.
+      refundTransactionCode:
+        type: string
+        description: Unique code to assign to the new refund transaction.
+      refundDate:
+        type: string
+        description: Date of the refund (YYYY-MM-DD).
+      refundType:
+        type: string
+        description: Type of refund (Full, Partial, Percentage, or TaxOnly).
+      refundPercentage:
+        type: number
+        description: Percentage to refund when refundType is Percentage.
+  steps:
+  - stepId: getOriginal
+    description: >-
+      Retrieve the original committed transaction by code to confirm it exists
+      before refunding it.
+    operationId: getTransactionByCode
+    parameters:
+    - name: companyCode
+      in: path
+      value: $inputs.companyCode
+    - name: transactionCode
+      in: path
+      value: $inputs.transactionCode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      originalStatus: $response.body#/status
+      originalTotalTax: $response.body#/totalTax
+  - stepId: refund
+    description: >-
+      Create a refund transaction based on the original committed transaction
+      using the supplied refund type.
+    operationId: refundTransaction
+    parameters:
+    - name: transactionCode
+      in: path
+      value: $inputs.transactionCode
+    requestBody:
+      contentType: application/json
+      payload:
+        refundTransactionCode: $inputs.refundTransactionCode
+        refundDate: $inputs.refundDate
+        refundType: $inputs.refundType
+        refundPercentage: $inputs.refundPercentage
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      refundCode: $response.body#/code
+      refundStatus: $response.body#/status
+      refundedTax: $response.body#/totalTax
+  outputs:
+    originalStatus: $steps.getOriginal.outputs.originalStatus
+    refundCode: $steps.refund.outputs.refundCode
+    refundedTax: $steps.refund.outputs.refundedTax

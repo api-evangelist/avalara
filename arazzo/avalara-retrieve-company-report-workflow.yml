@@ -1,0 +1,74 @@
+arazzo: 1.0.1
+info:
+  title: Avalara Retrieve a Company Report
+  summary: List a company's available reports, then retrieve the details of the first one.
+  description: >-
+    Surfaces the filing and reconciliation reports AvaTax has generated for a
+    company. The workflow lists the reports available for a company, branches on
+    whether any reports exist, and when at least one is present retrieves that
+    report's details by id. This adapts the filing/returns theme to the
+    reporting operations the AvaTax REST specification actually exposes. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: avataxApi
+  url: ../openapi/avalara-avatax-rest-openapi.yml
+  type: openapi
+workflows:
+- workflowId: retrieve-company-report
+  summary: List a company's reports and retrieve the first available report.
+  description: >-
+    Lists the reports for a company and, when at least one report is available,
+    retrieves its details by id; otherwise the workflow ends.
+  inputs:
+    type: object
+    required:
+    - companyId
+    properties:
+      companyId:
+        type: integer
+        description: Numeric ID of the company whose reports are listed.
+  steps:
+  - stepId: listReports
+    description: >-
+      List the reports that AvaTax has generated for the company.
+    operationId: listReports
+    parameters:
+    - name: companyId
+      in: path
+      value: $inputs.companyId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      reports: $response.body
+      firstReportId: $response.body#/0/id
+    onSuccess:
+    - name: hasReports
+      type: goto
+      stepId: getReport
+      criteria:
+      - context: $response.body
+        condition: $.length > 0
+        type: jsonpath
+    - name: noReports
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.length == 0
+        type: jsonpath
+  - stepId: getReport
+    description: >-
+      Retrieve the details of the first report returned by the listing.
+    operationId: getReport
+    parameters:
+    - name: id
+      in: path
+      value: $steps.listReports.outputs.firstReportId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      report: $response.body
+  outputs:
+    reports: $steps.listReports.outputs.reports
+    report: $steps.getReport.outputs.report

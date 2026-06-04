@@ -1,0 +1,75 @@
+arazzo: 1.0.1
+info:
+  title: Avalara Submit a Transaction Batch
+  summary: Create a transaction-import batch for a company, then confirm it in the batch list.
+  description: >-
+    Bulk-loads transactions for filing and reconciliation by submitting a batch
+    job. The workflow creates a transaction-import batch under a company and
+    then lists the company's batches to confirm the new batch was queued and to
+    read back its processing status. This adapts the filing/returns theme to the
+    batch processing operations the AvaTax REST specification actually exposes.
+    Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: avataxApi
+  url: ../openapi/avalara-avatax-rest-openapi.yml
+  type: openapi
+workflows:
+- workflowId: submit-transaction-batch
+  summary: Create a transaction-import batch and confirm it in the batch list.
+  description: >-
+    Creates a batch of the requested type for a company, then lists the
+    company's batches to confirm the batch is present and read its status.
+  inputs:
+    type: object
+    required:
+    - companyId
+    - batchName
+    properties:
+      companyId:
+        type: integer
+        description: Numeric ID of the company the batch belongs to.
+      batchName:
+        type: string
+        description: Display name for the batch.
+      batchType:
+        type: string
+        description: Type of batch to create (e.g. TransactionImport).
+  steps:
+  - stepId: createBatch
+    description: >-
+      Create the batch job under the company. A TransactionImport batch loads
+      transactions in bulk for downstream filing and reporting.
+    operationId: createBatch
+    parameters:
+    - name: companyId
+      in: path
+      value: $inputs.companyId
+    requestBody:
+      contentType: application/json
+      payload:
+        name: $inputs.batchName
+        type: $inputs.batchType
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      batchId: $response.body#/id
+      batchStatus: $response.body#/status
+  - stepId: confirmBatch
+    description: >-
+      List the company's batches to confirm the new batch was queued and read
+      back its current processing status.
+    operationId: listBatches
+    parameters:
+    - name: companyId
+      in: path
+      value: $inputs.companyId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      batches: $response.body
+  outputs:
+    batchId: $steps.createBatch.outputs.batchId
+    batchStatus: $steps.createBatch.outputs.batchStatus
+    batches: $steps.confirmBatch.outputs.batches

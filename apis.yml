@@ -477,6 +477,45 @@ type: Index
 image: https://www.avalara.com/us/en/about/newsroom/media-kit/_jcr_content/root/responsivegrid/responsivegrid/columncontrol/par2/image.coreimg.svg/1614712826993/avalara-logo.svg
 access: 3rd-Party
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/avalara-adjust-committed-transaction-workflow.yml
+    name: Avalara Adjust a Committed Transaction
+    summary: Retrieve a committed transaction and adjust it with a corrected, documented replacement.
+  - url: arazzo/avalara-calculate-and-commit-transaction-workflow.yml
+    name: Avalara Calculate and Commit a Transaction
+    summary: Validate the ship-to address, calculate tax on a sale, commit it, then read it back.
+  - url: arazzo/avalara-classify-item-and-test-tax-workflow.yml
+    name: Avalara Classify an Item and Test Its Tax
+    summary: Look up tax codes, register a product item with a tax code, then quote tax for that item.
+  - url: arazzo/avalara-create-company-with-nexus-workflow.yml
+    name: Avalara Create Company With Nexus
+    summary: Create a new company and declare its first tax nexus, then confirm the nexus list.
+  - url: arazzo/avalara-estimate-then-quote-workflow.yml
+    name: Avalara Estimate Rate Then Quote
+    summary: Get a free estimated rate for an address, then create a full transaction quote there.
+  - url: arazzo/avalara-initialize-company-workflow.yml
+    name: Avalara Initialize Company With Defaults
+    summary: Initialize a company with recommended defaults, then add an extra nexus declaration.
+  - url: arazzo/avalara-onboard-exempt-customer-workflow.yml
+    name: Avalara Onboard an Exempt Customer
+    summary: Create a customer, attach an exemption certificate, then confirm the certificate list.
+  - url: arazzo/avalara-quick-tax-quote-workflow.yml
+    name: Avalara Quick Tax Quote
+    summary: Create an uncommitted sales order to quote tax, then branch on whether tax was charged.
+  - url: arazzo/avalara-refund-transaction-workflow.yml
+    name: Avalara Refund a Transaction
+    summary: Look up a committed sale, then issue a refund transaction against it.
+  - url: arazzo/avalara-retrieve-company-report-workflow.yml
+    name: Avalara Retrieve a Company Report
+    summary: List a company's available reports, then retrieve the details of the first one.
+  - url: arazzo/avalara-submit-transaction-batch-workflow.yml
+    name: Avalara Submit a Transaction Batch
+    summary: Create a transaction-import batch for a company, then confirm it in the batch list.
+  - url: arazzo/avalara-void-and-recreate-transaction-workflow.yml
+    name: Avalara Void and Recreate a Transaction
+    summary: Look up an existing transaction, void it, then recreate a corrected version.
 - url: https://developer.avalara.com/sdk/
   name: AvaTax Software Development Kit | Avalara Developer
   type: SDKs

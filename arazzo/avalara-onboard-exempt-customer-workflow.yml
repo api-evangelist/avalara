@@ -1,0 +1,122 @@
+arazzo: 1.0.1
+info:
+  title: Avalara Onboard an Exempt Customer
+  summary: Create a customer, attach an exemption certificate, then confirm the certificate list.
+  description: >-
+    Onboards a tax-exempt customer end to end. The workflow creates a customer
+    record under a company, attaches an exemption certificate with its signed
+    and expiration dates and exemption number, and then queries the company's
+    certificates to confirm the new certificate is on file. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: avataxApi
+  url: ../openapi/avalara-avatax-rest-openapi.yml
+  type: openapi
+workflows:
+- workflowId: onboard-exempt-customer
+  summary: Create a customer, add an exemption certificate, and verify it.
+  description: >-
+    Creates a customer record for a company, attaches an exemption certificate,
+    then lists the company's certificates to confirm the new one is present.
+  inputs:
+    type: object
+    required:
+    - companyId
+    - customerCode
+    - name
+    - exemptionNumber
+    - signedDate
+    - expirationDate
+    properties:
+      companyId:
+        type: integer
+        description: Numeric ID of the company the customer belongs to.
+      customerCode:
+        type: string
+        description: Unique code identifying the customer.
+      name:
+        type: string
+        description: Customer name.
+      line1:
+        type: string
+        description: Customer street address line 1.
+      city:
+        type: string
+        description: Customer city.
+      region:
+        type: string
+        description: Customer state or province code.
+      postalCode:
+        type: string
+        description: Customer postal code.
+      country:
+        type: string
+        description: Customer two-character ISO 3166 country code.
+      exemptionNumber:
+        type: string
+        description: Exemption number printed on the certificate.
+      signedDate:
+        type: string
+        description: Date the certificate was signed (YYYY-MM-DD).
+      expirationDate:
+        type: string
+        description: Date the certificate expires (YYYY-MM-DD).
+  steps:
+  - stepId: createCustomer
+    description: >-
+      Create the customer record under the company.
+    operationId: createCustomer
+    parameters:
+    - name: companyId
+      in: path
+      value: $inputs.companyId
+    requestBody:
+      contentType: application/json
+      payload:
+      - customerCode: $inputs.customerCode
+        name: $inputs.name
+        line1: $inputs.line1
+        city: $inputs.city
+        region: $inputs.region
+        postalCode: $inputs.postalCode
+        country: $inputs.country
+    successCriteria:
+    - condition: $statusCode == 201
+  - stepId: addCertificate
+    description: >-
+      Attach an exemption certificate to the company so the exempt customer's
+      sales can be treated as tax-exempt.
+    operationId: createCertificate
+    parameters:
+    - name: companyId
+      in: path
+      value: $inputs.companyId
+    requestBody:
+      contentType: application/json
+      payload:
+      - exemptionNumber: $inputs.exemptionNumber
+        signedDate: $inputs.signedDate
+        expirationDate: $inputs.expirationDate
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      certificateId: $response.body#/0/id
+  - stepId: confirmCertificates
+    description: >-
+      List the company's certificates to confirm the new exemption certificate
+      is on file.
+    operationId: queryCertificates
+    parameters:
+    - name: companyId
+      in: path
+      value: $inputs.companyId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      certificates: $response.body#/value
+      certificateCount: $response.body#/@recordsetCount
+  outputs:
+    certificateId: $steps.addCertificate.outputs.certificateId
+    certificates: $steps.confirmCertificates.outputs.certificates

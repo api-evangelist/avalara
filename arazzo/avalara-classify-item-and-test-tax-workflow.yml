@@ -1,0 +1,120 @@
+arazzo: 1.0.1
+info:
+  title: Avalara Classify an Item and Test Its Tax
+  summary: Look up tax codes, register a product item with a tax code, then quote tax for that item.
+  description: >-
+    Onboards a product into the AvaTax item catalog and verifies how it is
+    taxed. The workflow lists the available Avalara tax codes, registers a new
+    item under a company with a chosen tax code and item code, and then creates
+    an uncommitted sales order referencing that item code to confirm the tax
+    calculation behaves as expected. Every step spells out its request inline so
+    the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: avataxApi
+  url: ../openapi/avalara-avatax-rest-openapi.yml
+  type: openapi
+workflows:
+- workflowId: classify-item-and-test-tax
+  summary: Register a product item with a tax code and quote tax for it.
+  description: >-
+    Lists Avalara tax codes, creates an item under a company with a chosen tax
+    code, then creates an uncommitted sales order using that item code to test
+    the resulting tax.
+  inputs:
+    type: object
+    required:
+    - companyId
+    - companyCode
+    - itemCode
+    - taxCode
+    - customerCode
+    - date
+    - amount
+    properties:
+      companyId:
+        type: integer
+        description: Numeric ID of the company the item belongs to.
+      companyCode:
+        type: string
+        description: Company code used when quoting tax for the item.
+      itemCode:
+        type: string
+        description: Unique code for the new product item.
+      taxCode:
+        type: string
+        description: Avalara tax code to classify the item with.
+      itemDescription:
+        type: string
+        description: Description of the item.
+      customerCode:
+        type: string
+        description: Customer code used for the test quote.
+      date:
+        type: string
+        description: Date of the test quote (YYYY-MM-DD).
+      amount:
+        type: number
+        description: Line amount to quote tax on.
+      taxCodeFilter:
+        type: string
+        description: Optional OData filter to narrow the tax code lookup.
+  steps:
+  - stepId: listTaxCodes
+    description: >-
+      Retrieve the Avalara-supported tax codes so a valid classification can be
+      chosen for the item.
+    operationId: listTaxCodes
+    parameters:
+    - name: $filter
+      in: query
+      value: $inputs.taxCodeFilter
+    - name: $top
+      in: query
+      value: 50
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      taxCodes: $response.body#/value
+  - stepId: createItem
+    description: >-
+      Register the product item under the company with the chosen tax code.
+    operationId: createItems
+    parameters:
+    - name: companyId
+      in: path
+      value: $inputs.companyId
+    requestBody:
+      contentType: application/json
+      payload:
+      - itemCode: $inputs.itemCode
+        taxCode: $inputs.taxCode
+        description: $inputs.itemDescription
+    successCriteria:
+    - condition: $statusCode == 201
+  - stepId: testTax
+    description: >-
+      Create an uncommitted sales order that references the new item code to
+      confirm how it is taxed.
+    operationId: createTransaction
+    requestBody:
+      contentType: application/json
+      payload:
+        type: SalesOrder
+        companyCode: $inputs.companyCode
+        date: $inputs.date
+        customerCode: $inputs.customerCode
+        commit: false
+        lines:
+        - amount: $inputs.amount
+          itemCode: $inputs.itemCode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transactionCode: $response.body#/code
+      totalTax: $response.body#/totalTax
+  outputs:
+    taxCodes: $steps.listTaxCodes.outputs.taxCodes
+    testTransactionCode: $steps.testTax.outputs.transactionCode
+    totalTax: $steps.testTax.outputs.totalTax
