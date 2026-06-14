@@ -1,0 +1,1507 @@
+# Avalara Conceptual GraphQL Schema
+# Source: AvaTax REST API v2 and related Avalara APIs
+# Reference: https://developer.avalara.com/api-reference/avatax/rest/v2/
+# Note: Avalara does not natively offer GraphQL. This is a conceptual schema
+# for teams building GraphQL gateways over the Avalara platform.
+
+scalar DateTime
+scalar JSON
+
+# ─────────────────────────────────────────────
+# Enumerations
+# ─────────────────────────────────────────────
+
+enum DocumentType {
+  SALES_ORDER
+  SALES_INVOICE
+  PURCHASE_ORDER
+  PURCHASE_INVOICE
+  RETURN_ORDER
+  RETURN_INVOICE
+  INVENTORY_TRANSFER_ORDER
+  INVENTORY_TRANSFER_INVOICE
+  REVERSAL_CHARGE
+  REVERSAL_CHARGE_INVOICE
+}
+
+enum DocumentStatus {
+  TEMPORARY
+  SAVED
+  POSTED
+  COMMITTED
+  CANCELLED
+  ADJUSTED
+  QUEUED
+  PENDING_APPROVAL
+}
+
+enum AdjustmentReason {
+  NOT_ADJUSTED
+  SOURCING_ISSUE
+  RECONCILED_WITH_GENERAL_LEDGER
+  EXEMPTION_CERTIFICATE_APPLIED
+  PRICE_ADJUSTED
+  PRODUCT_RETURNED
+  PRODUCT_EXCHANGED
+  BAD_DEBT
+  OTHER
+  OFFLINE
+}
+
+enum BatchStatus {
+  WAITING
+  SYSTEM_ERRORS
+  IN_PROGRESS
+  COMPLETED
+  ERRORS
+  PARTIAL_ERRORS
+  CANCELLED
+  PAUSED
+}
+
+enum FilingFrequency {
+  MONTHLY
+  QUARTERLY
+  SEMI_ANNUALLY
+  ANNUALLY
+  BIMONTHLY
+  OCCASIONAL
+  INVOICE_PAYMENT
+  WEEKLY
+}
+
+enum NexusType {
+  NONE
+  SELLERS_USE_TAX
+  SALES_TAX
+  MARKETPLACE_AND_SELLER_USE_TAX
+  MARKETPLACE_AND_SALES_TAX
+  TITLE_TRANSFER
+  COMMUNITY_STATE_POLICY
+}
+
+enum CertificateStatus {
+  ACTIVE
+  EXPIRED
+  REVOKED
+  PENDING
+}
+
+enum ReportType {
+  AVATAX_TRANSACTIONS
+  SUMMARY
+  DETAIL
+}
+
+enum ServiceMode {
+  AUTOMATIC
+  LOCAL
+  REMOTE
+}
+
+enum TaxType {
+  SALES
+  SELLERS_USE
+  USE
+  VAT
+  GST
+  EXCISE
+  COMMUNICATIONS
+}
+
+enum VoidReason {
+  UNSPECIFIED
+  POST_FAILED
+  DOCUMENT_DELETED
+  DOCUMENT_VOIDED
+  ADJUSTMENT_CANCELLED
+}
+
+# ─────────────────────────────────────────────
+# Account
+# ─────────────────────────────────────────────
+
+type Account {
+  id: Int!
+  name: String!
+  effectiveDate: DateTime
+  endDate: DateTime
+  accountStatusId: String
+  accountTypeId: String
+  createdDate: DateTime
+  createdUserId: Int
+  modifiedDate: DateTime
+  modifiedUserId: Int
+  subscriptions: [Subscription!]
+  users: [User!]
+  configuration: AccountConfiguration
+}
+
+type AccountConfiguration {
+  accountId: Int!
+  selfEnteredAddress: Boolean
+  isBusinessIdentificationNumberValidationEnabled: Boolean
+  taxRuleImportEnabled: Boolean
+}
+
+type Subscription {
+  id: Int!
+  accountId: Int!
+  subscriptionDescription: String
+  effectiveDate: DateTime
+  endDate: DateTime
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+# ─────────────────────────────────────────────
+# User
+# ─────────────────────────────────────────────
+
+type User {
+  id: Int!
+  accountId: Int!
+  companyId: Int
+  userName: String!
+  firstName: String
+  lastName: String
+  email: String
+  postalCode: String
+  securityRoleId: String
+  passwordStatus: String
+  isActive: Boolean
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+# ─────────────────────────────────────────────
+# Company
+# ─────────────────────────────────────────────
+
+type Company {
+  id: Int!
+  accountId: Int!
+  parentCompanyId: Int
+  name: String!
+  companyCode: String!
+  isDefault: Boolean
+  isActive: Boolean
+  taxpayerIdNumber: String
+  isFein: Boolean
+  hasProfile: Boolean
+  isReportingEntity: Boolean
+  defaultCountry: String
+  baseCurrencyCode: String
+  roundingLevelId: String
+  warningsEnabled: Boolean
+  isTest: Boolean
+  taxDependencyLevelId: String
+  inProgress: Boolean
+  businessIdentificationNo: String
+  createdDate: DateTime
+  modifiedDate: DateTime
+  contacts: [Contact!]
+  locations: [CompanyLocation!]
+  nexus: [NexusDeclaration!]
+  settings: [Setting!]
+  taxCodes: [TaxCode!]
+  taxRules: [TaxRule!]
+  parameters: [Parameter!]
+  certificates: [Certificate!]
+  customers: [Customer!]
+  filingCalendars: [FilingCalendar!]
+  reports: [Report!]
+  batches: [Batch!]
+}
+
+type CompanyLocation {
+  id: Int!
+  companyId: Int!
+  locationCode: String!
+  description: String
+  addressTypeId: String
+  addressCategoryId: String
+  isDefault: Boolean
+  isRegistered: Boolean
+  dbaName: String
+  outletName: String
+  line1: String
+  line2: String
+  line3: String
+  city: String
+  county: String
+  region: String
+  postalCode: String
+  country: String
+  latitude: Float
+  longitude: Float
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+type Setting {
+  id: Int!
+  companyId: Int!
+  set: String!
+  name: String!
+  value: String
+}
+
+type Parameter {
+  id: String!
+  name: String!
+  dataType: String
+  description: String
+  serviceTypes: [String!]
+  category: String
+  helpUrl: String
+}
+
+# ─────────────────────────────────────────────
+# Contact
+# ─────────────────────────────────────────────
+
+type Contact {
+  id: Int!
+  companyId: Int!
+  contactCode: String
+  firstName: String
+  middleName: String
+  lastName: String
+  title: String
+  line1: String
+  line2: String
+  line3: String
+  city: String
+  region: String
+  postalCode: String
+  country: String
+  email: String
+  phone: String
+  mobile: String
+  fax: String
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+# ─────────────────────────────────────────────
+# Address
+# ─────────────────────────────────────────────
+
+type Address {
+  line1: String
+  line2: String
+  line3: String
+  city: String
+  region: String
+  postalCode: String
+  country: String
+  latitude: Float
+  longitude: Float
+}
+
+type ValidatedAddress {
+  addressType: String
+  line1: String
+  line2: String
+  line3: String
+  city: String
+  region: String
+  postalCode: String
+  country: String
+  latitude: Float
+  longitude: Float
+  taxRegionId: Int
+  isSingleCode: Boolean
+  taxAuthorities: [TaxAuthority!]
+}
+
+type AddressResolutionResult {
+  address: Address
+  validatedAddresses: [ValidatedAddress!]
+  coordinates: GeoCoordinates
+  resolutionQuality: String
+  taxAuthorities: [TaxAuthority!]
+  messages: [AvalaraMessage!]
+}
+
+type GeoCoordinates {
+  latitude: Float
+  longitude: Float
+}
+
+type AvalaraMessage {
+  summary: String
+  details: String
+  refersTo: String
+  severity: String
+  source: String
+}
+
+# ─────────────────────────────────────────────
+# Transaction
+# ─────────────────────────────────────────────
+
+type Transaction {
+  id: String!
+  code: String!
+  companyId: Int!
+  date: DateTime!
+  paymentDate: DateTime
+  status: DocumentStatus!
+  type: DocumentType!
+  batchCode: String
+  currencyCode: String
+  customerUsageType: String
+  entityUseCode: String
+  customerVendorCode: String
+  customerCode: String
+  exemptNo: String
+  reconciled: Boolean
+  locationCode: String
+  reportingLocationCode: String
+  purchaseOrderNo: String
+  referenceCode: String
+  salespersonCode: String
+  taxOverrideType: String
+  taxOverrideAmount: Float
+  taxOverrideReason: String
+  totalAmount: Float
+  totalExempt: Float
+  totalDiscount: Float
+  totalTax: Float
+  totalTaxable: Float
+  totalTaxCalculated: Float
+  adjustmentReason: AdjustmentReason
+  adjustmentDescription: String
+  locked: Boolean
+  region: String
+  country: String
+  version: Int
+  softwareVersion: String
+  originAddressId: String
+  destinationAddressId: String
+  exchangeRateEffectiveDate: DateTime
+  exchangeRate: Float
+  isSellerImporterOfRecord: Boolean
+  description: String
+  email: String
+  businessIdentificationNo: String
+  modifiedDate: DateTime
+  modifiedUserId: Int
+  invoiceMessages: [InvoiceMessage!]
+  addresses: TransactionAddresses
+  lines: [TransactionLine!]
+  summary: [TransactionSummary!]
+  taxDetailsByTaxType: [TaxDetailByTaxType!]
+  parameters: JSON
+  messages: [AvalaraMessage!]
+}
+
+type TransactionAddresses {
+  singleLocation: Address
+  shipFrom: Address
+  shipTo: Address
+  pointOfOrderAcceptance: Address
+  pointOfOrderOrigin: Address
+  goodsPlaceOrServiceRendered: Address
+  importOf: Address
+  billTo: Address
+}
+
+type TransactionLine {
+  id: String!
+  transactionId: String!
+  lineNumber: String!
+  boundaryOverrideId: Int
+  customerUsageType: String
+  entityUseCode: String
+  description: String
+  destinationAddressId: String
+  originAddressId: String
+  discountAmount: Float
+  discountTypeId: Int
+  exemptAmount: Float
+  exemptCertId: Int
+  exemptNo: String
+  isItemTaxable: Boolean
+  isSSTP: Boolean
+  itemCode: String
+  lineAmount: Float
+  quantity: Float
+  ref1: String
+  ref2: String
+  reportingDate: DateTime
+  revAccount: String
+  sourcing: String
+  tax: Float
+  taxableAmount: Float
+  taxCalculated: Float
+  taxCode: String
+  taxCodeId: Int
+  taxDate: DateTime
+  taxEngine: String
+  taxOverrideType: String
+  taxOverrideAmount: Float
+  taxOverrideReason: String
+  taxIncluded: Boolean
+  details: [TaxDetail!]
+  nonPassthroughDetails: [TaxDetail!]
+  lineLocationTypes: [LineLocationType!]
+  parameters: JSON
+  hsCode: String
+  costInsuranceFreight: Float
+  vatCode: String
+  vatNumberTypeId: Int
+}
+
+type TaxDetail {
+  id: String
+  transactionLineId: String
+  transactionId: String
+  addressId: String
+  country: String
+  region: String
+  countyFIPS: String
+  stateFIPS: String
+  exemptAmount: Float
+  exemptReasonId: Int
+  exemptReason: String
+  inState: Boolean
+  jurisCode: String
+  jurisName: String
+  jurisdictionId: Int
+  signatureCode: String
+  stateAssignedNo: String
+  jurisType: String
+  jurisdictionType: String
+  nonTaxableAmount: Float
+  nonTaxableRuleId: Int
+  nonTaxableType: String
+  rate: Float
+  rateRuleId: Int
+  rateSourceId: Int
+  serCode: String
+  sourcing: String
+  tax: Float
+  taxableAmount: Float
+  taxType: String
+  taxName: String
+  taxAuthorityTypeId: Int
+  taxRegionId: Int
+  taxCalculated: Float
+  taxOverride: Float
+  rateType: String
+  rateTypeCode: String
+  taxableUnits: Float
+  nonTaxableUnits: Float
+  exemptUnits: Float
+  unitOfBasis: String
+  isNonPassThrough: Boolean
+  isFee: Boolean
+  reportingTaxableUnits: Float
+  reportingNonTaxableUnits: Float
+  reportingExemptUnits: Float
+  reportingTax: Float
+  reportingTaxCalculated: Float
+  liabilityType: String
+}
+
+type TaxDetailByTaxType {
+  taxType: String
+  totalTaxable: Float
+  totalExempt: Float
+  totalNonTaxable: Float
+  totalTax: Float
+}
+
+type TransactionSummary {
+  country: String
+  region: String
+  jurisType: String
+  jurisCode: String
+  jurisName: String
+  taxAuthorityType: Int
+  stateAssignedNo: String
+  taxType: String
+  taxName: String
+  taxGroup: String
+  rateType: String
+  rateTypeCode: String
+  taxable: Float
+  rate: Float
+  tax: Float
+  taxCalculated: Float
+  nonTaxable: Float
+  exemption: Float
+}
+
+type LineLocationType {
+  id: String
+  transactionLineId: String
+  documentLineLocationTypeId: Int
+  locationTypeCode: String
+  address: Address
+}
+
+type InvoiceMessage {
+  content: String
+  lineNumbers: [String!]
+}
+
+# ─────────────────────────────────────────────
+# Refund & Void Transactions
+# ─────────────────────────────────────────────
+
+type RefundTransaction {
+  type: String
+  refundTransactionCode: String
+  refundDate: DateTime
+  refundPercentage: Float
+  refundLines: [String!]
+  referenceCode: String
+}
+
+type VoidTransaction {
+  code: VoidReason
+}
+
+# ─────────────────────────────────────────────
+# Bulk Transaction
+# ─────────────────────────────────────────────
+
+type BulkTransaction {
+  transactions: [Transaction!]
+  count: Int
+  errors: [BulkTransactionError!]
+}
+
+type BulkTransactionError {
+  code: String
+  number: Int
+  message: String
+  description: String
+  faultCode: String
+  helpLink: String
+  severity: String
+}
+
+# ─────────────────────────────────────────────
+# TaxCode
+# ─────────────────────────────────────────────
+
+type TaxCode {
+  id: Int!
+  companyId: Int
+  taxCode: String!
+  taxCodeTypeId: String!
+  description: String
+  goodsServiceCode: String
+  entityUseCode: String
+  isPhysical: Boolean
+  goodsServiceCodeId: Int
+  isSSTCertified: Boolean
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+# ─────────────────────────────────────────────
+# TaxCategory
+# ─────────────────────────────────────────────
+
+type TaxCategory {
+  id: Int!
+  name: String!
+  systemId: Int
+}
+
+# ─────────────────────────────────────────────
+# TaxRule
+# ─────────────────────────────────────────────
+
+type TaxRule {
+  id: Int!
+  companyId: Int!
+  taxCodeId: Int
+  taxCode: String
+  stateFIPS: String
+  jurisName: String
+  jurisCode: String
+  jurisTypeId: String
+  jurisdictionTypeId: String
+  customerUsageType: String
+  entityUseCode: String
+  taxTypeId: String
+  taxRuleTypeId: String
+  isAllJuris: Boolean
+  value: Float
+  cap: Float
+  threshold: Float
+  options: String
+  effectiveDate: DateTime
+  endDate: DateTime
+  description: String
+  countryCode: String
+  isSTCReady: Boolean
+  taxTypeGroup: String
+  taxSubTypeId: String
+  unitOfBasis: String
+  rateTypeCode: String
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+# ─────────────────────────────────────────────
+# TaxAuthority
+# ─────────────────────────────────────────────
+
+type TaxAuthority {
+  taxAuthorityId: Int!
+  jurisdictionName: String
+  jurisdictionType: String
+  taxAuthorityName: String
+}
+
+# ─────────────────────────────────────────────
+# NexusDeclaration
+# ─────────────────────────────────────────────
+
+type NexusDeclaration {
+  id: Int!
+  companyId: Int!
+  country: String!
+  region: String
+  jurisTypeId: String
+  jurisdictionTypeId: String
+  jurisCode: String
+  jurisName: String
+  effectiveDate: DateTime
+  endDate: DateTime
+  shortName: String
+  signatureCode: String
+  stateAssignedNo: String
+  nexusTypeId: NexusType
+  sourcing: String
+  hasLocalNexus: Boolean
+  localNexusTypeId: String
+  hasPermanentEstablishment: Boolean
+  description: String
+  isSellerImporterOfRecord: Boolean
+  taxId: String
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+# ─────────────────────────────────────────────
+# Certificate & Exemption
+# ─────────────────────────────────────────────
+
+type Certificate {
+  id: Int!
+  companyId: Int
+  signedDate: DateTime
+  expirationDate: DateTime
+  filename: String
+  documentExists: Boolean
+  valid: Boolean
+  verified: Boolean
+  exemptPercentage: Float
+  isSingleCertificate: Boolean
+  exemptionNumber: String
+  validatedExemptionReason: ExemptionReason
+  exemptionReasons: [ExemptionReason!]
+  status: CertificateStatus
+  createdDate: DateTime
+  modifiedDate: DateTime
+  taxNumberType: String
+  businessNumberType: String
+  customers: [Customer!]
+  exposureZones: [ExposureZone!]
+}
+
+type Exemption {
+  id: Int!
+  companyId: Int!
+  exemptionNo: String!
+  businessName: String
+  address: Address
+  regionId: Int
+  countryId: Int
+  exemptionReasonId: Int
+  exemptionReason: ExemptionReason
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+type ExemptionReason {
+  id: Int!
+  name: String!
+  key: String
+}
+
+type ExposureZone {
+  id: Int!
+  companyId: Int
+  name: String!
+  tag: String
+  description: String
+  created: DateTime
+  modified: DateTime
+  region: String
+  country: String
+  companyCode: String
+}
+
+# ─────────────────────────────────────────────
+# CertExpressRequest
+# ─────────────────────────────────────────────
+
+type CertExpressRequest {
+  id: Int!
+  companyId: Int!
+  customerId: String!
+  coverLetter: String
+  requestStatus: String
+  requestLink: String
+  deliveredDate: DateTime
+  expirationDate: DateTime
+  deliveryType: String
+  certifiedLetter: Boolean
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+# ─────────────────────────────────────────────
+# Customer
+# ─────────────────────────────────────────────
+
+type Customer {
+  id: String!
+  companyId: Int!
+  customerCode: String!
+  alternateId: String
+  name: String
+  attnName: String
+  line1: String
+  line2: String
+  city: String
+  postalCode: String
+  phoneNumber: String
+  faxNumber: String
+  emailAddress: String
+  contactName: String
+  lastTransaction: DateTime
+  createdDate: DateTime
+  modifiedDate: DateTime
+  isBill: Boolean
+  isShip: Boolean
+  taxpayerIdNumber: String
+  certificates: [Certificate!]
+  exposureZones: [ExposureZone!]
+}
+
+# ─────────────────────────────────────────────
+# Document
+# ─────────────────────────────────────────────
+
+type Document {
+  id: String!
+  companyId: Int!
+  type: DocumentType!
+  code: String!
+  date: DateTime!
+  description: String
+  totalAmount: Float
+  totalTax: Float
+  status: DocumentStatus!
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+# ─────────────────────────────────────────────
+# Filing Calendar & Return Calendar
+# ─────────────────────────────────────────────
+
+type FilingCalendar {
+  id: Int!
+  companyId: Int!
+  returnName: String!
+  formCountry: String
+  formRegion: String
+  taxFormCode: String
+  filingCycleId: String
+  filingFrequencyId: FilingFrequency
+  startPeriodMonth: Int
+  startPeriodYear: Int
+  endPeriodMonth: Int
+  endPeriodYear: Int
+  electronicOnly: Boolean
+  paymentTypeId: String
+  filingTypeId: String
+  eFileUser: String
+  paymentAccount: String
+  nextStateTaxDueDate: DateTime
+  prepareDate: DateTime
+  endDateRequestedDate: DateTime
+  swkSettings: String
+  outletTypeId: String
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+type FilingPeriod {
+  companyId: Int!
+  month: Int!
+  year: Int!
+  filingFrequencyId: FilingFrequency
+  stagedMonthlyRecurringTax: Float
+  approvedMonthlyRecurringTax: Float
+  monthlyRecurringTaxDueToOtherStates: Float
+  monthlyRecurringInterest: Float
+  monthlyRecurringPenalty: Float
+  status: String
+  filingDueDate: DateTime
+}
+
+type ReturnCalendar {
+  id: Int!
+  companyId: Int!
+  isLocked: Boolean
+  lockedBy: String
+  lockedDate: DateTime
+  country: String
+  region: String
+  taxFormCode: String
+  filingFrequencyId: FilingFrequency
+  currentPeriodMonth: Int
+  currentPeriodYear: Int
+  tax: Float
+  taxDue: Float
+  obligations: [FilingObligation!]
+}
+
+type FilingObligation {
+  taxFormCode: String!
+  country: String
+  region: String
+  filingFrequencyId: FilingFrequency
+  filingTypeId: String
+  stateRegistrationId: String
+  localRegistrationId: String
+  sstRegistrationId: String
+  startDate: DateTime
+  endDate: DateTime
+  description: String
+  obligationStartDate: DateTime
+}
+
+# ─────────────────────────────────────────────
+# Batch
+# ─────────────────────────────────────────────
+
+type Batch {
+  id: Int!
+  name: String!
+  batchTypeId: String!
+  companyId: Int!
+  status: BatchStatus!
+  startedDate: DateTime
+  completedDate: DateTime
+  userId: Int
+  recordCount: Int
+  currentRecord: Int
+  options: String
+  createdDate: DateTime
+  modifiedDate: DateTime
+  files: [BatchFile!]
+}
+
+type BatchFile {
+  id: Int!
+  batchId: Int!
+  name: String!
+  contentType: String
+  content: String
+  fileExtras: String
+  uploadedDate: DateTime
+  errorCount: Int
+  lineCount: Int
+}
+
+# ─────────────────────────────────────────────
+# Report
+# ─────────────────────────────────────────────
+
+type Report {
+  id: String!
+  companyId: Int!
+  reportType: ReportType
+  reportFilter: ReportFilter
+  status: String
+  size: Float
+  url: String
+  createdDate: DateTime
+  completedDate: DateTime
+  userId: Int
+}
+
+type ReportFilter {
+  companyId: Int
+  documentType: DocumentType
+  dateFilter: String
+  startDate: DateTime
+  endDate: DateTime
+  country: String
+  region: String
+  dateRange: String
+  userId: Int
+}
+
+# ─────────────────────────────────────────────
+# UPC
+# ─────────────────────────────────────────────
+
+type UPC {
+  id: Int!
+  companyId: Int!
+  upc: String!
+  legacyTaxCode: String
+  description: String
+  taxCode: String
+  taxCodeId: Int
+  itemCode: String
+  usageType: String
+  isSystem: Boolean
+  effectiveDate: DateTime
+  endDate: DateTime
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+# ─────────────────────────────────────────────
+# JurisdictionOverride
+# ─────────────────────────────────────────────
+
+type JurisdictionOverride {
+  id: Int!
+  accountId: Int!
+  description: String!
+  line1: String
+  city: String
+  region: String
+  country: String
+  postalCode: String
+  jurisdictions: [Jurisdiction!]
+  effectiveDate: DateTime
+  endDate: DateTime
+  isDefault: Boolean
+  isRemoteSellerNexus: Boolean
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+type Jurisdiction {
+  id: Int!
+  code: String!
+  name: String!
+  type: String
+  rate: Float
+  salesRate: Float
+  useRate: Float
+  city: String
+  county: String
+  region: String
+  country: String
+  taxRegionId: Int
+  effectiveDate: DateTime
+  endDate: DateTime
+}
+
+# ─────────────────────────────────────────────
+# AvaHubConfig
+# ─────────────────────────────────────────────
+
+type AvaHubConfig {
+  id: String!
+  companyId: Int!
+  isEnabled: Boolean!
+  accountId: Int
+  licenseKey: String
+  serviceUrl: String
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+# ─────────────────────────────────────────────
+# DataSource
+# ─────────────────────────────────────────────
+
+type DataSource {
+  id: Int!
+  companyId: Int!
+  source: String!
+  instance: String
+  isEnabled: Boolean
+  deleteRecords: Boolean
+  createdDate: DateTime
+  modifiedDate: DateTime
+}
+
+# ─────────────────────────────────────────────
+# NoticeReason
+# ─────────────────────────────────────────────
+
+type NoticeReason {
+  id: Int!
+  referenceNo: String
+  taxNoticeReasonId: Int
+  description: String
+  attachmentCount: Int
+}
+
+# ─────────────────────────────────────────────
+# Provisioned
+# ─────────────────────────────────────────────
+
+type Provisioned {
+  accountId: Int!
+  licenseKey: String!
+  paymentMethodMissing: Boolean
+  skus: [SkuProvision!]
+}
+
+type SkuProvision {
+  sku: String!
+  accountId: Int!
+  licenseKey: String!
+  domainName: String
+  apiTokenId: String
+}
+
+# ─────────────────────────────────────────────
+# Reference Data
+# ─────────────────────────────────────────────
+
+type CountryInfo {
+  code: String!
+  name: String!
+  isDestCountry: Boolean
+  isSSTCountry: Boolean
+  regions: [RegionInfo!]
+}
+
+type RegionInfo {
+  countryCode: String!
+  code: String!
+  name: String!
+  isUnknownRegion: Boolean
+}
+
+type Postcode {
+  code: String!
+  country: String
+  region: String
+  city: String
+  latitude: Float
+  longitude: Float
+  taxAuthorityId: Int
+  taxRegionId: Int
+}
+
+type Freight {
+  id: String!
+  description: String
+  taxCode: String
+  taxable: Boolean
+  rate: Float
+}
+
+# ─────────────────────────────────────────────
+# ChangeRequest
+# ─────────────────────────────────────────────
+
+type ChangeRequest {
+  id: Int!
+  accountId: Int!
+  companyId: Int
+  requestedUserId: Int
+  requestedDate: DateTime
+  status: String
+  completedDate: DateTime
+  requestType: String
+  requestDescription: String
+  completedDescription: String
+}
+
+# ─────────────────────────────────────────────
+# TaxRate (free tax rate estimate)
+# ─────────────────────────────────────────────
+
+type TaxRateResult {
+  totalRate: Float
+  rates: [RateDetail!]
+}
+
+type RateDetail {
+  rate: Float
+  name: String
+  type: String
+}
+
+# ─────────────────────────────────────────────
+# Pagination
+# ─────────────────────────────────────────────
+
+type PageInfo {
+  totalCount: Int
+  pageSize: Int
+  currentPage: Int
+  hasNextPage: Boolean
+}
+
+type TransactionConnection {
+  nodes: [Transaction!]!
+  pageInfo: PageInfo!
+}
+
+type CompanyConnection {
+  nodes: [Company!]!
+  pageInfo: PageInfo!
+}
+
+type CertificateConnection {
+  nodes: [Certificate!]!
+  pageInfo: PageInfo!
+}
+
+# ─────────────────────────────────────────────
+# Input Types
+# ─────────────────────────────────────────────
+
+input AddressInput {
+  line1: String
+  line2: String
+  line3: String
+  city: String
+  region: String
+  postalCode: String
+  country: String
+  latitude: Float
+  longitude: Float
+}
+
+input TransactionAddressesInput {
+  singleLocation: AddressInput
+  shipFrom: AddressInput
+  shipTo: AddressInput
+  pointOfOrderAcceptance: AddressInput
+  pointOfOrderOrigin: AddressInput
+  billTo: AddressInput
+}
+
+input TransactionLineInput {
+  number: String!
+  quantity: Float
+  amount: Float!
+  taxCode: String
+  itemCode: String
+  description: String
+  discountAmount: Float
+  taxIncluded: Boolean
+  customerUsageType: String
+  entityUseCode: String
+  exemptionCode: String
+  hsCode: String
+  ref1: String
+  ref2: String
+  parameters: JSON
+}
+
+input CreateTransactionInput {
+  type: DocumentType!
+  companyCode: String!
+  date: DateTime!
+  customerCode: String!
+  code: String
+  currencyCode: String
+  addresses: TransactionAddressesInput
+  lines: [TransactionLineInput!]!
+  commit: Boolean
+  referenceCode: String
+  purchaseOrderNo: String
+  entityUseCode: String
+  exemptionNo: String
+  businessIdentificationNo: String
+  description: String
+  parameters: JSON
+}
+
+input AdjustTransactionInput {
+  adjustmentReason: AdjustmentReason!
+  adjustmentDescription: String
+  newTransaction: CreateTransactionInput!
+}
+
+input CreateCompanyInput {
+  name: String!
+  companyCode: String!
+  taxpayerIdNumber: String
+  isFein: Boolean
+  isDefault: Boolean
+  defaultCountry: String
+  baseCurrencyCode: String
+  isTest: Boolean
+}
+
+input CreateNexusInput {
+  country: String!
+  region: String
+  jurisTypeId: String
+  jurisCode: String
+  jurisName: String
+  nexusTypeId: NexusType
+  effectiveDate: DateTime
+  endDate: DateTime
+  hasLocalNexus: Boolean
+  isSellerImporterOfRecord: Boolean
+}
+
+input CreateCertificateInput {
+  signedDate: DateTime!
+  expirationDate: DateTime
+  exemptionNumber: String
+  isSingleCertificate: Boolean
+  exemptionReasonId: Int
+  valid: Boolean
+  customers: [String!]
+  exposureZones: [Int!]
+}
+
+input CreateCustomerInput {
+  customerCode: String!
+  alternateId: String
+  name: String!
+  attnName: String
+  line1: String
+  line2: String
+  city: String
+  postalCode: String
+  phoneNumber: String
+  emailAddress: String
+  isBill: Boolean
+  isShip: Boolean
+}
+
+input CreateBatchInput {
+  name: String!
+  batchTypeId: String!
+  options: String
+  files: [BatchFileInput!]!
+}
+
+input BatchFileInput {
+  name: String!
+  contentType: String
+  content: String!
+  fileExtras: String
+}
+
+input ReportFilterInput {
+  documentType: DocumentType
+  dateFilter: String
+  startDate: DateTime
+  endDate: DateTime
+  country: String
+  region: String
+}
+
+input ListFilter {
+  filter: String
+  top: Int
+  skip: Int
+  orderBy: String
+}
+
+# ─────────────────────────────────────────────
+# Query
+# ─────────────────────────────────────────────
+
+type Query {
+  # Account
+  account(id: Int!): Account
+  accounts(filter: ListFilter): [Account!]!
+
+  # Company
+  company(id: Int!): Company
+  companies(accountId: Int, filter: ListFilter): CompanyConnection!
+  companyLocations(companyId: Int!, filter: ListFilter): [CompanyLocation!]!
+
+  # Contact
+  contact(companyId: Int!, id: Int!): Contact
+  contacts(companyId: Int!, filter: ListFilter): [Contact!]!
+
+  # Transaction
+  transaction(companyCode: String!, transactionCode: String!): Transaction
+  transactions(companyId: Int!, filter: ListFilter): TransactionConnection!
+
+  # Tax Calculation
+  taxRateByAddress(line1: String!, city: String!, region: String!, postalCode: String!, country: String!): TaxRateResult
+  taxRateByPostalCode(country: String!, postalCode: String!): TaxRateResult
+
+  # Address Validation
+  resolveAddress(line1: String, city: String, region: String, postalCode: String, country: String): AddressResolutionResult
+
+  # TaxCode
+  taxCode(companyId: Int!, id: Int!): TaxCode
+  taxCodes(companyId: Int!, filter: ListFilter): [TaxCode!]!
+  systemTaxCodes(filter: ListFilter): [TaxCode!]!
+  taxCategories(filter: ListFilter): [TaxCategory!]!
+
+  # TaxRule
+  taxRule(companyId: Int!, id: Int!): TaxRule
+  taxRules(companyId: Int!, filter: ListFilter): [TaxRule!]!
+
+  # Nexus
+  nexusDeclaration(companyId: Int!, id: Int!): NexusDeclaration
+  nexusDeclarations(companyId: Int!, filter: ListFilter): [NexusDeclaration!]!
+
+  # Certificate
+  certificate(companyId: Int!, id: Int!): Certificate
+  certificates(companyId: Int!, filter: ListFilter): CertificateConnection!
+
+  # Exemption
+  exemption(companyId: Int!, id: Int!): Exemption
+  exemptions(companyId: Int!, filter: ListFilter): [Exemption!]!
+  exemptionReasons: [ExemptionReason!]!
+
+  # CertExpress
+  certExpressRequest(companyId: Int!, customerCode: String!, id: Int!): CertExpressRequest
+  certExpressRequests(companyId: Int!, customerCode: String!): [CertExpressRequest!]!
+
+  # Customer
+  customer(companyId: Int!, customerCode: String!): Customer
+  customers(companyId: Int!, filter: ListFilter): [Customer!]!
+
+  # Batch
+  batch(companyId: Int!, id: Int!): Batch
+  batches(companyId: Int!, filter: ListFilter): [Batch!]!
+
+  # Report
+  report(companyId: Int!, id: String!): Report
+  reports(companyId: Int!, filter: ListFilter): [Report!]!
+
+  # Filing
+  filingCalendar(companyId: Int!, id: Int!): FilingCalendar
+  filingCalendars(companyId: Int!, filter: ListFilter): [FilingCalendar!]!
+  filingPeriods(companyId: Int!, filingFrequency: FilingFrequency, month: Int, year: Int): [FilingPeriod!]!
+  returnCalendars(companyId: Int!, filter: ListFilter): [ReturnCalendar!]!
+
+  # UPC
+  upc(companyId: Int!, id: Int!): UPC
+  upcs(companyId: Int!, filter: ListFilter): [UPC!]!
+
+  # JurisdictionOverride
+  jurisdictionOverride(accountId: Int!, id: Int!): JurisdictionOverride
+  jurisdictionOverrides(accountId: Int!, filter: ListFilter): [JurisdictionOverride!]!
+
+  # DataSource
+  dataSource(companyId: Int!, id: Int!): DataSource
+  dataSources(companyId: Int!, filter: ListFilter): [DataSource!]!
+
+  # Reference Data
+  countries(filter: ListFilter): [CountryInfo!]!
+  country(code: String!): CountryInfo
+  regions(country: String, filter: ListFilter): [RegionInfo!]!
+  postcode(country: String!, postalCode: String!): Postcode
+  freightTaxCodes(filter: ListFilter): [Freight!]!
+
+  # User
+  user(accountId: Int!, id: Int!): User
+  users(accountId: Int!, filter: ListFilter): [User!]!
+
+  # AvaHub
+  avaHubConfig(companyId: Int!): AvaHubConfig
+}
+
+# ─────────────────────────────────────────────
+# Mutation
+# ─────────────────────────────────────────────
+
+type Mutation {
+  # Transaction
+  createTransaction(input: CreateTransactionInput!): Transaction!
+  adjustTransaction(companyCode: String!, transactionCode: String!, input: AdjustTransactionInput!): Transaction!
+  commitTransaction(companyCode: String!, transactionCode: String!): Transaction!
+  voidTransaction(companyCode: String!, transactionCode: String!, code: VoidReason!): Transaction!
+  refundTransaction(companyCode: String!, transactionCode: String!, refundDate: DateTime!, refundType: String!, refundPercentage: Float): Transaction!
+  lockTransaction(companyCode: String!, transactionCode: String!): Transaction!
+  createBulkTransactions(companyCode: String!, inputs: [CreateTransactionInput!]!): BulkTransaction!
+
+  # Company
+  createCompany(accountId: Int!, input: CreateCompanyInput!): Company!
+  updateCompany(id: Int!, input: CreateCompanyInput!): Company!
+  deleteCompany(id: Int!): Boolean!
+
+  # Nexus
+  createNexus(companyId: Int!, input: CreateNexusInput!): NexusDeclaration!
+  updateNexus(companyId: Int!, id: Int!, input: CreateNexusInput!): NexusDeclaration!
+  deleteNexus(companyId: Int!, id: Int!): Boolean!
+
+  # TaxCode
+  createTaxCode(companyId: Int!, taxCode: String!, taxCodeTypeId: String!, description: String): TaxCode!
+  updateTaxCode(companyId: Int!, id: Int!, taxCode: String!, taxCodeTypeId: String!, description: String): TaxCode!
+  deleteTaxCode(companyId: Int!, id: Int!): Boolean!
+
+  # TaxRule
+  createTaxRule(companyId: Int!, input: JSON!): TaxRule!
+  updateTaxRule(companyId: Int!, id: Int!, input: JSON!): TaxRule!
+  deleteTaxRule(companyId: Int!, id: Int!): Boolean!
+
+  # Certificate
+  createCertificate(companyId: Int!, input: CreateCertificateInput!): Certificate!
+  updateCertificate(companyId: Int!, id: Int!, input: CreateCertificateInput!): Certificate!
+  deleteCertificate(companyId: Int!, id: Int!): Boolean!
+  linkCertificateToCustomer(companyId: Int!, certificateId: Int!, customerCode: String!): Certificate!
+  unlinkCertificateFromCustomer(companyId: Int!, certificateId: Int!, customerCode: String!): Boolean!
+
+  # CertExpress
+  createCertExpressRequest(companyId: Int!, customerCode: String!, deliveryType: String!, coverLetter: String): CertExpressRequest!
+
+  # Customer
+  createCustomer(companyId: Int!, input: CreateCustomerInput!): Customer!
+  updateCustomer(companyId: Int!, customerCode: String!, input: CreateCustomerInput!): Customer!
+  deleteCustomer(companyId: Int!, customerCode: String!): Boolean!
+
+  # Exemption
+  createExemption(companyId: Int!, input: JSON!): Exemption!
+  updateExemption(companyId: Int!, id: Int!, input: JSON!): Exemption!
+  deleteExemption(companyId: Int!, id: Int!): Boolean!
+
+  # Batch
+  createBatch(companyId: Int!, input: CreateBatchInput!): Batch!
+  cancelBatch(companyId: Int!, id: Int!): Batch!
+
+  # Report
+  initiateReport(companyId: Int!, reportType: ReportType!, filter: ReportFilterInput!): Report!
+
+  # JurisdictionOverride
+  createJurisdictionOverride(accountId: Int!, input: JSON!): JurisdictionOverride!
+  updateJurisdictionOverride(accountId: Int!, id: Int!, input: JSON!): JurisdictionOverride!
+  deleteJurisdictionOverride(accountId: Int!, id: Int!): Boolean!
+
+  # UPC
+  createUPC(companyId: Int!, upc: String!, taxCode: String, description: String): UPC!
+  updateUPC(companyId: Int!, id: Int!, upc: String!, taxCode: String, description: String): UPC!
+  deleteUPC(companyId: Int!, id: Int!): Boolean!
+
+  # DataSource
+  createDataSource(companyId: Int!, source: String!, instance: String, isEnabled: Boolean): DataSource!
+  updateDataSource(companyId: Int!, id: Int!, isEnabled: Boolean): DataSource!
+  deleteDataSource(companyId: Int!, id: Int!): Boolean!
+
+  # Account Provisioning
+  provisionAccount(accountId: Int!, subscriptionCode: String!): Provisioned!
+
+  # AvaHub
+  updateAvaHubConfig(companyId: Int!, isEnabled: Boolean!, serviceUrl: String): AvaHubConfig!
+}
