@@ -1,0 +1,713 @@
+{
+  "info": {
+    "_postman_id": "9bdd8f8c-cc68-44d3-aed5-2c72eb2d4fa3",
+    "name": "Avalara Shared Company Service API",
+    "description": "The Avalara Shared Company Service API provides scalable APIs for managing canonical company and contact information across Avalara products, enabling creation, retrieval, update, and deletion of company records.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:14:05.000Z",
+    "updatedAt": "2026-06-05T13:14:05.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9bdd8f8c-cc68-44d3-aed5-2c72eb2d4fa3"
+  },
+  "item": [
+    {
+      "name": "companies",
+      "item": [
+        {
+          "name": "{companyId}",
+          "item": [
+            {
+              "name": "contacts",
+              "item": [
+                {
+                  "name": "Avalara List Contacts for a Company",
+                  "id": "50c38408-af05-44fa-b196-06d903badbda",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/companies/:companyId/contacts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "companies",
+                        ":companyId",
+                        "contacts"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eda87b7d-4905-4bad-891b-7bf3cdad422b",
+                          "key": "companyId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "42e86e5d-e1e0-4ea4-ac47-fcd9316d560a",
+                      "name": "List of contacts",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/companies/:companyId/contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "companies",
+                            ":companyId",
+                            "contacts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "companyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"contactId\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"title\": \"<string>\",\n    \"isPrimary\": \"<boolean>\"\n  },\n  {\n    \"contactId\": \"<string>\",\n    \"firstName\": \"<string>\",\n    \"lastName\": \"<string>\",\n    \"email\": \"<email>\",\n    \"phone\": \"<string>\",\n    \"title\": \"<string>\",\n    \"isPrimary\": \"<boolean>\"\n  }\n]",
+                      "createdAt": "2026-06-05T13:14:05.000Z",
+                      "updatedAt": "2026-06-05T13:14:05.000Z",
+                      "uid": "35240-42e86e5d-e1e0-4ea4-ac47-fcd9316d560a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:14:05.000Z",
+                  "updatedAt": "2026-06-05T13:14:05.000Z",
+                  "uid": "35240-50c38408-af05-44fa-b196-06d903badbda"
+                },
+                {
+                  "name": "Avalara Create a Contact",
+                  "id": "e301df9e-1bd9-4ef0-b2b4-091859553dce",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"contactId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"title\": \"<string>\",\n  \"isPrimary\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/companies/:companyId/contacts",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "companies",
+                        ":companyId",
+                        "contacts"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c0fc5a03-4d8b-44b2-91a9-56cf5215ce14",
+                          "key": "companyId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "abd9f22e-8a3d-48a9-b6d2-9f0b217aa80c",
+                      "name": "Contact created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"contactId\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"phone\": \"<string>\",\n  \"title\": \"<string>\",\n  \"isPrimary\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/companies/:companyId/contacts",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "companies",
+                            ":companyId",
+                            "contacts"
+                          ],
+                          "variable": [
+                            {
+                              "key": "companyId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:14:05.000Z",
+                      "updatedAt": "2026-06-05T13:14:05.000Z",
+                      "uid": "35240-abd9f22e-8a3d-48a9-b6d2-9f0b217aa80c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:14:05.000Z",
+                  "updatedAt": "2026-06-05T13:14:05.000Z",
+                  "uid": "35240-e301df9e-1bd9-4ef0-b2b4-091859553dce"
+                }
+              ],
+              "id": "0844962a-df46-45f4-bd1d-1f175f90c71d",
+              "createdAt": "2026-06-05T13:14:05.000Z",
+              "updatedAt": "2026-06-05T13:14:05.000Z",
+              "uid": "35240-0844962a-df46-45f4-bd1d-1f175f90c71d"
+            },
+            {
+              "name": "Avalara Get a Company by ID",
+              "id": "b04033ae-6849-4bdb-b8ee-9155cb5d08e5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/companies/:companyId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "companies",
+                    ":companyId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f33f74d6-3cee-49eb-ae6f-bdba193787c7",
+                      "key": "companyId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "57b2fd47-35f2-4bf3-8d42-8905733f2555",
+                  "name": "Company details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/companies/:companyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "companies",
+                        ":companyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "companyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"companyId\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"companyCode\": \"<string>\",\n  \"taxPayerId\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"phoneNumber\": \"<string>\",\n  \"email\": \"<email>\",\n  \"isActive\": \"<boolean>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:14:05.000Z",
+                  "updatedAt": "2026-06-05T13:14:05.000Z",
+                  "uid": "35240-57b2fd47-35f2-4bf3-8d42-8905733f2555"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:05.000Z",
+              "updatedAt": "2026-06-05T13:14:05.000Z",
+              "uid": "35240-b04033ae-6849-4bdb-b8ee-9155cb5d08e5"
+            },
+            {
+              "name": "Avalara Update a Company Record",
+              "id": "c25f5863-b4f0-43df-b6c9-a4b9397b22f9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"companyCode\": \"<string>\",\n  \"taxPayerId\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"phoneNumber\": \"<string>\",\n  \"email\": \"<email>\",\n  \"isActive\": \"<boolean>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/companies/:companyId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "companies",
+                    ":companyId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "f3b3c244-4cd5-4753-b391-32b4f57abbef",
+                      "key": "companyId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "d1461593-8283-4650-9625-5db226dbd153",
+                  "name": "Company updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"companyId\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"companyCode\": \"<string>\",\n  \"taxPayerId\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"phoneNumber\": \"<string>\",\n  \"email\": \"<email>\",\n  \"isActive\": \"<boolean>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/companies/:companyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "companies",
+                        ":companyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "companyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:14:05.000Z",
+                  "updatedAt": "2026-06-05T13:14:05.000Z",
+                  "uid": "35240-d1461593-8283-4650-9625-5db226dbd153"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:05.000Z",
+              "updatedAt": "2026-06-05T13:14:05.000Z",
+              "uid": "35240-c25f5863-b4f0-43df-b6c9-a4b9397b22f9"
+            },
+            {
+              "name": "Avalara Delete a Company Record",
+              "id": "69205913-3552-4c50-b9e1-0ec3eaae03f0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/companies/:companyId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "companies",
+                    ":companyId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ad2bae30-b030-4c3d-8b86-5890a51946a1",
+                      "key": "companyId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "5551bfe0-75f0-4dde-b606-5e4731dcf9cd",
+                  "name": "Company deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/companies/:companyId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "companies",
+                        ":companyId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "companyId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:14:05.000Z",
+                  "updatedAt": "2026-06-05T13:14:05.000Z",
+                  "uid": "35240-5551bfe0-75f0-4dde-b606-5e4731dcf9cd"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:05.000Z",
+              "updatedAt": "2026-06-05T13:14:05.000Z",
+              "uid": "35240-69205913-3552-4c50-b9e1-0ec3eaae03f0"
+            }
+          ],
+          "id": "b3a41e86-d696-4717-80de-5d72750a2425",
+          "createdAt": "2026-06-05T13:14:05.000Z",
+          "updatedAt": "2026-06-05T13:14:05.000Z",
+          "uid": "35240-b3a41e86-d696-4717-80de-5d72750a2425"
+        },
+        {
+          "name": "Avalara List Companies",
+          "id": "458cc6d0-083c-4957-854f-06be768058bc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/companies?$filter=<string>&$top=<integer>&$skip=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies"
+              ],
+              "query": [
+                {
+                  "key": "$filter",
+                  "value": "<string>"
+                },
+                {
+                  "key": "$top",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "$skip",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Retrieves a list of canonical company records."
+          },
+          "response": [
+            {
+              "id": "35be8ce2-3a06-4a34-b8d1-5675db5aa71a",
+              "name": "List of companies",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/companies?$filter=<string>&$top=<integer>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "companies"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"@recordSetCount\": \"<integer>\",\n  \"value\": [\n    {\n      \"companyId\": \"<string>\",\n      \"companyName\": \"<string>\",\n      \"companyCode\": \"<string>\",\n      \"taxPayerId\": \"<string>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<email>\",\n      \"isActive\": \"<boolean>\",\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\"\n    },\n    {\n      \"companyId\": \"<string>\",\n      \"companyName\": \"<string>\",\n      \"companyCode\": \"<string>\",\n      \"taxPayerId\": \"<string>\",\n      \"address\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"phoneNumber\": \"<string>\",\n      \"email\": \"<email>\",\n      \"isActive\": \"<boolean>\",\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T13:14:05.000Z",
+              "updatedAt": "2026-06-05T13:14:05.000Z",
+              "uid": "35240-35be8ce2-3a06-4a34-b8d1-5675db5aa71a"
+            }
+          ],
+          "createdAt": "2026-06-05T13:14:05.000Z",
+          "updatedAt": "2026-06-05T13:14:05.000Z",
+          "uid": "35240-458cc6d0-083c-4957-854f-06be768058bc"
+        },
+        {
+          "name": "Avalara Create a Company Record",
+          "id": "beba3ad8-9de3-4a19-adbd-a669f8cca352",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyId\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"companyCode\": \"<string>\",\n  \"taxPayerId\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"phoneNumber\": \"<string>\",\n  \"email\": \"<email>\",\n  \"isActive\": \"<boolean>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/companies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2f1c2a1d-8139-4281-b9e8-ca3548b0e6bb",
+              "name": "Company created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"companyCode\": \"<string>\",\n  \"taxPayerId\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"phoneNumber\": \"<string>\",\n  \"email\": \"<email>\",\n  \"isActive\": \"<boolean>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/companies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "companies"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"companyId\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"companyCode\": \"<string>\",\n  \"taxPayerId\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"phoneNumber\": \"<string>\",\n  \"email\": \"<email>\",\n  \"isActive\": \"<boolean>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T13:14:05.000Z",
+              "updatedAt": "2026-06-05T13:14:05.000Z",
+              "uid": "35240-2f1c2a1d-8139-4281-b9e8-ca3548b0e6bb"
+            }
+          ],
+          "createdAt": "2026-06-05T13:14:05.000Z",
+          "updatedAt": "2026-06-05T13:14:05.000Z",
+          "uid": "35240-beba3ad8-9de3-4a19-adbd-a669f8cca352"
+        }
+      ],
+      "id": "41c548d2-3cc5-4c0a-998c-a3f18257e890",
+      "createdAt": "2026-06-05T13:14:05.000Z",
+      "updatedAt": "2026-06-05T13:14:05.000Z",
+      "uid": "35240-41c548d2-3cc5-4c0a-998c-a3f18257e890"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.avalara.com/shared/v1"
+    }
+  ]
+}

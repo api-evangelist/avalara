@@ -1,0 +1,220 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Communications Tax API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tax Calculation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Calculate Taxes on a Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/CalcTaxes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculates communications taxes for one or more line items based on transaction type, service type, and jurisdiction information. Supports both individual and batch tax calculations."
+        },
+        {
+          "info": {
+            "name": "Avalara Commit a Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/commit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Commits a previously calculated transaction, finalizing it for tax reporting purposes."
+        },
+        {
+          "info": {
+            "name": "Avalara Calculate Adjustment Taxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/CalcAdj",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculates taxes for adjustments (credits, refunds) on previously committed transactions."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Geocoding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Geocode an Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://communicationsua.avalara.net/api/v2/geo/Geocode",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Determines the tax jurisdiction for a given address using geocoding. Returns jurisdiction codes (PCode, FIPS) needed for tax calculations."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lookup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Get PCode Jurisdiction Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/PCode/:pcode",
+            "params": [
+              {
+                "name": "pcode",
+                "value": "",
+                "type": "path",
+                "description": "The PCode to look up"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed jurisdiction information for a given PCode (proprietary jurisdiction code)."
+        },
+        {
+          "info": {
+            "name": "Avalara List Transaction/service Type Pairs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/tspairs"
+          },
+          "docs": "Returns all valid transaction type and service type pairs that can be used for tax calculations."
+        },
+        {
+          "info": {
+            "name": "Avalara Get Tax Type Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/taxtype/:taxType",
+            "params": [
+              {
+                "name": "taxType",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific tax type identifier."
+        },
+        {
+          "info": {
+            "name": "Avalara Get Service Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/serviceinfo"
+          },
+          "docs": "Returns version and status information for the Communications API."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Tax Profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/customization/profiles"
+          },
+          "docs": "Retrieves all configured tax profiles for the client."
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Tax Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/customization/profiles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tax profile with custom bundles and overrides."
+        },
+        {
+          "info": {
+            "name": "Avalara List Tax Exclusions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/customization/exclusions"
+          },
+          "docs": "Retrieves configured tax exclusions."
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Tax Exclusion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/customization/exclusions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Create a Tax Exclusion"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

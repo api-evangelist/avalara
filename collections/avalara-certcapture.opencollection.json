@@ -1,0 +1,346 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara CertCapture API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Certificates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Certificates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.certcapture.com/v2/certificates",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a filtered list of exemption certificates."
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.certcapture.com/v2/certificates",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new exemption certificate record."
+        },
+        {
+          "info": {
+            "name": "Avalara Get a Certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.certcapture.com/v2/certificates/:certificateId",
+            "params": [
+              {
+                "name": "certificateId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves a single certificate by its ID."
+        },
+        {
+          "info": {
+            "name": "Avalara Update a Certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.certcapture.com/v2/certificates/:certificateId",
+            "params": [
+              {
+                "name": "certificateId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Update a Certificate"
+        },
+        {
+          "info": {
+            "name": "Avalara Delete a Certificate",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.certcapture.com/v2/certificates/:certificateId",
+            "params": [
+              {
+                "name": "certificateId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Delete a Certificate"
+        },
+        {
+          "info": {
+            "name": "Avalara Download Certificate Attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.certcapture.com/v2/certificates/:certificateId/attachment",
+            "params": [
+              {
+                "name": "certificateId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Downloads the PDF or image attachment for a certificate."
+        },
+        {
+          "info": {
+            "name": "Avalara Upload Certificate Attachment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.certcapture.com/v2/certificates/:certificateId/attachment",
+            "params": [
+              {
+                "name": "certificateId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Avalara Upload Certificate Attachment"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.certcapture.com/v2/customers",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Avalara List Customers"
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.certcapture.com/v2/customers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Create a Customer"
+        },
+        {
+          "info": {
+            "name": "Avalara Get a Customer by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.certcapture.com/v2/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Get a Customer by ID"
+        },
+        {
+          "info": {
+            "name": "Avalara Update a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.certcapture.com/v2/customers/:customerId",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Update a Customer"
+        },
+        {
+          "info": {
+            "name": "Avalara List Certificates for a Customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.certcapture.com/v2/customers/:customerId/certificates",
+            "params": [
+              {
+                "name": "customerId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara List Certificates for a Customer"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Attributes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Certificate Attributes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.certcapture.com/v2/attributes"
+          },
+          "docs": "Avalara List Certificate Attributes"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Get Authentication Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.certcapture.com/v2/auth/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates an authentication token for API access."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "eCommerce",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Generate ECommerce Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.certcapture.com/v2/ecommerce/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a token for embedding the CertCapture certificate collection widget in eCommerce checkout flows."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

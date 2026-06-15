@@ -1,0 +1,341 @@
+{
+  "info": {
+    "_postman_id": "821f0d08-b129-4e54-88b9-1df3b84f15a8",
+    "name": "Avalara Activation Service API",
+    "description": "The Avalara Activation Service API allows technology partners to retrieve the status of their registrations within the Avalara Compliance Cloud platform, providing endpoints for listing all registrations and retrieving individual registration details.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:14:00.000Z",
+    "updatedAt": "2026-06-05T13:14:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-821f0d08-b129-4e54-88b9-1df3b84f15a8"
+  },
+  "item": [
+    {
+      "name": "registrations",
+      "item": [
+        {
+          "name": "{registrationId}",
+          "item": [
+            {
+              "name": "Avalara Get a Registration by ID",
+              "id": "0681b293-0842-45a6-a62e-1fa392082c81",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registrations/:registrationId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations",
+                    ":registrationId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "41335778-0aa3-47cf-81b9-5a190b47e747",
+                      "key": "registrationId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves details for a specific registration."
+              },
+              "response": [
+                {
+                  "id": "fa2e563b-8ab2-466a-bffa-3296e828935e",
+                  "name": "Registration details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/:registrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        ":registrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "registrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"registrationId\": \"<string>\",\n  \"partnerId\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"status\": \"Expired\",\n  \"product\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"activationDate\": \"<dateTime>\",\n  \"expirationDate\": \"<dateTime>\",\n  \"createdDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:14:01.000Z",
+                  "updatedAt": "2026-06-05T13:14:01.000Z",
+                  "uid": "35240-fa2e563b-8ab2-466a-bffa-3296e828935e"
+                },
+                {
+                  "id": "05bd3235-8550-46e2-b5a2-12c18a8f155e",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/registrations/:registrationId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "registrations",
+                        ":registrationId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "registrationId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T13:14:01.000Z",
+                  "updatedAt": "2026-06-05T13:14:01.000Z",
+                  "uid": "35240-05bd3235-8550-46e2-b5a2-12c18a8f155e"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:01.000Z",
+              "updatedAt": "2026-06-05T13:14:01.000Z",
+              "uid": "35240-0681b293-0842-45a6-a62e-1fa392082c81"
+            }
+          ],
+          "id": "e03725fd-3eed-4301-8534-cc199b8988dd",
+          "createdAt": "2026-06-05T13:14:01.000Z",
+          "updatedAt": "2026-06-05T13:14:01.000Z",
+          "uid": "35240-e03725fd-3eed-4301-8534-cc199b8988dd"
+        },
+        {
+          "name": "Avalara List All Registrations",
+          "id": "b1273394-8653-4d9b-94b9-af8286fc4397",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/registrations?status=Expired&$top=<integer>&$skip=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "registrations"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Expired"
+                },
+                {
+                  "key": "$top",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "$skip",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Retrieves all registrations for the authenticated partner."
+          },
+          "response": [
+            {
+              "id": "3210f918-c214-4997-a29d-97c3e306899b",
+              "name": "List of registrations",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registrations?status=Expired&$top=<integer>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "Expired"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"@recordSetCount\": \"<integer>\",\n  \"value\": [\n    {\n      \"registrationId\": \"<string>\",\n      \"partnerId\": \"<string>\",\n      \"companyName\": \"<string>\",\n      \"status\": \"Cancelled\",\n      \"product\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"activationDate\": \"<dateTime>\",\n      \"expirationDate\": \"<dateTime>\",\n      \"createdDate\": \"<dateTime>\"\n    },\n    {\n      \"registrationId\": \"<string>\",\n      \"partnerId\": \"<string>\",\n      \"companyName\": \"<string>\",\n      \"status\": \"Pending\",\n      \"product\": \"<string>\",\n      \"accountId\": \"<string>\",\n      \"activationDate\": \"<dateTime>\",\n      \"expirationDate\": \"<dateTime>\",\n      \"createdDate\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T13:14:01.000Z",
+              "updatedAt": "2026-06-05T13:14:01.000Z",
+              "uid": "35240-3210f918-c214-4997-a29d-97c3e306899b"
+            },
+            {
+              "id": "a9760595-bf67-41b7-8e32-ada1be196619",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/registrations?status=Expired&$top=<integer>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "registrations"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "Expired"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T13:14:01.000Z",
+              "updatedAt": "2026-06-05T13:14:01.000Z",
+              "uid": "35240-a9760595-bf67-41b7-8e32-ada1be196619"
+            }
+          ],
+          "createdAt": "2026-06-05T13:14:01.000Z",
+          "updatedAt": "2026-06-05T13:14:01.000Z",
+          "uid": "35240-b1273394-8653-4d9b-94b9-af8286fc4397"
+        }
+      ],
+      "id": "92cfb52e-9db0-4acf-b0d6-0f5f844ad04f",
+      "createdAt": "2026-06-05T13:14:01.000Z",
+      "updatedAt": "2026-06-05T13:14:01.000Z",
+      "uid": "35240-92cfb52e-9db0-4acf-b0d6-0f5f844ad04f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.avalara.com/activation/v1"
+    }
+  ]
+}

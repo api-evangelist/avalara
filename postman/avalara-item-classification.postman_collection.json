@@ -1,0 +1,717 @@
+{
+  "info": {
+    "_postman_id": "7fc6da5a-dd2b-40aa-be23-6f928875a208",
+    "name": "Avalara Item Classification API",
+    "description": "The Avalara Item Classification API allows businesses subscribed to the Item Classification service to submit products for automated classification, retrieve corresponding HS Codes, and manage classification requests. It supports both storage and non-storage subscription models for product classification across international trade jurisdictions.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:13:53.000Z",
+    "updatedAt": "2026-06-05T13:13:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7fc6da5a-dd2b-40aa-be23-6f928875a208"
+  },
+  "item": [
+    {
+      "name": "classification-requests",
+      "item": [
+        {
+          "name": "{requestId}",
+          "item": [
+            {
+              "name": "results",
+              "item": [
+                {
+                  "name": "Avalara Get Classification Results",
+                  "id": "61b2b726-abe8-4b40-aa40-0bbbc005389a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/classification-requests/:requestId/results",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "classification-requests",
+                        ":requestId",
+                        "results"
+                      ],
+                      "variable": [
+                        {
+                          "id": "256fea79-13f2-4301-a791-a9f6701ac161",
+                          "key": "requestId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the HS Code classification results for a completed classification request."
+                  },
+                  "response": [
+                    {
+                      "id": "fd3b9aeb-4b74-4cc5-af9b-528e9c9be449",
+                      "name": "Classification results",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/classification-requests/:requestId/results",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "classification-requests",
+                            ":requestId",
+                            "results"
+                          ],
+                          "variable": [
+                            {
+                              "key": "requestId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"value\": [\n    {\n      \"itemCode\": \"<string>\",\n      \"description\": \"<string>\",\n      \"hsCode\": \"<string>\",\n      \"hsCodeDescription\": \"<string>\",\n      \"confidence\": \"<double>\",\n      \"country\": \"<string>\"\n    },\n    {\n      \"itemCode\": \"<string>\",\n      \"description\": \"<string>\",\n      \"hsCode\": \"<string>\",\n      \"hsCodeDescription\": \"<string>\",\n      \"confidence\": \"<double>\",\n      \"country\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T13:13:54.000Z",
+                      "updatedAt": "2026-06-05T13:13:54.000Z",
+                      "uid": "35240-fd3b9aeb-4b74-4cc5-af9b-528e9c9be449"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:13:54.000Z",
+                  "updatedAt": "2026-06-05T13:13:54.000Z",
+                  "uid": "35240-61b2b726-abe8-4b40-aa40-0bbbc005389a"
+                }
+              ],
+              "id": "d3ba2443-0b72-4c68-9e3f-58bd0aef01fe",
+              "createdAt": "2026-06-05T13:13:54.000Z",
+              "updatedAt": "2026-06-05T13:13:54.000Z",
+              "uid": "35240-d3ba2443-0b72-4c68-9e3f-58bd0aef01fe"
+            },
+            {
+              "name": "Avalara Get Classification Request Status",
+              "id": "f6d07dc3-09de-4eef-a8b7-3d99b94077a2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/classification-requests/:requestId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "classification-requests",
+                    ":requestId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "18ba21a4-2ac9-4989-b6d9-fc40b5678778",
+                      "key": "requestId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves the status and results of a classification request."
+              },
+              "response": [
+                {
+                  "id": "e6567d55-d268-4d9f-a8b2-c7999d4c5f6f",
+                  "name": "Classification request details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/classification-requests/:requestId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "classification-requests",
+                        ":requestId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "requestId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"status\": \"Pending\",\n  \"itemCount\": \"<integer>\",\n  \"classifiedCount\": \"<integer>\",\n  \"submittedDate\": \"<dateTime>\",\n  \"completedDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:13:54.000Z",
+                  "updatedAt": "2026-06-05T13:13:54.000Z",
+                  "uid": "35240-e6567d55-d268-4d9f-a8b2-c7999d4c5f6f"
+                },
+                {
+                  "id": "32fe6b5c-7fbb-448f-a4b1-8c70226f469e",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/classification-requests/:requestId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "classification-requests",
+                        ":requestId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "requestId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T13:13:54.000Z",
+                  "updatedAt": "2026-06-05T13:13:54.000Z",
+                  "uid": "35240-32fe6b5c-7fbb-448f-a4b1-8c70226f469e"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:54.000Z",
+              "updatedAt": "2026-06-05T13:13:54.000Z",
+              "uid": "35240-f6d07dc3-09de-4eef-a8b7-3d99b94077a2"
+            }
+          ],
+          "id": "7ef54c7d-c307-47e6-bfd9-e759b4373028",
+          "createdAt": "2026-06-05T13:13:54.000Z",
+          "updatedAt": "2026-06-05T13:13:54.000Z",
+          "uid": "35240-7ef54c7d-c307-47e6-bfd9-e759b4373028"
+        },
+        {
+          "name": "Avalara Submit Products for Classification",
+          "id": "3095a73b-33ee-4caa-a7e2-b724467affca",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"description\": \"<string>\",\n      \"itemCode\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"attributes\": {\n        \"essec\": \"<string>\"\n      }\n    },\n    {\n      \"description\": \"<string>\",\n      \"itemCode\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"attributes\": {\n        \"pariatur_8\": \"<string>\",\n        \"quis_b6\": \"<string>\"\n      }\n    }\n  ],\n  \"destinationCountry\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/classification-requests",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classification-requests"
+              ]
+            },
+            "description": "Submits one or more products for HS Code classification. Products are classified based on their descriptions and attributes for the specified destination country."
+          },
+          "response": [
+            {
+              "id": "725d44ae-7c80-452e-8590-1e865ed92d35",
+              "name": "Classification request accepted",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"description\": \"<string>\",\n      \"itemCode\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"attributes\": {\n        \"essec\": \"<string>\"\n      }\n    },\n    {\n      \"description\": \"<string>\",\n      \"itemCode\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"attributes\": {\n        \"pariatur_8\": \"<string>\",\n        \"quis_b6\": \"<string>\"\n      }\n    }\n  ],\n  \"destinationCountry\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/classification-requests",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "classification-requests"
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"requestId\": \"<string>\",\n  \"status\": \"Pending\",\n  \"itemCount\": \"<integer>\",\n  \"submittedDate\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T13:13:54.000Z",
+              "updatedAt": "2026-06-05T13:13:54.000Z",
+              "uid": "35240-725d44ae-7c80-452e-8590-1e865ed92d35"
+            },
+            {
+              "id": "3dc741a5-2d7e-46f3-8a1f-38ab8be2560f",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"description\": \"<string>\",\n      \"itemCode\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"attributes\": {\n        \"essec\": \"<string>\"\n      }\n    },\n    {\n      \"description\": \"<string>\",\n      \"itemCode\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"attributes\": {\n        \"pariatur_8\": \"<string>\",\n        \"quis_b6\": \"<string>\"\n      }\n    }\n  ],\n  \"destinationCountry\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/classification-requests",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "classification-requests"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T13:13:54.000Z",
+              "updatedAt": "2026-06-05T13:13:54.000Z",
+              "uid": "35240-3dc741a5-2d7e-46f3-8a1f-38ab8be2560f"
+            },
+            {
+              "id": "0cf1a7f0-dc03-4116-abcd-d1fd5c001c7c",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"description\": \"<string>\",\n      \"itemCode\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"attributes\": {\n        \"essec\": \"<string>\"\n      }\n    },\n    {\n      \"description\": \"<string>\",\n      \"itemCode\": \"<string>\",\n      \"summary\": \"<string>\",\n      \"attributes\": {\n        \"pariatur_8\": \"<string>\",\n        \"quis_b6\": \"<string>\"\n      }\n    }\n  ],\n  \"destinationCountry\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/classification-requests",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "classification-requests"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T13:13:54.000Z",
+              "updatedAt": "2026-06-05T13:13:54.000Z",
+              "uid": "35240-0cf1a7f0-dc03-4116-abcd-d1fd5c001c7c"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:54.000Z",
+          "updatedAt": "2026-06-05T13:13:54.000Z",
+          "uid": "35240-3095a73b-33ee-4caa-a7e2-b724467affca"
+        },
+        {
+          "name": "Avalara List Classification Requests",
+          "id": "f51095ca-5a92-4a35-90e6-4cd5e6ef086d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/classification-requests?status=Failed&$top=<integer>&$skip=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "classification-requests"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Failed"
+                },
+                {
+                  "key": "$top",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "$skip",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Retrieves a list of submitted classification requests and their statuses."
+          },
+          "response": [
+            {
+              "id": "13243d50-0475-4812-9128-6bfd2e2e3664",
+              "name": "List of classification requests",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/classification-requests?status=Failed&$top=<integer>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "classification-requests"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "Failed"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"@recordSetCount\": \"<integer>\",\n  \"value\": [\n    {\n      \"requestId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"itemCount\": \"<integer>\",\n      \"submittedDate\": \"<dateTime>\",\n      \"completedDate\": \"<dateTime>\"\n    },\n    {\n      \"requestId\": \"<string>\",\n      \"status\": \"<string>\",\n      \"itemCount\": \"<integer>\",\n      \"submittedDate\": \"<dateTime>\",\n      \"completedDate\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T13:13:54.000Z",
+              "updatedAt": "2026-06-05T13:13:54.000Z",
+              "uid": "35240-13243d50-0475-4812-9128-6bfd2e2e3664"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:54.000Z",
+          "updatedAt": "2026-06-05T13:13:54.000Z",
+          "uid": "35240-f51095ca-5a92-4a35-90e6-4cd5e6ef086d"
+        }
+      ],
+      "id": "90ac0436-801e-420b-95ee-9f8df07e08fd",
+      "createdAt": "2026-06-05T13:13:54.000Z",
+      "updatedAt": "2026-06-05T13:13:54.000Z",
+      "uid": "35240-90ac0436-801e-420b-95ee-9f8df07e08fd"
+    },
+    {
+      "name": "hs-codes",
+      "item": [
+        {
+          "name": "{hsCode}",
+          "item": [
+            {
+              "name": "Avalara Get HS Code Details",
+              "id": "108bba3c-54f3-43d3-8591-194b0a14e340",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/hs-codes/:hsCode?country=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "hs-codes",
+                    ":hsCode"
+                  ],
+                  "query": [
+                    {
+                      "description": "ISO 3166-1 alpha-2 country code for country-specific details",
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "0df443e8-800c-4009-ada3-e57d46f9a3a7",
+                      "key": "hsCode",
+                      "value": "<string>",
+                      "description": "(Required) The HS Code to look up"
+                    }
+                  ]
+                },
+                "description": "Retrieves detailed information for a specific HS Code."
+              },
+              "response": [
+                {
+                  "id": "02bdf3e8-b3cb-4c5f-87d3-564d9bdafcde",
+                  "name": "HS Code details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/hs-codes/:hsCode?country=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "hs-codes",
+                        ":hsCode"
+                      ],
+                      "query": [
+                        {
+                          "description": "ISO 3166-1 alpha-2 country code for country-specific details",
+                          "key": "country",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "hsCode"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"hsCode\": \"<string>\",\n  \"description\": \"<string>\",\n  \"chapter\": \"<string>\",\n  \"section\": \"<string>\",\n  \"parentCode\": \"<string>\",\n  \"dutyRate\": \"<string>\",\n  \"unitOfMeasure\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:13:54.000Z",
+                  "updatedAt": "2026-06-05T13:13:54.000Z",
+                  "uid": "35240-02bdf3e8-b3cb-4c5f-87d3-564d9bdafcde"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:54.000Z",
+              "updatedAt": "2026-06-05T13:13:54.000Z",
+              "uid": "35240-108bba3c-54f3-43d3-8591-194b0a14e340"
+            }
+          ],
+          "id": "586e8c4e-0c75-4b2c-a9fa-58365fb8146b",
+          "createdAt": "2026-06-05T13:13:54.000Z",
+          "updatedAt": "2026-06-05T13:13:54.000Z",
+          "uid": "35240-586e8c4e-0c75-4b2c-a9fa-58365fb8146b"
+        }
+      ],
+      "id": "1d569255-0ead-46ff-90ce-0e924d90234c",
+      "createdAt": "2026-06-05T13:13:54.000Z",
+      "updatedAt": "2026-06-05T13:13:54.000Z",
+      "uid": "35240-1d569255-0ead-46ff-90ce-0e924d90234c"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.avalara.com/classification/v2"
+    }
+  ]
+}

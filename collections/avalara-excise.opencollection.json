@@ -1,0 +1,277 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Excise Platform API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tax Determination",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Calculate Excise Taxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://exciseapi.avalara.com/api/v1/TaxDetermination",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculates excise taxes for a transaction containing one or more line items with product, origin, destination, and movement information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Excise Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://exciseapi.avalara.com/api/v1/Transactions",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of excise tax transactions."
+        },
+        {
+          "info": {
+            "name": "Avalara Create an Excise Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://exciseapi.avalara.com/api/v1/Transactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Create an Excise Transaction"
+        },
+        {
+          "info": {
+            "name": "Avalara Retrieve an Excise Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://exciseapi.avalara.com/api/v1/Transactions/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Retrieve an Excise Transaction"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Business Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Business Entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://exciseapi.avalara.com/api/v1/BusinessEntities"
+          },
+          "docs": "Avalara List Business Entities"
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Business Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://exciseapi.avalara.com/api/v1/BusinessEntities",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Create a Business Entity"
+        },
+        {
+          "info": {
+            "name": "Avalara Get a Business Entity by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://exciseapi.avalara.com/api/v1/BusinessEntities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Get a Business Entity by ID"
+        },
+        {
+          "info": {
+            "name": "Avalara Update a Business Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://exciseapi.avalara.com/api/v1/BusinessEntities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Update a Business Entity"
+        },
+        {
+          "info": {
+            "name": "Avalara Delete a Business Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://exciseapi.avalara.com/api/v1/BusinessEntities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Delete a Business Entity"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Locations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Locations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://exciseapi.avalara.com/api/v1/Locations"
+          },
+          "docs": "Avalara List Locations"
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Location",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://exciseapi.avalara.com/api/v1/Locations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Create a Location"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Registered Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://exciseapi.avalara.com/api/v1/Products"
+          },
+          "docs": "Avalara List Registered Products"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Licenses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Excise Licenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://exciseapi.avalara.com/api/v1/Licenses"
+          },
+          "docs": "Avalara List Excise Licenses"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

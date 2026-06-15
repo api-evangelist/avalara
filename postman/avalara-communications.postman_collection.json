@@ -1,0 +1,1377 @@
+{
+  "info": {
+    "_postman_id": "9ec01e83-10ef-4a3d-b639-1a06c07cae30",
+    "name": "Avalara Communications Tax API",
+    "description": "The Avalara Communications Tax API (AFC SaasPro) provides communications tax calculations for telecom, VoIP, internet, and other communications services. It supports tax calculations using transaction/service pairs, jurisdiction determination via geocoding, and customizable tax profiles for accurate communications tax compliance.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:13:51.000Z",
+    "updatedAt": "2026-06-05T13:13:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9ec01e83-10ef-4a3d-b639-1a06c07cae30"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "v2",
+          "item": [
+            {
+              "name": "afc",
+              "item": [
+                {
+                  "name": "CalcTaxes",
+                  "item": [
+                    {
+                      "name": "Avalara Calculate Taxes on a Transaction",
+                      "id": "b7921bee-cd6d-4da0-a475-f212f435b579",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"cmpn\": {\n    \"bscl\": \"<integer>\",\n    \"svcl\": \"<integer>\",\n    \"fclt\": \"<boolean>\",\n    \"frch\": \"<boolean>\",\n    \"reg\": \"<boolean>\"\n  },\n  \"inv\": [\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/afc/CalcTaxes",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "afc",
+                            "CalcTaxes"
+                          ]
+                        },
+                        "description": "Calculates communications taxes for one or more line items based on transaction type, service type, and jurisdiction information. Supports both individual and batch tax calculations."
+                      },
+                      "response": [
+                        {
+                          "id": "901bd308-22ca-4ae3-b383-c5c709f19335",
+                          "name": "Tax calculation results",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"cmpn\": {\n    \"bscl\": \"<integer>\",\n    \"svcl\": \"<integer>\",\n    \"fclt\": \"<boolean>\",\n    \"frch\": \"<boolean>\",\n    \"reg\": \"<boolean>\"\n  },\n  \"inv\": [\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/afc/CalcTaxes",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "afc",
+                                "CalcTaxes"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"inv\": [\n    {\n      \"doc\": \"<string>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"txs\": [\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            },\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"ref\": \"<string>\",\n          \"txs\": [\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            },\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"doc\": \"<string>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"txs\": [\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            },\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"ref\": \"<string>\",\n          \"txs\": [\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            },\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-901bd308-22ca-4ae3-b383-c5c709f19335"
+                        },
+                        {
+                          "id": "a96f0c1a-4599-4a28-8854-8cc67fe3836c",
+                          "name": "Invalid request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"cmpn\": {\n    \"bscl\": \"<integer>\",\n    \"svcl\": \"<integer>\",\n    \"fclt\": \"<boolean>\",\n    \"frch\": \"<boolean>\",\n    \"reg\": \"<boolean>\"\n  },\n  \"inv\": [\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/afc/CalcTaxes",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "afc",
+                                "CalcTaxes"
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"err\": [\n    {\n      \"code\": \"<integer>\",\n      \"msg\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"msg\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-a96f0c1a-4599-4a28-8854-8cc67fe3836c"
+                        },
+                        {
+                          "id": "a2606b2b-aa24-46a6-9011-bf7bb1380173",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"cmpn\": {\n    \"bscl\": \"<integer>\",\n    \"svcl\": \"<integer>\",\n    \"fclt\": \"<boolean>\",\n    \"frch\": \"<boolean>\",\n    \"reg\": \"<boolean>\"\n  },\n  \"inv\": [\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/afc/CalcTaxes",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "afc",
+                                "CalcTaxes"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"err\": [\n    {\n      \"code\": \"<integer>\",\n      \"msg\": \"<string>\"\n    },\n    {\n      \"code\": \"<integer>\",\n      \"msg\": \"<string>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-a2606b2b-aa24-46a6-9011-bf7bb1380173"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:13:51.000Z",
+                      "updatedAt": "2026-06-05T13:13:51.000Z",
+                      "uid": "35240-b7921bee-cd6d-4da0-a475-f212f435b579"
+                    }
+                  ],
+                  "id": "c13d674b-dfd7-4471-abe4-b54d0ba5fd92",
+                  "createdAt": "2026-06-05T13:13:51.000Z",
+                  "updatedAt": "2026-06-05T13:13:51.000Z",
+                  "uid": "35240-c13d674b-dfd7-4471-abe4-b54d0ba5fd92"
+                },
+                {
+                  "name": "commit",
+                  "item": [
+                    {
+                      "name": "Avalara Commit a Transaction",
+                      "id": "8162c160-a6d6-4ee0-aa9b-b961b5a27208",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"doc\": \"<string>\",\n  \"cmmt\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/afc/commit",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "afc",
+                            "commit"
+                          ]
+                        },
+                        "description": "Commits a previously calculated transaction, finalizing it for tax reporting purposes."
+                      },
+                      "response": [
+                        {
+                          "id": "a0809e51-a64b-440b-bd52-5e385accf3a0",
+                          "name": "Transaction committed successfully",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"doc\": \"<string>\",\n  \"cmmt\": \"<boolean>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/afc/commit",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "afc",
+                                "commit"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"ok\": \"<boolean>\"\n}",
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-a0809e51-a64b-440b-bd52-5e385accf3a0"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:13:51.000Z",
+                      "updatedAt": "2026-06-05T13:13:51.000Z",
+                      "uid": "35240-8162c160-a6d6-4ee0-aa9b-b961b5a27208"
+                    }
+                  ],
+                  "id": "4ab0def5-7709-499c-ac53-a97862526cde",
+                  "createdAt": "2026-06-05T13:13:51.000Z",
+                  "updatedAt": "2026-06-05T13:13:51.000Z",
+                  "uid": "35240-4ab0def5-7709-499c-ac53-a97862526cde"
+                },
+                {
+                  "name": "CalcAdj",
+                  "item": [
+                    {
+                      "name": "Avalara Calculate Adjustment Taxes",
+                      "id": "7f4ce407-cbb5-45ab-b68d-de1fb92a178e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"cmpn\": {\n    \"bscl\": \"<integer>\",\n    \"svcl\": \"<integer>\",\n    \"fclt\": \"<boolean>\",\n    \"frch\": \"<boolean>\",\n    \"reg\": \"<boolean>\"\n  },\n  \"inv\": [\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    }\n  ],\n  \"adj\": {\n    \"disc\": \"<integer>\",\n    \"adj\": \"<integer>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/afc/CalcAdj",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "afc",
+                            "CalcAdj"
+                          ]
+                        },
+                        "description": "Calculates taxes for adjustments (credits, refunds) on previously committed transactions."
+                      },
+                      "response": [
+                        {
+                          "id": "608f0e04-433c-4b3b-ade2-94b404cc750f",
+                          "name": "Adjustment tax calculation results",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"cmpn\": {\n    \"bscl\": \"<integer>\",\n    \"svcl\": \"<integer>\",\n    \"fclt\": \"<boolean>\",\n    \"frch\": \"<boolean>\",\n    \"reg\": \"<boolean>\"\n  },\n  \"inv\": [\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    }\n  ],\n  \"adj\": {\n    \"disc\": \"<integer>\",\n    \"adj\": \"<integer>\"\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/afc/CalcAdj",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "afc",
+                                "CalcAdj"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"inv\": [\n    {\n      \"doc\": \"<string>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"txs\": [\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            },\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"ref\": \"<string>\",\n          \"txs\": [\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            },\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"doc\": \"<string>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"txs\": [\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            },\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            }\n          ]\n        },\n        {\n          \"ref\": \"<string>\",\n          \"txs\": [\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            },\n            {\n              \"bill\": \"<boolean>\",\n              \"cmpl\": \"<boolean>\",\n              \"tm\": \"<double>\",\n              \"calc\": \"<integer>\",\n              \"cat\": \"<string>\",\n              \"cid\": \"<integer>\",\n              \"name\": \"<string>\",\n              \"exm\": \"<double>\",\n              \"lns\": \"<integer>\",\n              \"min\": \"<double>\",\n              \"pcd\": \"<integer>\",\n              \"rate\": \"<double>\",\n              \"sur\": \"<boolean>\",\n              \"tax\": \"<double>\",\n              \"lvl\": \"<integer>\",\n              \"tid\": \"<integer>\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-608f0e04-433c-4b3b-ade2-94b404cc750f"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:13:51.000Z",
+                      "updatedAt": "2026-06-05T13:13:51.000Z",
+                      "uid": "35240-7f4ce407-cbb5-45ab-b68d-de1fb92a178e"
+                    }
+                  ],
+                  "id": "e2dc9884-c3d2-47f8-b323-dc36f3b63d71",
+                  "createdAt": "2026-06-05T13:13:51.000Z",
+                  "updatedAt": "2026-06-05T13:13:51.000Z",
+                  "uid": "35240-e2dc9884-c3d2-47f8-b323-dc36f3b63d71"
+                },
+                {
+                  "name": "PCode",
+                  "item": [
+                    {
+                      "name": "{pcode}",
+                      "item": [
+                        {
+                          "name": "Avalara Get PCode Jurisdiction Information",
+                          "id": "17fa8673-f11f-4f2b-ba03-2776aa621847",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/afc/PCode/:pcode",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "afc",
+                                "PCode",
+                                ":pcode"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d164d471-8045-4c4a-b55d-a022542be06c",
+                                  "key": "pcode",
+                                  "value": "<integer>",
+                                  "description": "(Required) The PCode to look up"
+                                }
+                              ]
+                            },
+                            "description": "Retrieves detailed jurisdiction information for a given PCode (proprietary jurisdiction code)."
+                          },
+                          "response": [
+                            {
+                              "id": "2636a027-fc66-42f9-9dd8-8039bf36423b",
+                              "name": "PCode jurisdiction details",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/afc/PCode/:pcode",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "afc",
+                                    "PCode",
+                                    ":pcode"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "pcode"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:13:51.000Z",
+                              "updatedAt": "2026-06-05T13:13:51.000Z",
+                              "uid": "35240-2636a027-fc66-42f9-9dd8-8039bf36423b"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-17fa8673-f11f-4f2b-ba03-2776aa621847"
+                        }
+                      ],
+                      "id": "5a45be1b-b3e1-40a7-b958-7a7febbda12e",
+                      "createdAt": "2026-06-05T13:13:51.000Z",
+                      "updatedAt": "2026-06-05T13:13:51.000Z",
+                      "uid": "35240-5a45be1b-b3e1-40a7-b958-7a7febbda12e"
+                    }
+                  ],
+                  "id": "fb917576-91a3-4f14-84ea-907a4ab416a4",
+                  "createdAt": "2026-06-05T13:13:51.000Z",
+                  "updatedAt": "2026-06-05T13:13:51.000Z",
+                  "uid": "35240-fb917576-91a3-4f14-84ea-907a4ab416a4"
+                },
+                {
+                  "name": "tspairs",
+                  "item": [
+                    {
+                      "name": "Avalara List Transaction/service Type Pairs",
+                      "id": "6b86dbb5-e642-470c-a3d8-e6716c0d7ccc",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/afc/tspairs",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "afc",
+                            "tspairs"
+                          ]
+                        },
+                        "description": "Returns all valid transaction type and service type pairs that can be used for tax calculations."
+                      },
+                      "response": [
+                        {
+                          "id": "d63bcb4b-6753-43f4-b1a7-1f96167d9b95",
+                          "name": "List of transaction/service type pairs",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/afc/tspairs",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "afc",
+                                "tspairs"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"TransactionType\": \"<integer>\",\n    \"TransactionTypeDescription\": \"<string>\",\n    \"ServiceType\": \"<integer>\",\n    \"ServiceTypeDescription\": \"<string>\"\n  },\n  {\n    \"TransactionType\": \"<integer>\",\n    \"TransactionTypeDescription\": \"<string>\",\n    \"ServiceType\": \"<integer>\",\n    \"ServiceTypeDescription\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-d63bcb4b-6753-43f4-b1a7-1f96167d9b95"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:13:51.000Z",
+                      "updatedAt": "2026-06-05T13:13:51.000Z",
+                      "uid": "35240-6b86dbb5-e642-470c-a3d8-e6716c0d7ccc"
+                    }
+                  ],
+                  "id": "695335d6-932d-4320-aa6e-7b983b427f2c",
+                  "createdAt": "2026-06-05T13:13:51.000Z",
+                  "updatedAt": "2026-06-05T13:13:51.000Z",
+                  "uid": "35240-695335d6-932d-4320-aa6e-7b983b427f2c"
+                },
+                {
+                  "name": "taxtype",
+                  "item": [
+                    {
+                      "name": "{taxType}",
+                      "item": [
+                        {
+                          "name": "Avalara Get Tax Type Details",
+                          "id": "730b7eaa-4d82-41da-9636-af2ad6a3102b",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/afc/taxtype/:taxType",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "afc",
+                                "taxtype",
+                                ":taxType"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "d31d25f1-701a-4e10-88c7-d6a07d1b6d32",
+                                  "key": "taxType",
+                                  "value": "<integer>",
+                                  "description": "(Required) "
+                                }
+                              ]
+                            },
+                            "description": "Retrieves details for a specific tax type identifier."
+                          },
+                          "response": [
+                            {
+                              "id": "494e32af-f42b-4589-95f1-cd56153fae0f",
+                              "name": "Tax type details",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/afc/taxtype/:taxType",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "afc",
+                                    "taxtype",
+                                    ":taxType"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "taxType"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:13:51.000Z",
+                              "updatedAt": "2026-06-05T13:13:51.000Z",
+                              "uid": "35240-494e32af-f42b-4589-95f1-cd56153fae0f"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-730b7eaa-4d82-41da-9636-af2ad6a3102b"
+                        }
+                      ],
+                      "id": "cd1cb800-944a-48e9-a5d0-07dba1e361e0",
+                      "createdAt": "2026-06-05T13:13:51.000Z",
+                      "updatedAt": "2026-06-05T13:13:51.000Z",
+                      "uid": "35240-cd1cb800-944a-48e9-a5d0-07dba1e361e0"
+                    }
+                  ],
+                  "id": "5b88a665-b3de-47a2-ba65-3793c970116e",
+                  "createdAt": "2026-06-05T13:13:51.000Z",
+                  "updatedAt": "2026-06-05T13:13:51.000Z",
+                  "uid": "35240-5b88a665-b3de-47a2-ba65-3793c970116e"
+                },
+                {
+                  "name": "serviceinfo",
+                  "item": [
+                    {
+                      "name": "Avalara Get Service Information",
+                      "id": "d079063f-eb93-44e5-af27-c601aad7094e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/afc/serviceinfo",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "afc",
+                            "serviceinfo"
+                          ]
+                        },
+                        "description": "Returns version and status information for the Communications API."
+                      },
+                      "response": [
+                        {
+                          "id": "40bd710a-4fde-4eae-8ac5-303e1ae2692f",
+                          "name": "Service information",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/afc/serviceinfo",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "afc",
+                                "serviceinfo"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"serverTime\": \"<dateTime>\",\n  \"buildVersion\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-40bd710a-4fde-4eae-8ac5-303e1ae2692f"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:13:51.000Z",
+                      "updatedAt": "2026-06-05T13:13:51.000Z",
+                      "uid": "35240-d079063f-eb93-44e5-af27-c601aad7094e"
+                    }
+                  ],
+                  "id": "0dd97f91-d222-42c9-a50e-3ea2db48beb4",
+                  "createdAt": "2026-06-05T13:13:51.000Z",
+                  "updatedAt": "2026-06-05T13:13:51.000Z",
+                  "uid": "35240-0dd97f91-d222-42c9-a50e-3ea2db48beb4"
+                },
+                {
+                  "name": "customization",
+                  "item": [
+                    {
+                      "name": "profiles",
+                      "item": [
+                        {
+                          "name": "Avalara List Tax Profiles",
+                          "id": "5f79ceb4-733b-492c-82a0-6b46d57fda3c",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/afc/customization/profiles",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "afc",
+                                "customization",
+                                "profiles"
+                              ]
+                            },
+                            "description": "Retrieves all configured tax profiles for the client."
+                          },
+                          "response": [
+                            {
+                              "id": "f0939b98-4fce-4296-a452-d900efdac9ed",
+                              "name": "List of tax profiles",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/afc/customization/profiles",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "afc",
+                                    "customization",
+                                    "profiles"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:13:51.000Z",
+                              "updatedAt": "2026-06-05T13:13:51.000Z",
+                              "uid": "35240-f0939b98-4fce-4296-a452-d900efdac9ed"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-5f79ceb4-733b-492c-82a0-6b46d57fda3c"
+                        },
+                        {
+                          "name": "Avalara Create a Tax Profile",
+                          "id": "63520881-9f04-4cd8-9fed-fe78cd877001",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"profileId\": \"<integer>\",\n  \"profileName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"bundles\": [\n    {\n      \"bundleId\": \"<integer>\",\n      \"bundleName\": \"<string>\"\n    },\n    {\n      \"bundleId\": \"<integer>\",\n      \"bundleName\": \"<string>\"\n    }\n  ]\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/afc/customization/profiles",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "afc",
+                                "customization",
+                                "profiles"
+                              ]
+                            },
+                            "description": "Creates a new tax profile with custom bundles and overrides."
+                          },
+                          "response": [
+                            {
+                              "id": "2b18df23-b85c-47a4-843f-48f54f09dd9b",
+                              "name": "Tax profile created",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"profileId\": \"<integer>\",\n  \"profileName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"bundles\": [\n    {\n      \"bundleId\": \"<integer>\",\n      \"bundleName\": \"<string>\"\n    },\n    {\n      \"bundleId\": \"<integer>\",\n      \"bundleName\": \"<string>\"\n    }\n  ]\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/afc/customization/profiles",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "afc",
+                                    "customization",
+                                    "profiles"
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:13:51.000Z",
+                              "updatedAt": "2026-06-05T13:13:51.000Z",
+                              "uid": "35240-2b18df23-b85c-47a4-843f-48f54f09dd9b"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-63520881-9f04-4cd8-9fed-fe78cd877001"
+                        }
+                      ],
+                      "id": "f5761df4-3fc5-4fa0-a61c-371cbeb83f3b",
+                      "createdAt": "2026-06-05T13:13:51.000Z",
+                      "updatedAt": "2026-06-05T13:13:51.000Z",
+                      "uid": "35240-f5761df4-3fc5-4fa0-a61c-371cbeb83f3b"
+                    },
+                    {
+                      "name": "exclusions",
+                      "item": [
+                        {
+                          "name": "Avalara List Tax Exclusions",
+                          "id": "67c60ab8-129a-4412-9073-5790a7443cda",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/afc/customization/exclusions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "afc",
+                                "customization",
+                                "exclusions"
+                              ]
+                            },
+                            "description": "Retrieves configured tax exclusions."
+                          },
+                          "response": [
+                            {
+                              "id": "ece546f0-0a59-41f0-88b8-6bf2a887cd0a",
+                              "name": "List of exclusions",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/afc/customization/exclusions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "afc",
+                                    "customization",
+                                    "exclusions"
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:13:51.000Z",
+                              "updatedAt": "2026-06-05T13:13:51.000Z",
+                              "uid": "35240-ece546f0-0a59-41f0-88b8-6bf2a887cd0a"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-67c60ab8-129a-4412-9073-5790a7443cda"
+                        },
+                        {
+                          "name": "Avalara Create a Tax Exclusion",
+                          "id": "b51f979b-c598-42c5-ad49-7e05253282e6",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"excl\": \"<integer>\",\n  \"ctry\": \"<string>\",\n  \"st\": \"<string>\",\n  \"excl_name\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/afc/customization/exclusions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "afc",
+                                "customization",
+                                "exclusions"
+                              ]
+                            }
+                          },
+                          "response": [
+                            {
+                              "id": "bc20b9ed-0e23-4b9c-a060-64cdfccdcb3e",
+                              "name": "Exclusion created",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: basic",
+                                    "key": "Authorization",
+                                    "value": "Basic <credentials>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"excl\": \"<integer>\",\n  \"ctry\": \"<string>\",\n  \"st\": \"<string>\",\n  \"excl_name\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/v2/afc/customization/exclusions",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "v2",
+                                    "afc",
+                                    "customization",
+                                    "exclusions"
+                                  ]
+                                }
+                              },
+                              "status": "Created",
+                              "code": 201,
+                              "_postman_previewlanguage": "text",
+                              "header": [],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-06-05T13:13:51.000Z",
+                              "updatedAt": "2026-06-05T13:13:51.000Z",
+                              "uid": "35240-bc20b9ed-0e23-4b9c-a060-64cdfccdcb3e"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-b51f979b-c598-42c5-ad49-7e05253282e6"
+                        }
+                      ],
+                      "id": "c7c00516-8085-4dd0-96e9-4ed4837fa6ab",
+                      "createdAt": "2026-06-05T13:13:51.000Z",
+                      "updatedAt": "2026-06-05T13:13:51.000Z",
+                      "uid": "35240-c7c00516-8085-4dd0-96e9-4ed4837fa6ab"
+                    }
+                  ],
+                  "id": "4eb7d570-2f6a-4ac3-a5fa-d786c4790a8c",
+                  "createdAt": "2026-06-05T13:13:51.000Z",
+                  "updatedAt": "2026-06-05T13:13:51.000Z",
+                  "uid": "35240-4eb7d570-2f6a-4ac3-a5fa-d786c4790a8c"
+                }
+              ],
+              "id": "9411e52c-cc07-4a68-86ab-ea62d7ee716d",
+              "createdAt": "2026-06-05T13:13:51.000Z",
+              "updatedAt": "2026-06-05T13:13:51.000Z",
+              "uid": "35240-9411e52c-cc07-4a68-86ab-ea62d7ee716d"
+            },
+            {
+              "name": "geo",
+              "item": [
+                {
+                  "name": "Geocode",
+                  "item": [
+                    {
+                      "name": "Avalara Geocode an Address",
+                      "id": "38c809f9-16f3-4367-a265-021ca6aacdde",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ref\": \"<string>\",\n  \"cass\": \"<boolean>\",\n  \"addr\": \"<string>\",\n  \"city\": \"<string>\",\n  \"st\": \"<string>\",\n  \"zip\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/v2/geo/Geocode",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "v2",
+                            "geo",
+                            "Geocode"
+                          ]
+                        },
+                        "description": "Determines the tax jurisdiction for a given address using geocoding. Returns jurisdiction codes (PCode, FIPS) needed for tax calculations."
+                      },
+                      "response": [
+                        {
+                          "id": "29dbecbe-c30f-4d29-b1d7-0b094d7c62f8",
+                          "name": "Geocoding results",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: basic",
+                                "key": "Authorization",
+                                "value": "Basic <credentials>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ref\": \"<string>\",\n  \"cass\": \"<boolean>\",\n  \"addr\": \"<string>\",\n  \"city\": \"<string>\",\n  \"st\": \"<string>\",\n  \"zip\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/v2/geo/Geocode",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "v2",
+                                "geo",
+                                "Geocode"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"ref\": \"<string>\",\n  \"cass\": {\n    \"addr\": \"<string>\",\n    \"city\": \"<string>\",\n    \"st\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"cBlk\": \"<string>\",\n  \"cTrc\": \"<string>\",\n  \"err\": \"<string>\",\n  \"geo\": \"<boolean>\",\n  \"lat\": \"<double>\",\n  \"long\": \"<double>\",\n  \"pcd\": \"<integer>\",\n  \"fips\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T13:13:51.000Z",
+                          "updatedAt": "2026-06-05T13:13:51.000Z",
+                          "uid": "35240-29dbecbe-c30f-4d29-b1d7-0b094d7c62f8"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T13:13:51.000Z",
+                      "updatedAt": "2026-06-05T13:13:51.000Z",
+                      "uid": "35240-38c809f9-16f3-4367-a265-021ca6aacdde"
+                    }
+                  ],
+                  "id": "73ee9a4b-6e4f-49cb-8a47-38e5f5c8bc7b",
+                  "createdAt": "2026-06-05T13:13:51.000Z",
+                  "updatedAt": "2026-06-05T13:13:51.000Z",
+                  "uid": "35240-73ee9a4b-6e4f-49cb-8a47-38e5f5c8bc7b"
+                }
+              ],
+              "id": "7fe94298-9632-441a-8e2f-63fb01d9744c",
+              "createdAt": "2026-06-05T13:13:51.000Z",
+              "updatedAt": "2026-06-05T13:13:51.000Z",
+              "uid": "35240-7fe94298-9632-441a-8e2f-63fb01d9744c"
+            }
+          ],
+          "id": "0f5d89cd-c48b-401f-bc97-ec259e34ff78",
+          "createdAt": "2026-06-05T13:13:51.000Z",
+          "updatedAt": "2026-06-05T13:13:51.000Z",
+          "uid": "35240-0f5d89cd-c48b-401f-bc97-ec259e34ff78"
+        }
+      ],
+      "id": "c97ef1f1-26dd-4619-970c-9847fcf9a703",
+      "createdAt": "2026-06-05T13:13:51.000Z",
+      "updatedAt": "2026-06-05T13:13:51.000Z",
+      "uid": "35240-c97ef1f1-26dd-4619-970c-9847fcf9a703"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://communicationsua.avalara.net"
+    }
+  ]
+}

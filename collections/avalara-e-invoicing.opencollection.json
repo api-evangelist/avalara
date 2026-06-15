@@ -1,0 +1,226 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara E-Invoicing REST API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Documents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Submitted Documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/einvoicing/v1/documents",
+            "headers": [
+              {
+                "name": "avalara-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "flow",
+                "value": "",
+                "type": "query",
+                "description": "Document flow direction (outbound or inbound)"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query",
+                "description": "Include total count in response"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of submitted e-invoice documents with filtering."
+        },
+        {
+          "info": {
+            "name": "Avalara Submit an E-invoice Document",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/einvoicing/v1/documents",
+            "headers": [
+              {
+                "name": "avalara-version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits an electronic invoice document for validation and delivery to the appropriate tax authority or recipient network."
+        },
+        {
+          "info": {
+            "name": "Avalara Retrieve a Document by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/einvoicing/v1/documents/:documentId",
+            "headers": [
+              {
+                "name": "avalara-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the status and details of a submitted e-invoice document."
+        },
+        {
+          "info": {
+            "name": "Avalara Get Document Processing Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/einvoicing/v1/documents/:documentId/status",
+            "headers": [
+              {
+                "name": "avalara-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns the current processing status of a submitted document."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Mandates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List E-invoicing Mandates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/einvoicing/v1/mandates",
+            "headers": [
+              {
+                "name": "avalara-version",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression"
+              },
+              {
+                "name": "count",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of e-invoicing mandate definitions that describe compliance requirements by country and document type."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Interop",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Submit a Document via Interoperability Network",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/einvoicing/v1/interop/documents",
+            "headers": [
+              {
+                "name": "avalara-version",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a document through the interoperability network (e.g., Peppol) for delivery to the recipient."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

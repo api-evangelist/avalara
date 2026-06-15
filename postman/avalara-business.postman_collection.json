@@ -1,0 +1,498 @@
+{
+  "info": {
+    "_postman_id": "eadea15c-44ee-4a97-8a1a-1968746f0737",
+    "name": "Avalara Business API",
+    "description": "The Avalara Business API provides public APIs for doing business with Avalara, including registering customer accounts and creating sales orders for Avalara services through partner integrations.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:14:03.000Z",
+    "updatedAt": "2026-06-05T13:14:03.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-eadea15c-44ee-4a97-8a1a-1968746f0737"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{accountId}",
+          "item": [
+            {
+              "name": "Avalara Get Account Details",
+              "id": "8116aab1-ab2e-46ad-92bc-e308b63063de",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts/:accountId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts",
+                    ":accountId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "e1f29424-59e4-41e7-a78a-74d64ee30816",
+                      "key": "accountId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "834ac37c-5ff9-4479-af15-c7ca0171d961",
+                  "name": "Account details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:accountId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":accountId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "accountId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"accountId\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"status\": \"Pending\",\n  \"createdDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:14:03.000Z",
+                  "updatedAt": "2026-06-05T13:14:03.000Z",
+                  "uid": "35240-834ac37c-5ff9-4479-af15-c7ca0171d961"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:03.000Z",
+              "updatedAt": "2026-06-05T13:14:03.000Z",
+              "uid": "35240-8116aab1-ab2e-46ad-92bc-e308b63063de"
+            }
+          ],
+          "id": "96ccaee3-ddcd-4d57-bf27-59ff58201a6a",
+          "createdAt": "2026-06-05T13:14:03.000Z",
+          "updatedAt": "2026-06-05T13:14:03.000Z",
+          "uid": "35240-96ccaee3-ddcd-4d57-bf27-59ff58201a6a"
+        },
+        {
+          "name": "Avalara Register a New Customer Account",
+          "id": "5e061c0e-e807-4a1d-85c8-a9ce3c3175f9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"partnerCode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/accounts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts"
+              ]
+            },
+            "description": "Registers a new customer account with Avalara through a partner integration."
+          },
+          "response": [
+            {
+              "id": "44616870-9be4-4ede-8b1b-1710c8bf8eb4",
+              "name": "Account registered",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"partnerCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"accountId\": \"<string>\",\n  \"accountNumber\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"status\": \"Pending\",\n  \"createdDate\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T13:14:03.000Z",
+              "updatedAt": "2026-06-05T13:14:03.000Z",
+              "uid": "35240-44616870-9be4-4ede-8b1b-1710c8bf8eb4"
+            },
+            {
+              "id": "50a82247-30f7-4fcc-a323-61af8fbcb968",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyName\": \"<string>\",\n  \"email\": \"<email>\",\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"phoneNumber\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"partnerCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T13:14:03.000Z",
+              "updatedAt": "2026-06-05T13:14:03.000Z",
+              "uid": "35240-50a82247-30f7-4fcc-a323-61af8fbcb968"
+            }
+          ],
+          "createdAt": "2026-06-05T13:14:03.000Z",
+          "updatedAt": "2026-06-05T13:14:03.000Z",
+          "uid": "35240-5e061c0e-e807-4a1d-85c8-a9ce3c3175f9"
+        }
+      ],
+      "id": "a20c14b3-2651-4077-b17b-df7443f9a791",
+      "createdAt": "2026-06-05T13:14:03.000Z",
+      "updatedAt": "2026-06-05T13:14:03.000Z",
+      "uid": "35240-a20c14b3-2651-4077-b17b-df7443f9a791"
+    },
+    {
+      "name": "orders",
+      "item": [
+        {
+          "name": "{orderId}",
+          "item": [
+            {
+              "name": "Avalara Get Order Details",
+              "id": "c247089b-5c09-41a6-ac11-97338f8379b9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/orders/:orderId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders",
+                    ":orderId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "00074652-2f61-401a-bf5a-547b8a01bc9a",
+                      "key": "orderId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "4d6bdaa7-8e5c-4382-bede-8951353c640d",
+                  "name": "Order details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/orders/:orderId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "orders",
+                        ":orderId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "orderId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"orderId\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"status\": \"Completed\",\n  \"createdDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:14:03.000Z",
+                  "updatedAt": "2026-06-05T13:14:03.000Z",
+                  "uid": "35240-4d6bdaa7-8e5c-4382-bede-8951353c640d"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:03.000Z",
+              "updatedAt": "2026-06-05T13:14:03.000Z",
+              "uid": "35240-c247089b-5c09-41a6-ac11-97338f8379b9"
+            }
+          ],
+          "id": "142ad226-821e-46f8-911b-75825440c158",
+          "createdAt": "2026-06-05T13:14:03.000Z",
+          "updatedAt": "2026-06-05T13:14:03.000Z",
+          "uid": "35240-142ad226-821e-46f8-911b-75825440c158"
+        },
+        {
+          "name": "Avalara Create a Sales Order",
+          "id": "0432baba-e603-4437-a2a3-cfd046ec2fcd",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"<string>\",\n  \"products\": [\n    {\n      \"productCode\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"productCode\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"campaignId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/orders",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "orders"
+              ]
+            },
+            "description": "Creates a new sales order for Avalara products and services."
+          },
+          "response": [
+            {
+              "id": "3f937c16-643c-43cc-b1a2-87aaa650d038",
+              "name": "Order created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<string>\",\n  \"products\": [\n    {\n      \"productCode\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    },\n    {\n      \"productCode\": \"<string>\",\n      \"quantity\": \"<integer>\"\n    }\n  ],\n  \"campaignId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/orders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "orders"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"orderId\": \"<string>\",\n  \"accountId\": \"<string>\",\n  \"status\": \"Completed\",\n  \"createdDate\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T13:14:03.000Z",
+              "updatedAt": "2026-06-05T13:14:03.000Z",
+              "uid": "35240-3f937c16-643c-43cc-b1a2-87aaa650d038"
+            }
+          ],
+          "createdAt": "2026-06-05T13:14:03.000Z",
+          "updatedAt": "2026-06-05T13:14:03.000Z",
+          "uid": "35240-0432baba-e603-4437-a2a3-cfd046ec2fcd"
+        }
+      ],
+      "id": "457433f4-c927-459b-8f5e-c7272dee21b2",
+      "createdAt": "2026-06-05T13:14:03.000Z",
+      "updatedAt": "2026-06-05T13:14:03.000Z",
+      "uid": "35240-457433f4-c927-459b-8f5e-c7272dee21b2"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.avalara.com/business/v1"
+    }
+  ]
+}

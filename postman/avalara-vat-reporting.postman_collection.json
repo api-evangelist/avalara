@@ -1,0 +1,725 @@
+{
+  "info": {
+    "_postman_id": "96c93d6d-c97a-4c79-a7fb-d8cdde7218e8",
+    "name": "Avalara VAT Reporting API",
+    "description": "The Avalara VAT Reporting API orchestrates end-to-end VAT compliance workflows including onboarding, file ingress, error handling, filing of VAT Returns, EC Listings, Intrastat, and transaction reporting across multiple jurisdictions.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:13:55.000Z",
+    "updatedAt": "2026-06-05T13:13:55.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-96c93d6d-c97a-4c79-a7fb-d8cdde7218e8"
+  },
+  "item": [
+    {
+      "name": "returns",
+      "item": [
+        {
+          "name": "{returnId}",
+          "item": [
+            {
+              "name": "submit",
+              "item": [
+                {
+                  "name": "Avalara Submit a VAT Return for Filing",
+                  "id": "8fe4bc1d-4a19-40e7-a761-4a966cb9e68e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/returns/:returnId/submit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "returns",
+                        ":returnId",
+                        "submit"
+                      ],
+                      "variable": [
+                        {
+                          "id": "312f179e-0e0c-4e03-9a80-5f4551602301",
+                          "key": "returnId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Submits a finalized VAT return to the relevant tax authority."
+                  },
+                  "response": [
+                    {
+                      "id": "afe5eb34-9483-4cb4-9f65-810c45ad0570",
+                      "name": "Return submitted",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/returns/:returnId/submit",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "returns",
+                            ":returnId",
+                            "submit"
+                          ],
+                          "variable": [
+                            {
+                              "key": "returnId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"returnId\": \"<string>\",\n  \"companyId\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"vatRegistrationNumber\": \"<string>\",\n  \"returnType\": \"ECListing\",\n  \"periodStart\": \"<date>\",\n  \"periodEnd\": \"<date>\",\n  \"status\": \"Rejected\",\n  \"totalOutputVAT\": \"<double>\",\n  \"totalInputVAT\": \"<double>\",\n  \"netVATDue\": \"<double>\",\n  \"submissionDate\": \"<dateTime>\",\n  \"currency\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T13:13:56.000Z",
+                      "updatedAt": "2026-06-05T13:13:56.000Z",
+                      "uid": "35240-afe5eb34-9483-4cb4-9f65-810c45ad0570"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:13:56.000Z",
+                  "updatedAt": "2026-06-05T13:13:56.000Z",
+                  "uid": "35240-8fe4bc1d-4a19-40e7-a761-4a966cb9e68e"
+                }
+              ],
+              "id": "e3452a03-76ef-431c-9e5c-f073f832eb26",
+              "createdAt": "2026-06-05T13:13:56.000Z",
+              "updatedAt": "2026-06-05T13:13:56.000Z",
+              "uid": "35240-e3452a03-76ef-431c-9e5c-f073f832eb26"
+            },
+            {
+              "name": "Avalara Get a VAT Return by ID",
+              "id": "eaafa1a4-1f38-4eb8-aebb-e4db73d6ed40",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/returns/:returnId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "returns",
+                    ":returnId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "822ca994-ab92-40d0-bd34-b168bc2fdc19",
+                      "key": "returnId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "544ef651-6e8b-4635-99d8-c7b754fa6bf7",
+                  "name": "VAT return details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/returns/:returnId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "returns",
+                        ":returnId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "returnId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"returnId\": \"<string>\",\n  \"companyId\": \"<string>\",\n  \"countryCode\": \"<string>\",\n  \"vatRegistrationNumber\": \"<string>\",\n  \"returnType\": \"ECListing\",\n  \"periodStart\": \"<date>\",\n  \"periodEnd\": \"<date>\",\n  \"status\": \"Rejected\",\n  \"totalOutputVAT\": \"<double>\",\n  \"totalInputVAT\": \"<double>\",\n  \"netVATDue\": \"<double>\",\n  \"submissionDate\": \"<dateTime>\",\n  \"currency\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:13:56.000Z",
+                  "updatedAt": "2026-06-05T13:13:56.000Z",
+                  "uid": "35240-544ef651-6e8b-4635-99d8-c7b754fa6bf7"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:56.000Z",
+              "updatedAt": "2026-06-05T13:13:56.000Z",
+              "uid": "35240-eaafa1a4-1f38-4eb8-aebb-e4db73d6ed40"
+            }
+          ],
+          "id": "3334d5e1-8686-430f-9b2c-ad19072e0b12",
+          "createdAt": "2026-06-05T13:13:56.000Z",
+          "updatedAt": "2026-06-05T13:13:56.000Z",
+          "uid": "35240-3334d5e1-8686-430f-9b2c-ad19072e0b12"
+        },
+        {
+          "name": "Avalara List VAT Returns",
+          "id": "ac776401-b795-49c2-ba64-d78ba1fc78a0",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/returns?status=Draft&periodStart=<date>&periodEnd=<date>&countryCode=<string>&$top=<integer>&$skip=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "returns"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Draft"
+                },
+                {
+                  "key": "periodStart",
+                  "value": "<date>"
+                },
+                {
+                  "key": "periodEnd",
+                  "value": "<date>"
+                },
+                {
+                  "key": "countryCode",
+                  "value": "<string>"
+                },
+                {
+                  "key": "$top",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "$skip",
+                  "value": "<integer>"
+                }
+              ]
+            },
+            "description": "Retrieves VAT returns with optional filtering by status and period."
+          },
+          "response": [
+            {
+              "id": "f877e7a0-bc31-4189-82db-4080a73cb736",
+              "name": "List of VAT returns",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/returns?status=Draft&periodStart=<date>&periodEnd=<date>&countryCode=<string>&$top=<integer>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "returns"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "Draft"
+                    },
+                    {
+                      "key": "periodStart",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "periodEnd",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"@recordSetCount\": \"<integer>\",\n  \"value\": [\n    {\n      \"returnId\": \"<string>\",\n      \"companyId\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"vatRegistrationNumber\": \"<string>\",\n      \"returnType\": \"Intrastat\",\n      \"periodStart\": \"<date>\",\n      \"periodEnd\": \"<date>\",\n      \"status\": \"Accepted\",\n      \"totalOutputVAT\": \"<double>\",\n      \"totalInputVAT\": \"<double>\",\n      \"netVATDue\": \"<double>\",\n      \"submissionDate\": \"<dateTime>\",\n      \"currency\": \"<string>\"\n    },\n    {\n      \"returnId\": \"<string>\",\n      \"companyId\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"vatRegistrationNumber\": \"<string>\",\n      \"returnType\": \"Intrastat\",\n      \"periodStart\": \"<date>\",\n      \"periodEnd\": \"<date>\",\n      \"status\": \"Rejected\",\n      \"totalOutputVAT\": \"<double>\",\n      \"totalInputVAT\": \"<double>\",\n      \"netVATDue\": \"<double>\",\n      \"submissionDate\": \"<dateTime>\",\n      \"currency\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T13:13:56.000Z",
+              "updatedAt": "2026-06-05T13:13:56.000Z",
+              "uid": "35240-f877e7a0-bc31-4189-82db-4080a73cb736"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:56.000Z",
+          "updatedAt": "2026-06-05T13:13:56.000Z",
+          "uid": "35240-ac776401-b795-49c2-ba64-d78ba1fc78a0"
+        }
+      ],
+      "id": "b8cec137-e87c-4c9b-995d-8543e8552268",
+      "createdAt": "2026-06-05T13:13:56.000Z",
+      "updatedAt": "2026-06-05T13:13:56.000Z",
+      "uid": "35240-b8cec137-e87c-4c9b-995d-8543e8552268"
+    },
+    {
+      "name": "transactions",
+      "item": [
+        {
+          "name": "Avalara Submit VAT Transactions",
+          "id": "6995a316-716d-4cbc-aa3e-9d1420ba3589",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyId\": \"<string>\",\n  \"transactions\": [\n    {\n      \"transactionId\": \"<string>\",\n      \"transactionDate\": \"<date>\",\n      \"transactionType\": \"IntraCommunitySupply\",\n      \"invoiceNumber\": \"<string>\",\n      \"supplierVATNumber\": \"<string>\",\n      \"customerVATNumber\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"netAmount\": \"<double>\",\n      \"vatRate\": \"<double>\",\n      \"vatAmount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    {\n      \"transactionId\": \"<string>\",\n      \"transactionDate\": \"<date>\",\n      \"transactionType\": \"Export\",\n      \"invoiceNumber\": \"<string>\",\n      \"supplierVATNumber\": \"<string>\",\n      \"customerVATNumber\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"netAmount\": \"<double>\",\n      \"vatRate\": \"<double>\",\n      \"vatAmount\": \"<double>\",\n      \"currency\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/transactions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions"
+              ]
+            },
+            "description": "Submits a batch of transactions for VAT reporting. Transactions are validated and processed for inclusion in VAT returns."
+          },
+          "response": [
+            {
+              "id": "9528e637-9e60-44c6-a498-fd6bfe9fe660",
+              "name": "Transactions accepted for processing",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": \"<string>\",\n  \"transactions\": [\n    {\n      \"transactionId\": \"<string>\",\n      \"transactionDate\": \"<date>\",\n      \"transactionType\": \"IntraCommunitySupply\",\n      \"invoiceNumber\": \"<string>\",\n      \"supplierVATNumber\": \"<string>\",\n      \"customerVATNumber\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"netAmount\": \"<double>\",\n      \"vatRate\": \"<double>\",\n      \"vatAmount\": \"<double>\",\n      \"currency\": \"<string>\"\n    },\n    {\n      \"transactionId\": \"<string>\",\n      \"transactionDate\": \"<date>\",\n      \"transactionType\": \"Export\",\n      \"invoiceNumber\": \"<string>\",\n      \"supplierVATNumber\": \"<string>\",\n      \"customerVATNumber\": \"<string>\",\n      \"countryCode\": \"<string>\",\n      \"netAmount\": \"<double>\",\n      \"vatRate\": \"<double>\",\n      \"vatAmount\": \"<double>\",\n      \"currency\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/transactions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ]
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T13:13:56.000Z",
+              "updatedAt": "2026-06-05T13:13:56.000Z",
+              "uid": "35240-9528e637-9e60-44c6-a498-fd6bfe9fe660"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:56.000Z",
+          "updatedAt": "2026-06-05T13:13:56.000Z",
+          "uid": "35240-6995a316-716d-4cbc-aa3e-9d1420ba3589"
+        },
+        {
+          "name": "Avalara List Submitted Transactions",
+          "id": "638e68c9-de15-457a-a701-ca68f28e22c9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/transactions?$top=<integer>&$skip=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions"
+              ],
+              "query": [
+                {
+                  "key": "$top",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "$skip",
+                  "value": "<integer>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "d9c08c00-7aad-4473-96aa-deab8e4d8342",
+              "name": "List of transactions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?$top=<integer>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T13:13:56.000Z",
+              "updatedAt": "2026-06-05T13:13:56.000Z",
+              "uid": "35240-d9c08c00-7aad-4473-96aa-deab8e4d8342"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:56.000Z",
+          "updatedAt": "2026-06-05T13:13:56.000Z",
+          "uid": "35240-638e68c9-de15-457a-a701-ca68f28e22c9"
+        }
+      ],
+      "id": "b9e65507-113a-477e-9aff-970c8308c2d3",
+      "createdAt": "2026-06-05T13:13:56.000Z",
+      "updatedAt": "2026-06-05T13:13:56.000Z",
+      "uid": "35240-b9e65507-113a-477e-9aff-970c8308c2d3"
+    },
+    {
+      "name": "onboarding",
+      "item": [
+        {
+          "name": "Avalara Onboard a Company for VAT Reporting",
+          "id": "a4859ce8-f2fa-4405-803a-07b9033259ff",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyId\": \"<string>\",\n  \"countries\": [\n    {\n      \"countryCode\": \"<string>\",\n      \"vatRegistrationNumber\": \"<string>\",\n      \"filingFrequency\": \"Annual\"\n    },\n    {\n      \"countryCode\": \"<string>\",\n      \"vatRegistrationNumber\": \"<string>\",\n      \"filingFrequency\": \"Monthly\"\n    }\n  ],\n  \"companyName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/onboarding",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "onboarding"
+              ]
+            },
+            "description": "Initiates the onboarding process for a company to begin VAT reporting in one or more jurisdictions."
+          },
+          "response": [
+            {
+              "id": "d7435c25-b33d-44cf-8ce0-a7626c190a99",
+              "name": "Onboarding initiated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": \"<string>\",\n  \"countries\": [\n    {\n      \"countryCode\": \"<string>\",\n      \"vatRegistrationNumber\": \"<string>\",\n      \"filingFrequency\": \"Annual\"\n    },\n    {\n      \"countryCode\": \"<string>\",\n      \"vatRegistrationNumber\": \"<string>\",\n      \"filingFrequency\": \"Monthly\"\n    }\n  ],\n  \"companyName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/onboarding",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "onboarding"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T13:13:56.000Z",
+              "updatedAt": "2026-06-05T13:13:56.000Z",
+              "uid": "35240-d7435c25-b33d-44cf-8ce0-a7626c190a99"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:56.000Z",
+          "updatedAt": "2026-06-05T13:13:56.000Z",
+          "uid": "35240-a4859ce8-f2fa-4405-803a-07b9033259ff"
+        }
+      ],
+      "id": "0ed42309-1550-4c70-92e6-46be4058dee5",
+      "createdAt": "2026-06-05T13:13:56.000Z",
+      "updatedAt": "2026-06-05T13:13:56.000Z",
+      "uid": "35240-0ed42309-1550-4c70-92e6-46be4058dee5"
+    },
+    {
+      "name": "filing-calendars",
+      "item": [
+        {
+          "name": "Avalara List Filing Calendar Obligations",
+          "id": "4ac0e9bf-a80c-45d7-9fdb-6049e8ea1341",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/filing-calendars?countryCode=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "filing-calendars"
+              ],
+              "query": [
+                {
+                  "key": "countryCode",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieves the filing calendar showing due dates and obligations for each jurisdiction and filing period."
+          },
+          "response": [
+            {
+              "id": "37772bc6-efcf-45a8-9590-45d0db30be6b",
+              "name": "Filing calendar entries",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/filing-calendars?countryCode=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "filing-calendars"
+                  ],
+                  "query": [
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"countryCode\": \"<string>\",\n    \"returnType\": \"<string>\",\n    \"filingFrequency\": \"<string>\",\n    \"periodStart\": \"<date>\",\n    \"periodEnd\": \"<date>\",\n    \"dueDate\": \"<date>\",\n    \"status\": \"Filed\"\n  },\n  {\n    \"countryCode\": \"<string>\",\n    \"returnType\": \"<string>\",\n    \"filingFrequency\": \"<string>\",\n    \"periodStart\": \"<date>\",\n    \"periodEnd\": \"<date>\",\n    \"dueDate\": \"<date>\",\n    \"status\": \"Overdue\"\n  }\n]",
+              "createdAt": "2026-06-05T13:13:56.000Z",
+              "updatedAt": "2026-06-05T13:13:56.000Z",
+              "uid": "35240-37772bc6-efcf-45a8-9590-45d0db30be6b"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:56.000Z",
+          "updatedAt": "2026-06-05T13:13:56.000Z",
+          "uid": "35240-4ac0e9bf-a80c-45d7-9fdb-6049e8ea1341"
+        }
+      ],
+      "id": "7cae1562-61e9-441b-8aee-9f5b08fc4611",
+      "createdAt": "2026-06-05T13:13:56.000Z",
+      "updatedAt": "2026-06-05T13:13:56.000Z",
+      "uid": "35240-7cae1562-61e9-441b-8aee-9f5b08fc4611"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.avalara.com/vat-reporting/v1"
+    }
+  ]
+}

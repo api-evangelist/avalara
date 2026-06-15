@@ -1,0 +1,1638 @@
+{
+  "info": {
+    "_postman_id": "3283760a-1315-4fe0-aa72-bb98473d8511",
+    "name": "Avalara CertCapture API",
+    "description": "The Avalara CertCapture RESTful API provides document management for tax-exempt sales, including managing exemption certificates, customer records, custom attributes, authentication tokens, and eCommerce token generation. It supports the full certificate lifecycle from creation through validation and expiry tracking.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:13:57.000Z",
+    "updatedAt": "2026-06-05T13:13:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3283760a-1315-4fe0-aa72-bb98473d8511"
+  },
+  "item": [
+    {
+      "name": "certificates",
+      "item": [
+        {
+          "name": "{certificateId}",
+          "item": [
+            {
+              "name": "attachment",
+              "item": [
+                {
+                  "name": "Avalara Download Certificate Attachment",
+                  "id": "d53764f9-c9ea-4fdc-a953-94242d54401b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/pdf"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificateId/attachment",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificateId",
+                        "attachment"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ed6e48c9-10d5-4406-801d-ff028b2f2e19",
+                          "key": "certificateId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Downloads the PDF or image attachment for a certificate."
+                  },
+                  "response": [
+                    {
+                      "id": "f08c5bc6-5f45-47aa-b06f-263da1954458",
+                      "name": "Certificate attachment",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/pdf"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/certificates/:certificateId/attachment",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "certificates",
+                            ":certificateId",
+                            "attachment"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certificateId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/pdf"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<binary>",
+                      "createdAt": "2026-06-05T13:13:58.000Z",
+                      "updatedAt": "2026-06-05T13:13:58.000Z",
+                      "uid": "35240-f08c5bc6-5f45-47aa-b06f-263da1954458"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:13:58.000Z",
+                  "updatedAt": "2026-06-05T13:13:58.000Z",
+                  "uid": "35240-d53764f9-c9ea-4fdc-a953-94242d54401b"
+                },
+                {
+                  "name": "Avalara Upload Certificate Attachment",
+                  "id": "0703d86a-e2a3-471d-b468-0ad6254b030d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "key": "file",
+                          "type": "file",
+                          "value": null
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificateId/attachment",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificateId",
+                        "attachment"
+                      ],
+                      "variable": [
+                        {
+                          "id": "63e56eca-d0dd-44d2-97ec-a7bd3ff1a52b",
+                          "key": "certificateId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "f5034020-414f-48c6-8272-413ec9f2d1b1",
+                      "name": "Attachment uploaded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "multipart/form-data"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "formdata",
+                          "formdata": [
+                            {
+                              "key": "file",
+                              "type": "file"
+                            }
+                          ]
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/certificates/:certificateId/attachment",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "certificates",
+                            ":certificateId",
+                            "attachment"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certificateId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:13:58.000Z",
+                      "updatedAt": "2026-06-05T13:13:58.000Z",
+                      "uid": "35240-f5034020-414f-48c6-8272-413ec9f2d1b1"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:13:58.000Z",
+                  "updatedAt": "2026-06-05T13:13:58.000Z",
+                  "uid": "35240-0703d86a-e2a3-471d-b468-0ad6254b030d"
+                }
+              ],
+              "id": "c3444838-71c3-4ed5-9af7-1bd66cf04f50",
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-c3444838-71c3-4ed5-9af7-1bd66cf04f50"
+            },
+            {
+              "name": "Avalara Get a Certificate",
+              "id": "142fe116-7feb-4a55-8692-ae4dfc21be58",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/certificates/:certificateId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "certificates",
+                    ":certificateId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "28992bb4-642b-47ce-80d0-5f53f796ca99",
+                      "key": "certificateId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Retrieves a single certificate by its ID."
+              },
+              "response": [
+                {
+                  "id": "30fdf80d-a0e7-4455-8ee7-46211acedcf6",
+                  "name": "Certificate details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificateId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificateId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificateId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"certificateNumber\": \"<string>\",\n  \"status\": \"Expired\",\n  \"signedDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"exemptionNumber\": \"<string>\",\n  \"exemptionReason\": \"<string>\",\n  \"exemptPercentage\": \"<double>\",\n  \"exposureZone\": \"<string>\",\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"customerCode\": \"<string>\",\n    \"name\": \"<string>\",\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"emailAddress\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n  },\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:13:58.000Z",
+                  "updatedAt": "2026-06-05T13:13:58.000Z",
+                  "uid": "35240-30fdf80d-a0e7-4455-8ee7-46211acedcf6"
+                },
+                {
+                  "id": "9f4d3b7c-c75a-409a-a8c8-2c0404bbe0f5",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificateId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificateId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificateId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T13:13:58.000Z",
+                  "updatedAt": "2026-06-05T13:13:58.000Z",
+                  "uid": "35240-9f4d3b7c-c75a-409a-a8c8-2c0404bbe0f5"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-142fe116-7feb-4a55-8692-ae4dfc21be58"
+            },
+            {
+              "name": "Avalara Update a Certificate",
+              "id": "9e540090-1598-4faf-8149-b4062957c2d1",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"exemptionReason\": \"<string>\",\n  \"exposureZone\": \"<string>\",\n  \"exemptionNumber\": \"<string>\",\n  \"signedDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"exemptPercentage\": \"<double>\",\n  \"customerCode\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/certificates/:certificateId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "certificates",
+                    ":certificateId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "0818ae67-cb3c-4ab3-8bc4-391356966a18",
+                      "key": "certificateId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "beacb66a-8702-45cb-8b39-395a0297da57",
+                  "name": "Certificate updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"exemptionReason\": \"<string>\",\n  \"exposureZone\": \"<string>\",\n  \"exemptionNumber\": \"<string>\",\n  \"signedDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"exemptPercentage\": \"<double>\",\n  \"customerCode\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificateId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificateId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificateId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"certificateNumber\": \"<string>\",\n  \"status\": \"Expired\",\n  \"signedDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"exemptionNumber\": \"<string>\",\n  \"exemptionReason\": \"<string>\",\n  \"exemptPercentage\": \"<double>\",\n  \"exposureZone\": \"<string>\",\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"customerCode\": \"<string>\",\n    \"name\": \"<string>\",\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"emailAddress\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n  },\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:13:58.000Z",
+                  "updatedAt": "2026-06-05T13:13:58.000Z",
+                  "uid": "35240-beacb66a-8702-45cb-8b39-395a0297da57"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-9e540090-1598-4faf-8149-b4062957c2d1"
+            },
+            {
+              "name": "Avalara Delete a Certificate",
+              "id": "c4936ee5-850f-4604-890e-ae13602a9f66",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/certificates/:certificateId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "certificates",
+                    ":certificateId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "06c70bf8-d2bb-4327-ae50-0ff099cc242f",
+                      "key": "certificateId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "fda0f064-fba5-405b-9ec8-a3a23bcd9cd2",
+                  "name": "Certificate deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/certificates/:certificateId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "certificates",
+                        ":certificateId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "certificateId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:13:58.000Z",
+                  "updatedAt": "2026-06-05T13:13:58.000Z",
+                  "uid": "35240-fda0f064-fba5-405b-9ec8-a3a23bcd9cd2"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-c4936ee5-850f-4604-890e-ae13602a9f66"
+            }
+          ],
+          "id": "7d0c09ad-d9c6-4e86-a15b-d3af9236c75f",
+          "createdAt": "2026-06-05T13:13:58.000Z",
+          "updatedAt": "2026-06-05T13:13:58.000Z",
+          "uid": "35240-7d0c09ad-d9c6-4e86-a15b-d3af9236c75f"
+        },
+        {
+          "name": "Avalara List Certificates",
+          "id": "73f1f5b5-a2b8-47b3-a307-f36341f433dc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/certificates?status=Expired&customerId=<string>&page=1&pageSize=50",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "certificates"
+              ],
+              "query": [
+                {
+                  "key": "status",
+                  "value": "Expired"
+                },
+                {
+                  "key": "customerId",
+                  "value": "<string>"
+                },
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "50"
+                }
+              ]
+            },
+            "description": "Retrieves a filtered list of exemption certificates."
+          },
+          "response": [
+            {
+              "id": "48686fd8-a70d-4d3b-9990-11f74c0c6212",
+              "name": "List of certificates",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/certificates?status=Expired&customerId=<string>&page=1&pageSize=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "certificates"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "Expired"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"totalCount\": \"<integer>\",\n  \"value\": [\n    {\n      \"id\": \"<string>\",\n      \"certificateNumber\": \"<string>\",\n      \"status\": \"Revoked\",\n      \"signedDate\": \"<date>\",\n      \"expirationDate\": \"<date>\",\n      \"exemptionNumber\": \"<string>\",\n      \"exemptionReason\": \"<string>\",\n      \"exemptPercentage\": \"<double>\",\n      \"exposureZone\": \"<string>\",\n      \"customer\": {\n        \"id\": \"<string>\",\n        \"customerCode\": \"<string>\",\n        \"name\": \"<string>\",\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"emailAddress\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      },\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"certificateNumber\": \"<string>\",\n      \"status\": \"Pending\",\n      \"signedDate\": \"<date>\",\n      \"expirationDate\": \"<date>\",\n      \"exemptionNumber\": \"<string>\",\n      \"exemptionReason\": \"<string>\",\n      \"exemptPercentage\": \"<double>\",\n      \"exposureZone\": \"<string>\",\n      \"customer\": {\n        \"id\": \"<string>\",\n        \"customerCode\": \"<string>\",\n        \"name\": \"<string>\",\n        \"line1\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\",\n        \"emailAddress\": \"<string>\",\n        \"phoneNumber\": \"<string>\"\n      },\n      \"createdDate\": \"<dateTime>\",\n      \"modifiedDate\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-48686fd8-a70d-4d3b-9990-11f74c0c6212"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:58.000Z",
+          "updatedAt": "2026-06-05T13:13:58.000Z",
+          "uid": "35240-73f1f5b5-a2b8-47b3-a307-f36341f433dc"
+        },
+        {
+          "name": "Avalara Create a Certificate",
+          "id": "37cb14b0-2832-4657-b8a2-7725813f3c84",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"exemptionReason\": \"<string>\",\n  \"exposureZone\": \"<string>\",\n  \"exemptionNumber\": \"<string>\",\n  \"signedDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"exemptPercentage\": \"<double>\",\n  \"customerCode\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/certificates",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "certificates"
+              ]
+            },
+            "description": "Creates a new exemption certificate record."
+          },
+          "response": [
+            {
+              "id": "3489cdcd-ac46-492c-8095-70f90849dfe1",
+              "name": "Certificate created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"exemptionReason\": \"<string>\",\n  \"exposureZone\": \"<string>\",\n  \"exemptionNumber\": \"<string>\",\n  \"signedDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"exemptPercentage\": \"<double>\",\n  \"customerCode\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/certificates",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "certificates"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"id\": \"<string>\",\n  \"certificateNumber\": \"<string>\",\n  \"status\": \"Expired\",\n  \"signedDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"exemptionNumber\": \"<string>\",\n  \"exemptionReason\": \"<string>\",\n  \"exemptPercentage\": \"<double>\",\n  \"exposureZone\": \"<string>\",\n  \"customer\": {\n    \"id\": \"<string>\",\n    \"customerCode\": \"<string>\",\n    \"name\": \"<string>\",\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\",\n    \"emailAddress\": \"<string>\",\n    \"phoneNumber\": \"<string>\"\n  },\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-3489cdcd-ac46-492c-8095-70f90849dfe1"
+            },
+            {
+              "id": "a81cef01-132a-4757-804a-bc7cb9e51114",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"exemptionReason\": \"<string>\",\n  \"exposureZone\": \"<string>\",\n  \"exemptionNumber\": \"<string>\",\n  \"signedDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"exemptPercentage\": \"<double>\",\n  \"customerCode\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/certificates",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "certificates"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-a81cef01-132a-4757-804a-bc7cb9e51114"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:58.000Z",
+          "updatedAt": "2026-06-05T13:13:58.000Z",
+          "uid": "35240-37cb14b0-2832-4657-b8a2-7725813f3c84"
+        }
+      ],
+      "id": "4b0cb7f0-3328-4a74-841d-8ccd8b5c229f",
+      "createdAt": "2026-06-05T13:13:58.000Z",
+      "updatedAt": "2026-06-05T13:13:58.000Z",
+      "uid": "35240-4b0cb7f0-3328-4a74-841d-8ccd8b5c229f"
+    },
+    {
+      "name": "customers",
+      "item": [
+        {
+          "name": "{customerId}",
+          "item": [
+            {
+              "name": "certificates",
+              "item": [
+                {
+                  "name": "Avalara List Certificates for a Customer",
+                  "id": "afff0c1b-be9b-446d-b4b8-9b5f7f71be15",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId/certificates",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId",
+                        "certificates"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eee7d04c-0dd1-443f-95ac-ee3288800886",
+                          "key": "customerId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "cc767ca4-1cac-41ee-8b2c-a82a1a901520",
+                      "name": "List of customer certificates",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/customers/:customerId/certificates",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "customers",
+                            ":customerId",
+                            "certificates"
+                          ],
+                          "variable": [
+                            {
+                              "key": "customerId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:13:58.000Z",
+                      "updatedAt": "2026-06-05T13:13:58.000Z",
+                      "uid": "35240-cc767ca4-1cac-41ee-8b2c-a82a1a901520"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:13:58.000Z",
+                  "updatedAt": "2026-06-05T13:13:58.000Z",
+                  "uid": "35240-afff0c1b-be9b-446d-b4b8-9b5f7f71be15"
+                }
+              ],
+              "id": "ec04897b-8e01-4e78-8351-d4b76ca74988",
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-ec04897b-8e01-4e78-8351-d4b76ca74988"
+            },
+            {
+              "name": "Avalara Get a Customer by ID",
+              "id": "c63ed5d6-8890-4939-98aa-1cdc01f6641d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customerId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "d4260548-3a76-4751-aea0-4a1314fe598d",
+                      "key": "customerId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "f685910a-b491-4244-8f8f-abde316d7b9f",
+                  "name": "Customer details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"customerCode\": \"<string>\",\n  \"name\": \"<string>\",\n  \"line1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"region\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"emailAddress\": \"<string>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:13:58.000Z",
+                  "updatedAt": "2026-06-05T13:13:58.000Z",
+                  "uid": "35240-f685910a-b491-4244-8f8f-abde316d7b9f"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-c63ed5d6-8890-4939-98aa-1cdc01f6641d"
+            },
+            {
+              "name": "Avalara Update a Customer",
+              "id": "295ad6b8-8f1b-4536-86f8-9e5d912e4435",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"customerCode\": \"<string>\",\n  \"name\": \"<string>\",\n  \"line1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"region\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"emailAddress\": \"<string>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers/:customerId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers",
+                    ":customerId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "3fad198e-3dcf-480e-8a47-1e6e50f26a53",
+                      "key": "customerId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "de569288-2406-415b-acb6-93fe01146930",
+                  "name": "Customer updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"customerCode\": \"<string>\",\n  \"name\": \"<string>\",\n  \"line1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"region\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"emailAddress\": \"<string>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/customers/:customerId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "customers",
+                        ":customerId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "customerId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:13:58.000Z",
+                  "updatedAt": "2026-06-05T13:13:58.000Z",
+                  "uid": "35240-de569288-2406-415b-acb6-93fe01146930"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-295ad6b8-8f1b-4536-86f8-9e5d912e4435"
+            }
+          ],
+          "id": "e99a2684-4d99-452e-8d29-f84da695e67a",
+          "createdAt": "2026-06-05T13:13:58.000Z",
+          "updatedAt": "2026-06-05T13:13:58.000Z",
+          "uid": "35240-e99a2684-4d99-452e-8d29-f84da695e67a"
+        },
+        {
+          "name": "Avalara List Customers",
+          "id": "a0214d7d-1101-46d8-82b2-1cc2687bde65",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/customers?page=<integer>&pageSize=<integer>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8295b14a-8586-4cfb-a1fe-1aa511d14b77",
+              "name": "List of customers",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/customers?page=<integer>&pageSize=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"totalCount\": \"<integer>\",\n  \"value\": [\n    {\n      \"id\": \"<string>\",\n      \"customerCode\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"emailAddress\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"customerCode\": \"<string>\",\n      \"name\": \"<string>\",\n      \"line1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\",\n      \"emailAddress\": \"<string>\",\n      \"phoneNumber\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-8295b14a-8586-4cfb-a1fe-1aa511d14b77"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:58.000Z",
+          "updatedAt": "2026-06-05T13:13:58.000Z",
+          "uid": "35240-a0214d7d-1101-46d8-82b2-1cc2687bde65"
+        },
+        {
+          "name": "Avalara Create a Customer",
+          "id": "d4bbdbe7-80f6-4e66-a460-4b55fa3b220b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"customerCode\": \"<string>\",\n  \"name\": \"<string>\",\n  \"line1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"region\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"emailAddress\": \"<string>\",\n  \"phoneNumber\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/customers",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "customers"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7ae743a2-3f00-48d8-a70f-f8e3b7246f0a",
+              "name": "Customer created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"customerCode\": \"<string>\",\n  \"name\": \"<string>\",\n  \"line1\": \"<string>\",\n  \"city\": \"<string>\",\n  \"region\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"emailAddress\": \"<string>\",\n  \"phoneNumber\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/customers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "customers"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-7ae743a2-3f00-48d8-a70f-f8e3b7246f0a"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:58.000Z",
+          "updatedAt": "2026-06-05T13:13:58.000Z",
+          "uid": "35240-d4bbdbe7-80f6-4e66-a460-4b55fa3b220b"
+        }
+      ],
+      "id": "420d4cab-49c4-46f1-ab58-5dbb4b43626b",
+      "createdAt": "2026-06-05T13:13:58.000Z",
+      "updatedAt": "2026-06-05T13:13:58.000Z",
+      "uid": "35240-420d4cab-49c4-46f1-ab58-5dbb4b43626b"
+    },
+    {
+      "name": "attributes",
+      "item": [
+        {
+          "name": "Avalara List Certificate Attributes",
+          "id": "c7b866e5-d653-4b88-be18-89cf230f0178",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/attributes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "attributes"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "dc89a5e1-94b1-490e-92fe-274c1fd96c55",
+              "name": "List of attributes",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/attributes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "attributes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"isSystemCode\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"isSystemCode\": \"<boolean>\"\n  }\n]",
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-dc89a5e1-94b1-490e-92fe-274c1fd96c55"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:58.000Z",
+          "updatedAt": "2026-06-05T13:13:58.000Z",
+          "uid": "35240-c7b866e5-d653-4b88-be18-89cf230f0178"
+        }
+      ],
+      "id": "7d4263a5-6c5c-4b97-9aea-a05fda231246",
+      "createdAt": "2026-06-05T13:13:58.000Z",
+      "updatedAt": "2026-06-05T13:13:58.000Z",
+      "uid": "35240-7d4263a5-6c5c-4b97-9aea-a05fda231246"
+    },
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Avalara Get Authentication Token",
+              "id": "de724981-0ce7-4758-87b7-064e46bcea95",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/auth/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "auth",
+                    "token"
+                  ]
+                },
+                "description": "Generates an authentication token for API access."
+              },
+              "response": [
+                {
+                  "id": "623f880a-478c-4b35-b4d6-6e00d00deed1",
+                  "name": "Authentication token",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/auth/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "auth",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"token\": \"<string>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:13:58.000Z",
+                  "updatedAt": "2026-06-05T13:13:58.000Z",
+                  "uid": "35240-623f880a-478c-4b35-b4d6-6e00d00deed1"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-de724981-0ce7-4758-87b7-064e46bcea95"
+            }
+          ],
+          "id": "eb18adde-8993-455b-b366-0cf691ea22d7",
+          "createdAt": "2026-06-05T13:13:58.000Z",
+          "updatedAt": "2026-06-05T13:13:58.000Z",
+          "uid": "35240-eb18adde-8993-455b-b366-0cf691ea22d7"
+        }
+      ],
+      "id": "b720d516-2a41-4651-b3f4-5540ca585bd5",
+      "createdAt": "2026-06-05T13:13:58.000Z",
+      "updatedAt": "2026-06-05T13:13:58.000Z",
+      "uid": "35240-b720d516-2a41-4651-b3f4-5540ca585bd5"
+    },
+    {
+      "name": "ecommerce",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Avalara Generate ECommerce Token",
+              "id": "c8ed5138-4b28-4160-b6ed-7f7c6450ba0f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customerCode\": \"<string>\",\n  \"companyId\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/ecommerce/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "ecommerce",
+                    "token"
+                  ]
+                },
+                "description": "Generates a token for embedding the CertCapture certificate collection widget in eCommerce checkout flows."
+              },
+              "response": [
+                {
+                  "id": "3936c6f7-7512-445b-982b-191ac0963304",
+                  "name": "eCommerce token generated",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"customerCode\": \"<string>\",\n  \"companyId\": \"<integer>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/ecommerce/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "ecommerce",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"token\": \"<string>\",\n  \"expiresAt\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:13:58.000Z",
+                  "updatedAt": "2026-06-05T13:13:58.000Z",
+                  "uid": "35240-3936c6f7-7512-445b-982b-191ac0963304"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:58.000Z",
+              "updatedAt": "2026-06-05T13:13:58.000Z",
+              "uid": "35240-c8ed5138-4b28-4160-b6ed-7f7c6450ba0f"
+            }
+          ],
+          "id": "986cb792-2fab-4220-b54a-cb01c3d32685",
+          "createdAt": "2026-06-05T13:13:58.000Z",
+          "updatedAt": "2026-06-05T13:13:58.000Z",
+          "uid": "35240-986cb792-2fab-4220-b54a-cb01c3d32685"
+        }
+      ],
+      "id": "b1d4dee8-a028-4eee-9e27-41227d602fab",
+      "createdAt": "2026-06-05T13:13:58.000Z",
+      "updatedAt": "2026-06-05T13:13:58.000Z",
+      "uid": "35240-b1d4dee8-a028-4eee-9e27-41227d602fab"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.certcapture.com/v2"
+    }
+  ]
+}

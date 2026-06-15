@@ -1,0 +1,279 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara 1099 & W-9 API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "W-9 Forms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List W-9 Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/w9/requests",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Avalara List W-9 Requests"
+        },
+        {
+          "info": {
+            "name": "Avalara Create a W-9 Collection Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/w9/requests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a W-9 collection request to a payee, allowing them to submit their taxpayer information electronically."
+        },
+        {
+          "info": {
+            "name": "Avalara Get a Completed W-9 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/w9/:w9Id",
+            "params": [
+              {
+                "name": "w9Id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Get a Completed W-9 Form"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "1099 Forms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List 1099 Forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/forms/1099",
+            "params": [
+              {
+                "name": "taxYear",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "formType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Avalara List 1099 Forms"
+        },
+        {
+          "info": {
+            "name": "Avalara Create a 1099 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/forms/1099",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new 1099 information return form with payee and payment information."
+        },
+        {
+          "info": {
+            "name": "Avalara Get a 1099 Form by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/forms/1099/:formId",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Get a 1099 Form by ID"
+        },
+        {
+          "info": {
+            "name": "Avalara Update a 1099 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.avalara.com/1099/v1/forms/1099/:formId",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Update a 1099 Form"
+        },
+        {
+          "info": {
+            "name": "Avalara Delete a 1099 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.avalara.com/1099/v1/forms/1099/:formId",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Delete a 1099 Form"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Filing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Submit Forms for E-filing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/filing/submit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a batch of completed forms to the IRS for electronic filing. Validates all forms before submission."
+        },
+        {
+          "info": {
+            "name": "Avalara Get Filing Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/filing/:filingId/status",
+            "params": [
+              {
+                "name": "filingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the status of an IRS e-filing submission."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Payer Companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/companies"
+          },
+          "docs": "Avalara List Payer Companies"
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Payer Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/companies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Create a Payer Company"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

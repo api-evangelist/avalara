@@ -1,0 +1,453 @@
+{
+  "item": [
+    {
+      "id": "bb880de8-b091-4f2b-9402-c02bb8fb59ec",
+      "name": "Obligations",
+      "description": {
+        "content": "View filing obligations and tax responsibilities",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5dd1bfff-7947-4f8c-a92c-a1fb0b503296",
+          "name": "Avalara Get Filing Obligations for a Property",
+          "request": {
+            "name": "Avalara Get Filing Obligations for a Property",
+            "description": {
+              "content": "Returns a summary of tax filing obligations for a registered property, including which taxes apply and filing frequencies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "properties",
+                ":propertyId",
+                "obligations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "propertyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a56a0472-4d79-41d9-9372-0979f485b230",
+              "name": "Filing obligations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties",
+                    ":propertyId",
+                    "obligations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "propertyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"jurisdiction\": \"string\",\n    \"taxType\": \"string\",\n    \"filingFrequency\": \"Monthly\",\n    \"nextDueDate\": \"2006-06-06\",\n    \"registrationRequired\": false,\n    \"registrationUrl\": \"string\"\n  },\n  {\n    \"jurisdiction\": \"string\",\n    \"taxType\": \"string\",\n    \"filingFrequency\": \"Monthly\",\n    \"nextDueDate\": \"1995-10-17\",\n    \"registrationRequired\": false,\n    \"registrationUrl\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "c69f8b7c-7c4b-485a-afd5-1cd77e8b4dc0",
+      "name": "Properties",
+      "description": {
+        "content": "Manage rental property registrations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "35a38541-007c-4c37-a10b-731e8c9a7749",
+          "name": "Avalara List Registered Properties",
+          "request": {
+            "name": "Avalara List Registered Properties",
+            "description": {},
+            "url": {
+              "path": [
+                "properties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1f8036aa-c040-408c-b268-3cbb7df977e4",
+              "name": "List of properties",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"propertyId\": \"string\",\n    \"propertyName\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    \"listingPlatforms\": [\n      \"string\",\n      \"string\"\n    ],\n    \"propertyType\": \"Apartment\"\n  },\n  {\n    \"propertyId\": \"string\",\n    \"propertyName\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    \"listingPlatforms\": [\n      \"string\",\n      \"string\"\n    ],\n    \"propertyType\": \"Room\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a4c20b0-65b0-4594-a9b7-4477dc869fce",
+          "name": "Avalara Register a Rental Property",
+          "request": {
+            "name": "Avalara Register a Rental Property",
+            "description": {},
+            "url": {
+              "path": [
+                "properties"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"propertyId\": \"<string>\",\n  \"propertyName\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"listingPlatforms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"propertyType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "74967d27-37fb-4897-b8bd-79fa338bf8ea",
+              "name": "Property registered",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "properties"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"propertyId\": \"<string>\",\n  \"propertyName\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"listingPlatforms\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"propertyType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "75d6c5b4-bda9-4017-b391-244f2854b134",
+      "name": "Tax Rates",
+      "description": {
+        "content": "Look up lodging tax rates by location",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "771303f3-7577-4925-a579-5dbea5b7e623",
+          "name": "Avalara Get Lodging Tax Rates",
+          "request": {
+            "name": "Avalara Get Lodging Tax Rates",
+            "description": {
+              "content": "Returns applicable lodging and short-term rental tax rates for a given property location, broken down by jurisdiction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tax-rates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "line1",
+                  "value": "<string>",
+                  "description": "(Required) Street address"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "(Required) State or province"
+                },
+                {
+                  "disabled": false,
+                  "key": "postalCode",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "975573f3-8b02-4b5d-8018-cfbb18d97280",
+              "name": "Lodging tax rates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tax-rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "line1",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "postalCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRate\": 7245.019431493336,\n  \"rates\": [\n    {\n      \"jurisdiction\": \"string\",\n      \"jurisdictionType\": \"City\",\n      \"taxName\": \"string\",\n      \"rate\": 5406.721516603784\n    },\n    {\n      \"jurisdiction\": \"string\",\n      \"jurisdictionType\": \"District\",\n      \"taxName\": \"string\",\n      \"rate\": 3845.2669267080764\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.avalara.com/mylodgetax/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f56e2319-5479-4d28-be60-256c1623d425",
+    "name": "Avalara MyLodgeTax API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MyLodgeTax API provides sales and lodging tax compliance for short-term property rentals. It offers partners access to summarized tax responsibilities for property owners by marketplace, including direct listings and marketplace bookings, with tax rate lookups and filing obligation information.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,592 @@
+{
+  "info": {
+    "_postman_id": "f2048a46-2d9d-4616-8255-958a3cf07647",
+    "name": "Avalara Portal OAuth API",
+    "description": "The Avalara Portal OAuth API provides OAuth token generation and session management endpoints for implementing authentication in Avalara platform integrations, supporting credential-based authentication and SAML assertions.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:14:04.000Z",
+    "updatedAt": "2026-06-05T13:14:04.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f2048a46-2d9d-4616-8255-958a3cf07647"
+  },
+  "item": [
+    {
+      "name": "connect",
+      "item": [
+        {
+          "name": "token",
+          "item": [
+            {
+              "name": "Avalara Obtain an Access Token",
+              "id": "34923572-cad2-4e1c-9d5a-77978b7f8656",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) OAuth 2.0 grant type",
+                      "key": "grant_type",
+                      "value": "urn:ietf:params:oauth:grant-type:saml2-bearer"
+                    },
+                    {
+                      "description": "(Required) OAuth client ID",
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) OAuth client secret",
+                      "key": "client_secret",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Requested scopes (space-delimited)",
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Authorization code (for authorization_code grant)",
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Redirect URI (for authorization_code grant)",
+                      "key": "redirect_uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "SAML assertion (for SAML grant)",
+                      "key": "assertion",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/connect/token",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connect",
+                    "token"
+                  ]
+                },
+                "description": "Obtains an OAuth 2.0 access token using client credentials, authorization code, or SAML assertion grant types."
+              },
+              "response": [
+                {
+                  "id": "51fb5c6a-5076-4aea-8376-da52c9640585",
+                  "name": "Token generated successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) OAuth 2.0 grant type",
+                          "key": "grant_type",
+                          "value": "urn:ietf:params:oauth:grant-type:saml2-bearer"
+                        },
+                        {
+                          "description": "(Required) OAuth client ID",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) OAuth client secret",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Requested scopes (space-delimited)",
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Authorization code (for authorization_code grant)",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Redirect URI (for authorization_code grant)",
+                          "key": "redirect_uri",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "SAML assertion (for SAML grant)",
+                          "key": "assertion",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/connect/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connect",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"access_token\": \"<string>\",\n  \"token_type\": \"Bearer\",\n  \"expires_in\": \"<integer>\",\n  \"scope\": \"<string>\",\n  \"refresh_token\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:14:04.000Z",
+                  "updatedAt": "2026-06-05T13:14:04.000Z",
+                  "uid": "35240-51fb5c6a-5076-4aea-8376-da52c9640585"
+                },
+                {
+                  "id": "d2e22d21-34d2-4d98-8050-05feb8f97e73",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) OAuth 2.0 grant type",
+                          "key": "grant_type",
+                          "value": "urn:ietf:params:oauth:grant-type:saml2-bearer"
+                        },
+                        {
+                          "description": "(Required) OAuth client ID",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) OAuth client secret",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Requested scopes (space-delimited)",
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Authorization code (for authorization_code grant)",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Redirect URI (for authorization_code grant)",
+                          "key": "redirect_uri",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "SAML assertion (for SAML grant)",
+                          "key": "assertion",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/connect/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connect",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"invalid_request\",\n  \"error_description\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:14:04.000Z",
+                  "updatedAt": "2026-06-05T13:14:04.000Z",
+                  "uid": "35240-d2e22d21-34d2-4d98-8050-05feb8f97e73"
+                },
+                {
+                  "id": "1604c592-036b-48bc-b1d3-31fa682d16ce",
+                  "name": "Invalid credentials",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) OAuth 2.0 grant type",
+                          "key": "grant_type",
+                          "value": "urn:ietf:params:oauth:grant-type:saml2-bearer"
+                        },
+                        {
+                          "description": "(Required) OAuth client ID",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) OAuth client secret",
+                          "key": "client_secret",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Requested scopes (space-delimited)",
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Authorization code (for authorization_code grant)",
+                          "key": "code",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Redirect URI (for authorization_code grant)",
+                          "key": "redirect_uri",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "SAML assertion (for SAML grant)",
+                          "key": "assertion",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/connect/token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connect",
+                        "token"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"invalid_request\",\n  \"error_description\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T13:14:04.000Z",
+                  "updatedAt": "2026-06-05T13:14:04.000Z",
+                  "uid": "35240-1604c592-036b-48bc-b1d3-31fa682d16ce"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:04.000Z",
+              "updatedAt": "2026-06-05T13:14:04.000Z",
+              "uid": "35240-34923572-cad2-4e1c-9d5a-77978b7f8656"
+            }
+          ],
+          "id": "5e700a34-62e9-4d96-9435-97d359b1d2ee",
+          "createdAt": "2026-06-05T13:14:04.000Z",
+          "updatedAt": "2026-06-05T13:14:04.000Z",
+          "uid": "35240-5e700a34-62e9-4d96-9435-97d359b1d2ee"
+        },
+        {
+          "name": "authorize",
+          "item": [
+            {
+              "name": "Avalara Authorization Endpoint",
+              "id": "02ff8eab-6413-4e95-9523-05cc029c7d79",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/connect/authorize?response_type=code&client_id=<string>&redirect_uri=<string>&scope=<string>&state=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connect",
+                    "authorize"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "response_type",
+                      "value": "code"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "redirect_uri",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "scope",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "state",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Initiates the OAuth 2.0 authorization code flow by redirecting the user to the Avalara login page."
+              },
+              "response": [
+                {
+                  "id": "1027dd99-6653-4c44-a254-0d09c12f2986",
+                  "name": "Redirect to login page",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/connect/authorize?response_type=code&client_id=<string>&redirect_uri=<string>&scope=<string>&state=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connect",
+                        "authorize"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "response_type",
+                          "value": "code"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "redirect_uri",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "scope",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "state",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Found",
+                  "code": 302,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:14:04.000Z",
+                  "updatedAt": "2026-06-05T13:14:04.000Z",
+                  "uid": "35240-1027dd99-6653-4c44-a254-0d09c12f2986"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:04.000Z",
+              "updatedAt": "2026-06-05T13:14:04.000Z",
+              "uid": "35240-02ff8eab-6413-4e95-9523-05cc029c7d79"
+            }
+          ],
+          "id": "b823d643-1d00-49ae-9347-c06cb4294087",
+          "createdAt": "2026-06-05T13:14:04.000Z",
+          "updatedAt": "2026-06-05T13:14:04.000Z",
+          "uid": "35240-b823d643-1d00-49ae-9347-c06cb4294087"
+        },
+        {
+          "name": "revocation",
+          "item": [
+            {
+              "name": "Avalara Revoke a Token",
+              "id": "a493a7db-16c6-4c9e-ad63-9eca7672b938",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/x-www-form-urlencoded"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "description": "(Required) ",
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "token_type_hint",
+                      "value": "access_token"
+                    },
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "client_secret",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/connect/revocation",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "connect",
+                    "revocation"
+                  ]
+                },
+                "description": "Revokes an active access or refresh token."
+              },
+              "response": [
+                {
+                  "id": "d530fe88-6474-4434-b233-b1f092bae730",
+                  "name": "Token revoked",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/x-www-form-urlencoded"
+                      }
+                    ],
+                    "body": {
+                      "mode": "urlencoded",
+                      "urlencoded": [
+                        {
+                          "description": "(Required) ",
+                          "key": "token",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "token_type_hint",
+                          "value": "access_token"
+                        },
+                        {
+                          "key": "client_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "client_secret",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/connect/revocation",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "connect",
+                        "revocation"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:14:04.000Z",
+                  "updatedAt": "2026-06-05T13:14:04.000Z",
+                  "uid": "35240-d530fe88-6474-4434-b233-b1f092bae730"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:04.000Z",
+              "updatedAt": "2026-06-05T13:14:04.000Z",
+              "uid": "35240-a493a7db-16c6-4c9e-ad63-9eca7672b938"
+            }
+          ],
+          "id": "1f11e488-295a-46d0-9a7d-8471ebc0cb2a",
+          "createdAt": "2026-06-05T13:14:04.000Z",
+          "updatedAt": "2026-06-05T13:14:04.000Z",
+          "uid": "35240-1f11e488-295a-46d0-9a7d-8471ebc0cb2a"
+        }
+      ],
+      "id": "fde41346-0a7e-4464-a916-2b372ac1d207",
+      "createdAt": "2026-06-05T13:14:04.000Z",
+      "updatedAt": "2026-06-05T13:14:04.000Z",
+      "uid": "35240-fde41346-0a7e-4464-a916-2b372ac1d207"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://identity.avalara.com"
+    }
+  ]
+}

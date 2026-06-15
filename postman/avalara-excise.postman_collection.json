@@ -1,0 +1,1334 @@
+{
+  "info": {
+    "_postman_id": "475f4d7e-cc27-4124-a08d-5f733d91a1fe",
+    "name": "Avalara Excise Platform API",
+    "description": "The Avalara Excise Platform API provides an external programmatic interface for excise tax determination on fuel, tobacco, alcohol, and other excise products. It supports tax calculation, business entity management, location configuration, and transaction processing for excise tax compliance across US federal and state jurisdictions.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:13:52.000Z",
+    "updatedAt": "2026-06-05T13:13:52.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-475f4d7e-cc27-4124-a08d-5f733d91a1fe"
+  },
+  "item": [
+    {
+      "name": "TaxDetermination",
+      "item": [
+        {
+          "name": "Avalara Calculate Excise Taxes",
+          "id": "1cacf1f8-bb4d-401f-bf21-40f2c2825705",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"effectiveDate\": \"<date>\",\n  \"transactionLines\": [\n    {\n      \"lineNumber\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"unitOfMeasure\": \"LTR\",\n      \"quantity\": \"<double>\",\n      \"amount\": \"<double>\",\n      \"origin\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"destination\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"billOfLadingNumber\": \"<string>\",\n      \"carrierName\": \"<string>\",\n      \"modeOfTransport\": \"Truck\"\n    },\n    {\n      \"lineNumber\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"unitOfMeasure\": \"LTR\",\n      \"quantity\": \"<double>\",\n      \"amount\": \"<double>\",\n      \"origin\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"destination\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"billOfLadingNumber\": \"<string>\",\n      \"carrierName\": \"<string>\",\n      \"modeOfTransport\": \"Truck\"\n    }\n  ],\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceDate\": \"<date>\",\n  \"titleTransferCode\": \"Destination\",\n  \"transactionType\": \"<string>\",\n  \"seller\": {\n    \"companyId\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"licenseNumber\": \"<string>\"\n  },\n  \"buyer\": {\n    \"companyId\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"licenseNumber\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/TaxDetermination",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "TaxDetermination"
+              ]
+            },
+            "description": "Calculates excise taxes for a transaction containing one or more line items with product, origin, destination, and movement information."
+          },
+          "response": [
+            {
+              "id": "5609575e-f952-453b-a8a9-aaf26672247e",
+              "name": "Tax determination results",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"effectiveDate\": \"<date>\",\n  \"transactionLines\": [\n    {\n      \"lineNumber\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"unitOfMeasure\": \"LTR\",\n      \"quantity\": \"<double>\",\n      \"amount\": \"<double>\",\n      \"origin\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"destination\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"billOfLadingNumber\": \"<string>\",\n      \"carrierName\": \"<string>\",\n      \"modeOfTransport\": \"Truck\"\n    },\n    {\n      \"lineNumber\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"unitOfMeasure\": \"LTR\",\n      \"quantity\": \"<double>\",\n      \"amount\": \"<double>\",\n      \"origin\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"destination\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"billOfLadingNumber\": \"<string>\",\n      \"carrierName\": \"<string>\",\n      \"modeOfTransport\": \"Truck\"\n    }\n  ],\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceDate\": \"<date>\",\n  \"titleTransferCode\": \"Destination\",\n  \"transactionType\": \"<string>\",\n  \"seller\": {\n    \"companyId\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"licenseNumber\": \"<string>\"\n  },\n  \"buyer\": {\n    \"companyId\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"licenseNumber\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/TaxDetermination",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "TaxDetermination"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"Error\",\n  \"transactionLines\": [\n    {\n      \"lineNumber\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"taxes\": [\n        {\n          \"taxType\": \"<string>\",\n          \"jurisdiction\": \"<string>\",\n          \"taxRate\": \"<double>\",\n          \"taxAmount\": \"<double>\",\n          \"taxableAmount\": \"<double>\",\n          \"exemptAmount\": \"<double>\",\n          \"rateType\": \"PerUnit\"\n        },\n        {\n          \"taxType\": \"<string>\",\n          \"jurisdiction\": \"<string>\",\n          \"taxRate\": \"<double>\",\n          \"taxAmount\": \"<double>\",\n          \"taxableAmount\": \"<double>\",\n          \"exemptAmount\": \"<double>\",\n          \"rateType\": \"PerUnit\"\n        }\n      ],\n      \"totalTax\": \"<double>\"\n    },\n    {\n      \"lineNumber\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"taxes\": [\n        {\n          \"taxType\": \"<string>\",\n          \"jurisdiction\": \"<string>\",\n          \"taxRate\": \"<double>\",\n          \"taxAmount\": \"<double>\",\n          \"taxableAmount\": \"<double>\",\n          \"exemptAmount\": \"<double>\",\n          \"rateType\": \"PerUnit\"\n        },\n        {\n          \"taxType\": \"<string>\",\n          \"jurisdiction\": \"<string>\",\n          \"taxRate\": \"<double>\",\n          \"taxAmount\": \"<double>\",\n          \"taxableAmount\": \"<double>\",\n          \"exemptAmount\": \"<double>\",\n          \"rateType\": \"PerUnit\"\n        }\n      ],\n      \"totalTax\": \"<double>\"\n    }\n  ],\n  \"totalTaxAmount\": \"<double>\"\n}",
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-5609575e-f952-453b-a8a9-aaf26672247e"
+            },
+            {
+              "id": "7e11986d-bce3-44ac-a224-9f856e214ec2",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"effectiveDate\": \"<date>\",\n  \"transactionLines\": [\n    {\n      \"lineNumber\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"unitOfMeasure\": \"LTR\",\n      \"quantity\": \"<double>\",\n      \"amount\": \"<double>\",\n      \"origin\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"destination\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"billOfLadingNumber\": \"<string>\",\n      \"carrierName\": \"<string>\",\n      \"modeOfTransport\": \"Truck\"\n    },\n    {\n      \"lineNumber\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"unitOfMeasure\": \"LTR\",\n      \"quantity\": \"<double>\",\n      \"amount\": \"<double>\",\n      \"origin\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"destination\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"billOfLadingNumber\": \"<string>\",\n      \"carrierName\": \"<string>\",\n      \"modeOfTransport\": \"Truck\"\n    }\n  ],\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceDate\": \"<date>\",\n  \"titleTransferCode\": \"Destination\",\n  \"transactionType\": \"<string>\",\n  \"seller\": {\n    \"companyId\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"licenseNumber\": \"<string>\"\n  },\n  \"buyer\": {\n    \"companyId\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"licenseNumber\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/TaxDetermination",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "TaxDetermination"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-7e11986d-bce3-44ac-a224-9f856e214ec2"
+            },
+            {
+              "id": "f756f4d3-be1e-46e3-849e-4772905e4587",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"effectiveDate\": \"<date>\",\n  \"transactionLines\": [\n    {\n      \"lineNumber\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"unitOfMeasure\": \"LTR\",\n      \"quantity\": \"<double>\",\n      \"amount\": \"<double>\",\n      \"origin\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"destination\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"billOfLadingNumber\": \"<string>\",\n      \"carrierName\": \"<string>\",\n      \"modeOfTransport\": \"Truck\"\n    },\n    {\n      \"lineNumber\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"unitOfMeasure\": \"LTR\",\n      \"quantity\": \"<double>\",\n      \"amount\": \"<double>\",\n      \"origin\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"destination\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"billOfLadingNumber\": \"<string>\",\n      \"carrierName\": \"<string>\",\n      \"modeOfTransport\": \"Truck\"\n    }\n  ],\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceDate\": \"<date>\",\n  \"titleTransferCode\": \"Destination\",\n  \"transactionType\": \"<string>\",\n  \"seller\": {\n    \"companyId\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"licenseNumber\": \"<string>\"\n  },\n  \"buyer\": {\n    \"companyId\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"licenseNumber\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/TaxDetermination",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "TaxDetermination"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-f756f4d3-be1e-46e3-849e-4772905e4587"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:53.000Z",
+          "updatedAt": "2026-06-05T13:13:53.000Z",
+          "uid": "35240-1cacf1f8-bb4d-401f-bf21-40f2c2825705"
+        }
+      ],
+      "id": "a4ea4881-c746-4980-bb03-ee90bcbfb6ca",
+      "createdAt": "2026-06-05T13:13:53.000Z",
+      "updatedAt": "2026-06-05T13:13:53.000Z",
+      "uid": "35240-a4ea4881-c746-4980-bb03-ee90bcbfb6ca"
+    },
+    {
+      "name": "Transactions",
+      "item": [
+        {
+          "name": "{transactionId}",
+          "item": [
+            {
+              "name": "Avalara Retrieve an Excise Transaction",
+              "id": "97ae8946-a7db-469c-a9e5-e28fbed09336",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Transactions/:transactionId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Transactions",
+                    ":transactionId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "032f624c-01f2-4420-96ae-e58e15b80f8e",
+                      "key": "transactionId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "260b6f80-1dcc-4fb8-b2dd-6a8df622a731",
+                  "name": "Transaction details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/Transactions/:transactionId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "Transactions",
+                        ":transactionId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "transactionId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"transactionId\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"transactionDate\": \"<date>\",\n  \"transactionType\": \"<string>\",\n  \"status\": \"Committed\",\n  \"totalAmount\": \"<double>\",\n  \"totalTax\": \"<double>\"\n}",
+                  "createdAt": "2026-06-05T13:13:53.000Z",
+                  "updatedAt": "2026-06-05T13:13:53.000Z",
+                  "uid": "35240-260b6f80-1dcc-4fb8-b2dd-6a8df622a731"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-97ae8946-a7db-469c-a9e5-e28fbed09336"
+            }
+          ],
+          "id": "89dacec2-5d99-4e48-bb8b-963ebcdb50a2",
+          "createdAt": "2026-06-05T13:13:53.000Z",
+          "updatedAt": "2026-06-05T13:13:53.000Z",
+          "uid": "35240-89dacec2-5d99-4e48-bb8b-963ebcdb50a2"
+        },
+        {
+          "name": "Avalara List Excise Transactions",
+          "id": "45f23326-dae1-4bef-8a1d-aa1ab2234ac7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/Transactions?startDate=<date>&endDate=<date>&pageNumber=1&pageSize=50",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Transactions"
+              ],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "<date>"
+                },
+                {
+                  "key": "endDate",
+                  "value": "<date>"
+                },
+                {
+                  "key": "pageNumber",
+                  "value": "1"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "50"
+                }
+              ]
+            },
+            "description": "Retrieves a list of excise tax transactions."
+          },
+          "response": [
+            {
+              "id": "a89bc232-e451-4d6c-a73f-ef22b72a2b1e",
+              "name": "List of transactions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Transactions?startDate=<date>&endDate=<date>&pageNumber=1&pageSize=50",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Transactions"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-a89bc232-e451-4d6c-a73f-ef22b72a2b1e"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:53.000Z",
+          "updatedAt": "2026-06-05T13:13:53.000Z",
+          "uid": "35240-45f23326-dae1-4bef-8a1d-aa1ab2234ac7"
+        },
+        {
+          "name": "Avalara Create an Excise Transaction",
+          "id": "1c5dc9a4-ba7a-472d-a33d-a90a81aef2ae",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionId\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"transactionDate\": \"<date>\",\n  \"transactionType\": \"<string>\",\n  \"status\": \"Committed\",\n  \"totalAmount\": \"<double>\",\n  \"totalTax\": \"<double>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/Transactions",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Transactions"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f12d9fcc-fca4-4d18-8437-1626c3b586bf",
+              "name": "Transaction created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionId\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"transactionDate\": \"<date>\",\n  \"transactionType\": \"<string>\",\n  \"status\": \"Committed\",\n  \"totalAmount\": \"<double>\",\n  \"totalTax\": \"<double>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Transactions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Transactions"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"transactionId\": \"<string>\",\n  \"invoiceNumber\": \"<string>\",\n  \"transactionDate\": \"<date>\",\n  \"transactionType\": \"<string>\",\n  \"status\": \"Committed\",\n  \"totalAmount\": \"<double>\",\n  \"totalTax\": \"<double>\"\n}",
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-f12d9fcc-fca4-4d18-8437-1626c3b586bf"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:53.000Z",
+          "updatedAt": "2026-06-05T13:13:53.000Z",
+          "uid": "35240-1c5dc9a4-ba7a-472d-a33d-a90a81aef2ae"
+        }
+      ],
+      "id": "0acbc1e3-9d15-4ed4-ac25-2cf4f556c57b",
+      "createdAt": "2026-06-05T13:13:53.000Z",
+      "updatedAt": "2026-06-05T13:13:53.000Z",
+      "uid": "35240-0acbc1e3-9d15-4ed4-ac25-2cf4f556c57b"
+    },
+    {
+      "name": "BusinessEntities",
+      "item": [
+        {
+          "name": "{entityId}",
+          "item": [
+            {
+              "name": "Avalara Get a Business Entity by ID",
+              "id": "f93e0333-ebd3-4811-a2a8-cdcc4b653ba9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/BusinessEntities/:entityId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "BusinessEntities",
+                    ":entityId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "772b5098-50df-4936-b960-05a6d6312c07",
+                      "key": "entityId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "26f20f9a-a9cc-43e9-9e4c-6e0a789c5961",
+                  "name": "Business entity details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/BusinessEntities/:entityId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "BusinessEntities",
+                        ":entityId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "entityId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"entityId\": \"<string>\",\n  \"entityName\": \"<string>\",\n  \"entityType\": \"<string>\",\n  \"federalIdNumber\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"isActive\": \"<boolean>\"\n}",
+                  "createdAt": "2026-06-05T13:13:53.000Z",
+                  "updatedAt": "2026-06-05T13:13:53.000Z",
+                  "uid": "35240-26f20f9a-a9cc-43e9-9e4c-6e0a789c5961"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-f93e0333-ebd3-4811-a2a8-cdcc4b653ba9"
+            },
+            {
+              "name": "Avalara Update a Business Entity",
+              "id": "b3762229-84d7-4328-8f94-3f7b66788361",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityId\": \"<string>\",\n  \"entityName\": \"<string>\",\n  \"entityType\": \"<string>\",\n  \"federalIdNumber\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"isActive\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/BusinessEntities/:entityId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "BusinessEntities",
+                    ":entityId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "16c3e231-366b-4aaf-964a-8c4942d0a8b1",
+                      "key": "entityId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "9a75e4b9-cf85-4939-9626-9d66c3152bb9",
+                  "name": "Business entity updated",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"entityId\": \"<string>\",\n  \"entityName\": \"<string>\",\n  \"entityType\": \"<string>\",\n  \"federalIdNumber\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"isActive\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/BusinessEntities/:entityId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "BusinessEntities",
+                        ":entityId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "entityId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:13:53.000Z",
+                  "updatedAt": "2026-06-05T13:13:53.000Z",
+                  "uid": "35240-9a75e4b9-cf85-4939-9626-9d66c3152bb9"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-b3762229-84d7-4328-8f94-3f7b66788361"
+            },
+            {
+              "name": "Avalara Delete a Business Entity",
+              "id": "b1b183bd-664a-4c4f-b1c0-78e66f5d108c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/BusinessEntities/:entityId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "BusinessEntities",
+                    ":entityId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "959ea7a2-89cf-4b3c-b0b7-1eb660647beb",
+                      "key": "entityId",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "bd240110-a899-4589-8c58-9a95a59f1fe5",
+                  "name": "Business entity deleted",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/BusinessEntities/:entityId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "BusinessEntities",
+                        ":entityId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "entityId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:13:53.000Z",
+                  "updatedAt": "2026-06-05T13:13:53.000Z",
+                  "uid": "35240-bd240110-a899-4589-8c58-9a95a59f1fe5"
+                }
+              ],
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-b1b183bd-664a-4c4f-b1c0-78e66f5d108c"
+            }
+          ],
+          "id": "ce2cd151-b458-4b7f-82fb-012b695e746b",
+          "createdAt": "2026-06-05T13:13:53.000Z",
+          "updatedAt": "2026-06-05T13:13:53.000Z",
+          "uid": "35240-ce2cd151-b458-4b7f-82fb-012b695e746b"
+        },
+        {
+          "name": "Avalara List Business Entities",
+          "id": "cf6c0455-5a24-45b3-9c43-712b136dac78",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/BusinessEntities",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "BusinessEntities"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fad916bd-5e44-4fdc-b123-6cf5be61f737",
+              "name": "List of business entities",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/BusinessEntities",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "BusinessEntities"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"entityId\": \"<string>\",\n    \"entityName\": \"<string>\",\n    \"entityType\": \"<string>\",\n    \"federalIdNumber\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"isActive\": \"<boolean>\"\n  },\n  {\n    \"entityId\": \"<string>\",\n    \"entityName\": \"<string>\",\n    \"entityType\": \"<string>\",\n    \"federalIdNumber\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"isActive\": \"<boolean>\"\n  }\n]",
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-fad916bd-5e44-4fdc-b123-6cf5be61f737"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:53.000Z",
+          "updatedAt": "2026-06-05T13:13:53.000Z",
+          "uid": "35240-cf6c0455-5a24-45b3-9c43-712b136dac78"
+        },
+        {
+          "name": "Avalara Create a Business Entity",
+          "id": "6e944eb9-dc20-4a15-9abb-fb8cfe3cfa31",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entityId\": \"<string>\",\n  \"entityName\": \"<string>\",\n  \"entityType\": \"<string>\",\n  \"federalIdNumber\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"isActive\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/BusinessEntities",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "BusinessEntities"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ed840738-f15d-4689-946f-1ccb6df8d6d9",
+              "name": "Business entity created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"entityId\": \"<string>\",\n  \"entityName\": \"<string>\",\n  \"entityType\": \"<string>\",\n  \"federalIdNumber\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"isActive\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/BusinessEntities",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "BusinessEntities"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"entityId\": \"<string>\",\n  \"entityName\": \"<string>\",\n  \"entityType\": \"<string>\",\n  \"federalIdNumber\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"isActive\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-ed840738-f15d-4689-946f-1ccb6df8d6d9"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:53.000Z",
+          "updatedAt": "2026-06-05T13:13:53.000Z",
+          "uid": "35240-6e944eb9-dc20-4a15-9abb-fb8cfe3cfa31"
+        }
+      ],
+      "id": "f76ebd5f-2b3c-48d4-b6e6-5858d5706fb2",
+      "createdAt": "2026-06-05T13:13:53.000Z",
+      "updatedAt": "2026-06-05T13:13:53.000Z",
+      "uid": "35240-f76ebd5f-2b3c-48d4-b6e6-5858d5706fb2"
+    },
+    {
+      "name": "Locations",
+      "item": [
+        {
+          "name": "Avalara List Locations",
+          "id": "85929bcd-f07c-410b-b890-08d839f9b74c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/Locations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Locations"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b571495c-5650-44c1-90f7-f09c5cc580c7",
+              "name": "List of locations",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Locations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Locations"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"locationId\": \"<string>\",\n    \"locationName\": \"<string>\",\n    \"locationType\": \"Blender\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"irsTerminalCode\": \"<string>\"\n  },\n  {\n    \"locationId\": \"<string>\",\n    \"locationName\": \"<string>\",\n    \"locationType\": \"Refinery\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"irsTerminalCode\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-b571495c-5650-44c1-90f7-f09c5cc580c7"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:53.000Z",
+          "updatedAt": "2026-06-05T13:13:53.000Z",
+          "uid": "35240-85929bcd-f07c-410b-b890-08d839f9b74c"
+        },
+        {
+          "name": "Avalara Create a Location",
+          "id": "cc9066d6-230e-4932-8e47-b87de13c80a6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"locationId\": \"<string>\",\n  \"locationName\": \"<string>\",\n  \"locationType\": \"Terminal\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"irsTerminalCode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/Locations",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Locations"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3753c4b0-84d6-4801-b4f2-96b02e175fa6",
+              "name": "Location created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"locationId\": \"<string>\",\n  \"locationName\": \"<string>\",\n  \"locationType\": \"Terminal\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"postalCode\": \"<string>\",\n    \"country\": \"<string>\"\n  },\n  \"irsTerminalCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/Locations",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Locations"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-3753c4b0-84d6-4801-b4f2-96b02e175fa6"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:53.000Z",
+          "updatedAt": "2026-06-05T13:13:53.000Z",
+          "uid": "35240-cc9066d6-230e-4932-8e47-b87de13c80a6"
+        }
+      ],
+      "id": "404c3cec-fa80-425f-83ce-fb402a0a8c38",
+      "createdAt": "2026-06-05T13:13:53.000Z",
+      "updatedAt": "2026-06-05T13:13:53.000Z",
+      "uid": "35240-404c3cec-fa80-425f-83ce-fb402a0a8c38"
+    },
+    {
+      "name": "Products",
+      "item": [
+        {
+          "name": "Avalara List Registered Products",
+          "id": "cd54e43b-45cd-44cc-83cd-d112123cab09",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/Products",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Products"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7811b7cc-362b-433c-99be-b9648c68e765",
+              "name": "List of products",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Products",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Products"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"productCode\": \"<string>\",\n    \"productName\": \"<string>\",\n    \"productCategory\": \"Tobacco\",\n    \"unitOfMeasure\": \"<string>\"\n  },\n  {\n    \"productCode\": \"<string>\",\n    \"productName\": \"<string>\",\n    \"productCategory\": \"Diesel\",\n    \"unitOfMeasure\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-7811b7cc-362b-433c-99be-b9648c68e765"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:53.000Z",
+          "updatedAt": "2026-06-05T13:13:53.000Z",
+          "uid": "35240-cd54e43b-45cd-44cc-83cd-d112123cab09"
+        }
+      ],
+      "id": "4265d484-4be8-4de7-86f5-af6dab00df8d",
+      "createdAt": "2026-06-05T13:13:53.000Z",
+      "updatedAt": "2026-06-05T13:13:53.000Z",
+      "uid": "35240-4265d484-4be8-4de7-86f5-af6dab00df8d"
+    },
+    {
+      "name": "Licenses",
+      "item": [
+        {
+          "name": "Avalara List Excise Licenses",
+          "id": "5e0edd2b-1130-49ba-9907-4f359c73b83f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/Licenses",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "Licenses"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "64399d1e-9605-4c53-a49d-0db73f92e651",
+              "name": "List of licenses",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/Licenses",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "Licenses"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"licenseId\": \"<string>\",\n    \"licenseNumber\": \"<string>\",\n    \"licenseType\": \"<string>\",\n    \"issuingJurisdiction\": \"<string>\",\n    \"effectiveDate\": \"<date>\",\n    \"expirationDate\": \"<date>\",\n    \"status\": \"Revoked\"\n  },\n  {\n    \"licenseId\": \"<string>\",\n    \"licenseNumber\": \"<string>\",\n    \"licenseType\": \"<string>\",\n    \"issuingJurisdiction\": \"<string>\",\n    \"effectiveDate\": \"<date>\",\n    \"expirationDate\": \"<date>\",\n    \"status\": \"Revoked\"\n  }\n]",
+              "createdAt": "2026-06-05T13:13:53.000Z",
+              "updatedAt": "2026-06-05T13:13:53.000Z",
+              "uid": "35240-64399d1e-9605-4c53-a49d-0db73f92e651"
+            }
+          ],
+          "createdAt": "2026-06-05T13:13:53.000Z",
+          "updatedAt": "2026-06-05T13:13:53.000Z",
+          "uid": "35240-5e0edd2b-1130-49ba-9907-4f359c73b83f"
+        }
+      ],
+      "id": "a15780d6-08d7-40e6-ac9c-2edcc4ad0c8f",
+      "createdAt": "2026-06-05T13:13:53.000Z",
+      "updatedAt": "2026-06-05T13:13:53.000Z",
+      "uid": "35240-a15780d6-08d7-40e6-ac9c-2edcc4ad0c8f"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://exciseapi.avalara.com/api/v1"
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara AvaTax Brazil API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tax Calculation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Calculate Brazilian Taxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/calculations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calculates applicable Brazilian taxes for a transaction including ICMS, IPI, PIS, COFINS, ISS, and other applicable taxes based on product type, origin, and destination."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Electronic Invoices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Electronic Invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/invoices",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Avalara List Electronic Invoices"
+        },
+        {
+          "info": {
+            "name": "Avalara Issue an Electronic Invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/invoices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Issues a new electronic fiscal document (NF-e, NFS-e, or NFC-e) to Brazilian tax authorities (SEFAZ)."
+        },
+        {
+          "info": {
+            "name": "Avalara Get an Invoice by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/invoices/:invoiceId",
+            "params": [
+              {
+                "name": "invoiceId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Get an Invoice by ID"
+        },
+        {
+          "info": {
+            "name": "Avalara Cancel an Electronic Invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/invoices/:invoiceId/cancel",
+            "params": [
+              {
+                "name": "invoiceId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a cancellation request for an authorized invoice."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/transactions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Avalara List Transactions"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Companies Configured for Brazil",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/companies"
+          },
+          "docs": "Avalara List Companies Configured for Brazil"
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Company Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/companies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Create a Company Configuration"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

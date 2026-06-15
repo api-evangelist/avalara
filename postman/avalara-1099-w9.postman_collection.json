@@ -1,0 +1,1277 @@
+{
+  "info": {
+    "_postman_id": "8031ba3d-e17a-4eed-a368-a023026007cd",
+    "name": "Avalara 1099 & W-9 API",
+    "description": "The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T13:14:07.000Z",
+    "updatedAt": "2026-06-05T13:14:08.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8031ba3d-e17a-4eed-a368-a023026007cd"
+  },
+  "item": [
+    {
+      "name": "w9",
+      "item": [
+        {
+          "name": "requests",
+          "item": [
+            {
+              "name": "Avalara Create a W-9 Collection Request",
+              "id": "eb11f42a-e053-4876-bac4-14992b7e637b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payeeEmail\": \"<email>\",\n  \"payeeName\": \"<string>\",\n  \"companyId\": \"<string>\",\n  \"expirationDays\": 30,\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/w9/requests",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "w9",
+                    "requests"
+                  ]
+                },
+                "description": "Sends a W-9 collection request to a payee, allowing them to submit their taxpayer information electronically."
+              },
+              "response": [
+                {
+                  "id": "81eba323-c9cc-427e-928b-9a6aa5b0027f",
+                  "name": "W-9 request created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"payeeEmail\": \"<email>\",\n  \"payeeName\": \"<string>\",\n  \"companyId\": \"<string>\",\n  \"expirationDays\": 30,\n  \"message\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/w9/requests",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "w9",
+                        "requests"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"requestId\": \"<string>\",\n  \"status\": \"<string>\",\n  \"payeeEmail\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"expirationDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:14:08.000Z",
+                  "updatedAt": "2026-06-05T13:14:08.000Z",
+                  "uid": "35240-81eba323-c9cc-427e-928b-9a6aa5b0027f"
+                },
+                {
+                  "id": "4416fa4d-9cb2-4093-860d-ef563b6335b8",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"payeeEmail\": \"<email>\",\n  \"payeeName\": \"<string>\",\n  \"companyId\": \"<string>\",\n  \"expirationDays\": 30,\n  \"message\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/w9/requests",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "w9",
+                        "requests"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": {\n    \"code\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T13:14:08.000Z",
+                  "updatedAt": "2026-06-05T13:14:08.000Z",
+                  "uid": "35240-4416fa4d-9cb2-4093-860d-ef563b6335b8"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:08.000Z",
+              "updatedAt": "2026-06-05T13:14:08.000Z",
+              "uid": "35240-eb11f42a-e053-4876-bac4-14992b7e637b"
+            },
+            {
+              "name": "Avalara List W-9 Requests",
+              "id": "7aa4b24f-09db-4b8a-9ba8-b425485739d7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/w9/requests?status=Pending&$top=<integer>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "w9",
+                    "requests"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "Pending"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "0e905634-8fb6-409c-8c57-ab91b58cdffc",
+                  "name": "List of W-9 requests",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/w9/requests?status=Pending&$top=<integer>&$skip=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "w9",
+                        "requests"
+                      ],
+                      "query": [
+                        {
+                          "key": "status",
+                          "value": "Pending"
+                        },
+                        {
+                          "key": "$top",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "$skip",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:14:08.000Z",
+                  "updatedAt": "2026-06-05T13:14:08.000Z",
+                  "uid": "35240-0e905634-8fb6-409c-8c57-ab91b58cdffc"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:08.000Z",
+              "updatedAt": "2026-06-05T13:14:08.000Z",
+              "uid": "35240-7aa4b24f-09db-4b8a-9ba8-b425485739d7"
+            }
+          ],
+          "id": "8a4832dd-4bc3-4517-a0fe-dc44bc863caf",
+          "createdAt": "2026-06-05T13:14:08.000Z",
+          "updatedAt": "2026-06-05T13:14:08.000Z",
+          "uid": "35240-8a4832dd-4bc3-4517-a0fe-dc44bc863caf"
+        },
+        {
+          "name": "{w9Id}",
+          "item": [
+            {
+              "name": "Avalara Get a Completed W-9 Form",
+              "id": "ece2f07d-2add-4aa2-a499-96eab8db091a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/w9/:w9Id",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "w9",
+                    ":w9Id"
+                  ],
+                  "variable": [
+                    {
+                      "id": "414163c9-0422-480d-a5ce-0203e6949fe9",
+                      "key": "w9Id",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "2bdcb1d3-d5c3-4092-9835-6f61bc03f4dd",
+                  "name": "W-9 form details",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/w9/:w9Id",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "w9",
+                        ":w9Id"
+                      ],
+                      "variable": [
+                        {
+                          "key": "w9Id"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"payeeName\": \"<string>\",\n  \"businessName\": \"<string>\",\n  \"taxClassification\": \"Individual\",\n  \"tin\": \"<string>\",\n  \"tinType\": \"EIN\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"signedDate\": \"<date>\",\n  \"status\": \"Valid\"\n}",
+                  "createdAt": "2026-06-05T13:14:08.000Z",
+                  "updatedAt": "2026-06-05T13:14:08.000Z",
+                  "uid": "35240-2bdcb1d3-d5c3-4092-9835-6f61bc03f4dd"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:08.000Z",
+              "updatedAt": "2026-06-05T13:14:08.000Z",
+              "uid": "35240-ece2f07d-2add-4aa2-a499-96eab8db091a"
+            }
+          ],
+          "id": "bb905a48-341a-4f13-b641-b6812dc8e330",
+          "createdAt": "2026-06-05T13:14:08.000Z",
+          "updatedAt": "2026-06-05T13:14:08.000Z",
+          "uid": "35240-bb905a48-341a-4f13-b641-b6812dc8e330"
+        }
+      ],
+      "id": "44ea4904-dcd2-4712-b835-f4dc921cf885",
+      "createdAt": "2026-06-05T13:14:08.000Z",
+      "updatedAt": "2026-06-05T13:14:08.000Z",
+      "uid": "35240-44ea4904-dcd2-4712-b835-f4dc921cf885"
+    },
+    {
+      "name": "forms",
+      "item": [
+        {
+          "name": "1099",
+          "item": [
+            {
+              "name": "{formId}",
+              "item": [
+                {
+                  "name": "Avalara Get a 1099 Form by ID",
+                  "id": "1e3a4c04-7784-492d-a70d-bfc52fb6797b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/forms/1099/:formId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "forms",
+                        "1099",
+                        ":formId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9477b374-faac-4fba-b936-2c5eacd901fe",
+                          "key": "formId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "242dbcad-26ad-4dbf-b560-e784304e29f2",
+                      "name": "1099 form details",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/forms/1099/:formId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "forms",
+                            "1099",
+                            ":formId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "formId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"formType\": \"1099-MISC\",\n  \"taxYear\": \"<integer>\",\n  \"payerCompanyId\": \"<string>\",\n  \"payee\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    }\n  },\n  \"amounts\": {\n    \"nulla_613\": \"<double>\"\n  },\n  \"federalTaxWithheld\": \"<double>\",\n  \"stateTaxWithheld\": \"<double>\",\n  \"status\": \"Ready\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T13:14:08.000Z",
+                      "updatedAt": "2026-06-05T13:14:08.000Z",
+                      "uid": "35240-242dbcad-26ad-4dbf-b560-e784304e29f2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:14:08.000Z",
+                  "updatedAt": "2026-06-05T13:14:08.000Z",
+                  "uid": "35240-1e3a4c04-7784-492d-a70d-bfc52fb6797b"
+                },
+                {
+                  "name": "Avalara Update a 1099 Form",
+                  "id": "d94500b4-1543-48a0-b1d5-d318100154f0",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"formType\": \"1099-MISC\",\n  \"taxYear\": \"<integer>\",\n  \"payerCompanyId\": \"<string>\",\n  \"payee\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    }\n  },\n  \"amounts\": {\n    \"nulla_613\": \"<double>\"\n  },\n  \"federalTaxWithheld\": \"<double>\",\n  \"stateTaxWithheld\": \"<double>\",\n  \"status\": \"Ready\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/forms/1099/:formId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "forms",
+                        "1099",
+                        ":formId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d95cc791-0048-43c0-990b-c9c793fb053c",
+                          "key": "formId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "0b7bacbe-fecf-4a18-bbb1-a6c07b666182",
+                      "name": "1099 form updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"formType\": \"1099-MISC\",\n  \"taxYear\": \"<integer>\",\n  \"payerCompanyId\": \"<string>\",\n  \"payee\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    }\n  },\n  \"amounts\": {\n    \"nulla_613\": \"<double>\"\n  },\n  \"federalTaxWithheld\": \"<double>\",\n  \"stateTaxWithheld\": \"<double>\",\n  \"status\": \"Ready\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/forms/1099/:formId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "forms",
+                            "1099",
+                            ":formId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "formId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:14:08.000Z",
+                      "updatedAt": "2026-06-05T13:14:08.000Z",
+                      "uid": "35240-0b7bacbe-fecf-4a18-bbb1-a6c07b666182"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:14:08.000Z",
+                  "updatedAt": "2026-06-05T13:14:08.000Z",
+                  "uid": "35240-d94500b4-1543-48a0-b1d5-d318100154f0"
+                },
+                {
+                  "name": "Avalara Delete a 1099 Form",
+                  "id": "9e6684af-a4f8-48f0-982f-8bf1fa45bcbc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/forms/1099/:formId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "forms",
+                        "1099",
+                        ":formId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eecd4ed8-3574-4a2a-b940-78b9c9aea30f",
+                          "key": "formId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "db41262c-b141-47bb-a787-fe75ed789aea",
+                      "name": "Form deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/forms/1099/:formId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "forms",
+                            "1099",
+                            ":formId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "formId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T13:14:08.000Z",
+                      "updatedAt": "2026-06-05T13:14:08.000Z",
+                      "uid": "35240-db41262c-b141-47bb-a787-fe75ed789aea"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:14:08.000Z",
+                  "updatedAt": "2026-06-05T13:14:08.000Z",
+                  "uid": "35240-9e6684af-a4f8-48f0-982f-8bf1fa45bcbc"
+                }
+              ],
+              "id": "80697940-5850-4d14-bfe5-f09eac1141b5",
+              "createdAt": "2026-06-05T13:14:08.000Z",
+              "updatedAt": "2026-06-05T13:14:08.000Z",
+              "uid": "35240-80697940-5850-4d14-bfe5-f09eac1141b5"
+            },
+            {
+              "name": "Avalara Create a 1099 Form",
+              "id": "4a201e0d-3839-48df-800e-268ef0ae4bc3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"formType\": \"1099-MISC\",\n  \"taxYear\": \"<integer>\",\n  \"payerCompanyId\": \"<string>\",\n  \"payee\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    }\n  },\n  \"amounts\": {\n    \"nulla_613\": \"<double>\"\n  },\n  \"federalTaxWithheld\": \"<double>\",\n  \"stateTaxWithheld\": \"<double>\",\n  \"status\": \"Ready\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/forms/1099",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "forms",
+                    "1099"
+                  ]
+                },
+                "description": "Creates a new 1099 information return form with payee and payment information."
+              },
+              "response": [
+                {
+                  "id": "e076ce9e-9c96-431f-9864-796d30aa4853",
+                  "name": "1099 form created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"formType\": \"1099-MISC\",\n  \"taxYear\": \"<integer>\",\n  \"payerCompanyId\": \"<string>\",\n  \"payee\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    }\n  },\n  \"amounts\": {\n    \"nulla_613\": \"<double>\"\n  },\n  \"federalTaxWithheld\": \"<double>\",\n  \"stateTaxWithheld\": \"<double>\",\n  \"status\": \"Ready\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/forms/1099",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "forms",
+                        "1099"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"formType\": \"1099-MISC\",\n  \"taxYear\": \"<integer>\",\n  \"payerCompanyId\": \"<string>\",\n  \"payee\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    }\n  },\n  \"amounts\": {\n    \"nulla_613\": \"<double>\"\n  },\n  \"federalTaxWithheld\": \"<double>\",\n  \"stateTaxWithheld\": \"<double>\",\n  \"status\": \"Ready\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:14:08.000Z",
+                  "updatedAt": "2026-06-05T13:14:08.000Z",
+                  "uid": "35240-e076ce9e-9c96-431f-9864-796d30aa4853"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:08.000Z",
+              "updatedAt": "2026-06-05T13:14:08.000Z",
+              "uid": "35240-4a201e0d-3839-48df-800e-268ef0ae4bc3"
+            },
+            {
+              "name": "Avalara List 1099 Forms",
+              "id": "aa8dd944-f608-4db2-a725-978d860b8a8d",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/forms/1099?taxYear=<integer>&formType=1099-MISC&status=<string>&$top=<integer>&$skip=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "forms",
+                    "1099"
+                  ],
+                  "query": [
+                    {
+                      "key": "taxYear",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "formType",
+                      "value": "1099-MISC"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ]
+                }
+              },
+              "response": [
+                {
+                  "id": "da64836a-9783-4c51-9467-234d596ab0ab",
+                  "name": "List of 1099 forms",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/forms/1099?taxYear=<integer>&formType=1099-MISC&status=<string>&$top=<integer>&$skip=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "forms",
+                        "1099"
+                      ],
+                      "query": [
+                        {
+                          "key": "taxYear",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "formType",
+                          "value": "1099-MISC"
+                        },
+                        {
+                          "key": "status",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "$top",
+                          "value": "<integer>"
+                        },
+                        {
+                          "key": "$skip",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T13:14:08.000Z",
+                  "updatedAt": "2026-06-05T13:14:08.000Z",
+                  "uid": "35240-da64836a-9783-4c51-9467-234d596ab0ab"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:08.000Z",
+              "updatedAt": "2026-06-05T13:14:08.000Z",
+              "uid": "35240-aa8dd944-f608-4db2-a725-978d860b8a8d"
+            }
+          ],
+          "id": "3adfc081-2721-452c-86c3-2f3983c0a689",
+          "createdAt": "2026-06-05T13:14:08.000Z",
+          "updatedAt": "2026-06-05T13:14:08.000Z",
+          "uid": "35240-3adfc081-2721-452c-86c3-2f3983c0a689"
+        }
+      ],
+      "id": "fa1c5a53-6d53-49ce-b441-cea841d416aa",
+      "createdAt": "2026-06-05T13:14:08.000Z",
+      "updatedAt": "2026-06-05T13:14:08.000Z",
+      "uid": "35240-fa1c5a53-6d53-49ce-b441-cea841d416aa"
+    },
+    {
+      "name": "filing",
+      "item": [
+        {
+          "name": "submit",
+          "item": [
+            {
+              "name": "Avalara Submit Forms for E-filing",
+              "id": "ce426f08-cc44-4007-bbe5-fa8611b97a6a",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taxYear\": \"<integer>\",\n  \"formIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corrected\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/filing/submit",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "filing",
+                    "submit"
+                  ]
+                },
+                "description": "Submits a batch of completed forms to the IRS for electronic filing. Validates all forms before submission."
+              },
+              "response": [
+                {
+                  "id": "ec16c5f5-da04-4772-88f0-c29d1ebbcc6a",
+                  "name": "Filing submission accepted",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"taxYear\": \"<integer>\",\n  \"formIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corrected\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/filing/submit",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "filing",
+                        "submit"
+                      ]
+                    }
+                  },
+                  "status": "Accepted",
+                  "code": 202,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"filingId\": \"<string>\",\n  \"status\": \"Accepted\",\n  \"formCount\": \"<integer>\",\n  \"submittedDate\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T13:14:08.000Z",
+                  "updatedAt": "2026-06-05T13:14:08.000Z",
+                  "uid": "35240-ec16c5f5-da04-4772-88f0-c29d1ebbcc6a"
+                }
+              ],
+              "createdAt": "2026-06-05T13:14:08.000Z",
+              "updatedAt": "2026-06-05T13:14:08.000Z",
+              "uid": "35240-ce426f08-cc44-4007-bbe5-fa8611b97a6a"
+            }
+          ],
+          "id": "58c06699-feff-4b98-b929-7c2b26d5ecf4",
+          "createdAt": "2026-06-05T13:14:08.000Z",
+          "updatedAt": "2026-06-05T13:14:08.000Z",
+          "uid": "35240-58c06699-feff-4b98-b929-7c2b26d5ecf4"
+        },
+        {
+          "name": "{filingId}",
+          "item": [
+            {
+              "name": "status",
+              "item": [
+                {
+                  "name": "Avalara Get Filing Status",
+                  "id": "b731a0d8-4a28-4044-a9d8-140a00236b4f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/filing/:filingId/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "filing",
+                        ":filingId",
+                        "status"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ba8fd2db-f7b4-494b-a958-0f0454a2687c",
+                          "key": "filingId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the status of an IRS e-filing submission."
+                  },
+                  "response": [
+                    {
+                      "id": "d7f56caa-ac36-4d2a-bf39-7ba66606562a",
+                      "name": "Filing status",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/filing/:filingId/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "filing",
+                            ":filingId",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "filingId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"filingId\": \"<string>\",\n  \"status\": \"Processing\",\n  \"acceptedCount\": \"<integer>\",\n  \"rejectedCount\": \"<integer>\",\n  \"errors\": [\n    {\n      \"formId\": \"<string>\",\n      \"errorCode\": \"<string>\",\n      \"message\": \"<string>\"\n    },\n    {\n      \"formId\": \"<string>\",\n      \"errorCode\": \"<string>\",\n      \"message\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T13:14:08.000Z",
+                      "updatedAt": "2026-06-05T13:14:08.000Z",
+                      "uid": "35240-d7f56caa-ac36-4d2a-bf39-7ba66606562a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T13:14:08.000Z",
+                  "updatedAt": "2026-06-05T13:14:08.000Z",
+                  "uid": "35240-b731a0d8-4a28-4044-a9d8-140a00236b4f"
+                }
+              ],
+              "id": "6c0c7193-73b8-4ed8-be48-dcff4dd80bf6",
+              "createdAt": "2026-06-05T13:14:08.000Z",
+              "updatedAt": "2026-06-05T13:14:08.000Z",
+              "uid": "35240-6c0c7193-73b8-4ed8-be48-dcff4dd80bf6"
+            }
+          ],
+          "id": "cfb66f02-3017-4b8f-87be-13f21263732d",
+          "createdAt": "2026-06-05T13:14:08.000Z",
+          "updatedAt": "2026-06-05T13:14:08.000Z",
+          "uid": "35240-cfb66f02-3017-4b8f-87be-13f21263732d"
+        }
+      ],
+      "id": "d32074f6-1993-432a-a7fd-1667ce977d82",
+      "createdAt": "2026-06-05T13:14:08.000Z",
+      "updatedAt": "2026-06-05T13:14:08.000Z",
+      "uid": "35240-d32074f6-1993-432a-a7fd-1667ce977d82"
+    },
+    {
+      "name": "companies",
+      "item": [
+        {
+          "name": "Avalara List Payer Companies",
+          "id": "59cdab39-6eec-48fc-adf8-140e8e685865",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/companies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6c54cd94-d7b1-497f-ab79-fd689b0d21e8",
+              "name": "List of payer companies",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/companies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "companies"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T13:14:08.000Z",
+              "updatedAt": "2026-06-05T13:14:08.000Z",
+              "uid": "35240-6c54cd94-d7b1-497f-ab79-fd689b0d21e8"
+            }
+          ],
+          "createdAt": "2026-06-05T13:14:08.000Z",
+          "updatedAt": "2026-06-05T13:14:08.000Z",
+          "uid": "35240-59cdab39-6eec-48fc-adf8-140e8e685865"
+        },
+        {
+          "name": "Avalara Create a Payer Company",
+          "id": "2cb166de-ea6d-4e2d-bcbb-e29655755178",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"contactName\": \"<string>\",\n  \"contactPhone\": \"<string>\",\n  \"contactEmail\": \"<email>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/companies",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "companies"
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c316ea9c-1f77-498d-9dd8-e651dd37c93a",
+              "name": "Company created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"ein\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"contactName\": \"<string>\",\n  \"contactPhone\": \"<string>\",\n  \"contactEmail\": \"<email>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/companies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "companies"
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T13:14:08.000Z",
+              "updatedAt": "2026-06-05T13:14:08.000Z",
+              "uid": "35240-c316ea9c-1f77-498d-9dd8-e651dd37c93a"
+            }
+          ],
+          "createdAt": "2026-06-05T13:14:08.000Z",
+          "updatedAt": "2026-06-05T13:14:08.000Z",
+          "uid": "35240-2cb166de-ea6d-4e2d-bcbb-e29655755178"
+        }
+      ],
+      "id": "87d3571a-1a20-498f-9f2c-a58ef2d61212",
+      "createdAt": "2026-06-05T13:14:08.000Z",
+      "updatedAt": "2026-06-05T13:14:08.000Z",
+      "uid": "35240-87d3571a-1a20-498f-9f2c-a58ef2d61212"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.avalara.com/1099/v1"
+    }
+  ]
+}

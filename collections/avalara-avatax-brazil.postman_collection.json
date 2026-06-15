@@ -1,0 +1,928 @@
+{
+  "item": [
+    {
+      "id": "a5b70fb6-6f7e-4e5b-96eb-f5012e8d8a44",
+      "name": "Companies",
+      "description": {
+        "content": "Manage company configurations for Brazil",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "63ff7257-6ac5-4c65-ac57-f9315af1eee5",
+          "name": "Avalara List Companies Configured for Brazil",
+          "request": {
+            "name": "Avalara List Companies Configured for Brazil",
+            "description": {},
+            "url": {
+              "path": [
+                "companies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "78ab624c-d3b9-4ecc-9f91-70a0dc9455d8",
+              "name": "List of companies",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e88e55d5-f23b-4084-b008-89529a8f5e5b",
+          "name": "Avalara Create a Company Configuration",
+          "request": {
+            "name": "Avalara Create a Company Configuration",
+            "description": {},
+            "url": {
+              "path": [
+                "companies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"cnpj\": \"<string>\",\n  \"stateRegistration\": \"<string>\",\n  \"municipalRegistration\": \"<string>\",\n  \"taxRegime\": \"<string>\",\n  \"state\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0f69d252-6d97-4715-9075-5d1252d6aafc",
+              "name": "Company created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "companies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": \"<string>\",\n  \"name\": \"<string>\",\n  \"cnpj\": \"<string>\",\n  \"stateRegistration\": \"<string>\",\n  \"municipalRegistration\": \"<string>\",\n  \"taxRegime\": \"<string>\",\n  \"state\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ebec5410-192e-4cbc-b3d9-b00489711f75",
+      "name": "Electronic Invoices",
+      "description": {
+        "content": "Issue and manage electronic fiscal documents",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b0ff31f4-7dd9-4f08-973d-26cd2d0ea463",
+          "name": "Avalara Issue an Electronic Invoice",
+          "request": {
+            "name": "Avalara Issue an Electronic Invoice",
+            "description": {
+              "content": "Issues a new electronic fiscal document (NF-e, NFS-e, or NFC-e) to Brazilian tax authorities (SEFAZ).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceType\": \"<string>\",\n  \"companyId\": \"<string>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"buyer\": {\n    \"name\": \"<string>\",\n    \"cnpj\": \"<string>\",\n    \"cpf\": \"<string>\",\n    \"stateRegistration\": \"<string>\",\n    \"municipalRegistration\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"number\": \"<string>\",\n      \"complement\": \"<string>\",\n      \"neighborhood\": \"<string>\",\n      \"city\": \"<string>\",\n      \"cityCode\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"lines\": [\n    {\n      \"lineNumber\": \"<integer>\",\n      \"itemCode\": \"<string>\",\n      \"description\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"unitPrice\": \"<double>\",\n      \"ncmCode\": \"<string>\",\n      \"cfopCode\": \"<string>\"\n    },\n    {\n      \"lineNumber\": \"<integer>\",\n      \"itemCode\": \"<string>\",\n      \"description\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"unitPrice\": \"<double>\",\n      \"ncmCode\": \"<string>\",\n      \"cfopCode\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "640f0db0-25b4-46d3-ac6a-1d997852e60b",
+              "name": "Invoice issued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceType\": \"<string>\",\n  \"companyId\": \"<string>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"buyer\": {\n    \"name\": \"string\",\n    \"cnpj\": \"string\",\n    \"cpf\": \"string\",\n    \"stateRegistration\": \"string\",\n    \"municipalRegistration\": \"string\",\n    \"address\": {\n      \"street\": \"string\",\n      \"number\": \"string\",\n      \"complement\": \"string\",\n      \"neighborhood\": \"string\",\n      \"city\": \"string\",\n      \"cityCode\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  },\n  \"lines\": [\n    {\n      \"lineNumber\": 181,\n      \"itemCode\": \"string\",\n      \"description\": \"string\",\n      \"quantity\": 5061.4125479771865,\n      \"unitPrice\": 2330.9840644895476,\n      \"ncmCode\": \"string\",\n      \"cfopCode\": \"string\"\n    },\n    {\n      \"lineNumber\": 5628,\n      \"itemCode\": \"string\",\n      \"description\": \"string\",\n      \"quantity\": 5474.55877091878,\n      \"unitPrice\": 2586.3435263231695,\n      \"ncmCode\": \"string\",\n      \"cfopCode\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoiceId\": \"string\",\n  \"accessKey\": \"string\",\n  \"invoiceNumber\": 4463,\n  \"series\": 125,\n  \"status\": \"Pending\",\n  \"protocolNumber\": \"string\",\n  \"issuanceDate\": \"1991-11-10T19:29:07.035Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "488e1571-83b6-40c7-8792-b4c4d56d0bb5",
+          "name": "Avalara List Electronic Invoices",
+          "request": {
+            "name": "Avalara List Electronic Invoices",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "59be5bd7-50ce-450e-9566-fcf2ca140823",
+              "name": "List of invoices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eb6519de-b900-4ffe-a40d-8b08435b27f3",
+          "name": "Avalara Get an Invoice by ID",
+          "request": {
+            "name": "Avalara Get an Invoice by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices",
+                ":invoiceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoiceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2d138a23-5581-4a7c-9517-a0bbdb34ee19",
+              "name": "Invoice details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoiceId\": \"string\",\n  \"accessKey\": \"string\",\n  \"invoiceNumber\": 4463,\n  \"series\": 125,\n  \"status\": \"Pending\",\n  \"protocolNumber\": \"string\",\n  \"issuanceDate\": \"1991-11-10T19:29:07.035Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ff3d3610-8214-46e0-9ad6-44eff764af3b",
+          "name": "Avalara Cancel an Electronic Invoice",
+          "request": {
+            "name": "Avalara Cancel an Electronic Invoice",
+            "description": {
+              "content": "Submits a cancellation request for an authorized invoice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoiceId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoiceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a705e0a1-9dec-4167-844b-c236c029a9b0",
+              "name": "Invoice cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "26fcb749-f11a-4709-9f87-4326fce1b2a5",
+      "name": "Tax Calculation",
+      "description": {
+        "content": "Calculate Brazilian taxes on transactions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c780cc05-6948-4c46-af28-f0393bbb06d3",
+          "name": "Avalara Calculate Brazilian Taxes",
+          "request": {
+            "name": "Avalara Calculate Brazilian Taxes",
+            "description": {
+              "content": "Calculates applicable Brazilian taxes for a transaction including ICMS, IPI, PIS, COFINS, ISS, and other applicable taxes based on product type, origin, and destination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "calculations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"header\": {\n    \"transactionType\": \"<string>\",\n    \"companyLocation\": \"<string>\",\n    \"documentCode\": \"<string>\",\n    \"transactionDate\": \"<date>\",\n    \"currency\": \"BRL\"\n  },\n  \"lines\": [\n    {\n      \"lineCode\": \"<string>\",\n      \"itemCode\": \"<string>\",\n      \"numberOfItems\": \"<double>\",\n      \"lineAmount\": \"<double>\",\n      \"itemDescription\": \"<string>\",\n      \"ncmCode\": \"<string>\",\n      \"cstCode\": \"<string>\",\n      \"cfopCode\": \"<string>\",\n      \"originState\": \"<string>\",\n      \"destinationState\": \"<string>\"\n    },\n    {\n      \"lineCode\": \"<string>\",\n      \"itemCode\": \"<string>\",\n      \"numberOfItems\": \"<double>\",\n      \"lineAmount\": \"<double>\",\n      \"itemDescription\": \"<string>\",\n      \"ncmCode\": \"<string>\",\n      \"cstCode\": \"<string>\",\n      \"cfopCode\": \"<string>\",\n      \"originState\": \"<string>\",\n      \"destinationState\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b75895f2-8c04-46c0-a171-7e2146b4c82a",
+              "name": "Tax calculation results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calculations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"transactionType\": \"<string>\",\n    \"companyLocation\": \"<string>\",\n    \"documentCode\": \"<string>\",\n    \"transactionDate\": \"<date>\",\n    \"currency\": \"BRL\"\n  },\n  \"lines\": [\n    {\n      \"lineCode\": \"string\",\n      \"itemCode\": \"string\",\n      \"numberOfItems\": 4201.841651973634,\n      \"lineAmount\": 5669.746023092976,\n      \"itemDescription\": \"string\",\n      \"ncmCode\": \"string\",\n      \"cstCode\": \"string\",\n      \"cfopCode\": \"string\",\n      \"originState\": \"string\",\n      \"destinationState\": \"string\"\n    },\n    {\n      \"lineCode\": \"string\",\n      \"itemCode\": \"string\",\n      \"numberOfItems\": 5761.014218464433,\n      \"lineAmount\": 180.53385774400965,\n      \"itemDescription\": \"string\",\n      \"ncmCode\": \"string\",\n      \"cstCode\": \"string\",\n      \"cfopCode\": \"string\",\n      \"originState\": \"string\",\n      \"destinationState\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"header\": {\n    \"transactionId\": \"string\",\n    \"status\": \"string\"\n  },\n  \"lines\": [\n    {\n      \"lineCode\": \"string\",\n      \"taxes\": [\n        {\n          \"taxType\": \"IPI\",\n          \"taxBase\": 1439.5039948994604,\n          \"taxRate\": 1524.4635673194916,\n          \"taxAmount\": 892.26002930618,\n          \"exemptAmount\": 9941.467311936845,\n          \"cstCode\": \"string\"\n        },\n        {\n          \"taxType\": \"ICMS_ST\",\n          \"taxBase\": 2571.475459481206,\n          \"taxRate\": 5233.217674866093,\n          \"taxAmount\": 1695.059195525156,\n          \"exemptAmount\": 8485.047868392086,\n          \"cstCode\": \"string\"\n        }\n      ],\n      \"totalTax\": 4931.539286115266\n    },\n    {\n      \"lineCode\": \"string\",\n      \"taxes\": [\n        {\n          \"taxType\": \"IOF\",\n          \"taxBase\": 6465.2965993848875,\n          \"taxRate\": 7482.070570898904,\n          \"taxAmount\": 5145.344082794851,\n          \"exemptAmount\": 2201.282358355412,\n          \"cstCode\": \"string\"\n        },\n        {\n          \"taxType\": \"IPI\",\n          \"taxBase\": 5654.092131925609,\n          \"taxRate\": 3426.36099172515,\n          \"taxAmount\": 7911.629448816683,\n          \"exemptAmount\": 8495.59211140493,\n          \"cstCode\": \"string\"\n        }\n      ],\n      \"totalTax\": 4780.114120656668\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e15c22e-10ee-4baf-9ae8-3cbf813e2ab3",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calculations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"transactionType\": \"<string>\",\n    \"companyLocation\": \"<string>\",\n    \"documentCode\": \"<string>\",\n    \"transactionDate\": \"<date>\",\n    \"currency\": \"BRL\"\n  },\n  \"lines\": [\n    {\n      \"lineCode\": \"string\",\n      \"itemCode\": \"string\",\n      \"numberOfItems\": 4201.841651973634,\n      \"lineAmount\": 5669.746023092976,\n      \"itemDescription\": \"string\",\n      \"ncmCode\": \"string\",\n      \"cstCode\": \"string\",\n      \"cfopCode\": \"string\",\n      \"originState\": \"string\",\n      \"destinationState\": \"string\"\n    },\n    {\n      \"lineCode\": \"string\",\n      \"itemCode\": \"string\",\n      \"numberOfItems\": 5761.014218464433,\n      \"lineAmount\": 180.53385774400965,\n      \"itemDescription\": \"string\",\n      \"ncmCode\": \"string\",\n      \"cstCode\": \"string\",\n      \"cfopCode\": \"string\",\n      \"originState\": \"string\",\n      \"destinationState\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64a0165e-fda3-4dfd-85cc-f849bd13ba61",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calculations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"transactionType\": \"<string>\",\n    \"companyLocation\": \"<string>\",\n    \"documentCode\": \"<string>\",\n    \"transactionDate\": \"<date>\",\n    \"currency\": \"BRL\"\n  },\n  \"lines\": [\n    {\n      \"lineCode\": \"string\",\n      \"itemCode\": \"string\",\n      \"numberOfItems\": 4201.841651973634,\n      \"lineAmount\": 5669.746023092976,\n      \"itemDescription\": \"string\",\n      \"ncmCode\": \"string\",\n      \"cstCode\": \"string\",\n      \"cfopCode\": \"string\",\n      \"originState\": \"string\",\n      \"destinationState\": \"string\"\n    },\n    {\n      \"lineCode\": \"string\",\n      \"itemCode\": \"string\",\n      \"numberOfItems\": 5761.014218464433,\n      \"lineAmount\": 180.53385774400965,\n      \"itemDescription\": \"string\",\n      \"ncmCode\": \"string\",\n      \"cstCode\": \"string\",\n      \"cfopCode\": \"string\",\n      \"originState\": \"string\",\n      \"destinationState\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "49d6499b-2bb3-4007-85e1-82b46551b6d8",
+      "name": "Transactions",
+      "description": {
+        "content": "Manage tax transactions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e2de4b34-e158-4aad-b9b1-866cf83fae80",
+          "name": "Avalara List Transactions",
+          "request": {
+            "name": "Avalara List Transactions",
+            "description": {},
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fd2301dc-6a9d-4dd5-acb9-15ab7df93204",
+              "name": "List of transactions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://avataxbr-sandbox.avalarabrasil.com.br/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "3446406f-12ac-48c8-bdea-5c3c50cd787d",
+    "name": "Avalara AvaTax Brazil API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AvaTax Brazil API provides tax calculation, electronic invoice (NF-e, NFS-e, NFC-e) issuance, and transaction management for businesses with a physical presence in Brazil. It supports Brazilian federal, state, and municipal taxes including ICMS, IPI, PIS, COFINS, ISS, and more.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}
