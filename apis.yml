@@ -306,6 +306,10 @@ type: Index
 image: https://www.avalara.com/us/en/about/newsroom/media-kit/_jcr_content/root/responsivegrid/responsivegrid/columncontrol/par2/image.coreimg.svg/1614712826993/avalara-logo.svg
 access: 3rd-Party
 common:
+- type: DomainSecurity
+  url: security/avalara-domain-security.yml
+- type: Authentication
+  url: authentication/avalara-authentication.yml
 - type: Arazzo
   url: arazzo/avalara-adjust-committed-transaction-workflow.yml
   name: Avalara Adjust a Committed Transaction

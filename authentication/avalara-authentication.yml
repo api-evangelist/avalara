@@ -1,0 +1,37 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/avalara-1099-w9-openapi.yml, openapi/avalara-activation-service-openapi.yml,
+  openapi/avalara-avatax-brazil-openapi.yml, openapi/avalara-avatax-rest-openapi.yml, openapi/avalara-business-openapi.yml,
+  openapi/avalara-certcapture-openapi.yml, openapi/avalara-communications-openapi.yml, openapi/avalara-e-invoicing-openapi.yml,
+  openapi/avalara-excise-openapi.yml, openapi/avalara-hs-code-classification-openapi.yml, openapi/avalara-item-classification-openapi.yml,
+  openapi/avalara-mylodgetax-openapi.yml ...
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: OAuth 2.0 bearer token
+  sources:
+  - openapi/avalara-1099-w9-openapi.yml
+  - openapi/avalara-activation-service-openapi.yml
+  - openapi/avalara-avatax-brazil-openapi.yml
+  - openapi/avalara-avatax-rest-openapi.yml
+  - openapi/avalara-business-openapi.yml
+  - openapi/avalara-e-invoicing-openapi.yml
+  - openapi/avalara-excise-openapi.yml
+  - openapi/avalara-hs-code-classification-openapi.yml
+  - openapi/avalara-item-classification-openapi.yml
+  - openapi/avalara-mylodgetax-openapi.yml
+  - openapi/avalara-shared-company-service-openapi.yml
+  - openapi/avalara-vat-reporting-openapi.yml
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: Use your AvaTax username/password or accountId/licenseKey as basic auth credentials
+  sources:
+  - openapi/avalara-avatax-rest-openapi.yml
+  - openapi/avalara-certcapture-openapi.yml
+  - openapi/avalara-communications-openapi.yml
+  - openapi/avatax-apis-openapi.yml
