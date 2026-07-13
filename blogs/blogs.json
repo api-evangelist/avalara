@@ -3,11 +3,9 @@
   "feeds": [
     {
       "source": "https://developer.avalara.com/blogs/",
-      "feed_url": "",
-      "saved": 0,
-      "error": "HTTP 404 Not Found"
+      "error": "HTTPError"
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-27T12:26:39Z"
+  "fetched": "2026-07-11T11:50:51Z"
 }
