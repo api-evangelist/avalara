@@ -1,0 +1,46 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://identity.avalara.com/.well-known/openid-configuration,
+  apis.yml Features (OData), openapi/ security schemes, developer.avalara.com docs
+notes: >-
+  Standards conformance asserted from the live OIDC discovery document, the AvaTax
+  REST OData query support documented in the developer portal, and the OpenAPI
+  security models. Avalara errors use a custom `error`/`details` envelope (not
+  RFC 9457 application/problem+json), so the problem-details standard is not met.
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      identity.avalara.com publishes token/authorization endpoints and
+      grant_types_supported including authorization_code and client_credentials.
+  - id: oidc
+    conforms: true
+    evidence: /.well-known/openid-configuration present with issuer, jwks_uri, userinfo_endpoint, id_token RS256.
+  - id: pkce
+    conforms: true
+    evidence: code_challenge_methods_supported includes S256.
+  - id: oauth2-device-flow
+    conforms: true
+    evidence: device_authorization_endpoint + urn:ietf:params:oauth:grant-type:device_code grant supported.
+  - id: oauth2-token-exchange-rfc8693
+    conforms: true
+    evidence: grant_types_supported includes urn:ietf:params:oauth:grant-type:token-exchange.
+  - id: odata
+    conforms: true
+    evidence: AvaTax REST API supports OData query params ($filter, $top, $skip, $orderBy).
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: "errors use a custom { error: { code, message, details[] } } envelope, not application/problem+json."
+  - id: rfc8594-sunset-header
+    conforms: false
+    evidence: versioning policy communicates decommission via HTTP 400 "version-too-old", no documented Sunset header.
+  - id: semver
+    conforms: true
+    evidence: API versions use n.x.y semantic versioning (avalara-version header / api-version query).
+  - id: fhir-r4
+    conforms: false
+  - id: fapi
+    conforms: false
+  - id: scim2
+    conforms: false

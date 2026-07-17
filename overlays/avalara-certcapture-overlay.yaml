@@ -1,0 +1,17 @@
+# generated: '2026-06-20'
+# method: generated
+# source: openapi/avalara-certcapture-openapi.yml
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for CertCapture API
+  version: 1.0.0
+extends: openapi/avalara-certcapture-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: avalara
+    x-apievangelist-rating: 4
+    x-apievangelist-authentication: authentication/avalara-authentication.yml
+    x-apievangelist-lifecycle: lifecycle/avalara-lifecycle.yml
+    x-apievangelist-errors: errors/avalara-error-codes.yml
+    x-apievangelist-docs: https://developer.avalara.com/api-reference/CertCapture/v2/

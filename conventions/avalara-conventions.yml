@@ -1,0 +1,40 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  developer.avalara.com docs (authentication, versioning, errors),
+  identity.avalara.com OIDC discovery, openapi/ specs
+notes: >-
+  Cross-cutting request/response semantics for the Avalara API platform, captured
+  from the developer docs and derived from the OpenAPI specs. Cross-links the
+  authentication/, scopes/, errors/, and lifecycle/ artifacts.
+authentication:
+  styles: [http-basic, http-bearer, oauth2]
+  basic: username/password or accountId/licenseKey (AvaTax REST)
+  oauth2_issuer: https://identity.avalara.com
+  ref: authentication/avalara-authentication.yml
+versioning:
+  style: header-or-query
+  header: avalara-version
+  query: api-version
+  format: n.x.y (semver, full string required)
+  ref: lifecycle/avalara-lifecycle.yml
+pagination:
+  style: odata
+  params: ['$filter', '$top', '$skip', '$orderBy']
+  note: AvaTax REST list operations use OData query parameters for filtering, paging and sorting.
+error_envelope:
+  format: avalara-error-envelope
+  shape: '{ error: { code, message, details: [ { code, message, description, faultCode, helpLink } ] } }'
+  ref: errors/avalara-error-codes.yml
+rate_limiting:
+  documented: partial
+  signal: RequestLimitExceeded (error code 1715) on excess requests
+  note: Avalara throttles per account; exceeding limits returns error code 1715.
+idempotency:
+  documented: false
+  note: No global idempotency-key header documented; AvaTax uses transaction codes (client-supplied `code`) to de-duplicate/upsert transactions.
+request_tracing:
+  note: Errors return a helpLink per fault; no documented global request-id echo header.
+content_types:
+  request: application/json
+  response: application/json

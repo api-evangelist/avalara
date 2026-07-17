@@ -1,0 +1,84 @@
+generated: '2026-06-20'
+method: searched
+source: https://identity.avalara.com/.well-known/openid-configuration
+docs: https://developer.avalara.com/api-reference/oauth/oauth/
+notes: >-
+  Avalara authenticates via IdentityServer at identity.avalara.com. The OpenID
+  Connect discovery document publishes the full OAuth 2.0 surface: authorization,
+  token, introspection, revocation, device-authorization and userinfo endpoints,
+  the supported grant types, and the scopes_supported list captured below. The
+  per-API OpenAPI specs model calls with HTTP basic/bearer (see authentication/),
+  but the platform-level authorization is OAuth 2.0 / OIDC against this issuer.
+issuer: https://identity.avalara.com
+endpoints:
+  authorization: https://identity.avalara.com/connect/authorize
+  token: https://identity.avalara.com/connect/token
+  userinfo: https://identity.avalara.com/connect/userinfo
+  introspection: https://identity.avalara.com/connect/introspect
+  revocation: https://identity.avalara.com/connect/revocation
+  device_authorization: https://identity.avalara.com/connect/deviceauthorization
+  end_session: https://identity.avalara.com/connect/endsession
+  jwks: https://identity.avalara.com/.well-known/openid-configuration/jwks
+  registration: https://identity.avalara.com/register/public
+grant_types_supported:
+  - authorization_code
+  - client_credentials
+  - refresh_token
+  - implicit
+  - password
+  - urn:ietf:params:oauth:grant-type:device_code
+  - urn:ietf:params:oauth:grant-type:token-exchange
+code_challenge_methods_supported: [plain, S256]
+token_endpoint_auth_methods_supported:
+  - client_secret_basic
+  - client_secret_post
+  - private_key_jwt
+scopes:
+  - scope: openid
+    description: OpenID Connect authentication (subject identity).
+  - scope: profile
+    description: Standard OIDC profile claims.
+  - scope: email
+    description: Email address claim.
+  - scope: phone
+    description: Phone number claim.
+  - scope: address
+    description: Address claim.
+  - scope: offline_access
+    description: Issue a refresh token for long-lived access.
+  - scope: avatax
+    description: Access to AvaTax sales/use tax calculation and transaction APIs.
+  - scope: avatax_account_override
+    description: Act against a specified AvaTax account (account override).
+  - scope: excise
+    description: Access to Avalara Excise tax APIs.
+  - scope: ecm
+    description: Access to Exemption Certificate Management (CertCapture/ECM).
+  - scope: saas_vat_reporting
+    description: Access to the SaaS VAT Reporting APIs.
+  - scope: orl
+    description: Avalara ORL (returns/reporting) service scope.
+  - scope: svr
+    description: Avalara SVR service scope.
+  - scope: crr_api
+    description: CRR API scope.
+  - scope: cross-border-quoting
+    description: Cross-border duty/tax quoting (landed cost).
+  - scope: provisioning_agent
+    description: Account/service provisioning agent scope.
+  - scope: elr.audit.publish
+    description: E-Invoicing and Live Reporting (ELR) audit publish scope.
+  - scope: content-studio-sourcing:read
+    description: Read access to Content Studio sourcing content.
+  - scope: content-studio-sourcing:write
+    description: Write access to Content Studio sourcing content.
+  - scope: content-studio-compliance:read
+    description: Read access to Content Studio compliance content.
+  - scope: content-studio-compliance:write
+    description: Write access to Content Studio compliance content.
+  - scope: studio.connector
+    description: Studio connector service scope.
+  - scope: studio.connector.adapter
+    description: Studio connector adapter scope.
+  - scope: studio.extractor.adapter
+    description: Studio extractor adapter scope.

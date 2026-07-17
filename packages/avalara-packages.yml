@@ -1,0 +1,86 @@
+generated: '2026-06-20'
+method: searched
+source: https://developer.avalara.com/sdk/
+notes: >-
+  Avalara publishes first-party SDKs from the Avalara Developer Relations GitHub
+  org (github.com/avadev). Two families: the per-API AvaTax REST v2 SDKs (name
+  "avatax" / "Avalara" / "Avalara.AvaTax") and the newer unified "avalara-sdk"
+  covering AvaTax, Communications, 1099 & W-9, and E-Invoicing.
+packages:
+  # --- AvaTax REST v2 SDKs (per-API family) ---
+  - language: javascript
+    registry: npm
+    name: avatax
+    url: https://www.npmjs.com/package/avatax
+    install: npm install avatax
+    version: 26.6.0
+    repo: https://github.com/avadev/AvaTax-REST-V2-JS-SDK
+    official: true
+  - language: python
+    registry: pypi
+    name: Avalara
+    url: https://pypi.org/project/Avalara/
+    install: pip install Avalara
+    version: 26.6.0
+    repo: https://github.com/avadev/AvaTax-REST-V2-Python-SDK
+    official: true
+  - language: csharp
+    registry: nuget
+    name: Avalara.AvaTax
+    url: https://www.nuget.org/packages/Avalara.AvaTax/
+    install: dotnet add package Avalara.AvaTax
+    version: 26.6.0
+    repo: https://github.com/avadev/AvaTax-REST-V2-DotNet-SDK
+    official: true
+  - language: java
+    registry: maven
+    name: net.avalara.avatax:avatax
+    url: https://mvnrepository.com/artifact/net.avalara.avatax
+    repo: https://github.com/avadev/AvaTax-REST-V2-JRE-SDK
+    official: true
+  - language: php
+    registry: packagist
+    name: avalara/avataxclient
+    url: https://packagist.org/packages/avalara/avataxclient
+    install: composer require avalara/avataxclient
+    repo: https://github.com/avadev/AvaTax-REST-V2-PHP-SDK
+    official: true
+  - language: ruby
+    registry: rubygems
+    name: avatax
+    url: https://rubygems.org/gems/avatax
+    install: gem install avatax
+    repo: https://github.com/avadev/AvaTax-REST-V2-Ruby-SDK
+    official: true
+  # --- Unified Avalara SDK (multi-API family) ---
+  - language: python
+    registry: pypi
+    name: Avalara.SDK
+    url: https://pypi.org/project/avalara-sdk/
+    install: pip install Avalara.SDK
+    version: 26.5.1
+    repo: https://github.com/avadev/Avalara-SDK-Python
+    official: true
+    family: unified
+  - language: javascript
+    registry: npm
+    name: avalara-sdk
+    url: https://www.npmjs.com/package/avalara-sdk
+    install: npm install avalara-sdk
+    version: 26.5.0
+    official: true
+    family: unified
+  - language: csharp
+    registry: nuget
+    name: Avalara.SDK
+    url: https://www.nuget.org/packages/Avalara.SDK/
+    install: dotnet add package Avalara.SDK
+    official: true
+    family: unified
+  - language: php
+    registry: packagist
+    name: avalara/avalara_sdk
+    url: https://packagist.org/packages/avalara/avalara_sdk
+    install: composer require avalara/avalara_sdk
+    official: true
+    family: unified

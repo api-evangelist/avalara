@@ -1,0 +1,34 @@
+generated: '2026-06-20'
+method: searched
+source: https://developer.avalara.com/mcp-servers/
+status: published
+notes: >-
+  Avalara publishes official Model Context Protocol (MCP) servers that connect AI
+  applications to Avalara tax-compliance systems. The overview documents a set of
+  product-scoped servers reached through an MCP client, with authorization handled
+  by Avalara's OAuth sign-in (identity.avalara.com). Per-server connection URLs and
+  the full tool inventory live on the individual product MCP pages (e.g.
+  https://developer.avalara.com/products/avatax/mcp.md) and are not enumerated on
+  the overview; captured here as the published server catalog. Connect flow: set up
+  an MCP client, then authorize via Avalara OAuth.
+auth:
+  type: oauth2
+  authorize: https://identity.avalara.com/connect/authorize
+  token: https://identity.avalara.com/connect/token
+servers:
+  - name: AvaTax MCP Server
+    product: AvaTax
+    docs: https://developer.avalara.com/products/avatax/mcp.md
+    capability: AI-agent access to AvaTax tax calculation and transaction management.
+  - name: Returns MCP Server
+    product: Avalara Managed Returns
+    capability: AI-agent access to returns preparation, filing and remittance.
+  - name: E-Invoicing MCP Server
+    product: E-Invoicing and Live Reporting
+    capability: AI-agent access to e-invoicing and real-time reporting workflows.
+  - name: Registrations & Licenses MCP Server
+    product: Tax Registrations and Business Licenses
+    capability: AI-agent access to tax account registration and licensing.
+  - name: ECM MCP Server
+    product: Exemption Certificate Management
+    capability: AI-agent access to exemption certificate collection and validation.

@@ -1,0 +1,126 @@
+# Avalara Developer
+
+> Avalara Developer (developer.avalara.com) is the official developer experience site for Avalara, providing API documentation, SDKs, MCP servers, and integration guides for tax compliance automation across sales tax, excise, communications, e-invoicing, exemption certificates, returns, and cross-border trade.
+
+This site is the central hub for developers integrating Avalara products into their applications. It covers REST and GraphQL APIs, unified SDKs, MCP (Model Context Protocol) servers for AI agents, interactive API playgrounds, and integration guides. Use the linked product pages, API references, and guides below as the canonical sources.
+
+## Products
+
+- [AvaTax](https://developer.avalara.com/products/avatax.md): Calculate and apply sales tax in real time using up-to-date rates and rules across jurisdictions.
+- [AvaTax for Communications](https://developer.avalara.com/products/communications.md): Calculate communications taxes using telecom-specific rules, rates, and regulatory logic.
+- [AvaTax for Excise](https://developer.avalara.com/products/excise.md): Calculate excise taxes using product-specific rules and regulatory requirements.
+- [AvaTax Cross-Border](https://developer.avalara.com/products/crossborder.md): Calculate duties, taxes, and import fees for cross-border transactions and landed cost.
+- [AvaTax Brazil](https://developer.avalara.com/products/avatax-brazil.md): Calculate and apply Brazil taxes using localized rules, rates, and compliance logic.
+- [Tariff Code Classification](https://developer.avalara.com/products/item-classification.md): Assign products to correct HS or tariff codes for duty calculation and trade compliance.
+- [Avalara Tax Content](https://developer.avalara.com/products/avalara-tax-content.md): Up-to-date tax rates, rules, and jurisdiction mappings for ERP, POS, and billing systems.
+- [Avalara Managed Returns API](https://developer.avalara.com/products/returns.md): Embed tax return preparation, filing, and remittance into your platform.
+- [Avalara Returns Excise](https://developer.avalara.com/products/excisereturns.md): Automate excise tax return preparation, filing, and reporting.
+- [Exemption Certificate Management](https://developer.avalara.com/products/ecm.md): Collect, validate, and manage exemption certificates for audit-ready compliance.
+- [Avalara E-Invoicing and Live Reporting](https://developer.avalara.com/products/e-invoicing.md): Automate electronic invoicing and real-time reporting for global e-invoicing mandates.
+- [Tax Registrations and Business Licenses](https://developer.avalara.com/products/registration-and-licensing.md): Register for tax accounts across jurisdictions to support compliance and filing.
+- [Avalara 1099 & W-9](https://developer.avalara.com/products/avalara-1099-and-w9.md): Collect, validate, and report vendor tax forms for IRS compliance and 1099 filing.
+- [MyLodgeTax](https://developer.avalara.com/products/mylodge.md): Calculate, file, and manage lodging taxes for short-term rentals based on property location.
+- [AvaTax for VAT](https://developer.avalara.com/products/vat-calculation.md): Calculate and apply VAT using country-specific rules, rates, and compliance logic.
+- [VAT Reporting](https://developer.avalara.com/products/vat-reporting.md): Prepare and submit VAT reports using aggregated transaction data across jurisdictions.
+
+## API Reference
+
+- [APIs Overview](https://developer.avalara.com/api-reference/): Browse all Avalara APIs by product category.
+- [AvaTax REST API v2](https://developer.avalara.com/products/avatax/api.md): Primary API for real-time sales and use tax calculation.
+- [Communications Tax API v2](https://developer.avalara.com/products/communications/api.md): Communications tax calculation with telecom-specific rules and rates.
+- [Excise Tax API v1](https://developer.avalara.com/products/excise/api.md): Excise tax calculation with product-specific rules and requirements.
+- [Tariff Code Classification API](https://developer.avalara.com/products/item-classification/api.md): HS and tariff code assignment for duty calculation and trade compliance.
+- [Item Classification API](https://developer.avalara.com/products/item-classification/api.md): Automated HS code assignment for tariff classification.
+- [Self-Serve Tariff Classification API](https://developer.avalara.com/products/self-serve-tariff-code/api.md): Classify products by destination country from provided product information.
+- [AvaTax Brazil API](https://developer.avalara.com/products/avatax-brazil/api.md): Brazil tax calculation with localized rules and compliance logic.
+- [Avalara Tax Content API](https://developer.avalara.com/products/avalara-tax-content/api.md): Tax rates, rules, and jurisdiction mappings for tax calculation.
+- [E-Invoicing API](https://developer.avalara.com/products/e-invoicing/api.md): Electronic invoicing and real-time reporting for global mandates.
+- [Activation Service API](https://developer.avalara.com/products/activation-service/api.md): Track and manage customer onboarding, registration, and activation status.
+- [Exemption Certificate Management API](https://developer.avalara.com/products/ecm/api.md): Collect, validate, and manage exemption certificates.
+- [Managed Returns API (GraphQL)](https://developer.avalara.com/products/returns/api/): Embed tax return preparation, filing, and remittance.
+- [VAT Reporting API (GraphQL)](https://developer.avalara.com/products/vat-reporting/api/): Prepare and submit multi-jurisdiction VAT reports.
+- [MyLodgeTax API](https://developer.avalara.com/products/mylodge/api.md): Lodging tax calculation and filing for short-term rentals.
+- [Avalara 1099 & W-9 API](https://developer.avalara.com/products/avalara-1099-and-w9/api.md): Vendor tax form collection, validation, and reporting.
+- [Portal OAuth API](https://developer.avalara.com/api-reference/oauth/oauth/): Exchange compliance data with external solutions via Avalara services.
+- [Business API](https://developer.avalara.com/api-reference/business/v1/): Register customer accounts and create sales orders.
+- [Shared Services API](https://developer.avalara.com/products/shared-services/api.md): Common APIs for address validation, company data, and product classification.
+- [Registration and Licensing APIs](https://developer.avalara.com/products/registration-and-licensing/api.md): Register for tax accounts across jurisdictions.
+
+## SDKs
+
+- [Unified SDKs Overview](https://developer.avalara.com/sdk.md): Unified SDKs for AvaTax, Communications, 1099 & W-9, and E-Invoicing APIs.
+- [AvaTax SDK](https://developer.avalara.com/products/avatax/sdk.md): SDK for AvaTax tax calculation (C#, Java, PHP, Ruby, TypeScript, Python).
+- [Communications SDK](https://developer.avalara.com/products/communications/sdk.md): SDK for Communications tax calculation.
+- [Avalara 1099 & W-9 SDK](https://developer.avalara.com/products/avalara-1099-and-w9/sdk.md): SDK for 1099 and W-9 form automation.
+- [E-Invoicing SDK](https://developer.avalara.com/products/e-invoicing/sdk.md): SDK for e-invoicing and live reporting.
+
+## MCP Servers
+
+- [MCP Servers Overview](https://developer.avalara.com/mcp-servers.md): Model Context Protocol servers for AI agent integration with Avalara APIs.
+- [AvaTax MCP Server](https://developer.avalara.com/products/avatax/mcp.md): AI agent access to AvaTax tax calculation and transaction management.
+- [Returns MCP Server](https://developer.avalara.com/products/returns/mcp.md): AI agent access to returns management, filing calendars, and compliance data.
+- [Cross-Border MCP Server](https://developer.avalara.com/mcp-servers/cross-border.md): HS code classification, duty calculations, and trade and tariff content for AI agents.
+- [E-Invoicing MCP Server](https://developer.avalara.com/products/e-invoicing/mcp.md): AI agent access to global e-invoicing and live reporting, including document statuses and downloads.
+- [ECM MCP Server](https://developer.avalara.com/products/ecm/mcp.md): AI agent access to exemption certificates, customer profiles, and company data.
+- [Communications MCP Server](https://developer.avalara.com/products/communications/mcp.md): Communications tax calculation and reference data for voice, data, VoIP, and messaging.
+- [Tax Content MCP Server](https://developer.avalara.com/products/avalara-tax-content/mcp.md): Access to Avalara Tax Content data, TTE configurations, jobs, and lodging UDFs.
+- [Business Licensing MCP Server](https://developer.avalara.com/products/registration-and-licensing/mcp.md): AI agent access to business licensing, regulatory compliance, and industry data APIs.
+- [Developer Docs MCP Server](https://developer.avalara.com/mcp-servers/docs.md): AI agent access to Avalara developer documentation and API reference.
+
+## Integration Guides
+
+- [ERP Integration Guide](https://developer.avalara.com/erp-integration-guide/about-this-guide/): Integrate AvaTax with enterprise resource planning systems.
+- [eCommerce Integration Guide](https://developer.avalara.com/ecommerce-integration-guide/about-this-guide/): Add tax compliance to eCommerce platforms.
+- [Marketplace Integration Guide](https://developer.avalara.com/marketplace-integration-guide/about-this-guide/): Marketplace facilitator tax compliance.
+- [Hospitality Integration Guide](https://developer.avalara.com/hospitality-integration-guide/tpd6373686358981/): Lodging and hospitality tax integrations.
+- [Communications Integration](https://developer.avalara.com/products/communications/integration-guides/communications-integration/): Integrate communications tax calculations.
+- [Managed Returns (U.S. and Canada)](https://developer.avalara.com/products/returns/integration-guides/managed-returns/): Managed returns API integration and filing workflows.
+- [Managed Returns (EMEA)](https://developer.avalara.com/products/returns/integration-guides/managed-returns-emea/): Managed returns API integration for EMEA regions.
+- [Account Provisioning](https://developer.avalara.com/account-provisioning/lxk1686163423564/): Provision Avalara accounts programmatically.
+- [Address Validation](https://developer.avalara.com/address-validation/mge2528064649525/): Validate addresses for tax jurisdiction accuracy.
+- [AvaTax and ECM](https://developer.avalara.com/avatax-dm-combined-erp/about-this-guide/): Combined AvaTax and Exemption Certificate Management integration.
+- [AvaTax for Accounts Payable](https://developer.avalara.com/avatax-for-ap/xai0106202356926/): Tax compliance for accounts payable workflows.
+- [Beverage Alcohol](https://developer.avalara.com/avatax-for-bevalc/bevalc-about-this-guide/): Tax calculation for beverage alcohol products.
+- [AvaTax Cross-Border (Customs Duty and Import Tax)](https://developer.avalara.com/products/crossborder/integration-guides/avatax-for-cdit/): Customs duty and import tax for cross-border transactions.
+- [Exemption Certificate Management (ECM)](https://developer.avalara.com/products/ecm/integration-guides/document-management/): Manage tax exemption and compliance documents.
+- [AvaTax Excise](https://developer.avalara.com/products/excise/integration-guides/excise/): Excise tax integration guide.
+- [E-Invoicing and Live Reporting](https://developer.avalara.com/products/e-invoicing/integration-guides/elr/): E-invoicing and live reporting compliance integration.
+- [1099 & W-9](https://developer.avalara.com/products/avalara-1099-and-w9/integration-guides/1099-and-w-9/): Integration guide for 1099 and W-9 form automation.
+- [MyLodgeTax](https://developer.avalara.com/products/mylodge/integration-guides/mylodgetax/): MyLodgeTax integration for short-term rental compliance.
+- [SOAP to REST v2 Refactor Guide](https://developer.avalara.com/soap-to-restv2-refactor-guide/): Migrate from the SOAP API to REST v2.
+- [REST v1 to REST v2 Refactor Guide](https://developer.avalara.com/restv1-to-restv2-refactor-guide/): Migrate from the REST v1 API to REST v2.
+
+## Developer Tools
+
+- [API Playground](https://developer.avalara.com/playground/): Test Avalara API calls interactively with live sandbox data.
+- [Patch Notes](https://developer.avalara.com/patch-notes/): Release notes and changelog for Avalara APIs and products.
+- [AvaTax Error Codes](https://developer.avalara.com/avatax/errors/): Searchable list of AvaTax error codes with resolution steps.
+- [API Versioning](https://developer.avalara.com/api-versioning.md): How Avalara versions its APIs and handles breaking changes.
+
+## Certification
+
+- [Certification Overview](https://developer.avalara.com/certification/): Partner certification for AvaTax, CertCapture, Communications, and Excise integrations.
+- [AvaTax Certification](https://developer.avalara.com/certification/avatax/): Requirements and badge details for AvaTax integrations.
+- [CertCapture Certification](https://developer.avalara.com/certification/certcapture/): Requirements and badge details for CertCapture integrations.
+- [Communications Certification](https://developer.avalara.com/certification/communications/): Requirements and badge details for Communications tax integrations.
+- [Excise Certification](https://developer.avalara.com/certification/excise/): Requirements and badge details for Excise tax integrations.
+
+## Getting Started
+
+- [Free Trial / Sandbox](https://developer.avalara.com/freeTrial.md): Sign up for an Avalara developer sandbox account to test API integrations.
+- [Developer Community](https://community.avalara.com): Avalara developer community forum for questions and support.
+
+## Key Information
+
+- [Avalara Website](https://www.avalara.com): Main Avalara corporate website.
+- [Terms of Use](https://www.avalara.com/terms-of-use/): Avalara terms of use.
+- [Sitemap](https://developer.avalara.com/sitemap.html): Complete site map.
+- [Avalara Support](https://help.avalara.com): Avalara help and support center.
+- [API Endpoint Index](https://developer.avalara.com/llms-api-endpoints.txt): Per-endpoint .md documentation URLs for all Avalara APIs (2,400+ endpoints).
+
+## Optional
+
+- [Blogs](https://developer.avalara.com/blogs/): Avalara developer blog with technical articles and updates.
+- [Developer Recognition](https://developer.avalara.com/developer-recognition/): Avalara developer recognition program.
+- [AVI Agent](https://developer.avalara.com/avi-agent.md): AI-powered assistant for Avalara developer questions.
+- [AI Use Cases](https://developer.avalara.com/ai-use-cases.md): AI and automation use cases for tax compliance.

@@ -1,0 +1,17 @@
+# generated: '2026-06-20'
+# method: generated
+# source: openapi/avalara-1099-w9-openapi.yml
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for 1099 & W-9 API
+  version: 1.0.0
+extends: openapi/avalara-1099-w9-openapi.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: avalara
+    x-apievangelist-rating: 4
+    x-apievangelist-authentication: authentication/avalara-authentication.yml
+    x-apievangelist-lifecycle: lifecycle/avalara-lifecycle.yml
+    x-apievangelist-errors: errors/avalara-error-codes.yml
+    x-apievangelist-docs: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

@@ -1,0 +1,67 @@
+generated: '2026-06-20'
+method: searched
+source: https://developer.avalara.com/avatax/errors/
+format: avalara-error-envelope
+notes: >-
+  Avalara (AvaTax REST v2) returns a custom error envelope, not RFC 9457
+  problem+json. The envelope nests an array of detail objects. AvaTax publishes a
+  numeric error-code registry (codes 1..2602) keyed by a symbolic `code`/message
+  name; a representative subset of the most commonly encountered codes is captured
+  here. See also errors/ referenced from conventions/ and the live error reference.
+envelope:
+  shape: |
+    {
+      "error": {
+        "code": "AuthenticationException",
+        "message": "Authentication failed.",
+        "details": [
+          {
+            "code": "AuthenticationException",
+            "message": "Authentication failed.",
+            "description": "Missing authentication or unable to authenticate the user or the account.",
+            "faultCode": "Client",
+            "helpLink": "http://developer.avalara.com/avatax/errors/AuthenticationException"
+          }
+        ]
+      }
+    }
+  fields:
+    - {name: error.code, description: Symbolic error code / exception name.}
+    - {name: error.message, description: Human-readable summary.}
+    - {name: error.details, description: Array of detail objects.}
+    - {name: "details[].description", description: Longer explanation of the fault.}
+    - {name: "details[].faultCode", description: "Client or Server, indicating fault attribution."}
+    - {name: "details[].helpLink", description: Link to the error reference page for this code.}
+error_codes:
+  - code: 1
+    name: ServerConfiguration
+    meaning: Server configuration problem with one of the servers in Avalara's AvaTax cluster.
+    action: Contact support; retry the request.
+  - code: 30
+    name: AuthenticationException
+    http_status: 401
+    meaning: Credentials provided to AvaTax could not be validated.
+    action: Verify API key / account credentials.
+  - code: 32
+    name: ValidationException
+    http_status: 400
+    meaning: The API call contained an incorrectly structured object.
+    action: Review the request payload structure.
+  - code: 300
+    name: GetTaxError
+    meaning: A problem occurred when attempting to create a transaction.
+    action: Validate the transaction structure and required fields.
+  - code: 500
+    name: ServerUnreachable
+    meaning: One of the servers in the AvaTax API cluster is unreachable.
+    action: Retry with exponential backoff.
+  - code: 600
+    name: SubscriptionRequired
+    meaning: The API call requires an active subscription.
+    action: Verify the account subscription level entitles the operation.
+  - code: 1715
+    name: RequestLimitExceeded
+    http_status: 429
+    meaning: Too many requests submitted.
+    action: Throttle client requests; implement rate limiting / backoff.
+reference: https://developer.avalara.com/avatax/errors/

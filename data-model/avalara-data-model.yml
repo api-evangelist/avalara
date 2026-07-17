@@ -1,0 +1,81 @@
+generated: '2026-06-20'
+method: derived
+source: openapi/avalara-avatax-rest-openapi.yml
+notes: >-
+  Entity-relationship graph derived from the AvaTax REST v2 OpenAPI component
+  schemas and their id-reference fields. Company is the aggregate root: Nexus,
+  Location, Item and Customer all belong to a Company via `companyId`; a
+  Transaction belongs to a Company and owns its lines and addresses. Relationships
+  are read from the actual `*Id` / nested-array fields present in the schemas
+  (no fabricated links).
+entities:
+  - name: Company
+    schema: CompanyModel
+    key: id
+    business_key: companyCode
+  - name: Nexus
+    schema: NexusModel
+    key: id
+  - name: Location
+    schema: LocationModel
+    key: id
+  - name: Item
+    schema: ItemModel
+    key: id
+  - name: Customer
+    schema: CustomerModel
+    key: id
+    business_key: customerCode
+  - name: Transaction
+    schema: TransactionModel
+    key: id
+  - name: TransactionLine
+    schema: TransactionLineModel
+    key: id
+  - name: TransactionAddress
+    schema: TransactionAddressModel
+relationships:
+  - from: Nexus
+    to: Company
+    type: belongs_to
+    via: companyId
+  - from: Location
+    to: Company
+    type: belongs_to
+    via: companyId
+  - from: Item
+    to: Company
+    type: belongs_to
+    via: companyId
+  - from: Customer
+    to: Company
+    type: belongs_to
+    via: companyId
+  - from: Transaction
+    to: Company
+    type: belongs_to
+    via: companyId
+  - from: Company
+    to: Nexus
+    type: has_many
+    via: companyId
+  - from: Company
+    to: Location
+    type: has_many
+    via: companyId
+  - from: Company
+    to: Item
+    type: has_many
+    via: companyId
+  - from: Company
+    to: Customer
+    type: has_many
+    via: companyId
+  - from: Transaction
+    to: TransactionLine
+    type: has_many
+    via: lines
+  - from: Transaction
+    to: TransactionAddress
+    type: has_many
+    via: addresses

@@ -1,13 +1,20 @@
-generated: '2026-07-11'
-method: derived
-source: openapi/avalara-1099-w9-openapi.yml, openapi/avalara-activation-service-openapi.yml,
-  openapi/avalara-avatax-brazil-openapi.yml, openapi/avalara-avatax-rest-openapi.yml, openapi/avalara-business-openapi.yml,
-  openapi/avalara-certcapture-openapi.yml, openapi/avalara-communications-openapi.yml, openapi/avalara-e-invoicing-openapi.yml,
-  openapi/avalara-excise-openapi.yml, openapi/avalara-hs-code-classification-openapi.yml, openapi/avalara-item-classification-openapi.yml,
-  openapi/avalara-mylodgetax-openapi.yml ...
+generated: '2026-06-20'
+method: searched
+source: openapi/ security schemes + https://identity.avalara.com/.well-known/openid-configuration
+docs: https://developer.avalara.com/avatax/authentication-in-rest/
+notes: >-
+  The per-API OpenAPI specs declare HTTP basic and bearer schemes. AvaTax REST v2
+  accepts either HTTP basic (username/password, or accountId/licenseKey) or an
+  OAuth 2.0 bearer token. Platform authorization is OAuth 2.0 / OIDC issued by
+  IdentityServer at identity.avalara.com (see scopes/avalara-scopes.yml for the
+  full endpoint + scope surface). Upgraded from derived to searched with the docs
+  auth page and the live OIDC discovery document.
 summary:
   types:
   - http
+  - oauth2
+  http_schemes: [basic, bearer]
+  oauth2_flows: [authorizationCode, clientCredentials, password, deviceCode, refreshToken]
 schemes:
 - name: bearerAuth
   type: http
@@ -35,3 +42,17 @@ schemes:
   - openapi/avalara-certcapture-openapi.yml
   - openapi/avalara-communications-openapi.yml
   - openapi/avatax-apis-openapi.yml
+- name: AvalaraIdentity
+  type: oauth2
+  description: >-
+    OAuth 2.0 / OpenID Connect via Avalara IdentityServer (identity.avalara.com).
+    Supports authorization_code (+ PKCE S256), client_credentials, password,
+    device_code, token-exchange and refresh_token grants.
+  source: https://identity.avalara.com/.well-known/openid-configuration
+  flows:
+    - flow: clientCredentials
+      tokenUrl: https://identity.avalara.com/connect/token
+    - flow: authorizationCode
+      authorizationUrl: https://identity.avalara.com/connect/authorize
+      tokenUrl: https://identity.avalara.com/connect/token
+  scopes_ref: scopes/avalara-scopes.yml

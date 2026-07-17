@@ -312,6 +312,80 @@ common:
   url: security/avalara-domain-security.yml
 - type: Authentication
   url: authentication/avalara-authentication.yml
+- type: Packages
+  url: packages/avalara-packages.yml
+- type: WellKnown
+  url: well-known/avalara-well-known.yml
+- type: MCPServer
+  url: mcp/avalara-mcp.yml
+- type: LLMsTxt
+  url: llms/avalara-llms.txt
+- type: OAuthScopes
+  url: scopes/avalara-scopes.yml
+- type: Conformance
+  url: conformance/avalara-conformance.yml
+- type: ErrorCatalog
+  url: errors/avalara-error-codes.yml
+- type: Lifecycle
+  url: lifecycle/avalara-lifecycle.yml
+- type: Sandbox
+  url: sandbox/avalara-sandbox.yml
+- type: Conventions
+  url: conventions/avalara-conventions.yml
+- type: ChangeLog
+  url: changelog/avalara-changelog.yml
+- type: DataModel
+  url: data-model/avalara-data-model.yml
+- type: TrustCenter
+  url: security/avalara-trust-center.yml
+- type: Overlay
+  url: overlays/avalara-avatax-rest-overlay.yaml
+  name: AvaTax REST enhancements
+- type: Overlay
+  url: overlays/avalara-avatax-apis-overlay.yaml
+  name: AvaTax APIs enhancements
+- type: Overlay
+  url: overlays/avalara-avatax-brazil-overlay.yaml
+  name: AvaTax Brazil enhancements
+- type: Overlay
+  url: overlays/avalara-communications-overlay.yaml
+  name: Communications Tax enhancements
+- type: Overlay
+  url: overlays/avalara-excise-overlay.yaml
+  name: Excise Platform enhancements
+- type: Overlay
+  url: overlays/avalara-item-classification-overlay.yaml
+  name: Item Classification enhancements
+- type: Overlay
+  url: overlays/avalara-hs-code-classification-overlay.yaml
+  name: HS Code Classification enhancements
+- type: Overlay
+  url: overlays/avalara-vat-reporting-overlay.yaml
+  name: VAT Reporting enhancements
+- type: Overlay
+  url: overlays/avalara-mylodgetax-overlay.yaml
+  name: MyLodgeTax enhancements
+- type: Overlay
+  url: overlays/avalara-certcapture-overlay.yaml
+  name: CertCapture enhancements
+- type: Overlay
+  url: overlays/avalara-e-invoicing-overlay.yaml
+  name: E-Invoicing enhancements
+- type: Overlay
+  url: overlays/avalara-activation-service-overlay.yaml
+  name: Activation Service enhancements
+- type: Overlay
+  url: overlays/avalara-business-overlay.yaml
+  name: Business API enhancements
+- type: Overlay
+  url: overlays/avalara-portal-oauth-overlay.yaml
+  name: Portal OAuth enhancements
+- type: Overlay
+  url: overlays/avalara-shared-company-service-overlay.yaml
+  name: Shared Company Service enhancements
+- type: Overlay
+  url: overlays/avalara-1099-w9-overlay.yaml
+  name: 1099 & W-9 enhancements
 - type: Arazzo
   url: arazzo/avalara-adjust-committed-transaction-workflow.yml
   name: Avalara Adjust a Committed Transaction
@@ -615,7 +689,7 @@ common:
 - type: LlmsText
   url: https://developer.avalara.com/llms.txt
 created: '2025-11-19'
-modified: '2026-05-30'
+modified: '2026-06-20'
 position: Consumer
 description: Avalara helps businesses of all sizes get tax compliance right. We deliver
   cloud-based solutions that work with existing business applications to calculate

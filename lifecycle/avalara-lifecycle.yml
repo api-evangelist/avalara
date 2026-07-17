@@ -1,0 +1,31 @@
+generated: '2026-06-20'
+method: searched
+source: https://developer.avalara.com/api-versioning/
+notes: >-
+  Avalara publishes an explicit API versioning + deprecation policy. Versions use
+  semantic versioning n.x.y and are selected per request via the `avalara-version`
+  header (preferred) or `api-version` query string; the full n.x.y string is
+  required. Backward compatibility is maintained for at least n-2 releases.
+versioning:
+  scheme: semver
+  format: n.x.y
+  selector_header: avalara-version
+  selector_query: api-version
+  header_precedence: true
+  docs: https://developer.avalara.com/api-versioning/
+deprecation:
+  policy: >-
+    Version n-2 is deprecated once version n releases and decommissioned 18 months
+    after version n reaches general availability. Versions n and n-1 stay active.
+  decommission_after_months: 18
+  supported_window: n and n-1 (n-2 deprecated)
+  decommissioned_behavior: >-
+    HTTP 400 Bad Request with a "version-too-old" message.
+  sunset_header: false
+sla:
+  status_page: https://status.avalara.com/
+change_communication:
+  patch_notes: https://developer.avalara.com/patch-notes/
+  release_notes: https://knowledge.avalara.com/category/release_notes
+status_page: https://status.avalara.com/
+deprecated_operations: []

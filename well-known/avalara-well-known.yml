@@ -1,0 +1,55 @@
+generated: '2026-06-20'
+method: searched
+source: live probe of /.well-known/ across Avalara hosts
+notes: >-
+  Probed the discovery surface on the four primary Avalara hosts. Only the
+  identity host publishes a discovery document: identity.avalara.com serves a
+  full OpenID Connect discovery document (IdentityServer). The AvaTax/API hosts
+  return 401 (auth required) for all paths; the developer portal returns 404
+  (SPA). Absence is recorded data.
+hosts:
+  - host: https://identity.avalara.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 200
+        file: avalara-openid-configuration.json
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://api.avalara.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 401
+      - path: /.well-known/oauth-authorization-server
+        status: 401
+      - path: /.well-known/security.txt
+        status: 401
+      - path: /.well-known/api-catalog
+        status: 401
+      - path: /.well-known/ai-plugin.json
+        status: 401
+  - host: https://rest.avatax.com
+    documents:
+      - path: /.well-known/openid-configuration
+        status: 401
+      - path: /.well-known/oauth-authorization-server
+        status: 401
+      - path: /.well-known/security.txt
+        status: 401
+      - path: /.well-known/api-catalog
+        status: 401
+      - path: /.well-known/ai-plugin.json
+        status: 401
+  - host: https://developer.avalara.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404

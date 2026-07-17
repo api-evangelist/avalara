@@ -1,0 +1,35 @@
+generated: '2026-06-20'
+method: searched
+source: >-
+  https://developer.avalara.com/ecommerce-integration-guide/sales-tax-badge/authentication-in-avatax/sandbox-vs-production/,
+  openapi/ servers[], https://developer.avalara.com/freeTrial/
+notes: >-
+  Avalara operates fully separate sandbox environments per product. Sandbox
+  accounts are free and created from the developer portal; a 90-day AvaTax free
+  trial is also offered. Sandbox credentials are distinct from production and
+  produce no filing/production impact. Avalara does not publish "magic" test card
+  or identifier values (tax calculation is address/jurisdiction driven), so none
+  are fabricated here — only the published sandbox hosts and account model.
+environments:
+  - product: AvaTax REST v2
+    sandbox_base_url: https://sandbox-rest.avatax.com
+    production_base_url: https://rest.avatax.com
+  - product: Avalara platform APIs (1099, classification, e-invoicing, etc.)
+    sandbox_base_url: https://api.sbx.avalara.com
+    production_base_url: https://api.avalara.com
+  - product: AvaTax Brazil
+    sandbox_base_url: https://avataxbr-sandbox.avalarabrasil.com.br/v3
+    production_base_url: null
+account_model:
+  free_sandbox: true
+  signup: https://developer.avalara.com/freeTrial/
+  free_trial: 90-day AvaTax free trial
+  separation: >-
+    Sandbox and production use different base hosts and different account
+    credentials; sandbox activity has no production/filing effect.
+test_values:
+  published: false
+  note: >-
+    Avalara publishes no fixed magic test card/account numbers. Testing is done by
+    submitting real address + line-item payloads against the sandbox hosts using a
+    sandbox account.

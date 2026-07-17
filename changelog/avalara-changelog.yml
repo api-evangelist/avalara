@@ -1,0 +1,46 @@
+generated: '2026-06-20'
+method: searched
+source: https://developer.avalara.com/patch-notes/
+notes: >-
+  Avalara publishes dated API patch notes on the developer portal and product
+  release notes in the knowledge base. Versioning is semver n.x.y (patch notes are
+  tagged by that version). The patch-notes index is the source of truth; the recent
+  window captured below is the most recent set surfaced on the index at capture
+  time. Broader/product release notes: https://knowledge.avalara.com/category/release_notes
+scheme: semver
+version_format: n.x.y
+changelog_url: https://developer.avalara.com/patch-notes/
+release_notes_url: https://knowledge.avalara.com/category/release_notes
+entries:
+  - version: 23.4.1
+    date: '2023-04-26'
+    region: North America
+    title: Avalara API 23.4.1 Patch Notes
+  - version: 23.2.0
+    date: '2023-02-01'
+    region: North America
+    title: Avalara API 23.2.0 Patch Notes
+  - version: 23.1.0
+    date: '2023-01-11'
+    region: North America
+    title: Avalara API 23.1.0 Patch Notes
+  - version: 22.11.0
+    date: '2022-11-02'
+    region: North America
+    title: Avalara API 22.11.0 Patch Notes
+  - version: 22.10.0
+    date: '2022-10-05'
+    region: North America
+    title: Avalara API 22.10.0 Patch Notes
+  - version: 22.8.0
+    date: '2022-08-25'
+    region: North America
+    title: Avalara API 22.8.0 Patch Notes
+  - version: 22.7.0
+    date: '2022-07-28'
+    region: North America
+    title: Avalara API 22.7.0 Patch Notes
+  - version: 22.6.0
+    date: '2022-06-30'
+    region: North America
+    title: Avalara API 22.6.0 Patch Notes

@@ -1,0 +1,21 @@
+generated: '2026-06-20'
+method: searched
+probe: true
+source: >-
+  https://newsroom.avalara.com/2023-01-31-Avalara-AvaTax,-Returns,-and-Exemption-Certificate-Management-Achieve-SOC-2-Type-2-Compliance
+notes: >-
+  Avalara does not host a dedicated trust.avalara.com portal (probe found none),
+  but Avalara's own newsroom confirms first-party SOC 2 Type 2 compliance for
+  AvaTax, Returns, and Exemption Certificate Management. Only first-party-confirmed
+  certifications are asserted below; third-party aggregator claims of additional
+  frameworks are not treated as verified.
+url: null
+certifications:
+  - name: SOC 2 Type 2
+    scope: AvaTax, Managed Returns, Exemption Certificate Management
+    evidence: newsroom.avalara.com press release (2023-01-31)
+evidence:
+  - source: https://newsroom.avalara.com/2023-01-31-Avalara-AvaTax,-Returns,-and-Exemption-Certificate-Management-Achieve-SOC-2-Type-2-Compliance
+    keywords: [soc 2 type 2, compliance]
+legal_center: https://legal.avalara.com/#siteterms
+compliance_center: https://legal.avalara.com/compliance
