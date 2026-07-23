@@ -1,0 +1,153 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Business Entities API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Business Entities
+  description: Manage business entity records
+paths:
+  /BusinessEntities:
+    get:
+      operationId: listBusinessEntities
+      summary: Avalara List Business Entities
+      tags:
+      - Business Entities
+      responses:
+        '200':
+          description: List of business entities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BusinessEntity'
+    post:
+      operationId: createBusinessEntity
+      summary: Avalara Create a Business Entity
+      tags:
+      - Business Entities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessEntity'
+      responses:
+        '201':
+          description: Business entity created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessEntity'
+  /BusinessEntities/{entityId}:
+    get:
+      operationId: getBusinessEntity
+      summary: Avalara Get a Business Entity by ID
+      tags:
+      - Business Entities
+      parameters:
+      - name: entityId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Business entity details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusinessEntity'
+    put:
+      operationId: updateBusinessEntity
+      summary: Avalara Update a Business Entity
+      tags:
+      - Business Entities
+      parameters:
+      - name: entityId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BusinessEntity'
+      responses:
+        '200':
+          description: Business entity updated
+    delete:
+      operationId: deleteBusinessEntity
+      summary: Avalara Delete a Business Entity
+      tags:
+      - Business Entities
+      parameters:
+      - name: entityId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Business entity deleted
+components:
+  schemas:
+    ExciseAddress:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+          description: State or province code
+        postalCode:
+          type: string
+        country:
+          type: string
+          description: ISO 3166 country code
+    BusinessEntity:
+      type: object
+      properties:
+        entityId:
+          type: string
+        entityName:
+          type: string
+        entityType:
+          type: string
+        federalIdNumber:
+          type: string
+          description: Federal EIN
+        address:
+          $ref: '#/components/schemas/ExciseAddress'
+        isActive:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

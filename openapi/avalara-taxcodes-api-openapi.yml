@@ -1,0 +1,229 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms TaxCodes API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: TaxCodes
+paths:
+  /api/v2/companies/{companyId}/taxcodes:
+    post:
+      tags:
+      - TaxCodes
+      summary: Avalara CreateTaxCodes
+      description: "Create one or more new taxcode objects attached to this company.\r\nA 'TaxCode' represents a uniquely identified type of product, good, or service.\r\nAvalara supports correct tax rates and taxability rules for all TaxCodes in all supported jurisdictions.\r\nIf you identify your products by tax code in your 'Create Transaction' API calls, Avalara will correctly calculate tax rates and\r\ntaxability rules for this product in all supported jurisdictions.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 56789
+                companyId: 12345
+                taxCode: PS081282
+                taxCodeTypeId: P
+                description: Yarn
+                parentTaxCode: PS080100
+                isPhysical: true
+                goodsServiceCode: 0
+                entityUseCode: ''
+                isActive: true
+                isSSTCertified: false
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - TaxCodes
+      summary: Avalara ListTaxCodesByCompany
+      description: "List all taxcode objects attached to this company.\r\nA 'TaxCode' represents a uniquely identified type of product, good, or service.\r\nAvalara supports correct tax rates and taxability rules for all TaxCodes in all supported jurisdictions.\r\nIf you identify your products by tax code in your 'Create Transaction' API calls, Avalara will correctly calculate tax rates and\r\ntaxability rules for this product in all supported jurisdictions.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/taxcodes/{id}:
+    delete:
+      tags:
+      - TaxCodes
+      summary: Avalara DeleteTaxCode
+      description: 'Marks the existing TaxCode object at this URL as deleted.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.
+
+        '
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - TaxCodes
+      summary: Avalara GetTaxCode
+      description: "Get the taxcode object identified by this URL.\r\nA 'TaxCode' represents a uniquely identified type of product, good, or service.\r\nAvalara supports correct tax rates and taxability rules for all TaxCodes in all supported jurisdictions.\r\nIf you identify your products by tax code in your 'Create Transaction' API calls, Avalara will correctly calculate tax rates and\r\ntaxability rules for this product in all supported jurisdictions.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+      - TaxCodes
+      summary: Avalara UpdateTaxCode
+      description: "Replace the existing taxcode object at this URL with an updated object.\r\nA 'TaxCode' represents a uniquely identified type of product, good, or service.\r\nAvalara supports correct tax rates and taxability rules for all TaxCodes in all supported jurisdictions.\r\nIf you identify your products by tax code in your 'Create Transaction' API calls, Avalara will correctly calculate tax rates and\r\ntaxability rules for this product in all supported jurisdictions.\r\nAll data from the existing object will be replaced with data in the object you PUT.\r\nTo set a field's value to null, you may either set its value to null or omit that field from the object you post.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 56789
+                companyId: 12345
+                taxCode: PS081282
+                taxCodeTypeId: P
+                description: Yarn
+                parentTaxCode: PS080100
+                isPhysical: true
+                goodsServiceCode: 0
+                entityUseCode: ''
+                isActive: true
+                isSSTCertified: false
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/taxcodes:
+    get:
+      tags:
+      - TaxCodes
+      summary: Avalara QueryTaxCodes
+      description: "Get multiple taxcode objects across all companies.\r\nA 'TaxCode' represents a uniquely identified type of product, good, or service.\r\nAvalara supports correct tax rates and taxability rules for all TaxCodes in all supported jurisdictions.\r\nIf you identify your products by tax code in your 'Create Transaction' API calls, Avalara will correctly calculate tax rates and\r\ntaxability rules for this product in all supported jurisdictions.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

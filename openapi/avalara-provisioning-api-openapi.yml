@@ -1,0 +1,118 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Provisioning API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Provisioning
+paths:
+  /api/v2/accounts/request:
+    post:
+      tags:
+      - Provisioning
+      summary: Avalara RequestNewAccount
+      description: "This API is for use by partner provisioning services customers only.\r\n            \r\nAvalara invites select partners to refer new customers to the AvaTax service using the onboarding features\r\nof AvaTax.  These partners can create accounts for new customers using this API.\r\n            \r\nCalling this API creates an account with the specified product subscriptions, but does not configure billing.\r\nThe customer will receive information from Avalara about how to configure billing for their account.\r\nYou should call this API when a customer has requested to begin using Avalara services.\r\n            \r\nIf the newly created account owner wishes, they can confirm that they have read and agree to the Avalara\r\nterms and conditions.  If they do so, they can receive a license key as part of this API and their\r\nAPI will be created in `Active` status.  If the customer has not yet read and accepted these terms and\r\nconditions, the account will be created in `New` status and they can receive a license key by logging\r\nonto the AvaTax website and reviewing terms and conditions online.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n* This API is available by invitation only.\n* This API is available by invitation only.  To request access to this feature, please speak to a business development manager and request access to [Provisioning:RequestNewAccount].\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                offer: DeveloperDotAvalaraFreeTrial
+                connectorId: a0n4000000ChMwPAAV
+                campaign: 70140000000TsVb
+                leadSource: Direct Visitor
+                accountName: BizTech Company Inc.
+                website: https://biztech.com
+                paymentMethodId: 701abc-def
+                firstName: Bob
+                lastName: Example
+                email: bob@example.org
+                username: bob
+                welcomeEmail: Normal
+                companyAddress:
+                  line: 100 Ravine Ln
+                  region: WA
+                  country: US
+                  postalCode: '98010'
+                acceptAvalaraTermsAndConditions: true
+                haveReadAvalaraTermsAndConditions: true
+                marketingContext:
+                  campaignId: 70140000000TsVb
+                  leadSource: Direct Visitor
+                accountType: Regular
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/accounts/{id}/entitlements/{offer}:
+    post:
+      tags:
+      - Provisioning
+      summary: Avalara RequestNewEntitlement
+      description: "This API is for use by partner provisioning services customers only. This will allow the partners to allow\r\nthe add new entitlement to an existing customer\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n* This API is available by invitation only.\n* This API is available by invitation only.  To request access to this feature, please speak to a business development manager and request access to [Provisioning:RequestNewAccount].\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: ''
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: offer
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

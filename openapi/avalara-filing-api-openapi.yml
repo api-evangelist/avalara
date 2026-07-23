@@ -1,0 +1,132 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Filing API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Filing
+  description: E-file forms with the IRS
+paths:
+  /filing/submit:
+    post:
+      operationId: submitFiling
+      summary: Avalara Submit Forms for E-filing
+      description: Submits a batch of completed forms to the IRS for electronic filing. Validates all forms before submission.
+      tags:
+      - Filing
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FilingSubmission'
+      responses:
+        '202':
+          description: Filing submission accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilingResponse'
+  /filing/{filingId}/status:
+    get:
+      operationId: getFilingStatus
+      summary: Avalara Get Filing Status
+      description: Retrieves the status of an IRS e-filing submission.
+      tags:
+      - Filing
+      parameters:
+      - name: filingId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Filing status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FilingStatus'
+components:
+  schemas:
+    FilingSubmission:
+      type: object
+      required:
+      - taxYear
+      - formIds
+      properties:
+        taxYear:
+          type: integer
+        formIds:
+          type: array
+          items:
+            type: string
+        corrected:
+          type: boolean
+          default: false
+    FilingStatus:
+      type: object
+      properties:
+        filingId:
+          type: string
+        status:
+          type: string
+          enum:
+          - Processing
+          - Accepted
+          - AcceptedWithErrors
+          - Rejected
+        acceptedCount:
+          type: integer
+        rejectedCount:
+          type: integer
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              formId:
+                type: string
+              errorCode:
+                type: string
+              message:
+                type: string
+    FilingResponse:
+      type: object
+      properties:
+        filingId:
+          type: string
+        status:
+          type: string
+          enum:
+          - Accepted
+          - Processing
+          - Rejected
+        formCount:
+          type: integer
+        submittedDate:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

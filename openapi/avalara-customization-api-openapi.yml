@@ -1,0 +1,113 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Customization API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Customization
+  description: Manage tax profiles, exemptions, and overrides
+paths:
+  /api/v2/afc/customization/profiles:
+    get:
+      operationId: getProfiles
+      summary: Avalara List Tax Profiles
+      description: Retrieves all configured tax profiles for the client.
+      tags:
+      - Customization
+      responses:
+        '200':
+          description: List of tax profiles
+    post:
+      operationId: createProfile
+      summary: Avalara Create a Tax Profile
+      description: Creates a new tax profile with custom bundles and overrides.
+      tags:
+      - Customization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TaxProfile'
+      responses:
+        '201':
+          description: Tax profile created
+  /api/v2/afc/customization/exclusions:
+    get:
+      operationId: getExclusions
+      summary: Avalara List Tax Exclusions
+      description: Retrieves configured tax exclusions.
+      tags:
+      - Customization
+      responses:
+        '200':
+          description: List of exclusions
+    post:
+      operationId: createExclusion
+      summary: Avalara Create a Tax Exclusion
+      tags:
+      - Customization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Exclusion'
+      responses:
+        '201':
+          description: Exclusion created
+components:
+  schemas:
+    Exclusion:
+      type: object
+      properties:
+        excl:
+          type: integer
+          description: Exclusion type
+        ctry:
+          type: string
+        st:
+          type: string
+        excl_name:
+          type: string
+    TaxProfile:
+      type: object
+      properties:
+        profileId:
+          type: integer
+        profileName:
+          type: string
+        description:
+          type: string
+        bundles:
+          type: array
+          items:
+            type: object
+            properties:
+              bundleId:
+                type: integer
+              bundleName:
+                type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

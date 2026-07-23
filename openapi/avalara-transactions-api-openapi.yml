@@ -1,0 +1,1448 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Transactions API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Transactions
+  description: Manage tax transactions
+paths:
+  /transactions:
+    get:
+      operationId: listTransactions
+      summary: Avalara List Transactions
+      tags:
+      - Transactions
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of transactions
+    post:
+      operationId: submitTransactions
+      summary: Avalara Submit VAT Transactions
+      description: Submits a batch of transactions for VAT reporting. Transactions are validated and processed for inclusion in VAT returns.
+      tags:
+      - Transactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TransactionBatch'
+      responses:
+        '202':
+          description: Transactions accepted for processing
+  /api/v2/transactions/create:
+    post:
+      operationId: createTransaction
+      summary: Avalara Create a New Transaction
+      description: Creates a new tax transaction. This is the primary method for calculating tax on a sale, purchase, or other taxable event. The transaction can be committed immediately or saved as a temporary document.
+      tags:
+      - Transactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTransactionModel'
+      responses:
+        '200':
+          description: Transaction created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}:
+    get:
+      operationId: getTransactionByCode
+      summary: Avalara Retrieve a Single Transaction by Code
+      description: Retrieves a transaction by its company code and transaction code, optionally including line item details and summary information.
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/companyCode'
+      - name: transactionCode
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The transaction code to retrieve
+      - name: $include
+        in: query
+        schema:
+          type: string
+        description: Comma-separated list of optional data to include (e.g., Lines, Details, Summary)
+      responses:
+        '200':
+          description: Transaction retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/adjust:
+    post:
+      operationId: adjustTransaction
+      summary: Avalara Adjust a Committed Transaction
+      description: Adjusts a committed transaction by replacing it with a modified version. The original transaction is voided and a new adjusted transaction is created.
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/companyCode'
+      - name: transactionCode
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AdjustTransactionModel'
+      responses:
+        '200':
+          description: Transaction adjusted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/commit:
+    post:
+      operationId: commitTransaction
+      summary: Avalara Commit a Transaction
+      description: Marks a transaction as committed, indicating it has been finalized and should be reported to tax authorities.
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/companyCode'
+      - name: transactionCode
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommitTransactionModel'
+      responses:
+        '200':
+          description: Transaction committed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/void:
+    post:
+      operationId: voidTransaction
+      summary: Avalara Void a Transaction
+      description: Voids an existing transaction, removing it from tax reporting. Only uncommitted or committed transactions can be voided.
+      tags:
+      - Transactions
+      parameters:
+      - $ref: '#/components/parameters/companyCode'
+      - name: transactionCode
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoidTransactionModel'
+      responses:
+        '200':
+          description: Transaction voided successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+  /api/v2/transactions/{transactionCode}/refund:
+    post:
+      operationId: refundTransaction
+      summary: Avalara Create a Refund for a Transaction
+      description: Creates a refund transaction based on an existing committed transaction. Supports full, partial, percentage, and tax-only refund types.
+      tags:
+      - Transactions
+      parameters:
+      - name: transactionCode
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RefundTransactionModel'
+      responses:
+        '200':
+          description: Refund transaction created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionModel'
+  /Transactions:
+    get:
+      operationId: listTransactions
+      summary: Avalara List Excise Transactions
+      description: Retrieves a list of excise tax transactions.
+      tags:
+      - Transactions
+      parameters:
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: pageNumber
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of transactions
+    post:
+      operationId: createTransaction
+      summary: Avalara Create an Excise Transaction
+      tags:
+      - Transactions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ExciseTransaction'
+      responses:
+        '201':
+          description: Transaction created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExciseTransaction'
+  /Transactions/{transactionId}:
+    get:
+      operationId: getTransaction
+      summary: Avalara Retrieve an Excise Transaction
+      tags:
+      - Transactions
+      parameters:
+      - name: transactionId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Transaction details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ExciseTransaction'
+  /api/v2/companies/transactions/lines/add:
+    post:
+      tags:
+      - Transactions
+      summary: Avalara AddLines
+      description: " Add lines to an existing unlocked transaction.\r\n            \r\n The `AddLines` API allows you to add additional transaction lines to existing transaction, so that customer will\r\n be able to append multiple calls together and form an extremely large transaction. If customer does not specify line number\r\n in the lines to be added, a new random Guid string will be generated for line number. If customer are not satisfied with\r\n the line number for the transaction lines, they can turn on the renumber switch to have REST v2 automatically renumber all\r\n transaction lines for them, in this case, the line number becomes: \"1\", \"2\", \"3\", ...\r\n            \r\n A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\r\n sales, purchases, inventory transfer, and returns (also called refunds).\r\n You may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n * Lines\r\n * Details (implies lines)\r\n* AccountPayableSalesTaxDetails (implies lines - only for Account Payable transaction)\r\n * Summary (implies details)\r\n * Addresses\r\n* SummaryOnly (omit lines and details - reduces API response size)\r\n* LinesOnly (omit details - reduces API response size)\r\n            \r\n If you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                companyCode: DEFAULT
+                transactionCode: '1234'
+                documentType: SalesInvoice
+                lines:
+                - number: '1'
+                  quantity: 1
+                  amount: 100
+                  taxCode: PS081282
+                  itemCode: Y0001
+                  description: Yarn
+                renumber: false
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/audit:
+    get:
+      tags:
+      - Transactions
+      summary: Avalara AuditTransaction
+      description: "Retrieve audit information about a transaction stored in AvaTax.\r\n            \r\nThe `AuditTransaction` API retrieves audit information related to a specific transaction.  This audit\r\ninformation includes the following:\r\n            \r\n* The `CompanyId` of the company that created the transaction\r\n* The server timestamp representing the exact server time when the transaction was created\r\n* The server duration - how long it took to process this transaction\r\n* Whether exact API call details were logged\r\n* A reconstructed API call showing what the original CreateTransaction call looked like\r\n            \r\nThis API can be used to examine information about a previously created transaction.\r\n            \r\nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\r\nsales, purchases, inventory transfer, and returns (also called refunds).\r\n            \r\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\r\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\r\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\r\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: transactionCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/types/{documentType}/audit:
+    get:
+      tags:
+      - Transactions
+      summary: Avalara AuditTransactionWithType
+      description: "Retrieve audit information about a transaction stored in AvaTax.\r\n            \r\nThe `AuditTransaction` API retrieves audit information related to a specific transaction.  This audit\r\ninformation includes the following:\r\n            \r\n* The `CompanyId` of the company that created the transaction\r\n* The server timestamp representing the exact server time when the transaction was created\r\n* The server duration - how long it took to process this transaction\r\n* Whether exact API call details were logged\r\n* A reconstructed API call showing what the original CreateTransaction call looked like\r\n            \r\nThis API can be used to examine information about a previously created transaction.\r\n            \r\nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\r\nsales, purchases, inventory transfer, and returns (also called refunds).\r\n            \r\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\r\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\r\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\r\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: transactionCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: documentType
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/transactions/lock:
+    post:
+      tags:
+      - Transactions
+      summary: Avalara BulkLockTransaction
+      description: "This API is available by invitation only.\r\n            \r\nLock a set of transactions uniquely identified by DocumentIds provided. This API allows locking multiple documents at once.\r\nAfter this API call succeeds, documents will be locked and can't be voided.\r\n            \r\nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\r\nsales, purchases, inventory transfer, and returns (also called refunds).\n\n### Security Policies\n\n* This API requires the user role Compliance Root User.\n* This API depends on the following active services:*Returns* (at least one of):  Mrs, MRSComplianceManager, AvaTaxCsp.*Firm Managed* (for accounts managed by a firm):  ARA, ARAManaged.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                documentIds:
+                - 1
+                - 2
+                - 3
+                - 4
+                - 5
+                isLocked: true
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/changecode:
+    post:
+      tags:
+      - Transactions
+      summary: Avalara ChangeTransactionCode
+      description: "Renames a transaction uniquely identified by this URL by changing its `code` value.\r\n            \r\nThis API is available as long as the transaction is in `saved` or `posted` status.  When a transaction\r\nis `committed`, it can be modified by using the [AdjustTransaction](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/AdjustTransaction/) method.\r\n            \r\nAfter this API call succeeds, the transaction will have a new URL matching its new `code`.\r\n            \r\nIf you have more than one document with the same `code`, specify the `documentType` parameter to choose between them.\r\n            \r\nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\r\nsales, purchases, inventory transfer, and returns (also called refunds).\r\n            \r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* Lines\r\n* Details (implies lines)\r\n* AccountPayableSalesTaxDetails (implies lines - only for Account Payable transaction)\r\n* Summary (implies details)\r\n* Addresses\r\n* SummaryOnly (omit lines and details - reduces API response size)\r\n* LinesOnly (omit details - reduces API response size)\r\n* TaxDetailsByTaxType - Includes the aggregated tax, exempt tax, taxable and non-taxable for each tax type returned in the transaction summary.\r\n            \r\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\r\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\r\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\r\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, ProStoresOperator, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                newCode: f0b2f99e-de1d-439f-9be0-960fc3c62c07
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: transactionCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/transactions/createoradjust:
+    post:
+      tags:
+      - Transactions
+      summary: Avalara CreateOrAdjustTransaction
+      description: "Records a new transaction or adjust an existing transaction in AvaTax.\r\n            \r\nThe `CreateOrAdjustTransaction` endpoint is used to create a new transaction or update an existing one.  This API\r\ncan help you create an idempotent service that creates transactions\r\nIf there exists a transaction identified by code, the original transaction will be adjusted by using the meta data\r\nin the input transaction.\r\n            \r\nThe `CreateOrAdjustTransaction` API cannot modify any transaction that has been reported to a tax authority using\r\nthe Avalara Managed Returns Service or any other tax filing service.  If you call this API to attempt to modify\r\na transaction that has been reported on a tax filing, you will receive the error `CannotModifyLockedTransaction`.\r\n            \r\nTo generate a refund for a transaction, use the `RefundTransaction` API.\r\n            \r\nAn address is required for calculation. If no address is provided at the line level, the document level address will be used.\r\n\r\nIf you don't specify the field `type` in your request, you will get an estimate of type `SalesOrder`, which will not be recorded in the database.\r\n            \r\nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\r\nsales, purchases, inventory transfer, and returns (also called refunds).\r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* Lines\r\n* Details (implies lines)\r\n* AccountPayableSalesTaxDetails (implies lines - only for Account Payable transaction)\r\n* Summary (implies details)\r\n* Addresses\r\n* SummaryOnly (omit lines and details - reduces API response size)\r\n* LinesOnly (omit details - reduces API response size)\r\n* ForceTimeout - Simulates a timeout.  This adds a 30 second delay and error to your API call.  This can be used to test your code to ensure it can respond correctly in the case of a dropped connection.\r\n            \r\nIf you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.\r\n            \r\nNOTE: Avoid using the following strings in your transaction codes as they are encoding strings and will be interpreted differently:\r\n* \\_-ava2f-\\_\r\n* \\_-ava2b-\\_\r\n* \\_-ava3f-\\_\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                adjustmentReason: Other
+                adjustmentDescription: Test Description
+                createTransactionModel:
+                  lines:
+                  - number: '1'
+                    quantity: 1
+                    amount: 100
+                    taxCode: PS081282
+                    itemCode: Y0001
+                    description: Yarn
+                  type: SalesInvoice
+                  companyCode: DEFAULT
+                  date: '2023-08-13'
+                  customerCode: ABC
+                  purchaseOrderNo: 2023-08-13-001
+                  addresses:
+                    singleLocation:
+                      line1: 2000 Main Street
+                      city: Irvine
+                      region: CA
+                      country: US
+                      postalCode: '92614'
+                  commit: true
+                  currencyCode: USD
+                  description: Yarn
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/transactions/lines/delete:
+    post:
+      tags:
+      - Transactions
+      summary: Avalara DeleteLines
+      description: " Remove lines to an existing unlocked transaction.\r\n            \r\n The `DeleteLines` API allows you to remove transaction lines from existing unlocked transaction, so that customer will\r\n be able to delete transaction lines and adjust original transaction the way they like\r\n            \r\n A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\r\n sales, purchases, inventory transfer, and returns (also called refunds).\r\n You may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n * Lines\r\n * Details (implies lines)\r\n* AccountPayableSalesTaxDetails (implies lines - only for Account Payable transaction)\r\n * Summary (implies details)\r\n * Addresses\r\n* SummaryOnly (omit lines and details - reduces API response size)\r\n* LinesOnly (omit details - reduces API response size)\r\n            \r\n If you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                companyCode: DEFAULT
+                transactionCode: '1234'
+                documentType: SalesInvoice
+                lines:
+                - '1'
+                renumber: false
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/AllVariance:
+    get:
+      tags:
+      - Transactions
+      summary: Avalara GetAllVarianceReportByCompanyCode
+      description: '
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.
+
+        * This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.
+
+        '
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/types/{documentType}:
+    get:
+      tags:
+      - Transactions
+      summary: Avalara GetTransactionByCodeAndType
+      description: "DEPRECATED: Please use the `GetTransactionByCode` API instead.\r\n            \r\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\r\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\r\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\r\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: transactionCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: documentType
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/transactions/{id}:
+    get:
+      tags:
+      - Transactions
+      summary: Avalara GetTransactionById
+      description: "Get the unique transaction identified by this URL.\r\n            \r\nThis endpoint retrieves the exact transaction identified by this ID number, as long as it is the most version of the transaction.\r\n            \r\nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\r\nsales, purchases, inventory transfer, and returns (also called refunds).\r\n            \r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* Lines\r\n* Details (implies lines)\r\n* AccountPayableSalesTaxDetails (implies lines - only for Account Payable transaction)\r\n* Summary (implies details)\r\n* Addresses\r\n* SummaryOnly (omit lines and details - reduces API response size)\r\n* LinesOnly (omit details - reduces API response size)\r\n* TaxDetailsByTaxType - Includes the aggregated tax, exempt tax, taxable and non-taxable for each tax type returned in the transaction summary.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/transactions/{transactionId}/variance:
+    get:
+      tags:
+      - Transactions
+      summary: Avalara GetVarianceReportByCompanyCodeByTransactionId
+      description: '
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.
+
+        * This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.
+
+        '
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: transactionId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/transactions:
+    get:
+      tags:
+      - Transactions
+      summary: Avalara ListTransactionsByCompany
+      description: "List all transactions attached to this company.\r\n            \r\nThis endpoint is limited to returning 1,000 transactions at a time maximum.\r\n            \r\nWhen listing transactions, you must specify a `date` range filter.  If you do not specify a `$filter` that includes a `date` field\r\ncriteria, the query will default to looking at only those transactions with `date` in the past 30 days.\r\n            \r\nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\r\nsales, purchases, inventory transfer, and returns (also called refunds).\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\r\n            \r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* Lines\r\n* Details (implies lines)\r\n* AccountPayableSalesTaxDetails (implies lines - only for Account Payable transaction)\r\n* Summary (implies details)\r\n* Addresses\r\n* SummaryOnly (omit lines and details - reduces API response size)\r\n* LinesOnly (omit details - reduces API response size)\r\n            \r\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\r\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\r\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\r\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/lock:
+    post:
+      tags:
+      - Transactions
+      summary: Avalara LockTransaction
+      description: "Lock a transaction uniquely identified by this URL.\r\n            \r\nThis API is mainly used for connector developers to simulate what happens when the Returns product locks a document.\r\nAfter this API call succeeds, the document will be locked and can't be voided or adjusted.\r\n            \r\nOn Sandbox, this API is only available to customers who have both an AvaTaxPro and a Managed Returns subscription. On Production, this API is only available internally for the Avalara Returns team.\r\n            \r\nIf you have more than one document with the same `code`, specify the `documentType` parameter to choose between them.\r\n            \r\nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\r\nsales, purchases, inventory transfer, and returns (also called refunds).\r\n            \r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* Lines\r\n* Details (implies lines)\r\n* AccountPayableSalesTaxDetails (implies lines - only for Account Payable transaction)\r\n* Summary (implies details)\r\n* Addresses\r\n* SummaryOnly (omit lines and details - reduces API response size)\r\n* LinesOnly (omit details - reduces API response size)\r\n* TaxDetailsByTaxType - Includes the aggregated tax, exempt tax, taxable and non-taxable for each tax type returned in the transaction summary.\r\n            \r\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\r\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\r\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\r\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Returns* (at least one of):  Mrs, MRSComplianceManager, AvaTaxCsp.*Firm Managed* (for accounts managed by a firm):  ARA, ARAManaged.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                isLocked: true
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: transactionCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/refund:
+    post:
+      tags:
+      - Transactions
+      summary: Avalara RefundTransaction
+      description: "Create a refund for a transaction.\r\n            \r\nThe `RefundTransaction` API allows you to quickly and easily create a `ReturnInvoice` representing a refund\r\nfor a previously created `SalesInvoice` transaction.  You can choose to create a full or partial refund, and\r\nspecify individual line items from the original sale for refund.\r\n            \r\nThe `RefundTransaction` API ensures that the tax amount you refund to the customer exactly matches the tax that\r\nwas calculated during the original transaction, regardless of any changes to your company's configuration, rules,\r\nnexus, or any other setting.\r\n            \r\nThis API is intended to be a shortcut to allow you to quickly and accurately generate a refund for the following\r\ncommon refund scenarios:\r\n            \r\n* A full refund of a previous sale\r\n* Refunding the tax that was charged on a previous sale, when the customer provides an exemption certificate after the purchase\r\n* Refunding one or more items (lines) from a previous sale\r\n* Granting a customer a percentage refund of a previous sale\r\n            \r\nFor more complex scenarios than the ones above, please use `CreateTransaction` with document type `ReturnInvoice` to\r\ncreate a custom refund transaction.\r\n            \r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* Lines\r\n* Details (implies lines)\r\n* AccountPayableSalesTaxDetails (implies lines - only for Account Payable transaction)\r\n* Summary (implies details)\r\n* Addresses\r\n* SummaryOnly (omit lines and details - reduces API response size)\r\n* LinesOnly (omit details - reduces API response size)\r\n* TaxDetailsByTaxType - Includes the aggregated tax, exempt tax, taxable and non-taxable for each tax type returned in the transaction summary.\r\nIf you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.\r\n            \r\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\r\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\r\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\r\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                refundTransactionCode: 66d322fb-3750-4480-867a-519967282c72
+                refundDate: '2023-08-13'
+                refundType: Full
+                referenceCode: Refund for a committed transaction
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: transactionCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/settle:
+    post:
+      tags:
+      - Transactions
+      summary: Avalara SettleTransaction
+      description: "Performs one or more actions against the current transaction uniquely identified by this URL.\r\n            \r\nThe `SettleTransaction` API call can perform the work of `ChangeCode`, `VerifyTransaction`, and `CommitTransaction`.\r\n            \r\nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\r\nsales, purchases, inventory transfer, and returns (also called refunds).\r\n            \r\nIf you have more than one document with the same `code`, specify the `documentType` parameter to choose between them.\r\n            \r\nThis API is available for users who want to execute more than one action at a time.\r\n            \r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* Lines\r\n* Details (implies lines)\r\n* AccountPayableSalesTaxDetails (implies lines - only for Account Payable transaction)\r\n* Summary (implies details)\r\n* Addresses\r\n* SummaryOnly (omit lines and details - reduces API response size)\r\n* LinesOnly (omit details - reduces API response size)\r\n* TaxDetailsByTaxType - Includes the aggregated tax, exempt tax, taxable and non-taxable for each tax type returned in the transaction summary.\r\n            \r\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\r\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\r\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\r\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, ProStoresOperator, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                verify:
+                  verifyTransactionDate: '2023-08-13T00:00:00+00:00'
+                  verifyTotalAmount: 100
+                  verifyTotalTax: 6.25
+                changeCode:
+                  newCode: 5a2b98a6-3ff8-4d01-a841-64edca608c69
+                commit:
+                  commit: true
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: transactionCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/uncommit:
+    post:
+      tags:
+      - Transactions
+      summary: Avalara UncommitTransaction
+      description: "Adjusts a transaction by changing it to an uncommitted status.\r\n            \r\nTransactions that have been previously reported to a tax authority by Avalara Managed Returns are considered `locked` and are\r\nno longer available to be uncommitted.\r\n            \r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* Lines\r\n* Details (implies lines)\r\n* AccountPayableSalesTaxDetails (implies lines - only for Account Payable transaction)\r\n* Summary (implies details)\r\n* Addresses\r\n* SummaryOnly (omit lines and details - reduces API response size)\r\n* LinesOnly (omit details - reduces API response size)\r\n* TaxDetailsByTaxType - Includes the aggregated tax, exempt tax, taxable and non-taxable for each tax type returned in the transaction summary.\r\n            \r\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\r\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\r\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\r\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: ''
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: transactionCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/unvoid:
+    post:
+      tags:
+      - Transactions
+      summary: Avalara UnvoidTransaction
+      description: "Unvoids a voided transaction\r\n            \r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* Lines\r\n* Details (implies lines)\r\n* AccountPayableSalesTaxDetails (implies lines - only for Account Payable transaction)\r\n* Summary (implies details)\r\n* Addresses\r\n* SummaryOnly (omit lines and details - reduces API response size)\r\n* LinesOnly (omit details - reduces API response size)\r\n* TaxDetailsByTaxType - Includes the aggregated tax, exempt tax, taxable and non-taxable for each tax type returned in the transaction summary.\r\n            \r\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\r\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\r\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\r\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: ''
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: transactionCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/variance:
+    post:
+      tags:
+      - Transactions
+      summary: Avalara VarianceReport
+      description: '
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.
+
+        * This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.
+
+        '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: {}
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyCode}/transactions/{transactionCode}/verify:
+    post:
+      tags:
+      - Transactions
+      summary: Avalara VerifyTransaction
+      description: "Verifies that the transaction uniquely identified by this URL matches certain expected values.\r\n            \r\nIf the transaction does not match these expected values, this API will return an error code indicating which value did not match.\r\n            \r\nIf you have more than one document with the same `code`, specify the `documentType` parameter to choose between them.\r\n            \r\nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\r\nsales, purchases, inventory transfer, and returns (also called refunds).\r\n            \r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* Lines\r\n* Details (implies lines)\r\n* AccountPayableSalesTaxDetails (implies lines - only for Account Payable transaction)\r\n* Summary (implies details)\r\n* Addresses\r\n* SummaryOnly (omit lines and details - reduces API response size)\r\n* LinesOnly (omit details - reduces API response size)\r\n* TaxDetailsByTaxType - Includes the aggregated tax, exempt tax, taxable and non-taxable for each tax type returned in the transaction summary.\r\n            \r\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\r\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\r\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\r\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, ProStoresOperator, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                verifyTransactionDate: '2023-08-13T00:00:00+00:00'
+                verifyTotalAmount: 100
+                verifyTotalTax: 6.25
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: transactionCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  schemas:
+    TransactionLineModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        lineNumber:
+          type: string
+        lineAmount:
+          type: number
+          format: double
+        tax:
+          type: number
+          format: double
+        taxableAmount:
+          type: number
+          format: double
+        exemptAmount:
+          type: number
+          format: double
+        taxCode:
+          type: string
+        itemCode:
+          type: string
+    TransactionAddressModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        line1:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    VATTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        transactionDate:
+          type: string
+          format: date
+        transactionType:
+          type: string
+          enum:
+          - Sale
+          - Purchase
+          - IntraCommunitySupply
+          - IntraCommunityAcquisition
+          - Export
+          - Import
+        invoiceNumber:
+          type: string
+        supplierVATNumber:
+          type: string
+        customerVATNumber:
+          type: string
+        countryCode:
+          type: string
+        netAmount:
+          type: number
+          format: double
+        vatRate:
+          type: number
+          format: double
+        vatAmount:
+          type: number
+          format: double
+        currency:
+          type: string
+    VoidTransactionModel:
+      type: object
+      required:
+      - code
+      properties:
+        code:
+          type: string
+          enum:
+          - Unspecified
+          - PostFailed
+          - DocDeleted
+          - DocVoided
+          - AdjustmentCancelled
+          description: Reason for voiding the transaction
+    TransactionSummary:
+      type: object
+      properties:
+        country:
+          type: string
+        region:
+          type: string
+        jurisType:
+          type: string
+        jurisCode:
+          type: string
+        jurisName:
+          type: string
+        taxType:
+          type: string
+        rate:
+          type: number
+          format: double
+        tax:
+          type: number
+          format: double
+        taxable:
+          type: number
+          format: double
+        exempt:
+          type: number
+          format: double
+    RefundTransactionModel:
+      type: object
+      required:
+      - refundTransactionCode
+      - refundDate
+      - refundType
+      properties:
+        refundTransactionCode:
+          type: string
+        refundDate:
+          type: string
+          format: date
+        refundType:
+          type: string
+          enum:
+          - Full
+          - Partial
+          - Percentage
+          - TaxOnly
+        refundPercentage:
+          type: number
+          format: double
+        refundLines:
+          type: array
+          items:
+            type: string
+    AddressInfo:
+      type: object
+      properties:
+        line1:
+          type: string
+          description: Street address line 1
+        line2:
+          type: string
+          description: Street address line 2
+        line3:
+          type: string
+          description: Street address line 3
+        city:
+          type: string
+          description: City name
+        region:
+          type: string
+          description: State, province, or region code
+        postalCode:
+          type: string
+          description: Postal code or ZIP code
+        country:
+          type: string
+          description: Two-character ISO 3166 country code
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
+    TransactionModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique ID of the transaction
+        code:
+          type: string
+          description: Transaction code
+        companyId:
+          type: integer
+          description: Company ID that owns this transaction
+        date:
+          type: string
+          format: date
+          description: Date of the transaction
+        status:
+          type: string
+          enum:
+          - Temporary
+          - Saved
+          - Posted
+          - Committed
+          - Cancelled
+          - Adjusted
+          description: Current status of the transaction
+        type:
+          type: string
+          description: Document type
+        totalAmount:
+          type: number
+          format: double
+          description: Total amount of the transaction before tax
+        totalTax:
+          type: number
+          format: double
+          description: Total tax calculated for the transaction
+        totalTaxable:
+          type: number
+          format: double
+          description: Total taxable amount
+        totalExempt:
+          type: number
+          format: double
+          description: Total exempt amount
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionLineModel'
+        addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionAddressModel'
+        summary:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionSummary'
+    LineItemModel:
+      type: object
+      required:
+      - amount
+      properties:
+        number:
+          type: string
+          description: Line number within the transaction
+        quantity:
+          type: number
+          format: double
+          default: 1
+          description: Quantity of items
+        amount:
+          type: number
+          format: double
+          description: Total amount for this line
+        taxCode:
+          type: string
+          description: Tax code for this line item
+        itemCode:
+          type: string
+          description: Item code for the product or service
+        description:
+          type: string
+          description: Description of the line item
+        addresses:
+          type: object
+          properties:
+            shipFrom:
+              $ref: '#/components/schemas/AddressInfo'
+            shipTo:
+              $ref: '#/components/schemas/AddressInfo'
+        exemptionCode:
+          type: string
+          description: Exemption code for tax-exempt purchases
+    CommitTransactionModel:
+      type: object
+      required:
+      - commit
+      properties:
+        commit:
+          type: boolean
+          description: Set to true to commit the transaction
+    ExciseTransaction:
+      type: object
+      properties:
+        transactionId:
+          type: string
+        invoiceNumber:
+          type: string
+        transactionDate:
+          type: string
+          format: date
+        transactionType:
+          type: string
+        status:
+          type: string
+          enum:
+          - Pending
+          - Committed
+          - Voided
+        totalAmount:
+          type: number
+          format: double
+        totalTax:
+          type: number
+          format: double
+    AdjustTransactionModel:
+      type: object
+      required:
+      - adjustmentReason
+      - newTransaction
+      properties:
+        adjustmentReason:
+          type: string
+          enum:
+          - NotAdjusted
+          - SourcingIssue
+          - ReconciledWithGeneralLedger
+          - ExemptCertApplied
+          - PriceAdjusted
+          - ProductReturned
+          - ProductExchanged
+          - BadDebt
+          - Other
+        adjustmentDescription:
+          type: string
+        newTransaction:
+          $ref: '#/components/schemas/CreateTransactionModel'
+    CreateTransactionModel:
+      type: object
+      required:
+      - type
+      - companyCode
+      - date
+      - customerCode
+      - lines
+      properties:
+        type:
+          type: string
+          enum:
+          - SalesOrder
+          - SalesInvoice
+          - PurchaseOrder
+          - PurchaseInvoice
+          - ReturnOrder
+          - ReturnInvoice
+          description: The type of document to create
+        companyCode:
+          type: string
+          description: Company code of the company creating this transaction
+        date:
+          type: string
+          format: date
+          description: Date of the transaction
+        customerCode:
+          type: string
+          description: Unique code identifying the customer
+        commit:
+          type: boolean
+          default: false
+          description: Whether to commit the transaction immediately
+        currencyCode:
+          type: string
+          description: Three-character ISO 4217 currency code
+        addresses:
+          type: object
+          properties:
+            shipFrom:
+              $ref: '#/components/schemas/AddressInfo'
+            shipTo:
+              $ref: '#/components/schemas/AddressInfo'
+            pointOfOrderOrigin:
+              $ref: '#/components/schemas/AddressInfo'
+            pointOfOrderAcceptance:
+              $ref: '#/components/schemas/AddressInfo'
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemModel'
+          description: Line items for the transaction
+    TransactionBatch:
+      type: object
+      properties:
+        companyId:
+          type: string
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/VATTransaction'
+    ErrorResult:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+            message:
+              type: string
+              description: Human-readable error message
+            target:
+              type: string
+              description: The component that generated the error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  number:
+                    type: integer
+                  message:
+                    type: string
+                  description:
+                    type: string
+                  faultCode:
+                    type: string
+                  helpLink:
+                    type: string
+                  severity:
+                    type: string
+                    enum:
+                    - Error
+                    - Warning
+                    - Exception
+  responses:
+    Unauthorized:
+      description: Authentication credentials missing or invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResult'
+    NotFound:
+      description: Requested resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResult'
+    BadRequest:
+      description: Invalid request parameters
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResult'
+  parameters:
+    companyCode:
+      name: companyCode
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The company code identifying the company
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

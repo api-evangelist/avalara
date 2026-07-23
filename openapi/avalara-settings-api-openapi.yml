@@ -1,0 +1,229 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Settings API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Settings
+  description: Manage company settings
+paths:
+  /api/v2/companies/{companyId}/settings:
+    get:
+      operationId: listSettings
+      summary: Avalara List Settings for a Company
+      tags:
+      - Settings
+      parameters:
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of settings
+    post:
+      tags:
+      - Settings
+      summary: Avalara CreateSettings
+      description: "Create one or more new setting objects attached to this company.\r\n            \r\nThe company settings system is a metadata system that you can use to store extra information\r\nabout a company.  Your integration or connector could use this data storage to keep track of\r\npreference information, reminders, or any other storage that would need to persist even if\r\nthe customer uninstalls your application.\r\n            \r\nA setting can refer to any type of data you need to remember about this company object.\r\nWhen creating this object, you may define your own `set`, `name`, and `value` parameters.\r\nTo define your own values, please choose a `set` name that begins with `X-` to indicate an extension.\r\n            \r\nUse Set = Transactions, Name = TaxCodePrioritization/HSCodePrioritization and Value = Transaction/ItemMaster for prioritizing which TaxCodes/HsCodes should be used for calculating taxes.\r\n            \r\nExample: To prioritize TaxCodes passed in a Transaction over values stored with Items when calculating tax, use\r\nSet = Transactions, Name = TaxCodePrioritization, Value = Transaction\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 56789
+                companyId: 12345
+                set: ItemsToRemember
+                name: Texas
+                value: Alamo
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/settings/{id}:
+    delete:
+      tags:
+      - Settings
+      summary: Avalara DeleteSetting
+      description: "Mark the setting object at this URL as deleted.\r\n            \r\nThe company settings system is a metadata system that you can use to store extra information\r\nabout a company.  Your integration or connector could use this data storage to keep track of\r\npreference information, reminders, or any other storage that would need to persist even if\r\nthe customer uninstalls your application.\r\n            \r\nA setting can refer to any type of data you need to remember about this company object.\r\nWhen creating this object, you may define your own `set`, `name`, and `value` parameters.\r\nTo define your own values, please choose a `set` name that begins with `X-` to indicate an extension.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - Settings
+      summary: Avalara GetSetting
+      description: "Get a single setting object by its unique ID.\r\n            \r\nThe company settings system is a metadata system that you can use to store extra information\r\nabout a company.  Your integration or connector could use this data storage to keep track of\r\npreference information, reminders, or any other storage that would need to persist even if\r\nthe customer uninstalls your application.\r\n            \r\nA setting can refer to any type of data you need to remember about this company object.\r\nWhen creating this object, you may define your own `set`, `name`, and `value` parameters.\r\nTo define your own values, please choose a `set` name that begins with `X-` to indicate an extension.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+      - Settings
+      summary: Avalara UpdateSetting
+      description: "Replace the existing setting object at this URL with an updated object.\r\n            \r\nThe company settings system is a metadata system that you can use to store extra information\r\nabout a company.  Your integration or connector could use this data storage to keep track of\r\npreference information, reminders, or any other storage that would need to persist even if\r\nthe customer uninstalls your application.\r\n            \r\nA setting can refer to any type of data you need to remember about this company object.\r\nWhen creating this object, you may define your own `set`, `name`, and `value` parameters.\r\nTo define your own values, please choose a `set` name that begins with `X-` to indicate an extension.\r\n            \r\nAll data from the existing object will be replaced with data in the object you `PUT`.\r\n            \r\nTo set a field's value to `null`, you may either set its value to `null` or omit that field from the object when calling update.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 56789
+                companyId: 12345
+                set: ItemsToRemember
+                name: Texas
+                value: Alamo
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/settings:
+    get:
+      tags:
+      - Settings
+      summary: Avalara QuerySettings
+      description: "Get multiple setting objects across all companies.\r\n            \r\nThe company settings system is a metadata system that you can use to store extra information\r\nabout a company.  Your integration or connector could use this data storage to keep track of\r\npreference information, reminders, or any other storage that would need to persist even if\r\nthe customer uninstalls your application.\r\n            \r\nA setting can refer to any type of data you need to remember about this company object.\r\nWhen creating this object, you may define your own `set`, `name`, and `value` parameters.\r\nTo define your own values, please choose a `set` name that begins with `X-` to indicate an extension.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  parameters:
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
+    companyId:
+      name: companyId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The numeric ID of the company
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

@@ -1,0 +1,412 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Registrar API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Registrar
+paths:
+  /api/v2/accounts/{id}:
+    delete:
+      tags:
+      - Registrar
+      summary: Avalara DeleteAccount
+      description: "# For Registrar Use Only\r\nThis API is for use by Avalara Registrar administrative users only.\r\n            \r\nDelete an account.\r\nDeleting an account will delete all companies, all account level users and license keys attached to this account.\n\n### Security Policies\n\n* This API requires the user role SystemAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+      - Registrar
+      summary: Avalara UpdateAccount
+      description: "# For Registrar Use Only\r\nThis API is for use by Avalara Registrar administrative users only.\r\n            \r\nReplace an existing account object with an updated account object.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 12345
+                name: Test Account
+                effectiveDate: '2023-08-13T00:00:00+00:00'
+                accountStatusId: Test
+                accountTypeId: Regular
+                isSamlEnabled: false
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/accounts:
+    post:
+      tags:
+      - Registrar
+      summary: Avalara CreateAccount
+      description: "# For Registrar Use Only\r\nThis API is for use by Avalara Registrar administrative users only.\r\n            \r\nCreate a single new account object.\r\nWhen creating an account object you may attach subscriptions and users as part of the 'Create' call.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 12345
+                name: Test Account
+                effectiveDate: '2023-08-13T00:00:00+00:00'
+                accountStatusId: Test
+                accountTypeId: Regular
+                isSamlEnabled: false
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/notifications/{id}:
+    delete:
+      tags:
+      - Registrar
+      summary: Avalara DeleteNotification
+      description: "This API is available by invitation only.\r\n            \r\nDelete the existing notification identified by this URL.\r\n            \r\nA notification is a message from Avalara that may have relevance to your business.  You may want\r\nto regularly review notifications and then dismiss them when you are certain that you have addressed\r\nany relevant concerns raised by this notification.\r\n            \r\nAn example of a notification would be a message about new software, or a change to AvaTax that may\r\naffect you, or a potential issue with your company's tax profile.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n* This API is available by invitation only.  To request access to this feature, please speak to a business development manager and request access to [NotificationsAPI:Create].\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+      - Registrar
+      summary: Avalara UpdateNotification
+      description: "This API is available by invitation only.\r\n            \r\nReplaces the notification identified by this URL with a new notification.\r\n            \r\nA notification is a message from Avalara that may have relevance to your business.  You may want\r\nto regularly review notifications and then dismiss them when you are certain that you have addressed\r\nany relevant concerns raised by this notification.\r\n            \r\nAn example of a notification would be a message about new software, or a change to AvaTax that may\r\naffect you, or a potential issue with your company's tax profile.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n* This API is available by invitation only.  To request access to this feature, please speak to a business development manager and request access to [NotificationsAPI:Create].\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 123
+                accountId: 202011901
+                companyId: 34345
+                referenceObject: Company Return
+                referenceId: 692
+                severityLevelId: Neutral
+                category: Certificate Expiration
+                message: The certificate of your company is nearing its expiration, please consider renewing it.
+                needsAction: true
+                actionName: Certificate Renewal
+                actionLink: www.xyz.com
+                dismissed: false
+                expireDate: '2023-08-13T00:00:00+00:00'
+                createdUserId: 442323
+                createdDate: '2018-05-05T00:00:00'
+                modifiedUserId: 442323
+                modifiedDate: '2018-05-07T00:00:00'
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/notifications:
+    post:
+      tags:
+      - Registrar
+      summary: Avalara CreateNotifications
+      description: "This API is available by invitation only.\r\n            \r\nCreate a single notification.\r\n            \r\nA notification is a message from Avalara that may have relevance to your business.  You may want\r\nto regularly review notifications and then dismiss them when you are certain that you have addressed\r\nany relevant concerns raised by this notification.\r\n            \r\nA Global notification is a message which is directed to all the accounts and is set to expire within\r\na certain time and cannot be dismissed by the user. Make accountId and companyId null to create a global notification.\r\n            \r\nAn example of a notification would be a message about new software, or a change to AvaTax that may\r\naffect you, or a potential issue with your company's tax profile.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n* This API is available by invitation only.  To request access to this feature, please speak to a business development manager and request access to [NotificationsAPI:Create].\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 123
+                accountId: 202011901
+                companyId: 34345
+                referenceObject: Company Return
+                referenceId: 692
+                severityLevelId: Neutral
+                category: Certificate Expiration
+                message: The certificate of your company is nearing its expiration, please consider renewing it.
+                needsAction: true
+                actionName: Certificate Renewal
+                actionLink: www.xyz.com
+                dismissed: false
+                expireDate: '2023-08-13T00:00:00+00:00'
+                createdUserId: 442323
+                createdDate: '2018-05-05T00:00:00'
+                modifiedUserId: 442323
+                modifiedDate: '2018-05-07T00:00:00'
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/accounts/{accountId}/subscriptions:
+    post:
+      tags:
+      - Registrar
+      summary: Avalara CreateSubscriptions
+      description: "This API is for use by Avalara Registrar administrative users only.\r\n            \r\nCreate one or more new subscription objects attached to this account.\r\nA 'subscription' indicates a licensed subscription to a named Avalara service.\r\nTo request or remove subscriptions, please contact Avalara sales or your customer account manager.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 12345
+                accountId: 123456789
+                subscriptionTypeId: 2
+                subscriptionDescription: AvaTaxPro
+                effectiveDate: '2015-01-01'
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: accountId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/accounts/{accountId}/subscriptions/{id}:
+    delete:
+      tags:
+      - Registrar
+      summary: Avalara DeleteSubscription
+      description: "# For Registrar Use Only\r\nThis API is for use by Avalara Registrar administrative users only.\r\n            \r\nMark the existing account identified by this URL as deleted.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: accountId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+      - Registrar
+      summary: Avalara UpdateSubscription
+      description: "# For Registrar Use Only\r\nThis API is for use by Avalara Registrar administrative users only.\r\n            \r\nReplace the existing subscription object at this URL with an updated object.\r\nA 'subscription' indicates a licensed subscription to a named Avalara service.\r\nTo request or remove subscriptions, please contact Avalara sales or your customer account manager.\r\nAll data from the existing object will be replaced with data in the object you PUT.\r\nTo set a field's value to null, you may either set its value to null or omit that field from the object you post.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 12345
+                accountId: 123456789
+                subscriptionTypeId: 2
+                subscriptionDescription: AvaTaxPro
+                effectiveDate: '2015-01-01'
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: accountId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/servicetypes/servicetypes:
+    get:
+      tags:
+      - Registrar
+      summary: Avalara ListServiceTypes
+      description: "For Registrar Use Only\r\nThis API is for use by Avalara Registrar administrative users only.\r\n            \r\nReturns the full list of Avalara-supported subscription types.\r\nThis API is intended to be useful for identifying which features you have added to your account.\r\nYou may always contact Avalara's sales department for information on available products or services.\r\nYou cannot change your subscriptions/service directly through the API.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/passwords/{userId}/reset:
+    post:
+      tags:
+      - Registrar
+      summary: Avalara ResetPassword
+      description: "# For Registrar Use Only\r\nThis API is for use by Avalara Registrar administrative users only.\r\n            \r\nAllows a system admin to reset the password for a specific user via the API.\r\nThis API is only available for Avalara Registrar Admins, and can be used to reset the password of any\r\nuser based on internal Avalara business processes.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPTester, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n* This API is available to Avalara system-level (registrar-level) users only.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                newPassword: NewPassword789~~!
+                suppressResetPasswordEmail: false
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: userId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

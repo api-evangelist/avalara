@@ -1,0 +1,315 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms TaxRules API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: TaxRules
+  description: Manage tax rules and overrides for companies
+paths:
+  /api/v2/companies/{companyId}/taxrules:
+    get:
+      operationId: listTaxRules
+      summary: Avalara List Tax Rules for a Company
+      tags:
+      - TaxRules
+      parameters:
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of tax rules
+    post:
+      operationId: createTaxRules
+      summary: Avalara Create Tax Rules for a Company
+      tags:
+      - TaxRules
+      parameters:
+      - $ref: '#/components/parameters/companyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/TaxRuleModel'
+      responses:
+        '201':
+          description: Tax rules created
+  /api/v2/countryCoefficients:
+    put:
+      tags:
+      - TaxRules
+      summary: Avalara CreateCountryCoefficients
+      description: "Create one or more Country Coefficients for particular country.\r\n            \r\nWe would like to use country coefficients during Cross-Border calculations to slightly increase or decrease\r\na calculation for a line based on the tax-subtype and Country of destination for a transaction.\r\n            \r\nThis will allow AvaTax to minimize the variance caused between actual transaction taken place on ground Vs Tax\r\nCalculated by AvaTax.\r\n            \r\nMake sure to use the same API to update the country coefficients that is already present in the database.\r\nThis will make existing entry for specific country as ineffective for that date. And new entry created will get applicable\r\nto the newer transactions."
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                accountId: 0
+                coefficientDetails:
+                - companyCode: ''
+                  country: ''
+                  coefficient: 0
+                  taxSubTypeId: ''
+                  currencyCode: USD
+                  unitOfBasisId: 0
+                  isApplicable: false
+                  startDate: '2023-08-13'
+                  endDate: '9999-12-31'
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/taxrules/{id}:
+    delete:
+      tags:
+      - TaxRules
+      summary: Avalara DeleteTaxRule
+      description: "Mark the custom tax rule identified by this URL as deleted.\r\n            \r\nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\r\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\r\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\r\nwith the transaction.\r\n            \r\nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\r\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\r\ncustom tax rules to redefine the behavior for your company or item.\r\n            \r\nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\r\nauditor, legal representative, and accounting team.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - TaxRules
+      summary: Avalara GetTaxRule
+      description: "Get the taxrule object identified by this URL.\r\n            \r\nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\r\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\r\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\r\nwith the transaction.\r\n            \r\nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\r\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\r\ncustom tax rules to redefine the behavior for your company or item.\r\n            \r\nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\r\nauditor, legal representative, and accounting team.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+      - TaxRules
+      summary: Avalara UpdateTaxRule
+      description: "Replace the existing custom tax rule object at this URL with an updated object.\r\n            \r\nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\r\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\r\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\r\nwith the transaction.\r\n            \r\nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\r\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\r\ncustom tax rules to redefine the behavior for your company or item.\r\n            \r\nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\r\nauditor, legal representative, and accounting team.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 56789
+                companyId: 12345
+                taxCode: FR020800
+                stateFIPS: '04'
+                jurisName: MARICOPA
+                jurisCode: '013'
+                jurisTypeId: 0
+                jurisdictionTypeId: County
+                taxTypeId: BothSalesAndUseTax
+                taxTypeCode: ALL
+                taxRuleTypeId: ProductTaxabilityRule
+                isAllJuris: false
+                value: 0
+                cap: 0
+                threshold: 0
+                effectiveDate: '2023-08-13'
+                description: Freight
+                countyFIPS: '013'
+                country: US
+                region: AZ
+                taxTypeGroup: SalesAndUse
+                taxSubType: ALL
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/{country}/CountryCoefficients:
+    get:
+      tags:
+      - TaxRules
+      summary: Avalara ListCountryCoefficients
+      description: "Retrieve all or any specific records of Country Coefficients based on the filters(optional) for specific country.\r\n \r\n Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\n Paginate your results using the `$top`, `$skip`, and `$orderby` parameters."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/taxrules:
+    get:
+      tags:
+      - TaxRules
+      summary: Avalara QueryTaxRules
+      description: "Get multiple taxrule objects across all companies.\r\n            \r\nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\r\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\r\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\r\nwith the transaction.\r\n            \r\nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\r\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\r\ncustom tax rules to redefine the behavior for your company or item.\r\n            \r\nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\r\nauditor, legal representative, and accounting team.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  parameters:
+    companyId:
+      name: companyId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The numeric ID of the company
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
+  schemas:
+    TaxRuleModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        companyId:
+          type: integer
+        taxCodeId:
+          type: integer
+        taxCode:
+          type: string
+        stateFIPS:
+          type: string
+        jurisName:
+          type: string
+        jurisCode:
+          type: string
+        jurisTypeId:
+          type: string
+        rateTypeId:
+          type: string
+        ruleTypeId:
+          type: string
+        isAllJuris:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

@@ -1,0 +1,103 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Mandates API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Mandates
+  description: Query e-invoicing mandate definitions
+paths:
+  /mandates:
+    get:
+      operationId: listMandates
+      summary: Avalara List E-invoicing Mandates
+      description: Retrieves a list of e-invoicing mandate definitions that describe compliance requirements by country and document type.
+      tags:
+      - Mandates
+      parameters:
+      - name: avalara-version
+        in: header
+        required: true
+        schema:
+          type: string
+          default: '1.0'
+      - name: $top
+        in: query
+        schema:
+          type: integer
+      - name: $skip
+        in: query
+        schema:
+          type: integer
+      - name: $filter
+        in: query
+        schema:
+          type: string
+        description: OData filter expression
+      - name: count
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: List of mandates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MandateList'
+components:
+  schemas:
+    MandateList:
+      type: object
+      properties:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Mandate'
+    Mandate:
+      type: object
+      properties:
+        mandateId:
+          type: string
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code
+        countryName:
+          type: string
+        description:
+          type: string
+        supportedDocumentTypes:
+          type: array
+          items:
+            type: string
+        inputFormats:
+          type: array
+          items:
+            type: string
+        workflowId:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

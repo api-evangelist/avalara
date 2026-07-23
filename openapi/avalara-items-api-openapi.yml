@@ -1,0 +1,1151 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Items API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Items
+  description: Manage product items and their tax classification
+paths:
+  /api/v2/companies/{companyId}/items:
+    get:
+      operationId: queryItems
+      summary: Avalara List Items for a Company
+      tags:
+      - Items
+      parameters:
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of items
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchResult_ItemModel'
+    post:
+      operationId: createItems
+      summary: Avalara Create Items for a Company
+      tags:
+      - Items
+      parameters:
+      - $ref: '#/components/parameters/companyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ItemModel'
+      responses:
+        '201':
+          description: Items created
+  /api/v2/companies/{companyId}/items/{itemId}/classifications:
+    delete:
+      tags:
+      - Items
+      summary: Avalara BatchDeleteItemClassifications
+      description: "Delete all the classifications for a given item.\r\n            \r\nA classification is the code for a product in a particular tax system. Classifications enable an item to be used in multiple tax systems which may have different tax rates for a product.\r\n            \r\nWhen an item is used in a transaction, the applicable classification will be used to determine the appropriate tax rate.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+      - Items
+      summary: Avalara CreateItemClassifications
+      description: "Add classifications to an item.\r\n            \r\nA classification is the code for a product in a particular tax system. Classifications enable an item to be used in multiple tax systems which may have different tax rates for a product.\r\n            \r\nWhen an item is used in a transaction, the applicable classification will be used to determine the appropriate tax rate.\r\n            \r\nAn item may only have one classification per tax system.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                productCode: '9011900000'
+                systemCode: TARIC
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - Items
+      summary: Avalara ListItemClassifications
+      description: "List classifications for an item.\r\n            \r\nA classification is the code for a product in a particular tax system. Classifications enable an item to be used in multiple tax systems which may have different tax rates for a product.\r\n            \r\nWhen an item is used in a transaction, the applicable classification will be used to determine the appropriate tax rate.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` classification; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` classifications.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/items/{itemId}/parameters:
+    delete:
+      tags:
+      - Items
+      summary: Avalara BatchDeleteItemParameters
+      description: "Delete all the parameters for a given item.\r\n            \r\nSome items can be taxed differently depending on the properties of that item, such as the item grade or by a particular measurement of that item. In AvaTax, these tax-affecting properties are called \"parameters\".\r\n            \r\nA parameter added to an item will be used by default in tax calculation but will not show on the transaction line referencing the item .\r\n            \r\nA parameter specified on a transaction line will override an item parameter if they share the same parameter name.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+      - Items
+      summary: Avalara CreateItemParameters
+      description: "Add parameters to an item.\r\n            \r\nSome items can be taxed differently depending on the properties of that item, such as the item grade or by a particular measurement of that item. In AvaTax, these tax-affecting properties are called \"parameters\".\r\n            \r\nA parameter added to an item will be used by default in tax calculation but will not show on the transaction line referencing the item .\r\n            \r\nA parameter specified on a transaction line will override an item parameter if they share the same parameter name.\r\n            \r\nTo see available parameters for this item, call `/api/v2/definitions/parameters?$filter=attributeType eq Product`\r\n            \r\nSome parameters are only available for use if you have subscribed to specific AvaTax services. To see which parameters you are able to use, add the query parameter \"$showSubscribed=true\" to the parameter definition call above.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 0
+                name: ScreenSize
+                value: '24'
+                unit: inch
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - Items
+      summary: Avalara ListItemParameters
+      description: "List parameters for an item.\r\n            \r\nSome items can be taxed differently depending on the properties of that item, such as the item grade or by a particular measurement of that item. In AvaTax, these tax-affecting properties are called \"parameters\".\r\n            \r\nA parameter added to an item will be used by default in tax calculation but will not show on the transaction line referencing the item .\r\n            \r\nA parameter specified on a transaction line will override an item parameter if they share the same parameter name.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/items/upload:
+    post:
+      tags:
+      - Items
+      summary: Avalara BulkUploadItems
+      description: "Create/Update one or more item objects attached to this company.\r\n            \r\nItems are a way of separating your tax calculation process from your tax configuration details.  If you choose, you\r\ncan provide `itemCode` values for each `CreateTransaction()` API call rather than specifying tax codes, parameters, descriptions,\r\nand other data fields.  AvaTax will automatically look up each `itemCode` and apply the correct tax codes and parameters\r\nfrom the item table instead.  This allows your CreateTransaction call to be as simple as possible, and your tax compliance\r\nteam can manage your item catalog and adjust the tax behavior of items without having to modify your software.\r\n            \r\nThe tax code takes precedence over the tax code id if both are provided.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                items:
+                - id: 0
+                  companyId: 0
+                  itemCode: CHIP1041
+                  taxCode: PF051578
+                  description: Potato Chips
+                  itemGroup: Packaged Food
+                  parameters:
+                  - id: 0
+                    name: ScreenSize
+                    value: '24'
+                    unit: inch
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/items/{itemId}/tags:
+    post:
+      tags:
+      - Items
+      summary: Avalara CreateItemTags
+      description: "Creates one or more new `Tag` objects attached to this Item.\r\n            \r\nItem tags puts multiple labels for an item. So that item can be easily grouped by these tags.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                tagName: Import_Restricted
+                itemId: 151284220
+                companyId: 8010687
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    delete:
+      tags:
+      - Items
+      summary: Avalara DeleteItemTags
+      description: "Deletes all `Tags` objects of an Item at this URL.\r\n            \r\nItem tags puts multiple labels for an item. So that item can be easily grouped by these tags.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - Items
+      summary: Avalara GetItemTags
+      description: "Get the `Tag` objects of an Item identified by this URL.\r\n            \r\nItem tags puts multiple labels for an item. So that item can be easily grouped by these tags.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/classificationrequests/taxcode:
+    post:
+      tags:
+      - Items
+      summary: Avalara CreateTaxCodeClassificationRequest
+      description: "Creates a new tax code classification request.\r\n            \r\nAvalara AvaTax system tax codes represent various goods and services classified by industry or consumer categories and\r\nmajor physical similarities. Taxability rules are associated with tax codes. Customers can map their Items to tax codes\r\nallowing them to take advantage of thousands of tax rules in the AvaTax engine resulting in accurate taxability determinations.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                classifyAllItems: false
+                itemIds:
+                - 987654
+                - 876543
+                - 765432
+                productCategories:
+                - Food and beverage > Alcohol
+                - Food and beverage > Beverages
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - Items
+      summary: Avalara GetClassificationStatus
+      description: " Get status of tax code classification requests of a company.\r\n            \r\nAvalara AvaTax system tax codes represent various goods and services classified by industry or consumer categories and\r\nmajor physical similarities. Taxability rules are associated with tax codes. Customers can map their Items to tax codes\r\nallowing them to take advantage of thousands of tax rules in the AvaTax engine resulting in accurate taxability determinations.\r\n            \r\nEnable includeClassificationDetails flag to get details of classification request status.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/itemcatalogue/{itemCode}:
+    delete:
+      tags:
+      - Items
+      summary: Avalara DeleteCatalogueItem
+      description: "Deletes the item object at this URL.\r\n            \r\nItems are a way of separating your tax calculation process from your tax configuration details.\r\nUse this endpoint to delete an existing item with item code.\r\n            \r\nDeleting an item will also delete the parameters, classifications, and product categories associated with that item.\r\n            \r\nNOTE: If your item code contains any of these characters /, +, ? or a space, please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: 'Item/Code' becomes 'Item_-ava2f-_Code'\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: 'Item+Code' becomes 'Item_-ava2b-_Code'\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: 'Item?Code' becomes 'Item_-ava3f-_Code'\r\n* Replace '%' with '\\_-ava25-\\_'  For example: 'Item%Code' becomes 'Item_-ava25-_Code'\r\n* Replace '#' with '\\_-ava23-\\_'  For example: 'Item#Code' becomes 'Item_-ava23-_Code'\r\n* Replace ''' with '\\_-ava27-\\_'  For example: 'Item'Code' becomes 'Item_-ava27-_Code'\r\n* Replace '\"' with '\\_-ava22-\\_'  For example: 'Item\"Code' becomes 'Item_-ava22-_Code'\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/items/{id}:
+    delete:
+      tags:
+      - Items
+      summary: Avalara DeleteItem
+      description: "Deletes the item object at this URL.\r\n            \r\nItems are a way of separating your tax calculation process from your tax configuration details.  If you choose, you\r\ncan provide `itemCode` values for each `CreateTransaction()` API call rather than specifying tax codes, parameters, descriptions,\r\nand other data fields.  AvaTax will automatically look up each `itemCode` and apply the correct tax codes and parameters\r\nfrom the item table instead.  This allows your CreateTransaction call to be as simple as possible, and your tax compliance\r\nteam can manage your item catalog and adjust the tax behavior of items without having to modify your software.\r\n            \r\nDeleting an item will also delete the parameters and classifications associated with that item.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - Items
+      summary: Avalara GetItem
+      description: "Get the `Item` object identified by this URL.\r\n            \r\nItems are a way of separating your tax calculation process from your tax configuration details.  If you choose, you\r\ncan provide `itemCode` values for each `CreateTransaction()` API call rather than specifying tax codes, parameters, descriptions,\r\nand other data fields.  AvaTax will automatically look up each `itemCode` and apply the correct tax codes and parameters\r\nfrom the item table instead.  This allows your CreateTransaction call to be as simple as possible, and your tax compliance\r\nteam can manage your item catalog and adjust the tax behavior of items without having to modify your software.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+      - Items
+      summary: Avalara UpdateItem
+      description: "Replace the existing `Item` object at this URL with an updated object.\r\n            \r\nItems are a way of separating your tax calculation process from your tax configuration details.  If you choose, you\r\ncan provide `itemCode` values for each `CreateTransaction()` API call rather than specifying tax codes, parameters, descriptions,\r\nand other data fields.  AvaTax will automatically look up each `itemCode` and apply the correct tax codes and parameters\r\nfrom the item table instead.  This allows your CreateTransaction call to be as simple as possible, and your tax compliance\r\nteam can manage your item catalog and adjust the tax behavior of items without having to modify your software.\r\n            \r\nAll data from the existing object will be replaced with data in the object you PUT.  To set a field's value to null,\r\nyou may either set its value to null or omit that field from the object you post.\r\n            \r\nThe tax code takes precedence over the tax code id if both are provided.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 56789
+                companyId: 12345
+                itemCode: CERMUG
+                taxCode: P0000000
+                description: Ceramic Mug
+                itemGroup: Mugs
+                category: Home > Kitchen > Mugs
+                classifications:
+                - productCode: '9011900000'
+                  systemCode: TARIC
+                  isPremium: false
+                parameters:
+                - id: 0
+                  name: ScreenSize
+                  value: '24'
+                  unit: inch
+                properties:
+                  color: white
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/items/{itemId}/classifications/{id}:
+    delete:
+      tags:
+      - Items
+      summary: Avalara DeleteItemClassification
+      description: "Delete a single item classification.\r\n            \r\nA classification is the code for a product in a particular tax system. Classifications enable an item to be used in multiple tax systems which may have different tax rates for a product.\r\n            \r\nWhen an item is used in a transaction, the applicable classification will be used to determine the appropriate tax rate.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - Items
+      summary: Avalara GetItemClassification
+      description: "Retrieve a single item classification.\r\n            \r\nA classification is the code for a product in a particular tax system. Classifications enable an item to be used in multiple tax systems which may have different tax rates for a product.\r\n            \r\nWhen an item is used in a transaction, the applicable classification will be used to determine the appropriate tax rate.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+      - Items
+      summary: Avalara UpdateItemClassification
+      description: "Update an item classification.\r\n            \r\nA classification is the code for a product in a particular tax system. Classifications enable an item to be used in multiple tax systems which may have different tax rates for a product.\r\n            \r\nWhen an item is used in a transaction, the applicable classification will be used to determine the appropriate tax rate.\r\n            \r\nAn item may only have one classification per tax system.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                productCode: '9011900000'
+                systemCode: TARIC
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/items/{itemId}/parameters/{id}:
+    delete:
+      tags:
+      - Items
+      summary: Avalara DeleteItemParameter
+      description: "Delete a single item parameter.\r\n            \r\nSome items can be taxed differently depending on the properties of that item, such as the item grade or by a particular measurement of that item. In AvaTax, these tax-affecting properties are called \"parameters\".\r\n            \r\nA parameter added to an item will be used by default in tax calculation but will not show on the transaction line referencing the item .\r\n            \r\nA parameter specified on a transaction line will override an item parameter if they share the same parameter name.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - Items
+      summary: Avalara GetItemParameter
+      description: "Retrieve a single item parameter.\r\n            \r\nSome items can be taxed differently depending on the properties of that item, such as the item grade or by a particular measurement of that item. In AvaTax, these tax-affecting properties are called \"parameters\".\r\n            \r\nA parameter added to an item will be used by default in tax calculation but will not show on the transaction line referencing the item .\r\n            \r\nA parameter specified on a transaction line will override an item parameter if they share the same parameter name.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+      - Items
+      summary: Avalara UpdateItemParameter
+      description: "Update an item parameter.\r\n            \r\nSome items can be taxed differently depending on the properties of that item, such as the item grade or by a particular measurement of that item. In AvaTax, these tax-affecting properties are called \"parameters\".\r\n            \r\nA parameter added to an item will be used by default in tax calculation but will not show on the transaction line referencing the item .\r\n            \r\nA parameter specified on a transaction line will override an item parameter if they share the same parameter name.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 0
+                name: ScreenSize
+                value: '24'
+                unit: inch
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/items/{itemId}/tags/{itemTagDetailId}:
+    delete:
+      tags:
+      - Items
+      summary: Avalara DeleteItemTag
+      description: "Deletes the `Tag` object of an Item at this URL.\r\n            \r\nItem tags puts multiple labels for an item. So that item can be easily grouped by these tags.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemTagDetailId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/items/{itemCode}/premiumClassification/{systemCode}:
+    get:
+      tags:
+      - Items
+      summary: Avalara GetPremiumClassification
+      description: "Retrieves the premium classification for an ItemCode and SystemCode.\r\n            \r\nNOTE: If your item code contains any of these characters /, +, ?,\",' ,% or #, please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: 'Item/Code' becomes 'Item_-ava2f-_Code'\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: 'Item+Code' becomes 'Item_-ava2b-_Code'\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: 'Item?Code' becomes 'Item_-ava3f-_Code'\r\n* Replace '%' with '\\_-ava25-\\_'  For example: 'Item%Code' becomes 'Item_-ava25-_Code'\r\n* Replace '#' with '\\_-ava23-\\_'  For example: 'Item#Code' becomes 'Item_-ava23-_Code'\r\n* Replace ''' with '\\_-ava27-\\_'  For example: 'Item'Code' becomes 'Item_-ava27-_Code'\r\n* Replace '\"' with '\\_-ava22-\\_'  For example: 'Item\"Code' becomes 'Item_-ava22-_Code'\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: systemCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/classificationrequests/taxcode/{requestId}/recommendations:
+    get:
+      tags:
+      - Items
+      summary: Avalara GetTaxCodeRecommendations
+      description: "Get tax code recommendations.\r\n            \r\nAvalara AvaTax system tax codes represent various goods and services classified by industry or consumer categories and\r\nmajor physical similarities. Taxability rules are associated with tax codes. Customers can map their Items to tax codes\r\nallowing them to take advantage of thousands of tax rules in the AvaTax engine resulting in accurate taxability determinations.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: requestId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/items/{itemCode}/restrictions/import/{countryOfImport}:
+    get:
+      tags:
+      - Items
+      summary: Avalara ListImportRestrictions
+      description: "Retrieve Restrictions for Item by CountryOfImport. This API will only return import restriction for the countryOfImport.\r\n            \r\nNOTE: If your item code contains any of these characters /, +, ? or a space, please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: 'Item/Code' becomes 'Item_-ava2f-_Code'\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: 'Item+Code' becomes 'Item_-ava2b-_Code'\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: 'Item?Code' becomes 'Item_-ava3f-_Code'\r\n* Replace '%' with '\\_-ava25-\\_'  For example: 'Item%Code' becomes 'Item_-ava25-_Code'\r\n* Replace '#' with '\\_-ava23-\\_'  For example: 'Item#Code' becomes 'Item_-ava23-_Code'\r\n* Replace ''' with '\\_-ava27-\\_'  For example: 'Item'Code' becomes 'Item_-ava27-_Code'\r\n* Replace '\"' with '\\_-ava22-\\_'  For example: 'Item\"Code' becomes 'Item_-ava22-_Code'\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: countryOfImport
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/items:
+    get:
+      tags:
+      - Items
+      summary: Avalara QueryItems
+      description: "Get multiple item objects across all companies.\r\n            \r\nItems are a way of separating your tax calculation process from your tax configuration details.  If you choose, you\r\ncan provide `itemCode` values for each `CreateTransaction()` API call rather than specifying tax codes, parameters, descriptions,\r\nand other data fields.  AvaTax will automatically look up each `itemCode` and apply the correct tax codes and parameters\r\nfrom the item table instead.  This allows your CreateTransaction call to be as simple as possible, and your tax compliance\r\nteam can manage your item catalog and adjust the tax behavior of items without having to modify your software.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\n            \r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/items/bytags/{tag}:
+    get:
+      tags:
+      - Items
+      summary: Avalara QueryItemsByTag
+      description: "Get multiple item objects associated with given tag.\r\n            \r\nItems are a way of separating your tax calculation process from your tax configuration details.  If you choose, you\r\ncan provide `itemCode` values for each `CreateTransaction()` API call rather than specifying tax codes, parameters, descriptions,\r\nand other data fields.  AvaTax will automatically look up each `itemCode` and apply the correct tax codes and parameters\r\nfrom the item table instead.  This allows your CreateTransaction call to be as simple as possible, and your tax compliance\r\nteam can manage your item catalog and adjust the tax behavior of items without having to modify your software.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\n            \r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: tag
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/itemcatalogue:
+    post:
+      tags:
+      - Items
+      summary: Avalara SyncItemCatalogue
+      description: "Creates/updates one or more item objects with additional properties and the AvaTax category attached to this company.\r\n            \r\nItems are a way of separating your tax calculation process from your tax configuration details. Use this endpoint to create\r\na new or update an existing item. This can be used to sync the items with Avalara. For example, an accounting software\r\nsystem can use this to sync all their items from an ERP with Avalara.\r\n            \r\nParameters and Classifications can be added with the Item.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                itemId: 0
+                itemCode: Item 1
+                description: Concord Grape Alpha
+                summary: Apple Cider Vinegar Drink
+                taxCode: P0000000
+                upc: '7846226233'
+                itemGroup: Drinks
+                category: beverages - vinegar - drink
+                source: QBO
+                sourceEntityId: QBO_1234
+                properties:
+                  color: white
+                classifications:
+                - productCode: '9011900000'
+                  systemCode: TARIC
+                  isPremium: false
+                parameters:
+                - id: 0
+                  name: ScreenSize
+                  value: '24'
+                  unit: Inch
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/items/sync:
+    post:
+      tags:
+      - Items
+      summary: Avalara SyncItems
+      description: "Syncs a list of items with AvaTax without waiting for them to be created. It is ideal for syncing large product catalogs\r\nwith AvaTax.\r\n            \r\nAny invalid or duplicate items will be ignored. To diagnose why an item is not created, use the normal create transaction API to receive validation information.\r\n            \r\nThis API is currently limited to 1000 items per call (the limit is subject to change).\r\n            \r\nItems are a way of separating your tax calculation process from your tax configuration details.  If you choose, you\r\ncan provide `itemCode` values for each `CreateTransaction()` API call rather than specifying tax codes, parameters, descriptions,\r\nand other data fields.  AvaTax will automatically look up each `itemCode` and apply the correct tax codes and parameters\r\nfrom the item table instead.  This allows your CreateTransaction call to be as simple as possible, and your tax compliance\r\nteam can manage your item catalog and adjust the tax behavior of items without having to modify your software.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                items:
+                - itemCode: CHIP1041
+                  description: Potato Chips
+                  itemGroup: Packaged Food
+                  taxCode: PF051578
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  schemas:
+    FetchResult_ItemModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemModel'
+    ItemModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        companyId:
+          type: integer
+        itemCode:
+          type: string
+          description: Unique code for this item
+        taxCode:
+          type: string
+          description: Avalara tax code for this item
+        description:
+          type: string
+        category:
+          type: string
+  parameters:
+    companyId:
+      name: companyId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The numeric ID of the company
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

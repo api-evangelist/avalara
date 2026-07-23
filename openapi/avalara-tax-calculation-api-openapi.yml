@@ -1,0 +1,489 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Tax Calculation API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Tax Calculation
+  description: Calculate Brazilian taxes on transactions
+paths:
+  /calculations:
+    post:
+      operationId: calculateTax
+      summary: Avalara Calculate Brazilian Taxes
+      description: Calculates applicable Brazilian taxes for a transaction including ICMS, IPI, PIS, COFINS, ISS, and other applicable taxes based on product type, origin, and destination.
+      tags:
+      - Tax Calculation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalculationRequest'
+      responses:
+        '200':
+          description: Tax calculation results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalculationResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/v2/afc/CalcTaxes:
+    post:
+      operationId: calcTaxes
+      summary: Avalara Calculate Taxes on a Transaction
+      description: Calculates communications taxes for one or more line items based on transaction type, service type, and jurisdiction information. Supports both individual and batch tax calculations.
+      tags:
+      - Tax Calculation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalcTaxesRequest'
+      responses:
+        '200':
+          description: Tax calculation results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalcTaxesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /api/v2/afc/commit:
+    post:
+      operationId: commitTransaction
+      summary: Avalara Commit a Transaction
+      description: Commits a previously calculated transaction, finalizing it for tax reporting purposes.
+      tags:
+      - Tax Calculation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommitRequest'
+      responses:
+        '200':
+          description: Transaction committed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommitResponse'
+  /api/v2/afc/CalcAdj:
+    post:
+      operationId: calcAdjustment
+      summary: Avalara Calculate Adjustment Taxes
+      description: Calculates taxes for adjustments (credits, refunds) on previously committed transactions.
+      tags:
+      - Tax Calculation
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CalcAdjRequest'
+      responses:
+        '200':
+          description: Adjustment tax calculation results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CalcTaxesResponse'
+components:
+  schemas:
+    LineItemResult:
+      type: object
+      properties:
+        ref:
+          type: string
+          description: Line item reference
+        txs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxResult'
+    CommitResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
+    Invoice:
+      type: object
+      properties:
+        doc:
+          type: string
+          description: Document code
+        cmmt:
+          type: boolean
+          description: Commit indicator
+        bill:
+          $ref: '#/components/schemas/Location'
+        cust:
+          type: integer
+          description: Customer type
+        date:
+          type: string
+          format: date-time
+          description: Invoice date
+        itms:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          description: Line items on the invoice
+    InvoiceResult:
+      type: object
+      properties:
+        doc:
+          type: string
+          description: Document code
+        itms:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemResult'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+    CommitRequest:
+      type: object
+      properties:
+        doc:
+          type: string
+          description: Document code to commit
+        cmmt:
+          type: boolean
+          description: Commit flag (true to commit)
+    LineItem:
+      type: object
+      properties:
+        ref:
+          type: string
+          description: Line item reference
+        from:
+          $ref: '#/components/schemas/Location'
+        to:
+          $ref: '#/components/schemas/Location'
+        chg:
+          type: number
+          format: double
+          description: Charge amount
+        line:
+          type: integer
+          description: Number of lines
+        loc:
+          type: integer
+          description: Number of locations
+        min:
+          type: number
+          format: double
+          description: Minutes
+        sale:
+          type: integer
+          description: Sale type (0=Wholesale, 1=Retail, 2=Consumed)
+        tran:
+          type: integer
+          description: Transaction type
+        serv:
+          type: integer
+          description: Service type
+    CalcAdjRequest:
+      type: object
+      properties:
+        cmpn:
+          $ref: '#/components/schemas/CompanyData'
+        inv:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+        adj:
+          type: object
+          properties:
+            disc:
+              type: integer
+              description: Discount type
+            adj:
+              type: integer
+              description: Adjustment method
+    TaxResult:
+      type: object
+      properties:
+        bill:
+          type: boolean
+          description: Billable flag
+        cmpl:
+          type: boolean
+          description: Compliance flag
+        tm:
+          type: number
+          format: double
+          description: Taxable measure
+        calc:
+          type: integer
+          description: Calculation type
+        cat:
+          type: string
+          description: Tax category
+        cid:
+          type: integer
+          description: Category ID
+        name:
+          type: string
+          description: Tax name
+        exm:
+          type: number
+          format: double
+          description: Exempt amount
+        lns:
+          type: integer
+          description: Lines
+        min:
+          type: number
+          format: double
+          description: Minutes
+        pcd:
+          type: integer
+          description: PCode
+        rate:
+          type: number
+          format: double
+          description: Tax rate
+        sur:
+          type: boolean
+          description: Surcharge flag
+        tax:
+          type: number
+          format: double
+          description: Tax amount
+        lvl:
+          type: integer
+          description: Tax level (Federal, State, County, Local)
+        tid:
+          type: integer
+          description: Tax type ID
+    CalculationLine:
+      type: object
+      properties:
+        lineCode:
+          type: string
+        itemCode:
+          type: string
+        numberOfItems:
+          type: number
+          format: double
+        lineAmount:
+          type: number
+          format: double
+        itemDescription:
+          type: string
+        ncmCode:
+          type: string
+          description: NCM (Nomenclatura Comum do Mercosul) code
+        cstCode:
+          type: string
+          description: CST (Codigo de Situacao Tributaria) code
+        cfopCode:
+          type: string
+          description: CFOP (Codigo Fiscal de Operacoes e Prestacoes) code
+        originState:
+          type: string
+          description: Origin state code (UF)
+        destinationState:
+          type: string
+          description: Destination state code (UF)
+    CalculationResultLine:
+      type: object
+      properties:
+        lineCode:
+          type: string
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrazilTaxDetail'
+        totalTax:
+          type: number
+          format: double
+    CalcTaxesResponse:
+      type: object
+      properties:
+        inv:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceResult'
+    CalcTaxesRequest:
+      type: object
+      required:
+      - cmpn
+      - inv
+      properties:
+        cmpn:
+          $ref: '#/components/schemas/CompanyData'
+        inv:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+          description: Array of invoices to calculate taxes for
+    CalculationResponse:
+      type: object
+      properties:
+        header:
+          type: object
+          properties:
+            transactionId:
+              type: string
+            status:
+              type: string
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalculationResultLine'
+    CompanyData:
+      type: object
+      properties:
+        bscl:
+          type: integer
+          description: Business class (0=ILEC, 1=CLEC, etc.)
+        svcl:
+          type: integer
+          description: Service class (0=Primary Local, 1=Primary Long Distance)
+        fclt:
+          type: boolean
+          description: Facilities-based indicator
+        frch:
+          type: boolean
+          description: Franchise indicator
+        reg:
+          type: boolean
+          description: Regulated indicator
+    Location:
+      type: object
+      properties:
+        pcd:
+          type: integer
+          description: PCode for jurisdiction
+        ctry:
+          type: string
+          description: Country ISO code
+        st:
+          type: string
+          description: State abbreviation
+        cty:
+          type: string
+          description: County name
+        zip:
+          type: string
+          description: ZIP code
+        geo:
+          type: boolean
+          description: Whether to geocode the address
+        addr:
+          type: string
+          description: Street address for geocoding
+    CalculationRequest:
+      type: object
+      required:
+      - header
+      - lines
+      properties:
+        header:
+          type: object
+          properties:
+            transactionType:
+              type: string
+              enum:
+              - Sale
+              - Purchase
+              - Return
+              - Transfer
+            companyLocation:
+              type: string
+              description: Company establishment code
+            documentCode:
+              type: string
+            transactionDate:
+              type: string
+              format: date
+            currency:
+              type: string
+              default: BRL
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalculationLine'
+    BrazilTaxDetail:
+      type: object
+      properties:
+        taxType:
+          type: string
+          enum:
+          - ICMS
+          - ICMS_ST
+          - IPI
+          - PIS
+          - COFINS
+          - ISS
+          - CSLL
+          - IRRF
+          - INSS
+          - IOF
+          description: Brazilian tax type
+        taxBase:
+          type: number
+          format: double
+        taxRate:
+          type: number
+          format: double
+        taxAmount:
+          type: number
+          format: double
+        exemptAmount:
+          type: number
+          format: double
+        cstCode:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

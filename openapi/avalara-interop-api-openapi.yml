@@ -1,0 +1,94 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Interop API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Interop
+  description: Interoperability and network exchange
+paths:
+  /interop/documents:
+    post:
+      operationId: submitInteropDocument
+      summary: Avalara Submit a Document via Interoperability Network
+      description: Submits a document through the interoperability network (e.g., Peppol) for delivery to the recipient.
+      tags:
+      - Interop
+      parameters:
+      - name: avalara-version
+        in: header
+        required: true
+        schema:
+          type: string
+          default: '1.0'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InteropDocumentRequest'
+      responses:
+        '202':
+          description: Document accepted for interop delivery
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentSubmissionResponse'
+components:
+  schemas:
+    DocumentSubmissionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Document submission ID
+        status:
+          type: string
+          enum:
+          - Pending
+          - Accepted
+          - Rejected
+          - Error
+        statusDate:
+          type: string
+          format: date-time
+    InteropDocumentRequest:
+      type: object
+      required:
+      - dataFormat
+      - data
+      - recipientIdentifier
+      properties:
+        dataFormat:
+          type: string
+        data:
+          type: string
+        recipientIdentifier:
+          type: string
+          description: Recipient identifier on the interop network
+        recipientIdentifierScheme:
+          type: string
+          description: Identifier scheme (e.g., peppol)
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

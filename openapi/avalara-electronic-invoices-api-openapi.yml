@@ -1,0 +1,240 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Electronic Invoices API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Electronic Invoices
+  description: Issue and manage electronic fiscal documents
+paths:
+  /invoices:
+    post:
+      operationId: createInvoice
+      summary: Avalara Issue an Electronic Invoice
+      description: Issues a new electronic fiscal document (NF-e, NFS-e, or NFC-e) to Brazilian tax authorities (SEFAZ).
+      tags:
+      - Electronic Invoices
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceRequest'
+      responses:
+        '201':
+          description: Invoice issued
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceResponse'
+    get:
+      operationId: listInvoices
+      summary: Avalara List Electronic Invoices
+      tags:
+      - Electronic Invoices
+      parameters:
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Authorized
+          - Cancelled
+          - Denied
+          - Pending
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of invoices
+  /invoices/{invoiceId}:
+    get:
+      operationId: getInvoice
+      summary: Avalara Get an Invoice by ID
+      tags:
+      - Electronic Invoices
+      parameters:
+      - name: invoiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Invoice details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceResponse'
+  /invoices/{invoiceId}/cancel:
+    post:
+      operationId: cancelInvoice
+      summary: Avalara Cancel an Electronic Invoice
+      description: Submits a cancellation request for an authorized invoice.
+      tags:
+      - Electronic Invoices
+      parameters:
+      - name: invoiceId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reason:
+                  type: string
+                  description: Cancellation reason
+      responses:
+        '200':
+          description: Invoice cancelled
+components:
+  schemas:
+    InvoiceRequest:
+      type: object
+      properties:
+        invoiceType:
+          type: string
+          enum:
+          - NF-e
+          - NFS-e
+          - NFC-e
+          - CT-e
+          description: Electronic document type
+        companyId:
+          type: string
+        transactionDate:
+          type: string
+          format: date-time
+        buyer:
+          $ref: '#/components/schemas/BrazilParty'
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceLine'
+    BrazilParty:
+      type: object
+      properties:
+        name:
+          type: string
+        cnpj:
+          type: string
+          description: Company tax ID (CNPJ)
+        cpf:
+          type: string
+          description: Individual tax ID (CPF)
+        stateRegistration:
+          type: string
+          description: Inscricao Estadual
+        municipalRegistration:
+          type: string
+          description: Inscricao Municipal
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+            number:
+              type: string
+            complement:
+              type: string
+            neighborhood:
+              type: string
+            city:
+              type: string
+            cityCode:
+              type: string
+              description: IBGE city code
+            state:
+              type: string
+              description: State code (UF)
+            postalCode:
+              type: string
+            country:
+              type: string
+    InvoiceResponse:
+      type: object
+      properties:
+        invoiceId:
+          type: string
+        accessKey:
+          type: string
+          description: 44-digit NF-e access key
+        invoiceNumber:
+          type: integer
+        series:
+          type: integer
+        status:
+          type: string
+          enum:
+          - Authorized
+          - Cancelled
+          - Denied
+          - Pending
+        protocolNumber:
+          type: string
+        issuanceDate:
+          type: string
+          format: date-time
+    InvoiceLine:
+      type: object
+      properties:
+        lineNumber:
+          type: integer
+        itemCode:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: number
+          format: double
+        unitPrice:
+          type: number
+          format: double
+        ncmCode:
+          type: string
+        cfopCode:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

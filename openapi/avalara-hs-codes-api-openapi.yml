@@ -1,0 +1,122 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms HS Codes API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: HS Codes
+  description: Retrieve HS Code classification results
+paths:
+  /classification-requests/{requestId}/results:
+    get:
+      operationId: getClassificationResults
+      summary: Avalara Get Classification Results
+      description: Retrieves the HS Code classification results for a completed classification request.
+      tags:
+      - HS Codes
+      parameters:
+      - name: requestId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Classification results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClassificationResultList'
+  /hs-codes/{hsCode}:
+    get:
+      operationId: getHSCodeDetails
+      summary: Avalara Get HS Code Details
+      description: Retrieves detailed information for a specific HS Code.
+      tags:
+      - HS Codes
+      parameters:
+      - name: hsCode
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The HS Code to look up
+      - name: country
+        in: query
+        schema:
+          type: string
+        description: ISO 3166-1 alpha-2 country code for country-specific details
+      responses:
+        '200':
+          description: HS Code details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HSCodeDetail'
+components:
+  schemas:
+    HSCodeDetail:
+      type: object
+      properties:
+        hsCode:
+          type: string
+        description:
+          type: string
+        chapter:
+          type: string
+        section:
+          type: string
+        parentCode:
+          type: string
+        dutyRate:
+          type: string
+        unitOfMeasure:
+          type: string
+    ClassificationResultList:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationResult'
+    ClassificationResult:
+      type: object
+      properties:
+        itemCode:
+          type: string
+        description:
+          type: string
+        hsCode:
+          type: string
+          description: Classified HS Code
+        hsCodeDescription:
+          type: string
+        confidence:
+          type: number
+          format: double
+          description: Classification confidence score (0-1)
+        country:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

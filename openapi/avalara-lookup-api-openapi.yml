@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Lookup API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Lookup
+  description: Look up service and transaction type information
+paths:
+  /api/v2/afc/PCode/{pcode}:
+    get:
+      operationId: getPCodeInfo
+      summary: Avalara Get PCode Jurisdiction Information
+      description: Retrieves detailed jurisdiction information for a given PCode (proprietary jurisdiction code).
+      tags:
+      - Lookup
+      parameters:
+      - name: pcode
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: The PCode to look up
+      responses:
+        '200':
+          description: PCode jurisdiction details
+  /api/v2/afc/tspairs:
+    get:
+      operationId: getTransactionServicePairs
+      summary: Avalara List Transaction/service Type Pairs
+      description: Returns all valid transaction type and service type pairs that can be used for tax calculations.
+      tags:
+      - Lookup
+      responses:
+        '200':
+          description: List of transaction/service type pairs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/TSPairModel'
+  /api/v2/afc/taxtype/{taxType}:
+    get:
+      operationId: getTaxTypeInfo
+      summary: Avalara Get Tax Type Details
+      description: Retrieves details for a specific tax type identifier.
+      tags:
+      - Lookup
+      parameters:
+      - name: taxType
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Tax type details
+  /api/v2/afc/serviceinfo:
+    get:
+      operationId: getServiceInfo
+      summary: Avalara Get Service Information
+      description: Returns version and status information for the Communications API.
+      tags:
+      - Lookup
+      security: []
+      responses:
+        '200':
+          description: Service information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServiceInfo'
+components:
+  schemas:
+    TSPairModel:
+      type: object
+      properties:
+        TransactionType:
+          type: integer
+          description: Transaction type ID
+        TransactionTypeDescription:
+          type: string
+        ServiceType:
+          type: integer
+          description: Service type ID
+        ServiceTypeDescription:
+          type: string
+    ServiceInfo:
+      type: object
+      properties:
+        serverTime:
+          type: string
+          format: date-time
+        buildVersion:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

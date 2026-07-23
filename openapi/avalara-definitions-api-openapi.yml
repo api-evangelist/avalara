@@ -1,0 +1,1573 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Definitions API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Definitions
+  description: Query tax content definitions, rates, and jurisdictions
+paths:
+  /api/v2/definitions/taxcodes:
+    get:
+      operationId: listTaxCodes
+      summary: Avalara List All Tax Codes
+      description: Retrieves the full list of Avalara-supported tax codes for product and service classification.
+      tags:
+      - Definitions
+      parameters:
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of tax codes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchResult_TaxCodeModel'
+  /api/v2/definitions/nexus/{country}:
+    get:
+      operationId: listNexusByCountry
+      summary: Avalara List Nexus Options for a Country
+      tags:
+      - Definitions
+      parameters:
+      - name: country
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Nexus options for country
+  /api/v2/definitions/jurisdictions:
+    get:
+      operationId: listJurisdictions
+      summary: Avalara List All Jurisdictions
+      tags:
+      - Definitions
+      parameters:
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of jurisdictions
+  /api/v2/definitions/countries:
+    get:
+      operationId: listCountries
+      summary: Avalara List All Countries Supported by AvaTax
+      tags:
+      - Definitions
+      parameters:
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of countries
+  /api/v2/definitions/entityusecodes:
+    get:
+      operationId: listEntityUseCodes
+      summary: Avalara List All Entity Use Codes
+      description: Returns the full list of entity use codes that can be applied to transactions to indicate exemptions or special tax handling.
+      tags:
+      - Definitions
+      parameters:
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of entity use codes
+  /api/v2/definitions/crossborder/{country}/{hsCode}/hierarchy:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara GetCrossBorderCode
+      description: "Retrieves the specified HS code and all of its parents, reflecting all sections, chapters, headings, and subheadings\r\n            \r\na list of HS Codes that are the parents and information branches of the HS Code for the given\r\ndestination country, if lower detail is available.\r\n            \r\nThis API will include information branches if applicable. These do not have HS Codes and cannot be referenced,\r\nbut can contain information relevant to deciding the correct HS Code.\r\n            \r\nThis API is intended to be useful to review the descriptive hierarchy of an HS Code, which can be particularly helpful\r\nwhen HS Codes can have multiple levels of generic descriptions.\n\n### Security Policies\n\n* This API depends on the following active services:*Required* (all):  AvaTaxGlobal.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: hsCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/filingcalendars/loginverifiers/{form}:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara GetLoginVerifierByForm
+      description: "This API is intended to be useful to identify whether the user should be allowed\r\nto automatically verify their login and password. This API will provide a result only if the form supports automatic online login verification."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: form
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/listallmarketplacelocations:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListAllMarketplaceLocations
+      description: List all market place locations.
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/avafileforms:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListAvaFileForms
+      description: "This API is deprecated.\r\n            \r\nPlease use the ListTaxForms API.\r\n            \r\nReturns the full list of Avalara-supported AvaFile Forms\r\nThis API is intended to be useful to identify all the different AvaFile Forms"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/certificateattributes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListCertificateAttributes
+      description: "List the certificate attributes defined by a company either specified by the user or the user's default company.\r\n            \r\nA certificate may have multiple attributes that control its behavior.  You may apply or remove attributes to a\r\ncertificate at any time.\r\n            \r\nIf you see the 'CertCaptureNotConfiguredError', please use CheckProvision and RequestProvision endpoints to\r\ncheck and provision account."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/certificateexemptreasons:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListCertificateExemptReasons
+      description: "List the certificate exempt reasons defined by a company.\r\n            \r\nAn exemption reason defines why a certificate allows a customer to be exempt\r\nfor purposes of tax calculation.\r\n            \r\nIf you see the 'CertCaptureNotConfiguredError', please use CheckProvision and RequestProvision endpoints to\r\ncheck and provision account."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/certificateexposurezones:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListCertificateExposureZones
+      description: "List the certificate exposure zones defined by a company.\r\n            \r\nAn exposure zone is a location where a certificate can be valid.  Exposure zones may indicate a taxing\r\nauthority or other legal entity to which a certificate may apply.\r\n            \r\nIf you see the 'CertCaptureNotConfiguredError', please use CheckProvision and RequestProvision endpoints to\r\ncheck and provision account."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/classification/parametersusage:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListClassificationParametersUsage
+      description: "Returns the full list of Avalara-supported usage of extra parameters for item classification.\r\nThe list of parameters is available for use with Item Classification.\r\nSome parameters are only available for use if you have subscribed to certain features of AvaTax."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/communications/transactiontypes/{id}/servicetypes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListCommunicationsServiceTypes
+      description: Returns full list of service types for a given transaction type ID.
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/communications/tspairs:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListCommunicationsTSPairs
+      description: "Returns full list of communications transaction/service type pairs which\r\nare accepted in communication tax calculation requests."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/communications/transactiontypes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListCommunicationsTransactionTypes
+      description: "Returns full list of communications transaction types which\r\nare accepted in communication tax calculation requests."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/coverletters:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListCoverLetters
+      description: "List available cover letters that can be used when sending invitation to use CertExpress to upload certificates.\r\n            \r\nThe CoverLetter model represents a message sent along with an invitation to use CertExpress to\r\nupload certificates.  An invitation allows customers to use CertExpress to upload their exemption\r\ncertificates directly; this cover letter explains why the invitation was sent.\r\n            \r\nIf you see the 'CertCaptureNotConfiguredError', please use CheckProvision and RequestProvision endpoints to\r\ncheck and provision account."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/crossborder/{country}/{hsCode}:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListCrossBorderCodes
+      description: "Retrieves a list of HS Codes that are the children of the prefix for the given destination country, if\r\nadditional children are available.\r\n            \r\nHS Code is interchangeable with \"tariff code\" and definitions are generally unique to a destination country.\r\nAn HS Code describes an item and its eligibility/rate for tariffs. HS Codes are organized by\r\nSection/Chapter/Heading/Subheading/Classification.\r\n            \r\nThis API is intended to be useful to identify the correct HS Code to use for your item.\n\n### Security Policies\n\n* This API depends on the following active services:*Required* (all):  AvaTaxGlobal.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: hsCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/crossborder/sections:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListCrossBorderSections
+      description: "Returns the full list of top level HS Code Sections. Sections are the broadest level of detail for\r\nclassifying tariff codes and the items to which they apply. HS Codes are organized\r\nby Section/Chapter/Heading/Subheading/Classification.\r\n            \r\nThis API is intended to be useful to identify the top level Sections for\r\nfurther LandedCost HS Code lookups.\n\n### Security Policies\n\n* This API depends on the following active services:*Required* (all):  AvaTaxGlobal.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/currencies:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListCurrencies
+      description: "Lists all ISO 4217 currencies supported by AvaTax.\r\n            \r\nThis API produces a list of currency codes that can be used when calling AvaTax.  The values from this API can be used to fill out the\r\n`currencyCode` field in a `CreateTransactionModel`."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/filingfrequencies:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListFilingFrequencies
+      description: "Returns the full list of Avalara-supported filing frequencies.\r\nThis API is intended to be useful to identify all the different filing frequencies that can be used in notices."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/jurisdictionTypes/countries/{country}/taxtypes/{taxTypeId}/taxsubtypes/{taxSubTypeId}:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListJurisdictionTypesByRateTypeTaxTypeMapping
+      description: Returns a list of all applicable jurisdiction types based on country, taxTypeId, taxSubTypeId, and rateTypeId
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: taxTypeId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: taxSubTypeId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/jurisdictionsnearaddress:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListJurisdictionsByAddress
+      description: "Returns a list of all Avalara-supported taxing jurisdictions that apply to this address.\r\n            \r\nThis API allows you to identify which jurisdictions are nearby a specific address according to the best available geocoding information.\r\nIt is intended to allow you to create a \"Jurisdiction Override\", which allows an address to be configured as belonging to a nearby\r\njurisdiction in AvaTax.\r\n            \r\nThe results of this API call can be passed to the `CreateJurisdictionOverride` API call."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/jurisdictions/countries/{country}/taxtypes/{taxTypeId}/taxsubtypes/{taxSubTypeId}:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListJurisdictionsByRateTypeTaxTypeMapping
+      description: "Returns a list of all Avalara-supported taxing jurisdictions filtered by taxTypeId, taxSubTypeId, country, and rateTypeId.\r\n            \r\nYou can optionally pass region as a query parameter to retrieve jurisdictions that are under that region.\r\n            \r\nThis API allows you to examine all Avalara-supported jurisdictions. You can filter your search by supplying\r\nSQL-like query for fetching only the ones you concerned about. For example: effectiveDate > '2016-01-01'\r\n            \r\nThe jurisdictionType, effectiveDate, and endDate are filterable fields available on the JurisdictionRateTypeTaxTypeMappingModels returned by this API."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: taxTypeId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: taxSubTypeId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/locationquestions:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListLocationQuestionsByAddress
+      description: "Returns the list of additional questions you must answer when declaring a location in certain taxing jurisdictions.\r\nSome tax jurisdictions require that you register or provide additional information to configure each physical place where\r\nyour company does business.\r\nThis information is not usually required in order to calculate tax correctly, but is almost always required to file your tax correctly.\r\nYou can call this API call for any address and obtain information about what questions must be answered in order to properly\r\nfile tax in that location."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/filingcalendars/loginverifiers:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListLoginVerifiers
+      description: "List all forms where logins can be verified automatically.\r\nThis API is intended to be useful to identify whether the user should be allowed\r\nto automatically verify their login and password."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/marketplacelocations:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListMarketplaceLocations
+      description: Retrieves the list of suggested locations for a marketplace.
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/nexus:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNexus
+      description: "Returns the full list of all Avalara-supported nexus for all countries and regions.\r\n            \r\nThis API is intended to be useful if your user interface needs to display a selectable list of nexus."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/nexus/byaddress:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNexusByAddress
+      description: "Returns a list of all Avalara-supported taxing jurisdictions that apply to this address.\r\nThis API allows you to identify which tax authorities apply to a physical location, salesperson address, or point of sale.\r\nIn general, it is usually expected that a company will declare nexus in all the jurisdictions that apply to each physical address\r\nwhere the company does business.\r\nThe results of this API call can be passed to the 'Create Nexus' API call to declare nexus for this address."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/nexus/{country}/{region}:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNexusByCountryAndRegion
+      description: "Returns all Avalara-supported nexus for the specified country and region.\r\n            \r\nThis API is intended to be useful if your user interface needs to display a selectable list of nexus filtered by country and region."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: region
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/nexus/byform/{formCode}:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNexusByFormCode
+      description: "Retrieves a list of nexus related to a tax form.\r\n            \r\nThe concept of `Nexus` indicates a place where your company has sufficient physical presence and is obligated\r\nto collect and remit transaction-based taxes.\r\n            \r\nWhen defining companies in AvaTax, you must declare nexus for your company in order to correctly calculate tax\r\nin all jurisdictions affected by your transactions.\r\n            \r\nThis API is intended to provide useful information when examining a tax form.  If you are about to begin filing\r\na tax form, you may want to know whether you have declared nexus in all the jurisdictions related to that tax\r\nform in order to better understand how the form will be filled out.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: formCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/nexus/bytaxtypegroup/{taxTypeGroup}:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNexusByTaxTypeGroup
+      description: "Returns all Avalara-supported nexus for the specified specified tax type group.\r\n            \r\nThis API is intended to be useful if your user interface needs to display a selectable list of nexus filtered by tax type group."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: taxTypeGroup
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/nexustaxtypegroups:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNexusTaxTypeGroups
+      description: "Returns the full list of Avalara-supported nexus tax type groups\r\nThis API is intended to be useful to identify all the different tax sub-types."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/noticecustomerfundingoptions:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNoticeCustomerFundingOptions
+      description: "Returns the full list of Avalara-supported tax notice customer funding options.\r\nThis API is intended to be useful to identify all the different notice customer funding options that can be used in notices."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/noticecustomertypes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNoticeCustomerTypes
+      description: "Returns the full list of Avalara-supported tax notice customer types.\r\nThis API is intended to be useful to identify all the different notice customer types."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/noticefilingtypes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNoticeFilingtypes
+      description: "Returns the full list of Avalara-supported tax notice filing types.\r\nThis API is intended to be useful to identify all the different notice filing types that can be used in notices."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/noticepriorities:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNoticePriorities
+      description: "Returns the full list of Avalara-supported tax notice priorities.\r\nThis API is intended to be useful to identify all the different notice priorities that can be used in notices."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/noticereasons:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNoticeReasons
+      description: "Returns the full list of Avalara-supported tax notice reasons.\r\nThis API is intended to be useful to identify all the different tax notice reasons."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/noticeresponsibilities:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNoticeResponsibilities
+      description: "Returns the full list of Avalara-supported tax notice responsibility ids\r\nThis API is intended to be useful to identify all the different tax notice responsibilities."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/noticerootcauses:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNoticeRootCauses
+      description: "Returns the full list of Avalara-supported tax notice root causes\r\nThis API is intended to be useful to identify all the different tax notice root causes."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/noticestatuses:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNoticeStatuses
+      description: "Returns the full list of Avalara-supported tax notice statuses.\r\nThis API is intended to be useful to identify all the different tax notice statuses."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/noticetypes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListNoticeTypes
+      description: "Returns the full list of Avalara-supported tax notice types.\r\nThis API is intended to be useful to identify all the different notice types that can be used in notices."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/parameters:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListParameters
+      description: "Returns the full list of Avalara-supported extra parameters for the 'Create Transaction' API call.\r\nThis list of parameters is available for use when configuring your transaction.\r\nSome parameters are only available for use if you have subscribed to certain features of AvaTax."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/accounts/{accountId}/parameters:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListParametersByAccount
+      description: Returns the list of Avalara-supported parameters based on account subscriptions.
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: accountId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/parameters/byitem/{companyCode}/{itemCode}:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListParametersByItem
+      description: "Returns the list of parameters based on the company's service types and the item code.\r\nIgnores nexus if a service type is configured in the 'IgnoreNexusForServiceTypes' configuration section.\r\nIgnores nexus for the AvaAlcohol service type.\r\n            \r\nNOTE: If your company code or item code contains any of these characters /, +, ? or a space, please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: 'Company/Code' becomes 'Company_-ava2f-_Code'\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: 'Company+Code' becomes 'Company_-ava2b-_Code'\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: 'Company?Code' becomes 'Company_-ava3f-_Code'\r\n* Replace '%' with '\\_-ava25-\\_'  For example: 'Company%Code' becomes 'Company_-ava25-_Code'\r\n* Replace '#' with '\\_-ava23-\\_'  For example: 'Company#Code' becomes 'Company_-ava23-_Code'\r\n            \r\nFor Item Code other than the five given above below two should also be used\r\n* Replace ''' with '\\_-ava27-\\_'  For example: 'Item'Code' becomes 'Item_-ava27-_Code'\r\n* Replace '\"' with '\\_-ava22-\\_'  For example: 'Item\"Code' becomes 'Item_-ava22-_Code'\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: itemCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/parametersusage:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListParametersUsage
+      description: "Returns the full list of Avalara-supported usage of extra parameters for the 'Create Transaction' API call.\r\nThis list of parameters is available for use when configuring your transaction.\r\nSome parameters are only available for use if you have subscribed to certain features of AvaTax."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/permissions:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListPermissions
+      description: "Returns the full list of Avalara-supported permission types.\r\nThis API is intended to be useful to identify the capabilities of a particular user logon."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/postalcodes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListPostalCodes
+      description: Retrieves the list of Avalara-supported postal codes.
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/preferredprograms:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListPreferredPrograms
+      description: "List all preferred customs duty programs recognized by AvaTax.\r\n            \r\nA customs duty program is an optional program you can use to obtain favorable treatment from customs and duty agents.\r\nAn example of a preferred program is NAFTA, which provides preferential rates for products being shipped from neighboring\r\ncountries.\r\n            \r\nTo select a preferred program for calculating customs and duty rates, call this API to find the appropriate code for your\r\npreferred program.  Next, set the parameter `AvaTax.LC.PreferredProgram` in your `CreateTransaction` call to the code of\r\nthe program."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/productclassificationsystems:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListProductClassificationSystems
+      description: "List all available product classification systems.\r\n            \r\nTax authorities use product classification systems as a way to identify products and associate them with a tax rate.\r\nMore than one tax authority might use the same product classification system, but they might charge different tax rates for products."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/productclassificationsystems/bycompany/{companyCode}:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListProductClassificationSystemsByCompany
+      description: "Lists all product classification systems available to a company based on its nexus.\r\n            \r\nTax authorities use product classification systems as a way to identify products and associate them with a tax rate.\r\nMore than one tax authority might use the same product classification system, but they might charge different tax rates for products.\r\n            \r\n            \r\nNOTE: If your company code contains any of these characters /, +, ? or a space, please use the following encoding before making a request:\r\n* Replace '/' with '\\_-ava2f-\\_'  For example: 'Company/Code' becomes 'Company_-ava2f-_Code'\r\n* Replace '+' with '\\_-ava2b-\\_'  For example: 'Company+Code' becomes 'Company_-ava2b-_Code'\r\n* Replace '?' with '\\_-ava3f-\\_'  For example: 'Company?Code' becomes 'Company_-ava3f-_Code'\r\n* Replace '%' with '\\_-ava25-\\_'  For example: 'Company%Code' becomes 'Company_-ava25-_Code'\r\n* Replace '#' with '\\_-ava23-\\_'  For example: 'Company#Code' becomes 'Company_-ava23-_Code'"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/countries/{country}/ratetypes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListRateTypesByCountry
+      description: "Returns the full list of Avalara-supported rate type file types\r\nThis API is intended to be useful to identify all the different rate types."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/countries/{country}/taxtypes/{taxTypeId}/taxsubtypes/{taxSubTypeId}/ratetypes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListRateTypesByCountryTaxTypeTaxSubType
+      description: "Returns the list of Avalara-supported rate type file types\r\nThis API is intended to be useful to identify all the different rate types."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: taxTypeId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: taxSubTypeId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/regions:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListRegions
+      description: "Returns a list of all ISO 3166 region codes and their US English friendly names.\r\nThis API is intended to be useful when presenting a dropdown box in your website to allow customers to select a region\r\nwithin the country for a shipping addresses."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/countries/{country}/regions:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListRegionsByCountry
+      description: "Returns a list of all ISO 3166 region codes for a specific country code, and their US English friendly names.\r\nThis API is intended to be useful when presenting a dropdown box in your website to allow customers to select a region\r\nwithin the country for a shipping addresses."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  ? /api/v2/definitions/companies/{companyId}/countries/{country}/regions/taxtypes/{taxTypeId}/taxsubtypes/{taxSubTypeId}/rateTypeId/{rateTypeId}/jurisdictionTypeId/{jurisdictionTypeId}
+  : get:
+      tags:
+      - Definitions
+      summary: Avalara ListRegionsByCountryAndTaxTypeAndTaxSubTypeAndRateType
+      description: "Returns a list of all ISO 3166 region codes for a specific country code and their US English friendly names.\r\nThis API is intended to be used as a way to provide a dropdown box in your website to allow customers to select a region\r\nwithin the country for shipping addresses."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: taxTypeId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: taxSubTypeId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: rateTypeId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: jurisdictionTypeId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/resourcefiletypes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListResourceFileTypes
+      description: "Returns the full list of Avalara-supported resource file types\r\nThis API is intended to be useful to identify all the different resource file types."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/returns/parametersusage:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListReturnsParametersUsage
+      description: "Returns the full list of Avalara-supported usage of extra parameters for the returns.\r\nThis list of parameters is available for use with Returns.\r\nSome parameters are only available for use if you have subscribed to certain features of AvaTax."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/securityroles:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListSecurityRoles
+      description: "Returns the full list of Avalara-supported permission types.\r\nThis API is intended to be useful when designing a user interface for selecting the security role of a user account.\r\nSome security roles are restricted for Avalara internal use."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/subscriptiontypes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListSubscriptionTypes
+      description: "Returns the full list of Avalara-supported subscription types.\r\nThis API is intended to be useful for identifying which features you have added to your account.\r\nYou may always contact Avalara's sales department for information on available products or services.\r\nYou cannot change your subscriptions directly through the API."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/tags:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListTags
+      description: Retrieves the list of suggested locations for a marketplace.
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/taxauthorities:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListTaxAuthorities
+      description: "Returns the full list of Avalara-supported tax authorities.\r\nThis API is intended to be useful to identify all the different authorities that receive tax."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/taxauthorityforms:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListTaxAuthorityForms
+      description: "Returns the full list of Avalara-supported forms for each tax authority.\r\nThis list represents tax forms that Avalara recognizes.\r\nCustomers who subscribe to Avalara Managed Returns Service can request these forms to be filed automatically\r\nbased on the customer's AvaTax data."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/taxauthoritytypes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListTaxAuthorityTypes
+      description: "Returns the full list of Avalara-supported tax authority types.\r\nThis API is intended to be useful to identify all the different authority types."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/taxcodetypes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListTaxCodeTypes
+      description: "Returns the full list of recognized tax code types.\r\nA 'Tax Code Type' represents a broad category of tax codes, and is less detailed than a single TaxCode.\r\nThis API is intended to be useful for broadly searching for tax codes by tax code type."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/taxforms:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListTaxForms
+      description: "Returns the full list of Avalara-supported Tax Forms\r\nThis API is intended to be useful to identify all the different Tax Forms"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/taxsubtypes:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListTaxSubTypes
+      description: "Returns the full list of Avalara-supported tax sub-types\r\nThis API is intended to be useful to identify all the different tax sub-types."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/taxsubtypes/countries/{country}/taxtypes/{taxTypeId}:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListTaxSubTypesByCountryAndTaxType
+      description: "Returns the full list of Avalara-supported tax sub-types\r\nThis API is intended to be useful to identify all the different tax sub-types for given country and TaxType."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: taxTypeId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/taxsubtypes/{jurisdictionCode}/{region}:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListTaxSubTypesByJurisdictionAndRegion
+      description: "Returns the full list of Avalara-supported tax sub-types by jurisdiction and region\r\nThis API is intended to be useful to identify all the different tax sub-types."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: jurisdictionCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: region
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/taxtypegroups:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListTaxTypeGroups
+      description: "Returns the full list of Avalara-supported tax type groups\r\nThis API is intended to be useful to identify all the different tax type groups."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/taxtypes/countries/{country}:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListTaxTypesByNexusAndCountry
+      description: Retrieves the list of applicable TaxTypes based on Nexus of the company.
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/unitofbasis/countries/{country}/taxtypes/{taxTypeId}/taxsubtypes/{taxSubTypeId}:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListUnitOfBasisByCountryAndTaxTypeAndTaxSubTypeAndRateType
+      description: Retrieves the list of applicable UnitOfBasis
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: taxTypeId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: taxSubTypeId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/definitions/unitofmeasurements:
+    get:
+      tags:
+      - Definitions
+      summary: Avalara ListUnitOfMeasurement
+      description: "List all units of measurement systems defined by Avalara.\r\n            \r\nA unit of measurement system is a method of measuring a quantity, such as distance, mass, or others."
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  parameters:
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
+  schemas:
+    FetchResult_TaxCodeModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxCodeModel'
+    TaxCodeModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        companyId:
+          type: integer
+        taxCode:
+          type: string
+        taxCodeTypeId:
+          type: string
+        description:
+          type: string
+        isPhysical:
+          type: boolean
+        isActive:
+          type: boolean
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

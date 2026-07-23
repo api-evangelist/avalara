@@ -1,0 +1,514 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Accounts API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Accounts
+  description: Manage AvaTax accounts and license keys
+paths:
+  /api/v2/accounts/{id}:
+    get:
+      operationId: getAccount
+      summary: Avalara Retrieve a Single Account
+      tags:
+      - Accounts
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: $include
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountModel'
+  /api/v2/accounts:
+    get:
+      operationId: queryAccounts
+      summary: Avalara List All Accounts
+      tags:
+      - Accounts
+      parameters:
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of accounts
+  /accounts:
+    post:
+      operationId: createAccount
+      summary: Avalara Register a New Customer Account
+      description: Registers a new customer account with Avalara through a partner integration.
+      tags:
+      - Accounts
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AccountRegistration'
+      responses:
+        '201':
+          description: Account registered
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /accounts/{accountId}:
+    get:
+      operationId: getAccount
+      summary: Avalara Get Account Details
+      tags:
+      - Accounts
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Account details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountResponse'
+  /api/v2/accounts/{id}/resetlicensekey:
+    post:
+      tags:
+      - Accounts
+      summary: Avalara AccountResetLicenseKey
+      description: "Resets the existing license key for this account to a new key.\r\n            \r\nTo reset your account, you must specify the ID of the account you wish to reset and confirm the action.\r\n            \r\nThis API is only available to account administrators for the account in question, and may only be called after\r\nan account has been activated by reading and accepting Avalara's terms and conditions.  To activate your account\r\nplease log onto the AvaTax website or call the `ActivateAccount` API.\r\n            \r\nYou can only reset license with 'Default' license key name.\r\nResetting a license key cannot be undone.  Any previous license keys will immediately cease to work when a new key is created.\r\n            \r\nWhen you call this API, all account administrators for this account will receive an email with the newly updated license key.\r\nThe email will specify which user reset the license key and it will contain the new key to use to update your connectors.\r\nNote: The reset license key functionality will only be available for existing active license key i.e. when you reset license key for the account, the Default license key will be reset.The reset license key functionality is not available for newly created license keys i.e. license keys other than Default\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                accountId: 123456789
+                confirmResetLicenseKey: true
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/accounts/{id}/activate:
+    post:
+      tags:
+      - Accounts
+      summary: Avalara ActivateAccount
+      description: "Activate the account specified by the unique accountId number.\r\n            \r\nThis activation request can only be called by account administrators.  You must indicate\r\nthat you have read and accepted Avalara's terms and conditions to call this API.\r\n            \r\nOnce you have activated your account, use the `AccountResetLicenseKey` API to generate\r\na license key for your account.\r\n            \r\nIf you have not read or accepted the terms and conditions, this API call will return the\r\nunchanged account model.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                acceptAvalaraTermsAndConditions: true
+                haveReadAvalaraTermsAndConditions: true
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/accounts/{id}/audit:
+    get:
+      tags:
+      - Accounts
+      summary: Avalara AuditAccount
+      description: "Retrieve audit trace history for an account.\r\n            \r\nYour audit trace history contains a record of all API calls made against the AvaTax REST API that returned an error.   You can use this API to investigate\r\nproblems and see exactly what information was sent back and forth between your code and AvaTax.\r\n            \r\nWhen specifying a start and end datetime, please include a valid timezone indicator, such as the \"Z\" present in the examples for the start and end query parameters.\r\nYou can learn more about valid time zone designators at https://en.wikipedia.org/wiki/ISO_8601#Time_zone_designators.\r\n            \r\nThis API enforces limits to the amount of data retrieved. These limits are subject to change.\r\n            \r\n* You may request data from a maximum of a one-hour time period.\r\n* The amount of data and number of API calls returned by this API are limited and may be adjusted at any time.\r\n* Old records may be migrated out of immediately available storage.  To request older data, please contact your account manager.\r\n* New records must migrate to available storage before they can be retrieved.  You may need to wait a period of time before newly created records can be fetched.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/accounts/{id}/licensekey:
+    post:
+      tags:
+      - Accounts
+      summary: Avalara CreateLicenseKey
+      description: "Creates a new license key for this account.\r\n            \r\nTo create a license key for your account, you must specify the ID of the account and license key name.\r\n            \r\nThis API is only available to account administrators for the account in question, and may only be called after\r\nan account has been activated by reading and accepting Avalara's terms and conditions.  To activate your account\r\nplease log onto the AvaTax website or call the `ActivateAccount` API.\r\n            \r\nYou will reference this key using license key name. The existing license key will be using 'Default' as license key name.\r\nHence make sure that the license key name is unique per account considering the existing license key name 'Default'\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: ABCDEFGHIJK
+                accountId: 123456789
+                createdDate: '2023-08-13T00:00:00+00:00'
+                createdUserId: 1
+                modifiedDate: '2023-08-13T00:00:00+00:00'
+                modifiedUserId: 1
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/accounts/{id}/licensekey/{licensekeyname}:
+    delete:
+      tags:
+      - Accounts
+      summary: Avalara DeleteLicenseKey
+      description: "Deletes the license key for this account using license key name.\r\n            \r\nTo delete a license key for your account, you must specify the accountID of the account and license key name.\r\n            \r\nThis API is only available to account administrators for the account in question.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: licensekeyname
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - Accounts
+      summary: Avalara GetLicenseKey
+      description: '
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.
+
+        '
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: licensekeyname
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/accounts/{id}/configuration:
+    get:
+      tags:
+      - Accounts
+      summary: Avalara GetAccountConfiguration
+      description: "Retrieve a list of all configuration settings tied to this account.\r\n            \r\nConfiguration settings provide you with the ability to control features of your account and of your\r\ntax software.  The category names `TaxServiceConfig` and `AddressServiceConfig` are reserved for\r\nAvalara internal software configuration values; to store your own account-level settings, please\r\ncreate a new category name that begins with `X-`, for example, `X-MyCustomCategory`.\r\n            \r\nAccount settings are permanent settings that cannot be deleted.  You can set the value of an\r\naccount setting to null if desired.\r\n            \r\nAvalara-based account settings for `TaxServiceConfig` and `AddressServiceConfig` affect your account's\r\ntax calculation and address resolution, and should only be changed with care.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+      - Accounts
+      summary: Avalara SetAccountConfiguration
+      description: "Update configuration settings tied to this account.\r\n            \r\nConfiguration settings provide you with the ability to control features of your account and of your\r\ntax software.  The category names `TaxServiceConfig` and `AddressServiceConfig` are reserved for\r\nAvalara internal software configuration values; to store your own account-level settings, please\r\ncreate a new category name that begins with `X-`, for example, `X-MyCustomCategory`.\r\n            \r\nAccount settings are permanent settings that cannot be deleted.  You can set the value of an\r\naccount setting to null if desired.\r\n            \r\nAvalara-based account settings for `TaxServiceConfig` and `AddressServiceConfig` affect your account's\r\ntax calculation and address resolution, and should only be changed with care.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                accountId: 0
+                category: TaxServiceConfig
+                name: MaxLines
+                value: '1000'
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/accounts/{id}/licensekeys:
+    get:
+      tags:
+      - Accounts
+      summary: Avalara GetLicenseKeys
+      description: 'Gets list of all the license keys used by the account.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.
+
+        '
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  schemas:
+    AccountRegistration:
+      type: object
+      required:
+      - companyName
+      - email
+      properties:
+        companyName:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        phoneNumber:
+          type: string
+        address:
+          type: object
+          properties:
+            line1:
+              type: string
+            city:
+              type: string
+            region:
+              type: string
+            postalCode:
+              type: string
+            country:
+              type: string
+        partnerCode:
+          type: string
+    AccountResponse:
+      type: object
+      properties:
+        accountId:
+          type: string
+        accountNumber:
+          type: string
+        companyName:
+          type: string
+        status:
+          type: string
+          enum:
+          - Active
+          - Inactive
+          - Pending
+        createdDate:
+          type: string
+          format: date-time
+    AccountModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        endDate:
+          type: string
+          format: date
+        accountStatusId:
+          type: string
+          enum:
+          - Inactive
+          - Active
+          - Test
+          - New
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+  parameters:
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

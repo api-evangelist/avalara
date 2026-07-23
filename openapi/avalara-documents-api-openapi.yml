@@ -1,0 +1,376 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Documents API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Documents
+  description: Submit and manage e-invoice documents
+paths:
+  /documents:
+    post:
+      operationId: submitDocument
+      summary: Avalara Submit an E-invoice Document
+      description: Submits an electronic invoice document for validation and delivery to the appropriate tax authority or recipient network.
+      tags:
+      - Documents
+      parameters:
+      - name: avalara-version
+        in: header
+        required: true
+        schema:
+          type: string
+          default: '1.0'
+        description: API version header
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmitDocumentRequest'
+      responses:
+        '202':
+          description: Document accepted for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentSubmissionResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    get:
+      operationId: listDocuments
+      summary: Avalara List Submitted Documents
+      description: Retrieves a list of submitted e-invoice documents with filtering.
+      tags:
+      - Documents
+      parameters:
+      - name: avalara-version
+        in: header
+        required: true
+        schema:
+          type: string
+          default: '1.0'
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Pending
+          - Accepted
+          - Rejected
+          - Error
+      - name: startDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: endDate
+        in: query
+        schema:
+          type: string
+          format: date
+      - name: flow
+        in: query
+        schema:
+          type: string
+          enum:
+          - out
+          - in
+        description: Document flow direction (outbound or inbound)
+      - name: count
+        in: query
+        schema:
+          type: boolean
+        description: Include total count in response
+      - name: $top
+        in: query
+        schema:
+          type: integer
+          default: 50
+      - name: $skip
+        in: query
+        schema:
+          type: integer
+          default: 0
+      responses:
+        '200':
+          description: List of documents
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentList'
+  /documents/{documentId}:
+    get:
+      operationId: getDocument
+      summary: Avalara Retrieve a Document by ID
+      description: Retrieves the status and details of a submitted e-invoice document.
+      tags:
+      - Documents
+      parameters:
+      - name: avalara-version
+        in: header
+        required: true
+        schema:
+          type: string
+          default: '1.0'
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Document details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentDetail'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /documents/{documentId}/status:
+    get:
+      operationId: getDocumentStatus
+      summary: Avalara Get Document Processing Status
+      description: Returns the current processing status of a submitted document.
+      tags:
+      - Documents
+      parameters:
+      - name: avalara-version
+        in: header
+        required: true
+        schema:
+          type: string
+          default: '1.0'
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Document status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DocumentStatus'
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    DocumentSubmissionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Document submission ID
+        status:
+          type: string
+          enum:
+          - Pending
+          - Accepted
+          - Rejected
+          - Error
+        statusDate:
+          type: string
+          format: date-time
+    DocumentSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        documentType:
+          type: string
+        invoiceNumber:
+          type: string
+        senderName:
+          type: string
+        recipientName:
+          type: string
+        submissionDate:
+          type: string
+          format: date-time
+        countryCode:
+          type: string
+    DocumentStatus:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - Pending
+          - Accepted
+          - Rejected
+          - Error
+        statusDate:
+          type: string
+          format: date-time
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentEvent'
+    DocumentList:
+      type: object
+      properties:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentSummary'
+    Party:
+      type: object
+      properties:
+        name:
+          type: string
+        identifier:
+          type: string
+          description: Tax identification number
+        identifierScheme:
+          type: string
+          description: Identifier scheme (e.g., VAT)
+        address:
+          type: object
+          properties:
+            line1:
+              type: string
+            city:
+              type: string
+            region:
+              type: string
+            postalCode:
+              type: string
+            countryCode:
+              type: string
+    DocumentDetail:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        dataFormat:
+          type: string
+        documentType:
+          type: string
+        invoiceNumber:
+          type: string
+        invoiceDate:
+          type: string
+          format: date
+        sender:
+          $ref: '#/components/schemas/Party'
+        recipient:
+          $ref: '#/components/schemas/Party'
+        totalAmount:
+          type: number
+          format: double
+        currencyCode:
+          type: string
+        countryCode:
+          type: string
+        submissionDate:
+          type: string
+          format: date-time
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentEvent'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            target:
+              type: string
+    DocumentEvent:
+      type: object
+      properties:
+        eventDate:
+          type: string
+          format: date-time
+        eventType:
+          type: string
+        message:
+          type: string
+    SubmitDocumentRequest:
+      type: object
+      required:
+      - dataFormat
+      - data
+      properties:
+        dataFormat:
+          type: string
+          enum:
+          - ubl-invoice
+          - ubl-creditnote
+          - cii
+          description: Format of the e-invoice document
+        dataFormatVersion:
+          type: string
+          description: Version of the data format
+        data:
+          type: string
+          description: Base64-encoded document content or raw UBL/CII XML
+        metadata:
+          type: object
+          properties:
+            workflowId:
+              type: string
+              description: Workflow identifier for the mandate
+            countryCode:
+              type: string
+              description: ISO 3166-1 alpha-2 country code
+            countryMandate:
+              type: string
+              description: Country mandate identifier
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

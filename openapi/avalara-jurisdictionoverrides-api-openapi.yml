@@ -1,0 +1,259 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms JurisdictionOverrides API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: JurisdictionOverrides
+paths:
+  /api/v2/accounts/{accountId}/jurisdictionoverrides:
+    post:
+      tags:
+      - JurisdictionOverrides
+      summary: Avalara CreateJurisdictionOverrides
+      description: "Creates one or more jurisdiction override objects for this account.\r\n            \r\nA Jurisdiction Override is a configuration setting that allows you to select the taxing\r\njurisdiction for a specific address.  If you encounter an address that is on the boundary\r\nbetween two different jurisdictions, you can choose to set up a jurisdiction override\r\nto switch this address to use different taxing jurisdictions.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 0
+                accountId: 0
+                description: a test JO
+                line1: 5500 Irvine Center Dr
+                city: Irvine
+                region: CA
+                country: US
+                postalCode: '92618'
+                effectiveDate: '2006-08-01'
+                endDate: '2099-01-12'
+                jurisdictions:
+                - code: '53'
+                  name: WASHINGTON
+                  type: State
+                  rate: 0.06
+                  salesRate: 0.06
+                  signatureCode: ''
+                  region: WA
+                  useRate: 0.06
+                taxRegionId: 0
+                boundaryLevel: Address
+                isDefault: false
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: accountId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - JurisdictionOverrides
+      summary: Avalara ListJurisdictionOverridesByAccount
+      description: "List all jurisdiction override objects defined for this account.\r\n            \r\nA Jurisdiction Override is a configuration setting that allows you to select the taxing\r\njurisdiction for a specific address.  If you encounter an address that is on the boundary\r\nbetween two different jurisdictions, you can choose to set up a jurisdiction override\r\nto switch this address to use different taxing jurisdictions.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: accountId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/accounts/{accountId}/jurisdictionoverrides/{id}:
+    delete:
+      tags:
+      - JurisdictionOverrides
+      summary: Avalara DeleteJurisdictionOverride
+      description: 'Marks the item object at this URL as deleted.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.
+
+        '
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: accountId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - JurisdictionOverrides
+      summary: Avalara GetJurisdictionOverride
+      description: "Get the item object identified by this URL.\r\n            \r\nA Jurisdiction Override is a configuration setting that allows you to select the taxing\r\njurisdiction for a specific address.  If you encounter an address that is on the boundary\r\nbetween two different jurisdictions, you can choose to set up a jurisdiction override\r\nto switch this address to use different taxing jurisdictions.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: accountId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+      - JurisdictionOverrides
+      summary: Avalara UpdateJurisdictionOverride
+      description: 'Replace the existing jurisdictionoverride object at this URL with an updated object.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.
+
+        '
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 0
+                accountId: 0
+                description: a test JO
+                line1: 5500 Irvine Center Dr
+                city: Irvine
+                region: CA
+                country: US
+                postalCode: '92618'
+                effectiveDate: '2006-08-01'
+                endDate: '2099-01-12'
+                jurisdictions:
+                - code: '53'
+                  name: WASHINGTON
+                  type: State
+                  rate: 0.06
+                  salesRate: 0.06
+                  signatureCode: ''
+                  region: WA
+                  useRate: 0.06
+                taxRegionId: 0
+                boundaryLevel: Address
+                isDefault: false
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: accountId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/jurisdictionoverrides:
+    get:
+      tags:
+      - JurisdictionOverrides
+      summary: Avalara QueryJurisdictionOverrides
+      description: "Get multiple jurisdiction override objects across all companies.\r\n            \r\nA Jurisdiction Override is a configuration setting that allows you to select the taxing\r\njurisdiction for a specific address.  If you encounter an address that is on the boundary\r\nbetween two different jurisdictions, you can choose to set up a jurisdiction override\r\nto switch this address to use different taxing jurisdictions.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

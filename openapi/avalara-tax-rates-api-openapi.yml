@@ -1,0 +1,101 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Tax Rates API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Tax Rates
+  description: Look up lodging tax rates by location
+paths:
+  /tax-rates:
+    get:
+      operationId: getLodgingTaxRates
+      summary: Avalara Get Lodging Tax Rates
+      description: Returns applicable lodging and short-term rental tax rates for a given property location, broken down by jurisdiction.
+      tags:
+      - Tax Rates
+      parameters:
+      - name: line1
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Street address
+      - name: city
+        in: query
+        schema:
+          type: string
+      - name: region
+        in: query
+        required: true
+        schema:
+          type: string
+        description: State or province
+      - name: postalCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: country
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Lodging tax rates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LodgingTaxRateResponse'
+components:
+  schemas:
+    LodgingTaxRateResponse:
+      type: object
+      properties:
+        totalRate:
+          type: number
+          format: double
+          description: Total combined lodging tax rate
+        rates:
+          type: array
+          items:
+            type: object
+            properties:
+              jurisdiction:
+                type: string
+              jurisdictionType:
+                type: string
+                enum:
+                - State
+                - County
+                - City
+                - District
+              taxName:
+                type: string
+              rate:
+                type: number
+                format: double
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

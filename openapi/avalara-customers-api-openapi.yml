@@ -1,0 +1,673 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Customers API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Customers
+  description: Manage customer records and their certificate associations
+paths:
+  /api/v2/companies/{companyId}/customers:
+    get:
+      operationId: queryCustomers
+      summary: Avalara List Customers for a Company
+      tags:
+      - Customers
+      parameters:
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of customers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchResult_CustomerModel'
+    post:
+      operationId: createCustomer
+      summary: Avalara Create a New Customer
+      tags:
+      - Customers
+      parameters:
+      - $ref: '#/components/parameters/companyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CustomerModel'
+      responses:
+        '201':
+          description: Customer created
+  /customers:
+    get:
+      operationId: listCustomers
+      summary: Avalara List Customers
+      tags:
+      - Customers
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: List of customers
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomerListResponse'
+    post:
+      operationId: createCustomer
+      summary: Avalara Create a Customer
+      tags:
+      - Customers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertCaptureCustomer'
+      responses:
+        '201':
+          description: Customer created
+  /customers/{customerId}:
+    get:
+      operationId: getCustomer
+      summary: Avalara Get a Customer by ID
+      tags:
+      - Customers
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Customer details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertCaptureCustomer'
+    put:
+      operationId: updateCustomer
+      summary: Avalara Update a Customer
+      tags:
+      - Customers
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertCaptureCustomer'
+      responses:
+        '200':
+          description: Customer updated
+  /customers/{customerId}/certificates:
+    get:
+      operationId: getCustomerCertificates
+      summary: Avalara List Certificates for a Customer
+      tags:
+      - Customers
+      parameters:
+      - name: customerId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: List of customer certificates
+  /api/v2/companies/{companyId}/customers/{customerCode}:
+    delete:
+      tags:
+      - Customers
+      summary: Avalara DeleteCustomer
+      description: "Deletes the customer object referenced by this URL.\r\n            \r\nA customer object defines information about a person or business that purchases products from your\r\ncompany.  When you create a tax transaction in AvaTax, you can use the `customerCode` from this\r\nrecord in your `CreateTransaction` API call.  AvaTax will search for this `customerCode` value and\r\nidentify any certificates linked to this `customer` object.  If any certificate applies to the transaction,\r\nAvaTax will record the appropriate elements of the transaction as exempt and link it to the `certificate`.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: customerCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - Customers
+      summary: Avalara GetCustomer
+      description: "Retrieve the customer identified by this URL.\r\n            \r\nA customer object defines information about a person or business that purchases products from your\r\ncompany.  When you create a tax transaction in AvaTax, you can use the `customerCode` from this\r\nrecord in your `CreateTransaction` API call.  AvaTax will search for this `customerCode` value and\r\nidentify any certificates linked to this customer object.  If any certificate applies to the transaction,\r\nAvaTax will record the appropriate elements of the transaction as exempt and link it to the `certificate`.\r\n            \r\nYou can use the `$include` parameter to fetch the following additional objects for expansion:\r\n            \r\n* Certificates - Fetch a list of certificates linked to this customer.\r\n* CustomFields - Fetch a list of custom fields associated to this customer.\r\n* attributes - Retrieves all attributes applied to the customer.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: customerCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+      - Customers
+      summary: Avalara UpdateCustomer
+      description: "Replace the customer object at this URL with a new record.\r\n            \r\nA customer object defines information about a person or business that purchases products from your\r\ncompany.  When you create a tax transaction in AvaTax, you can use the `customerCode` from this\r\nrecord in your `CreateTransaction` API call.  AvaTax will search for this `customerCode` value and\r\nidentify any certificates linked to this `customer` object.  If any certificate applies to the transaction,\r\nAvaTax will record the appropriate elements of the transaction as exempt and link it to the `certificate`.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                companyId: 0
+                customerCode: ae304e4c-9926-4ab3-8a12-267a59c05cd5
+                alternateId: '987654321'
+                name: Dr. Bob Example
+                attnName: 'Attn: Receiving'
+                line1: 645 Main Street
+                city: Irvine
+                postalCode: '92614'
+                phoneNumber: (949) 555-1212
+                faxNumber: 949.555.1213
+                emailAddress: dr.bob.example@example.org
+                contactName: Alice Smith
+                lastTransaction: '2008-10-08T00:00:00'
+                country: US
+                region: CA
+                exposureZones:
+                - name: Washington
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: customerCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/customers/{customerCode}/attributes/link:
+    put:
+      tags:
+      - Customers
+      summary: Avalara LinkAttributesToCustomer
+      description: "Link one or many attributes to a customer.\r\n            \r\nA customer may have multiple attributes that control its behavior.  You may link or unlink attributes to a\r\ncustomer at any time.  The full list of defined attributes may be found using `QueryCompanyCustomerAttributes` API.\r\n            \r\nA customer object defines information about a person or business that purchases products from your\r\ncompany.  When you create a tax transaction in AvaTax, you can use the `customerCode` from this\r\nrecord in your `CreateTransaction` API call.  AvaTax will search for this `customerCode` value and\r\nidentify any certificates linked to this customer object.  If any certificate applies to the transaction,\r\nAvaTax will record the appropriate elements of the transaction as exempt and link it to the `certificate`.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 1
+                name: ADDRESS CHANGE NEEDED
+                description: Customer address change is needed.
+                isSystemCode: false
+                isNonDeliver: true
+                isChangeable: true
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: customerCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/customers/{customerCode}/certificates/link:
+    post:
+      tags:
+      - Customers
+      summary: Avalara LinkCertificatesToCustomer
+      description: "Link one or more certificates to a customer.\r\n            \r\nA customer object defines information about a person or business that purchases products from your\r\ncompany.  When you create a tax transaction in AvaTax, you can use the `customerCode` from this\r\nrecord in your `CreateTransaction` API call.  AvaTax will search for this `customerCode` value and\r\nidentify any certificates linked to this `customer` object.  If any certificate applies to the transaction,\r\nAvaTax will record the appropriate elements of the transaction as exempt and link it to the `certificate`.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                certificates:
+                - 1
+                - 3
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: customerCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/customers/billto/{code}/shipto/link:
+    post:
+      tags:
+      - Customers
+      summary: Avalara LinkShipToCustomersToBillCustomer
+      description: "Links a Ship-To customer record with a Bill-To customer record.\r\n            \r\nCustomer records represent businesses or individuals who can provide exemption certificates.  Some customers\r\nmay have certificates that are linked to their shipping address or their billing address.  To group these\r\ncustomer records together, you may link multiple bill-to and ship-to addresses together to represent a single\r\nentity that has multiple different addresses of different kinds.\r\n            \r\nIn general, a customer will have only one primary billing address and multiple ship-to addresses, representing\r\nall of the different locations where they receive goods.  To facilitate this type of customer, you can send in\r\none bill-to customer code and multiple ship-to customer codes in a single API call.\r\n            \r\nNote that you can only link a ship-to customer record to a bill-to customer record.  You may not link two customers\r\nof the same kind together.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customers:
+                - '123456789'
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: code
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/customers/{customerCode}/attributes:
+    get:
+      tags:
+      - Customers
+      summary: Avalara ListAttributesForCustomer
+      description: "Retrieve the attributes linked to the customer identified by this URL.\r\n            \r\nA customer may have multiple attributes that control its behavior.  You may link or unlink attributes to a\r\ncustomer at any time.  The full list of defined attributes may be found using `QueryCompanyCustomerAttributes` API.\r\n            \r\nA customer object defines information about a person or business that purchases products from your\r\ncompany.  When you create a tax transaction in AvaTax, you can use the `customerCode` from this\r\nrecord in your `CreateTransaction` API call.  AvaTax will search for this `customerCode` value and\r\nidentify any certificates linked to this customer object.  If any certificate applies to the transaction,\r\nAvaTax will record the appropriate elements of the transaction as exempt and link it to the `certificate`.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: customerCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/customers/{customerCode}/certificates:
+    get:
+      tags:
+      - Customers
+      summary: Avalara ListCertificatesForCustomer
+      description: "List all certificates linked to a customer.\r\n            \r\nA customer object defines information about a person or business that purchases products from your\r\ncompany.  When you create a tax transaction in AvaTax, you can use the `customerCode` from this\r\nrecord in your `CreateTransaction` API call.  AvaTax will search for this `customerCode` value and\r\nidentify any certificates linked to this `customer` object.  If any certificate applies to the transaction,\r\nAvaTax will record the appropriate elements of the transaction as exempt and link it to the `certificate`.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: customerCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/customers/{customerCode}/certificates/{country}/{region}:
+    get:
+      tags:
+      - Customers
+      summary: Avalara ListValidCertificatesForCustomer
+      description: "List valid certificates linked to a customer in a particular country and region.\r\n            \r\nThis API is intended to help identify whether a customer has already provided a certificate that\r\napplies to a particular country and region.  This API is intended to help you remind a customer\r\nwhen they have or have not provided copies of their exemption certificates to you during the sales\r\norder process.\r\n            \r\nIf a customer does not have a certificate on file and they wish to provide one, you should send the customer\r\na CertExpress invitation link so that the customer can upload proof of their exemption certificate.  Please\r\nsee the `CreateCertExpressInvitation` API to create an invitation link for this customer.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: customerCode
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: country
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: region
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/customers/{customerCode}/attributes/unlink:
+    put:
+      tags:
+      - Customers
+      summary: Avalara UnlinkAttributesFromCustomer
+      description: "Unlink one or many attributes from a customer.\r\n            \r\nA customer may have multiple attributes that control its behavior.  You may link or unlink attributes to a\r\ncustomer at any time.  The full list of defined attributes may be found using `QueryCompanyCustomerAttributes` API.\r\n            \r\nA customer object defines information about a person or business that purchases products from your\r\ncompany.  When you create a tax transaction in AvaTax, you can use the `customerCode` from this\r\nrecord in your `CreateTransaction` API call.  AvaTax will search for this `customerCode` value and\r\nidentify any certificates linked to this customer object.  If any certificate applies to the transaction,\r\nAvaTax will record the appropriate elements of the transaction as exempt and link it to the `certificate`.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 1
+                name: ADDRESS CHANGE NEEDED
+                description: Customer address change is needed.
+                isSystemCode: false
+                isNonDeliver: true
+                isChangeable: true
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: customerCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/customers/{customerCode}/certificates/unlink:
+    post:
+      tags:
+      - Customers
+      summary: Avalara UnlinkCertificatesFromCustomer
+      description: "Remove one or more certificates to a customer.\r\n            \r\nA customer object defines information about a person or business that purchases products from your\r\ncompany.  When you create a tax transaction in AvaTax, you can use the `customerCode` from this\r\nrecord in your `CreateTransaction` API call.  AvaTax will search for this `customerCode` value and\r\nidentify any certificates linked to this `customer` object.  If any certificate applies to the transaction,\r\nAvaTax will record the appropriate elements of the transaction as exempt and link it to the `certificate`.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                certificates:
+                - 1
+                - 3
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: customerCode
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  schemas:
+    CustomerModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        companyId:
+          type: integer
+        customerCode:
+          type: string
+        name:
+          type: string
+        line1:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        emailAddress:
+          type: string
+        phoneNumber:
+          type: string
+    FetchResult_CustomerModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/CustomerModel'
+    CustomerListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/CertCaptureCustomer'
+    CertCaptureCustomer:
+      type: object
+      properties:
+        id:
+          type: string
+        customerCode:
+          type: string
+        name:
+          type: string
+        line1:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        emailAddress:
+          type: string
+        phoneNumber:
+          type: string
+  parameters:
+    companyId:
+      name: companyId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The numeric ID of the company
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

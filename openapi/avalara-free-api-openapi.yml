@@ -1,0 +1,169 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Free API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Free
+  description: Free tax rate lookup endpoints
+paths:
+  /api/v2/taxrates/byaddress:
+    get:
+      operationId: taxRatesByAddress
+      summary: Avalara Get Tax Rates by Address
+      description: Free tax rates lookup by street address. Returns the estimated combined tax rate for a given location.
+      tags:
+      - Free
+      parameters:
+      - name: line1
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Street address line 1
+      - name: city
+        in: query
+        schema:
+          type: string
+      - name: region
+        in: query
+        required: true
+        schema:
+          type: string
+        description: State or province code
+      - name: postalCode
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: country
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Two-character ISO 3166 country code
+      responses:
+        '200':
+          description: Tax rate information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxRateModel'
+  /api/v2/taxrates/bypostalcode:
+    get:
+      operationId: taxRatesByPostalCode
+      summary: Avalara Get Tax Rates by Postal Code
+      description: Free tax rates lookup by postal code. Returns estimated combined tax rate for a given postal code.
+      tags:
+      - Free
+      parameters:
+      - name: country
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: postalCode
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Tax rate information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TaxRateModel'
+  /api/v2/accounts/freetrials/request:
+    post:
+      tags:
+      - Free
+      summary: Avalara RequestFreeTrial
+      description: "Call this API to obtain a free AvaTax account.\r\n            \r\nThis API is free to use.  No authentication credentials are required to call this API. You must read and\r\naccept [Avalara's terms and conditions](https://www1.avalara.com/us/en/legal/terms.html) for the account to be\r\ncreated.\r\n            \r\nIf all conditions are met, this API will grant a free trial version of AvaTax.  For a list of functionality\r\navailable in the free trial and its limitations, please see the [AvaTax Developer Website Free Trial page](https://developer.avalara.com/avatax/signup/).\r\n            \r\nAfter your free trial concludes, you will still be able to use the [Free AvaTax API Suite](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Free/).\n\n### Security Policies\n\n* This API may be called without providing authentication credentials.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                firstName: Bob
+                lastName: McExample
+                email: bob@example.org
+                company: Bob's Artisan Pottery
+                phone: +1 (714) 555-1212
+                campaign: 70140000000TsVb
+                companyAddress:
+                  line: 100 Ravine Ln
+                  region: WA
+                  country: US
+                  postalCode: '98010'
+                website: www.bobartisanpottery.com
+                haveReadAvalaraTermsAndConditions: true
+                acceptAvalaraTermsAndConditions: true
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  schemas:
+    TaxRateModel:
+      type: object
+      properties:
+        totalRate:
+          type: number
+          format: double
+          description: Total combined tax rate
+        rates:
+          type: array
+          items:
+            type: object
+            properties:
+              rate:
+                type: number
+                format: double
+              name:
+                type: string
+              type:
+                type: string
+                enum:
+                - Country
+                - State
+                - County
+                - City
+                - Special
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

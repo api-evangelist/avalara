@@ -1,0 +1,114 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Geocoding API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Geocoding
+  description: Determine tax jurisdictions from addresses
+paths:
+  /api/v2/geo/Geocode:
+    post:
+      operationId: geocode
+      summary: Avalara Geocode an Address
+      description: Determines the tax jurisdiction for a given address using geocoding. Returns jurisdiction codes (PCode, FIPS) needed for tax calculations.
+      tags:
+      - Geocoding
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GeocodeRequest'
+      responses:
+        '200':
+          description: Geocoding results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GeocodeResult'
+components:
+  schemas:
+    GeocodeRequest:
+      type: object
+      properties:
+        ref:
+          type: string
+          description: Reference ID
+        cass:
+          type: boolean
+          description: Whether to return CASS-certified address
+        addr:
+          type: string
+          description: Street address
+        city:
+          type: string
+        st:
+          type: string
+          description: State abbreviation
+        zip:
+          type: string
+          description: ZIP code
+    GeocodeResult:
+      type: object
+      properties:
+        ref:
+          type: string
+        cass:
+          type: object
+          properties:
+            addr:
+              type: string
+            city:
+              type: string
+            st:
+              type: string
+            zip:
+              type: string
+        cBlk:
+          type: string
+          description: Census block group
+        cTrc:
+          type: string
+          description: Census tract
+        err:
+          type: string
+          description: Error message if geocoding failed
+        geo:
+          type: boolean
+          description: Whether geocoding was successful
+        lat:
+          type: number
+          format: double
+        long:
+          type: number
+          format: double
+        pcd:
+          type: integer
+          description: PCode for the determined jurisdiction
+        fips:
+          type: string
+          description: FIPS code
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

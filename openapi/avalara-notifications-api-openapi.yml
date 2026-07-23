@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Notifications API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Notifications
+paths:
+  /api/v2/notifications/{id}/dismiss:
+    put:
+      tags:
+      - Notifications
+      summary: Avalara DismissNotification
+      description: "Marks the notification identified by this URL as dismissed.\r\n            \r\nA notification is a message from Avalara that may have relevance to your business.  You may want\r\nto regularly review notifications and then dismiss them when you are certain that you have addressed\r\nany relevant concerns raised by this notification.\r\n            \r\nAn example of a notification would be a message about new software, or a change to AvaTax that may\r\naffect you, or a potential issue with your company's tax profile.\r\n            \r\nWhen you dismiss a notification, the notification will track the user and time when it was\r\ndismissed.  You can then later review which employees of your company dismissed notifications to\r\ndetermine if they were resolved appropriately.\r\n            \r\nA Global notification with null accountId and companyId cannot be dismissed and will expire within a given time span.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: ''
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/notifications/{id}:
+    get:
+      tags:
+      - Notifications
+      summary: Avalara GetNotification
+      description: "Retrieve a single notification by its unique ID number.\r\n            \r\nA notification is a message from Avalara that may have relevance to your business.  You may want\r\nto regularly review notifications and then dismiss them when you are certain that you have addressed\r\nany relevant concerns raised by this notification.\r\n            \r\nAn example of a notification would be a message about new software, or a change to AvaTax that may\r\naffect you, or a potential issue with your company's tax profile.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/notifications:
+    get:
+      tags:
+      - Notifications
+      summary: Avalara ListNotifications
+      description: "List all notifications.\r\n            \r\nA notification is a message from Avalara that may have relevance to your business.  You may want\r\nto regularly review notifications and then dismiss them when you are certain that you have addressed\r\nany relevant concerns raised by this notification.\r\n            \r\nAn example of a notification would be a message about new software, or a change to AvaTax that may\r\naffect you, or a potential issue with your company's tax profile.\r\n            \r\nYou may search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

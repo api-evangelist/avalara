@@ -1,0 +1,923 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Certificates API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Certificates
+  description: Manage exemption certificates and CertExpress invitations
+paths:
+  /api/v2/companies/{companyId}/certificates:
+    get:
+      operationId: queryCertificates
+      summary: Avalara List Certificates for a Company
+      description: Retrieves exemption certificates associated with the specified company.
+      tags:
+      - Certificates
+      parameters:
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of certificates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FetchResult_CertificateModel'
+    post:
+      operationId: createCertificate
+      summary: Avalara Create a New Certificate
+      tags:
+      - Certificates
+      parameters:
+      - $ref: '#/components/parameters/companyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/CertificateModel'
+      responses:
+        '201':
+          description: Certificate created
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CertificateModel'
+  /certificates:
+    get:
+      operationId: listCertificates
+      summary: Avalara List Certificates
+      description: Retrieves a filtered list of exemption certificates.
+      tags:
+      - Certificates
+      parameters:
+      - name: status
+        in: query
+        schema:
+          type: string
+          enum:
+          - Active
+          - Expired
+          - Revoked
+          - Pending
+      - name: customerId
+        in: query
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: pageSize
+        in: query
+        schema:
+          type: integer
+          default: 50
+      responses:
+        '200':
+          description: List of certificates
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CertificateListResponse'
+    post:
+      operationId: createCertificate
+      summary: Avalara Create a Certificate
+      description: Creates a new exemption certificate record.
+      tags:
+      - Certificates
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateCreateRequest'
+      responses:
+        '201':
+          description: Certificate created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+  /certificates/{certificateId}:
+    get:
+      operationId: getCertificate
+      summary: Avalara Get a Certificate
+      description: Retrieves a single certificate by its ID.
+      tags:
+      - Certificates
+      parameters:
+      - name: certificateId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Certificate details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateCertificate
+      summary: Avalara Update a Certificate
+      tags:
+      - Certificates
+      parameters:
+      - name: certificateId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CertificateCreateRequest'
+      responses:
+        '200':
+          description: Certificate updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Certificate'
+    delete:
+      operationId: deleteCertificate
+      summary: Avalara Delete a Certificate
+      tags:
+      - Certificates
+      parameters:
+      - name: certificateId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Certificate deleted
+  /certificates/{certificateId}/attachment:
+    get:
+      operationId: getCertificateAttachment
+      summary: Avalara Download Certificate Attachment
+      description: Downloads the PDF or image attachment for a certificate.
+      tags:
+      - Certificates
+      parameters:
+      - name: certificateId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Certificate attachment
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: binary
+    post:
+      operationId: uploadCertificateAttachment
+      summary: Avalara Upload Certificate Attachment
+      tags:
+      - Certificates
+      parameters:
+      - name: certificateId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Attachment uploaded
+  /api/v2/companies/{companyId}/certificates/{id}:
+    delete:
+      tags:
+      - Certificates
+      summary: Avalara DeleteCertificate
+      description: "Revoke the certificate identified by this URL, then delete it.\r\n            \r\nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\r\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\r\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\r\nlog onto the administrative website for the product you purchased.\r\n            \r\nRevoked certificates can no longer be used.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - Certificates
+      summary: Avalara GetCertificate
+      description: "Get the current certificate identified by this URL.\r\n            \r\nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\r\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\r\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\r\nlog onto the administrative website for the product you purchased.\r\n            \r\nYou can use the `$include` parameter to fetch the following additional objects for expansion:\r\n            \r\n* customers - Retrieves the list of customers linked to the certificate.\r\n* po_numbers - Retrieves all PO numbers tied to the certificate.\r\n* attributes - Retrieves all attributes applied to the certificate.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    put:
+      tags:
+      - Certificates
+      summary: Avalara UpdateCertificate
+      description: "Replace the certificate identified by this URL with a new one.\r\n            \r\nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\r\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\r\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\r\nlog onto the administrative website for the product you purchased.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 0
+                signedDate: '2016-02-01'
+                expirationDate: '2020-12-31'
+                filename: 2bd5e599-b0ed-4d6c-8a95-306ea9217561
+                documentExists: false
+                valid: true
+                verified: false
+                exemptPercentage: 0
+                isSingleCertificate: false
+                exemptionNumber: Exempt-1234
+                exemptionReason:
+                  name: RESALE
+                createdDate: '2023-08-13T01:16:17.2575898Z'
+                modifiedDate: '2023-08-13'
+                taxNumberType: FEIN
+                businessNumberType: Business Services
+                pageCount: 0
+                customers:
+                - companyId: 0
+                  customerCode: a5b89cd8-e54f-4525-bc1a-7956db8c8e91
+                  alternateId: '987654321'
+                  name: Dr. Bob Example
+                  attnName: 'Attn: Receiving'
+                  line1: 645 Main Street
+                  city: Irvine
+                  postalCode: '92614'
+                  phoneNumber: (949) 555-1212
+                  faxNumber: 949.555.1213
+                  emailAddress: dr.bob.example@example.org
+                  contactName: Alice Smith
+                  lastTransaction: '2008-10-08T00:00:00'
+                  country: US
+                  region: CA
+                  exposureZones:
+                  - name: Washington
+                - companyId: 0
+                  customerCode: fdf91d9e-9c67-4792-a484-c67b38838bde
+                  alternateId: '987654321'
+                  name: Dr. Bob Example
+                  attnName: 'Attn: Receiving'
+                  line1: 645 Main Street
+                  city: Irvine
+                  postalCode: '92614'
+                  phoneNumber: (949) 555-1212
+                  faxNumber: 949.555.1213
+                  emailAddress: dr.bob.example@example.org
+                  contactName: Alice Smith
+                  lastTransaction: '2008-10-08T00:00:00'
+                  country: US
+                  region: CA
+                  exposureZones:
+                  - name: Washington
+                exposureZone:
+                  name: Washington
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/certificates/{id}/attachment:
+    get:
+      tags:
+      - Certificates
+      summary: Avalara DownloadCertificateImage
+      description: "Download an image or PDF file for this certificate.\r\n            \r\nThis API can be used to download either a single-page preview of the certificate or a full PDF document.\r\nTo retrieve a preview image, set the `$type` parameter to `Jpeg` and the `$page` parameter to `1`.\r\n            \r\nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\r\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\r\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\r\nlog onto the administrative website for the product you purchased.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+      - Certificates
+      summary: Avalara UploadCertificateImage
+      description: "Upload an image or PDF attachment for this certificate.\r\n            \r\nImage attachments can be of the format `PDF`, `JPEG`, `TIFF`, or `PNG`.  To upload a multi-page image, please\r\nuse the `PDF` data type.\r\n            \r\nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\r\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\r\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\r\nlog onto the administrative website for the product you purchased.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: ''
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/certificates/setup:
+    get:
+      tags:
+      - Certificates
+      summary: Avalara GetCertificateSetup
+      description: "Checks whether this company is configured to use exemption certificates in AvaTax.\r\n            \r\nExemption certificates are tracked through a different auditable data store than the one that\r\nholds AvaTax transactions.  To use the AvaTax exemption certificate document store, please call\r\n`GetCertificateSetup` to see if your company is configured to use the exemption certificate\r\ndocument store.  To request setup, please call `RequestCertificateSetup` and your company will\r\nbe configured with data storage in the auditable certificate system.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    post:
+      tags:
+      - Certificates
+      summary: Avalara RequestCertificateSetup
+      description: "Requests the setup of exemption certificates for this company.\r\n            \r\nExemption certificates are tracked through a different auditable data store than the one that\r\nholds AvaTax transactions.  To use the AvaTax exemption certificate document store, please call\r\n`GetCertificateSetup` to see if your company is configured to use the exemption certificate\r\ndocument store.  To request setup, please call `RequestCertificateSetup` and your company will\r\nbe configured with data storage in the auditable certificate system.\r\n            \r\nThis API will return the current status of exemption certificate setup for this company.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: ''
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/certificates/{id}/attributes/link:
+    post:
+      tags:
+      - Certificates
+      summary: Avalara LinkAttributesToCertificate
+      description: "Link one or many attributes to a certificate.\r\n            \r\nA certificate may have multiple attributes that control its behavior.  You may link or unlink attributes to a\r\ncertificate at any time.  The full list of defined attributes may be found using `ListCertificateAttributes`.\r\n            \r\nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\r\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\r\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\r\nlog onto the administrative website for the product you purchased.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 0
+                name: DIRECT PAY
+                isSystemCode: false
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/certificates/{id}/customers/link:
+    post:
+      tags:
+      - Certificates
+      summary: Avalara LinkCustomersToCertificate
+      description: "Link one or more customers to an existing certificate.\r\n            \r\nCustomers and certificates must be linked before a customer can make use of a certificate to obtain\r\na tax exemption in AvaTax.  Since some certificates may cover more than one business entity, a certificate\r\ncan be connected to multiple customer records using the `LinkCustomersToCertificate` API.\r\n            \r\nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\r\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\r\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\r\nlog onto the administrative website for the product you purchased.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customers:
+                - '123456789'
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/certificates/{id}/attributes:
+    get:
+      tags:
+      - Certificates
+      summary: Avalara ListAttributesForCertificate
+      description: "Retrieve the list of attributes that are linked to this certificate.\r\n            \r\nA certificate may have multiple attributes that control its behavior.  You may link or unlink attributes to a\r\ncertificate at any time.  The full list of defined attributes may be found using [ListCertificateAttributes](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Definitions/ListCertificateAttributes/) API.\r\n            \r\nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\r\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\r\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\r\nlog onto the administrative website for the product you purchased.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/certificates/{id}/customers:
+    get:
+      tags:
+      - Certificates
+      summary: Avalara ListCustomersForCertificate
+      description: "List all customers linked to this certificate.\r\n            \r\nCustomers must be linked to a certificate in order to make use of its tax exemption features.  You\r\ncan link or unlink customers to a certificate at any time.\r\n            \r\nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\r\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\r\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\r\nlog onto the administrative website for the product you purchased.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/certificates/{id}/attributes/unlink:
+    post:
+      tags:
+      - Certificates
+      summary: Avalara UnlinkAttributesFromCertificate
+      description: "Unlink one or many attributes from a certificate.\r\n            \r\nA certificate may have multiple attributes that control its behavior.  You may link or unlink attributes to a\r\ncertificate at any time.  The full list of defined attributes may be found using `ListCertificateAttributes`.\r\n            \r\nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\r\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\r\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\r\nlog onto the administrative website for the product you purchased.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                id: 0
+                name: DIRECT PAY
+                isSystemCode: false
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/certificates/{id}/customers/unlink:
+    post:
+      tags:
+      - Certificates
+      summary: Avalara UnlinkCustomersFromCertificate
+      description: "Unlinks one or more customers from a certificate.\r\n            \r\nUnlinking a certificate from a customer will prevent the certificate from being used to generate\r\ntax exemptions for the customer in the future.  If any previous transactions for this customer had\r\nused this linked certificate, those transactions will be unchanged and will still have a link to the\r\nexemption certificate in question.\r\n            \r\nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\r\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\r\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\r\nlog onto the administrative website for the product you purchased.\r\n            \r\nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\r\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \r\ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \r\ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                customers:
+                - '123456789'
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    CertAttribute:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        isSystemCode:
+          type: boolean
+    CertificateListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Certificate'
+    CertificateModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        companyId:
+          type: integer
+        signedDate:
+          type: string
+          format: date
+        expirationDate:
+          type: string
+          format: date
+        exemptionNumber:
+          type: string
+        exemptPercentage:
+          type: number
+          format: double
+        exemptionReason:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        status:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
+    FetchResult_CertificateModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/CertificateModel'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+    CertificateCreateRequest:
+      type: object
+      required:
+      - exemptionReason
+      - exposureZone
+      properties:
+        exemptionNumber:
+          type: string
+        exemptionReason:
+          type: string
+        exposureZone:
+          type: string
+        signedDate:
+          type: string
+          format: date
+        expirationDate:
+          type: string
+          format: date
+        exemptPercentage:
+          type: number
+          format: double
+        customerCode:
+          type: string
+        attributes:
+          type: array
+          items:
+            $ref: '#/components/schemas/CertAttribute'
+    CertCaptureCustomer:
+      type: object
+      properties:
+        id:
+          type: string
+        customerCode:
+          type: string
+        name:
+          type: string
+        line1:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        emailAddress:
+          type: string
+        phoneNumber:
+          type: string
+    Certificate:
+      type: object
+      properties:
+        id:
+          type: string
+        certificateNumber:
+          type: string
+        status:
+          type: string
+          enum:
+          - Active
+          - Expired
+          - Revoked
+          - Pending
+        signedDate:
+          type: string
+          format: date
+        expirationDate:
+          type: string
+          format: date
+        exemptionNumber:
+          type: string
+        exemptionReason:
+          type: string
+        exemptPercentage:
+          type: number
+          format: double
+        exposureZone:
+          type: string
+          description: Jurisdiction where the exemption applies
+        customer:
+          $ref: '#/components/schemas/CertCaptureCustomer'
+        createdDate:
+          type: string
+          format: date-time
+        modifiedDate:
+          type: string
+          format: date-time
+  parameters:
+    companyId:
+      name: companyId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The numeric ID of the company
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

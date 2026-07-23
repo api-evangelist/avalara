@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Products API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Products
+  description: Manage product registrations
+paths:
+  /Products:
+    get:
+      operationId: listProducts
+      summary: Avalara List Registered Products
+      tags:
+      - Products
+      responses:
+        '200':
+          description: List of products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ExciseProduct'
+components:
+  schemas:
+    ExciseProduct:
+      type: object
+      properties:
+        productCode:
+          type: string
+        productName:
+          type: string
+        productCategory:
+          type: string
+          enum:
+          - MotorFuel
+          - Diesel
+          - Aviation
+          - Alcohol
+          - Tobacco
+          - NaturalGas
+          - Other
+        unitOfMeasure:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/

@@ -1,0 +1,411 @@
+openapi: 3.1.0
+info:
+  title: Avalara 1099 & W-9 1099 Forms Batches API
+  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  version: '1.0'
+  contact:
+    name: Avalara Developer Relations
+    url: https://developer.avalara.com/
+    email: developer.relations@avalara.com
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+  termsOfService: https://legal.avalara.com/#siteterms
+servers:
+- url: https://api.avalara.com/1099/v1
+  description: 1099 API Production
+- url: https://api.sbx.avalara.com/1099/v1
+  description: 1099 API Sandbox
+security:
+- bearerAuth: []
+tags:
+- name: Batches
+  description: Submit and manage batch transaction processing
+paths:
+  /api/v2/companies/{companyId}/batches:
+    get:
+      operationId: listBatches
+      summary: Avalara List Batches for a Company
+      tags:
+      - Batches
+      parameters:
+      - $ref: '#/components/parameters/companyId'
+      - $ref: '#/components/parameters/filter'
+      - $ref: '#/components/parameters/top'
+      - $ref: '#/components/parameters/skip'
+      responses:
+        '200':
+          description: List of batches
+    post:
+      operationId: createBatch
+      summary: Avalara Create a New Batch
+      tags:
+      - Batches
+      parameters:
+      - $ref: '#/components/parameters/companyId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BatchModel'
+      responses:
+        '201':
+          description: Batch created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BatchModel'
+  /api/v2/companies/{companyId}/batches/{id}/cancel:
+    post:
+      tags:
+      - Batches
+      summary: Avalara CancelBatch
+      description: "Marks the in progress batch identified by this URL as cancelled.\r\n            \r\nOnly JSON batches can be cancelled. If you attempt to cancel a file batch, you will receive an error message.\r\n            \r\nOnly in progress batches can be cancelled.  If you attempt to cancel a batch that its status is not Waiting or Processing, you will receive an error message.\r\nCancelling an in progress batch does not delete any transactions that were created before the cancellation.\r\n            \r\nBecause the batch system processes with a degree of concurrency, and\r\nbecause of batch sizes in the queue vary, AvaTax API is unable to accurately\r\npredict when a batch will complete. If high performance processing is\r\nrequired, please use the\r\n[CreateTransaction API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/CreateTransaction/).\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example: ''
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/batches/transactions:
+    post:
+      tags:
+      - Batches
+      summary: Avalara CreateTransactionBatch
+      description: "Create a new transaction batch objects attached to this company.\r\n            \r\nWhen a transaction batch is created, it is added to the AvaTax Batch v2 Queue and will be\r\nprocessed as quickly as possible in the order it was received. To check the\r\nstatus of a batch, fetch the batch and retrieve the results of the batch\r\noperation.\r\n            \r\nBecause the batch system processes with a degree of concurrency, and\r\nbecause of batch sizes in the queue vary, AvaTax API is unable to accurately\r\npredict when a batch will complete. If high performance processing is\r\nrequired, please use the\r\n[CreateTransaction API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/CreateTransaction/).\r\n            \r\nThe maximum content length of the request body is limited to 28.6 MB. If this limit\r\nis exceeded, a 404 Not Found status will be returned (possibly with a CORS error if\r\nthe API is called from a browser). In this situation, please split the request into\r\nsmaller batches.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin.\n"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              example:
+                name: TestBatch-638274861770379744
+                transactions:
+                - createTransactionModel:
+                    code: MyTransaction-638274861770379574
+                    lines:
+                    - number: '1'
+                      quantity: 1
+                      amount: 100
+                      taxCode: PS081282
+                      itemCode: Y0001
+                      description: Yarn
+                    type: SalesInvoice
+                    companyCode: DEFAULT
+                    date: '2023-08-13'
+                    customerCode: ABC
+                    purchaseOrderNo: 2023-08-13-001
+                    addresses:
+                      singleLocation:
+                        line1: 2000 Main Street
+                        city: Irvine
+                        region: CA
+                        country: US
+                        postalCode: '92614'
+                    commit: true
+                    currencyCode: USD
+                    description: Yarn
+                - adjustTransactionModel:
+                    companyCode: DEFAULT
+                    transactionCode: MyTransaction-638274861770379574
+                    documentType: SalesInvoice
+                    adjustmentReason: PriceAdjusted
+                    adjustmentDescription: Price drop before shipping
+                    newTransaction:
+                      code: MyTransaction-638274861770379574
+                      lines:
+                      - number: '1'
+                        quantity: 1
+                        amount: 90
+                        taxCode: PS081282
+                        itemCode: Y0001
+                        description: Yarn
+                      type: SalesInvoice
+                      companyCode: DEFAULT
+                      date: '2023-08-13'
+                      customerCode: ABC
+                      purchaseOrderNo: 2023-08-13-001
+                      addresses:
+                        singleLocation:
+                          line1: 2000 Main Street
+                          city: Irvine
+                          region: CA
+                          country: US
+                          postalCode: '92614'
+                      commit: true
+                      currencyCode: USD
+                      description: Yarn
+                - createOrAdjustTransactionModel:
+                    adjustmentReason: Other
+                    adjustmentDescription: Test Description
+                    createTransactionModel:
+                      code: MyTransaction-638274861770379574
+                      lines:
+                      - number: '1'
+                        quantity: 1
+                        amount: 80
+                        taxCode: PS081282
+                        itemCode: Y0001
+                        description: Yarn
+                      type: SalesInvoice
+                      companyCode: DEFAULT
+                      date: '2023-08-13'
+                      customerCode: ABC
+                      purchaseOrderNo: 2023-08-13-001
+                      addresses:
+                        singleLocation:
+                          line1: 2000 Main Street
+                          city: Irvine
+                          region: CA
+                          country: US
+                          postalCode: '92614'
+                      commit: true
+                      currencyCode: USD
+                      description: Yarn
+                - voidTransactionModel:
+                    companyCode: DEFAULT
+                    transactionCode: MyTransaction-638274861770379574
+                    documentType: SalesInvoice
+                    code: DocVoided
+      parameters:
+      - name: Content-Type
+        in: header
+        schema:
+          type: string
+        example: application/json
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/batches/{id}:
+    delete:
+      tags:
+      - Batches
+      summary: Avalara DeleteBatch
+      description: "Marks the batch identified by this URL as deleted.\r\n            \r\nIf you attempt to delete a batch that is being processed, you will receive an error message.\r\nDeleting a batch does not delete any transactions that were created by importing the batch.\r\n            \r\nBecause the batch system processes with a degree of concurrency, and\r\nbecause of batch sizes in the queue vary, AvaTax API is unable to accurately\r\npredict when a batch will complete. If high performance processing is\r\nrequired, please use the\r\n[CreateTransaction API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/CreateTransaction/).\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, CSPAdmin, CSPTester, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+    get:
+      tags:
+      - Batches
+      summary: Avalara GetBatch
+      description: "Get the batch object identified by this URL. A batch object is a large\r\ncollection of API calls stored in a compact file.\r\n            \r\nUse this endpoint to retrieve the results or check the status of a batch.\r\n            \r\nWhen a batch is created, it is added to the AvaTax Batch Queue and will be\r\nprocessed as quickly as possible in the order it was received. To check the\r\nstatus of a batch, fetch the batch and retrieve the results of the batch\r\noperation.\r\n            \r\nBecause the batch system processes with a degree of concurrency, and\r\nbecause of batch sizes in the queue vary, AvaTax API is unable to accurately\r\npredict when a batch will complete. If high performance processing is\r\nrequired, please use the\r\n[CreateTransaction API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/CreateTransaction/).\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/companies/{companyId}/batches/{batchId}/files/{id}/attachment:
+    get:
+      tags:
+      - Batches
+      summary: Avalara DownloadBatch
+      description: 'Download a single batch file identified by this URL.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin, TechnicalSupportUser.
+
+        '
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      - name: companyId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: batchId
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+  /api/v2/batches:
+    get:
+      tags:
+      - Batches
+      summary: Avalara QueryBatches
+      description: "Get multiple batch objects across all companies.\r\n            \r\nA batch object is a large collection of API calls stored in a compact file.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter;\r\nfull documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate results using the `$top`, `$skip`, and `$orderby` parameters.\r\n            \r\nWhen a batch is created, it is added to the AvaTax Batch Queue and will be\r\nprocessed as quickly as possible in the order it was received. To check the\r\nstatus of a batch, fetch the batch and retrieve the results of the batch\r\noperation.\r\n            \r\nBecause the batch system processes with a degree of concurrency, and\r\nbecause of batch sizes in the queue vary, AvaTax API is unable to accurately\r\npredict when a batch will complete. If high performance processing is\r\nrequired, please use the\r\n[CreateTransaction API](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/CreateTransaction/).\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      parameters:
+      - name: X-Avalara-Client
+        in: header
+        schema:
+          type: string
+        description: Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).
+        example: AvaTax Postman Collection
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json: {}
+components:
+  parameters:
+    companyId:
+      name: companyId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The numeric ID of the company
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
+  schemas:
+    BatchModel:
+      type: object
+      properties:
+        id:
+          type: integer
+        companyId:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+          enum:
+          - AvaCertUpdate
+          - AvaCertUpdateAll
+          - BatchMaintenance
+          - CompanyLocationImport
+          - DocumentImport
+          - ExemptCertImport
+          - ItemImport
+          - SalesAuditExport
+          - SstpTestDeckImport
+          - TaxRuleImport
+          - TransactionImport
+          - UPCBulkImport
+          - UPCBulkDelete
+        status:
+          type: string
+          enum:
+          - Waiting
+          - SystemErrors
+          - Cancelled
+          - Completed
+          - Creating
+          - Deleted
+          - Errors
+          - Paused
+          - Processing
+          - ReadyToDelete
+        recordCount:
+          type: integer
+        currentRecord:
+          type: integer
+        createdDate:
+          type: string
+          format: date-time
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: OAuth 2.0 bearer token
+externalDocs:
+  description: 1099 & W-9 API Documentation
+  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
