@@ -11,84 +11,21 @@ apis:
     type: Documentation
   - url: graphql/avalara-graphql.md
     type: GraphQL
-  description: Automate compliance with Avalara MCP servers for AI-driven tax workflows
-    and APIs. Have your agent call our agent.
-- aid: avalara:avatax-apis
-  name: AvaTax APIs
-  tags:
-  - Sales Tax
-  - Taxes
-  - VAT
-  humanURL: https://developer.avalara.com/api-reference/avatax/rest/v2/
-  description: The AvaTax API is a set of application programming interfaces provided
-    by Avalara that allows businesses to integrate automated, real-time sales and
-    use tax, VAT, and GST calculations directly into their own software applications.
-    This allows for seamless and accurate tax compliance for every transaction, regardless
-    of jurisdiction or product type.
-  properties:
-  - url: https://developer.avalara.com/api-reference/avatax/rest/v2/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-avatax-rest-openapi.yml
+  description: >-
+    Automate compliance with Avalara MCP servers for AI-driven tax workflows and APIs. Have your agent
+    call our agent.
 - aid: avalara:avatax-soap-api
   name: AvaTax SOAP API
   tags:
   - SOAP
   - Taxes
   humanURL: https://developer.avalara.com/api-reference/avatax/soap/
-  description: The AvaTax SOAP API exposes the most commonly used features for interacting
-    with the AvaTax service, allowing calculation of tax, modification of documents,
-    and validation of addresses.
+  description: >-
+    The AvaTax SOAP API exposes the most commonly used features for interacting with the AvaTax service,
+    allowing calculation of tax, modification of documents, and validation of addresses.
   properties:
   - url: https://developer.avalara.com/api-reference/avatax/soap/
     type: Documentation
-- aid: avalara:communications-api
-  name: Communications Tax API
-  tags:
-  - Communications
-  - Taxes
-  - Telecom
-  humanURL: https://developer.avalara.com/api-reference/communications/v2/
-  description: The Avalara Communications Tax API (SaasPro) provides communications
-    tax calculations using information provided by jurisdiction codes, enabling tax
-    calculations on invoices and line items, jurisdiction determination via geocoding,
-    and profile customization.
-  properties:
-  - url: https://developer.avalara.com/api-reference/communications/v2/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-communications-openapi.yml
-- aid: avalara:excise-tax-api
-  name: Excise Platform API
-  tags:
-  - Excise
-  - Taxes
-  humanURL: https://developer.avalara.com/api-reference/excise/v1/
-  description: The Excise Platform API provides an external programmatic interface
-    for the Avalara Excise application, enabling excise tax calculation and management,
-    business entity imports, location management, and other tax compliance operations
-    through REST API endpoints.
-  properties:
-  - url: https://developer.avalara.com/api-reference/excise/v1/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-excise-openapi.yml
-- aid: avalara:item-classification-api
-  name: Item Classification API
-  tags:
-  - Classification
-  - HS Codes
-  - Taxes
-  humanURL: https://developer.avalara.com/api-reference/item-classification/v2/
-  description: The Avalara Item Classification API allows users subscribed to the
-    Item Classification service to submit products for classification and retrieve
-    the corresponding HS Codes, with support for storage and non-storage subscription
-    models.
-  properties:
-  - url: https://developer.avalara.com/api-reference/item-classification/v2/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-item-classification-openapi.yml
 - aid: avalara:tax-content-for-retail-api
   name: Avalara Tax Content for Retail Configuration API
   tags:
@@ -96,213 +33,2768 @@ apis:
   - Retail
   - Taxes
   humanURL: https://developer.avalara.com/api-reference/cgpos/cfg/
-  description: The Avalara Tax Content for Retail Configuration API automates tax
-    content delivery for brick-and-mortar businesses, enabling management of configurations,
-    communications, jobs, onboarding, and user roles for point-of-sale tax content.
+  description: >-
+    The Avalara Tax Content for Retail Configuration API automates tax content delivery for brick-and-mortar
+    businesses, enabling management of configurations, communications, jobs, onboarding, and user roles
+    for point-of-sale tax content.
   properties:
   - url: https://developer.avalara.com/api-reference/cgpos/cfg/
     type: Documentation
-- aid: avalara:avatax-brazil-api
-  name: AvaTax Brazil API
-  tags:
-  - Brazil
-  - Taxes
-  humanURL: https://developer.avalara.com/api-reference/avatax-brazil/v1/
-  description: The AvaTax Brazil API exposes the most commonly used services for interacting
-    with AvaTax-Brazil, allowing calculation of taxes, issuing electronic invoice
-    documents, and modifying existing transactions when allowed by tax authorities
-    for businesses with a physical presence in Brazil.
-  properties:
-  - url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-avatax-brazil-openapi.yml
-- aid: avalara:vat-reporting-api
-  name: VAT Reporting API
-  tags:
-  - Reporting
-  - Taxes
-  - VAT
-  humanURL: https://developer.avalara.com/api-reference/vat-reporting/v1/
-  description: The Avalara VAT Reporting API orchestrates end-to-end VAT compliance
-    workflows including onboarding, file ingress, error handling, filing of VAT Returns,
-    EC Listings, Intrastat, and transaction reporting across multiple jurisdictions.
-  properties:
-  - url: https://developer.avalara.com/api-reference/vat-reporting/v1/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-vat-reporting-openapi.yml
-- aid: avalara:mylodgetax-api
-  name: MyLodgeTax API
-  tags:
-  - Lodging
-  - Short-Term Rental
-  - Taxes
-  humanURL: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
-  description: The MyLodgeTax API provides sales and lodging tax compliance for short-term
-    property rentals, offering partners access to summarized tax responsibilities
-    for property owners by marketplace including direct listings and marketplace bookings.
-  properties:
-  - url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-mylodgetax-openapi.yml
-- aid: avalara:certcapture-api
-  name: CertCapture API
-  tags:
-  - Certificates
-  - Exemptions
-  - Taxes
-  humanURL: https://developer.avalara.com/api-reference/CertCapture/v2/
-  description: The Avalara CertCapture RESTful API provides document management for
-    tax-exempt sales, including managing certificates, attributes, custom fields,
-    customers, authentication tokens, and eCommerce token generation for CertCapture
-    6.X and beyond.
-  properties:
-  - url: https://developer.avalara.com/api-reference/CertCapture/v2/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-certcapture-openapi.yml
-  - type: AsyncAPI
-    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
-- aid: avalara:e-invoicing-api
-  name: E-Invoicing REST API
-  tags:
-  - Compliance
-  - E-Invoicing
-  - Taxes
-  humanURL: https://developer.avalara.com/api-reference/e-invoicing/v1.0
-  description: The Avalara E-Invoicing REST API supports sending data within the Alpha
-    scope for e-Invoicing compliance use cases, enabling technology partners to integrate
-    e-invoicing workflows for cross-border and domestic compliance.
-  properties:
-  - url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-e-invoicing-openapi.yml
-- aid: avalara:activation-service-api
-  name: Activation Service API
-  tags:
-  - Registration
-  - Taxes
-  humanURL: https://developer.avalara.com/api-reference/activationService/activationService/
-  description: The Avalara Activation Service API allows technology partners to retrieve
-    the status of their registrations within the Avalara Compliance Cloud platform,
-    providing endpoints for listing all registrations and retrieving individual registration
-    details.
-  properties:
-  - url: https://developer.avalara.com/api-reference/activationService/activationService/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-activation-service-openapi.yml
-- aid: avalara:business-api
-  name: Avalara Business API
-  tags:
-  - Business
-  - Orders
-  - Taxes
-  humanURL: https://developer.avalara.com/api-reference/business/v1/
-  description: The Avalara Business API provides public APIs for doing business with
-    Avalara, including registering customer accounts and creating sales orders for
-    Avalara services through partner integrations.
-  properties:
-  - url: https://developer.avalara.com/api-reference/business/v1/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-business-openapi.yml
-- aid: avalara:portal-oauth-api
-  name: Portal OAuth API
-  tags:
-  - Authentication
-  - OAuth
-  - Taxes
-  humanURL: https://developer.avalara.com/api-reference/oauth/oauth/
-  description: The Avalara Portal OAuth API provides OAuth token generation and session
-    management endpoints for implementing authentication in Avalara platform integrations,
-    supporting credential-based authentication and SAML assertions.
-  properties:
-  - url: https://developer.avalara.com/api-reference/oauth/oauth/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-portal-oauth-openapi.yml
-- aid: avalara:shared-company-service-api
-  name: Shared Company Service API
-  tags:
-  - Company Management
-  - Taxes
-  humanURL: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
-  description: The Avalara Shared Company Service API provides scalable APIs for managing
-    canonical company and contact information across Avalara products, enabling creation,
-    retrieval, update, and deletion of company records.
-  properties:
-  - url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-shared-company-service-openapi.yml
-- aid: avalara:hs-code-classification-api
-  name: Automated Tariff Code Classification API
-  tags:
-  - Classification
-  - HS Codes
-  - Tariff
-  - Taxes
-  humanURL: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
-  description: The Avalara HSCode and AvataxCode Classification API classifies products
-    into Harmonized System Codes (HS Codes) and Avalara Tax Codes, providing tariff
-    code predictions based on product information and destination country with confidence
-    levels.
-  properties:
-  - url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-hs-code-classification-openapi.yml
 - aid: avalara:self-serve-tariff-classification-api
   name: Self-Serve Tariff Classification API
   tags:
   - Cross-Border
   - Tariff
   - Taxes
-  humanURL: https://developer.avalara.com/api-reference/selfservicetarrifclassification/selfservicetarrifclassification/
-  description: The Avalara Cross Border Tariff Content API classifies products based
-    on provided product information for the specified country of destination, supporting
-    interactive classification dialogues, trade data access, certificate generation,
-    and data downloads.
+  humanURL: >-
+    https://developer.avalara.com/api-reference/selfservicetarrifclassification/selfservicetarrifclassification/
+  description: >-
+    The Avalara Cross Border Tariff Content API classifies products based on provided product information
+    for the specified country of destination, supporting interactive classification dialogues, trade data
+    access, certificate generation, and data downloads.
   properties:
-  - url: https://developer.avalara.com/api-reference/selfservicetarrifclassification/selfservicetarrifclassification/
+  - url: >-
+      https://developer.avalara.com/api-reference/selfservicetarrifclassification/selfservicetarrifclassification/
     type: Documentation
-- aid: avalara:1099-w9-api
-  name: 1099 & W-9 API
-  tags:
-  - Tax Forms
-  - Taxes
-  - W-9
-  humanURL: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
-  description: The Avalara 1099 and W-9 API automates collection, validation, and
-    e-filing of IRS forms including 1099 variants, 1095 forms, W-2, and 1042-S, providing
-    endpoints for creating, updating, and managing various IRS forms for US and foreign
-    companies.
-  properties:
-  - url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
-    type: Documentation
-  - type: OpenAPI
-    url: openapi/avalara-1099-w9-openapi.yml
 - aid: avalara:license-guidance-order-api
   name: License Guidance Order API
   tags:
   - Licensing
   - Registration
   - Taxes
-  humanURL: https://developer.avalara.com/api-reference/registration-and-licensing/license-guidance-order/license-guidance-order/
-  description: The Avalara License Guidance Order API enables placing Avalara License
-    Guidance orders and populating questionnaire responses with known business information,
-    returning order confirmation details including unique order URLs and numbers.
+  humanURL: >-
+    https://developer.avalara.com/api-reference/registration-and-licensing/license-guidance-order/license-guidance-order/
+  description: >-
+    The Avalara License Guidance Order API enables placing Avalara License Guidance orders and populating
+    questionnaire responses with known business information, returning order confirmation details including
+    unique order URLs and numbers.
   properties:
-  - url: https://developer.avalara.com/api-reference/registration-and-licensing/license-guidance-order/license-guidance-order/
+  - url: >-
+      https://developer.avalara.com/api-reference/registration-and-licensing/license-guidance-order/license-guidance-order/
     type: Documentation
+- aid: avalara:avalara-1099-forms-api
+  name: Avalara 1099 Forms API
+  description: Create and manage 1099 information returns
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - 1099 Forms
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-1099-forms-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-accounts-api
+  name: Avalara Accounts API
+  description: Manage AvaTax accounts and license keys
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-addresses-api
+  name: Avalara Addresses API
+  description: Validate and resolve addresses for tax jurisdiction determination
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Addresses
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-addresses-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-advancedrules-api
+  name: Avalara AdvancedRules API
+  description: The AdvancedRules API from Avalara — 2 operation(s) for advancedrules.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - AdvancedRules
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-advancedrules-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-attributes-api
+  name: Avalara Attributes API
+  description: Manage certificate attributes and custom fields
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Attributes
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-attributes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-authentication-api
+  name: Avalara Authentication API
+  description: Token management and authentication
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-avafileforms-api
+  name: Avalara AvaFileForms API
+  description: The AvaFileForms API from Avalara — 2 operation(s) for avafileforms.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - AvaFileForms
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-avafileforms-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-batches-api
+  name: Avalara Batches API
+  description: Submit and manage batch transaction processing
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Batches
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-batches-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-business-entities-api
+  name: Avalara Business Entities API
+  description: Manage business entity records
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Business Entities
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-business-entities-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-certexpressinvites-api
+  name: Avalara CertExpressInvites API
+  description: The CertExpressInvites API from Avalara — 3 operation(s) for certexpressinvites.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - CertExpressInvites
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-certexpressinvites-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-certificates-api
+  name: Avalara Certificates API
+  description: Manage exemption certificates and CertExpress invitations
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Certificates
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-certificates-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-classification-api
+  name: Avalara Classification API
+  description: Classify products into HS Codes and tax codes
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Classification
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-classification-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-classification-requests-api
+  name: Avalara Classification Requests API
+  description: Submit and manage product classification requests
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Classification Requests
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-classification-requests-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-companies-api
+  name: Avalara Companies API
+  description: Manage payer company records
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Companies
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-companies-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-contacts-api
+  name: Avalara Contacts API
+  description: Manage company contacts
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Contacts
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-contacts-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-customers-api
+  name: Avalara Customers API
+  description: Manage customer records and their certificate associations
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-customers-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-customization-api
+  name: Avalara Customization API
+  description: Manage tax profiles, exemptions, and overrides
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Customization
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-customization-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-datasources-api
+  name: Avalara DataSources API
+  description: The DataSources API from Avalara — 3 operation(s) for datasources.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - DataSources
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-datasources-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-definitions-api
+  name: Avalara Definitions API
+  description: Query tax content definitions, rates, and jurisdictions
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Definitions
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-definitions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-distancethresholds-api
+  name: Avalara DistanceThresholds API
+  description: The DistanceThresholds API from Avalara — 3 operation(s) for distancethresholds.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - DistanceThresholds
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-distancethresholds-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-documents-api
+  name: Avalara Documents API
+  description: Submit and manage e-invoice documents
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Documents
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-documents-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-ecommerce-api
+  name: Avalara eCommerce API
+  description: eCommerce token generation for certificate collection
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - eCommerce
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-ecommerce-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-ecommercetoken-api
+  name: Avalara ECommerceToken API
+  description: The ECommerceToken API from Avalara — 1 operation(s) for ecommercetoken.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - ECommerceToken
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-ecommercetoken-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-electronic-invoices-api
+  name: Avalara Electronic Invoices API
+  description: Issue and manage electronic fiscal documents
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Electronic Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-electronic-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-filing-api
+  name: Avalara Filing API
+  description: E-file forms with the IRS
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Filing
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-filing-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-filing-calendar-api
+  name: Avalara Filing Calendar API
+  description: Manage VAT filing obligations and calendars
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Filing Calendar
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-filing-calendar-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-firmclientlinkages-api
+  name: Avalara FirmClientLinkages API
+  description: The FirmClientLinkages API from Avalara — 7 operation(s) for firmclientlinkages.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - FirmClientLinkages
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-firmclientlinkages-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-free-api
+  name: Avalara Free API
+  description: Free tax rate lookup endpoints
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Free
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-free-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-fundingrequests-api
+  name: Avalara FundingRequests API
+  description: The FundingRequests API from Avalara — 2 operation(s) for fundingrequests.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - FundingRequests
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-fundingrequests-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-geocoding-api
+  name: Avalara Geocoding API
+  description: Determine tax jurisdictions from addresses
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Geocoding
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-geocoding-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-hs-codes-api
+  name: Avalara HS Codes API
+  description: Retrieve HS Code classification results
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - HS Codes
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-hs-codes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-interop-api
+  name: Avalara Interop API
+  description: Interoperability and network exchange
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Interop
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-interop-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-items-api
+  name: Avalara Items API
+  description: Manage product items and their tax classification
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Items
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-items-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-jurisdictionoverrides-api
+  name: Avalara JurisdictionOverrides API
+  description: The JurisdictionOverrides API from Avalara — 3 operation(s) for jurisdictionoverrides.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - JurisdictionOverrides
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-jurisdictionoverrides-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-licenses-api
+  name: Avalara Licenses API
+  description: Manage excise licenses
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Licenses
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-licenses-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-locations-api
+  name: Avalara Locations API
+  description: Manage company locations and jurisdictions
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Locations
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-locations-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-lookup-api
+  name: Avalara Lookup API
+  description: Look up service and transaction type information
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Lookup
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-lookup-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-mandates-api
+  name: Avalara Mandates API
+  description: Query e-invoicing mandate definitions
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Mandates
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-mandates-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-multidocument-api
+  name: Avalara MultiDocument API
+  description: Multi-document transaction management
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - MultiDocument
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-multidocument-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-nexus-api
+  name: Avalara Nexus API
+  description: Manage tax nexus declarations for companies
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Nexus
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-nexus-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-notices-api
+  name: Avalara Notices API
+  description: The Notices API from Avalara — 4 operation(s) for notices.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Notices
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-notices-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-notifications-api
+  name: Avalara Notifications API
+  description: The Notifications API from Avalara — 3 operation(s) for notifications.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-obligations-api
+  name: Avalara Obligations API
+  description: View filing obligations and tax responsibilities
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Obligations
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-obligations-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-onboarding-api
+  name: Avalara Onboarding API
+  description: Onboard companies for VAT reporting
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Onboarding
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-onboarding-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-orders-api
+  name: Avalara Orders API
+  description: Create and manage sales orders for Avalara services
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-orders-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-products-api
+  name: Avalara Products API
+  description: Manage product registrations
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-products-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-properties-api
+  name: Avalara Properties API
+  description: Manage rental property registrations
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Properties
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-properties-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-provisioning-api
+  name: Avalara Provisioning API
+  description: The Provisioning API from Avalara — 2 operation(s) for provisioning.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Provisioning
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-provisioning-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-registrar-api
+  name: Avalara Registrar API
+  description: The Registrar API from Avalara — 8 operation(s) for registrar.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Registrar
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-registrar-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-registrations-api
+  name: Avalara Registrations API
+  description: Manage partner registrations
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Registrations
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-registrations-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-reports-api
+  name: Avalara Reports API
+  description: Generate and retrieve tax reports
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-reports-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-returns-api
+  name: Avalara Returns API
+  description: Manage and file VAT returns
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Returns
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-returns-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-settings-api
+  name: Avalara Settings API
+  description: Manage company settings
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-settings-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-subscriptions-api
+  name: Avalara Subscriptions API
+  description: Query account subscriptions
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-tax-calculation-api
+  name: Avalara Tax Calculation API
+  description: Calculate Brazilian taxes on transactions
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Tax Calculation
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-tax-calculation-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-tax-determination-api
+  name: Avalara Tax Determination API
+  description: Calculate excise taxes on transactions
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Tax Determination
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-tax-determination-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-tax-rates-api
+  name: Avalara Tax Rates API
+  description: Look up lodging tax rates by location
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Tax Rates
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-tax-rates-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-taxcodes-api
+  name: Avalara TaxCodes API
+  description: The TaxCodes API from Avalara — 3 operation(s) for taxcodes.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - TaxCodes
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-taxcodes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-taxcontent-api
+  name: Avalara TaxContent API
+  description: The TaxContent API from Avalara — 5 operation(s) for taxcontent.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - TaxContent
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-taxcontent-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-taxrules-api
+  name: Avalara TaxRules API
+  description: Manage tax rules and overrides for companies
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - TaxRules
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-taxrules-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-transactions-api
+  name: Avalara Transactions API
+  description: Manage tax transactions
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-upcs-api
+  name: Avalara Upcs API
+  description: The Upcs API from Avalara — 3 operation(s) for upcs.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Upcs
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-upcs-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-userdefinedfields-api
+  name: Avalara UserDefinedFields API
+  description: The UserDefinedFields API from Avalara — 2 operation(s) for userdefinedfields.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - UserDefinedFields
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-userdefinedfields-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-users-api
+  name: Avalara Users API
+  description: The Users API from Avalara — 5 operation(s) for users.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-users-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-utilities-api
+  name: Avalara Utilities API
+  description: Utility endpoints including ping and health checks
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Utilities
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-utilities-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-w-9-forms-api
+  name: Avalara W-9 Forms API
+  description: Collect and manage W-9 forms
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - W-9 Forms
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-w-9-forms-api-openapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/communications/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/excise/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/item-classification/v2/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avatax-brazil/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/vat-reporting/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/myLodgeAPI/tax/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/CertCapture/v2/
+  - type: AsyncAPI
+    url: asyncapi/avalara-certcapture-sqs-asyncapi.yml
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/e-invoicing/v1.0
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/activationService/activationService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/business/v1/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/oauth/oauth/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
+  - type: Documentation
+    url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
 name: Avalara
 tags:
 - Taxes
 type: Index
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.avalara.com/us/en/about/newsroom/media-kit/_jcr_content/root/responsivegrid/responsivegrid/columncontrol/par2/image.coreimg.svg/1614712826993/avalara-logo.svg
 access: 3rd-Party
 common:
