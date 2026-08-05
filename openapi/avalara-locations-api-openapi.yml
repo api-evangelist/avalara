@@ -1,28 +1,26 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Locations API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  title: Avalara Locations API
   version: '1.0'
-  contact:
-    name: Avalara Developer Relations
-    url: https://developer.avalara.com/
-    email: developer.relations@avalara.com
-  license:
-    name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
-  termsOfService: https://legal.avalara.com/#siteterms
+  description: 'Operations tagged Locations across 3 of this provider''s published API definitions: avalara-avatax-rest-openapi.yml, avalara-excise-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
-security:
-- bearerAuth: []
+- url: https://rest.avatax.com
+  description: AvaTax Production
+- url: https://sandbox-rest.avatax.com
+  description: AvaTax Sandbox
+- url: https://exciseapi.avalara.com/api/v1
+  description: Excise API Production
+- url: http://{{baseurl}}
 tags:
 - name: Locations
   description: Manage company locations and jurisdictions
 paths:
   /api/v2/companies/{companyId}/locations:
+    servers:
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
     get:
       operationId: queryLocations
       summary: Avalara List Locations for a Company
@@ -40,6 +38,9 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/FetchResult_LocationModel'
+      security:
+      - basicAuth: []
+      - bearerAuth: []
     post:
       operationId: createLocations
       summary: Avalara Create Locations for a Company
@@ -58,7 +59,13 @@ paths:
       responses:
         '201':
           description: Locations created
+      security:
+      - basicAuth: []
+      - bearerAuth: []
   /Locations:
+    servers:
+    - url: https://exciseapi.avalara.com/api/v1
+      description: Excise API Production
     get:
       operationId: listLocations
       summary: Avalara List Locations
@@ -73,6 +80,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/ExciseLocation'
+      security:
+      - bearerAuth: []
     post:
       operationId: createLocation
       summary: Avalara Create a Location
@@ -87,12 +96,16 @@ paths:
       responses:
         '201':
           description: Location created
+      security:
+      - bearerAuth: []
   /api/v2/companies/{companyId}/locations/{locationId}/parameters:
+    servers:
+    - url: http://{{baseurl}}
     post:
       tags:
       - Locations
       summary: Avalara CreateLocationParameters
-      description: "Add parameters to a location.\r\n            \r\nSome locations can be taxed differently depending on the properties of that location. In AvaTax, these tax-affecting properties are called \"parameters\".\r\n            \r\nA parameter added to a location will be used by default in tax calculation but will not show on the transaction line referencing the location.\r\n            \r\nA parameter specified on a transaction line will override a location parameter if they share the same parameter name.\r\n            \r\nTo see available parameters for this location, call `/api/v2/definitions/parameters?$filter=attributeType eq Company`\r\n            \r\nSome parameters are only available for use if you have subscribed to specific AvaTax services. To see which parameters you are able to use, add the query parameter \"$showSubscribed=true\" to the parameter definition call above.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      description: "Add parameters to a location.\n            \nSome locations can be taxed differently depending on the properties of that location. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to a location will be used by default in tax calculation but will not show on the transaction line referencing the location.\n            \nA parameter specified on a transaction line will override a location parameter if they share the same parameter name.\n            \nTo see available parameters for this location, call `/api/v2/definitions/parameters?$filter=attributeType eq Company`\n            \nSome parameters are only available for use if you have subscribed to specific AvaTax services. To see which parameters you are able to use, add the query parameter \"$showSubscribed=true\" to the parameter definition call above.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
       requestBody:
         content:
           application/json:
@@ -131,11 +144,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
     get:
       tags:
       - Locations
       summary: Avalara ListLocationParameters
-      description: "List parameters for a location.\r\n            \r\nSome locations can be taxed differently depending on the properties of that location. In AvaTax, these tax-affecting properties are called \"parameters\".\r\n            \r\nA parameter added to a location will be used by default in tax calculation but will not show on the transaction line referencing the location.\r\n            \r\nA parameter specified on a transaction line will override a location parameter if they share the same parameter name.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: "List parameters for a location.\n            \nSome locations can be taxed differently depending on the properties of that location. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to a location will be used by default in tax calculation but will not show on the transaction line referencing the location.\n            \nA parameter specified on a transaction line will override a location parameter if they share the same parameter name.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -158,7 +173,11 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
   /api/v2/companies/{companyId}/locations/{id}:
+    servers:
+    - url: http://{{baseurl}}
     delete:
       tags:
       - Locations
@@ -194,11 +213,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
     get:
       tags:
       - Locations
       summary: Avalara GetLocation
-      description: "Get the location object identified by this URL.\r\nAn 'Location' represents a physical address where a company does business.\r\nMany taxing authorities require that you define a list of all locations where your company does business.\r\nThese locations may require additional custom configuration or tax registration with these authorities.\r\nFor more information on metadata requirements, see the '/api/v2/definitions/locationquestions' API.\r\n            \r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* LocationSettings\r\n* parameters\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: "Get the location object identified by this URL.\nAn 'Location' represents a physical address where a company does business.\nMany taxing authorities require that you define a list of all locations where your company does business.\nThese locations may require additional custom configuration or tax registration with these authorities.\nFor more information on metadata requirements, see the '/api/v2/definitions/locationquestions' API.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* LocationSettings\n* parameters\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -221,11 +242,25 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
     put:
       tags:
       - Locations
       summary: Avalara UpdateLocation
-      description: "Replace the existing location object at this URL with an updated object.\r\nAll data from the existing object will be replaced with data in the object you PUT.\r\nTo set a field's value to null, you may either set its value to null or omit that field from the object you post.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      description: 'Replace the existing location object at this URL with an updated object.
+
+        All data from the existing object will be replaced with data in the object you PUT.
+
+        To set a field''s value to null, you may either set its value to null or omit that field from the object you post.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.
+
+        '
       requestBody:
         content:
           application/json:
@@ -280,12 +315,16 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
   /api/v2/companies/{companyId}/locations/{locationId}/parameters/{id}:
+    servers:
+    - url: http://{{baseurl}}
     delete:
       tags:
       - Locations
       summary: Avalara DeleteLocationParameter
-      description: "Delete a single location parameter.\r\n            \r\nSome locations can be taxed differently depending on the properties of that location. In AvaTax, these tax-affecting properties are called \"parameters\".\r\n            \r\nA parameter added to a location will be used by default in tax calculation but will not show on the transaction line referencing the location.\r\n            \r\nA parameter specified on a transaction line will override a location parameter if they share the same parameter name.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      description: "Delete a single location parameter.\n            \nSome locations can be taxed differently depending on the properties of that location. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to a location will be used by default in tax calculation but will not show on the transaction line referencing the location.\n            \nA parameter specified on a transaction line will override a location parameter if they share the same parameter name.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -313,11 +352,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
     get:
       tags:
       - Locations
       summary: Avalara GetLocationParameter
-      description: "Retrieve a single location parameter.\r\n            \r\nSome locations can be taxed differently depending on the properties of that location. In AvaTax, these tax-affecting properties are called \"parameters\".\r\n            \r\nA parameter added to a location will be used by default in tax calculation but will not show on the transaction line referencing the location.\r\n            \r\nA parameter specified on a transaction line will override a location parameter if they share the same parameter name.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: "Retrieve a single location parameter.\n            \nSome locations can be taxed differently depending on the properties of that location. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to a location will be used by default in tax calculation but will not show on the transaction line referencing the location.\n            \nA parameter specified on a transaction line will override a location parameter if they share the same parameter name.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -345,11 +386,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
     put:
       tags:
       - Locations
       summary: Avalara UpdateLocationParameter
-      description: "Update a location parameter.\r\n            \r\nSome locations can be taxed differently depending on the properties of that location. In AvaTax, these tax-affecting properties are called \"parameters\".\r\n            \r\nA parameter added to a location will be used by default in tax calculation but will not show on the transaction line referencing the location.\r\n            \r\nA parameter specified on a transaction line will override a location parameter if they share the same parameter name.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      description: "Update a location parameter.\n            \nSome locations can be taxed differently depending on the properties of that location. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to a location will be used by default in tax calculation but will not show on the transaction line referencing the location.\n            \nA parameter specified on a transaction line will override a location parameter if they share the same parameter name.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
       requestBody:
         content:
           application/json:
@@ -393,12 +436,16 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
   /api/v2/locations:
+    servers:
+    - url: http://{{baseurl}}
     get:
       tags:
       - Locations
       summary: Avalara QueryLocations
-      description: "Get multiple location objects across all companies.\r\nAn 'Location' represents a physical address where a company does business.\r\nMany taxing authorities require that you define a list of all locations where your company does business.\r\nThese locations may require additional custom configuration or tax registration with these authorities.\r\nFor more information on metadata requirements, see the '/api/v2/definitions/locationquestions' API.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\r\n            \r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* LocationSettings\r\n* parameters\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: "Get multiple location objects across all companies.\nAn 'Location' represents a physical address where a company does business.\nMany taxing authorities require that you define a list of all locations where your company does business.\nThese locations may require additional custom configuration or tax registration with these authorities.\nFor more information on metadata requirements, see the '/api/v2/definitions/locationquestions' API.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* LocationSettings\n* parameters\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -411,12 +458,28 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
   /api/v2/companies/{companyId}/locations/{id}/validate:
+    servers:
+    - url: http://{{baseurl}}
     get:
       tags:
       - Locations
       summary: Avalara ValidateLocation
-      description: "Returns validation information for this location.\r\nThis API call is intended to compare this location against the currently known taxing authority rules and regulations,\r\nand provide information about what additional work is required to completely setup this location.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: 'Returns validation information for this location.
+
+        This API call is intended to compare this location against the currently known taxing authority rules and regulations,
+
+        and provide information about what additional work is required to completely setup this location.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.
+
+        '
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -439,34 +502,10 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
 components:
   schemas:
-    FetchResult_LocationModel:
-      type: object
-      properties:
-        '@recordsetCount':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/LocationModel'
-    ExciseAddress:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type: string
-        city:
-          type: string
-        region:
-          type: string
-          description: State or province code
-        postalCode:
-          type: string
-        country:
-          type: string
-          description: ISO 3166 country code
     LocationModel:
       type: object
       properties:
@@ -522,14 +561,33 @@ components:
           $ref: '#/components/schemas/ExciseAddress'
         irsTerminalCode:
           type: string
+    FetchResult_LocationModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationModel'
+    ExciseAddress:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+          description: State or province code
+        postalCode:
+          type: string
+        country:
+          type: string
+          description: ISO 3166 country code
   parameters:
-    companyId:
-      name: companyId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The numeric ID of the company
     top:
       name: $top
       in: query
@@ -543,6 +601,13 @@ components:
       schema:
         type: string
       description: OData filter expression for result filtering
+    companyId:
+      name: companyId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The numeric ID of the company
     skip:
       name: $skip
       in: query
@@ -551,10 +616,15 @@ components:
         default: 0
       description: Number of results to skip for pagination
   securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Use your AvaTax username/password or accountId/licenseKey as basic auth credentials
     bearerAuth:
       type: http
       scheme: bearer
       description: OAuth 2.0 bearer token
-externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+x-refined-from:
+- avalara-avatax-rest-openapi.yml
+- avalara-excise-openapi.yml
+- avatax-apis-openapi.yml

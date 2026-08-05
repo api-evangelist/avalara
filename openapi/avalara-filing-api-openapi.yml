@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Filing API
+  title: Avalara 1099 & W-9 Filing API
   description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
   version: '1.0'
   contact:
@@ -64,21 +64,6 @@ paths:
                 $ref: '#/components/schemas/FilingStatus'
 components:
   schemas:
-    FilingSubmission:
-      type: object
-      required:
-      - taxYear
-      - formIds
-      properties:
-        taxYear:
-          type: integer
-        formIds:
-          type: array
-          items:
-            type: string
-        corrected:
-          type: boolean
-          default: false
     FilingStatus:
       type: object
       properties:
@@ -106,6 +91,21 @@ components:
                 type: string
               message:
                 type: string
+    FilingSubmission:
+      type: object
+      required:
+      - taxYear
+      - formIds
+      properties:
+        taxYear:
+          type: integer
+        formIds:
+          type: array
+          items:
+            type: string
+        corrected:
+          type: boolean
+          default: false
     FilingResponse:
       type: object
       properties:

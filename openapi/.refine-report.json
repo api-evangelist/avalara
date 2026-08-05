@@ -5,6 +5,7 @@
     "avalara-accounts-api-openapi.yml",
     "avalara-addresses-api-openapi.yml",
     "avalara-advancedrules-api-openapi.yml",
+    "avalara-age-verification-api-openapi.yml",
     "avalara-attributes-api-openapi.yml",
     "avalara-authentication-api-openapi.yml",
     "avalara-avafileforms-api-openapi.yml",
@@ -54,6 +55,7 @@
     "avalara-reports-api-openapi.yml",
     "avalara-returns-api-openapi.yml",
     "avalara-settings-api-openapi.yml",
+    "avalara-shipping-verification-api-openapi.yml",
     "avalara-subscriptions-api-openapi.yml",
     "avalara-tax-calculation-api-openapi.yml",
     "avalara-tax-determination-api-openapi.yml",
@@ -73,6 +75,7 @@
     "avalara-accounts-api-openapi.yml",
     "avalara-addresses-api-openapi.yml",
     "avalara-advancedrules-api-openapi.yml",
+    "avalara-age-verification-api-openapi.yml",
     "avalara-attributes-api-openapi.yml",
     "avalara-authentication-api-openapi.yml",
     "avalara-avafileforms-api-openapi.yml",
@@ -122,6 +125,7 @@
     "avalara-reports-api-openapi.yml",
     "avalara-returns-api-openapi.yml",
     "avalara-settings-api-openapi.yml",
+    "avalara-shipping-verification-api-openapi.yml",
     "avalara-subscriptions-api-openapi.yml",
     "avalara-tax-calculation-api-openapi.yml",
     "avalara-tax-determination-api-openapi.yml",
@@ -139,6 +143,8 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }

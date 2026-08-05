@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Registrations API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  title: Avalara Activation Service Registrations API
+  description: The Avalara Activation Service API allows technology partners to retrieve the status of their registrations within the Avalara Compliance Cloud platform, providing endpoints for listing all registrations and retrieving individual registration details.
   version: '1.0'
   contact:
     name: Avalara Developer Relations
@@ -12,10 +12,8 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
   termsOfService: https://legal.avalara.com/#siteterms
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
+- url: https://api.avalara.com/activation/v1
+  description: Activation Service API Production
 security:
 - bearerAuth: []
 tags:
@@ -80,14 +78,14 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication failed
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -102,6 +100,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Registration'
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
     Registration:
       type: object
       properties:
@@ -132,21 +140,10 @@ components:
         createdDate:
           type: string
           format: date-time
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: OAuth 2.0 bearer token
 externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+  description: Activation Service API Documentation
+  url: https://developer.avalara.com/api-reference/activationService/activationService/

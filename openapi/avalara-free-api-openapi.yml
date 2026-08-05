@@ -1,28 +1,24 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Free API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  title: Avalara Free API
   version: '1.0'
-  contact:
-    name: Avalara Developer Relations
-    url: https://developer.avalara.com/
-    email: developer.relations@avalara.com
-  license:
-    name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
-  termsOfService: https://legal.avalara.com/#siteterms
+  description: 'Operations tagged Free across 2 of this provider''s published API definitions: avalara-avatax-rest-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
-security:
-- bearerAuth: []
+- url: https://rest.avatax.com
+  description: AvaTax Production
+- url: https://sandbox-rest.avatax.com
+  description: AvaTax Sandbox
+- url: http://{{baseurl}}
 tags:
 - name: Free
   description: Free tax rate lookup endpoints
 paths:
   /api/v2/taxrates/byaddress:
+    servers:
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
     get:
       operationId: taxRatesByAddress
       summary: Avalara Get Tax Rates by Address
@@ -64,7 +60,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TaxRateModel'
+      security:
+      - basicAuth: []
+      - bearerAuth: []
   /api/v2/taxrates/bypostalcode:
+    servers:
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
     get:
       operationId: taxRatesByPostalCode
       summary: Avalara Get Tax Rates by Postal Code
@@ -89,12 +93,17 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TaxRateModel'
+      security:
+      - basicAuth: []
+      - bearerAuth: []
   /api/v2/accounts/freetrials/request:
+    servers:
+    - url: http://{{baseurl}}
     post:
       tags:
       - Free
       summary: Avalara RequestFreeTrial
-      description: "Call this API to obtain a free AvaTax account.\r\n            \r\nThis API is free to use.  No authentication credentials are required to call this API. You must read and\r\naccept [Avalara's terms and conditions](https://www1.avalara.com/us/en/legal/terms.html) for the account to be\r\ncreated.\r\n            \r\nIf all conditions are met, this API will grant a free trial version of AvaTax.  For a list of functionality\r\navailable in the free trial and its limitations, please see the [AvaTax Developer Website Free Trial page](https://developer.avalara.com/avatax/signup/).\r\n            \r\nAfter your free trial concludes, you will still be able to use the [Free AvaTax API Suite](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Free/).\n\n### Security Policies\n\n* This API may be called without providing authentication credentials.\n"
+      description: "Call this API to obtain a free AvaTax account.\n            \nThis API is free to use.  No authentication credentials are required to call this API. You must read and\naccept [Avalara's terms and conditions](https://www1.avalara.com/us/en/legal/terms.html) for the account to be\ncreated.\n            \nIf all conditions are met, this API will grant a free trial version of AvaTax.  For a list of functionality\navailable in the free trial and its limitations, please see the [AvaTax Developer Website Free Trial page](https://developer.avalara.com/avatax/signup/).\n            \nAfter your free trial concludes, you will still be able to use the [Free AvaTax API Suite](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Free/).\n\n### Security Policies\n\n* This API may be called without providing authentication credentials.\n"
       requestBody:
         content:
           application/json:
@@ -132,6 +141,8 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
 components:
   schemas:
     TaxRateModel:
@@ -160,10 +171,17 @@ components:
                 - City
                 - Special
   securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Use your AvaTax username/password or accountId/licenseKey as basic auth credentials
     bearerAuth:
       type: http
       scheme: bearer
       description: OAuth 2.0 bearer token
 externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+  description: AvaTax REST API v2 Documentation
+  url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+x-refined-from:
+- avalara-avatax-rest-openapi.yml
+- avatax-apis-openapi.yml

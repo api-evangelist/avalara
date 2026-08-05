@@ -1,28 +1,24 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Utilities API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  title: Avalara Utilities API
   version: '1.0'
-  contact:
-    name: Avalara Developer Relations
-    url: https://developer.avalara.com/
-    email: developer.relations@avalara.com
-  license:
-    name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
-  termsOfService: https://legal.avalara.com/#siteterms
+  description: 'Operations tagged Utilities across 2 of this provider''s published API definitions: avalara-avatax-rest-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
-security:
-- bearerAuth: []
+- url: https://rest.avatax.com
+  description: AvaTax Production
+- url: https://sandbox-rest.avatax.com
+  description: AvaTax Sandbox
+- url: http://{{baseurl}}
 tags:
 - name: Utilities
   description: Utility endpoints including ping and health checks
 paths:
   /api/v2/utilities/ping:
+    servers:
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
     get:
       operationId: ping
       summary: Avalara Test Connectivity and Authentication
@@ -38,6 +34,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/PingResultModel'
   /api/v2/utilities/subscriptions:
+    servers:
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
     get:
       operationId: listMySubscriptions
       summary: Avalara List Subscriptions for the Current Account
@@ -46,12 +47,17 @@ paths:
       responses:
         '200':
           description: Subscriptions for authenticated account
+      security:
+      - basicAuth: []
+      - bearerAuth: []
   /api/v2/utilities/subscriptions/{serviceTypeId}:
+    servers:
+    - url: http://{{baseurl}}
     get:
       tags:
       - Utilities
       summary: Avalara GetMySubscription
-      description: "Returns a subscription object for the current account, or 404 Not Found if this subscription is not enabled for this account.\r\n            \r\nThis API will return an error if it is called with invalid authentication credentials.\r\n            \r\nThis API is intended to help you determine whether you have the necessary subscription to use certain API calls\r\nwithin AvaTax.  You can examine the subscriptions returned from this API call to look for a particular product\r\nor subscription to provide useful information to the current user as to whether they are entitled to use\r\nspecific features of AvaTax."
+      description: "Returns a subscription object for the current account, or 404 Not Found if this subscription is not enabled for this account.\n            \nThis API will return an error if it is called with invalid authentication credentials.\n            \nThis API is intended to help you determine whether you have the necessary subscription to use certain API calls\nwithin AvaTax.  You can examine the subscriptions returned from this API call to look for a particular product\nor subscription to provide useful information to the current user as to whether they are entitled to use\nspecific features of AvaTax."
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -69,6 +75,8 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
 components:
   schemas:
     PingResultModel:
@@ -100,10 +108,17 @@ components:
         crmid:
           type: string
   securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Use your AvaTax username/password or accountId/licenseKey as basic auth credentials
     bearerAuth:
       type: http
       scheme: bearer
       description: OAuth 2.0 bearer token
 externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+  description: AvaTax REST API v2 Documentation
+  url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+x-refined-from:
+- avalara-avatax-rest-openapi.yml
+- avatax-apis-openapi.yml

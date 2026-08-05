@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Documents API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  title: Avalara E-Invoicing REST Documents API
+  description: The Avalara E-Invoicing REST API supports electronic invoicing compliance workflows for cross-border and domestic transactions. It enables submission, validation, and management of e-invoices in compliance with mandates from tax authorities worldwide, supporting formats like UBL, Peppol, and country-specific standards.
   version: '1.0'
   contact:
     name: Avalara Developer Relations
@@ -12,10 +12,10 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
   termsOfService: https://legal.avalara.com/#siteterms
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
+- url: https://api.avalara.com/einvoicing/v1
+  description: E-Invoicing API Production
+- url: https://api.sbx.avalara.com/einvoicing/v1
+  description: E-Invoicing API Sandbox
 security:
 - bearerAuth: []
 tags:
@@ -172,8 +172,8 @@ paths:
                 $ref: '#/components/schemas/DocumentStatus'
 components:
   responses:
-    NotFound:
-      description: Resource not found
+    BadRequest:
+      description: Invalid request
       content:
         application/json:
           schema:
@@ -184,13 +184,42 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    DocumentStatus:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - Pending
+          - Accepted
+          - Rejected
+          - Error
+        statusDate:
+          type: string
+          format: date-time
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentEvent'
+    DocumentEvent:
+      type: object
+      properties:
+        eventDate:
+          type: string
+          format: date-time
+        eventType:
+          type: string
+        message:
+          type: string
     DocumentSubmissionResponse:
       type: object
       properties:
@@ -227,25 +256,18 @@ components:
           format: date-time
         countryCode:
           type: string
-    DocumentStatus:
+    ErrorResponse:
       type: object
       properties:
-        id:
-          type: string
-        status:
-          type: string
-          enum:
-          - Pending
-          - Accepted
-          - Rejected
-          - Error
-        statusDate:
-          type: string
-          format: date-time
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentEvent'
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            target:
+              type: string
     DocumentList:
       type: object
       properties:
@@ -279,6 +301,37 @@ components:
               type: string
             countryCode:
               type: string
+    SubmitDocumentRequest:
+      type: object
+      required:
+      - dataFormat
+      - data
+      properties:
+        dataFormat:
+          type: string
+          enum:
+          - ubl-invoice
+          - ubl-creditnote
+          - cii
+          description: Format of the e-invoice document
+        dataFormatVersion:
+          type: string
+          description: Version of the data format
+        data:
+          type: string
+          description: Base64-encoded document content or raw UBL/CII XML
+        metadata:
+          type: object
+          properties:
+            workflowId:
+              type: string
+              description: Workflow identifier for the mandate
+            countryCode:
+              type: string
+              description: ISO 3166-1 alpha-2 country code
+            countryMandate:
+              type: string
+              description: Country mandate identifier
     DocumentDetail:
       type: object
       properties:
@@ -313,64 +366,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DocumentEvent'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            target:
-              type: string
-    DocumentEvent:
-      type: object
-      properties:
-        eventDate:
-          type: string
-          format: date-time
-        eventType:
-          type: string
-        message:
-          type: string
-    SubmitDocumentRequest:
-      type: object
-      required:
-      - dataFormat
-      - data
-      properties:
-        dataFormat:
-          type: string
-          enum:
-          - ubl-invoice
-          - ubl-creditnote
-          - cii
-          description: Format of the e-invoice document
-        dataFormatVersion:
-          type: string
-          description: Version of the data format
-        data:
-          type: string
-          description: Base64-encoded document content or raw UBL/CII XML
-        metadata:
-          type: object
-          properties:
-            workflowId:
-              type: string
-              description: Workflow identifier for the mandate
-            countryCode:
-              type: string
-              description: ISO 3166-1 alpha-2 country code
-            countryMandate:
-              type: string
-              description: Country mandate identifier
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
       description: OAuth 2.0 bearer token
 externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+  description: E-Invoicing API Documentation
+  url: https://developer.avalara.com/api-reference/e-invoicing/v1.0

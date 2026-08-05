@@ -1,28 +1,20 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Contacts API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  title: Avalara Contacts API
   version: '1.0'
-  contact:
-    name: Avalara Developer Relations
-    url: https://developer.avalara.com/
-    email: developer.relations@avalara.com
-  license:
-    name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
-  termsOfService: https://legal.avalara.com/#siteterms
+  description: 'Operations tagged Contacts across 2 of this provider''s published API definitions: avalara-shared-company-service-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
-security:
-- bearerAuth: []
+- url: https://api.avalara.com/shared/v1
+  description: Shared Company Service Production
+- url: http://{{baseurl}}
 tags:
 - name: Contacts
   description: Manage company contacts
 paths:
   /companies/{companyId}/contacts:
+    servers:
+    - url: https://api.avalara.com/shared/v1
+      description: Shared Company Service Production
     get:
       operationId: listContacts
       summary: Avalara List Contacts for a Company
@@ -43,6 +35,8 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/SharedContact'
+      security:
+      - bearerAuth: []
     post:
       operationId: createContact
       summary: Avalara Create a Contact
@@ -63,12 +57,28 @@ paths:
       responses:
         '201':
           description: Contact created
+      security:
+      - bearerAuth: []
   /api/v2/companies/{companyId}/contacts:
+    servers:
+    - url: http://{{baseurl}}
     post:
       tags:
       - Contacts
       summary: Avalara CreateContacts
-      description: "Create one or more new contact objects.\r\nA 'contact' is a person associated with a company who is designated to handle certain responsibilities of\r\na tax collecting and filing entity.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, SSTAdmin, TechnicalSupportAdmin.\n"
+      description: 'Create one or more new contact objects.
+
+        A ''contact'' is a person associated with a company who is designated to handle certain responsibilities of
+
+        a tax collecting and filing entity.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, SSTAdmin, TechnicalSupportAdmin.
+
+        '
       requestBody:
         content:
           application/json:
@@ -110,11 +120,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
     get:
       tags:
       - Contacts
       summary: Avalara ListContactsByCompany
-      description: "List all contact objects assigned to this company.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: "List all contact objects assigned to this company.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -132,7 +144,11 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
   /api/v2/companies/{companyId}/contacts/{id}:
+    servers:
+    - url: http://{{baseurl}}
     delete:
       tags:
       - Contacts
@@ -168,11 +184,25 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
     get:
       tags:
       - Contacts
       summary: Avalara GetContact
-      description: "Get the contact object identified by this URL.\r\nA 'contact' is a person associated with a company who is designated to handle certain responsibilities of\r\na tax collecting and filing entity.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: 'Get the contact object identified by this URL.
+
+        A ''contact'' is a person associated with a company who is designated to handle certain responsibilities of
+
+        a tax collecting and filing entity.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.
+
+        '
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -195,11 +225,29 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
     put:
       tags:
       - Contacts
       summary: Avalara UpdateContact
-      description: "Replace the existing contact object at this URL with an updated object.\r\nA 'contact' is a person associated with a company who is designated to handle certain responsibilities of\r\na tax collecting and filing entity.\r\nAll data from the existing object will be replaced with data in the object you PUT.\r\nTo set a field's value to null, you may either set its value to null or omit that field from the object you post.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, SSTAdmin, TechnicalSupportAdmin.\n"
+      description: 'Replace the existing contact object at this URL with an updated object.
+
+        A ''contact'' is a person associated with a company who is designated to handle certain responsibilities of
+
+        a tax collecting and filing entity.
+
+        All data from the existing object will be replaced with data in the object you PUT.
+
+        To set a field''s value to null, you may either set its value to null or omit that field from the object you post.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, SSTAdmin, TechnicalSupportAdmin.
+
+        '
       requestBody:
         content:
           application/json:
@@ -246,12 +294,16 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
   /api/v2/contacts:
+    servers:
+    - url: http://{{baseurl}}
     get:
       tags:
       - Contacts
       summary: Avalara QueryContacts
-      description: "Get multiple contact objects across all companies.\r\nA 'contact' is a person associated with a company who is designated to handle certain responsibilities of\r\na tax collecting and filing entity.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: "Get multiple contact objects across all companies.\nA 'contact' is a person associated with a company who is designated to handle certain responsibilities of\na tax collecting and filing entity.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -264,6 +316,8 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
 components:
   schemas:
     SharedContact:
@@ -288,7 +342,12 @@ components:
     bearerAuth:
       type: http
       scheme: bearer
-      description: OAuth 2.0 bearer token
+    basicAuth:
+      type: http
+      scheme: basic
 externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+  description: Shared Company Service API Documentation
+  url: https://developer.avalara.com/api-reference/sharedservice/sharedCompanyService/
+x-refined-from:
+- avalara-shared-company-service-openapi.yml
+- avatax-apis-openapi.yml

@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Electronic Invoices API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  title: Avalara AvaTax Brazil Electronic Invoices API
+  description: The AvaTax Brazil API provides tax calculation, electronic invoice (NF-e, NFS-e, NFC-e) issuance, and transaction management for businesses with a physical presence in Brazil. It supports Brazilian federal, state, and municipal taxes including ICMS, IPI, PIS, COFINS, ISS, and more.
   version: '1.0'
   contact:
     name: Avalara Developer Relations
@@ -12,10 +12,8 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
   termsOfService: https://legal.avalara.com/#siteterms
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
+- url: https://avataxbr-sandbox.avalarabrasil.com.br/v3
+  description: AvaTax Brazil Sandbox
 security:
 - bearerAuth: []
 tags:
@@ -125,28 +123,6 @@ paths:
           description: Invoice cancelled
 components:
   schemas:
-    InvoiceRequest:
-      type: object
-      properties:
-        invoiceType:
-          type: string
-          enum:
-          - NF-e
-          - NFS-e
-          - NFC-e
-          - CT-e
-          description: Electronic document type
-        companyId:
-          type: string
-        transactionDate:
-          type: string
-          format: date-time
-        buyer:
-          $ref: '#/components/schemas/BrazilParty'
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvoiceLine'
     BrazilParty:
       type: object
       properties:
@@ -187,6 +163,25 @@ components:
               type: string
             country:
               type: string
+    InvoiceLine:
+      type: object
+      properties:
+        lineNumber:
+          type: integer
+        itemCode:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: number
+          format: double
+        unitPrice:
+          type: number
+          format: double
+        ncmCode:
+          type: string
+        cfopCode:
+          type: string
     InvoiceResponse:
       type: object
       properties:
@@ -211,30 +206,33 @@ components:
         issuanceDate:
           type: string
           format: date-time
-    InvoiceLine:
+    InvoiceRequest:
       type: object
       properties:
-        lineNumber:
-          type: integer
-        itemCode:
+        invoiceType:
           type: string
-        description:
+          enum:
+          - NF-e
+          - NFS-e
+          - NFC-e
+          - CT-e
+          description: Electronic document type
+        companyId:
           type: string
-        quantity:
-          type: number
-          format: double
-        unitPrice:
-          type: number
-          format: double
-        ncmCode:
+        transactionDate:
           type: string
-        cfopCode:
-          type: string
+          format: date-time
+        buyer:
+          $ref: '#/components/schemas/BrazilParty'
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceLine'
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: OAuth 2.0 bearer token
+      description: Bearer token authentication
 externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+  description: AvaTax Brazil API Documentation
+  url: https://developer.avalara.com/api-reference/avatax-brazil/v1/

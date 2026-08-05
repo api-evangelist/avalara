@@ -1,8 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Tax Calculation API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
-  version: '1.0'
+  title: Avalara Tax Calculation API
   contact:
     name: Avalara Developer Relations
     url: https://developer.avalara.com/
@@ -11,18 +9,21 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   termsOfService: https://legal.avalara.com/#siteterms
+  version: '1.0'
+  description: 'Operations tagged Tax Calculation across 2 of this provider''s published API definitions: avalara-avatax-brazil-openapi.yml, avalara-communications-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
-security:
-- bearerAuth: []
+- url: https://avataxbr-sandbox.avalarabrasil.com.br/v3
+  description: AvaTax Brazil Sandbox
+- url: https://communicationsua.avalara.net
+  description: Communications API Production
 tags:
 - name: Tax Calculation
   description: Calculate Brazilian taxes on transactions
 paths:
   /calculations:
+    servers:
+    - url: https://avataxbr-sandbox.avalarabrasil.com.br/v3
+      description: AvaTax Brazil Sandbox
     post:
       operationId: calculateTax
       summary: Avalara Calculate Brazilian Taxes
@@ -46,7 +47,12 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - bearerAuth: []
   /api/v2/afc/CalcTaxes:
+    servers:
+    - url: https://communicationsua.avalara.net
+      description: Communications API Production
     post:
       operationId: calcTaxes
       summary: Avalara Calculate Taxes on a Transaction
@@ -70,7 +76,12 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+      security:
+      - basicAuth: []
   /api/v2/afc/commit:
+    servers:
+    - url: https://communicationsua.avalara.net
+      description: Communications API Production
     post:
       operationId: commitTransaction
       summary: Avalara Commit a Transaction
@@ -90,7 +101,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CommitResponse'
+      security:
+      - basicAuth: []
   /api/v2/afc/CalcAdj:
+    servers:
+    - url: https://communicationsua.avalara.net
+      description: Communications API Production
     post:
       operationId: calcAdjustment
       summary: Avalara Calculate Adjustment Taxes
@@ -110,8 +126,53 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CalcTaxesResponse'
+      security:
+      - basicAuth: []
 components:
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    CalculationLine:
+      type: object
+      properties:
+        lineCode:
+          type: string
+        itemCode:
+          type: string
+        numberOfItems:
+          type: number
+          format: double
+        lineAmount:
+          type: number
+          format: double
+        itemDescription:
+          type: string
+        ncmCode:
+          type: string
+          description: NCM (Nomenclatura Comum do Mercosul) code
+        cstCode:
+          type: string
+          description: CST (Codigo de Situacao Tributaria) code
+        cfopCode:
+          type: string
+          description: CFOP (Codigo Fiscal de Operacoes e Prestacoes) code
+        originState:
+          type: string
+          description: Origin state code (UF)
+        destinationState:
+          type: string
+          description: Destination state code (UF)
     LineItemResult:
       type: object
       properties:
@@ -122,44 +183,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TaxResult'
-    CommitResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-    Invoice:
-      type: object
-      properties:
-        doc:
-          type: string
-          description: Document code
-        cmmt:
-          type: boolean
-          description: Commit indicator
-        bill:
-          $ref: '#/components/schemas/Location'
-        cust:
-          type: integer
-          description: Customer type
-        date:
-          type: string
-          format: date-time
-          description: Invoice date
-        itms:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
-          description: Line items on the invoice
-    InvoiceResult:
-      type: object
-      properties:
-        doc:
-          type: string
-          description: Document code
-        itms:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItemResult'
     ErrorResponse:
       type: object
       properties:
@@ -170,48 +193,6 @@ components:
               type: string
             message:
               type: string
-    CommitRequest:
-      type: object
-      properties:
-        doc:
-          type: string
-          description: Document code to commit
-        cmmt:
-          type: boolean
-          description: Commit flag (true to commit)
-    LineItem:
-      type: object
-      properties:
-        ref:
-          type: string
-          description: Line item reference
-        from:
-          $ref: '#/components/schemas/Location'
-        to:
-          $ref: '#/components/schemas/Location'
-        chg:
-          type: number
-          format: double
-          description: Charge amount
-        line:
-          type: integer
-          description: Number of lines
-        loc:
-          type: integer
-          description: Number of locations
-        min:
-          type: number
-          format: double
-          description: Minutes
-        sale:
-          type: integer
-          description: Sale type (0=Wholesale, 1=Retail, 2=Consumed)
-        tran:
-          type: integer
-          description: Transaction type
-        serv:
-          type: integer
-          description: Service type
     CalcAdjRequest:
       type: object
       properties:
@@ -286,48 +267,6 @@ components:
         tid:
           type: integer
           description: Tax type ID
-    CalculationLine:
-      type: object
-      properties:
-        lineCode:
-          type: string
-        itemCode:
-          type: string
-        numberOfItems:
-          type: number
-          format: double
-        lineAmount:
-          type: number
-          format: double
-        itemDescription:
-          type: string
-        ncmCode:
-          type: string
-          description: NCM (Nomenclatura Comum do Mercosul) code
-        cstCode:
-          type: string
-          description: CST (Codigo de Situacao Tributaria) code
-        cfopCode:
-          type: string
-          description: CFOP (Codigo Fiscal de Operacoes e Prestacoes) code
-        originState:
-          type: string
-          description: Origin state code (UF)
-        destinationState:
-          type: string
-          description: Destination state code (UF)
-    CalculationResultLine:
-      type: object
-      properties:
-        lineCode:
-          type: string
-        taxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/BrazilTaxDetail'
-        totalTax:
-          type: number
-          format: double
     CalcTaxesResponse:
       type: object
       properties:
@@ -335,19 +274,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InvoiceResult'
-    CalcTaxesRequest:
-      type: object
-      required:
-      - cmpn
-      - inv
-      properties:
-        cmpn:
-          $ref: '#/components/schemas/CompanyData'
-        inv:
-          type: array
-          items:
-            $ref: '#/components/schemas/Invoice'
-          description: Array of invoices to calculate taxes for
     CalculationResponse:
       type: object
       properties:
@@ -362,24 +288,114 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CalculationResultLine'
-    CompanyData:
+    CalcTaxesRequest:
+      type: object
+      required:
+      - cmpn
+      - inv
+      properties:
+        cmpn:
+          $ref: '#/components/schemas/CompanyData'
+        inv:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+          description: Array of invoices to calculate taxes for
+    CommitRequest:
       type: object
       properties:
-        bscl:
+        doc:
+          type: string
+          description: Document code to commit
+        cmmt:
+          type: boolean
+          description: Commit flag (true to commit)
+    InvoiceResult:
+      type: object
+      properties:
+        doc:
+          type: string
+          description: Document code
+        itms:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemResult'
+    BrazilTaxDetail:
+      type: object
+      properties:
+        taxType:
+          type: string
+          enum:
+          - ICMS
+          - ICMS_ST
+          - IPI
+          - PIS
+          - COFINS
+          - ISS
+          - CSLL
+          - IRRF
+          - INSS
+          - IOF
+          description: Brazilian tax type
+        taxBase:
+          type: number
+          format: double
+        taxRate:
+          type: number
+          format: double
+        taxAmount:
+          type: number
+          format: double
+        exemptAmount:
+          type: number
+          format: double
+        cstCode:
+          type: string
+    LineItem:
+      type: object
+      properties:
+        ref:
+          type: string
+          description: Line item reference
+        from:
+          $ref: '#/components/schemas/Location'
+        to:
+          $ref: '#/components/schemas/Location'
+        chg:
+          type: number
+          format: double
+          description: Charge amount
+        line:
           type: integer
-          description: Business class (0=ILEC, 1=CLEC, etc.)
-        svcl:
+          description: Number of lines
+        loc:
           type: integer
-          description: Service class (0=Primary Local, 1=Primary Long Distance)
-        fclt:
-          type: boolean
-          description: Facilities-based indicator
-        frch:
-          type: boolean
-          description: Franchise indicator
-        reg:
-          type: boolean
-          description: Regulated indicator
+          description: Number of locations
+        min:
+          type: number
+          format: double
+          description: Minutes
+        sale:
+          type: integer
+          description: Sale type (0=Wholesale, 1=Retail, 2=Consumed)
+        tran:
+          type: integer
+          description: Transaction type
+        serv:
+          type: integer
+          description: Service type
+    CalculationResultLine:
+      type: object
+      properties:
+        lineCode:
+          type: string
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrazilTaxDetail'
+        totalTax:
+          type: number
+          format: double
     Location:
       type: object
       properties:
@@ -435,55 +451,61 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CalculationLine'
-    BrazilTaxDetail:
+    Invoice:
       type: object
       properties:
-        taxType:
+        doc:
           type: string
-          enum:
-          - ICMS
-          - ICMS_ST
-          - IPI
-          - PIS
-          - COFINS
-          - ISS
-          - CSLL
-          - IRRF
-          - INSS
-          - IOF
-          description: Brazilian tax type
-        taxBase:
-          type: number
-          format: double
-        taxRate:
-          type: number
-          format: double
-        taxAmount:
-          type: number
-          format: double
-        exemptAmount:
-          type: number
-          format: double
-        cstCode:
+          description: Document code
+        cmmt:
+          type: boolean
+          description: Commit indicator
+        bill:
+          $ref: '#/components/schemas/Location'
+        cust:
+          type: integer
+          description: Customer type
+        date:
           type: string
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+          format: date-time
+          description: Invoice date
+        itms:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          description: Line items on the invoice
+    CompanyData:
+      type: object
+      properties:
+        bscl:
+          type: integer
+          description: Business class (0=ILEC, 1=CLEC, etc.)
+        svcl:
+          type: integer
+          description: Service class (0=Primary Local, 1=Primary Long Distance)
+        fclt:
+          type: boolean
+          description: Facilities-based indicator
+        frch:
+          type: boolean
+          description: Franchise indicator
+        reg:
+          type: boolean
+          description: Regulated indicator
+    CommitResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: OAuth 2.0 bearer token
-externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+      description: Bearer token authentication
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Use your AFC SaasPro credentials for basic authentication
+x-refined-from:
+- avalara-avatax-brazil-openapi.yml
+- avalara-communications-openapi.yml

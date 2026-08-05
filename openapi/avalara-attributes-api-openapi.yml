@@ -1,8 +1,8 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Attributes API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
-  version: '1.0'
+  title: Avalara CertCapture Attributes API
+  description: The Avalara CertCapture RESTful API provides document management for tax-exempt sales, including managing exemption certificates, customer records, custom attributes, authentication tokens, and eCommerce token generation. It supports the full certificate lifecycle from creation through validation and expiry tracking.
+  version: '2.0'
   contact:
     name: Avalara Developer Relations
     url: https://developer.avalara.com/
@@ -12,12 +12,10 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
   termsOfService: https://legal.avalara.com/#siteterms
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
+- url: https://api.certcapture.com/v2
+  description: CertCapture API Production
 security:
-- bearerAuth: []
+- basicAuth: []
 tags:
 - name: Attributes
   description: Manage certificate attributes and custom fields
@@ -51,10 +49,10 @@ components:
         isSystemCode:
           type: boolean
   securitySchemes:
-    bearerAuth:
+    basicAuth:
       type: http
-      scheme: bearer
-      description: OAuth 2.0 bearer token
+      scheme: basic
+      description: CertCapture API credentials
 externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+  description: CertCapture API Documentation
+  url: https://developer.avalara.com/api-reference/CertCapture/v2/

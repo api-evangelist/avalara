@@ -1,8 +1,8 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms HS Codes API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
-  version: '1.0'
+  title: Avalara Item Classification HS Codes API
+  description: The Avalara Item Classification API allows businesses subscribed to the Item Classification service to submit products for automated classification, retrieve corresponding HS Codes, and manage classification requests. It supports both storage and non-storage subscription models for product classification across international trade jurisdictions.
+  version: '2.0'
   contact:
     name: Avalara Developer Relations
     url: https://developer.avalara.com/
@@ -12,10 +12,10 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
   termsOfService: https://legal.avalara.com/#siteterms
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
+- url: https://api.avalara.com/classification/v2
+  description: Item Classification API Production
+- url: https://api.sbx.avalara.com/classification/v2
+  description: Item Classification API Sandbox
 security:
 - bearerAuth: []
 tags:
@@ -70,6 +70,13 @@ paths:
                 $ref: '#/components/schemas/HSCodeDetail'
 components:
   schemas:
+    ClassificationResultList:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationResult'
     HSCodeDetail:
       type: object
       properties:
@@ -87,13 +94,6 @@ components:
           type: string
         unitOfMeasure:
           type: string
-    ClassificationResultList:
-      type: object
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClassificationResult'
     ClassificationResult:
       type: object
       properties:
@@ -118,5 +118,5 @@ components:
       scheme: bearer
       description: OAuth 2.0 bearer token
 externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+  description: Item Classification API Documentation
+  url: https://developer.avalara.com/api-reference/item-classification/v2/

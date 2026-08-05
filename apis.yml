@@ -2778,6 +2778,24 @@ apis:
     url: https://developer.avalara.com/api-reference/hscodeclassification/hscodeclassification/
   - type: Documentation
     url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+- aid: avalara:avalara-age-verification-api
+  name: Avalara Age Verification API
+  description: The Age Verification API from Avalara — 1 operation(s) for age verification.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Age Verification
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-age-verification-api-openapi.yml
+- aid: avalara:avalara-shipping-verification-api
+  name: Avalara Shipping Verification API
+  description: The Shipping Verification API from Avalara — 3 operation(s) for shipping verification.
+  humanURL: ' https://developer.avalara.com/'
+  tags:
+  - Shipping Verification
+  properties:
+  - type: OpenAPI
+    url: openapi/avalara-shipping-verification-api-openapi.yml
 name: Avalara
 tags:
 - Taxes
@@ -2926,14 +2944,17 @@ common:
   description: Become a part of the growing developer community building on the Avalara
     developer platform where you can get help, provide feedback, brainstorm ideas,
     make connections, and get inspired.
-- url: https://developer.avalara.com/blogs/
-  name: Developer Blog | Avalara Developer
+- url: https://www.avalara.com/blog/en/north-america.html
+  name: Avalara Blog
   type: Blog
-  description: 'null'
-- url: https://developer.avalara.com/resources/support/
-  name: AvaTax API Support | Avalara Developer
+  description: Avalara's published blog. The developer blog at developer.avalara.com/blogs/
+    returns 404 (verified 2026-08-05) although Avalara's own llms.txt still links it.
+- url: https://help.avalara.com
+  name: Avalara Help Center
   type: Support
-  description: 'null'
+  description: Support channel named by Avalara's llms.txt; resolves to knowledge.avalara.com.
+    The previous pointer, developer.avalara.com/resources/support/, returns 404 (verified
+    2026-08-05).
 - url: https://knowledge.avalara.com/bundle/xti1670300535545/page/contact_avalara_support.html
   name: Contact Avalara Support
   type: Contact
@@ -3054,14 +3075,22 @@ common:
 - url: https://www.postman.com/api-evangelist/avalara/overview
   name: Postman Workspace
   type: PostmanWorkspace
-- url: https://github.com/Avalara
-  name: GitHub Organization
+- url: https://github.com/avadev
+  name: GitHub Organization (avadev)
   type: GitHubOrganization
-- url: https://github.com/Avalara/Swagger
-  name: Swagger
-  type: Swagger
-- url: https://developer.avalara.com/get-started/
+  description: Avalara's active developer organization — 16 repositories including seven
+    first-party SDKs updated within the last week, and an MCP repository. The
+    github.com/Avalara organization holds seven older repositories and no specification
+    repository (verified 2026-08-05).
+- url: https://github.com/Avalara
+  name: GitHub Organization (Avalara)
+  type: GitHubOrganization
+- url: https://developer.avalara.com/avatax/dev-guide/
+  name: AvaTax Developer Implementation Guide
   type: GettingStarted
+  description: The guide Avalara's own AvaTax Postman collection directs integrators to.
+    The previous pointer, developer.avalara.com/get-started/, returns 404 (verified
+    2026-08-05).
 - url: https://status.avalara.com/
   name: Avalara Status
   type: StatusPage

@@ -1,28 +1,24 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Addresses API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  title: Avalara Addresses API
   version: '1.0'
-  contact:
-    name: Avalara Developer Relations
-    url: https://developer.avalara.com/
-    email: developer.relations@avalara.com
-  license:
-    name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
-  termsOfService: https://legal.avalara.com/#siteterms
+  description: 'Operations tagged Addresses across 2 of this provider''s published API definitions: avalara-avatax-rest-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
-security:
-- bearerAuth: []
+- url: https://rest.avatax.com
+  description: AvaTax Production
+- url: https://sandbox-rest.avatax.com
+  description: AvaTax Sandbox
+- url: http://{{baseurl}}
 tags:
 - name: Addresses
   description: Validate and resolve addresses for tax jurisdiction determination
 paths:
   /api/v2/addresses/resolve:
+    servers:
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
     post:
       operationId: resolveAddress
       summary: Avalara Resolve and Validate an Address
@@ -42,11 +38,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AddressResolutionModel'
+      security:
+      - basicAuth: []
+      - bearerAuth: []
     get:
       tags:
       - Addresses
       summary: Avalara ResolveAddress
-      description: "Resolve an address against Avalara's address-validation system.  If the address can be resolved, this API\r\nprovides the latitude and longitude of the resolved location.  The value 'resolutionQuality' can be used\r\nto identify how closely this address can be located.  If the address cannot be clearly located, use the\r\n'messages' structure to learn more about problems with this address.\r\nThis is the same API as the POST /api/v2/addresses/resolve endpoint.\r\nBoth verbs are supported to provide for flexible implementation.\r\n            \r\nIn order to get any evaluation for an address, please provide at least one of the following fields/pairs:\r\n1. postal code\r\n2. line1 + city + region\r\n3. line1 + postal code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AutoAddress.\n"
+      description: "Resolve an address against Avalara's address-validation system.  If the address can be resolved, this API\nprovides the latitude and longitude of the resolved location.  The value 'resolutionQuality' can be used\nto identify how closely this address can be located.  If the address cannot be clearly located, use the\n'messages' structure to learn more about problems with this address.\nThis is the same API as the POST /api/v2/addresses/resolve endpoint.\nBoth verbs are supported to provide for flexible implementation.\n            \nIn order to get any evaluation for an address, please provide at least one of the following fields/pairs:\n1. postal code\n2. line1 + city + region\n3. line1 + postal code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AutoAddress.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -59,67 +58,11 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
+      - bearerAuth: []
 components:
   schemas:
-    AddressValidationInfo:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type: string
-        line3:
-          type: string
-        city:
-          type: string
-        region:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        textCase:
-          type: string
-          enum:
-          - Default
-          - Upper
-          - Mixed
-    AddressResolutionModel:
-      type: object
-      properties:
-        address:
-          $ref: '#/components/schemas/AddressInfo'
-        validatedAddresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/AddressInfo'
-        coordinates:
-          type: object
-          properties:
-            latitude:
-              type: number
-              format: double
-            longitude:
-              type: number
-              format: double
-        resolutionQuality:
-          type: string
-          enum:
-          - NotCoded
-          - External
-          - CountryCentroid
-          - RegionCentroid
-          - PartialCentroid
-          - PostalCentroidGood
-          - PostalCentroidBetter
-          - PostalCentroidBest
-          - Intersection
-          - Interpolated
-          - Rooftop
-        taxAuthorities:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxAuthorityInfo'
     AddressInfo:
       type: object
       properties:
@@ -161,11 +104,77 @@ components:
           type: string
         signatureCode:
           type: string
+    AddressResolutionModel:
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/AddressInfo'
+        validatedAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressInfo'
+        coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+              format: double
+            longitude:
+              type: number
+              format: double
+        resolutionQuality:
+          type: string
+          enum:
+          - NotCoded
+          - External
+          - CountryCentroid
+          - RegionCentroid
+          - PartialCentroid
+          - PostalCentroidGood
+          - PostalCentroidBetter
+          - PostalCentroidBest
+          - Intersection
+          - Interpolated
+          - Rooftop
+        taxAuthorities:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxAuthorityInfo'
+    AddressValidationInfo:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        line3:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        textCase:
+          type: string
+          enum:
+          - Default
+          - Upper
+          - Mixed
   securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Use your AvaTax username/password or accountId/licenseKey as basic auth credentials
     bearerAuth:
       type: http
       scheme: bearer
       description: OAuth 2.0 bearer token
 externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+  description: AvaTax REST API v2 Documentation
+  url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+x-refined-from:
+- avalara-avatax-rest-openapi.yml
+- avatax-apis-openapi.yml

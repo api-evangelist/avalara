@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Orders API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  title: Avalara Business Orders API
+  description: The Avalara Business API provides public APIs for doing business with Avalara, including registering customer accounts and creating sales orders for Avalara services through partner integrations.
   version: '1.0'
   contact:
     name: Avalara Developer Relations
@@ -12,10 +12,8 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
   termsOfService: https://legal.avalara.com/#siteterms
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
+- url: https://api.avalara.com/business/v1
+  description: Business API Production
 security:
 - bearerAuth: []
 tags:
@@ -63,6 +61,23 @@ paths:
                 $ref: '#/components/schemas/OrderResponse'
 components:
   schemas:
+    OrderResponse:
+      type: object
+      properties:
+        orderId:
+          type: string
+        accountId:
+          type: string
+        status:
+          type: string
+          enum:
+          - Pending
+          - Confirmed
+          - Completed
+          - Cancelled
+        createdDate:
+          type: string
+          format: date-time
     SalesOrder:
       type: object
       required:
@@ -82,28 +97,10 @@ components:
                 type: integer
         campaignId:
           type: string
-    OrderResponse:
-      type: object
-      properties:
-        orderId:
-          type: string
-        accountId:
-          type: string
-        status:
-          type: string
-          enum:
-          - Pending
-          - Confirmed
-          - Completed
-          - Cancelled
-        createdDate:
-          type: string
-          format: date-time
   securitySchemes:
     bearerAuth:
       type: http
       scheme: bearer
-      description: OAuth 2.0 bearer token
 externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+  description: Avalara Business API Documentation
+  url: https://developer.avalara.com/api-reference/business/v1/

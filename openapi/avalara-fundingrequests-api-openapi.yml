@@ -1,23 +1,12 @@
-openapi: 3.1.0
+openapi: 3.0.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms FundingRequests API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
-  version: '1.0'
-  contact:
-    name: Avalara Developer Relations
-    url: https://developer.avalara.com/
-    email: developer.relations@avalara.com
-  license:
-    name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
-  termsOfService: https://legal.avalara.com/#siteterms
+  title: Avalara AvaTax FundingRequests API
+  description: "Welcome to the AvaTax API Postman Collection! \n                \nThis collection provides a REST interface to Avalara's enterprise tax service, AvaTax. You can use this collection to interact with the AvaTax APIs while building your integration. \n\nWhile using this collection, we recommend following along with our Developer Implementation Guide: https://developer.avalara.com/avatax/dev-guide/   \n\nAPI requests are grouped into folders to help you navigate through the collection easily. Each request includes a description of the operation and its associated URL, method, headers, and example request body (if applicable). \n\nThe collection uses Postman environment variables for the API base URL and credentials, making it easy to switch between the sandbox and production environments.\n\nTo get started, ensure you have the necessary credentials. Then, update the 'username' and 'password' variables in the 'Authorization' or 'Variables' section with your credentials if you prefer username and password authentication. Alternatively, you can use the 'account_id' and 'license_key' variables for authentication using an account ID and license key.\n\nWe recommend starting with the Ping API, located within the Utilities folder, to test your connectivity and ensure your authentication credentials are valid. The Ping API is a simple way to check if you can successfully communicate with AvaTax.\n\nCollection Variables:\n- Base URL: The base URL for the API. By default, it is set to the sandbox URL - https://sandbox-rest.avatax.com. \n    - Change this variable to switch between sandbox and production environments:\n        - Sandbox URL: https://sandbox-rest.avatax.com\n\t\t- Production URL: https://rest.avatax.com\n- Username: If you are using username and password authentication, enter your username for AvaTax.\n- Password: If you are using username and password authentication, enter your password for AvaTax.\n- Account ID: If you are using account ID and license key authentication, enter your AvaTax account ID. \n    - Be sure to also replace the username variable in the authorization tab with account_id.\n- License Key: If you are using account ID and license key authentication, enter your AvaTax license key.\n    - Be sure to also replace the password variable in the authorization tab with license_key.\n\nHappy testing with AvaTax APIs!"
+  version: 1.0.0
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
+- url: http://{{baseurl}}
 security:
-- bearerAuth: []
+- basicAuth: []
 tags:
 - name: FundingRequests
 paths:
@@ -26,7 +15,39 @@ paths:
       tags:
       - FundingRequests
       summary: Avalara ActivateFundingRequest
-      description: "This API is available by invitation only.\r\nCompanies that use the Avalara Managed Returns or the SST Certified Service Provider services are\r\nrequired to setup their funding configuration before Avalara can begin filing tax returns on their\r\nbehalf.\r\nFunding configuration for each company is set up by submitting a funding setup request, which can\r\nbe sent either via email or via an embedded HTML widget.\r\nWhen the funding configuration is submitted to Avalara, it will be reviewed by treasury team members\r\nbefore approval.\r\nThis API returns back the actual javascript code to insert into your application to render the\r\nJavaScript funding setup widget inline.\r\nUse the 'methodReturn.javaScript' return value to insert this widget into your HTML page.\r\nThis API requires a subscription to Avalara Managed Returns or SST Certified Service Provider.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n* This API depends on the following active services:*Returns* (at least one of):  Mrs, MRSComplianceManager, AvaTaxCsp.*Firm Managed* (for accounts managed by a firm):  ARA, ARAManaged.\n"
+      description: 'This API is available by invitation only.
+
+        Companies that use the Avalara Managed Returns or the SST Certified Service Provider services are
+
+        required to setup their funding configuration before Avalara can begin filing tax returns on their
+
+        behalf.
+
+        Funding configuration for each company is set up by submitting a funding setup request, which can
+
+        be sent either via email or via an embedded HTML widget.
+
+        When the funding configuration is submitted to Avalara, it will be reviewed by treasury team members
+
+        before approval.
+
+        This API returns back the actual javascript code to insert into your application to render the
+
+        JavaScript funding setup widget inline.
+
+        Use the ''methodReturn.javaScript'' return value to insert this widget into your HTML page.
+
+        This API requires a subscription to Avalara Managed Returns or SST Certified Service Provider.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.
+
+        * This API depends on the following active services:*Returns* (at least one of):  Mrs, MRSComplianceManager, AvaTaxCsp.*Firm Managed* (for accounts managed by a firm):  ARA, ARAManaged.
+
+        '
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -49,7 +70,35 @@ paths:
       tags:
       - FundingRequests
       summary: Avalara FundingRequestStatus
-      description: "This API is available by invitation only.\r\nCompanies that use the Avalara Managed Returns or the SST Certified Service Provider services are\r\nrequired to setup their funding configuration before Avalara can begin filing tax returns on their\r\nbehalf.\r\nFunding configuration for each company is set up by submitting a funding setup request, which can\r\nbe sent either via email or via an embedded HTML widget.\r\nWhen the funding configuration is submitted to Avalara, it will be reviewed by treasury team members\r\nbefore approval.\r\nThis API checks the status on an existing funding request.\r\nThis API requires a subscription to Avalara Managed Returns or SST Certified Service Provider.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Returns* (at least one of):  Mrs, MRSComplianceManager, AvaTaxCsp.*Firm Managed* (for accounts managed by a firm):  ARA, ARAManaged.\n"
+      description: 'This API is available by invitation only.
+
+        Companies that use the Avalara Managed Returns or the SST Certified Service Provider services are
+
+        required to setup their funding configuration before Avalara can begin filing tax returns on their
+
+        behalf.
+
+        Funding configuration for each company is set up by submitting a funding setup request, which can
+
+        be sent either via email or via an embedded HTML widget.
+
+        When the funding configuration is submitted to Avalara, it will be reviewed by treasury team members
+
+        before approval.
+
+        This API checks the status on an existing funding request.
+
+        This API requires a subscription to Avalara Managed Returns or SST Certified Service Provider.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.
+
+        * This API depends on the following active services:*Returns* (at least one of):  Mrs, MRSComplianceManager, AvaTaxCsp.*Firm Managed* (for accounts managed by a firm):  ARA, ARAManaged.
+
+        '
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -69,10 +118,6 @@ paths:
             application/json: {}
 components:
   securitySchemes:
-    bearerAuth:
+    basicAuth:
       type: http
-      scheme: bearer
-      description: OAuth 2.0 bearer token
-externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+      scheme: basic

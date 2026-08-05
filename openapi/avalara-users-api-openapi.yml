@@ -1,23 +1,12 @@
-openapi: 3.1.0
+openapi: 3.0.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Users API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
-  version: '1.0'
-  contact:
-    name: Avalara Developer Relations
-    url: https://developer.avalara.com/
-    email: developer.relations@avalara.com
-  license:
-    name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
-  termsOfService: https://legal.avalara.com/#siteterms
+  title: Avalara AvaTax Users API
+  description: "Welcome to the AvaTax API Postman Collection! \n                \nThis collection provides a REST interface to Avalara's enterprise tax service, AvaTax. You can use this collection to interact with the AvaTax APIs while building your integration. \n\nWhile using this collection, we recommend following along with our Developer Implementation Guide: https://developer.avalara.com/avatax/dev-guide/   \n\nAPI requests are grouped into folders to help you navigate through the collection easily. Each request includes a description of the operation and its associated URL, method, headers, and example request body (if applicable). \n\nThe collection uses Postman environment variables for the API base URL and credentials, making it easy to switch between the sandbox and production environments.\n\nTo get started, ensure you have the necessary credentials. Then, update the 'username' and 'password' variables in the 'Authorization' or 'Variables' section with your credentials if you prefer username and password authentication. Alternatively, you can use the 'account_id' and 'license_key' variables for authentication using an account ID and license key.\n\nWe recommend starting with the Ping API, located within the Utilities folder, to test your connectivity and ensure your authentication credentials are valid. The Ping API is a simple way to check if you can successfully communicate with AvaTax.\n\nCollection Variables:\n- Base URL: The base URL for the API. By default, it is set to the sandbox URL - https://sandbox-rest.avatax.com. \n    - Change this variable to switch between sandbox and production environments:\n        - Sandbox URL: https://sandbox-rest.avatax.com\n\t\t- Production URL: https://rest.avatax.com\n- Username: If you are using username and password authentication, enter your username for AvaTax.\n- Password: If you are using username and password authentication, enter your password for AvaTax.\n- Account ID: If you are using account ID and license key authentication, enter your AvaTax account ID. \n    - Be sure to also replace the username variable in the authorization tab with account_id.\n- License Key: If you are using account ID and license key authentication, enter your AvaTax license key.\n    - Be sure to also replace the password variable in the authorization tab with license_key.\n\nHappy testing with AvaTax APIs!"
+  version: 1.0.0
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
+- url: http://{{baseurl}}
 security:
-- bearerAuth: []
+- basicAuth: []
 tags:
 - name: Users
 paths:
@@ -26,7 +15,7 @@ paths:
       tags:
       - Users
       summary: Avalara ChangePassword
-      description: "Allows a user to change their password via an API call.\r\n            \r\nThis API allows an authenticated user to change their password via an API call.  This feature is only available\r\nfor accounts that do not use SAML integrated password validation.\r\n            \r\nThis API only allows the currently authenticated user to change their password; it cannot be used to apply to a\r\ndifferent user than the one authenticating the current API call.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPTester, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: "Allows a user to change their password via an API call.\n            \nThis API allows an authenticated user to change their password via an API call.  This feature is only available\nfor accounts that do not use SAML integrated password validation.\n            \nThis API only allows the currently authenticated user to change their password; it cannot be used to apply to a\ndifferent user than the one authenticating the current API call.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPTester, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
       requestBody:
         content:
           application/json:
@@ -57,7 +46,7 @@ paths:
       tags:
       - Users
       summary: Avalara CreateUsers
-      description: "Create one or more new user objects attached to this account.\r\n            \r\nA user represents one person with access privileges to make API calls and work with a specific account.\r\n            \r\nUsers who are account administrators or company users are permitted to create user records to invite\r\nadditional team members to work with AvaTax.\r\n            \r\nA newly created user will receive an email inviting them to create their password.  This means that you\r\nmust provide a valid email address for all user accounts created.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPTester, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: "Create one or more new user objects attached to this account.\n            \nA user represents one person with access privileges to make API calls and work with a specific account.\n            \nUsers who are account administrators or company users are permitted to create user records to invite\nadditional team members to work with AvaTax.\n            \nA newly created user will receive an email inviting them to create their password.  This means that you\nmust provide a valid email address for all user accounts created.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPTester, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
       requestBody:
         content:
           application/json:
@@ -102,7 +91,7 @@ paths:
       tags:
       - Users
       summary: Avalara ListUsersByAccount
-      description: "List all user objects attached to this account.\r\nA user represents one person with access privileges to make API calls and work with a specific account.\r\n            \r\nWhen an API is called using a legacy AvaTax License Key, the API log entry is recorded as being performed by a special user attached to that license key.\r\nBy default, this API will not return a listing of license key users.  Users with registrar-level security may call this API to list license key users.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\r\n            \r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* FetchDeleted\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: "List all user objects attached to this account.\nA user represents one person with access privileges to make API calls and work with a specific account.\n            \nWhen an API is called using a legacy AvaTax License Key, the API log entry is recorded as being performed by a special user attached to that license key.\nBy default, this API will not return a listing of license key users.  Users with registrar-level security may call this API to list license key users.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* FetchDeleted\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -125,7 +114,7 @@ paths:
       tags:
       - Users
       summary: Avalara DeleteUser
-      description: "Mark the user object identified by this URL as deleted.\r\n            \r\nThis API is available for use by account and company administrators only.\r\n            \r\nAccount and company administrators may only delete users within the appropriate organizations\r\nthey control.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, Compliance Root User, CSPTester, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TreasuryAdmin.\n"
+      description: "Mark the user object identified by this URL as deleted.\n            \nThis API is available for use by account and company administrators only.\n            \nAccount and company administrators may only delete users within the appropriate organizations\nthey control.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, Compliance Root User, CSPTester, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TreasuryAdmin.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -152,7 +141,7 @@ paths:
       tags:
       - Users
       summary: Avalara GetUser
-      description: "Get the user object identified by this URL.\r\nA user represents one person with access privileges to make API calls and work with a specific account.\r\n            \r\n You may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* FetchDeleted\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: "Get the user object identified by this URL.\nA user represents one person with access privileges to make API calls and work with a specific account.\n            \n You may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* FetchDeleted\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -179,7 +168,21 @@ paths:
       tags:
       - Users
       summary: Avalara UpdateUser
-      description: "Replace the existing user object at this URL with an updated object.\r\nA user represents one person with access privileges to make API calls and work with a specific account.\r\nAll data from the existing object will be replaced with data in the object you PUT.\r\nTo set a field's value to null, you may either set its value to null or omit that field from the object you post.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPTester, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: 'Replace the existing user object at this URL with an updated object.
+
+        A user represents one person with access privileges to make API calls and work with a specific account.
+
+        All data from the existing object will be replaced with data in the object you PUT.
+
+        To set a field''s value to null, you may either set its value to null or omit that field from the object you post.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPTester, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.
+
+        '
       requestBody:
         content:
           application/json:
@@ -230,7 +233,7 @@ paths:
       tags:
       - Users
       summary: Avalara GetUserEntitlements
-      description: "Return a list of all entitlements to which this user has rights to access.\r\nEntitlements are a list of specified API calls the user is permitted to make, a list of identifier numbers for companies the user is\r\nallowed to use, and an access level identifier that indicates what types of access roles the user is allowed to use.\r\nThis API call is intended to provide a validation endpoint to determine, before making an API call, whether this call is likely to succeed.\r\nFor example, if user 567 within account 999 is attempting to create a new child company underneath company 12345, you could preview the user's\r\nentitlements and predict whether this call would succeed:\r\n            \r\n* Retrieve entitlements by calling '/api/v2/accounts/999/users/567/entitlements' .  If the call fails, you do not have accurate\r\n    credentials for this user.\r\n* If the 'accessLevel' field within entitlements is 'None', the call will fail.\r\n* If the 'accessLevel' field within entitlements is 'SingleCompany' or 'SingleAccount', the call will fail if the companies\r\n    table does not contain the ID number 12345.\r\n* If the 'permissions' array within entitlements does not contain 'AccountSvc.CompanySave', the call will fail.\r\n            \r\nFor a full list of defined permissions, please use '/api/v2/definitions/permissions' .\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: "Return a list of all entitlements to which this user has rights to access.\nEntitlements are a list of specified API calls the user is permitted to make, a list of identifier numbers for companies the user is\nallowed to use, and an access level identifier that indicates what types of access roles the user is allowed to use.\nThis API call is intended to provide a validation endpoint to determine, before making an API call, whether this call is likely to succeed.\nFor example, if user 567 within account 999 is attempting to create a new child company underneath company 12345, you could preview the user's\nentitlements and predict whether this call would succeed:\n            \n* Retrieve entitlements by calling '/api/v2/accounts/999/users/567/entitlements' .  If the call fails, you do not have accurate\n    credentials for this user.\n* If the 'accessLevel' field within entitlements is 'None', the call will fail.\n* If the 'accessLevel' field within entitlements is 'SingleCompany' or 'SingleAccount', the call will fail if the companies\n    table does not contain the ID number 12345.\n* If the 'permissions' array within entitlements does not contain 'AccountSvc.CompanySave', the call will fail.\n            \nFor a full list of defined permissions, please use '/api/v2/definitions/permissions' .\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -258,7 +261,7 @@ paths:
       tags:
       - Users
       summary: Avalara QueryUsers
-      description: "Get multiple user objects across all accounts.\r\n            \r\nA user represents one person or set of credentials with access privileges to make API calls and work with a specific account.  A user can be authenticated\r\nvia either username / password authentication, an OpenID / OAuth Bearer Token, or a legacy AvaTax License Key.\r\n            \r\nWhen an API is called using a legacy AvaTax License Key, the API log entry is recorded as being performed by a special user attached to that license key.\r\nBy default, this API will not return a listing of license key users.  Users with registrar-level security may call this API to list license key users.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\r\n            \r\nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\r\n            \r\n* FetchDeleted\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: "Get multiple user objects across all accounts.\n            \nA user represents one person or set of credentials with access privileges to make API calls and work with a specific account.  A user can be authenticated\nvia either username / password authentication, an OpenID / OAuth Bearer Token, or a legacy AvaTax License Key.\n            \nWhen an API is called using a legacy AvaTax License Key, the API log entry is recorded as being performed by a special user attached to that license key.\nBy default, this API will not return a listing of license key users.  Users with registrar-level security may call this API to list license key users.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* FetchDeleted\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, SystemOperator, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -273,10 +276,6 @@ paths:
             application/json: {}
 components:
   securitySchemes:
-    bearerAuth:
+    basicAuth:
       type: http
-      scheme: bearer
-      description: OAuth 2.0 bearer token
-externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+      scheme: basic

@@ -1,28 +1,24 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms TaxRules API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
+  title: Avalara TaxRules API
   version: '1.0'
-  contact:
-    name: Avalara Developer Relations
-    url: https://developer.avalara.com/
-    email: developer.relations@avalara.com
-  license:
-    name: Apache 2.0
-    url: https://www.apache.org/licenses/LICENSE-2.0
-  termsOfService: https://legal.avalara.com/#siteterms
+  description: 'Operations tagged TaxRules across 2 of this provider''s published API definitions: avalara-avatax-rest-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
-security:
-- bearerAuth: []
+- url: https://rest.avatax.com
+  description: AvaTax Production
+- url: https://sandbox-rest.avatax.com
+  description: AvaTax Sandbox
+- url: http://{{baseurl}}
 tags:
 - name: TaxRules
   description: Manage tax rules and overrides for companies
 paths:
   /api/v2/companies/{companyId}/taxrules:
+    servers:
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
     get:
       operationId: listTaxRules
       summary: Avalara List Tax Rules for a Company
@@ -36,6 +32,9 @@ paths:
       responses:
         '200':
           description: List of tax rules
+      security:
+      - basicAuth: []
+      - bearerAuth: []
     post:
       operationId: createTaxRules
       summary: Avalara Create Tax Rules for a Company
@@ -54,12 +53,17 @@ paths:
       responses:
         '201':
           description: Tax rules created
+      security:
+      - basicAuth: []
+      - bearerAuth: []
   /api/v2/countryCoefficients:
+    servers:
+    - url: http://{{baseurl}}
     put:
       tags:
       - TaxRules
       summary: Avalara CreateCountryCoefficients
-      description: "Create one or more Country Coefficients for particular country.\r\n            \r\nWe would like to use country coefficients during Cross-Border calculations to slightly increase or decrease\r\na calculation for a line based on the tax-subtype and Country of destination for a transaction.\r\n            \r\nThis will allow AvaTax to minimize the variance caused between actual transaction taken place on ground Vs Tax\r\nCalculated by AvaTax.\r\n            \r\nMake sure to use the same API to update the country coefficients that is already present in the database.\r\nThis will make existing entry for specific country as ineffective for that date. And new entry created will get applicable\r\nto the newer transactions."
+      description: "Create one or more Country Coefficients for particular country.\n            \nWe would like to use country coefficients during Cross-Border calculations to slightly increase or decrease\na calculation for a line based on the tax-subtype and Country of destination for a transaction.\n            \nThis will allow AvaTax to minimize the variance caused between actual transaction taken place on ground Vs Tax\nCalculated by AvaTax.\n            \nMake sure to use the same API to update the country coefficients that is already present in the database.\nThis will make existing entry for specific country as ineffective for that date. And new entry created will get applicable\nto the newer transactions."
       requestBody:
         content:
           application/json:
@@ -94,12 +98,16 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
   /api/v2/companies/{companyId}/taxrules/{id}:
+    servers:
+    - url: http://{{baseurl}}
     delete:
       tags:
       - TaxRules
       summary: Avalara DeleteTaxRule
-      description: "Mark the custom tax rule identified by this URL as deleted.\r\n            \r\nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\r\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\r\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\r\nwith the transaction.\r\n            \r\nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\r\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\r\ncustom tax rules to redefine the behavior for your company or item.\r\n            \r\nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\r\nauditor, legal representative, and accounting team.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      description: "Mark the custom tax rule identified by this URL as deleted.\n            \nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\nwith the transaction.\n            \nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\ncustom tax rules to redefine the behavior for your company or item.\n            \nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\nauditor, legal representative, and accounting team.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -122,11 +130,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
     get:
       tags:
       - TaxRules
       summary: Avalara GetTaxRule
-      description: "Get the taxrule object identified by this URL.\r\n            \r\nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\r\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\r\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\r\nwith the transaction.\r\n            \r\nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\r\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\r\ncustom tax rules to redefine the behavior for your company or item.\r\n            \r\nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\r\nauditor, legal representative, and accounting team.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: "Get the taxrule object identified by this URL.\n            \nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\nwith the transaction.\n            \nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\ncustom tax rules to redefine the behavior for your company or item.\n            \nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\nauditor, legal representative, and accounting team.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -149,11 +159,13 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
     put:
       tags:
       - TaxRules
       summary: Avalara UpdateTaxRule
-      description: "Replace the existing custom tax rule object at this URL with an updated object.\r\n            \r\nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\r\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\r\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\r\nwith the transaction.\r\n            \r\nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\r\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\r\ncustom tax rules to redefine the behavior for your company or item.\r\n            \r\nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\r\nauditor, legal representative, and accounting team.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      description: "Replace the existing custom tax rule object at this URL with an updated object.\n            \nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\nwith the transaction.\n            \nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\ncustom tax rules to redefine the behavior for your company or item.\n            \nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\nauditor, legal representative, and accounting team.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
       requestBody:
         content:
           application/json:
@@ -209,12 +221,16 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
   /api/v2/{country}/CountryCoefficients:
+    servers:
+    - url: http://{{baseurl}}
     get:
       tags:
       - TaxRules
       summary: Avalara ListCountryCoefficients
-      description: "Retrieve all or any specific records of Country Coefficients based on the filters(optional) for specific country.\r\n \r\n Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\n Paginate your results using the `$top`, `$skip`, and `$orderby` parameters."
+      description: "Retrieve all or any specific records of Country Coefficients based on the filters(optional) for specific country.\n \n Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\n Paginate your results using the `$top`, `$skip`, and `$orderby` parameters."
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -232,12 +248,16 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
   /api/v2/taxrules:
+    servers:
+    - url: http://{{baseurl}}
     get:
       tags:
       - TaxRules
       summary: Avalara QueryTaxRules
-      description: "Get multiple taxrule objects across all companies.\r\n            \r\nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\r\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\r\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\r\nwith the transaction.\r\n            \r\nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\r\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\r\ncustom tax rules to redefine the behavior for your company or item.\r\n            \r\nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\r\nauditor, legal representative, and accounting team.\r\n            \r\nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\r\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: "Get multiple taxrule objects across all companies.\n            \nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\nwith the transaction.\n            \nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\ncustom tax rules to redefine the behavior for your company or item.\n            \nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\nauditor, legal representative, and accounting team.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -250,15 +270,10 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      security:
+      - basicAuth: []
 components:
   parameters:
-    companyId:
-      name: companyId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The numeric ID of the company
     top:
       name: $top
       in: query
@@ -272,6 +287,13 @@ components:
       schema:
         type: string
       description: OData filter expression for result filtering
+    companyId:
+      name: companyId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The numeric ID of the company
     skip:
       name: $skip
       in: query
@@ -306,10 +328,17 @@ components:
         isAllJuris:
           type: boolean
   securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Use your AvaTax username/password or accountId/licenseKey as basic auth credentials
     bearerAuth:
       type: http
       scheme: bearer
       description: OAuth 2.0 bearer token
 externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+  description: AvaTax REST API v2 Documentation
+  url: https://developer.avalara.com/api-reference/avatax/rest/v2/
+x-refined-from:
+- avalara-avatax-rest-openapi.yml
+- avatax-apis-openapi.yml

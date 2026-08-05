@@ -1,8 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Avalara 1099 & W-9 1099 Forms Authentication API
-  description: The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.
-  version: '1.0'
+  title: Avalara Authentication API
   contact:
     name: Avalara Developer Relations
     url: https://developer.avalara.com/
@@ -11,18 +9,21 @@ info:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
   termsOfService: https://legal.avalara.com/#siteterms
+  version: '1.0'
+  description: 'Operations tagged Authentication across 2 of this provider''s published API definitions: avalara-certcapture-openapi.yml, avalara-portal-oauth-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: https://api.avalara.com/1099/v1
-  description: 1099 API Production
-- url: https://api.sbx.avalara.com/1099/v1
-  description: 1099 API Sandbox
-security:
-- bearerAuth: []
+- url: https://api.certcapture.com/v2
+  description: CertCapture API Production
+- url: https://identity.avalara.com
+  description: Avalara Identity Production
 tags:
 - name: Authentication
   description: Token management and authentication
 paths:
   /auth/token:
+    servers:
+    - url: https://api.certcapture.com/v2
+      description: CertCapture API Production
     post:
       operationId: getAuthToken
       summary: Avalara Get Authentication Token
@@ -58,6 +59,9 @@ paths:
                     type: string
                     format: date-time
   /connect/token:
+    servers:
+    - url: https://identity.avalara.com
+      description: Avalara Identity Production
     post:
       operationId: getToken
       summary: Avalara Obtain an Access Token
@@ -120,6 +124,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/OAuthError'
   /connect/authorize:
+    servers:
+    - url: https://identity.avalara.com
+      description: Avalara Identity Production
     get:
       operationId: authorize
       summary: Avalara Authorization Endpoint
@@ -156,6 +163,9 @@ paths:
         '302':
           description: Redirect to login page
   /connect/revocation:
+    servers:
+    - url: https://identity.avalara.com
+      description: Avalara Identity Production
     post:
       operationId: revokeToken
       summary: Avalara Revoke a Token
@@ -221,10 +231,10 @@ components:
           type: string
           description: Refresh token (if applicable)
   securitySchemes:
-    bearerAuth:
+    basicAuth:
       type: http
-      scheme: bearer
-      description: OAuth 2.0 bearer token
-externalDocs:
-  description: 1099 & W-9 API Documentation
-  url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
+      scheme: basic
+      description: CertCapture API credentials
+x-refined-from:
+- avalara-certcapture-openapi.yml
+- avalara-portal-oauth-openapi.yml
