@@ -7,8 +7,6 @@ apis:
   - Taxes
   humanURL: ' https://developer.avalara.com/'
   properties:
-  - url: ' https://developer.avalara.com/'
-    type: Documentation
   - url: graphql/avalara-graphql.md
     type: GraphQL
   description: >-
