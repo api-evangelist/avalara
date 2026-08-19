@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Communications Tax Geocoding API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Geocoding",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Geocode an Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://communicationsua.avalara.net/api/v2/geo/Geocode",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Determines the tax jurisdiction for a given address using geocoding. Returns jurisdiction codes (PCode, FIPS) needed for tax calculations."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

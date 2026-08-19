@@ -1,0 +1,544 @@
+{
+  "item": [
+    {
+      "id": "45cbf09f-2c35-43fe-9725-e85a710c9d0f",
+      "name": "1099 Forms",
+      "description": {
+        "content": "Create and manage 1099 information returns",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9753f7c8-dd1a-42d7-89ca-d86aaad10d4b",
+          "name": "Avalara Create a 1099 Form",
+          "request": {
+            "name": "Avalara Create a 1099 Form",
+            "description": {
+              "content": "Creates a new 1099 information return form with payee and payment information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "forms",
+                "1099"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"formType\": \"<string>\",\n  \"taxYear\": \"<integer>\",\n  \"payerCompanyId\": \"<string>\",\n  \"payee\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    }\n  },\n  \"amounts\": {\n    \"key_0\": \"<double>\",\n    \"key_1\": \"<double>\"\n  },\n  \"federalTaxWithheld\": \"<double>\",\n  \"stateTaxWithheld\": \"<double>\",\n  \"status\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c6d02ef4-6986-4fae-8935-6261e60d8154",
+              "name": "1099 form created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms",
+                    "1099"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"formType\": \"<string>\",\n  \"taxYear\": \"<integer>\",\n  \"payerCompanyId\": \"<string>\",\n  \"payee\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    }\n  },\n  \"amounts\": {\n    \"key_0\": \"<double>\"\n  },\n  \"federalTaxWithheld\": \"<double>\",\n  \"stateTaxWithheld\": \"<double>\",\n  \"status\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"formType\": \"1099-NEC\",\n  \"taxYear\": 2958,\n  \"payerCompanyId\": \"string\",\n  \"payee\": {\n    \"name\": \"string\",\n    \"tin\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\"\n    }\n  },\n  \"amounts\": {\n    \"key_0\": 3953.199211311441\n  },\n  \"federalTaxWithheld\": 1227.1701198849682,\n  \"stateTaxWithheld\": 3136.241085267819,\n  \"status\": \"Ready\",\n  \"createdDate\": \"1969-10-08T09:10:54.936Z\",\n  \"modifiedDate\": \"1980-11-01T19:24:34.928Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c74cc90e-06c8-46df-a60e-c18f35a88fbe",
+          "name": "Avalara List 1099 Forms",
+          "request": {
+            "name": "Avalara List 1099 Forms",
+            "description": {},
+            "url": {
+              "path": [
+                "forms",
+                "1099"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "taxYear",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "formType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27d41f6b-cdb4-4a1a-8b4c-9941dca08704",
+              "name": "List of 1099 forms",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms",
+                    "1099"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "taxYear",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "formType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "947cbac7-e7a4-4c2e-b4ae-9337fdff8c94",
+          "name": "Avalara Get a 1099 Form by ID",
+          "request": {
+            "name": "Avalara Get a 1099 Form by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "forms",
+                "1099",
+                ":formId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "formId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1ab59afd-87e6-4f58-8d79-3b447c7bf8f6",
+              "name": "1099 form details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms",
+                    "1099",
+                    ":formId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"formType\": \"1099-NEC\",\n  \"taxYear\": 2958,\n  \"payerCompanyId\": \"string\",\n  \"payee\": {\n    \"name\": \"string\",\n    \"tin\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"city\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\"\n    }\n  },\n  \"amounts\": {\n    \"key_0\": 3953.199211311441\n  },\n  \"federalTaxWithheld\": 1227.1701198849682,\n  \"stateTaxWithheld\": 3136.241085267819,\n  \"status\": \"Ready\",\n  \"createdDate\": \"1969-10-08T09:10:54.936Z\",\n  \"modifiedDate\": \"1980-11-01T19:24:34.928Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03a2038c-4777-4581-8b0f-eeb0f10cf098",
+          "name": "Avalara Update a 1099 Form",
+          "request": {
+            "name": "Avalara Update a 1099 Form",
+            "description": {},
+            "url": {
+              "path": [
+                "forms",
+                "1099",
+                ":formId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "formId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"formType\": \"<string>\",\n  \"taxYear\": \"<integer>\",\n  \"payerCompanyId\": \"<string>\",\n  \"payee\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    }\n  },\n  \"amounts\": {\n    \"key_0\": \"<double>\",\n    \"key_1\": \"<double>\"\n  },\n  \"federalTaxWithheld\": \"<double>\",\n  \"stateTaxWithheld\": \"<double>\",\n  \"status\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e83e05c3-0f45-4663-8aab-dfcaff70a8d7",
+              "name": "1099 form updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms",
+                    "1099",
+                    ":formId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"formType\": \"<string>\",\n  \"taxYear\": \"<integer>\",\n  \"payerCompanyId\": \"<string>\",\n  \"payee\": {\n    \"name\": \"<string>\",\n    \"tin\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"city\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\"\n    }\n  },\n  \"amounts\": {\n    \"key_0\": \"<double>\"\n  },\n  \"federalTaxWithheld\": \"<double>\",\n  \"stateTaxWithheld\": \"<double>\",\n  \"status\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"modifiedDate\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "63725a99-f5d2-49e0-bd75-4f2e33108f06",
+          "name": "Avalara Delete a 1099 Form",
+          "request": {
+            "name": "Avalara Delete a 1099 Form",
+            "description": {},
+            "url": {
+              "path": [
+                "forms",
+                "1099",
+                ":formId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "formId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b35e16cc-4e3b-459f-ac8c-614e1dd4fc33",
+              "name": "Form deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "forms",
+                    "1099",
+                    ":formId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.avalara.com/1099/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5c87b96e-5725-47da-9720-d42421f3b490",
+    "name": "Avalara 1099 & W-9 1099 Forms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

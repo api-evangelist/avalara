@@ -1,0 +1,120 @@
+{
+  "item": [
+    {
+      "id": "0d6ccfd0-a3c5-411f-9416-24e1f3611260",
+      "name": "Attributes",
+      "description": {
+        "content": "Manage certificate attributes and custom fields",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cedb4b8b-0393-43cd-802a-e42571707f7a",
+          "name": "Avalara List Certificate Attributes",
+          "request": {
+            "name": "Avalara List Certificate Attributes",
+            "description": {},
+            "url": {
+              "path": [
+                "attributes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "da248e92-6c92-4603-af68-cc1626491062",
+              "name": "List of attributes",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 5844,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"isSystemCode\": true\n  },\n  {\n    \"id\": 3162,\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"isSystemCode\": true\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.certcapture.com/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fbfbd448-04c7-45d6-b93b-022fe5426c67",
+    "name": "Avalara CertCapture Attributes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara CertCapture RESTful API provides document management for tax-exempt sales, including managing exemption certificates, customer records, custom attributes, authentication tokens, and eCommerce token generation. It supports the full certificate lifecycle from creation through validation and expiry tracking.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

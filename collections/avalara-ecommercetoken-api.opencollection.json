@@ -1,0 +1,89 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara AvaTax ECommerceToken API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "ECommerceToken",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara CreateECommerceToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/api/v2/companies/:companyId/ecommercetokens",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new eCommerce token.\n            \nThis API is used to create a new eCommerce token. An eCommerce token is required in order to launch the CertCapture eCommerce plugin. Create a token for each of your CertCapture customers.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompa"
+        },
+        {
+          "info": {
+            "name": "Avalara RefreshECommerceToken",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{{baseurl}}/api/v2/companies/:companyId/ecommercetokens",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Refresh an eCommerce token.\n            \nCertCapture eCommerce tokens expire after one hour. This API is used to refresh an eCommerce token that is about to expire. This API can only be used with active tokens. If your token has expired, you must generate a new one.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, C"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

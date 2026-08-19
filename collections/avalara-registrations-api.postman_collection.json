@@ -1,0 +1,352 @@
+{
+  "item": [
+    {
+      "id": "233ad1f0-29e0-4e9b-b778-66fb870429a3",
+      "name": "Registrations",
+      "description": {
+        "content": "Manage partner registrations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "14cf75ed-614d-4fa5-922f-e4b6ccdc117b",
+          "name": "Avalara List All Registrations",
+          "request": {
+            "name": "Avalara List All Registrations",
+            "description": {
+              "content": "Retrieves all registrations for the authenticated partner.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "registrations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d6880efe-ecdf-4ad2-b6fb-06f18f8ca539",
+              "name": "List of registrations",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registrations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@recordSetCount\": 1582,\n  \"value\": [\n    {\n      \"registrationId\": \"string\",\n      \"partnerId\": \"string\",\n      \"companyName\": \"string\",\n      \"status\": \"Cancelled\",\n      \"product\": \"string\",\n      \"accountId\": \"string\",\n      \"activationDate\": \"2025-01-05T19:56:15.557Z\",\n      \"expirationDate\": \"2009-06-08T11:38:37.574Z\",\n      \"createdDate\": \"1950-05-25T04:08:14.053Z\"\n    },\n    {\n      \"registrationId\": \"string\",\n      \"partnerId\": \"string\",\n      \"companyName\": \"string\",\n      \"status\": \"Cancelled\",\n      \"product\": \"string\",\n      \"accountId\": \"string\",\n      \"activationDate\": \"2012-11-09T01:47:59.734Z\",\n      \"expirationDate\": \"1970-11-06T03:54:41.251Z\",\n      \"createdDate\": \"2006-03-06T15:45:23.293Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ce6f0cc8-3c2b-490f-a703-0575d59f967d",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registrations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c844bfd1-94cb-4dbf-9189-612f80e1abcf",
+          "name": "Avalara Get a Registration by ID",
+          "request": {
+            "name": "Avalara Get a Registration by ID",
+            "description": {
+              "content": "Retrieves details for a specific registration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "registrations",
+                ":registrationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "registrationId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29a79f2d-2b3a-4039-8f75-084488321a9f",
+              "name": "Registration details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registrations",
+                    ":registrationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "registrationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"registrationId\": \"string\",\n  \"partnerId\": \"string\",\n  \"companyName\": \"string\",\n  \"status\": \"Active\",\n  \"product\": \"string\",\n  \"accountId\": \"string\",\n  \"activationDate\": \"1952-05-23T09:34:32.411Z\",\n  \"expirationDate\": \"1996-01-13T16:44:17.438Z\",\n  \"createdDate\": \"1951-06-12T05:58:49.933Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71509a49-96db-4c51-9ce2-d139f6606615",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registrations",
+                    ":registrationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "registrationId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.avalara.com/activation/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6cb2c7f4-0d10-4db4-ad52-02c594c04760",
+    "name": "Avalara Activation Service Registrations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara Activation Service API allows technology partners to retrieve the status of their registrations within the Avalara Compliance Cloud platform, providing endpoints for listing all registrations and retrieving individual registration details.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

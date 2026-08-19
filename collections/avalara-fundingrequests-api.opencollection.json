@@ -1,0 +1,73 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara AvaTax FundingRequests API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FundingRequests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara ActivateFundingRequest",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/fundingrequests/:id/widget",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This API is available by invitation only.\nCompanies that use the Avalara Managed Returns or the SST Certified Service Provider services are\nrequired to setup their funding configuration before Avalara can begin filing tax returns on their\nbehalf.\nFunding configuration for each company is set up by submitting a funding setup request, which can\nbe sent either via email or via an embedded HTML widget.\nWhen the funding configuration is submitted to Avalara, it will be reviewed by treasury team membe"
+        },
+        {
+          "info": {
+            "name": "Avalara FundingRequestStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/fundingrequests/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This API is available by invitation only.\nCompanies that use the Avalara Managed Returns or the SST Certified Service Provider services are\nrequired to setup their funding configuration before Avalara can begin filing tax returns on their\nbehalf.\nFunding configuration for each company is set up by submitting a funding setup request, which can\nbe sent either via email or via an embedded HTML widget.\nWhen the funding configuration is submitted to Avalara, it will be reviewed by treasury team membe"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

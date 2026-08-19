@@ -1,0 +1,382 @@
+{
+  "item": [
+    {
+      "id": "4046e284-bfed-408f-bf0b-09a963426483",
+      "name": "Age Verification",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c1823242-8023-4f7a-8cab-c04a3fc1b60e",
+          "name": "Determines whether an individual meets or exceeds the minimum legal drinking age.",
+          "request": {
+            "name": "Determines whether an individual meets or exceeds the minimum legal drinking age.",
+            "description": {
+              "content": "The request must meet the following criteria in order to be evaluated:\n* *firstName*, *lastName*, and *address* are required fields.\n* One of the following sets of attributes are required for the *address*:\n  * *line1, city, region*\n  * *line1, postalCode*\n\nOptionally, the transaction and its lines may use the following parameters:\n* A *DOB* (Date of Birth) field. The value should be ISO-8601 compliant (e.g. 2020-07-21).\n* Beyond the required *address* fields above, a *country* field is permitted\n  * The valid values for this attribute are [*US, USA*]\n\n**Security Policies**\nThis API depends on the active subscription *AgeVerification*",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "ageverification",
+                "verify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "simulatedFailureCode",
+                  "value": "<string>",
+                  "description": "(Optional) The failure code included in the simulated response of the endpoint. Note that this endpoint is only available in Sandbox for testing purposes."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"<string>\",\n  \"lastName\": \"<string>\",\n  \"address\": {\n    \"line1\": \"<string>\",\n    \"city\": \"<string>\",\n    \"region\": \"<string>\",\n    \"country\": \"<string>\",\n    \"postalCode\": \"<string>\"\n  },\n  \"DOB\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "90bc658f-dd41-49b9-8be8-268ae6610178",
+              "name": "An AgeVerificationResult object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "ageverification",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "simulatedFailureCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"address\": {\n    \"line1\": \"255 S King St\",\n    \"city\": \"Seattle\",\n    \"region\": \"WA\",\n    \"country\": \"US\",\n    \"postalCode\": \"98104\"\n  },\n  \"DOB\": \"1994-10-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"isOfAge\": false,\n  \"failureCodes\": [\n    {\n      \"isOfAge\": false,\n      \"failureCodes\": [\n        \"deceased\",\n        \"dob_unverifiable\"\n      ]\n    },\n    {\n      \"isOfAge\": false,\n      \"failureCodes\": [\n        \"deceased\",\n        \"dob_unverifiable\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afa36244-5d78-465d-a950-7749027ad254",
+              "name": "Invalid Request Model",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "ageverification",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "simulatedFailureCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"address\": {\n    \"line1\": \"255 S King St\",\n    \"city\": \"Seattle\",\n    \"region\": \"WA\",\n    \"country\": \"US\",\n    \"postalCode\": \"98104\"\n  },\n  \"DOB\": \"1994-10-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d2bbfc4a-8495-41f5-9c60-977e375b4115",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "ageverification",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "simulatedFailureCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"address\": {\n    \"line1\": \"255 S King St\",\n    \"city\": \"Seattle\",\n    \"region\": \"WA\",\n    \"country\": \"US\",\n    \"postalCode\": \"98104\"\n  },\n  \"DOB\": \"1994-10-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d6f5df22-22f6-44a8-a7b1-bb32b92711cd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "ageverification",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "simulatedFailureCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"address\": {\n    \"line1\": \"255 S King St\",\n    \"city\": \"Seattle\",\n    \"region\": \"WA\",\n    \"country\": \"US\",\n    \"postalCode\": \"98104\"\n  },\n  \"DOB\": \"1994-10-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6a476fbe-2ea7-4187-a2eb-c0d539bfe95b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "ageverification",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "simulatedFailureCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Doe\",\n  \"address\": {\n    \"line1\": \"255 S King St\",\n    \"city\": \"Seattle\",\n    \"region\": \"WA\",\n    \"country\": \"US\",\n    \"postalCode\": \"98104\"\n  },\n  \"DOB\": \"1994-10-01\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8aa3c8c9-ecb6-4e4c-96b6-7fe3fe928ad8",
+    "name": "Avalara Shipping Verification Age Verification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.\n\nThis API is currently in beta.\n",
+      "type": "text/plain"
+    }
+  }
+}

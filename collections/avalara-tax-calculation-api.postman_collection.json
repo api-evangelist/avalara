@@ -1,0 +1,720 @@
+{
+  "item": [
+    {
+      "id": "b3439fce-6ff6-4343-abd9-cf481c2e0a8f",
+      "name": "Tax Calculation",
+      "description": {
+        "content": "Calculate Brazilian taxes on transactions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f74652c4-9b05-4cc4-b4b0-a719e57ed29b",
+          "name": "Avalara Calculate Brazilian Taxes",
+          "request": {
+            "name": "Avalara Calculate Brazilian Taxes",
+            "description": {
+              "content": "Calculates applicable Brazilian taxes for a transaction including ICMS, IPI, PIS, COFINS, ISS, and other applicable taxes based on product type, origin, and destination.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "calculations"
+              ],
+              "host": [
+                "{{calculations-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"header\": {\n    \"transactionType\": \"<string>\",\n    \"companyLocation\": \"<string>\",\n    \"documentCode\": \"<string>\",\n    \"transactionDate\": \"<date>\",\n    \"currency\": \"BRL\"\n  },\n  \"lines\": [\n    {\n      \"lineCode\": \"<string>\",\n      \"itemCode\": \"<string>\",\n      \"numberOfItems\": \"<double>\",\n      \"lineAmount\": \"<double>\",\n      \"itemDescription\": \"<string>\",\n      \"ncmCode\": \"<string>\",\n      \"cstCode\": \"<string>\",\n      \"cfopCode\": \"<string>\",\n      \"originState\": \"<string>\",\n      \"destinationState\": \"<string>\"\n    },\n    {\n      \"lineCode\": \"<string>\",\n      \"itemCode\": \"<string>\",\n      \"numberOfItems\": \"<double>\",\n      \"lineAmount\": \"<double>\",\n      \"itemDescription\": \"<string>\",\n      \"ncmCode\": \"<string>\",\n      \"cstCode\": \"<string>\",\n      \"cfopCode\": \"<string>\",\n      \"originState\": \"<string>\",\n      \"destinationState\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9d9a73ec-c937-42d0-b106-7a08f232156b",
+              "name": "Tax calculation results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calculations"
+                  ],
+                  "host": [
+                    "{{calculations-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"transactionType\": \"<string>\",\n    \"companyLocation\": \"<string>\",\n    \"documentCode\": \"<string>\",\n    \"transactionDate\": \"<date>\",\n    \"currency\": \"BRL\"\n  },\n  \"lines\": [\n    {\n      \"lineCode\": \"string\",\n      \"itemCode\": \"string\",\n      \"numberOfItems\": 7318.887982650576,\n      \"lineAmount\": 4648.10667458294,\n      \"itemDescription\": \"string\",\n      \"ncmCode\": \"string\",\n      \"cstCode\": \"string\",\n      \"cfopCode\": \"string\",\n      \"originState\": \"string\",\n      \"destinationState\": \"string\"\n    },\n    {\n      \"lineCode\": \"string\",\n      \"itemCode\": \"string\",\n      \"numberOfItems\": 4265.625369490515,\n      \"lineAmount\": 406.32821982164444,\n      \"itemDescription\": \"string\",\n      \"ncmCode\": \"string\",\n      \"cstCode\": \"string\",\n      \"cfopCode\": \"string\",\n      \"originState\": \"string\",\n      \"destinationState\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"header\": {\n    \"transactionId\": \"string\",\n    \"status\": \"string\"\n  },\n  \"lines\": [\n    {\n      \"lineCode\": \"string\",\n      \"taxes\": [\n        {\n          \"taxType\": \"IOF\",\n          \"taxBase\": 6316.819853959064,\n          \"taxRate\": 3561.3448402928284,\n          \"taxAmount\": 7585.255529503289,\n          \"exemptAmount\": 8397.424397382096,\n          \"cstCode\": \"string\"\n        },\n        {\n          \"taxType\": \"ICMS\",\n          \"taxBase\": 2474.842376263761,\n          \"taxRate\": 3231.2599511940375,\n          \"taxAmount\": 7453.9853624204325,\n          \"exemptAmount\": 2304.912123774078,\n          \"cstCode\": \"string\"\n        }\n      ],\n      \"totalTax\": 8537.605411861201\n    },\n    {\n      \"lineCode\": \"string\",\n      \"taxes\": [\n        {\n          \"taxType\": \"COFINS\",\n          \"taxBase\": 3558.4785534451557,\n          \"taxRate\": 3842.4304238643526,\n          \"taxAmount\": 7140.081068370897,\n          \"exemptAmount\": 31.07077625009058,\n          \"cstCode\": \"string\"\n        },\n        {\n          \"taxType\": \"IOF\",\n          \"taxBase\": 2582.058398571503,\n          \"taxRate\": 6256.643910353466,\n          \"taxAmount\": 2215.71429192135,\n          \"exemptAmount\": 4946.845115026494,\n          \"cstCode\": \"string\"\n        }\n      ],\n      \"totalTax\": 8178.73637890859\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "375adc66-daaf-44fb-b787-d2291921cb37",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calculations"
+                  ],
+                  "host": [
+                    "{{calculations-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"transactionType\": \"<string>\",\n    \"companyLocation\": \"<string>\",\n    \"documentCode\": \"<string>\",\n    \"transactionDate\": \"<date>\",\n    \"currency\": \"BRL\"\n  },\n  \"lines\": [\n    {\n      \"lineCode\": \"string\",\n      \"itemCode\": \"string\",\n      \"numberOfItems\": 7318.887982650576,\n      \"lineAmount\": 4648.10667458294,\n      \"itemDescription\": \"string\",\n      \"ncmCode\": \"string\",\n      \"cstCode\": \"string\",\n      \"cfopCode\": \"string\",\n      \"originState\": \"string\",\n      \"destinationState\": \"string\"\n    },\n    {\n      \"lineCode\": \"string\",\n      \"itemCode\": \"string\",\n      \"numberOfItems\": 4265.625369490515,\n      \"lineAmount\": 406.32821982164444,\n      \"itemDescription\": \"string\",\n      \"ncmCode\": \"string\",\n      \"cstCode\": \"string\",\n      \"cfopCode\": \"string\",\n      \"originState\": \"string\",\n      \"destinationState\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7176e2a1-d1f5-453c-99ca-72eb4c3ec5b4",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "calculations"
+                  ],
+                  "host": [
+                    "{{calculations-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header\": {\n    \"transactionType\": \"<string>\",\n    \"companyLocation\": \"<string>\",\n    \"documentCode\": \"<string>\",\n    \"transactionDate\": \"<date>\",\n    \"currency\": \"BRL\"\n  },\n  \"lines\": [\n    {\n      \"lineCode\": \"string\",\n      \"itemCode\": \"string\",\n      \"numberOfItems\": 7318.887982650576,\n      \"lineAmount\": 4648.10667458294,\n      \"itemDescription\": \"string\",\n      \"ncmCode\": \"string\",\n      \"cstCode\": \"string\",\n      \"cfopCode\": \"string\",\n      \"originState\": \"string\",\n      \"destinationState\": \"string\"\n    },\n    {\n      \"lineCode\": \"string\",\n      \"itemCode\": \"string\",\n      \"numberOfItems\": 4265.625369490515,\n      \"lineAmount\": 406.32821982164444,\n      \"itemDescription\": \"string\",\n      \"ncmCode\": \"string\",\n      \"cstCode\": \"string\",\n      \"cfopCode\": \"string\",\n      \"originState\": \"string\",\n      \"destinationState\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06d140cc-c75e-473c-8824-e23583695fc2",
+          "name": "Avalara Calculate Taxes on a Transaction",
+          "request": {
+            "name": "Avalara Calculate Taxes on a Transaction",
+            "description": {
+              "content": "Calculates communications taxes for one or more line items based on transaction type, service type, and jurisdiction information. Supports both individual and batch tax calculations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "afc",
+                "CalcTaxes"
+              ],
+              "host": [
+                "{{api-v2-afc-CalcTaxes-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cmpn\": {\n    \"bscl\": \"<integer>\",\n    \"svcl\": \"<integer>\",\n    \"fclt\": \"<boolean>\",\n    \"frch\": \"<boolean>\",\n    \"reg\": \"<boolean>\"\n  },\n  \"inv\": [\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f32fbb90-e299-4458-89a9-c9f2e7fe3b18",
+              "name": "Tax calculation results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "afc",
+                    "CalcTaxes"
+                  ],
+                  "host": [
+                    "{{api-v2-afc-CalcTaxes-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cmpn\": {\n    \"bscl\": 1304,\n    \"svcl\": 5858,\n    \"fclt\": false,\n    \"frch\": true,\n    \"reg\": true\n  },\n  \"inv\": [\n    {\n      \"doc\": \"string\",\n      \"cmmt\": true,\n      \"bill\": {\n        \"pcd\": 7674,\n        \"ctry\": \"string\",\n        \"st\": \"string\",\n        \"cty\": \"string\",\n        \"zip\": \"string\",\n        \"geo\": false,\n        \"addr\": \"string\"\n      },\n      \"cust\": 3958,\n      \"date\": \"2023-11-08T17:20:46.019Z\",\n      \"itms\": [\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 3867,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": true,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 8838,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": true,\n            \"addr\": \"string\"\n          },\n          \"chg\": 9606.287876450284,\n          \"line\": 6103,\n          \"loc\": 7692,\n          \"min\": 1998.969748086611,\n          \"sale\": 4891,\n          \"tran\": 7984,\n          \"serv\": 5038\n        },\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 5593,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 6,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"chg\": 3194.072070250119,\n          \"line\": 9694,\n          \"loc\": 5323,\n          \"min\": 8755.11475786098,\n          \"sale\": 5566,\n          \"tran\": 5562,\n          \"serv\": 6370\n        }\n      ]\n    },\n    {\n      \"doc\": \"string\",\n      \"cmmt\": false,\n      \"bill\": {\n        \"pcd\": 9035,\n        \"ctry\": \"string\",\n        \"st\": \"string\",\n        \"cty\": \"string\",\n        \"zip\": \"string\",\n        \"geo\": false,\n        \"addr\": \"string\"\n      },\n      \"cust\": 6492,\n      \"date\": \"1947-12-08T22:01:07.686Z\",\n      \"itms\": [\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 6387,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 8406,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": true,\n            \"addr\": \"string\"\n          },\n          \"chg\": 1193.181066360286,\n          \"line\": 9519,\n          \"loc\": 4789,\n          \"min\": 4917.618271921807,\n          \"sale\": 4127,\n          \"tran\": 3050,\n          \"serv\": 3331\n        },\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 8074,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 6493,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"chg\": 8401.361680454242,\n          \"line\": 6430,\n          \"loc\": 2034,\n          \"min\": 3848.0149912523852,\n          \"sale\": 1446,\n          \"tran\": 4591,\n          \"serv\": 1720\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"inv\": [\n    {\n      \"doc\": \"string\",\n      \"itms\": [\n        {\n          \"ref\": \"string\",\n          \"txs\": [\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"ref\": \"string\",\n          \"txs\": [\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"doc\": \"string\",\n      \"itms\": [\n        {\n          \"ref\": \"string\",\n          \"txs\": [\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"ref\": \"string\",\n          \"txs\": [\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b5c0644-1554-4743-ac6e-f15e75d7fde7",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "afc",
+                    "CalcTaxes"
+                  ],
+                  "host": [
+                    "{{api-v2-afc-CalcTaxes-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cmpn\": {\n    \"bscl\": 1304,\n    \"svcl\": 5858,\n    \"fclt\": false,\n    \"frch\": true,\n    \"reg\": true\n  },\n  \"inv\": [\n    {\n      \"doc\": \"string\",\n      \"cmmt\": true,\n      \"bill\": {\n        \"pcd\": 7674,\n        \"ctry\": \"string\",\n        \"st\": \"string\",\n        \"cty\": \"string\",\n        \"zip\": \"string\",\n        \"geo\": false,\n        \"addr\": \"string\"\n      },\n      \"cust\": 3958,\n      \"date\": \"2023-11-08T17:20:46.019Z\",\n      \"itms\": [\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 3867,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": true,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 8838,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": true,\n            \"addr\": \"string\"\n          },\n          \"chg\": 9606.287876450284,\n          \"line\": 6103,\n          \"loc\": 7692,\n          \"min\": 1998.969748086611,\n          \"sale\": 4891,\n          \"tran\": 7984,\n          \"serv\": 5038\n        },\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 5593,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 6,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"chg\": 3194.072070250119,\n          \"line\": 9694,\n          \"loc\": 5323,\n          \"min\": 8755.11475786098,\n          \"sale\": 5566,\n          \"tran\": 5562,\n          \"serv\": 6370\n        }\n      ]\n    },\n    {\n      \"doc\": \"string\",\n      \"cmmt\": false,\n      \"bill\": {\n        \"pcd\": 9035,\n        \"ctry\": \"string\",\n        \"st\": \"string\",\n        \"cty\": \"string\",\n        \"zip\": \"string\",\n        \"geo\": false,\n        \"addr\": \"string\"\n      },\n      \"cust\": 6492,\n      \"date\": \"1947-12-08T22:01:07.686Z\",\n      \"itms\": [\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 6387,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 8406,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": true,\n            \"addr\": \"string\"\n          },\n          \"chg\": 1193.181066360286,\n          \"line\": 9519,\n          \"loc\": 4789,\n          \"min\": 4917.618271921807,\n          \"sale\": 4127,\n          \"tran\": 3050,\n          \"serv\": 3331\n        },\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 8074,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 6493,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"chg\": 8401.361680454242,\n          \"line\": 6430,\n          \"loc\": 2034,\n          \"min\": 3848.0149912523852,\n          \"sale\": 1446,\n          \"tran\": 4591,\n          \"serv\": 1720\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d9e1292-8c12-4ca1-b593-52ff81464bc3",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "afc",
+                    "CalcTaxes"
+                  ],
+                  "host": [
+                    "{{api-v2-afc-CalcTaxes-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cmpn\": {\n    \"bscl\": 1304,\n    \"svcl\": 5858,\n    \"fclt\": false,\n    \"frch\": true,\n    \"reg\": true\n  },\n  \"inv\": [\n    {\n      \"doc\": \"string\",\n      \"cmmt\": true,\n      \"bill\": {\n        \"pcd\": 7674,\n        \"ctry\": \"string\",\n        \"st\": \"string\",\n        \"cty\": \"string\",\n        \"zip\": \"string\",\n        \"geo\": false,\n        \"addr\": \"string\"\n      },\n      \"cust\": 3958,\n      \"date\": \"2023-11-08T17:20:46.019Z\",\n      \"itms\": [\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 3867,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": true,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 8838,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": true,\n            \"addr\": \"string\"\n          },\n          \"chg\": 9606.287876450284,\n          \"line\": 6103,\n          \"loc\": 7692,\n          \"min\": 1998.969748086611,\n          \"sale\": 4891,\n          \"tran\": 7984,\n          \"serv\": 5038\n        },\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 5593,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 6,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"chg\": 3194.072070250119,\n          \"line\": 9694,\n          \"loc\": 5323,\n          \"min\": 8755.11475786098,\n          \"sale\": 5566,\n          \"tran\": 5562,\n          \"serv\": 6370\n        }\n      ]\n    },\n    {\n      \"doc\": \"string\",\n      \"cmmt\": false,\n      \"bill\": {\n        \"pcd\": 9035,\n        \"ctry\": \"string\",\n        \"st\": \"string\",\n        \"cty\": \"string\",\n        \"zip\": \"string\",\n        \"geo\": false,\n        \"addr\": \"string\"\n      },\n      \"cust\": 6492,\n      \"date\": \"1947-12-08T22:01:07.686Z\",\n      \"itms\": [\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 6387,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 8406,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": true,\n            \"addr\": \"string\"\n          },\n          \"chg\": 1193.181066360286,\n          \"line\": 9519,\n          \"loc\": 4789,\n          \"min\": 4917.618271921807,\n          \"sale\": 4127,\n          \"tran\": 3050,\n          \"serv\": 3331\n        },\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 8074,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 6493,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"chg\": 8401.361680454242,\n          \"line\": 6430,\n          \"loc\": 2034,\n          \"min\": 3848.0149912523852,\n          \"sale\": 1446,\n          \"tran\": 4591,\n          \"serv\": 1720\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb501af4-6fcd-40b9-9d22-604aa3071e05",
+          "name": "Avalara Commit a Transaction",
+          "request": {
+            "name": "Avalara Commit a Transaction",
+            "description": {
+              "content": "Commits a previously calculated transaction, finalizing it for tax reporting purposes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "afc",
+                "commit"
+              ],
+              "host": [
+                "{{api-v2-afc-commit-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"doc\": \"<string>\",\n  \"cmmt\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "51c97252-bbd4-405d-83ef-d0b714a5c52c",
+              "name": "Transaction committed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "afc",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{api-v2-afc-commit-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"doc\": \"<string>\",\n  \"cmmt\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ok\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0a8df557-cffa-455a-9fb1-452cb6fd824e",
+          "name": "Avalara Calculate Adjustment Taxes",
+          "request": {
+            "name": "Avalara Calculate Adjustment Taxes",
+            "description": {
+              "content": "Calculates taxes for adjustments (credits, refunds) on previously committed transactions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "afc",
+                "CalcAdj"
+              ],
+              "host": [
+                "{{api-v2-afc-CalcAdj-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cmpn\": {\n    \"bscl\": \"<integer>\",\n    \"svcl\": \"<integer>\",\n    \"fclt\": \"<boolean>\",\n    \"frch\": \"<boolean>\",\n    \"reg\": \"<boolean>\"\n  },\n  \"inv\": [\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"doc\": \"<string>\",\n      \"cmmt\": \"<boolean>\",\n      \"bill\": {\n        \"pcd\": \"<integer>\",\n        \"ctry\": \"<string>\",\n        \"st\": \"<string>\",\n        \"cty\": \"<string>\",\n        \"zip\": \"<string>\",\n        \"geo\": \"<boolean>\",\n        \"addr\": \"<string>\"\n      },\n      \"cust\": \"<integer>\",\n      \"date\": \"<dateTime>\",\n      \"itms\": [\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        },\n        {\n          \"ref\": \"<string>\",\n          \"from\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"to\": {\n            \"pcd\": \"<integer>\",\n            \"ctry\": \"<string>\",\n            \"st\": \"<string>\",\n            \"cty\": \"<string>\",\n            \"zip\": \"<string>\",\n            \"geo\": \"<boolean>\",\n            \"addr\": \"<string>\"\n          },\n          \"chg\": \"<double>\",\n          \"line\": \"<integer>\",\n          \"loc\": \"<integer>\",\n          \"min\": \"<double>\",\n          \"sale\": \"<integer>\",\n          \"tran\": \"<integer>\",\n          \"serv\": \"<integer>\"\n        }\n      ]\n    }\n  ],\n  \"adj\": {\n    \"disc\": \"<integer>\",\n    \"adj\": \"<integer>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1d18994-7be9-40d2-9d9f-bac0a8dc50ff",
+              "name": "Adjustment tax calculation results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "afc",
+                    "CalcAdj"
+                  ],
+                  "host": [
+                    "{{api-v2-afc-CalcAdj-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"cmpn\": {\n    \"bscl\": 8826,\n    \"svcl\": 1333,\n    \"fclt\": false,\n    \"frch\": false,\n    \"reg\": true\n  },\n  \"inv\": [\n    {\n      \"doc\": \"string\",\n      \"cmmt\": true,\n      \"bill\": {\n        \"pcd\": 3084,\n        \"ctry\": \"string\",\n        \"st\": \"string\",\n        \"cty\": \"string\",\n        \"zip\": \"string\",\n        \"geo\": false,\n        \"addr\": \"string\"\n      },\n      \"cust\": 8469,\n      \"date\": \"1948-01-29T20:51:27.223Z\",\n      \"itms\": [\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 3621,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 2798,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": true,\n            \"addr\": \"string\"\n          },\n          \"chg\": 4927.841797623672,\n          \"line\": 8826,\n          \"loc\": 9650,\n          \"min\": 3092.6785941970725,\n          \"sale\": 869,\n          \"tran\": 7307,\n          \"serv\": 5178\n        },\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 3442,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 7706,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": true,\n            \"addr\": \"string\"\n          },\n          \"chg\": 6268.546342664178,\n          \"line\": 9621,\n          \"loc\": 8328,\n          \"min\": 4726.584485609544,\n          \"sale\": 4166,\n          \"tran\": 7258,\n          \"serv\": 7300\n        }\n      ]\n    },\n    {\n      \"doc\": \"string\",\n      \"cmmt\": true,\n      \"bill\": {\n        \"pcd\": 5447,\n        \"ctry\": \"string\",\n        \"st\": \"string\",\n        \"cty\": \"string\",\n        \"zip\": \"string\",\n        \"geo\": true,\n        \"addr\": \"string\"\n      },\n      \"cust\": 6697,\n      \"date\": \"1952-02-25T22:37:08.405Z\",\n      \"itms\": [\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 4474,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 1631,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": true,\n            \"addr\": \"string\"\n          },\n          \"chg\": 9878.463786537877,\n          \"line\": 9288,\n          \"loc\": 403,\n          \"min\": 8781.286447949602,\n          \"sale\": 6947,\n          \"tran\": 2166,\n          \"serv\": 7250\n        },\n        {\n          \"ref\": \"string\",\n          \"from\": {\n            \"pcd\": 4965,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": false,\n            \"addr\": \"string\"\n          },\n          \"to\": {\n            \"pcd\": 3731,\n            \"ctry\": \"string\",\n            \"st\": \"string\",\n            \"cty\": \"string\",\n            \"zip\": \"string\",\n            \"geo\": true,\n            \"addr\": \"string\"\n          },\n          \"chg\": 4544.184229234452,\n          \"line\": 5361,\n          \"loc\": 4414,\n          \"min\": 1544.6999867795596,\n          \"sale\": 6927,\n          \"tran\": 2329,\n          \"serv\": 4363\n        }\n      ]\n    }\n  ],\n  \"adj\": {\n    \"disc\": \"<integer>\",\n    \"adj\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"inv\": [\n    {\n      \"doc\": \"string\",\n      \"itms\": [\n        {\n          \"ref\": \"string\",\n          \"txs\": [\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"ref\": \"string\",\n          \"txs\": [\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    },\n    {\n      \"doc\": \"string\",\n      \"itms\": [\n        {\n          \"ref\": \"string\",\n          \"txs\": [\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        {\n          \"ref\": \"string\",\n          \"txs\": [\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"bill\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cmpl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"calc\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cat\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"exm\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lns\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"min\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"pcd\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"rate\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"sur\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tax\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"lvl\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"tid\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://avataxbr-sandbox.avalarabrasil.com.br/v3",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://avataxbr-sandbox.avalarabrasil.com.br/v3",
+      "key": "calculations-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://communicationsua.avalara.net",
+      "key": "api-v2-afc-CalcTaxes-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://communicationsua.avalara.net",
+      "key": "api-v2-afc-commit-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://communicationsua.avalara.net",
+      "key": "api-v2-afc-CalcAdj-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "b4f13ce9-767e-433e-b622-a5ea77b6da85",
+    "name": "Avalara Tax Calculation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Tax Calculation across 2 of this provider's published API definitions: avalara-avatax-brazil-openapi.yml, avalara-communications-openapi.yml. Each path carries the servers of the definition it was published in.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

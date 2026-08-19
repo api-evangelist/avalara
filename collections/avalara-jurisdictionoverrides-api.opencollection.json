@@ -1,0 +1,193 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara AvaTax JurisdictionOverrides API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "JurisdictionOverrides",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara ListJurisdictionOverridesByAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/jurisdictionoverrides",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all jurisdiction override objects defined for this account.\n            \nA Jurisdiction Override is a configuration setting that allows you to select the taxing\njurisdiction for a specific address.  If you encounter an address that is on the boundary\nbetween two different jurisdictions, you can choose to set up a jurisdiction override\nto switch this address to use different taxing jurisdictions.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full doc"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateJurisdictionOverrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/jurisdictionoverrides",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates one or more jurisdiction override objects for this account.\n            \nA Jurisdiction Override is a configuration setting that allows you to select the taxing\njurisdiction for a specific address.  If you encounter an address that is on the boundary\nbetween two different jurisdictions, you can choose to set up a jurisdiction override\nto switch this address to use different taxing jurisdictions.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, Ba"
+        },
+        {
+          "info": {
+            "name": "Avalara GetJurisdictionOverride",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/jurisdictionoverrides/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the item object identified by this URL.\n            \nA Jurisdiction Override is a configuration setting that allows you to select the taxing\njurisdiction for a specific address.  If you encounter an address that is on the boundary\nbetween two different jurisdictions, you can choose to set up a jurisdiction override\nto switch this address to use different taxing jurisdictions.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceA"
+        },
+        {
+          "info": {
+            "name": "Avalara UpdateJurisdictionOverride",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/jurisdictionoverrides/:id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the existing jurisdictionoverride object at this URL with an updated object.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteJurisdictionOverride",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/jurisdictionoverrides/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Marks the item object at this URL as deleted.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara QueryJurisdictionOverrides",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/jurisdictionoverrides",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ]
+          },
+          "docs": "Get multiple jurisdiction override objects across all companies.\n            \nA Jurisdiction Override is a configuration setting that allows you to select the taxing\njurisdiction for a specific address.  If you encounter an address that is on the boundary\nbetween two different jurisdictions, you can choose to set up a jurisdiction override\nto switch this address to use different taxing jurisdictions.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full doc"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

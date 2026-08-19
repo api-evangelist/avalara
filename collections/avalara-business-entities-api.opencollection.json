@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Excise Platform Business Entities API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Business Entities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Business Entities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://exciseapi.avalara.com/api/v1/BusinessEntities"
+          },
+          "docs": "Avalara List Business Entities"
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Business Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://exciseapi.avalara.com/api/v1/BusinessEntities",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Create a Business Entity"
+        },
+        {
+          "info": {
+            "name": "Avalara Get a Business Entity by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://exciseapi.avalara.com/api/v1/BusinessEntities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Get a Business Entity by ID"
+        },
+        {
+          "info": {
+            "name": "Avalara Update a Business Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://exciseapi.avalara.com/api/v1/BusinessEntities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Update a Business Entity"
+        },
+        {
+          "info": {
+            "name": "Avalara Delete a Business Entity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://exciseapi.avalara.com/api/v1/BusinessEntities/:entityId",
+            "params": [
+              {
+                "name": "entityId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Delete a Business Entity"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,332 @@
+{
+  "item": [
+    {
+      "id": "905ab21f-2da2-45a9-8de3-5774c9dc43e9",
+      "name": "Utilities",
+      "description": {
+        "content": "Utility endpoints including ping and health checks",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ffbe3340-56af-4b57-807e-84b1fd49d3bf",
+          "name": "Avalara Test Connectivity and Authentication",
+          "request": {
+            "name": "Avalara Test Connectivity and Authentication",
+            "description": {
+              "content": "Tests connectivity to the AvaTax service and validates authentication credentials.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "utilities",
+                "ping"
+              ],
+              "host": [
+                "{{api-v2-utilities-ping-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "74092dda-ba65-4043-bce8-3c202623cebb",
+              "name": "Ping successful",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "utilities",
+                    "ping"
+                  ],
+                  "host": [
+                    "{{api-v2-utilities-ping-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": \"string\",\n  \"authenticated\": true,\n  \"authenticationType\": \"None\",\n  \"authenticatedUserName\": \"string\",\n  \"authenticatedUserId\": 2765,\n  \"authenticatedAccountId\": 9281,\n  \"crmid\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b305e85e-547b-4584-9468-661e79e43dce",
+          "name": "Avalara List Subscriptions for the Current Account",
+          "request": {
+            "name": "Avalara List Subscriptions for the Current Account",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "utilities",
+                "subscriptions"
+              ],
+              "host": [
+                "{{api-v2-utilities-subscriptions-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a1e8225f-b972-482b-898d-963b3b523d5c",
+              "name": "Subscriptions for authenticated account",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "utilities",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{api-v2-utilities-subscriptions-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7c5d695-4842-49c9-aab6-ad44bcade042",
+          "name": "Avalara GetMySubscription",
+          "request": {
+            "name": "Avalara GetMySubscription",
+            "description": {
+              "content": "Returns a subscription object for the current account, or 404 Not Found if this subscription is not enabled for this account.\n            \nThis API will return an error if it is called with invalid authentication credentials.\n            \nThis API is intended to help you determine whether you have the necessary subscription to use certain API calls\nwithin AvaTax.  You can examine the subscriptions returned from this API call to look for a particular product\nor subscription to provide useful information to the current user as to whether they are entitled to use\nspecific features of AvaTax.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "utilities",
+                "subscriptions",
+                ":serviceTypeId"
+              ],
+              "host": [
+                "{{api-v2-utilities-subscriptions-serviceTypeId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "serviceTypeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "168decf6-7951-459f-a285-71b6eeea16b6",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "utilities",
+                    "subscriptions",
+                    ":serviceTypeId"
+                  ],
+                  "host": [
+                    "{{api-v2-utilities-subscriptions-serviceTypeId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "serviceTypeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "api-v2-utilities-ping-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "api-v2-utilities-subscriptions-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-utilities-subscriptions-serviceTypeId-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "439fed66-d9da-400f-b6d9-87ed60573677",
+    "name": "Avalara Utilities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Utilities across 2 of this provider's published API definitions: avalara-avatax-rest-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

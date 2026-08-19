@@ -1,0 +1,48 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Shipping Verification Age Verification API",
+    "version": "3.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Age Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Determines whether an individual meets or exceeds the minimum legal drinking age.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/api/v2/ageverification/verify",
+            "params": [
+              {
+                "name": "simulatedFailureCode",
+                "value": "",
+                "type": "query",
+                "description": "(Optional) The failure code included in the simulated response of the endpoint. Note that this endpoint is only available in Sandbox for testing purposes."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The request must meet the following criteria in order to be evaluated:\n* *firstName*, *lastName*, and *address* are required fields.\n* One of the following sets of attributes are required for the *address*:\n  * *line1, city, region*\n  * *line1, postalCode*\n\nOptionally, the transaction and its lines may use the following parameters:\n* A *DOB* (Date of Birth) field. The value should be ISO-8601 compliant (e.g. 2020-07-21).\n* Beyond the required *address* fields above, a *country* field is permitte"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

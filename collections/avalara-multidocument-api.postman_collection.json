@@ -1,0 +1,1645 @@
+{
+  "item": [
+    {
+      "id": "3b74987a-5fd9-4363-ae1f-3095e137ddad",
+      "name": "MultiDocument",
+      "description": {
+        "content": "Multi-document transaction management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "37997639-8b14-4c32-bc3a-7f6dc735cb05",
+          "name": "Avalara Create a Multi-document Transaction",
+          "request": {
+            "name": "Avalara Create a Multi-document Transaction",
+            "description": {
+              "content": "Creates a transaction that spans multiple companies or jurisdictions, managing related documents as a single group.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "multidocument",
+                "transactions",
+                "create"
+              ],
+              "host": [
+                "{{api-v2-multidocument-transactions-create-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\",\n  \"lines\": [\n    {\n      \"companyCode\": \"<string>\",\n      \"reportingLocationCode\": \"<string>\",\n      \"number\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"amount\": \"<double>\",\n      \"taxCode\": \"<string>\",\n      \"addresses\": {\n        \"shipFrom\": {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"line3\": \"<string>\",\n          \"city\": \"<string>\",\n          \"region\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\",\n          \"latitude\": \"<double>\",\n          \"longitude\": \"<double>\"\n        },\n        \"shipTo\": {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"line3\": \"<string>\",\n          \"city\": \"<string>\",\n          \"region\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\",\n          \"latitude\": \"<double>\",\n          \"longitude\": \"<double>\"\n        }\n      }\n    },\n    {\n      \"companyCode\": \"<string>\",\n      \"reportingLocationCode\": \"<string>\",\n      \"number\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"amount\": \"<double>\",\n      \"taxCode\": \"<string>\",\n      \"addresses\": {\n        \"shipFrom\": {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"line3\": \"<string>\",\n          \"city\": \"<string>\",\n          \"region\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\",\n          \"latitude\": \"<double>\",\n          \"longitude\": \"<double>\"\n        },\n        \"shipTo\": {\n          \"line1\": \"<string>\",\n          \"line2\": \"<string>\",\n          \"line3\": \"<string>\",\n          \"city\": \"<string>\",\n          \"region\": \"<string>\",\n          \"postalCode\": \"<string>\",\n          \"country\": \"<string>\",\n          \"latitude\": \"<double>\",\n          \"longitude\": \"<double>\"\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0b54d6a3-c705-46b8-8665-ab0285ad8836",
+              "name": "Multi-document transaction created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "multidocument",
+                    "transactions",
+                    "create"
+                  ],
+                  "host": [
+                    "{{api-v2-multidocument-transactions-create-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"<string>\",\n  \"lines\": [\n    {\n      \"companyCode\": \"string\",\n      \"reportingLocationCode\": \"string\",\n      \"number\": \"string\",\n      \"quantity\": 5498.031480933823,\n      \"amount\": 5568.808183713963,\n      \"taxCode\": \"string\",\n      \"addresses\": {\n        \"shipFrom\": {\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"line3\": \"string\",\n          \"city\": \"string\",\n          \"region\": \"string\",\n          \"postalCode\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": 6533.277626028369,\n          \"longitude\": 5331.006861880019\n        },\n        \"shipTo\": {\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"line3\": \"string\",\n          \"city\": \"string\",\n          \"region\": \"string\",\n          \"postalCode\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": 1131.2723155056538,\n          \"longitude\": 7092.137144077057\n        }\n      }\n    },\n    {\n      \"companyCode\": \"string\",\n      \"reportingLocationCode\": \"string\",\n      \"number\": \"string\",\n      \"quantity\": 522.015540201346,\n      \"amount\": 5333.473051771862,\n      \"taxCode\": \"string\",\n      \"addresses\": {\n        \"shipFrom\": {\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"line3\": \"string\",\n          \"city\": \"string\",\n          \"region\": \"string\",\n          \"postalCode\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": 3628.4685614928703,\n          \"longitude\": 9966.582431549761\n        },\n        \"shipTo\": {\n          \"line1\": \"string\",\n          \"line2\": \"string\",\n          \"line3\": \"string\",\n          \"city\": \"string\",\n          \"region\": \"string\",\n          \"postalCode\": \"string\",\n          \"country\": \"string\",\n          \"latitude\": 1099.268556231836,\n          \"longitude\": 4005.432667825115\n        }\n      }\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "80c0d5af-0fcf-480f-a735-96744f5e0385",
+          "name": "Avalara AdjustMultiDocumentTransaction",
+          "request": {
+            "name": "Avalara AdjustMultiDocumentTransaction",
+            "description": {
+              "content": "Adjusts the current MultiDocument transaction uniquely identified by this URL.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nWhen you adjust a transaction, that transaction's status is recorded as `Adjusted`.\n            \nBoth the revisions will be available for retrieval based on their code and ID numbers. Only transactions in Committed status can be reported on a tax filing by Avalara's Managed Returns Service.\n            \nTransactions that have been previously reported to a tax authority by Avalara Managed Returns are considered locked and are no longer available for adjustments.\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "transactions",
+                "multidocument",
+                ":code",
+                "type",
+                ":type",
+                "adjust"
+              ],
+              "host": [
+                "{{api-v2-transactions-multidocument-code-type-type-adjust-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "67bd69fa-4ae3-4630-bf45-c5c255018c5f",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "transactions",
+                    "multidocument",
+                    ":code",
+                    "type",
+                    ":type",
+                    "adjust"
+                  ],
+                  "host": [
+                    "{{api-v2-transactions-multidocument-code-type-type-adjust-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"adjustmentReason\": \"PriceAdjusted\",\n  \"adjustDescription\": \"Price was dropped.\",\n  \"newTransaction\": {\n    \"lines\": [\n      {\n        \"companyCode\": \"DEFAULT\",\n        \"reportingLocationCode\": \"ReportLocation111\",\n        \"number\": \"1\",\n        \"quantity\": 1,\n        \"amount\": 100,\n        \"taxCode\": \"PS081282\",\n        \"itemCode\": \"Y0001\",\n        \"description\": \"Yarn\"\n      }\n    ],\n    \"type\": \"SalesInvoice\",\n    \"companyCode\": \"DEFAULT\",\n    \"date\": \"2023-08-13\",\n    \"customerCode\": \"ABC\",\n    \"purchaseOrderNo\": \"2023-08-13-001\",\n    \"addresses\": {\n      \"singleLocation\": {\n        \"line1\": \"2000 Main Street\",\n        \"city\": \"Irvine\",\n        \"region\": \"CA\",\n        \"country\": \"US\",\n        \"postalCode\": \"92614\"\n      }\n    },\n    \"commit\": true,\n    \"currencyCode\": \"USD\",\n    \"description\": \"Yarn\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "362e1c4b-a5ff-40f7-9eda-d8ec8cc47f69",
+          "name": "Avalara AuditMultiDocumentTransaction",
+          "request": {
+            "name": "Avalara AuditMultiDocumentTransaction",
+            "description": {
+              "content": "Retrieve audit information about a MultiDocument transaction stored in AvaTax.\n            \nThe audit API retrieves audit information related to a specific MultiDocument transaction.  This audit\ninformation includes the following:\n            \n* The `code` of the MultiDocument transaction\n* The `type` of the MultiDocument transaction\n* The server timestamp representing the exact server time when the transaction was created\n* The server duration - how long it took to process this transaction\n* Whether exact API call details were logged\n* A reconstructed API call showing what the original create call looked like\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "transactions",
+                "multidocument",
+                ":code",
+                "type",
+                ":type",
+                "audit"
+              ],
+              "host": [
+                "{{api-v2-transactions-multidocument-code-type-type-audit-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "376c6a34-0637-4722-ae40-c06532dc009e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "transactions",
+                    "multidocument",
+                    ":code",
+                    "type",
+                    ":type",
+                    "audit"
+                  ],
+                  "host": [
+                    "{{api-v2-transactions-multidocument-code-type-type-audit-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "61eb2a0d-f805-4732-ac5d-5acd056c9402",
+          "name": "Avalara CommitMultiDocumentTransaction",
+          "request": {
+            "name": "Avalara CommitMultiDocumentTransaction",
+            "description": {
+              "content": "Marks a list of transactions by changing its status to `Committed`.\n            \nTransactions that are committed are available to be reported to a tax authority by Avalara Managed Returns.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nAny changes made to a committed transaction will generate a transaction history.\n\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, ProStoresOperator, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "transactions",
+                "multidocument",
+                "commit"
+              ],
+              "host": [
+                "{{api-v2-transactions-multidocument-commit-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "307e325a-58d8-4a10-8867-d8a6f0459d35",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "transactions",
+                    "multidocument",
+                    "commit"
+                  ],
+                  "host": [
+                    "{{api-v2-transactions-multidocument-commit-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"b7ea8db8-42f7-40db-8592-d31ed6c5cb6c\",\n  \"type\": \"SalesInvoice\",\n  \"commit\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc741e83-6fc1-421c-add3-61afa6d2fabd",
+          "name": "Avalara CreateMultiDocumentTransaction",
+          "request": {
+            "name": "Avalara CreateMultiDocumentTransaction",
+            "description": {
+              "content": "Records a new MultiDocument transaction in AvaTax.\n            \nA traditional transaction requires exactly two parties: a seller and a buyer.  MultiDocument transactions can\ninvolve a marketplace of vendors, each of which contributes some portion of the final transaction.  Within\na MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate\ndocument.  This separation of documents allows each seller to file their taxes separately.\n            \nThis API will report an error if you attempt to create a transaction when one already exists with the specified `code`.\nIf you would like the API to automatically update the transaction when it already exists, please set the `allowAdjust`\nvalue to `true`.\n            \nTo generate a refund for a transaction, use the `RefundTransaction` API.\n            \nThe field `type` identifies the kind of transaction - for example, a sale, purchase, or refund.  If you do not specify\na `type` value, you will receive an estimate of type `SalesOrder`, which will not be recorded.\n            \nThe origin and destination locations for a transaction must be identified by either address or geocode.  For address-based transactions, please\nprovide addresses in the fields `line`, `city`, `region`, `country` and `postalCode`.  For geocode-based transactions, please provide the geocode\ninformation in the fields `latitude` and `longitude`.  If either `latitude` or `longitude` or both are null, the transaction will be calculated\nusing the best available address location information.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* Lines\n* Details (implies lines)\n* Summary (implies details)\n* Addresses\n* SummaryOnly (omit lines and details - reduces API response size)\n* LinesOnly (omit details - reduces API response size)\n* ForceTimeout - Simulates a timeout.  This adds a 30 second delay and error to your API call.  This can be used to test your code to ensure it can respond correctly in the case of a dropped connection.\n            \nIf you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "transactions",
+                "multidocument"
+              ],
+              "host": [
+                "{{api-v2-transactions-multidocument-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b40ea484-05e7-44fb-ba83-e12009ecb127",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "transactions",
+                    "multidocument"
+                  ],
+                  "host": [
+                    "{{api-v2-transactions-multidocument-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"lines\": [\n    {\n      \"companyCode\": \"DEFAULT\",\n      \"reportingLocationCode\": \"ReportLocation111\",\n      \"number\": \"1\",\n      \"quantity\": 1,\n      \"amount\": 100,\n      \"taxCode\": \"PS081282\",\n      \"itemCode\": \"Y0001\",\n      \"description\": \"Yarn\"\n    }\n  ],\n  \"type\": \"SalesInvoice\",\n  \"companyCode\": \"DEFAULT\",\n  \"date\": \"2023-08-13\",\n  \"customerCode\": \"ABC\",\n  \"purchaseOrderNo\": \"2023-08-13-001\",\n  \"addresses\": {\n    \"singleLocation\": {\n      \"line1\": \"2000 Main Street\",\n      \"city\": \"Irvine\",\n      \"region\": \"CA\",\n      \"country\": \"US\",\n      \"postalCode\": \"92614\"\n    }\n  },\n  \"commit\": true,\n  \"currencyCode\": \"USD\",\n  \"description\": \"Yarn\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf19235c-0807-47a8-accd-bcf6e916271c",
+          "name": "Avalara ListMultiDocumentTransactions",
+          "request": {
+            "name": "Avalara ListMultiDocumentTransactions",
+            "description": {
+              "content": "List all MultiDocument transactions within this account.\n            \nThis endpoint is limited to returning 1,000 MultiDocument transactions at a time.  To retrieve more than 1,000 MultiDocument\ntransactions, please use the pagination features of the API.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* Lines\n* Details (implies lines)\n* Summary (implies details)\n* Addresses\n* SummaryOnly (omit lines and details - reduces API response size)\n* LinesOnly (omit details - reduces API response size)\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "transactions",
+                "multidocument"
+              ],
+              "host": [
+                "{{api-v2-transactions-multidocument-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3c944cc6-b75e-41e3-a2a9-d071fea1167b",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "transactions",
+                    "multidocument"
+                  ],
+                  "host": [
+                    "{{api-v2-transactions-multidocument-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cc40bd90-e0c3-49db-a5ef-eea16b619c7a",
+          "name": "Avalara GetMultiDocumentTransactionByCodeAndType",
+          "request": {
+            "name": "Avalara GetMultiDocumentTransactionByCodeAndType",
+            "description": {
+              "content": "Get the current MultiDocument transaction identified by this URL.\n            \nIf this transaction was adjusted, the return value of this API will be the current transaction with this code.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* Lines\n* Details (implies lines)\n* Summary (implies details)\n* Addresses\n* SummaryOnly (omit lines and details - reduces API response size)\n* LinesOnly (omit details - reduces API response size)\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "transactions",
+                "multidocument",
+                ":code",
+                "type",
+                ":type"
+              ],
+              "host": [
+                "{{api-v2-transactions-multidocument-code-type-type-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5b7387a4-d251-4197-acbc-4abd870af266",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "transactions",
+                    "multidocument",
+                    ":code",
+                    "type",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{api-v2-transactions-multidocument-code-type-type-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b94d228-8f64-4838-9e20-0bc1ac5e3d40",
+          "name": "Avalara GetMultiDocumentTransactionById",
+          "request": {
+            "name": "Avalara GetMultiDocumentTransactionById",
+            "description": {
+              "content": "Get the unique MultiDocument transaction identified by this URL.\n            \nA traditional transaction requires exactly two parties: a seller and a buyer.  MultiDocument transactions can\ninvolve a marketplace of vendors, each of which contributes some portion of the final transaction.  Within\na MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate\ndocument.  This separation of documents allows each seller to file their taxes separately.\n            \nThis endpoint retrieves the exact transaction identified by this ID number even if that transaction was later adjusted\nby using the `AdjustTransaction` endpoint.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* Lines\n* Details (implies lines)\n* Summary (implies details)\n* Addresses\n* SummaryOnly (omit lines and details - reduces API response size)\n* LinesOnly (omit details - reduces API response size)\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "transactions",
+                "multidocument",
+                ":id"
+              ],
+              "host": [
+                "{{api-v2-transactions-multidocument-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9d64d5f9-2dc0-4ee5-b781-c9dfec3e7d6a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "transactions",
+                    "multidocument",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{api-v2-transactions-multidocument-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2477b04-e90d-4bf8-a6f3-d03f87e165d7",
+          "name": "Avalara RefundMultiDocumentTransaction",
+          "request": {
+            "name": "Avalara RefundMultiDocumentTransaction",
+            "description": {
+              "content": "Create a refund for a MultiDocument transaction.\n            \nA traditional transaction requires exactly two parties: a seller and a buyer.  MultiDocument transactions can\ninvolve a marketplace of vendors, each of which contributes some portion of the final transaction.  Within\na MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate\ndocument.  This separation of documents allows each seller to file their taxes separately.\n            \nThe `RefundTransaction` API allows you to quickly and easily create a `ReturnInvoice` representing a refund\nfor a previously created `SalesInvoice` transaction.  You can choose to create a full or partial refund, and\nspecify individual line items from the original sale for refund.\n            \nThe `RefundTransaction` API ensures that the tax amount you refund to the customer exactly matches the tax that\nwas calculated during the original transaction, regardless of any changes to your company's configuration, rules,\nnexus, or any other setting.\n            \nThis API is intended to be a shortcut to allow you to quickly and accurately generate a refund for the following\ncommon refund scenarios:\n            \n* A full refund of a previous sale\n* Refunding the tax that was charged on a previous sale, when the customer provides an exemption certificate after the purchase\n* Refunding one or more items (lines) from a previous sale\n* Granting a customer a percentage refund of a previous sale\n            \nFor more complex scenarios than the ones above, please use `CreateTransaction` with document type `ReturnInvoice` to\ncreate a custom refund transaction.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* Lines\n* Details (implies lines)\n* Summary (implies details)\n* Addresses\n* SummaryOnly (omit lines and details - reduces API response size)\n* LinesOnly (omit details - reduces API response size)\n            \nIf you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.\n\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "transactions",
+                "multidocument",
+                ":code",
+                "type",
+                ":type",
+                "refund"
+              ],
+              "host": [
+                "{{api-v2-transactions-multidocument-code-type-type-refund-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "54f17425-bae9-457b-8955-b540243c9cf5",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "transactions",
+                    "multidocument",
+                    ":code",
+                    "type",
+                    ":type",
+                    "refund"
+                  ],
+                  "host": [
+                    "{{api-v2-transactions-multidocument-code-type-type-refund-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"refundTransactionCode\": \"66d322fb-3750-4480-867a-519967282c72\",\n  \"refundDate\": \"2023-08-13\",\n  \"refundType\": \"Full\",\n  \"referenceCode\": \"Refund for a committed transaction\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5e6aeb8-e625-4907-9daa-19b0c2d5ebea",
+          "name": "Avalara VerifyMultiDocumentTransaction",
+          "request": {
+            "name": "Avalara VerifyMultiDocumentTransaction",
+            "description": {
+              "content": "Verifies that the MultiDocument transaction uniquely identified by this URL matches certain expected values.\n            \nIf the transaction does not match these expected values, this API will return an error code indicating which value did not match.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "transactions",
+                "multidocument",
+                "verify"
+              ],
+              "host": [
+                "{{api-v2-transactions-multidocument-verify-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1570f1c8-e5ce-4e91-9d38-b2cda70205a0",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "transactions",
+                    "multidocument",
+                    "verify"
+                  ],
+                  "host": [
+                    "{{api-v2-transactions-multidocument-verify-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"ABC\",\n  \"type\": \"SalesInvoice\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e76907a7-eb49-49f0-aa12-97cf1256c4c2",
+          "name": "Avalara VoidMultiDocumentTransaction",
+          "request": {
+            "name": "Avalara VoidMultiDocumentTransaction",
+            "description": {
+              "content": "Voids the current transaction uniquely identified by this URL.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nWhen you void a transaction, that transaction's status is recorded as `DocVoided`.\n            \nTransactions that have been previously reported to a tax authority by Avalara Managed Returns Service are considered `locked`,\nand they are no longer available to be voided.\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, BatchServiceAdmin, CompanyAdmin, CSPTester, ProStoresOperator, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "transactions",
+                "multidocument",
+                ":code",
+                "type",
+                ":type",
+                "void"
+              ],
+              "host": [
+                "{{api-v2-transactions-multidocument-code-type-type-void-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "code",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "df77a400-00d1-4081-affc-ee844f97a223",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "transactions",
+                    "multidocument",
+                    ":code",
+                    "type",
+                    ":type",
+                    "void"
+                  ],
+                  "host": [
+                    "{{api-v2-transactions-multidocument-code-type-type-void-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "code",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"DocVoided\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "api-v2-multidocument-transactions-create-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-transactions-multidocument-code-type-type-adjust-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-transactions-multidocument-code-type-type-audit-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-transactions-multidocument-commit-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-transactions-multidocument-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-transactions-multidocument-code-type-type-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-transactions-multidocument-id-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-transactions-multidocument-code-type-type-refund-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-transactions-multidocument-verify-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-transactions-multidocument-code-type-type-void-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "098a8058-432e-471d-83d0-0578b78f744a",
+    "name": "Avalara MultiDocument API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged MultiDocument across 2 of this provider's published API definitions: avalara-avatax-rest-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

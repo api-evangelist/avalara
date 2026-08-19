@@ -1,0 +1,748 @@
+{
+  "item": [
+    {
+      "id": "f470f543-b05c-4b55-990e-0f2574cd1996",
+      "name": "AdvancedRules",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eefbd830-a5ab-499c-9dcb-9110da1c957e",
+          "name": "Avalara CreateCompanyLookupFile",
+          "request": {
+            "name": "Avalara CreateCompanyLookupFile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "advancedrules",
+                "accounts",
+                ":accountId",
+                "companies",
+                ":companyId",
+                "lookupFiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b382eee9-fc60-4589-a237-59c22a63f4dd",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "advancedrules",
+                    "accounts",
+                    ":accountId",
+                    "companies",
+                    ":companyId",
+                    "lookupFiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"sampleLookupFile\",\n  \"content\": \"SWQsTWF0ZXJpYWxHcm91cCxUYXhDb2RlIA0KMSw0MjM0NSxTQzE1MDMwNg0KMiw0MjM0NixTQzE1MDMwNg0KMywxMTExMSxQMDAwMDAwMA0KNCw0NDQ0NCxEQzAxMDAwMA0KNSw5MDk5OSxTUDE0MDAwMA==\",\n  \"fileExtension\": \".csv\",\n  \"isTest\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "073cc7bf-9393-4727-b472-fc69132f3638",
+          "name": "Avalara GetCompanyLookupFiles",
+          "request": {
+            "name": "Avalara GetCompanyLookupFiles",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "advancedrules",
+                "accounts",
+                ":accountId",
+                "companies",
+                ":companyId",
+                "lookupFiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "12d052ce-f447-4faa-84af-035e40aaa34a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "advancedrules",
+                    "accounts",
+                    ":accountId",
+                    "companies",
+                    ":companyId",
+                    "lookupFiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58f6e18b-c766-4317-959f-13573a472aad",
+          "name": "Avalara DeleteLookupFile",
+          "request": {
+            "name": "Avalara DeleteLookupFile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "advancedrules",
+                "accounts",
+                ":accountId",
+                "lookupFiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a1f91bc-d65f-4f47-b1fd-56cffe183b49",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "advancedrules",
+                    "accounts",
+                    ":accountId",
+                    "lookupFiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0db87fb6-4166-4e36-88f3-1b747142749f",
+          "name": "Avalara GetLookupFile",
+          "request": {
+            "name": "Avalara GetLookupFile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "advancedrules",
+                "accounts",
+                ":accountId",
+                "lookupFiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9cabd244-05ae-4e5f-a485-3a36923a9c4a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "advancedrules",
+                    "accounts",
+                    ":accountId",
+                    "lookupFiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f3370275-674e-4e47-a791-3112685b192f",
+          "name": "Avalara UpdateLookupFile",
+          "request": {
+            "name": "Avalara UpdateLookupFile",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "advancedrules",
+                "accounts",
+                ":accountId",
+                "lookupFiles",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "29046bff-e6e6-4361-941f-9af3abdc652e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "advancedrules",
+                    "accounts",
+                    ":accountId",
+                    "lookupFiles",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"sampleLookupFile\",\n  \"content\": \"SWQsTWF0ZXJpYWxHcm91cCxUYXhDb2RlIA0KMSw0MjM0NSxTQzE1MDMwNg0KMiw0MjM0NixTQzE1MDMwNg0KMywxMTExMSxQMDAwMDAwMA0KNCw0NDQ0NCxEQzAxMDAwMA0KNSw5MDk5OSxTUDE0MDAwMA==\",\n  \"fileExtension\": \".csv\",\n  \"isTest\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "acdeaaca-7726-4aac-a858-4b3ab0b8fdaf",
+    "name": "Avalara AvaTax AdvancedRules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the AvaTax API Postman Collection! \n                \nThis collection provides a REST interface to Avalara's enterprise tax service, AvaTax. You can use this collection to interact with the AvaTax APIs while building your integration. \n\nWhile using this collection, we recommend following along with our Developer Implementation Guide: https://developer.avalara.com/avatax/dev-guide/   \n\nAPI requests are grouped into folders to help you navigate through the collection easily. Each request includes a description of the operation and its associated URL, method, headers, and example request body (if applicable). \n\nThe collection uses Postman environment variables for the API base URL and credentials, making it easy to switch between the sandbox and production environments.\n\nTo get started, ensure you have the necessary credentials. Then, update the 'username' and 'password' variables in the 'Authorization' or 'Variables' section with your credentials if you prefer username and password authentication. Alternatively, you can use the 'account_id' and 'license_key' variables for authentication using an account ID and license key.\n\nWe recommend starting with the Ping API, located within the Utilities folder, to test your connectivity and ensure your authentication credentials are valid. The Ping API is a simple way to check if you can successfully communicate with AvaTax.\n\nCollection Variables:\n- Base URL: The base URL for the API. By default, it is set to the sandbox URL - https://sandbox-rest.avatax.com. \n    - Change this variable to switch between sandbox and production environments:\n        - Sandbox URL: https://sandbox-rest.avatax.com\n\t\t- Production URL: https://rest.avatax.com\n- Username: If you are using username and password authentication, enter your username for AvaTax.\n- Password: If you are using username and password authentication, enter your password for AvaTax.\n- Account ID: If you are using account ID and license key authentication, enter your AvaTax account ID. \n    - Be sure to also replace the username variable in the authorization tab with account_id.\n- License Key: If you are using account ID and license key authentication, enter your AvaTax license key.\n    - Be sure to also replace the password variable in the authorization tab with license_key.\n\nHappy testing with AvaTax APIs!",
+      "type": "text/plain"
+    }
+  }
+}

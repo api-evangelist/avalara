@@ -1,0 +1,132 @@
+{
+  "item": [
+    {
+      "id": "ccb811c0-7626-48e2-a5f6-1b6c1f9b14e6",
+      "name": "Onboarding",
+      "description": {
+        "content": "Onboard companies for VAT reporting",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "55ffda83-7893-483c-9b68-20796f977970",
+          "name": "Avalara Onboard a Company for VAT Reporting",
+          "request": {
+            "name": "Avalara Onboard a Company for VAT Reporting",
+            "description": {
+              "content": "Initiates the onboarding process for a company to begin VAT reporting in one or more jurisdictions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "onboarding"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"companyId\": \"<string>\",\n  \"countries\": [\n    {\n      \"countryCode\": \"<string>\",\n      \"vatRegistrationNumber\": \"<string>\",\n      \"filingFrequency\": \"<string>\"\n    },\n    {\n      \"countryCode\": \"<string>\",\n      \"vatRegistrationNumber\": \"<string>\",\n      \"filingFrequency\": \"<string>\"\n    }\n  ],\n  \"companyName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5776b3e0-57f6-4ec4-9b36-3d4f6a4bc096",
+              "name": "Onboarding initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "onboarding"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyId\": \"<string>\",\n  \"countries\": [\n    {\n      \"countryCode\": \"<string>\",\n      \"vatRegistrationNumber\": \"<string>\",\n      \"filingFrequency\": \"<string>\"\n    },\n    {\n      \"countryCode\": \"<string>\",\n      \"vatRegistrationNumber\": \"<string>\",\n      \"filingFrequency\": \"<string>\"\n    }\n  ],\n  \"companyName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.avalara.com/vat-reporting/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "008cde5d-16c3-4756-8cab-074b24692567",
+    "name": "Avalara VAT Reporting Onboarding API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara VAT Reporting API orchestrates end-to-end VAT compliance workflows including onboarding, file ingress, error handling, filing of VAT Returns, EC Listings, Intrastat, and transaction reporting across multiple jurisdictions.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara AvaTax Provisioning API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Provisioning",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara RequestNewAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/api/v2/accounts/request",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API is for use by partner provisioning services customers only.\n            \nAvalara invites select partners to refer new customers to the AvaTax service using the onboarding features\nof AvaTax.  These partners can create accounts for new customers using this API.\n            \nCalling this API creates an account with the specified product subscriptions, but does not configure billing.\nThe customer will receive information from Avalara about how to configure billing for their account.\nYou sh"
+        },
+        {
+          "info": {
+            "name": "Avalara RequestNewEntitlement",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/api/v2/accounts/:id/entitlements/:offer",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "offer",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API is for use by partner provisioning services customers only. This will allow the partners to allow\nthe add new entitlement to an existing customer\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n* This API is available by invitation only.\n* This API is available by invitation only.  To request access to this feature, please "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

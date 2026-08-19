@@ -1,0 +1,116 @@
+{
+  "item": [
+    {
+      "id": "29064d4f-4f9b-4aad-bf38-8f1d3dc6118b",
+      "name": "Products",
+      "description": {
+        "content": "Manage product registrations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e8ab6fc-13db-4c4b-b1a6-d168c9ac010e",
+          "name": "Avalara List Registered Products",
+          "request": {
+            "name": "Avalara List Registered Products",
+            "description": {},
+            "url": {
+              "path": [
+                "Products"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7c1ffda1-7bf2-497b-9abf-9f844abc5f68",
+              "name": "List of products",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Products"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"productCode\": \"string\",\n    \"productName\": \"string\",\n    \"productCategory\": \"NaturalGas\",\n    \"unitOfMeasure\": \"string\"\n  },\n  {\n    \"productCode\": \"string\",\n    \"productName\": \"string\",\n    \"productCategory\": \"Diesel\",\n    \"unitOfMeasure\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://exciseapi.avalara.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "47e59a04-4c76-46ac-ae64-55d032e09bd7",
+    "name": "Avalara Excise Platform Products API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara Excise Platform API provides an external programmatic interface for excise tax determination on fuel, tobacco, alcohol, and other excise products. It supports tax calculation, business entity management, location configuration, and transaction processing for excise tax compliance across US federal and state jurisdictions.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,1196 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Items API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Items for a Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the company"
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression for result filtering"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Avalara List Items for a Company"
+        },
+        {
+          "info": {
+            "name": "Avalara Create Items for a Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the company"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Avalara Create Items for a Company"
+        },
+        {
+          "info": {
+            "name": "Avalara ListItemClassifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/classifications",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "List classifications for an item.\n            \nA classification is the code for a product in a particular tax system. Classifications enable an item to be used in multiple tax systems which may have different tax rates for a product.\n            \nWhen an item is used in a transaction, the applicable classification will be used to determine the appropriate tax rate.\n            \nSearch for specific objects using the criteria in the `$filter` classification; full documentation is available on [Fil"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateItemClassifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/classifications",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Add classifications to an item.\n            \nA classification is the code for a product in a particular tax system. Classifications enable an item to be used in multiple tax systems which may have different tax rates for a product.\n            \nWhen an item is used in a transaction, the applicable classification will be used to determine the appropriate tax rate.\n            \nAn item may only have one classification per tax system.\n\n### Security Policies\n\n* This API requires one of the following"
+        },
+        {
+          "info": {
+            "name": "Avalara BatchDeleteItemClassifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/classifications",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Delete all the classifications for a given item.\n            \nA classification is the code for a product in a particular tax system. Classifications enable an item to be used in multiple tax systems which may have different tax rates for a product.\n            \nWhen an item is used in a transaction, the applicable classification will be used to determine the appropriate tax rate.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, Company"
+        },
+        {
+          "info": {
+            "name": "Avalara ListItemParameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/parameters",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "List parameters for an item.\n            \nSome items can be taxed differently depending on the properties of that item, such as the item grade or by a particular measurement of that item. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to an item will be used by default in tax calculation but will not show on the transaction line referencing the item .\n            \nA parameter specified on a transaction line will override an item parameter if the"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateItemParameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/parameters",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Add parameters to an item.\n            \nSome items can be taxed differently depending on the properties of that item, such as the item grade or by a particular measurement of that item. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to an item will be used by default in tax calculation but will not show on the transaction line referencing the item .\n            \nA parameter specified on a transaction line will override an item parameter if they "
+        },
+        {
+          "info": {
+            "name": "Avalara BatchDeleteItemParameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/parameters",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Delete all the parameters for a given item.\n            \nSome items can be taxed differently depending on the properties of that item, such as the item grade or by a particular measurement of that item. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to an item will be used by default in tax calculation but will not show on the transaction line referencing the item .\n            \nA parameter specified on a transaction line will override an item p"
+        },
+        {
+          "info": {
+            "name": "Avalara BulkUploadItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/upload",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Create/Update one or more item objects attached to this company.\n            \nItems are a way of separating your tax calculation process from your tax configuration details.  If you choose, you\ncan provide `itemCode` values for each `CreateTransaction()` API call rather than specifying tax codes, parameters, descriptions,\nand other data fields.  AvaTax will automatically look up each `itemCode` and apply the correct tax codes and parameters\nfrom the item table instead.  This allows your CreateTr"
+        },
+        {
+          "info": {
+            "name": "Avalara GetItemTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/tags",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get the `Tag` objects of an Item identified by this URL.\n            \nItem tags puts multiple labels for an item. So that item can be easily grouped by these tags.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateItemTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/tags",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates one or more new `Tag` objects attached to this Item.\n            \nItem tags puts multiple labels for an item. So that item can be easily grouped by these tags.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteItemTags",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/tags",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Deletes all `Tags` objects of an Item at this URL.\n            \nItem tags puts multiple labels for an item. So that item can be easily grouped by these tags.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara GetClassificationStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/classificationrequests/taxcode",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": " Get status of tax code classification requests of a company.\n            \nAvalara AvaTax system tax codes represent various goods and services classified by industry or consumer categories and\nmajor physical similarities. Taxability rules are associated with tax codes. Customers can map their Items to tax codes\nallowing them to take advantage of thousands of tax rules in the AvaTax engine resulting in accurate taxability determinations.\n            \nEnable includeClassificationDetails flag to g"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateTaxCodeClassificationRequest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/classificationrequests/taxcode",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a new tax code classification request.\n            \nAvalara AvaTax system tax codes represent various goods and services classified by industry or consumer categories and\nmajor physical similarities. Taxability rules are associated with tax codes. Customers can map their Items to tax codes\nallowing them to take advantage of thousands of tax rules in the AvaTax engine resulting in accurate taxability determinations.\n\n### Security Policies\n\n* This API requires one of the following user rol"
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteCatalogueItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/itemcatalogue/:itemCode",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Deletes the item object at this URL.\n            \nItems are a way of separating your tax calculation process from your tax configuration details.\nUse this endpoint to delete an existing item with item code.\n            \nDeleting an item will also delete the parameters, classifications, and product categories associated with that item.\n            \nNOTE: If your item code contains any of these characters /, +, ? or a space, please use the following encoding before making a request:\n* Replace '/' "
+        },
+        {
+          "info": {
+            "name": "Avalara GetItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get the `Item` object identified by this URL.\n            \nItems are a way of separating your tax calculation process from your tax configuration details.  If you choose, you\ncan provide `itemCode` values for each `CreateTransaction()` API call rather than specifying tax codes, parameters, descriptions,\nand other data fields.  AvaTax will automatically look up each `itemCode` and apply the correct tax codes and parameters\nfrom the item table instead.  This allows your CreateTransaction call to b"
+        },
+        {
+          "info": {
+            "name": "Avalara UpdateItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Replace the existing `Item` object at this URL with an updated object.\n            \nItems are a way of separating your tax calculation process from your tax configuration details.  If you choose, you\ncan provide `itemCode` values for each `CreateTransaction()` API call rather than specifying tax codes, parameters, descriptions,\nand other data fields.  AvaTax will automatically look up each `itemCode` and apply the correct tax codes and parameters\nfrom the item table instead.  This allows your Cr"
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteItem",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Deletes the item object at this URL.\n            \nItems are a way of separating your tax calculation process from your tax configuration details.  If you choose, you\ncan provide `itemCode` values for each `CreateTransaction()` API call rather than specifying tax codes, parameters, descriptions,\nand other data fields.  AvaTax will automatically look up each `itemCode` and apply the correct tax codes and parameters\nfrom the item table instead.  This allows your CreateTransaction call to be as simp"
+        },
+        {
+          "info": {
+            "name": "Avalara GetItemClassification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/classifications/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve a single item classification.\n            \nA classification is the code for a product in a particular tax system. Classifications enable an item to be used in multiple tax systems which may have different tax rates for a product.\n            \nWhen an item is used in a transaction, the applicable classification will be used to determine the appropriate tax rate.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, Comp"
+        },
+        {
+          "info": {
+            "name": "Avalara UpdateItemClassification",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/classifications/:id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Update an item classification.\n            \nA classification is the code for a product in a particular tax system. Classifications enable an item to be used in multiple tax systems which may have different tax rates for a product.\n            \nWhen an item is used in a transaction, the applicable classification will be used to determine the appropriate tax rate.\n            \nAn item may only have one classification per tax system.\n\n### Security Policies\n\n* This API requires one of the following "
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteItemClassification",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/classifications/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Delete a single item classification.\n            \nA classification is the code for a product in a particular tax system. Classifications enable an item to be used in multiple tax systems which may have different tax rates for a product.\n            \nWhen an item is used in a transaction, the applicable classification will be used to determine the appropriate tax rate.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTe"
+        },
+        {
+          "info": {
+            "name": "Avalara GetItemParameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/parameters/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve a single item parameter.\n            \nSome items can be taxed differently depending on the properties of that item, such as the item grade or by a particular measurement of that item. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to an item will be used by default in tax calculation but will not show on the transaction line referencing the item .\n            \nA parameter specified on a transaction line will override an item parameter i"
+        },
+        {
+          "info": {
+            "name": "Avalara UpdateItemParameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/parameters/:id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Update an item parameter.\n            \nSome items can be taxed differently depending on the properties of that item, such as the item grade or by a particular measurement of that item. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to an item will be used by default in tax calculation but will not show on the transaction line referencing the item .\n            \nA parameter specified on a transaction line will override an item parameter if they s"
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteItemParameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/parameters/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Delete a single item parameter.\n            \nSome items can be taxed differently depending on the properties of that item, such as the item grade or by a particular measurement of that item. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to an item will be used by default in tax calculation but will not show on the transaction line referencing the item .\n            \nA parameter specified on a transaction line will override an item parameter if "
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteItemTag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemId/tags/:itemTagDetailId",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemTagDetailId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Deletes the `Tag` object of an Item at this URL.\n            \nItem tags puts multiple labels for an item. So that item can be easily grouped by these tags.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara GetPremiumClassification",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemCode/premiumClassification/:systemCode",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "systemCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieves the premium classification for an ItemCode and SystemCode.\n            \nNOTE: If your item code contains any of these characters /, +, ?,\",' ,% or #, please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: 'Item/Code' becomes 'Item_-ava2f-_Code'\n* Replace '+' with '\\_-ava2b-\\_'  For example: 'Item+Code' becomes 'Item_-ava2b-_Code'\n* Replace '?' with '\\_-ava3f-\\_'  For example: 'Item?Code' becomes 'Item_-ava3f-_Code'\n* Replace '%' with '"
+        },
+        {
+          "info": {
+            "name": "Avalara GetTaxCodeRecommendations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/classificationrequests/taxcode/:requestId/recommendations",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get tax code recommendations.\n            \nAvalara AvaTax system tax codes represent various goods and services classified by industry or consumer categories and\nmajor physical similarities. Taxability rules are associated with tax codes. Customers can map their Items to tax codes\nallowing them to take advantage of thousands of tax rules in the AvaTax engine resulting in accurate taxability determinations.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin,"
+        },
+        {
+          "info": {
+            "name": "Avalara ListImportRestrictions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/:itemCode/restrictions/import/:countryOfImport",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "itemCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "countryOfImport",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve Restrictions for Item by CountryOfImport. This API will only return import restriction for the countryOfImport.\n            \nNOTE: If your item code contains any of these characters /, +, ? or a space, please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: 'Item/Code' becomes 'Item_-ava2f-_Code'\n* Replace '+' with '\\_-ava2b-\\_'  For example: 'Item+Code' becomes 'Item_-ava2b-_Code'\n* Replace '?' with '\\_-ava3f-\\_'  For example: 'Item?Cod"
+        },
+        {
+          "info": {
+            "name": "Avalara QueryItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/items",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get multiple item objects across all companies.\n            \nItems are a way of separating your tax calculation process from your tax configuration details.  If you choose, you\ncan provide `itemCode` values for each `CreateTransaction()` API call rather than specifying tax codes, parameters, descriptions,\nand other data fields.  AvaTax will automatically look up each `itemCode` and apply the correct tax codes and parameters\nfrom the item table instead.  This allows your CreateTransaction call to"
+        },
+        {
+          "info": {
+            "name": "Avalara QueryItemsByTag",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/bytags/:tag",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get multiple item objects associated with given tag.\n            \nItems are a way of separating your tax calculation process from your tax configuration details.  If you choose, you\ncan provide `itemCode` values for each `CreateTransaction()` API call rather than specifying tax codes, parameters, descriptions,\nand other data fields.  AvaTax will automatically look up each `itemCode` and apply the correct tax codes and parameters\nfrom the item table instead.  This allows your CreateTransaction ca"
+        },
+        {
+          "info": {
+            "name": "Avalara SyncItemCatalogue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/itemcatalogue",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates/updates one or more item objects with additional properties and the AvaTax category attached to this company.\n            \nItems are a way of separating your tax calculation process from your tax configuration details. Use this endpoint to create\na new or update an existing item. This can be used to sync the items with Avalara. For example, an accounting software\nsystem can use this to sync all their items from an ERP with Avalara.\n            \nParameters and Classifications can be added"
+        },
+        {
+          "info": {
+            "name": "Avalara SyncItems",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/items/sync",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Syncs a list of items with AvaTax without waiting for them to be created. It is ideal for syncing large product catalogs\nwith AvaTax.\n            \nAny invalid or duplicate items will be ignored. To diagnose why an item is not created, use the normal create transaction API to receive validation information.\n            \nThis API is currently limited to 1000 items per call (the limit is subject to change).\n            \nItems are a way of separating your tax calculation process from your tax config"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

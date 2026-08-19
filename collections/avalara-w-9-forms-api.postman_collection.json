@@ -1,0 +1,383 @@
+{
+  "item": [
+    {
+      "id": "4ef1545a-3cb2-4789-a3df-a4a2a668f6c1",
+      "name": "W-9 Forms",
+      "description": {
+        "content": "Collect and manage W-9 forms",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ac51dc95-2042-4f78-8fa3-bcf11480940c",
+          "name": "Avalara Create a W-9 Collection Request",
+          "request": {
+            "name": "Avalara Create a W-9 Collection Request",
+            "description": {
+              "content": "Sends a W-9 collection request to a payee, allowing them to submit their taxpayer information electronically.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "w9",
+                "requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"payeeEmail\": \"<email>\",\n  \"payeeName\": \"<string>\",\n  \"companyId\": \"<string>\",\n  \"expirationDays\": 30,\n  \"message\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c1d5bfa-d99f-48ce-b5cf-8f2b3d00ffa7",
+              "name": "W-9 request created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "w9",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payeeEmail\": \"<email>\",\n  \"payeeName\": \"<string>\",\n  \"companyId\": \"<string>\",\n  \"expirationDays\": 30,\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"string\",\n  \"status\": \"string\",\n  \"payeeEmail\": \"string\",\n  \"createdDate\": \"2023-08-14T11:05:40.727Z\",\n  \"expirationDate\": \"1949-11-25T07:10:59.188Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5139953d-ff4e-4885-8569-401db08bad2d",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "w9",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"payeeEmail\": \"<email>\",\n  \"payeeName\": \"<string>\",\n  \"companyId\": \"<string>\",\n  \"expirationDays\": 30,\n  \"message\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6a213fe9-1727-4c30-87f7-81da01adf00a",
+          "name": "Avalara List W-9 Requests",
+          "request": {
+            "name": "Avalara List W-9 Requests",
+            "description": {},
+            "url": {
+              "path": [
+                "w9",
+                "requests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b1e01da-6079-4d15-b26b-8174ded068e6",
+              "name": "List of W-9 requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "w9",
+                    "requests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9eb07792-de2f-4d8f-b904-a9b83c1d8038",
+          "name": "Avalara Get a Completed W-9 Form",
+          "request": {
+            "name": "Avalara Get a Completed W-9 Form",
+            "description": {},
+            "url": {
+              "path": [
+                "w9",
+                ":w9Id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "w9Id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "51f4ee83-90fc-4a05-be9e-0b16ff83d5c3",
+              "name": "W-9 form details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "w9",
+                    ":w9Id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "w9Id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"payeeName\": \"string\",\n  \"businessName\": \"string\",\n  \"taxClassification\": \"Trust\",\n  \"tin\": \"string\",\n  \"tinType\": \"EIN\",\n  \"address\": {\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"state\": \"string\",\n    \"postalCode\": \"string\"\n  },\n  \"signedDate\": \"1969-05-25\",\n  \"status\": \"Expired\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.avalara.com/1099/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c72a5998-572d-4927-aa52-0f15041b3478",
+    "name": "Avalara 1099 & W-9 W-9 Forms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

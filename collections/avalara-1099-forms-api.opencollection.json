@@ -1,0 +1,135 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara 1099 & W-9 1099 Forms API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "1099 Forms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List 1099 Forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/forms/1099",
+            "params": [
+              {
+                "name": "taxYear",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "formType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Avalara List 1099 Forms"
+        },
+        {
+          "info": {
+            "name": "Avalara Create a 1099 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/forms/1099",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new 1099 information return form with payee and payment information."
+        },
+        {
+          "info": {
+            "name": "Avalara Get a 1099 Form by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/forms/1099/:formId",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Get a 1099 Form by ID"
+        },
+        {
+          "info": {
+            "name": "Avalara Update a 1099 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.avalara.com/1099/v1/forms/1099/:formId",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Update a 1099 Form"
+        },
+        {
+          "info": {
+            "name": "Avalara Delete a 1099 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.avalara.com/1099/v1/forms/1099/:formId",
+            "params": [
+              {
+                "name": "formId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Delete a 1099 Form"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

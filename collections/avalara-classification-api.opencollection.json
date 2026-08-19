@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Automated Tariff Code Classification API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Classification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Classify a Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/classification/v1/classify",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Classifies a product into HS Code and Avalara Tax Code based on the provided product description, attributes, and destination country. Returns predictions with confidence scores."
+        },
+        {
+          "info": {
+            "name": "Avalara Classify a Batch of Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/classification/v1/classify/batch",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Classifies multiple products in a single request."
+        },
+        {
+          "info": {
+            "name": "Avalara Look Up an HS Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/classification/v1/hscodes/:hsCode",
+            "params": [
+              {
+                "name": "hsCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Country for country-specific tariff details"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific HS Code."
+        },
+        {
+          "info": {
+            "name": "Avalara Get HS Code Hierarchy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/classification/v1/hscodes/:hsCode/hierarchy",
+            "params": [
+              {
+                "name": "hsCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the full hierarchy for an HS Code from chapter through heading, subheading, and national tariff line."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

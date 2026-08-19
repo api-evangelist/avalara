@@ -1,0 +1,132 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Subscriptions API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Subscriptions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Subscriptions for an Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/accounts/:id/subscriptions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression for result filtering"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Avalara List Subscriptions for an Account"
+        },
+        {
+          "info": {
+            "name": "Avalara ListSubscriptionsByAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/accounts/:accountId/subscriptions",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "List all subscription objects attached to this account.\nA 'subscription' indicates a licensed subscription to a named Avalara service.\nTo request or remove subscriptions, please contact Avalara sales or your customer account manager.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` p"
+        },
+        {
+          "info": {
+            "name": "Avalara GetSubscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/accounts/:accountId/subscriptions/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get the subscription object identified by this URL.\nA 'subscription' indicates a licensed subscription to a named Avalara service.\nTo request or remove subscriptions, please contact Avalara sales or your customer account manager.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, Registrar, SiteAdmin, S"
+        },
+        {
+          "info": {
+            "name": "Avalara QuerySubscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/subscriptions",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get multiple subscription objects across all accounts.\nA 'subscription' indicates a licensed subscription to a named Avalara service.\nTo request or remove subscriptions, please contact Avalara sales or your customer account manager.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` pa"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

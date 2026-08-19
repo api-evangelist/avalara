@@ -1,0 +1,262 @@
+{
+  "item": [
+    {
+      "id": "190b85ae-6cd6-438b-82fe-58c98e5da668",
+      "name": "Addresses",
+      "description": {
+        "content": "Validate and resolve addresses for tax jurisdiction determination",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d87413f-3efe-47f0-83a7-e27e581d84c0",
+          "name": "Avalara Resolve and Validate an Address",
+          "request": {
+            "name": "Avalara Resolve and Validate an Address",
+            "description": {
+              "content": "Validates and resolves an address to a standardized format with latitude, longitude, and tax jurisdiction information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "addresses",
+                "resolve"
+              ],
+              "host": [
+                "{{api-v2-addresses-resolve-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"line1\": \"<string>\",\n  \"line2\": \"<string>\",\n  \"line3\": \"<string>\",\n  \"city\": \"<string>\",\n  \"region\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"textCase\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1ca03410-5716-435e-a3e8-2b3c58a8770d",
+              "name": "Address resolved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "addresses",
+                    "resolve"
+                  ],
+                  "host": [
+                    "{{api-v2-addresses-resolve-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"line1\": \"<string>\",\n  \"line2\": \"<string>\",\n  \"line3\": \"<string>\",\n  \"city\": \"<string>\",\n  \"region\": \"<string>\",\n  \"postalCode\": \"<string>\",\n  \"country\": \"<string>\",\n  \"textCase\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"address\": {\n    \"line1\": \"string\",\n    \"line2\": \"string\",\n    \"line3\": \"string\",\n    \"city\": \"string\",\n    \"region\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"latitude\": 3269.4141263970346,\n    \"longitude\": 4147.884975436766\n  },\n  \"validatedAddresses\": [\n    {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"line3\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\",\n      \"latitude\": 9581.350370261614,\n      \"longitude\": 7937.271572668197\n    },\n    {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"line3\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\",\n      \"latitude\": 2100.52860545527,\n      \"longitude\": 7378.3024342257495\n    }\n  ],\n  \"coordinates\": {\n    \"latitude\": 2144.191649072036,\n    \"longitude\": 1885.2889670779693\n  },\n  \"resolutionQuality\": \"RegionCentroid\",\n  \"taxAuthorities\": [\n    {\n      \"avalaraId\": \"string\",\n      \"jurisdictionName\": \"string\",\n      \"jurisdictionType\": \"string\",\n      \"signatureCode\": \"string\"\n    },\n    {\n      \"avalaraId\": \"string\",\n      \"jurisdictionName\": \"string\",\n      \"jurisdictionType\": \"string\",\n      \"signatureCode\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a3f565d-62da-4dba-a453-b9f8fa173b4e",
+          "name": "Avalara ResolveAddress",
+          "request": {
+            "name": "Avalara ResolveAddress",
+            "description": {
+              "content": "Resolve an address against Avalara's address-validation system.  If the address can be resolved, this API\nprovides the latitude and longitude of the resolved location.  The value 'resolutionQuality' can be used\nto identify how closely this address can be located.  If the address cannot be clearly located, use the\n'messages' structure to learn more about problems with this address.\nThis is the same API as the POST /api/v2/addresses/resolve endpoint.\nBoth verbs are supported to provide for flexible implementation.\n            \nIn order to get any evaluation for an address, please provide at least one of the following fields/pairs:\n1. postal code\n2. line1 + city + region\n3. line1 + postal code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AutoAddress.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "addresses",
+                "resolve"
+              ],
+              "host": [
+                "{{api-v2-addresses-resolve-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c5c5a2f8-dca2-47d1-96b7-6dd8c23eb90f",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "addresses",
+                    "resolve"
+                  ],
+                  "host": [
+                    "{{api-v2-addresses-resolve-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "api-v2-addresses-resolve-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "e4410c2a-cee9-4a9c-b613-eb65312d2580",
+    "name": "Avalara Addresses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Addresses across 2 of this provider's published API definitions: avalara-avatax-rest-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

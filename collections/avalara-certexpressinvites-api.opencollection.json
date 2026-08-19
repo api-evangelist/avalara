@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara AvaTax CertExpressInvites API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CertExpressInvites",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara CreateCertExpressInvitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/api/v2/companies/:companyId/customers/:customerCode/certexpressinvites",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "customerCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates an invitation for a customer to self-report certificates using the CertExpress website.\n            \nThis invitation is delivered by your choice of method, or you can present a hyperlink to the user\ndirectly in your connector.  Your customer will be redirected to https://app.certexpress.com/ where\nthey can follow a step-by-step guide to enter information about their exemption certificates.  The\ncertificates entered will be recorded and automatically linked to their customer record.\n     "
+        },
+        {
+          "info": {
+            "name": "Avalara GetCertExpressInvitation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/companies/:companyId/customers/:customerCode/certexpressinvites/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "customerCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve an existing CertExpress invitation sent to a customer.\n            \nA CertExpression invitation allows a customer to follow a helpful step-by-step guide to provide information\nabout their certificates.  This step by step guide allows the customer to complete and upload the full\ncertificate in a convenient, friendly web browser experience.  When the customer completes their certificates,\nthey will automatically be recorded to your company and linked to the customer record.\n            \nT"
+        },
+        {
+          "info": {
+            "name": "Avalara ListCertExpressInvitations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/companies/:companyId/certexpressinvites",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve CertExpress invitations sent by this company.\n            \nA CertExpression invitation allows a customer to follow a helpful step-by-step guide to provide information\nabout their certificates.  This step by step guide allows the customer to complete and upload the full\ncertificate in a convenient, friendly web browser experience.  When the customer completes their certificates,\nthey will automatically be recorded to your company and linked to the customer record.\n            \nThe [CertE"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

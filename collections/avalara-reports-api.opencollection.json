@@ -1,0 +1,153 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Reports API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Reports for a Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/reports",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the company"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Avalara List Reports for a Company"
+        },
+        {
+          "info": {
+            "name": "Avalara Retrieve a Single Report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/reports/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Avalara Retrieve a Single Report"
+        },
+        {
+          "info": {
+            "name": "Avalara DownloadReport",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/reports/:id/attachment",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This API downloads the file associated with a report.\n            \nIf the report is not yet complete, you will receive a `ReportNotFinished` error.  To check if a report is complete,\nuse the `GetReport` API.\n            \nReports are run as asynchronous report tasks on the server.  When complete, the report file will be available for download\nfor up to 30 days after completion.  To run an asynchronous report, you should follow these steps:\n            \n* Begin a report by calling the report's Ini"
+        },
+        {
+          "info": {
+            "name": "Avalara InitiateExportDocumentLineReport",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/reports/exportdocumentline/initiate",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Begins running an `ExportDocumentLine` report task and returns the identity of the report.\n            \nReports are run as asynchronous report tasks on the server.  When complete, the report file will be available for download\nfor up to 30 days after completion.  To run an asynchronous report, you should follow these steps:\n            \n* Begin a report by calling the report's Initiate API.  There is a separate initiate API call for each report type.\n* In the result of the Initiate API, you rece"
+        },
+        {
+          "info": {
+            "name": "Avalara ListReports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/reports",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "List all report tasks for your account.\n            \nReports are run as asynchronous report tasks on the server.  When complete, the report file will be available for download\nfor up to 30 days after completion.  To run an asynchronous report, you should follow these steps:\n            \n* Begin a report by calling the report's Initiate API.  There is a separate initiate API call for each report type.\n* In the result of the Initiate API, you receive back a report's `id` value.\n* Check the status "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

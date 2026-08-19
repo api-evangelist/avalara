@@ -1,0 +1,264 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Contacts API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Contacts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Contacts for a Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/shared/v1/companies/:companyId/contacts",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Avalara List Contacts for a Company"
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Contact",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/shared/v1/companies/:companyId/contacts",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Avalara Create a Contact"
+        },
+        {
+          "info": {
+            "name": "Avalara ListContactsByCompany",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/shared/v1/api/v2/companies/:companyId/contacts",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "List all contact objects assigned to this company.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, F"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateContacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/shared/v1/api/v2/companies/:companyId/contacts",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Create one or more new contact objects.\nA 'contact' is a person associated with a company who is designated to handle certain responsibilities of\na tax collecting and filing entity.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, SSTAdmin, TechnicalSupportAdmin.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara GetContact",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/shared/v1/api/v2/companies/:companyId/contacts/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get the contact object identified by this URL.\nA 'contact' is a person associated with a company who is designated to handle certain responsibilities of\na tax collecting and filing entity.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara UpdateContact",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.avalara.com/shared/v1/api/v2/companies/:companyId/contacts/:id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Replace the existing contact object at this URL with an updated object.\nA 'contact' is a person associated with a company who is designated to handle certain responsibilities of\na tax collecting and filing entity.\nAll data from the existing object will be replaced with data in the object you PUT.\nTo set a field's value to null, you may either set its value to null or omit that field from the object you post.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmi"
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteContact",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.avalara.com/shared/v1/api/v2/companies/:companyId/contacts/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Mark the existing contact object at this URL as deleted.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, SSTAdmin, TechnicalSupportAdmin.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara QueryContacts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/shared/v1/api/v2/contacts",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get multiple contact objects across all companies.\nA 'contact' is a person associated with a company who is designated to handle certain responsibilities of\na tax collecting and filing entity.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,170 @@
+{
+  "item": [
+    {
+      "id": "db8b240c-4c2d-4e4f-9bc2-f1c97bd0c91f",
+      "name": "Tax Rates",
+      "description": {
+        "content": "Look up lodging tax rates by location",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c0f900f6-d3db-45b7-b8c0-2d05475c5374",
+          "name": "Avalara Get Lodging Tax Rates",
+          "request": {
+            "name": "Avalara Get Lodging Tax Rates",
+            "description": {
+              "content": "Returns applicable lodging and short-term rental tax rates for a given property location, broken down by jurisdiction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tax-rates"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "line1",
+                  "value": "<string>",
+                  "description": "(Required) Street address"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "(Required) State or province"
+                },
+                {
+                  "disabled": false,
+                  "key": "postalCode",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fb0330aa-7254-4688-90a7-8d6615551235",
+              "name": "Lodging tax rates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tax-rates"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "line1",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "postalCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRate\": 1894.346354692733,\n  \"rates\": [\n    {\n      \"jurisdiction\": \"string\",\n      \"jurisdictionType\": \"City\",\n      \"taxName\": \"string\",\n      \"rate\": 7673.442891940925\n    },\n    {\n      \"jurisdiction\": \"string\",\n      \"jurisdictionType\": \"County\",\n      \"taxName\": \"string\",\n      \"rate\": 8005.514584758081\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.avalara.com/mylodgetax/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b89fe4c9-0996-4484-97f5-47f94909449d",
+    "name": "Avalara MyLodgeTax Tax Rates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The MyLodgeTax API provides sales and lodging tax compliance for short-term property rentals. It offers partners access to summarized tax responsibilities for property owners by marketplace, including direct listings and marketplace bookings, with tax rate lookups and filing obligation information.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

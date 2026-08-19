@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara MyLodgeTax Obligations API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Obligations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Get Filing Obligations for a Property",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/mylodgetax/v1/properties/:propertyId/obligations",
+            "params": [
+              {
+                "name": "propertyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a summary of tax filing obligations for a registered property, including which taxes apply and filing frequencies."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

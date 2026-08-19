@@ -1,0 +1,1130 @@
+{
+  "item": [
+    {
+      "id": "e6ee4931-8e96-426c-9a6c-e1210bb29b71",
+      "name": "TaxRules",
+      "description": {
+        "content": "Manage tax rules and overrides for companies",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a293b7c4-397d-499b-bb85-a39d40012d97",
+          "name": "Avalara List Tax Rules for a Company",
+          "request": {
+            "name": "Avalara List Tax Rules for a Company",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "taxrules"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-taxrules-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression for result filtering"
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "1000",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "companyId",
+                  "description": "(Required) The numeric ID of the company"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "cd23b033-e885-401f-a596-ca3b3536e9dd",
+              "name": "List of tax rules",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "taxrules"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-taxrules-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "companyId",
+                      "description": "(Required) The numeric ID of the company"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b02b804b-8a0d-4774-9f79-ccf002863dda",
+          "name": "Avalara Create Tax Rules for a Company",
+          "request": {
+            "name": "Avalara Create Tax Rules for a Company",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "taxrules"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-taxrules-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "companyId",
+                  "description": "(Required) The numeric ID of the company"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"<integer>\",\n    \"companyId\": \"<integer>\",\n    \"taxCodeId\": \"<integer>\",\n    \"taxCode\": \"<string>\",\n    \"stateFIPS\": \"<string>\",\n    \"jurisName\": \"<string>\",\n    \"jurisCode\": \"<string>\",\n    \"jurisTypeId\": \"<string>\",\n    \"rateTypeId\": \"<string>\",\n    \"ruleTypeId\": \"<string>\",\n    \"isAllJuris\": \"<boolean>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"companyId\": \"<integer>\",\n    \"taxCodeId\": \"<integer>\",\n    \"taxCode\": \"<string>\",\n    \"stateFIPS\": \"<string>\",\n    \"jurisName\": \"<string>\",\n    \"jurisCode\": \"<string>\",\n    \"jurisTypeId\": \"<string>\",\n    \"rateTypeId\": \"<string>\",\n    \"ruleTypeId\": \"<string>\",\n    \"isAllJuris\": \"<boolean>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e842de2a-689a-4306-8a0f-45a5c432a2a7",
+              "name": "Tax rules created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "taxrules"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-taxrules-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "companyId",
+                      "description": "(Required) The numeric ID of the company"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"id\": 9819,\n    \"companyId\": 9220,\n    \"taxCodeId\": 7310,\n    \"taxCode\": \"string\",\n    \"stateFIPS\": \"string\",\n    \"jurisName\": \"string\",\n    \"jurisCode\": \"string\",\n    \"jurisTypeId\": \"string\",\n    \"rateTypeId\": \"string\",\n    \"ruleTypeId\": \"string\",\n    \"isAllJuris\": false\n  },\n  {\n    \"id\": 427,\n    \"companyId\": 6461,\n    \"taxCodeId\": 9460,\n    \"taxCode\": \"string\",\n    \"stateFIPS\": \"string\",\n    \"jurisName\": \"string\",\n    \"jurisCode\": \"string\",\n    \"jurisTypeId\": \"string\",\n    \"rateTypeId\": \"string\",\n    \"ruleTypeId\": \"string\",\n    \"isAllJuris\": false\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b376bdd2-71eb-406d-a1ab-93b37242d930",
+          "name": "Avalara CreateCountryCoefficients",
+          "request": {
+            "name": "Avalara CreateCountryCoefficients",
+            "description": {
+              "content": "Create one or more Country Coefficients for particular country.\n            \nWe would like to use country coefficients during Cross-Border calculations to slightly increase or decrease\na calculation for a line based on the tax-subtype and Country of destination for a transaction.\n            \nThis will allow AvaTax to minimize the variance caused between actual transaction taken place on ground Vs Tax\nCalculated by AvaTax.\n            \nMake sure to use the same API to update the country coefficients that is already present in the database.\nThis will make existing entry for specific country as ineffective for that date. And new entry created will get applicable\nto the newer transactions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "countryCoefficients"
+              ],
+              "host": [
+                "{{api-v2-countryCoefficients-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d7d59f88-a4a1-4fb2-a201-6e56f8e6dd38",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "countryCoefficients"
+                  ],
+                  "host": [
+                    "{{api-v2-countryCoefficients-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": 0,\n  \"coefficientDetails\": [\n    {\n      \"companyCode\": \"\",\n      \"country\": \"\",\n      \"coefficient\": 0,\n      \"taxSubTypeId\": \"\",\n      \"currencyCode\": \"USD\",\n      \"unitOfBasisId\": 0,\n      \"isApplicable\": false,\n      \"startDate\": \"2023-08-13\",\n      \"endDate\": \"9999-12-31\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "919ace0c-3de9-4fea-84ea-bfc8fcf8394a",
+          "name": "Avalara DeleteTaxRule",
+          "request": {
+            "name": "Avalara DeleteTaxRule",
+            "description": {
+              "content": "Mark the custom tax rule identified by this URL as deleted.\n            \nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\nwith the transaction.\n            \nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\ncustom tax rules to redefine the behavior for your company or item.\n            \nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\nauditor, legal representative, and accounting team.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "taxrules",
+                ":id"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-taxrules-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c584ca9d-bd3f-45aa-8168-783691c47cbd",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "taxrules",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-taxrules-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5e66909b-91ed-4723-9e79-ea3a1ba50c90",
+          "name": "Avalara GetTaxRule",
+          "request": {
+            "name": "Avalara GetTaxRule",
+            "description": {
+              "content": "Get the taxrule object identified by this URL.\n            \nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\nwith the transaction.\n            \nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\ncustom tax rules to redefine the behavior for your company or item.\n            \nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\nauditor, legal representative, and accounting team.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "taxrules",
+                ":id"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-taxrules-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "fdfdefb6-e2a5-4af3-b21c-9d960220e2ec",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "taxrules",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-taxrules-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93ad3d25-77b6-4571-8065-9eea27b92a74",
+          "name": "Avalara UpdateTaxRule",
+          "request": {
+            "name": "Avalara UpdateTaxRule",
+            "description": {
+              "content": "Replace the existing custom tax rule object at this URL with an updated object.\n            \nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\nwith the transaction.\n            \nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\ncustom tax rules to redefine the behavior for your company or item.\n            \nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\nauditor, legal representative, and accounting team.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "taxrules",
+                ":id"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-taxrules-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "42ee289b-178e-4ebe-bf06-1b651fc746a8",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "taxrules",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-taxrules-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 56789,\n  \"companyId\": 12345,\n  \"taxCode\": \"FR020800\",\n  \"stateFIPS\": \"04\",\n  \"jurisName\": \"MARICOPA\",\n  \"jurisCode\": \"013\",\n  \"jurisTypeId\": 0,\n  \"jurisdictionTypeId\": \"County\",\n  \"taxTypeId\": \"BothSalesAndUseTax\",\n  \"taxTypeCode\": \"ALL\",\n  \"taxRuleTypeId\": \"ProductTaxabilityRule\",\n  \"isAllJuris\": false,\n  \"value\": 0,\n  \"cap\": 0,\n  \"threshold\": 0,\n  \"effectiveDate\": \"2023-08-13\",\n  \"description\": \"Freight\",\n  \"countyFIPS\": \"013\",\n  \"country\": \"US\",\n  \"region\": \"AZ\",\n  \"taxTypeGroup\": \"SalesAndUse\",\n  \"taxSubType\": \"ALL\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "185065ff-831e-465e-8774-1dab72d8a323",
+          "name": "Avalara ListCountryCoefficients",
+          "request": {
+            "name": "Avalara ListCountryCoefficients",
+            "description": {
+              "content": "Retrieve all or any specific records of Country Coefficients based on the filters(optional) for specific country.\n \n Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\n Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                ":country",
+                "CountryCoefficients"
+              ],
+              "host": [
+                "{{api-v2-country-CountryCoefficients-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "country",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1cc31534-baec-4226-af0f-f60d8b5c8133",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    ":country",
+                    "CountryCoefficients"
+                  ],
+                  "host": [
+                    "{{api-v2-country-CountryCoefficients-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "country",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bb20bf05-bbcc-4285-b761-804e4e70a496",
+          "name": "Avalara QueryTaxRules",
+          "request": {
+            "name": "Avalara QueryTaxRules",
+            "description": {
+              "content": "Get multiple taxrule objects across all companies.\n            \nA tax rule represents a rule that changes the default AvaTax behavior for a product or jurisdiction.  Custom tax rules\ncan be used to change the taxability of an item, to change the tax base of an item, or to change the tax rate\ncharged when selling an item.  Tax rules can also change tax behavior depending on the `entityUseCode` value submitted\nwith the transaction.\n            \nYou can create custom tax rules to customize the behavior of AvaTax to match specific rules that are custom to your\nbusiness.  If you have obtained a ruling from a tax auditor that requires custom tax calculations, you can use\ncustom tax rules to redefine the behavior for your company or item.\n            \nPlease use custom tax rules carefully and ensure that these tax rules match the behavior agreed upon with your\nauditor, legal representative, and accounting team.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "taxrules"
+              ],
+              "host": [
+                "{{api-v2-taxrules-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "ef6a0262-da67-41b6-9af0-21f961bd9a82",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "taxrules"
+                  ],
+                  "host": [
+                    "{{api-v2-taxrules-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "api-v2-companies-companyId-taxrules-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-countryCoefficients-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-companies-companyId-taxrules-id-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-country-CountryCoefficients-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-taxrules-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "b33353a9-a0c8-4caa-8e9f-54b6e14921f1",
+    "name": "Avalara TaxRules API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged TaxRules across 2 of this provider's published API definitions: avalara-avatax-rest-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

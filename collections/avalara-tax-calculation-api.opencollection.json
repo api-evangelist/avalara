@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Tax Calculation API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tax Calculation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Calculate Brazilian Taxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/calculations",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Calculates applicable Brazilian taxes for a transaction including ICMS, IPI, PIS, COFINS, ISS, and other applicable taxes based on product type, origin, and destination."
+        },
+        {
+          "info": {
+            "name": "Avalara Calculate Taxes on a Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/afc/CalcTaxes",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Calculates communications taxes for one or more line items based on transaction type, service type, and jurisdiction information. Supports both individual and batch tax calculations."
+        },
+        {
+          "info": {
+            "name": "Avalara Commit a Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/afc/commit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Commits a previously calculated transaction, finalizing it for tax reporting purposes."
+        },
+        {
+          "info": {
+            "name": "Avalara Calculate Adjustment Taxes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/afc/CalcAdj",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Calculates taxes for adjustments (credits, refunds) on previously committed transactions."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

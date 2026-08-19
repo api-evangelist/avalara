@@ -1,0 +1,247 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara AvaTax Users API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara ChangePassword",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{{baseurl}}/api/v2/passwords",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allows a user to change their password via an API call.\n            \nThis API allows an authenticated user to change their password via an API call.  This feature is only available\nfor accounts that do not use SAML integrated password validation.\n            \nThis API only allows the currently authenticated user to change their password; it cannot be used to apply to a\ndifferent user than the one authenticating the current API call.\n\n### Security Policies\n\n* This API requires one of the followin"
+        },
+        {
+          "info": {
+            "name": "Avalara ListUsersByAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/users",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List all user objects attached to this account.\nA user represents one person with access privileges to make API calls and work with a specific account.\n            \nWhen an API is called using a legacy AvaTax License Key, the API log entry is recorded as being performed by a special user attached to that license key.\nBy default, this API will not return a listing of license key users.  Users with registrar-level security may call this API to list license key users.\n            \nSearch for specif"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateUsers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/users",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create one or more new user objects attached to this account.\n            \nA user represents one person with access privileges to make API calls and work with a specific account.\n            \nUsers who are account administrators or company users are permitted to create user records to invite\nadditional team members to work with AvaTax.\n            \nA newly created user will receive an email inviting them to create their password.  This means that you\nmust provide a valid email address for all us"
+        },
+        {
+          "info": {
+            "name": "Avalara GetUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/users/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the user object identified by this URL.\nA user represents one person with access privileges to make API calls and work with a specific account.\n            \n You may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* FetchDeleted\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, C"
+        },
+        {
+          "info": {
+            "name": "Avalara UpdateUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/users/:id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace the existing user object at this URL with an updated object.\nA user represents one person with access privileges to make API calls and work with a specific account.\nAll data from the existing object will be replaced with data in the object you PUT.\nTo set a field's value to null, you may either set its value to null or omit that field from the object you post.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, Compan"
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteUser",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/users/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Mark the user object identified by this URL as deleted.\n            \nThis API is available for use by account and company administrators only.\n            \nAccount and company administrators may only delete users within the appropriate organizations\nthey control.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, Compliance Root User, CSPTester, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TreasuryAdm"
+        },
+        {
+          "info": {
+            "name": "Avalara GetUserEntitlements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/users/:id/entitlements",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Return a list of all entitlements to which this user has rights to access.\nEntitlements are a list of specified API calls the user is permitted to make, a list of identifier numbers for companies the user is\nallowed to use, and an access level identifier that indicates what types of access roles the user is allowed to use.\nThis API call is intended to provide a validation endpoint to determine, before making an API call, whether this call is likely to succeed.\nFor example, if user 567 within acc"
+        },
+        {
+          "info": {
+            "name": "Avalara QueryUsers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/users",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ]
+          },
+          "docs": "Get multiple user objects across all accounts.\n            \nA user represents one person or set of credentials with access privileges to make API calls and work with a specific account.  A user can be authenticated\nvia either username / password authentication, an OpenID / OAuth Bearer Token, or a legacy AvaTax License Key.\n            \nWhen an API is called using a legacy AvaTax License Key, the API log entry is recorded as being performed by a special user attached to that license key.\nBy defa"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

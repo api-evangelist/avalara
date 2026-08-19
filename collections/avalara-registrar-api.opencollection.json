@@ -1,0 +1,334 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara AvaTax Registrar API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Registrar",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara UpdateAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{{baseurl}}/api/v2/accounts/:id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "# For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nReplace an existing account object with an updated account object.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{{baseurl}}/api/v2/accounts/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "# For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nDelete an account.\nDeleting an account will delete all companies, all account level users and license keys attached to this account.\n\n### Security Policies\n\n* This API requires the user role SystemAdmin.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateAccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/api/v2/accounts",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "# For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nCreate a single new account object.\nWhen creating an account object you may attach subscriptions and users as part of the 'Create' call.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara UpdateNotification",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{{baseurl}}/api/v2/notifications/:id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API is available by invitation only.\n            \nReplaces the notification identified by this URL with a new notification.\n            \nA notification is a message from Avalara that may have relevance to your business.  You may want\nto regularly review notifications and then dismiss them when you are certain that you have addressed\nany relevant concerns raised by this notification.\n            \nAn example of a notification would be a message about new software, or a change to AvaTax that m"
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteNotification",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{{baseurl}}/api/v2/notifications/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "This API is available by invitation only.\n            \nDelete the existing notification identified by this URL.\n            \nA notification is a message from Avalara that may have relevance to your business.  You may want\nto regularly review notifications and then dismiss them when you are certain that you have addressed\nany relevant concerns raised by this notification.\n            \nAn example of a notification would be a message about new software, or a change to AvaTax that may\naffect you, or"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateNotifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/api/v2/notifications",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API is available by invitation only.\n            \nCreate a single notification.\n            \nA notification is a message from Avalara that may have relevance to your business.  You may want\nto regularly review notifications and then dismiss them when you are certain that you have addressed\nany relevant concerns raised by this notification.\n            \nA Global notification is a message which is directed to all the accounts and is set to expire within\na certain time and cannot be dismissed "
+        },
+        {
+          "info": {
+            "name": "Avalara CreateSubscriptions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/subscriptions",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API is for use by Avalara Registrar administrative users only.\n            \nCreate one or more new subscription objects attached to this account.\nA 'subscription' indicates a licensed subscription to a named Avalara service.\nTo request or remove subscriptions, please contact Avalara sales or your customer account manager.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara UpdateSubscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/subscriptions/:id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "# For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nReplace the existing subscription object at this URL with an updated object.\nA 'subscription' indicates a licensed subscription to a named Avalara service.\nTo request or remove subscriptions, please contact Avalara sales or your customer account manager.\nAll data from the existing object will be replaced with data in the object you PUT.\nTo set a field's value to null, you may either set its "
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteSubscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{{baseurl}}/api/v2/accounts/:accountId/subscriptions/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "# For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nMark the existing account identified by this URL as deleted.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara ListServiceTypes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/servicetypes/servicetypes",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ]
+          },
+          "docs": "For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nReturns the full list of Avalara-supported subscription types.\nThis API is intended to be useful for identifying which features you have added to your account.\nYou may always contact Avalara's sales department for information on available products or services.\nYou cannot change your subscriptions/service directly through the API.\n\n### Security Policies\n\n* This API requires one of the following"
+        },
+        {
+          "info": {
+            "name": "Avalara ResetPassword",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/api/v2/passwords/:userId/reset",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "# For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nAllows a system admin to reset the password for a specific user via the API.\nThis API is only available for Avalara Registrar Admins, and can be used to reset the password of any\nuser based on internal Avalara business processes.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Roo"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

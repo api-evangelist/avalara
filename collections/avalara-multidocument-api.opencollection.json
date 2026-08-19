@@ -1,0 +1,373 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara MultiDocument API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "MultiDocument",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Create a Multi-document Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/multidocument/transactions/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a transaction that spans multiple companies or jurisdictions, managing related documents as a single group."
+        },
+        {
+          "info": {
+            "name": "Avalara AdjustMultiDocumentTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/transactions/multidocument/:code/type/:type/adjust",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Adjusts the current MultiDocument transaction uniquely identified by this URL.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nWhen you adjust a transaction, that transaction's status is recorded as `Adjusted`.\n            \nBoth the revisions will be available for retrieval based on their code and ID numbers. Only tr"
+        },
+        {
+          "info": {
+            "name": "Avalara AuditMultiDocumentTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/transactions/multidocument/:code/type/:type/audit",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve audit information about a MultiDocument transaction stored in AvaTax.\n            \nThe audit API retrieves audit information related to a specific MultiDocument transaction.  This audit\ninformation includes the following:\n            \n* The `code` of the MultiDocument transaction\n* The `type` of the MultiDocument transaction\n* The server timestamp representing the exact server time when the transaction was created\n* The server duration - how long it took to process this transaction\n* Wh"
+        },
+        {
+          "info": {
+            "name": "Avalara CommitMultiDocumentTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/transactions/multidocument/commit",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Marks a list of transactions by changing its status to `Committed`.\n            \nTransactions that are committed are available to be reported to a tax authority by Avalara Managed Returns.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nAny changes made to a committed transaction will generate a transaction history.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara ListMultiDocumentTransactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/transactions/multidocument",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "List all MultiDocument transactions within this account.\n            \nThis endpoint is limited to returning 1,000 MultiDocument transactions at a time.  To retrieve more than 1,000 MultiDocument\ntransactions, please use the pagination features of the API.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nSearch for spe"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateMultiDocumentTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/transactions/multidocument",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Records a new MultiDocument transaction in AvaTax.\n            \nA traditional transaction requires exactly two parties: a seller and a buyer.  MultiDocument transactions can\ninvolve a marketplace of vendors, each of which contributes some portion of the final transaction.  Within\na MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate\ndocument.  This separation of documents allows each seller to file their taxes separately.\n            \nThis "
+        },
+        {
+          "info": {
+            "name": "Avalara GetMultiDocumentTransactionByCodeAndType",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/transactions/multidocument/:code/type/:type",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get the current MultiDocument transaction identified by this URL.\n            \nIf this transaction was adjusted, the return value of this API will be the current transaction with this code.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* Lines\n* Details (implies lines)\n* Summary (implies details)\n* Addresses\n* SummaryOnly (omit lines and details - reduces API res"
+        },
+        {
+          "info": {
+            "name": "Avalara GetMultiDocumentTransactionById",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/transactions/multidocument/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get the unique MultiDocument transaction identified by this URL.\n            \nA traditional transaction requires exactly two parties: a seller and a buyer.  MultiDocument transactions can\ninvolve a marketplace of vendors, each of which contributes some portion of the final transaction.  Within\na MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate\ndocument.  This separation of documents allows each seller to file their taxes separately.\n    "
+        },
+        {
+          "info": {
+            "name": "Avalara RefundMultiDocumentTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/transactions/multidocument/:code/type/:type/refund",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Create a refund for a MultiDocument transaction.\n            \nA traditional transaction requires exactly two parties: a seller and a buyer.  MultiDocument transactions can\ninvolve a marketplace of vendors, each of which contributes some portion of the final transaction.  Within\na MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate\ndocument.  This separation of documents allows each seller to file their taxes separately.\n            \nThe `Re"
+        },
+        {
+          "info": {
+            "name": "Avalara VerifyMultiDocumentTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/transactions/multidocument/verify",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Verifies that the MultiDocument transaction uniquely identified by this URL matches certain expected values.\n            \nIf the transaction does not match these expected values, this API will return an error code indicating which value did not match.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nNOTE: If your comp"
+        },
+        {
+          "info": {
+            "name": "Avalara VoidMultiDocumentTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/transactions/multidocument/:code/type/:type/void",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "code",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Voids the current transaction uniquely identified by this URL.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nWhen you void a transaction, that transaction's status is recorded as `DocVoided`.\n            \nTransactions that have been previously reported to a tax authority by Avalara Managed Returns Service are consi"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

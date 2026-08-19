@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Utilities API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Utilities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Test Connectivity and Authentication",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/utilities/ping"
+          },
+          "docs": "Tests connectivity to the AvaTax service and validates authentication credentials."
+        },
+        {
+          "info": {
+            "name": "Avalara List Subscriptions for the Current Account",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/utilities/subscriptions",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Avalara List Subscriptions for the Current Account"
+        },
+        {
+          "info": {
+            "name": "Avalara GetMySubscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/utilities/subscriptions/:serviceTypeId",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "serviceTypeId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a subscription object for the current account, or 404 Not Found if this subscription is not enabled for this account.\n            \nThis API will return an error if it is called with invalid authentication credentials.\n            \nThis API is intended to help you determine whether you have the necessary subscription to use certain API calls\nwithin AvaTax.  You can examine the subscriptions returned from this API call to look for a particular product\nor subscription to provide useful info"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

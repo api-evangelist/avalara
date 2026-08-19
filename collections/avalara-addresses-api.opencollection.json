@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Addresses API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Addresses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara ResolveAddress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/addresses/resolve",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Resolve an address against Avalara's address-validation system.  If the address can be resolved, this API\nprovides the latitude and longitude of the resolved location.  The value 'resolutionQuality' can be used\nto identify how closely this address can be located.  If the address cannot be clearly located, use the\n'messages' structure to learn more about problems with this address.\nThis is the same API as the POST /api/v2/addresses/resolve endpoint.\nBoth verbs are supported to provide for flexibl"
+        },
+        {
+          "info": {
+            "name": "Avalara Resolve and Validate an Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/addresses/resolve",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Validates and resolves an address to a standardized format with latitude, longitude, and tax jurisdiction information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

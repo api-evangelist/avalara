@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Item Classification Classification Requests API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Classification Requests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Classification Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/classification/v2/classification-requests",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of submitted classification requests and their statuses."
+        },
+        {
+          "info": {
+            "name": "Avalara Submit Products for Classification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/classification/v2/classification-requests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits one or more products for HS Code classification. Products are classified based on their descriptions and attributes for the specified destination country."
+        },
+        {
+          "info": {
+            "name": "Avalara Get Classification Request Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/classification/v2/classification-requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the status and results of a classification request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

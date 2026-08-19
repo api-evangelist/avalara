@@ -1,0 +1,116 @@
+{
+  "item": [
+    {
+      "id": "0d7aca92-8f58-4eb2-aa9a-496bc012dc72",
+      "name": "Licenses",
+      "description": {
+        "content": "Manage excise licenses",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5d03ea39-ba00-43aa-80d1-848f95bb841a",
+          "name": "Avalara List Excise Licenses",
+          "request": {
+            "name": "Avalara List Excise Licenses",
+            "description": {},
+            "url": {
+              "path": [
+                "Licenses"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "639c17ae-438e-4217-9b4a-67796819b826",
+              "name": "List of licenses",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "Licenses"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"licenseId\": \"string\",\n    \"licenseNumber\": \"string\",\n    \"licenseType\": \"string\",\n    \"issuingJurisdiction\": \"string\",\n    \"effectiveDate\": \"1953-10-25\",\n    \"expirationDate\": \"2010-01-03\",\n    \"status\": \"Suspended\"\n  },\n  {\n    \"licenseId\": \"string\",\n    \"licenseNumber\": \"string\",\n    \"licenseType\": \"string\",\n    \"issuingJurisdiction\": \"string\",\n    \"effectiveDate\": \"1983-03-19\",\n    \"expirationDate\": \"1959-04-04\",\n    \"status\": \"Revoked\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://exciseapi.avalara.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b599e199-ccdf-41b1-82e4-3eec94b072b4",
+    "name": "Avalara Excise Platform Licenses API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara Excise Platform API provides an external programmatic interface for excise tax determination on fuel, tobacco, alcohol, and other excise products. It supports tax calculation, business entity management, location configuration, and transaction processing for excise tax compliance across US federal and state jurisdictions.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

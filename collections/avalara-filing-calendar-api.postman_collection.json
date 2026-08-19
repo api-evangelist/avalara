@@ -1,0 +1,130 @@
+{
+  "item": [
+    {
+      "id": "07f13ac8-3122-427f-ad06-4bf0dde8250e",
+      "name": "Filing Calendar",
+      "description": {
+        "content": "Manage VAT filing obligations and calendars",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be396181-6099-420f-96fb-7bc0efa6a520",
+          "name": "Avalara List Filing Calendar Obligations",
+          "request": {
+            "name": "Avalara List Filing Calendar Obligations",
+            "description": {
+              "content": "Retrieves the filing calendar showing due dates and obligations for each jurisdiction and filing period.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filing-calendars"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "countryCode",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0e14200-a14a-471d-a1e7-272cd2e8ec45",
+              "name": "Filing calendar entries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filing-calendars"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "countryCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"countryCode\": \"string\",\n    \"returnType\": \"string\",\n    \"filingFrequency\": \"string\",\n    \"periodStart\": \"1949-02-04\",\n    \"periodEnd\": \"2011-08-01\",\n    \"dueDate\": \"2021-01-27\",\n    \"status\": \"Upcoming\"\n  },\n  {\n    \"countryCode\": \"string\",\n    \"returnType\": \"string\",\n    \"filingFrequency\": \"string\",\n    \"periodStart\": \"1983-04-10\",\n    \"periodEnd\": \"2022-12-18\",\n    \"dueDate\": \"1984-03-06\",\n    \"status\": \"Overdue\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.avalara.com/vat-reporting/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a8271184-b824-41d8-bd98-e9a1775be8c3",
+    "name": "Avalara VAT Reporting Filing Calendar API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara VAT Reporting API orchestrates end-to-end VAT compliance workflows including onboarding, file ingress, error handling, filing of VAT Returns, EC Listings, Intrastat, and transaction reporting across multiple jurisdictions.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

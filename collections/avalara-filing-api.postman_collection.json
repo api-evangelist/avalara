@@ -1,0 +1,240 @@
+{
+  "item": [
+    {
+      "id": "a9918f96-aebe-4639-9e28-9be106249355",
+      "name": "Filing",
+      "description": {
+        "content": "E-file forms with the IRS",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "58d5603d-2528-418a-ac3b-3c4e26a497be",
+          "name": "Avalara Submit Forms for E-filing",
+          "request": {
+            "name": "Avalara Submit Forms for E-filing",
+            "description": {
+              "content": "Submits a batch of completed forms to the IRS for electronic filing. Validates all forms before submission.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filing",
+                "submit"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"taxYear\": \"<integer>\",\n  \"formIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corrected\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8dfafe1d-ea16-44e6-89b5-c49d68545a0f",
+              "name": "Filing submission accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filing",
+                    "submit"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"taxYear\": \"<integer>\",\n  \"formIds\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"corrected\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"filingId\": \"string\",\n  \"status\": \"Processing\",\n  \"formCount\": 1899,\n  \"submittedDate\": \"1959-09-09T13:55:33.620Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06762c37-fbe0-463e-a5af-0b30b1530daa",
+          "name": "Avalara Get Filing Status",
+          "request": {
+            "name": "Avalara Get Filing Status",
+            "description": {
+              "content": "Retrieves the status of an IRS e-filing submission.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filing",
+                ":filingId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "filingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d07ec624-f992-4dc2-8637-cac1c2acde3e",
+              "name": "Filing status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filing",
+                    ":filingId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "filingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"filingId\": \"string\",\n  \"status\": \"Accepted\",\n  \"acceptedCount\": 1341,\n  \"rejectedCount\": 5027,\n  \"errors\": [\n    {\n      \"formId\": \"string\",\n      \"errorCode\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"formId\": \"string\",\n      \"errorCode\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.avalara.com/1099/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ce8ecb9b-c0d1-4c50-8a13-d449160de7f4",
+    "name": "Avalara 1099 & W-9 Filing API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara 1099 and W-9 API automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC, 1099-MISC, 1099-K, 1099-INT, 1099-DIV), 1095 forms, W-2, and 1042-S. It provides endpoints for creating, updating, managing, and filing various IRS information returns.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

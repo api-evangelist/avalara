@@ -1,0 +1,229 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Settings API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Settings for a Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/settings",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path",
+                "description": "The numeric ID of the company"
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression for result filtering"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Avalara List Settings for a Company"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateSettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/settings",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Create one or more new setting objects attached to this company.\n            \nThe company settings system is a metadata system that you can use to store extra information\nabout a company.  Your integration or connector could use this data storage to keep track of\npreference information, reminders, or any other storage that would need to persist even if\nthe customer uninstalls your application.\n            \nA setting can refer to any type of data you need to remember about this company object.\nWh"
+        },
+        {
+          "info": {
+            "name": "Avalara GetSetting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/settings/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get a single setting object by its unique ID.\n            \nThe company settings system is a metadata system that you can use to store extra information\nabout a company.  Your integration or connector could use this data storage to keep track of\npreference information, reminders, or any other storage that would need to persist even if\nthe customer uninstalls your application.\n            \nA setting can refer to any type of data you need to remember about this company object.\nWhen creating this ob"
+        },
+        {
+          "info": {
+            "name": "Avalara UpdateSetting",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/settings/:id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Replace the existing setting object at this URL with an updated object.\n            \nThe company settings system is a metadata system that you can use to store extra information\nabout a company.  Your integration or connector could use this data storage to keep track of\npreference information, reminders, or any other storage that would need to persist even if\nthe customer uninstalls your application.\n            \nA setting can refer to any type of data you need to remember about this company obj"
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteSetting",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://rest.avatax.com/api/v2/companies/:companyId/settings/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Mark the setting object at this URL as deleted.\n            \nThe company settings system is a metadata system that you can use to store extra information\nabout a company.  Your integration or connector could use this data storage to keep track of\npreference information, reminders, or any other storage that would need to persist even if\nthe customer uninstalls your application.\n            \nA setting can refer to any type of data you need to remember about this company object.\nWhen creating this "
+        },
+        {
+          "info": {
+            "name": "Avalara QuerySettings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/settings",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get multiple setting objects across all companies.\n            \nThe company settings system is a metadata system that you can use to store extra information\nabout a company.  Your integration or connector could use this data storage to keep track of\npreference information, reminders, or any other storage that would need to persist even if\nthe customer uninstalls your application.\n            \nA setting can refer to any type of data you need to remember about this company object.\nWhen creating th"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

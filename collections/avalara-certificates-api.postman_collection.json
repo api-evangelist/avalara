@@ -1,0 +1,3301 @@
+{
+  "item": [
+    {
+      "id": "911eb731-1760-48a0-b081-0cf1d446cae2",
+      "name": "Certificates",
+      "description": {
+        "content": "Manage exemption certificates and CertExpress invitations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b903a94c-9566-436d-9ea3-4da3dcb730f1",
+          "name": "Avalara List Certificates for a Company",
+          "request": {
+            "name": "Avalara List Certificates for a Company",
+            "description": {
+              "content": "Retrieves exemption certificates associated with the specified company.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression for result filtering"
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "1000",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "0",
+                  "description": "Number of results to skip for pagination"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "companyId",
+                  "description": "(Required) The numeric ID of the company"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "5c361e2c-8e5b-435a-b38e-638d3bbf14b1",
+              "name": "List of certificates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "companyId",
+                      "description": "(Required) The numeric ID of the company"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@recordsetCount\": 6020,\n  \"value\": [\n    {\n      \"id\": 550,\n      \"companyId\": 9535,\n      \"signedDate\": \"1955-12-05\",\n      \"expirationDate\": \"1962-03-11\",\n      \"exemptionNumber\": \"string\",\n      \"exemptPercentage\": 7917.847633800738,\n      \"exemptionReason\": {\n        \"id\": 9924,\n        \"name\": \"string\"\n      },\n      \"status\": \"string\",\n      \"createdDate\": \"1952-03-07T20:45:31.729Z\",\n      \"modifiedDate\": \"1974-08-19T21:42:03.482Z\"\n    },\n    {\n      \"id\": 550,\n      \"companyId\": 8218,\n      \"signedDate\": \"2019-02-15\",\n      \"expirationDate\": \"2007-12-25\",\n      \"exemptionNumber\": \"string\",\n      \"exemptPercentage\": 8445.580797631192,\n      \"exemptionReason\": {\n        \"id\": 1168,\n        \"name\": \"string\"\n      },\n      \"status\": \"string\",\n      \"createdDate\": \"1961-08-22T19:35:39.154Z\",\n      \"modifiedDate\": \"1984-06-13T01:16:49.583Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2adcc219-8bd5-410a-af6e-fa22e93d271a",
+          "name": "Avalara Create a New Certificate",
+          "request": {
+            "name": "Avalara Create a New Certificate",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "companyId",
+                  "description": "(Required) The numeric ID of the company"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"id\": \"<integer>\",\n    \"companyId\": \"<integer>\",\n    \"signedDate\": \"<date>\",\n    \"expirationDate\": \"<date>\",\n    \"exemptionNumber\": \"<string>\",\n    \"exemptPercentage\": \"<double>\",\n    \"exemptionReason\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"status\": \"<string>\",\n    \"createdDate\": \"<dateTime>\",\n    \"modifiedDate\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<integer>\",\n    \"companyId\": \"<integer>\",\n    \"signedDate\": \"<date>\",\n    \"expirationDate\": \"<date>\",\n    \"exemptionNumber\": \"<string>\",\n    \"exemptPercentage\": \"<double>\",\n    \"exemptionReason\": {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    \"status\": \"<string>\",\n    \"createdDate\": \"<dateTime>\",\n    \"modifiedDate\": \"<dateTime>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e322f93f-defd-41da-affa-bb194ddb486a",
+              "name": "Certificate created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "companyId",
+                      "description": "(Required) The numeric ID of the company"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"id\": 2358,\n    \"companyId\": 9201,\n    \"signedDate\": \"1995-01-23\",\n    \"expirationDate\": \"1996-03-17\",\n    \"exemptionNumber\": \"string\",\n    \"exemptPercentage\": 29.125024055509652,\n    \"exemptionReason\": {\n      \"id\": 5405,\n      \"name\": \"string\"\n    },\n    \"status\": \"string\",\n    \"createdDate\": \"1987-11-11T07:22:01.179Z\",\n    \"modifiedDate\": \"2004-11-08T03:22:37.282Z\"\n  },\n  {\n    \"id\": 7530,\n    \"companyId\": 6753,\n    \"signedDate\": \"1959-04-07\",\n    \"expirationDate\": \"1974-03-28\",\n    \"exemptionNumber\": \"string\",\n    \"exemptPercentage\": 5177.841384436406,\n    \"exemptionReason\": {\n      \"id\": 8602,\n      \"name\": \"string\"\n    },\n    \"status\": \"string\",\n    \"createdDate\": \"1954-12-31T11:41:59.194Z\",\n    \"modifiedDate\": \"1991-01-19T11:05:12.637Z\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 1222,\n    \"companyId\": 7140,\n    \"signedDate\": \"2019-02-20\",\n    \"expirationDate\": \"1974-06-12\",\n    \"exemptionNumber\": \"string\",\n    \"exemptPercentage\": 4117.365244782803,\n    \"exemptionReason\": {\n      \"id\": 5722,\n      \"name\": \"string\"\n    },\n    \"status\": \"string\",\n    \"createdDate\": \"1996-03-06T10:41:25.592Z\",\n    \"modifiedDate\": \"1966-09-20T15:55:40.479Z\"\n  },\n  {\n    \"id\": 6180,\n    \"companyId\": 2645,\n    \"signedDate\": \"1990-06-17\",\n    \"expirationDate\": \"2001-04-30\",\n    \"exemptionNumber\": \"string\",\n    \"exemptPercentage\": 4463.69502724743,\n    \"exemptionReason\": {\n      \"id\": 9524,\n      \"name\": \"string\"\n    },\n    \"status\": \"string\",\n    \"createdDate\": \"2010-08-13T02:31:09.559Z\",\n    \"modifiedDate\": \"1990-03-26T14:57:15.239Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "57ba185b-68b3-40ff-80a9-77b75ef607db",
+          "name": "Avalara List Certificates",
+          "request": {
+            "name": "Avalara List Certificates",
+            "description": {
+              "content": "Retrieves a filtered list of exemption certificates.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "certificates"
+              ],
+              "host": [
+                "{{certificates-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "customerId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "50"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "f7cdedff-69f2-4a7f-b835-c6290acdf331",
+              "name": "List of certificates",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "certificates"
+                  ],
+                  "host": [
+                    "{{certificates-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "customerId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalCount\": 387,\n  \"value\": [\n    {\n      \"id\": \"string\",\n      \"certificateNumber\": \"string\",\n      \"status\": \"Pending\",\n      \"signedDate\": \"1998-05-13\",\n      \"expirationDate\": \"1953-07-01\",\n      \"exemptionNumber\": \"string\",\n      \"exemptionReason\": \"string\",\n      \"exemptPercentage\": 9983.334789273538,\n      \"exposureZone\": \"string\",\n      \"customer\": {\n        \"id\": \"string\",\n        \"customerCode\": \"string\",\n        \"name\": \"string\",\n        \"line1\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\",\n        \"emailAddress\": \"string\",\n        \"phoneNumber\": \"string\"\n      },\n      \"createdDate\": \"2015-11-12T23:20:49.446Z\",\n      \"modifiedDate\": \"2023-05-28T05:43:00.738Z\"\n    },\n    {\n      \"id\": \"string\",\n      \"certificateNumber\": \"string\",\n      \"status\": \"Expired\",\n      \"signedDate\": \"1964-09-04\",\n      \"expirationDate\": \"2012-10-28\",\n      \"exemptionNumber\": \"string\",\n      \"exemptionReason\": \"string\",\n      \"exemptPercentage\": 1425.9222672448614,\n      \"exposureZone\": \"string\",\n      \"customer\": {\n        \"id\": \"string\",\n        \"customerCode\": \"string\",\n        \"name\": \"string\",\n        \"line1\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\",\n        \"emailAddress\": \"string\",\n        \"phoneNumber\": \"string\"\n      },\n      \"createdDate\": \"1977-11-09T01:05:36.843Z\",\n      \"modifiedDate\": \"2020-04-29T06:35:18.828Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5809810c-9bde-445f-a2be-d4594e5ccfb6",
+          "name": "Avalara Create a Certificate",
+          "request": {
+            "name": "Avalara Create a Certificate",
+            "description": {
+              "content": "Creates a new exemption certificate record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "certificates"
+              ],
+              "host": [
+                "{{certificates-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"exemptionReason\": \"<string>\",\n  \"exposureZone\": \"<string>\",\n  \"exemptionNumber\": \"<string>\",\n  \"signedDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"exemptPercentage\": \"<double>\",\n  \"customerCode\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8b1cc5db-b04b-43d5-85a1-0eb5bf95f380",
+              "name": "Certificate created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "certificates"
+                  ],
+                  "host": [
+                    "{{certificates-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"exemptionReason\": \"<string>\",\n  \"exposureZone\": \"<string>\",\n  \"exemptionNumber\": \"<string>\",\n  \"signedDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"exemptPercentage\": \"<double>\",\n  \"customerCode\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": 3057,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isSystemCode\": false\n    },\n    {\n      \"id\": 9844,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isSystemCode\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"certificateNumber\": \"string\",\n  \"status\": \"Active\",\n  \"signedDate\": \"2013-04-08\",\n  \"expirationDate\": \"2025-07-31\",\n  \"exemptionNumber\": \"string\",\n  \"exemptionReason\": \"string\",\n  \"exemptPercentage\": 1284.43540598965,\n  \"exposureZone\": \"string\",\n  \"customer\": {\n    \"id\": \"string\",\n    \"customerCode\": \"string\",\n    \"name\": \"string\",\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"region\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"emailAddress\": \"string\",\n    \"phoneNumber\": \"string\"\n  },\n  \"createdDate\": \"1976-10-07T19:53:42.213Z\",\n  \"modifiedDate\": \"1983-08-07T15:47:15.816Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78757f96-ec35-456d-9368-3f92beb700e0",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "certificates"
+                  ],
+                  "host": [
+                    "{{certificates-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"exemptionReason\": \"<string>\",\n  \"exposureZone\": \"<string>\",\n  \"exemptionNumber\": \"<string>\",\n  \"signedDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"exemptPercentage\": \"<double>\",\n  \"customerCode\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": 3057,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isSystemCode\": false\n    },\n    {\n      \"id\": 9844,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isSystemCode\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b332600-4f59-4f58-a6b1-7f00417a2c3c",
+          "name": "Avalara Get a Certificate",
+          "request": {
+            "name": "Avalara Get a Certificate",
+            "description": {
+              "content": "Retrieves a single certificate by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "certificates",
+                ":certificateId"
+              ],
+              "host": [
+                "{{certificates-certificateId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificateId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "47b78066-589c-49d1-aeb4-350443bb8b6e",
+              "name": "Certificate details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "certificates",
+                    ":certificateId"
+                  ],
+                  "host": [
+                    "{{certificates-certificateId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"certificateNumber\": \"string\",\n  \"status\": \"Active\",\n  \"signedDate\": \"2013-04-08\",\n  \"expirationDate\": \"2025-07-31\",\n  \"exemptionNumber\": \"string\",\n  \"exemptionReason\": \"string\",\n  \"exemptPercentage\": 1284.43540598965,\n  \"exposureZone\": \"string\",\n  \"customer\": {\n    \"id\": \"string\",\n    \"customerCode\": \"string\",\n    \"name\": \"string\",\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"region\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"emailAddress\": \"string\",\n    \"phoneNumber\": \"string\"\n  },\n  \"createdDate\": \"1976-10-07T19:53:42.213Z\",\n  \"modifiedDate\": \"1983-08-07T15:47:15.816Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ed699d2-417a-428b-86ad-d85da38b3e80",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "certificates",
+                    ":certificateId"
+                  ],
+                  "host": [
+                    "{{certificates-certificateId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66588ddc-24fd-4e5f-b930-00bb8afbb880",
+          "name": "Avalara Update a Certificate",
+          "request": {
+            "name": "Avalara Update a Certificate",
+            "description": {},
+            "url": {
+              "path": [
+                "certificates",
+                ":certificateId"
+              ],
+              "host": [
+                "{{certificates-certificateId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificateId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"exemptionReason\": \"<string>\",\n  \"exposureZone\": \"<string>\",\n  \"exemptionNumber\": \"<string>\",\n  \"signedDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"exemptPercentage\": \"<double>\",\n  \"customerCode\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    },\n    {\n      \"id\": \"<integer>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"isSystemCode\": \"<boolean>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff4b960f-8ae2-4e08-add5-98420e96ba76",
+              "name": "Certificate updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "certificates",
+                    ":certificateId"
+                  ],
+                  "host": [
+                    "{{certificates-certificateId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"exemptionReason\": \"<string>\",\n  \"exposureZone\": \"<string>\",\n  \"exemptionNumber\": \"<string>\",\n  \"signedDate\": \"<date>\",\n  \"expirationDate\": \"<date>\",\n  \"exemptPercentage\": \"<double>\",\n  \"customerCode\": \"<string>\",\n  \"attributes\": [\n    {\n      \"id\": 3057,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isSystemCode\": false\n    },\n    {\n      \"id\": 9844,\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"isSystemCode\": false\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"certificateNumber\": \"string\",\n  \"status\": \"Active\",\n  \"signedDate\": \"2013-04-08\",\n  \"expirationDate\": \"2025-07-31\",\n  \"exemptionNumber\": \"string\",\n  \"exemptionReason\": \"string\",\n  \"exemptPercentage\": 1284.43540598965,\n  \"exposureZone\": \"string\",\n  \"customer\": {\n    \"id\": \"string\",\n    \"customerCode\": \"string\",\n    \"name\": \"string\",\n    \"line1\": \"string\",\n    \"city\": \"string\",\n    \"region\": \"string\",\n    \"postalCode\": \"string\",\n    \"country\": \"string\",\n    \"emailAddress\": \"string\",\n    \"phoneNumber\": \"string\"\n  },\n  \"createdDate\": \"1976-10-07T19:53:42.213Z\",\n  \"modifiedDate\": \"1983-08-07T15:47:15.816Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf58cca5-7b80-4b9d-981d-d7b7728d16fc",
+          "name": "Avalara Delete a Certificate",
+          "request": {
+            "name": "Avalara Delete a Certificate",
+            "description": {},
+            "url": {
+              "path": [
+                "certificates",
+                ":certificateId"
+              ],
+              "host": [
+                "{{certificates-certificateId-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificateId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "22a9db80-d028-4513-a6cc-9ec7a09a933a",
+              "name": "Certificate deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "certificates",
+                    ":certificateId"
+                  ],
+                  "host": [
+                    "{{certificates-certificateId-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "623b7035-daff-4ebb-be18-d055a1054bf3",
+          "name": "Avalara Download Certificate Attachment",
+          "request": {
+            "name": "Avalara Download Certificate Attachment",
+            "description": {
+              "content": "Downloads the PDF or image attachment for a certificate.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "certificates",
+                ":certificateId",
+                "attachment"
+              ],
+              "host": [
+                "{{certificates-certificateId-attachment-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificateId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/pdf"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7b7b2cbf-6f1a-4406-b9a1-0871749bb1cf",
+              "name": "Certificate attachment",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "certificates",
+                    ":certificateId",
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{certificates-certificateId-attachment-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/pdf"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/pdf"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aa26a6df-7c71-480e-a2cf-386a78be0b3e",
+          "name": "Avalara Upload Certificate Attachment",
+          "request": {
+            "name": "Avalara Upload Certificate Attachment",
+            "description": {},
+            "url": {
+              "path": [
+                "certificates",
+                ":certificateId",
+                "attachment"
+              ],
+              "host": [
+                "{{certificates-certificateId-attachment-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certificateId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "bffea22b-fd1a-45e0-b6f9-15ae6e44e410",
+              "name": "Attachment uploaded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "certificates",
+                    ":certificateId",
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{certificates-certificateId-attachment-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certificateId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ab1bd3fe-4426-4bd0-a119-b0a2e64dc61c",
+          "name": "Avalara DeleteCertificate",
+          "request": {
+            "name": "Avalara DeleteCertificate",
+            "description": {
+              "content": "Revoke the certificate identified by this URL, then delete it.\n            \nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\nlog onto the administrative website for the product you purchased.\n            \nRevoked certificates can no longer be used.\n            \nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates",
+                ":id"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "8f437917-bc37-46c1-9855-d3ff8f973a3a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ce5e4e7d-7512-4ae3-a290-b29c58aad484",
+          "name": "Avalara GetCertificate",
+          "request": {
+            "name": "Avalara GetCertificate",
+            "description": {
+              "content": "Get the current certificate identified by this URL.\n            \nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\nlog onto the administrative website for the product you purchased.\n            \nYou can use the `$include` parameter to fetch the following additional objects for expansion:\n            \n* customers - Retrieves the list of customers linked to the certificate.\n* po_numbers - Retrieves all PO numbers tied to the certificate.\n* attributes - Retrieves all attributes applied to the certificate.\n            \nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates",
+                ":id"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "9b2c1124-7bc3-466c-99ec-54790d97428a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ddf0bc2f-7b1a-433e-89de-b659762de623",
+          "name": "Avalara UpdateCertificate",
+          "request": {
+            "name": "Avalara UpdateCertificate",
+            "description": {
+              "content": "Replace the certificate identified by this URL with a new one.\n            \nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\nlog onto the administrative website for the product you purchased.\n            \nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates",
+                ":id"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "106c760a-142f-45cf-b88e-359b733a1dc1",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 0,\n  \"signedDate\": \"2016-02-01\",\n  \"expirationDate\": \"2020-12-31\",\n  \"filename\": \"2bd5e599-b0ed-4d6c-8a95-306ea9217561\",\n  \"documentExists\": false,\n  \"valid\": true,\n  \"verified\": false,\n  \"exemptPercentage\": 0,\n  \"isSingleCertificate\": false,\n  \"exemptionNumber\": \"Exempt-1234\",\n  \"exemptionReason\": {\n    \"name\": \"RESALE\"\n  },\n  \"createdDate\": \"2023-08-13T01:16:17.2575898Z\",\n  \"modifiedDate\": \"2023-08-13\",\n  \"taxNumberType\": \"FEIN\",\n  \"businessNumberType\": \"Business Services\",\n  \"pageCount\": 0,\n  \"customers\": [\n    {\n      \"companyId\": 0,\n      \"customerCode\": \"a5b89cd8-e54f-4525-bc1a-7956db8c8e91\",\n      \"alternateId\": \"987654321\",\n      \"name\": \"Dr. Bob Example\",\n      \"attnName\": \"Attn: Receiving\",\n      \"line1\": \"645 Main Street\",\n      \"city\": \"Irvine\",\n      \"postalCode\": \"92614\",\n      \"phoneNumber\": \"(949) 555-1212\",\n      \"faxNumber\": \"949.555.1213\",\n      \"emailAddress\": \"dr.bob.example@example.org\",\n      \"contactName\": \"Alice Smith\",\n      \"lastTransaction\": \"2008-10-08T00:00:00\",\n      \"country\": \"US\",\n      \"region\": \"CA\",\n      \"exposureZones\": [\n        {\n          \"name\": \"Washington\"\n        }\n      ]\n    },\n    {\n      \"companyId\": 0,\n      \"customerCode\": \"fdf91d9e-9c67-4792-a484-c67b38838bde\",\n      \"alternateId\": \"987654321\",\n      \"name\": \"Dr. Bob Example\",\n      \"attnName\": \"Attn: Receiving\",\n      \"line1\": \"645 Main Street\",\n      \"city\": \"Irvine\",\n      \"postalCode\": \"92614\",\n      \"phoneNumber\": \"(949) 555-1212\",\n      \"faxNumber\": \"949.555.1213\",\n      \"emailAddress\": \"dr.bob.example@example.org\",\n      \"contactName\": \"Alice Smith\",\n      \"lastTransaction\": \"2008-10-08T00:00:00\",\n      \"country\": \"US\",\n      \"region\": \"CA\",\n      \"exposureZones\": [\n        {\n          \"name\": \"Washington\"\n        }\n      ]\n    }\n  ],\n  \"exposureZone\": {\n    \"name\": \"Washington\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dcad2691-cf8b-491c-9671-db0efcba5832",
+          "name": "Avalara DownloadCertificateImage",
+          "request": {
+            "name": "Avalara DownloadCertificateImage",
+            "description": {
+              "content": "Download an image or PDF file for this certificate.\n            \nThis API can be used to download either a single-page preview of the certificate or a full PDF document.\nTo retrieve a preview image, set the `$type` parameter to `Jpeg` and the `$page` parameter to `1`.\n            \nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\nlog onto the administrative website for the product you purchased.\n            \nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates",
+                ":id",
+                "attachment"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-id-attachment-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "4c065980-f185-4a2f-b4dd-6fc21b7db656",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates",
+                    ":id",
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-id-attachment-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3b6c4217-a619-457e-869a-ce78717205f1",
+          "name": "Avalara UploadCertificateImage",
+          "request": {
+            "name": "Avalara UploadCertificateImage",
+            "description": {
+              "content": "Upload an image or PDF attachment for this certificate.\n            \nImage attachments can be of the format `PDF`, `JPEG`, `TIFF`, or `PNG`.  To upload a multi-page image, please\nuse the `PDF` data type.\n            \nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\nlog onto the administrative website for the product you purchased.\n            \nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates",
+                ":id",
+                "attachment"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-id-attachment-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0d1ffb32-76b9-4370-be27-550e9d6ae777",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates",
+                    ":id",
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-id-attachment-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5911887-4a67-4deb-80d2-2c13d3dc9a15",
+          "name": "Avalara GetCertificateSetup",
+          "request": {
+            "name": "Avalara GetCertificateSetup",
+            "description": {
+              "content": "Checks whether this company is configured to use exemption certificates in AvaTax.\n            \nExemption certificates are tracked through a different auditable data store than the one that\nholds AvaTax transactions.  To use the AvaTax exemption certificate document store, please call\n`GetCertificateSetup` to see if your company is configured to use the exemption certificate\ndocument store.  To request setup, please call `RequestCertificateSetup` and your company will\nbe configured with data storage in the auditable certificate system.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates",
+                "setup"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-setup-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "6aef1f3a-e8e0-4c7b-a571-afe7f5dd84a5",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates",
+                    "setup"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-setup-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef0c725b-36f5-4bdc-83ef-d651ecc8588b",
+          "name": "Avalara RequestCertificateSetup",
+          "request": {
+            "name": "Avalara RequestCertificateSetup",
+            "description": {
+              "content": "Requests the setup of exemption certificates for this company.\n            \nExemption certificates are tracked through a different auditable data store than the one that\nholds AvaTax transactions.  To use the AvaTax exemption certificate document store, please call\n`GetCertificateSetup` to see if your company is configured to use the exemption certificate\ndocument store.  To request setup, please call `RequestCertificateSetup` and your company will\nbe configured with data storage in the auditable certificate system.\n            \nThis API will return the current status of exemption certificate setup for this company.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates",
+                "setup"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-setup-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8834743a-81bf-443c-9c95-1f67fcb31826",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates",
+                    "setup"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-setup-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<object>",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2022cd8e-b396-4143-b326-43d0fec8bb13",
+          "name": "Avalara LinkAttributesToCertificate",
+          "request": {
+            "name": "Avalara LinkAttributesToCertificate",
+            "description": {
+              "content": "Link one or many attributes to a certificate.\n            \nA certificate may have multiple attributes that control its behavior.  You may link or unlink attributes to a\ncertificate at any time.  The full list of defined attributes may be found using `ListCertificateAttributes`.\n            \nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\nlog onto the administrative website for the product you purchased.\n            \nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates",
+                ":id",
+                "attributes",
+                "link"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-id-attributes-link-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c493c79-5785-4e41-acd2-61e7ea22dded",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates",
+                    ":id",
+                    "attributes",
+                    "link"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-id-attributes-link-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 0,\n  \"name\": \"DIRECT PAY\",\n  \"isSystemCode\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dc880f1c-b3d9-4886-8959-dcd264cb03ae",
+          "name": "Avalara LinkCustomersToCertificate",
+          "request": {
+            "name": "Avalara LinkCustomersToCertificate",
+            "description": {
+              "content": "Link one or more customers to an existing certificate.\n            \nCustomers and certificates must be linked before a customer can make use of a certificate to obtain\na tax exemption in AvaTax.  Since some certificates may cover more than one business entity, a certificate\ncan be connected to multiple customer records using the `LinkCustomersToCertificate` API.\n            \nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\nlog onto the administrative website for the product you purchased.\n            \nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates",
+                ":id",
+                "customers",
+                "link"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-id-customers-link-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c5ba962-9a02-4c4a-8d70-5faa1e852985",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates",
+                    ":id",
+                    "customers",
+                    "link"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-id-customers-link-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customers\": [\n    \"123456789\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89157a59-3ec8-4cf0-b723-45337cb08f78",
+          "name": "Avalara ListAttributesForCertificate",
+          "request": {
+            "name": "Avalara ListAttributesForCertificate",
+            "description": {
+              "content": "Retrieve the list of attributes that are linked to this certificate.\n            \nA certificate may have multiple attributes that control its behavior.  You may link or unlink attributes to a\ncertificate at any time.  The full list of defined attributes may be found using [ListCertificateAttributes](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Definitions/ListCertificateAttributes/) API.\n            \nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\nlog onto the administrative website for the product you purchased.\n            \nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates",
+                ":id",
+                "attributes"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-id-attributes-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "2305e157-29b6-40b0-9729-56b9e14acb29",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates",
+                    ":id",
+                    "attributes"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-id-attributes-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0f8c1e13-ed3c-4620-a0bb-01e83d1fca9e",
+          "name": "Avalara ListCustomersForCertificate",
+          "request": {
+            "name": "Avalara ListCustomersForCertificate",
+            "description": {
+              "content": "List all customers linked to this certificate.\n            \nCustomers must be linked to a certificate in order to make use of its tax exemption features.  You\ncan link or unlink customers to a certificate at any time.\n            \nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\nlog onto the administrative website for the product you purchased.\n            \nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates",
+                ":id",
+                "customers"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-id-customers-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "13f1c3ce-7808-4870-8e29-18a5ab9770cf",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates",
+                    ":id",
+                    "customers"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-id-customers-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9bab8040-c865-4a1a-8a79-2aeb7bb868b0",
+          "name": "Avalara UnlinkAttributesFromCertificate",
+          "request": {
+            "name": "Avalara UnlinkAttributesFromCertificate",
+            "description": {
+              "content": "Unlink one or many attributes from a certificate.\n            \nA certificate may have multiple attributes that control its behavior.  You may link or unlink attributes to a\ncertificate at any time.  The full list of defined attributes may be found using `ListCertificateAttributes`.\n            \nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\nlog onto the administrative website for the product you purchased.\n            \nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates",
+                ":id",
+                "attributes",
+                "unlink"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-id-attributes-unlink-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8cd5016b-3963-44c7-8c47-35733a380d51",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates",
+                    ":id",
+                    "attributes",
+                    "unlink"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-id-attributes-unlink-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": 0,\n  \"name\": \"DIRECT PAY\",\n  \"isSystemCode\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6c85d4f-6383-4aa3-8874-85617ef5c46d",
+          "name": "Avalara UnlinkCustomersFromCertificate",
+          "request": {
+            "name": "Avalara UnlinkCustomersFromCertificate",
+            "description": {
+              "content": "Unlinks one or more customers from a certificate.\n            \nUnlinking a certificate from a customer will prevent the certificate from being used to generate\ntax exemptions for the customer in the future.  If any previous transactions for this customer had\nused this linked certificate, those transactions will be unchanged and will still have a link to the\nexemption certificate in question.\n            \nA certificate is a document stored in either AvaTax Exemptions or CertCapture.  The certificate document\ncan contain information about a customer's eligibility for exemption from sales or use taxes based on\ncriteria you specify when you store the certificate.  To view or manage your certificates directly, please\nlog onto the administrative website for the product you purchased.\n            \nBefore you can use any exemption certificates endpoints, you must set up your company for exemption certificate data storage.\nCompanies that do not have this storage system set up will see `CertCaptureNotConfiguredError` when they call exemption \ncertificate related APIs. To check if this is set up for a company, call `GetCertificateSetup`.  To request setup of exemption \ncertificate storage for this company, call `RequestCertificateSetup`.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "certificates",
+                ":id",
+                "customers",
+                "unlink"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-certificates-id-customers-unlink-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "61fe03a6-a50f-4bba-9d8d-c21565c75fa1",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "certificates",
+                    ":id",
+                    "customers",
+                    "unlink"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-certificates-id-customers-unlink-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customers\": [\n    \"123456789\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "api-v2-companies-companyId-certificates-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.certcapture.com/v2",
+      "key": "certificates-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.certcapture.com/v2",
+      "key": "certificates-certificateId-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://api.certcapture.com/v2",
+      "key": "certificates-certificateId-attachment-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-companies-companyId-certificates-id-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-companies-companyId-certificates-id-attachment-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-companies-companyId-certificates-setup-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-companies-companyId-certificates-id-attributes-link-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-companies-companyId-certificates-id-customers-link-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-companies-companyId-certificates-id-attributes-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-companies-companyId-certificates-id-customers-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-companies-companyId-certificates-id-attributes-unlink-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-companies-companyId-certificates-id-customers-unlink-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "4e5b2e62-ea9d-4c50-b12b-c9bc8759f376",
+    "name": "Avalara Certificates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Certificates across 3 of this provider's published API definitions: avalara-avatax-rest-openapi.yml, avalara-certcapture-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

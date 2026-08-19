@@ -1,0 +1,509 @@
+{
+  "item": [
+    {
+      "id": "6c8282aa-522b-4798-86e1-4a2bd1c0f042",
+      "name": "Classification",
+      "description": {
+        "content": "Classify products into HS Codes and tax codes",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4ecbd904-f94f-4500-8575-f63ed2f17587",
+          "name": "Avalara Classify a Product",
+          "request": {
+            "name": "Avalara Classify a Product",
+            "description": {
+              "content": "Classifies a product into HS Code and Avalara Tax Code based on the provided product description, attributes, and destination country. Returns predictions with confidence scores.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "classify"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"destinationCountry\": \"<string>\",\n  \"originCountry\": \"<string>\",\n  \"attributes\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\",\n    \"key_2\": \"<string>\"\n  },\n  \"itemCode\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ede54bdd-05b5-471f-92d5-d7e42754f77c",
+              "name": "Classification results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "classify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"destinationCountry\": \"<string>\",\n  \"originCountry\": \"<string>\",\n  \"attributes\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"itemCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"itemCode\": \"string\",\n  \"description\": \"string\",\n  \"predictions\": [\n    {\n      \"hsCode\": \"string\",\n      \"description\": \"string\",\n      \"confidence\": 5948.440126770287,\n      \"parentCode\": \"string\"\n    },\n    {\n      \"hsCode\": \"string\",\n      \"description\": \"string\",\n      \"confidence\": 3881.681033404516,\n      \"parentCode\": \"string\"\n    }\n  ],\n  \"avataxCode\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c0d9b3f-88fc-4445-a52b-bb2d2a8aa7f0",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "classify"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"destinationCountry\": \"<string>\",\n  \"originCountry\": \"<string>\",\n  \"attributes\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  },\n  \"itemCode\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "933405ab-3090-42e4-b523-b9d1061f841b",
+          "name": "Avalara Classify a Batch of Products",
+          "request": {
+            "name": "Avalara Classify a Batch of Products",
+            "description": {
+              "content": "Classifies multiple products in a single request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "classify",
+                "batch"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"items\": [\n    {\n      \"description\": \"<string>\",\n      \"destinationCountry\": \"<string>\",\n      \"originCountry\": \"<string>\",\n      \"attributes\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"itemCode\": \"<string>\"\n    },\n    {\n      \"description\": \"<string>\",\n      \"destinationCountry\": \"<string>\",\n      \"originCountry\": \"<string>\",\n      \"attributes\": {\n        \"key_0\": \"<string>\"\n      },\n      \"itemCode\": \"<string>\"\n    }\n  ],\n  \"destinationCountry\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e6b93062-249a-40d9-aee6-d4ba10c45cf8",
+              "name": "Batch classification results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "classify",
+                    "batch"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"items\": [\n    {\n      \"description\": \"string\",\n      \"destinationCountry\": \"string\",\n      \"originCountry\": \"string\",\n      \"attributes\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"itemCode\": \"string\"\n    },\n    {\n      \"description\": \"string\",\n      \"destinationCountry\": \"string\",\n      \"originCountry\": \"string\",\n      \"attributes\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\",\n        \"key_2\": \"string\"\n      },\n      \"itemCode\": \"string\"\n    }\n  ],\n  \"destinationCountry\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"results\": [\n    {\n      \"itemCode\": \"string\",\n      \"description\": \"string\",\n      \"predictions\": [\n        {\n          \"hsCode\": \"string\",\n          \"description\": \"string\",\n          \"confidence\": 2922.0535139076287,\n          \"parentCode\": \"string\"\n        },\n        {\n          \"hsCode\": \"string\",\n          \"description\": \"string\",\n          \"confidence\": 4094.3985776202962,\n          \"parentCode\": \"string\"\n        }\n      ],\n      \"avataxCode\": \"string\"\n    },\n    {\n      \"itemCode\": \"string\",\n      \"description\": \"string\",\n      \"predictions\": [\n        {\n          \"hsCode\": \"string\",\n          \"description\": \"string\",\n          \"confidence\": 141.55044315890098,\n          \"parentCode\": \"string\"\n        },\n        {\n          \"hsCode\": \"string\",\n          \"description\": \"string\",\n          \"confidence\": 2571.185752963249,\n          \"parentCode\": \"string\"\n        }\n      ],\n      \"avataxCode\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9fd2022b-d853-4824-9546-aefbf9723df7",
+          "name": "Avalara Look Up an HS Code",
+          "request": {
+            "name": "Avalara Look Up an HS Code",
+            "description": {
+              "content": "Retrieves details for a specific HS Code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hscodes",
+                ":hsCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Country for country-specific tariff details"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hsCode",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0bc987c0-1e6a-4b87-81ed-0f171433c39b",
+              "name": "HS Code details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hscodes",
+                    ":hsCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hsCode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hsCode\": \"string\",\n  \"description\": \"string\",\n  \"level\": \"Heading\",\n  \"parentCode\": \"string\",\n  \"dutyRate\": \"string\",\n  \"unitOfMeasure\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "caac7e21-3e8b-4cce-be44-90f8601c4d7b",
+          "name": "Avalara Get HS Code Hierarchy",
+          "request": {
+            "name": "Avalara Get HS Code Hierarchy",
+            "description": {
+              "content": "Returns the full hierarchy for an HS Code from chapter through heading, subheading, and national tariff line.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hscodes",
+                ":hsCode",
+                "hierarchy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hsCode",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e0ca88e3-6c58-4f38-9f1b-8fd8b148ce74",
+              "name": "HS Code hierarchy",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hscodes",
+                    ":hsCode",
+                    "hierarchy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hsCode",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"hsCode\": \"string\",\n    \"description\": \"string\",\n    \"level\": \"Chapter\",\n    \"parentCode\": \"string\",\n    \"dutyRate\": \"string\",\n    \"unitOfMeasure\": \"string\"\n  },\n  {\n    \"hsCode\": \"string\",\n    \"description\": \"string\",\n    \"level\": \"Heading\",\n    \"parentCode\": \"string\",\n    \"dutyRate\": \"string\",\n    \"unitOfMeasure\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.avalara.com/classification/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d2b65b8e-d007-41c9-bd06-822bc4d0de72",
+    "name": "Avalara Automated Tariff Code Classification API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara HSCode and AvaTax Code Classification API classifies products into Harmonized System Codes (HS Codes) and Avalara Tax Codes. It provides tariff code predictions based on product information and destination country, with confidence levels for each classification result.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

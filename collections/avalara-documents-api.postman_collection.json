@@ -1,0 +1,699 @@
+{
+  "item": [
+    {
+      "id": "4cd44a69-3048-478d-885a-3927a856e49c",
+      "name": "Documents",
+      "description": {
+        "content": "Submit and manage e-invoice documents",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "79fa3754-fdf3-425a-8a19-b7f87e5d4732",
+          "name": "Avalara Submit an E-invoice Document",
+          "request": {
+            "name": "Avalara Submit an E-invoice Document",
+            "description": {
+              "content": "Submits an electronic invoice document for validation and delivery to the appropriate tax authority or recipient network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) API version header",
+                "key": "avalara-version",
+                "value": "1.0"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"dataFormat\": \"<string>\",\n  \"data\": \"<string>\",\n  \"dataFormatVersion\": \"<string>\",\n  \"metadata\": {\n    \"workflowId\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"countryMandate\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d8f5042f-34ef-4ce2-868c-b210daf62094",
+              "name": "Document accepted for processing",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version header",
+                    "key": "avalara-version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataFormat\": \"<string>\",\n  \"data\": \"<string>\",\n  \"dataFormatVersion\": \"<string>\",\n  \"metadata\": {\n    \"workflowId\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"countryMandate\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"Pending\",\n  \"statusDate\": \"2008-11-09T19:45:30.113Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a6f47ba-53d2-4494-98da-d761d01500cb",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version header",
+                    "key": "avalara-version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataFormat\": \"<string>\",\n  \"data\": \"<string>\",\n  \"dataFormatVersion\": \"<string>\",\n  \"metadata\": {\n    \"workflowId\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"countryMandate\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f659eca3-fb04-4e9b-acc0-cffd03033d6c",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) API version header",
+                    "key": "avalara-version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"dataFormat\": \"<string>\",\n  \"data\": \"<string>\",\n  \"dataFormatVersion\": \"<string>\",\n  \"metadata\": {\n    \"workflowId\": \"<string>\",\n    \"countryCode\": \"<string>\",\n    \"countryMandate\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9ada447-56f9-4409-9b8d-a4d6c6561b25",
+          "name": "Avalara List Submitted Documents",
+          "request": {
+            "name": "Avalara List Submitted Documents",
+            "description": {
+              "content": "Retrieves a list of submitted e-invoice documents with filtering.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "flow",
+                  "value": "<string>",
+                  "description": "Document flow direction (outbound or inbound)"
+                },
+                {
+                  "disabled": false,
+                  "key": "count",
+                  "value": "<boolean>",
+                  "description": "Include total count in response"
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "0"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "avalara-version",
+                "value": "1.0"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1b70157-d663-4c4b-8d0d-65789c35cf20",
+              "name": "List of documents",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "flow",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "count",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "50"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "avalara-version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"@recordSetCount\": 5528,\n  \"value\": [\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"documentType\": \"string\",\n      \"invoiceNumber\": \"string\",\n      \"senderName\": \"string\",\n      \"recipientName\": \"string\",\n      \"submissionDate\": \"1991-05-04T19:46:18.932Z\",\n      \"countryCode\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"status\": \"string\",\n      \"documentType\": \"string\",\n      \"invoiceNumber\": \"string\",\n      \"senderName\": \"string\",\n      \"recipientName\": \"string\",\n      \"submissionDate\": \"2019-09-19T09:59:16.993Z\",\n      \"countryCode\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "049c3eea-7a59-4c38-827f-710f20222c52",
+          "name": "Avalara Retrieve a Document by ID",
+          "request": {
+            "name": "Avalara Retrieve a Document by ID",
+            "description": {
+              "content": "Retrieves the status and details of a submitted e-invoice document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents",
+                ":documentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "documentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "avalara-version",
+                "value": "1.0"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "49ec7f9f-c7e8-4598-aca6-ee3a5bcb0e0e",
+              "name": "Document details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "avalara-version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"dataFormat\": \"string\",\n  \"documentType\": \"string\",\n  \"invoiceNumber\": \"string\",\n  \"invoiceDate\": \"1955-10-25\",\n  \"sender\": {\n    \"name\": \"string\",\n    \"identifier\": \"string\",\n    \"identifierScheme\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  },\n  \"recipient\": {\n    \"name\": \"string\",\n    \"identifier\": \"string\",\n    \"identifierScheme\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"countryCode\": \"string\"\n    }\n  },\n  \"totalAmount\": 3842.1310534808185,\n  \"currencyCode\": \"string\",\n  \"countryCode\": \"string\",\n  \"submissionDate\": \"2001-05-13T21:49:15.402Z\",\n  \"events\": [\n    {\n      \"eventDate\": \"1970-07-15T10:24:59.737Z\",\n      \"eventType\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"eventDate\": \"2017-07-20T07:34:05.272Z\",\n      \"eventType\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "04181834-fc4e-45e8-a646-25f9fa4e95f2",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":documentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "avalara-version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\",\n    \"target\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d83a805-8601-4146-81c5-fd1a8919b3af",
+          "name": "Avalara Get Document Processing Status",
+          "request": {
+            "name": "Avalara Get Document Processing Status",
+            "description": {
+              "content": "Returns the current processing status of a submitted document.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "documents",
+                ":documentId",
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "documentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) ",
+                "key": "avalara-version",
+                "value": "1.0"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe9ba022-e27f-4ed6-ab73-e05c428be996",
+              "name": "Document status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "documents",
+                    ":documentId",
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) ",
+                    "key": "avalara-version",
+                    "value": "1.0"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"Error\",\n  \"statusDate\": \"1981-05-03T03:42:30.004Z\",\n  \"events\": [\n    {\n      \"eventDate\": \"2019-11-18T14:15:19.602Z\",\n      \"eventType\": \"string\",\n      \"message\": \"string\"\n    },\n    {\n      \"eventDate\": \"1976-12-16T07:37:42.621Z\",\n      \"eventType\": \"string\",\n      \"message\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.avalara.com/einvoicing/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1b7431ed-521a-4d83-9ab7-52d3d59b4205",
+    "name": "Avalara E-Invoicing REST Documents API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara E-Invoicing REST API supports electronic invoicing compliance workflows for cross-border and domestic transactions. It enables submission, validation, and management of e-invoices in compliance with mandates from tax authorities worldwide, supporting formats like UBL, Peppol, and country-specific standards.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

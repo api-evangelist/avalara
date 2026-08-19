@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Communications Tax Customization API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customization",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Tax Profiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/customization/profiles"
+          },
+          "docs": "Retrieves all configured tax profiles for the client."
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Tax Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/customization/profiles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new tax profile with custom bundles and overrides."
+        },
+        {
+          "info": {
+            "name": "Avalara List Tax Exclusions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/customization/exclusions"
+          },
+          "docs": "Retrieves configured tax exclusions."
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Tax Exclusion",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/customization/exclusions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara Create a Tax Exclusion"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

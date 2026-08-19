@@ -1,0 +1,1000 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Transactions API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/transactions",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Avalara List Transactions"
+        },
+        {
+          "info": {
+            "name": "Avalara Submit VAT Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/transactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Submits a batch of transactions for VAT reporting. Transactions are validated and processed for inclusion in VAT returns."
+        },
+        {
+          "info": {
+            "name": "Avalara Create a New Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/transactions/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a new tax transaction. This is the primary method for calculating tax on a sale, purchase, or other taxable event. The transaction can be committed immediately or saved as a temporary document."
+        },
+        {
+          "info": {
+            "name": "Avalara Retrieve a Single Transaction by Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode",
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path",
+                "description": "The company code identifying the company"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path",
+                "description": "The transaction code to retrieve"
+              },
+              {
+                "name": "$include",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of optional data to include (e.g., Lines, Details, Summary)"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieves a transaction by its company code and transaction code, optionally including line item details and summary information."
+        },
+        {
+          "info": {
+            "name": "Avalara Adjust a Committed Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode/adjust",
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path",
+                "description": "The company code identifying the company"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Adjusts a committed transaction by replacing it with a modified version. The original transaction is voided and a new adjusted transaction is created."
+        },
+        {
+          "info": {
+            "name": "Avalara Commit a Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode/commit",
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path",
+                "description": "The company code identifying the company"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Marks a transaction as committed, indicating it has been finalized and should be reported to tax authorities."
+        },
+        {
+          "info": {
+            "name": "Avalara Void a Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode/void",
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path",
+                "description": "The company code identifying the company"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Voids an existing transaction, removing it from tax reporting. Only uncommitted or committed transactions can be voided."
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Refund for a Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/transactions/:transactionCode/refund",
+            "params": [
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a refund transaction based on an existing committed transaction. Supports full, partial, percentage, and tax-only refund types."
+        },
+        {
+          "info": {
+            "name": "Avalara List Excise Transactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/Transactions",
+            "params": [
+              {
+                "name": "startDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endDate",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a list of excise tax transactions."
+        },
+        {
+          "info": {
+            "name": "Avalara Create an Excise Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/Transactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Avalara Create an Excise Transaction"
+        },
+        {
+          "info": {
+            "name": "Avalara Retrieve an Excise Transaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/Transactions/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Avalara Retrieve an Excise Transaction"
+        },
+        {
+          "info": {
+            "name": "Avalara AddLines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/transactions/lines/add",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": " Add lines to an existing unlocked transaction.\n            \n The `AddLines` API allows you to add additional transaction lines to existing transaction, so that customer will\n be able to append multiple calls together and form an extremely large transaction. If customer does not specify line number\n in the lines to be added, a new random Guid string will be generated for line number. If customer are not satisfied with\n the line number for the transaction lines, they can turn on the renumber swit"
+        },
+        {
+          "info": {
+            "name": "Avalara AuditTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode/audit",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve audit information about a transaction stored in AvaTax.\n            \nThe `AuditTransaction` API retrieves audit information related to a specific transaction.  This audit\ninformation includes the following:\n            \n* The `CompanyId` of the company that created the transaction\n* The server timestamp representing the exact server time when the transaction was created\n* The server duration - how long it took to process this transaction\n* Whether exact API call details were logged\n* A "
+        },
+        {
+          "info": {
+            "name": "Avalara AuditTransactionWithType",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode/types/:documentType/audit",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "documentType",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve audit information about a transaction stored in AvaTax.\n            \nThe `AuditTransaction` API retrieves audit information related to a specific transaction.  This audit\ninformation includes the following:\n            \n* The `CompanyId` of the company that created the transaction\n* The server timestamp representing the exact server time when the transaction was created\n* The server duration - how long it took to process this transaction\n* Whether exact API call details were logged\n* A "
+        },
+        {
+          "info": {
+            "name": "Avalara BulkLockTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/transactions/lock",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This API is available by invitation only.\n            \nLock a set of transactions uniquely identified by DocumentIds provided. This API allows locking multiple documents at once.\nAfter this API call succeeds, documents will be locked and can't be voided.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n\n### Security Policies\n\n* Th"
+        },
+        {
+          "info": {
+            "name": "Avalara ChangeTransactionCode",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode/changecode",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Renames a transaction uniquely identified by this URL by changing its `code` value.\n            \nThis API is available as long as the transaction is in `saved` or `posted` status.  When a transaction\nis `committed`, it can be modified by using the [AdjustTransaction](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Transactions/AdjustTransaction/) method.\n            \nAfter this API call succeeds, the transaction will have a new URL matching its new `code`.\n            \nIf you "
+        },
+        {
+          "info": {
+            "name": "Avalara CreateOrAdjustTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/transactions/createoradjust",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Records a new transaction or adjust an existing transaction in AvaTax.\n            \nThe `CreateOrAdjustTransaction` endpoint is used to create a new transaction or update an existing one.  This API\ncan help you create an idempotent service that creates transactions\nIf there exists a transaction identified by code, the original transaction will be adjusted by using the meta data\nin the input transaction.\n            \nThe `CreateOrAdjustTransaction` API cannot modify any transaction that has been "
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteLines",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/transactions/lines/delete",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": " Remove lines to an existing unlocked transaction.\n            \n The `DeleteLines` API allows you to remove transaction lines from existing unlocked transaction, so that customer will\n be able to delete transaction lines and adjust original transaction the way they like\n            \n A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\n sales, purchases, inventory transfer, and returns (also called refunds).\n You may s"
+        },
+        {
+          "info": {
+            "name": "Avalara GetAllVarianceReportByCompanyCode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/AllVariance",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara GetTransactionByCodeAndType",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode/types/:documentType",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "documentType",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "DEPRECATED: Please use the `GetTransactionByCode` API instead.\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_"
+        },
+        {
+          "info": {
+            "name": "Avalara GetTransactionById",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/transactions/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Get the unique transaction identified by this URL.\n            \nThis endpoint retrieves the exact transaction identified by this ID number, as long as it is the most version of the transaction.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nYou may specify one or more of the following values in the `$include` parame"
+        },
+        {
+          "info": {
+            "name": "Avalara GetVarianceReportByCompanyCodeByTransactionId",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionId/variance",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara ListTransactionsByCompany",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "List all transactions attached to this company.\n            \nThis endpoint is limited to returning 1,000 transactions at a time maximum.\n            \nWhen listing transactions, you must specify a `date` range filter.  If you do not specify a `$filter` that includes a `date` field\ncriteria, the query will default to looking at only those transactions with `date` in the past 30 days.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and trans"
+        },
+        {
+          "info": {
+            "name": "Avalara LockTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode/lock",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Lock a transaction uniquely identified by this URL.\n            \nThis API is mainly used for connector developers to simulate what happens when the Returns product locks a document.\nAfter this API call succeeds, the document will be locked and can't be voided or adjusted.\n            \nOn Sandbox, this API is only available to customers who have both an AvaTaxPro and a Managed Returns subscription. On Production, this API is only available internally for the Avalara Returns team.\n            \nIf "
+        },
+        {
+          "info": {
+            "name": "Avalara RefundTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode/refund",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Create a refund for a transaction.\n            \nThe `RefundTransaction` API allows you to quickly and easily create a `ReturnInvoice` representing a refund\nfor a previously created `SalesInvoice` transaction.  You can choose to create a full or partial refund, and\nspecify individual line items from the original sale for refund.\n            \nThe `RefundTransaction` API ensures that the tax amount you refund to the customer exactly matches the tax that\nwas calculated during the original transactio"
+        },
+        {
+          "info": {
+            "name": "Avalara SettleTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode/settle",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Performs one or more actions against the current transaction uniquely identified by this URL.\n            \nThe `SettleTransaction` API call can perform the work of `ChangeCode`, `VerifyTransaction`, and `CommitTransaction`.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nIf you have more than one document with the sa"
+        },
+        {
+          "info": {
+            "name": "Avalara UncommitTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode/uncommit",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Adjusts a transaction by changing it to an uncommitted status.\n            \nTransactions that have been previously reported to a tax authority by Avalara Managed Returns are considered `locked` and are\nno longer available to be uncommitted.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* Lines\n* Details (implies lines)\n* AccountPayableSalesTaxDetails (implies lin"
+        },
+        {
+          "info": {
+            "name": "Avalara UnvoidTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode/unvoid",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Unvoids a voided transaction\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* Lines\n* Details (implies lines)\n* AccountPayableSalesTaxDetails (implies lines - only for Account Payable transaction)\n* Summary (implies details)\n* Addresses\n* SummaryOnly (omit lines and details - reduces API response size)\n* LinesOnly (omit details - reduces API response size)\n* TaxDe"
+        },
+        {
+          "info": {
+            "name": "Avalara VarianceReport",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/variance",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro, BasicReturns.\n"
+        },
+        {
+          "info": {
+            "name": "Avalara VerifyTransaction",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://avataxbr-sandbox.avalarabrasil.com.br/v3/api/v2/companies/:companyCode/transactions/:transactionCode/verify",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Verifies that the transaction uniquely identified by this URL matches certain expected values.\n            \nIf the transaction does not match these expected values, this API will return an error code indicating which value did not match.\n            \nIf you have more than one document with the same `code`, specify the `documentType` parameter to choose between them.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

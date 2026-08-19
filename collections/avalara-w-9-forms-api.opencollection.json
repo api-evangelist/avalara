@@ -1,0 +1,85 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara 1099 & W-9 W-9 Forms API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "W-9 Forms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List W-9 Requests",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/w9/requests",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Avalara List W-9 Requests"
+        },
+        {
+          "info": {
+            "name": "Avalara Create a W-9 Collection Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/w9/requests",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Sends a W-9 collection request to a payee, allowing them to submit their taxpayer information electronically."
+        },
+        {
+          "info": {
+            "name": "Avalara Get a Completed W-9 Form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/w9/:w9Id",
+            "params": [
+              {
+                "name": "w9Id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Get a Completed W-9 Form"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

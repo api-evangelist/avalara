@@ -1,0 +1,456 @@
+{
+  "item": [
+    {
+      "id": "053e36f9-4a28-458e-8df5-f6556be47ff1",
+      "name": "Electronic Invoices",
+      "description": {
+        "content": "Issue and manage electronic fiscal documents",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a5725eab-7c7b-45ec-89cb-29c990c47fbe",
+          "name": "Avalara Issue an Electronic Invoice",
+          "request": {
+            "name": "Avalara Issue an Electronic Invoice",
+            "description": {
+              "content": "Issues a new electronic fiscal document (NF-e, NFS-e, or NFC-e) to Brazilian tax authorities (SEFAZ).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"invoiceType\": \"<string>\",\n  \"companyId\": \"<string>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"buyer\": {\n    \"name\": \"<string>\",\n    \"cnpj\": \"<string>\",\n    \"cpf\": \"<string>\",\n    \"stateRegistration\": \"<string>\",\n    \"municipalRegistration\": \"<string>\",\n    \"address\": {\n      \"street\": \"<string>\",\n      \"number\": \"<string>\",\n      \"complement\": \"<string>\",\n      \"neighborhood\": \"<string>\",\n      \"city\": \"<string>\",\n      \"cityCode\": \"<string>\",\n      \"state\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    }\n  },\n  \"lines\": [\n    {\n      \"lineNumber\": \"<integer>\",\n      \"itemCode\": \"<string>\",\n      \"description\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"unitPrice\": \"<double>\",\n      \"ncmCode\": \"<string>\",\n      \"cfopCode\": \"<string>\"\n    },\n    {\n      \"lineNumber\": \"<integer>\",\n      \"itemCode\": \"<string>\",\n      \"description\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"unitPrice\": \"<double>\",\n      \"ncmCode\": \"<string>\",\n      \"cfopCode\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1be7cfd6-aa53-41f2-8d15-d5ec34959415",
+              "name": "Invoice issued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"invoiceType\": \"<string>\",\n  \"companyId\": \"<string>\",\n  \"transactionDate\": \"<dateTime>\",\n  \"buyer\": {\n    \"name\": \"string\",\n    \"cnpj\": \"string\",\n    \"cpf\": \"string\",\n    \"stateRegistration\": \"string\",\n    \"municipalRegistration\": \"string\",\n    \"address\": {\n      \"street\": \"string\",\n      \"number\": \"string\",\n      \"complement\": \"string\",\n      \"neighborhood\": \"string\",\n      \"city\": \"string\",\n      \"cityCode\": \"string\",\n      \"state\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    }\n  },\n  \"lines\": [\n    {\n      \"lineNumber\": 9474,\n      \"itemCode\": \"string\",\n      \"description\": \"string\",\n      \"quantity\": 2188.8620987584795,\n      \"unitPrice\": 760.2517990262659,\n      \"ncmCode\": \"string\",\n      \"cfopCode\": \"string\"\n    },\n    {\n      \"lineNumber\": 4064,\n      \"itemCode\": \"string\",\n      \"description\": \"string\",\n      \"quantity\": 8934.120740086304,\n      \"unitPrice\": 6030.710547078483,\n      \"ncmCode\": \"string\",\n      \"cfopCode\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoiceId\": \"string\",\n  \"accessKey\": \"string\",\n  \"invoiceNumber\": 4725,\n  \"series\": 8982,\n  \"status\": \"Cancelled\",\n  \"protocolNumber\": \"string\",\n  \"issuanceDate\": \"2014-03-08T15:26:25.323Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f32c661-1050-4beb-8bbb-c4d128f5c07c",
+          "name": "Avalara List Electronic Invoices",
+          "request": {
+            "name": "Avalara List Electronic Invoices",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "endDate",
+                  "value": "<date>"
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b26aecb7-bc78-456c-80d4-e369f3e80f92",
+              "name": "List of invoices",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "49795316-feee-42fe-9bd6-7bdb5e8df9bf",
+          "name": "Avalara Get an Invoice by ID",
+          "request": {
+            "name": "Avalara Get an Invoice by ID",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices",
+                ":invoiceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoiceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "13f74148-cb8e-4cb6-9a59-6bbee83116e6",
+              "name": "Invoice details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"invoiceId\": \"string\",\n  \"accessKey\": \"string\",\n  \"invoiceNumber\": 4725,\n  \"series\": 8982,\n  \"status\": \"Cancelled\",\n  \"protocolNumber\": \"string\",\n  \"issuanceDate\": \"2014-03-08T15:26:25.323Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad2b8f1e-6044-454c-9b42-c99fdfd7a8ee",
+          "name": "Avalara Cancel an Electronic Invoice",
+          "request": {
+            "name": "Avalara Cancel an Electronic Invoice",
+            "description": {
+              "content": "Submits a cancellation request for an authorized invoice.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":invoiceId",
+                "cancel"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "invoiceId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "17ca16e1-992d-412b-a6d5-16558c420cac",
+              "name": "Invoice cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":invoiceId",
+                    "cancel"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "invoiceId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://avataxbr-sandbox.avalarabrasil.com.br/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "15a38148-19cb-4b71-a14d-151719f0fad2",
+    "name": "Avalara AvaTax Brazil Electronic Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The AvaTax Brazil API provides tax calculation, electronic invoice (NF-e, NFS-e, NFC-e) issuance, and transaction management for businesses with a physical presence in Brazil. It supports Brazilian federal, state, and municipal taxes including ICMS, IPI, PIS, COFINS, ISS, and more.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,186 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara AvaTax AdvancedRules API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AdvancedRules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara GetCompanyLookupFiles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/advancedrules/accounts/:accountId/companies/:companyId/lookupFiles",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara GetCompanyLookupFiles"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateCompanyLookupFile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/api/v2/advancedrules/accounts/:accountId/companies/:companyId/lookupFiles",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara CreateCompanyLookupFile"
+        },
+        {
+          "info": {
+            "name": "Avalara GetLookupFile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/advancedrules/accounts/:accountId/lookupFiles/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara GetLookupFile"
+        },
+        {
+          "info": {
+            "name": "Avalara UpdateLookupFile",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{{baseurl}}/api/v2/advancedrules/accounts/:accountId/lookupFiles/:id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Avalara UpdateLookupFile"
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteLookupFile",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{{baseurl}}/api/v2/advancedrules/accounts/:accountId/lookupFiles/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara DeleteLookupFile"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

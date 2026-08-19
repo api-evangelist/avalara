@@ -1,0 +1,150 @@
+{
+  "item": [
+    {
+      "id": "897426b6-20f6-4fce-b947-7ef720dbb0d7",
+      "name": "Geocoding",
+      "description": {
+        "content": "Determine tax jurisdictions from addresses",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "62a6708c-61cd-4871-aa6a-b08881716f25",
+          "name": "Avalara Geocode an Address",
+          "request": {
+            "name": "Avalara Geocode an Address",
+            "description": {
+              "content": "Determines the tax jurisdiction for a given address using geocoding. Returns jurisdiction codes (PCode, FIPS) needed for tax calculations.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "geo",
+                "Geocode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ref\": \"<string>\",\n  \"cass\": \"<boolean>\",\n  \"addr\": \"<string>\",\n  \"city\": \"<string>\",\n  \"st\": \"<string>\",\n  \"zip\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e8bc127a-db9c-4c18-8572-9c63b91ef12d",
+              "name": "Geocoding results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "geo",
+                    "Geocode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ref\": \"<string>\",\n  \"cass\": \"<boolean>\",\n  \"addr\": \"<string>\",\n  \"city\": \"<string>\",\n  \"st\": \"<string>\",\n  \"zip\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ref\": \"string\",\n  \"cass\": {\n    \"addr\": \"string\",\n    \"city\": \"string\",\n    \"st\": \"string\",\n    \"zip\": \"string\"\n  },\n  \"cBlk\": \"string\",\n  \"cTrc\": \"string\",\n  \"err\": \"string\",\n  \"geo\": false,\n  \"lat\": 7868.771077646031,\n  \"long\": 3737.866345396612,\n  \"pcd\": 545,\n  \"fips\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://communicationsua.avalara.net",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "33709593-c880-4249-81aa-b0c397ffb1a8",
+    "name": "Avalara Communications Tax Geocoding API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara Communications Tax API (AFC SaasPro) provides communications tax calculations for telecom, VoIP, internet, and other communications services. It supports tax calculations using transaction/service pairs, jurisdiction determination via geocoding, and customizable tax profiles for accurate communications tax compliance.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,449 @@
+{
+  "item": [
+    {
+      "id": "8b68bf11-5fed-492a-b413-d57222c97366",
+      "name": "Free",
+      "description": {
+        "content": "Free tax rate lookup endpoints",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8c2526ca-018a-4660-af09-99e8f3142c30",
+          "name": "Avalara Get Tax Rates by Address",
+          "request": {
+            "name": "Avalara Get Tax Rates by Address",
+            "description": {
+              "content": "Free tax rates lookup by street address. Returns the estimated combined tax rate for a given location.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "taxrates",
+                "byaddress"
+              ],
+              "host": [
+                "{{api-v2-taxrates-byaddress-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "line1",
+                  "value": "<string>",
+                  "description": "(Required) Street address line 1"
+                },
+                {
+                  "disabled": false,
+                  "key": "city",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "region",
+                  "value": "<string>",
+                  "description": "(Required) State or province code"
+                },
+                {
+                  "disabled": false,
+                  "key": "postalCode",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "(Required) Two-character ISO 3166 country code"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "621d598e-2a19-456c-a554-5426c15c6c33",
+              "name": "Tax rate information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "taxrates",
+                    "byaddress"
+                  ],
+                  "host": [
+                    "{{api-v2-taxrates-byaddress-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "line1",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "city",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "region",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "postalCode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRate\": 4869.044269626083,\n  \"rates\": [\n    {\n      \"rate\": 4278.913877341043,\n      \"name\": \"string\",\n      \"type\": \"Special\"\n    },\n    {\n      \"rate\": 1119.2647136363066,\n      \"name\": \"string\",\n      \"type\": \"Country\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8fa1cb0d-d899-4acb-ba6d-c4db2f2cd4fa",
+          "name": "Avalara Get Tax Rates by Postal Code",
+          "request": {
+            "name": "Avalara Get Tax Rates by Postal Code",
+            "description": {
+              "content": "Free tax rates lookup by postal code. Returns estimated combined tax rate for a given postal code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "taxrates",
+                "bypostalcode"
+              ],
+              "host": [
+                "{{api-v2-taxrates-bypostalcode-Url}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "postalCode",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7a420f60-db4a-429d-a5ac-1fdee9e147bb",
+              "name": "Tax rate information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "taxrates",
+                    "bypostalcode"
+                  ],
+                  "host": [
+                    "{{api-v2-taxrates-bypostalcode-Url}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "postalCode",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalRate\": 4869.044269626083,\n  \"rates\": [\n    {\n      \"rate\": 4278.913877341043,\n      \"name\": \"string\",\n      \"type\": \"Special\"\n    },\n    {\n      \"rate\": 1119.2647136363066,\n      \"name\": \"string\",\n      \"type\": \"Country\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "66fc1983-0d2f-4cad-9a76-0241b92d7ab1",
+          "name": "Avalara RequestFreeTrial",
+          "request": {
+            "name": "Avalara RequestFreeTrial",
+            "description": {
+              "content": "Call this API to obtain a free AvaTax account.\n            \nThis API is free to use.  No authentication credentials are required to call this API. You must read and\naccept [Avalara's terms and conditions](https://www1.avalara.com/us/en/legal/terms.html) for the account to be\ncreated.\n            \nIf all conditions are met, this API will grant a free trial version of AvaTax.  For a list of functionality\navailable in the free trial and its limitations, please see the [AvaTax Developer Website Free Trial page](https://developer.avalara.com/avatax/signup/).\n            \nAfter your free trial concludes, you will still be able to use the [Free AvaTax API Suite](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Free/).\n\n### Security Policies\n\n* This API may be called without providing authentication credentials.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "accounts",
+                "freetrials",
+                "request"
+              ],
+              "host": [
+                "{{api-v2-accounts-freetrials-request-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "565440a1-cfdd-48c1-9868-8ee17416ac1e",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "accounts",
+                    "freetrials",
+                    "request"
+                  ],
+                  "host": [
+                    "{{api-v2-accounts-freetrials-request-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"firstName\": \"Bob\",\n  \"lastName\": \"McExample\",\n  \"email\": \"bob@example.org\",\n  \"company\": \"Bob's Artisan Pottery\",\n  \"phone\": \"+1 (714) 555-1212\",\n  \"campaign\": \"70140000000TsVb\",\n  \"companyAddress\": {\n    \"line\": \"100 Ravine Ln\",\n    \"region\": \"WA\",\n    \"country\": \"US\",\n    \"postalCode\": \"98010\"\n  },\n  \"website\": \"www.bobartisanpottery.com\",\n  \"haveReadAvalaraTermsAndConditions\": true,\n  \"acceptAvalaraTermsAndConditions\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "api-v2-taxrates-byaddress-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "api-v2-taxrates-bypostalcode-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-accounts-freetrials-request-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "8a267b0f-d450-4e5b-b7f1-e3b45dc870f5",
+    "name": "Avalara Free API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Free across 2 of this provider's published API definitions: avalara-avatax-rest-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

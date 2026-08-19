@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Excise Platform Licenses API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Licenses",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Excise Licenses",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://exciseapi.avalara.com/api/v1/Licenses"
+          },
+          "docs": "Avalara List Excise Licenses"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

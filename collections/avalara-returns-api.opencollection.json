@@ -1,0 +1,103 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara VAT Reporting Returns API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Returns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List VAT Returns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/vat-reporting/v1/returns",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodStart",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "periodEnd",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves VAT returns with optional filtering by status and period."
+        },
+        {
+          "info": {
+            "name": "Avalara Get a VAT Return by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/vat-reporting/v1/returns/:returnId",
+            "params": [
+              {
+                "name": "returnId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Avalara Get a VAT Return by ID"
+        },
+        {
+          "info": {
+            "name": "Avalara Submit a VAT Return for Filing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/vat-reporting/v1/returns/:returnId/submit",
+            "params": [
+              {
+                "name": "returnId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Submits a finalized VAT return to the relevant tax authority."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

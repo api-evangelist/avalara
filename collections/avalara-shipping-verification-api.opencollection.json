@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Shipping Verification API",
+    "version": "3.1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Shipping Verification",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Registers the transaction so that it may be included when evaluating regulations that span multiple transactions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/v2/companies/:companyCode/transactions/:transactionCode/shipment/registration",
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path",
+                "description": "The company code of the company that recorded the transaction"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path",
+                "description": "The transaction code to retrieve"
+              },
+              {
+                "name": "documentType",
+                "value": "",
+                "type": "query",
+                "description": "(Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\""
+              }
+            ]
+          },
+          "docs": "Registers the transaction so that it may be included when evaluating regulations that span multiple transactions."
+        },
+        {
+          "info": {
+            "name": "Removes the transaction from consideration when evaluating regulations that span multiple transactions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/api/v2/companies/:companyCode/transactions/:transactionCode/shipment/registration",
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path",
+                "description": "The company code of the company that recorded the transaction"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path",
+                "description": "The transaction code to retrieve"
+              },
+              {
+                "name": "documentType",
+                "value": "",
+                "type": "query",
+                "description": "(Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\""
+              }
+            ]
+          },
+          "docs": "Removes the transaction from consideration when evaluating regulations that span multiple transactions."
+        },
+        {
+          "info": {
+            "name": "Evaluates a transaction against a set of direct-to-consumer shipping regulations and, if compliant, registers the transaction so that it may be included when evaluating regulations that span multiple transactions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "/api/v2/companies/:companyCode/transactions/:transactionCode/shipment/registerIfCompliant",
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path",
+                "description": "The company code of the company that recorded the transaction"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path",
+                "description": "The transaction code to retrieve"
+              },
+              {
+                "name": "documentType",
+                "value": "",
+                "type": "query",
+                "description": "(Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\""
+              }
+            ]
+          },
+          "docs": "Evaluates a transaction against a set of direct-to-consumer shipping regulations and, if compliant, registers the transaction so that it may be included when evaluating regulations that span multiple transactions."
+        },
+        {
+          "info": {
+            "name": "Evaluates a transaction against a set of direct-to-consumer shipping regulations.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/api/v2/companies/:companyCode/transactions/:transactionCode/shipment/verify",
+            "params": [
+              {
+                "name": "companyCode",
+                "value": "",
+                "type": "path",
+                "description": "The company code of the company that recorded the transaction"
+              },
+              {
+                "name": "transactionCode",
+                "value": "",
+                "type": "path",
+                "description": "The transaction code to retrieve"
+              },
+              {
+                "name": "documentType",
+                "value": "",
+                "type": "query",
+                "description": "(Optional): The document type of the transaction to operate on. If omitted, defaults to \"SalesInvoice\""
+              }
+            ]
+          },
+          "docs": "The transaction and its lines must meet the following criteria in order to be evaluated:\n* The transaction must be recorded. Using a type of *SalesInvoice* is recommended.\n* A parameter with the name *AlcoholRouteType* must be specified and the value must be one of the following: '*DTC*', '*Retailer DTC*'\n* A parameter with the name *RecipientName* must be specified and the value must be the name of the recipient.\n* Each alcohol line must include a *ContainerSize* parameter that describes the vo"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

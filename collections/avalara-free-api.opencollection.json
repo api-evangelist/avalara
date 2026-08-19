@@ -1,0 +1,122 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Free API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Free",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Get Tax Rates by Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/taxrates/byaddress",
+            "params": [
+              {
+                "name": "line1",
+                "value": "",
+                "type": "query",
+                "description": "Street address line 1"
+              },
+              {
+                "name": "city",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "region",
+                "value": "",
+                "type": "query",
+                "description": "State or province code"
+              },
+              {
+                "name": "postalCode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Two-character ISO 3166 country code"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Free tax rates lookup by street address. Returns the estimated combined tax rate for a given location."
+        },
+        {
+          "info": {
+            "name": "Avalara Get Tax Rates by Postal Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rest.avatax.com/api/v2/taxrates/bypostalcode",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "postalCode",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Free tax rates lookup by postal code. Returns estimated combined tax rate for a given postal code."
+        },
+        {
+          "info": {
+            "name": "Avalara RequestFreeTrial",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rest.avatax.com/api/v2/accounts/freetrials/request",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Call this API to obtain a free AvaTax account.\n            \nThis API is free to use.  No authentication credentials are required to call this API. You must read and\naccept [Avalara's terms and conditions](https://www1.avalara.com/us/en/legal/terms.html) for the account to be\ncreated.\n            \nIf all conditions are met, this API will grant a free trial version of AvaTax.  For a list of functionality\navailable in the free trial and its limitations, please see the [AvaTax Developer Website Free"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

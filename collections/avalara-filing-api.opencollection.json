@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara 1099 & W-9 Filing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Filing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Submit Forms for E-filing",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/filing/submit",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a batch of completed forms to the IRS for electronic filing. Validates all forms before submission."
+        },
+        {
+          "info": {
+            "name": "Avalara Get Filing Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/filing/:filingId/status",
+            "params": [
+              {
+                "name": "filingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves the status of an IRS e-filing submission."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

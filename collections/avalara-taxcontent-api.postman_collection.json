@@ -1,0 +1,606 @@
+{
+  "item": [
+    {
+      "id": "7e9571ee-9945-498f-92d1-783491d62a5a",
+      "name": "TaxContent",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f1c46aa5-ec93-422b-929a-9acc4a49663e",
+          "name": "Avalara BuildTaxContentFile",
+          "request": {
+            "name": "Avalara BuildTaxContentFile",
+            "description": {
+              "content": "Builds a tax content file containing information useful for a retail point-of-sale solution.\n            \nSince tax rates may change based on decisions made by a variety of tax authorities, we recommend\nthat users of this tax content API download new data every day.  Many tax authorities may finalize\ndecisions on tax changes at unexpected times and may make changes in response to legal issues or\ngovernmental priorities.  Any tax content downloaded for future time periods is subject to change\nif tax rates or tax laws change.\n            \nA TaxContent file contains a matrix of the taxes that would be charged when you sell any of your\nItems at any of your Locations.  To create items, use `CreateItems()`.  To create locations, use\n`CreateLocations()`.  The file is built by looking up the tax profile for your location and your\nitem and calculating taxes for each in turn.  To include a custom `TaxCode` in this tax content\nfile, first create the custom tax code using `CreateTaxCodes()` to create the custom tax code,\nthen use `CreateItems()` to create an item that uses the custom tax code.\n            \nThis data file can be customized for specific partner devices and usage conditions.\n            \nThe result of this API is the file you requested in the format you requested using the `responseType` field.\n            \nThis API builds the file on demand, and is limited to files with no more than 7500 scenarios.  To build a tax content\nfile for a single location at a time, please use `BuildTaxContentFileForLocation`.\n            \nNOTE: This API does not work for Tennessee tax holiday scenarios.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "pointofsaledata",
+                "build"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a883a626-80b8-4c85-a03a-0943c0f84995",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "pointofsaledata",
+                    "build"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"companyCode\": \"DEFAULT\",\n  \"documentDate\": \"2023-08-13\",\n  \"responseType\": \"Json\",\n  \"taxCodes\": [\n    \"P0000000\"\n  ],\n  \"itemCodes\": [\n    \"TXINCL\"\n  ],\n  \"locationCodes\": [\n    \"DEFAULT\"\n  ],\n  \"includeJurisCodes\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbfc86c9-5a4b-4afb-9744-b886800cac75",
+          "name": "Avalara BuildTaxContentFileForLocation",
+          "request": {
+            "name": "Avalara BuildTaxContentFileForLocation",
+            "description": {
+              "content": "Builds a tax content file containing information useful for a retail point-of-sale solution.\n            \nSince tax rates may change based on decisions made by a variety of tax authorities, we recommend\nthat users of this tax content API download new data every day.  Many tax authorities may finalize\ndecisions on tax changes at unexpected times and may make changes in response to legal issues or\ngovernmental priorities.  Any tax content downloaded for future time periods is subject to change\nif tax rates or tax laws change.\n            \nA TaxContent file contains a matrix of the taxes that would be charged when you sell any of your\nItems at any of your Locations.  To create items, use `CreateItems()`.  To create locations, use\n`CreateLocations()`.  The file is built by looking up the tax profile for your location and your\nitem and calculating taxes for each in turn.  To include a custom `TaxCode` in this tax content\nfile, first create the custom tax code using `CreateTaxCodes()` to create the custom tax code,\nthen use `CreateItems()` to create an item that uses the custom tax code.\n            \nThis data file can be customized for specific partner devices and usage conditions.\n            \nThe result of this API is the file you requested in the format you requested using the `responseType` field.\n            \nThis API builds the file on demand, and is limited to files with no more than 7500 scenarios.  To build a tax content\nfile for a multiple locations in a single file, please use `BuildTaxContentFile`.\n            \nNOTE: This API does not work for Tennessee tax holiday scenarios.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "locations",
+                ":id",
+                "pointofsaledata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bbba7627-07ee-4a1a-a51e-cee733bcdd5a",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "locations",
+                    ":id",
+                    "pointofsaledata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "721f91f6-62b8-446b-be19-971166f6d391",
+          "name": "Avalara DownloadTaxRatesByZipCode",
+          "request": {
+            "name": "Avalara DownloadTaxRatesByZipCode",
+            "description": {
+              "content": "Download a CSV file containing all five digit postal codes in the United States and their sales\nand use tax rates for tangible personal property.\n            \nSince tax rates may change based on decisions made by a variety of tax authorities, we recommend\nthat users of this tax content API download new data every day.  Many tax authorities may finalize\ndecisions on tax changes at unexpected times and may make changes in response to legal issues or\ngovernmental priorities.  Any tax content downloaded for future time periods is subject to change\nif tax rates or tax laws change.\n            \nThis rates file is intended to be used as a default for tax calculation when your software cannot\ncall the `CreateTransaction` API call.  When using this file, your software will be unable to\nhandle complex tax rules such as:\n            \n* Zip+4 - This tax file contains five digit zip codes only.\n* Different product types - This tax file contains tangible personal property tax rates only.\n* Mixed sourcing - This tax file cannot be used to resolve origin-based taxes.\n* Threshold-based taxes - This tax file does not contain information about thresholds.\n            \nIf you use this file to provide default tax rates, please ensure that your software calls `CreateTransaction`\nto reconcile the actual transaction and determine the difference between the estimated general tax\nrate and the final transaction tax.\n            \nThe file provided by this API is in CSV format with the following columns:\n            \n* ZIP_CODE - The five digit zip code for this record.\n* STATE_ABBREV - A valid two character US state abbreviation for this record.  Zip codes may span multiple states.\n* COUNTY_NAME - A valid county name for this record.  Zip codes may span multiple counties.\n* CITY_NAME - A valid city name for this record.  Zip codes may span multiple cities.\n* STATE_SALES_TAX - The state component of the sales tax rate.\n* STATE_USE_TAX - The state component of the use tax rate.\n* COUNTY_SALES_TAX - The county component of the sales tax rate.\n* COUNTY_USE_TAX - The county component of the use tax rate.\n* CITY_SALES_TAX - The city component of the sales tax rate.\n* CITY_USE_TAX - The city component of the use tax rate.\n* TOTAL_SALES_TAX - The total tax rate for sales tax for this postal code.  This value may not equal the sum of the state/county/city due to special tax jurisdiction rules.\n* TOTAL_USE_TAX - The total tax rate for use tax for this postal code.  This value may not equal the sum of the state/county/city due to special tax jurisdiction rules.\n* TAX_SHIPPING_ALONE - This column contains 'Y' if shipping is taxable.\n* TAX_SHIPPING_AND_HANDLING_TOGETHER - This column contains 'Y' if shipping and handling are taxable when sent together.\n            \nFor more detailed tax content, please use the `BuildTaxContentFile` API which allows usage of exact items and exact locations.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "taxratesbyzipcode",
+                "download",
+                ":date"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "date",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be1426e0-b7cd-47cb-bb00-fbe75cb68164",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "taxratesbyzipcode",
+                    "download",
+                    ":date"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "date",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "90680961-20d2-46c7-aa7f-2aead3425a9e",
+          "name": "Avalara TaxRatesByAddress",
+          "request": {
+            "name": "Avalara TaxRatesByAddress",
+            "description": {
+              "content": "Usage of this API is subject to rate limits.  Users who exceed the rate limit will receive HTTP\nresponse code 429 - `Too Many Requests`.\n            \nThis API assumes that you are selling general tangible personal property at a retail point-of-sale\nlocation in the United States only.\n            \nPlease be advised that this endpoint is designed for approximate tax rate estimation only and \nmay not yield precise results. For a more powerful and accurate tax estimation, upgrade to the \n`CreateTransaction` API, which offers a variety of advanced features including, but not limited\nto:\n            \n* Nexus declarations\n* Taxability based on product/service type\n* Sourcing rules affecting origin/destination states\n* Customers who are exempt from certain taxes\n* States that have dollar value thresholds for tax amounts\n* Refunds for products purchased on a different date\n* Detailed jurisdiction names and state assigned codes\n* And more!\n            \nPlease see [Estimating Tax with REST v2](http://developer.avalara.com/blog/2016/11/04/estimating-tax-with-rest-v2/)\nfor information on how to upgrade to the full AvaTax CreateTransaction API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "taxrates",
+                "byaddress"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5acbdddf-3b27-4016-ac1c-b42a0723f32d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "taxrates",
+                    "byaddress"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a8496fe-4f51-4119-aedc-5c0107f57b57",
+          "name": "Avalara TaxRatesByPostalCode",
+          "request": {
+            "name": "Avalara TaxRatesByPostalCode",
+            "description": {
+              "content": "This API is only available for a US postal codes.\n            \nUsage of this API is subject to rate limits.  Users who exceed the rate limit will receive HTTP\nresponse code 429 - `Too Many Requests`.\n            \nThis API assumes that you are selling general tangible personal property at a retail point-of-sale\nlocation in the United States only.\n            \nPlease be advised that this endpoint is designed for approximate tax rate estimation only and \nmay not yield precise results. For a more powerful and accurate tax estimation, upgrade to the \n`CreateTransaction` API, which offers a variety of advanced features including, but not limited\nto:\n            \n* Nexus declarations\n* Taxability based on product/service type\n* Sourcing rules affecting origin/destination states\n* Customers who are exempt from certain taxes\n* States that have dollar value thresholds for tax amounts\n* Refunds for products purchased on a different date\n* Detailed jurisdiction names and state assigned codes\n* And more!\n            \nPlease see [Estimating Tax with REST v2](http://developer.avalara.com/blog/2016/11/04/estimating-tax-with-rest-v2/)\nfor information on how to upgrade to the full AvaTax CreateTransaction API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "taxrates",
+                "bypostalcode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "826d495d-16e4-4dc7-9fda-2ad249137f8d",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "taxrates",
+                    "bypostalcode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f9a0715e-3154-4a28-a863-529604f7a417",
+    "name": "Avalara AvaTax TaxContent API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Welcome to the AvaTax API Postman Collection! \n                \nThis collection provides a REST interface to Avalara's enterprise tax service, AvaTax. You can use this collection to interact with the AvaTax APIs while building your integration. \n\nWhile using this collection, we recommend following along with our Developer Implementation Guide: https://developer.avalara.com/avatax/dev-guide/   \n\nAPI requests are grouped into folders to help you navigate through the collection easily. Each request includes a description of the operation and its associated URL, method, headers, and example request body (if applicable). \n\nThe collection uses Postman environment variables for the API base URL and credentials, making it easy to switch between the sandbox and production environments.\n\nTo get started, ensure you have the necessary credentials. Then, update the 'username' and 'password' variables in the 'Authorization' or 'Variables' section with your credentials if you prefer username and password authentication. Alternatively, you can use the 'account_id' and 'license_key' variables for authentication using an account ID and license key.\n\nWe recommend starting with the Ping API, located within the Utilities folder, to test your connectivity and ensure your authentication credentials are valid. The Ping API is a simple way to check if you can successfully communicate with AvaTax.\n\nCollection Variables:\n- Base URL: The base URL for the API. By default, it is set to the sandbox URL - https://sandbox-rest.avatax.com. \n    - Change this variable to switch between sandbox and production environments:\n        - Sandbox URL: https://sandbox-rest.avatax.com\n\t\t- Production URL: https://rest.avatax.com\n- Username: If you are using username and password authentication, enter your username for AvaTax.\n- Password: If you are using username and password authentication, enter your password for AvaTax.\n- Account ID: If you are using account ID and license key authentication, enter your AvaTax account ID. \n    - Be sure to also replace the username variable in the authorization tab with account_id.\n- License Key: If you are using account ID and license key authentication, enter your AvaTax license key.\n    - Be sure to also replace the password variable in the authorization tab with license_key.\n\nHappy testing with AvaTax APIs!",
+      "type": "text/plain"
+    }
+  }
+}

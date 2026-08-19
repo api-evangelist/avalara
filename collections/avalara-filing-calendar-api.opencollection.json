@@ -1,0 +1,42 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara VAT Reporting Filing Calendar API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Filing Calendar",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Filing Calendar Obligations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/vat-reporting/v1/filing-calendars",
+            "params": [
+              {
+                "name": "countryCode",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves the filing calendar showing due dates and obligations for each jurisdiction and filing period."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara AvaTax TaxContent API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TaxContent",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara BuildTaxContentFile",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{{baseurl}}/api/v2/pointofsaledata/build",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Builds a tax content file containing information useful for a retail point-of-sale solution.\n            \nSince tax rates may change based on decisions made by a variety of tax authorities, we recommend\nthat users of this tax content API download new data every day.  Many tax authorities may finalize\ndecisions on tax changes at unexpected times and may make changes in response to legal issues or\ngovernmental priorities.  Any tax content downloaded for future time periods is subject to change\nif "
+        },
+        {
+          "info": {
+            "name": "Avalara BuildTaxContentFileForLocation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/companies/:companyId/locations/:id/pointofsaledata",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Builds a tax content file containing information useful for a retail point-of-sale solution.\n            \nSince tax rates may change based on decisions made by a variety of tax authorities, we recommend\nthat users of this tax content API download new data every day.  Many tax authorities may finalize\ndecisions on tax changes at unexpected times and may make changes in response to legal issues or\ngovernmental priorities.  Any tax content downloaded for future time periods is subject to change\nif "
+        },
+        {
+          "info": {
+            "name": "Avalara DownloadTaxRatesByZipCode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/taxratesbyzipcode/download/:date",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "date",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download a CSV file containing all five digit postal codes in the United States and their sales\nand use tax rates for tangible personal property.\n            \nSince tax rates may change based on decisions made by a variety of tax authorities, we recommend\nthat users of this tax content API download new data every day.  Many tax authorities may finalize\ndecisions on tax changes at unexpected times and may make changes in response to legal issues or\ngovernmental priorities.  Any tax content downlo"
+        },
+        {
+          "info": {
+            "name": "Avalara TaxRatesByAddress",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/taxrates/byaddress",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ]
+          },
+          "docs": "Usage of this API is subject to rate limits.  Users who exceed the rate limit will receive HTTP\nresponse code 429 - `Too Many Requests`.\n            \nThis API assumes that you are selling general tangible personal property at a retail point-of-sale\nlocation in the United States only.\n            \nPlease be advised that this endpoint is designed for approximate tax rate estimation only and \nmay not yield precise results. For a more powerful and accurate tax estimation, upgrade to the \n`CreateTran"
+        },
+        {
+          "info": {
+            "name": "Avalara TaxRatesByPostalCode",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{{baseurl}}/api/v2/taxrates/bypostalcode",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ]
+          },
+          "docs": "This API is only available for a US postal codes.\n            \nUsage of this API is subject to rate limits.  Users who exceed the rate limit will receive HTTP\nresponse code 429 - `Too Many Requests`.\n            \nThis API assumes that you are selling general tangible personal property at a retail point-of-sale\nlocation in the United States only.\n            \nPlease be advised that this endpoint is designed for approximate tax rate estimation only and \nmay not yield precise results. For a more po"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

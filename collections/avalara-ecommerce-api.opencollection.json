@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara CertCapture eCommerce API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "eCommerce",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Generate ECommerce Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.certcapture.com/v2/ecommerce/token",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a token for embedding the CertCapture certificate collection widget in eCommerce checkout flows."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

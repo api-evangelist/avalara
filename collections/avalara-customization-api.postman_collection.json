@@ -1,0 +1,392 @@
+{
+  "item": [
+    {
+      "id": "a70a2589-d5ca-4688-96ad-771e7f4bdd96",
+      "name": "Customization",
+      "description": {
+        "content": "Manage tax profiles, exemptions, and overrides",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6e9f74d4-e7f3-4b18-b165-9999bcec719f",
+          "name": "Avalara List Tax Profiles",
+          "request": {
+            "name": "Avalara List Tax Profiles",
+            "description": {
+              "content": "Retrieves all configured tax profiles for the client.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "afc",
+                "customization",
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e1c758b6-ad48-4a75-80f8-fda4a62db467",
+              "name": "List of tax profiles",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "afc",
+                    "customization",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "43e0dfdc-7681-47e9-b931-f8ccaa512d48",
+          "name": "Avalara Create a Tax Profile",
+          "request": {
+            "name": "Avalara Create a Tax Profile",
+            "description": {
+              "content": "Creates a new tax profile with custom bundles and overrides.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "afc",
+                "customization",
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"profileId\": \"<integer>\",\n  \"profileName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"bundles\": [\n    {\n      \"bundleId\": \"<integer>\",\n      \"bundleName\": \"<string>\"\n    },\n    {\n      \"bundleId\": \"<integer>\",\n      \"bundleName\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "75253769-3299-4d94-863d-2e8942487943",
+              "name": "Tax profile created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "afc",
+                    "customization",
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"profileId\": \"<integer>\",\n  \"profileName\": \"<string>\",\n  \"description\": \"<string>\",\n  \"bundles\": [\n    {\n      \"bundleId\": \"<integer>\",\n      \"bundleName\": \"<string>\"\n    },\n    {\n      \"bundleId\": \"<integer>\",\n      \"bundleName\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f77597f-d7fa-453e-a2db-ecef7df20c79",
+          "name": "Avalara List Tax Exclusions",
+          "request": {
+            "name": "Avalara List Tax Exclusions",
+            "description": {
+              "content": "Retrieves configured tax exclusions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "afc",
+                "customization",
+                "exclusions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "710d95dd-39d2-4eff-a848-b3dfa5dfac3d",
+              "name": "List of exclusions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "afc",
+                    "customization",
+                    "exclusions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9a687737-fe66-403c-bde2-95c2c2b72d89",
+          "name": "Avalara Create a Tax Exclusion",
+          "request": {
+            "name": "Avalara Create a Tax Exclusion",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "afc",
+                "customization",
+                "exclusions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"excl\": \"<integer>\",\n  \"ctry\": \"<string>\",\n  \"st\": \"<string>\",\n  \"excl_name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e28d5d02-a51f-4d62-9eaf-5d3b8b2e9ee2",
+              "name": "Exclusion created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "afc",
+                    "customization",
+                    "exclusions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"excl\": \"<integer>\",\n  \"ctry\": \"<string>\",\n  \"st\": \"<string>\",\n  \"excl_name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://communicationsua.avalara.net",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ddac4e3c-2f1a-45ff-853c-a3ec815a969a",
+    "name": "Avalara Communications Tax Customization API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara Communications Tax API (AFC SaasPro) provides communications tax calculations for telecom, VoIP, internet, and other communications services. It supports tax calculations using transaction/service pairs, jurisdiction determination via geocoding, and customizable tax profiles for accurate communications tax compliance.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

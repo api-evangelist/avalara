@@ -1,0 +1,804 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Companies API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Companies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Payer Companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/companies",
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Avalara List Payer Companies"
+        },
+        {
+          "info": {
+            "name": "Avalara Create a Payer Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/companies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Avalara Create a Payer Company"
+        },
+        {
+          "info": {
+            "name": "Avalara List All Companies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression for result filtering"
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of results to skip for pagination"
+              },
+              {
+                "name": "$orderBy",
+                "value": "",
+                "type": "query",
+                "description": "Field name for sorting results"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieves a list of companies associated with the authenticated account, with support for filtering, sorting, and pagination."
+        },
+        {
+          "info": {
+            "name": "Avalara Create a New Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a new company within the authenticated account. A company represents a legal entity that can calculate and report taxes."
+        },
+        {
+          "info": {
+            "name": "Avalara Retrieve a Company by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "$include",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Avalara Retrieve a Company by ID"
+        },
+        {
+          "info": {
+            "name": "Avalara Update a Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Avalara Update a Company"
+        },
+        {
+          "info": {
+            "name": "Avalara Delete a Company",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Avalara Delete a Company"
+        },
+        {
+          "info": {
+            "name": "Avalara Initialize a New Company with Recommended Defaults",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/initialize",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a new company with all recommended default settings, nexus, and tax configurations for the specified jurisdictions."
+        },
+        {
+          "info": {
+            "name": "Avalara Get a Company by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/companies/:companyId",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Avalara Get a Company by ID"
+        },
+        {
+          "info": {
+            "name": "Avalara Update a Company Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.avalara.com/1099/v1/companies/:companyId",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Avalara Update a Company Record"
+        },
+        {
+          "info": {
+            "name": "Avalara Delete a Company Record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.avalara.com/1099/v1/companies/:companyId",
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Avalara Delete a Company Record"
+        },
+        {
+          "info": {
+            "name": "Avalara CertifyIntegration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:id/certify",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Examines the most recent 100 transactions or data from the last month when verifying transaction-related integrations.\nFor partners who write integrations against AvaTax for many clients, this API is a way to do a quick self testing to verify whether the\nwritten integrations for a company are sufficient enough to be delivered to the respective customers to start using it.\n            \nThis API provides messages specific enough (through predefined checks) to guide the partner on what integrations"
+        },
+        {
+          "info": {
+            "name": "Avalara GetFilingStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:id/filingstatus",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve the current filing status of this company.\n            \nFor customers using Avalara's Managed Returns Service, each company within their account can request\nfor Avalara to file tax returns on their behalf.  Avalara compliance team members will review all\nrequested filing calendars prior to beginning filing tax returns on behalf of this company.\n            \nA company's filing status can be one of the following values:\n            \n* `NoReporting` - This company is not configured to repo"
+        },
+        {
+          "info": {
+            "name": "Avalara ChangeFilingStatus",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:id/filingstatus",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Changes the current filing status of this company.\n            \nFor customers using Avalara's Managed Returns Service, each company within their account can request\nfor Avalara to file tax returns on their behalf.  Avalara compliance team members will review all\nrequested filing calendars prior to beginning filing tax returns on behalf of this company.\n            \nThe following changes may be requested through this API:\n            \n* If a company is in `NotYetFiling` status, the customer may r"
+        },
+        {
+          "info": {
+            "name": "Avalara ListCompanyParameterDetails",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:companyId/parameters",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve all parameters of a company.\n            \nSome companies can be taxed and reported differently depending on the properties of the company, such as IsPrimaryAddress. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to a company will be used by default in tax calculation but will not show on the transaction line referencing the company.\n            \nA company location parameter specified on a transaction line will override a company paramet"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateCompanyParameters",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:companyId/parameters",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Add parameters to a company.\n            \nSome companies can be taxed and reported differently depending on the properties of the company, such as IsPrimaryAddress. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to a company will be used by default in tax calculation but will not show on the transaction line referencing the company.\n            \nA company location parameter specified on a transaction line will override a company parameter if the"
+        },
+        {
+          "info": {
+            "name": "Avalara CreateFundingRequest",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:id/funding/setup",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This API is available by invitation only.\nCompanies that use the Avalara Managed Returns or the SST Certified Service Provider services are\nrequired to setup their funding configuration before Avalara can begin filing tax returns on their\nbehalf.\nFunding configuration for each company is set up by submitting a funding setup request, which can\nbe sent either via email or via an embedded HTML widget.\nWhen the funding configuration is submitted to Avalara, it will be reviewed by treasury team membe"
+        },
+        {
+          "info": {
+            "name": "Avalara GetCompanyParameterDetail",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:companyId/parameters/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieves a single parameter of a company.\n            \nSome companies can be taxed and reported differently depending on the properties of the company, such as IsPrimaryAddress. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to a company will be used by default in tax calculation but will not show on the transaction line referencing the company.\n            \nA company location parameter specified on a transaction line will override a company pa"
+        },
+        {
+          "info": {
+            "name": "Avalara UpdateCompanyParameterDetail",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:companyId/parameters/:id",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Update a parameter of a company.\n            \nSome companies can be taxed and reported differently depending on the properties of the company, such as IsPrimaryAddress. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to a company will be used by default in tax calculation but will not show on the transaction line referencing the company.\n            \nA company location parameter specified on a transaction line will override a company parameter if"
+        },
+        {
+          "info": {
+            "name": "Avalara DeleteCompanyParameter",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:companyId/parameters/:id",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Delete a parameter of a company.\nSome companies can be taxed and reported differently depending on the properties of the company, such as IsPrimaryAddress. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to a company will be used by default in tax calculation but will not show on the transaction line referencing the company.\n            \nA company location parameter specified on a transaction line will override a company parameter if they share t"
+        },
+        {
+          "info": {
+            "name": "Avalara FundingConfigurationByCompany",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:companyId/funding/configuration",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This API is available by invitation only.\nRequires a subscription to Avalara Managed Returns or SST Certified Service Provider.\nReturns the funding configuration of the requested company.\n.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOpera"
+        },
+        {
+          "info": {
+            "name": "Avalara FundingConfigurationsByCompanyAndCurrency",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:companyId/funding/configurations",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "companyId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This API is available by invitation only.\nRequires a subscription to Avalara Managed Returns or SST Certified Service Provider.\nReturns the funding configuration of the requested company.\n.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOpera"
+        },
+        {
+          "info": {
+            "name": "Avalara GetCompanyConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:id/configuration",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Retrieve a list of all configuration settings tied to this company.\n            \nConfiguration settings provide you with the ability to control features of your account and of your\ntax software.  The category name `AvaCertServiceConfig` is reserved for\nAvalara internal software configuration values; to store your own company-level settings, please\ncreate a new category name that begins with `X-`, for example, `X-MyCustomCategory`.\n            \nCompany settings are permanent settings that cannot "
+        },
+        {
+          "info": {
+            "name": "Avalara SetCompanyConfiguration",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:id/configuration",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Update configuration settings tied to this company.\n            \nConfiguration settings provide you with the ability to control features of your account and of your\ntax software.  The category names `AvaCertServiceConfig` is reserved for\nAvalara internal software configuration values; to store your own company-level settings, please\ncreate a new category name that begins with `X-`, for example, `X-MyCustomCategory`.\n            \nCompany settings are permanent settings that cannot be deleted.  Yo"
+        },
+        {
+          "info": {
+            "name": "Avalara ListACHEntryDetailsForCompany",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:id/paymentdetails/:periodyear/:periodmonth",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "periodyear",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "periodmonth",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This API is available by invitation only.\nRequires a subscription to Avalara Managed Returns or SST Certified Service Provider.\nReturns a list of ACH entry details for the given company and period.\nEach object in the result is an ach entry trace record for a payment made on behalf of this company.\n\n### Security Policies\n\n* This API depends on the following active services:*Returns* (at least one of):  Mrs, MRSComplianceManager, AvaTaxCsp.\n* This API requires one of the following user roles: Acco"
+        },
+        {
+          "info": {
+            "name": "Avalara ListFundingRequestsByCompany",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/:id/funding",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This API is available by invitation only.\nRequires a subscription to Avalara Managed Returns or SST Certified Service Provider.\nReturns a list of funding setup requests and their current status.\nEach object in the result is a request that was made to setup or adjust funding status for this company.\n\n### Security Policies\n\n* This API depends on the following active services:*Returns* (at least one of):  Mrs, MRSComplianceManager, AvaTaxCsp.\n* This API requires one of the following user roles: Acc"
+        },
+        {
+          "info": {
+            "name": "Avalara ListMrsCompanies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.avalara.com/1099/v1/api/v2/companies/mrs",
+            "headers": [
+              {
+                "name": "X-Avalara-Client",
+                "value": "AvaTax Postman Collection"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "This API is available by invitation only.\n            \nGet a list of companies with an active MRS service.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalS"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

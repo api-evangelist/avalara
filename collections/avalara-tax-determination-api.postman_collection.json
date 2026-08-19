@@ -1,0 +1,242 @@
+{
+  "item": [
+    {
+      "id": "34096e36-7290-4cf2-9369-e52f196e97e4",
+      "name": "Tax Determination",
+      "description": {
+        "content": "Calculate excise taxes on transactions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7bedd029-c95f-4f1c-baac-c159b89d0324",
+          "name": "Avalara Calculate Excise Taxes",
+          "request": {
+            "name": "Avalara Calculate Excise Taxes",
+            "description": {
+              "content": "Calculates excise taxes for a transaction containing one or more line items with product, origin, destination, and movement information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "TaxDetermination"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"effectiveDate\": \"<date>\",\n  \"transactionLines\": [\n    {\n      \"lineNumber\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"amount\": \"<double>\",\n      \"origin\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"destination\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"billOfLadingNumber\": \"<string>\",\n      \"carrierName\": \"<string>\",\n      \"modeOfTransport\": \"<string>\"\n    },\n    {\n      \"lineNumber\": \"<string>\",\n      \"productCode\": \"<string>\",\n      \"unitOfMeasure\": \"<string>\",\n      \"quantity\": \"<double>\",\n      \"amount\": \"<double>\",\n      \"origin\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"destination\": {\n        \"line1\": \"<string>\",\n        \"line2\": \"<string>\",\n        \"city\": \"<string>\",\n        \"region\": \"<string>\",\n        \"postalCode\": \"<string>\",\n        \"country\": \"<string>\"\n      },\n      \"billOfLadingNumber\": \"<string>\",\n      \"carrierName\": \"<string>\",\n      \"modeOfTransport\": \"<string>\"\n    }\n  ],\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceDate\": \"<date>\",\n  \"titleTransferCode\": \"<string>\",\n  \"transactionType\": \"<string>\",\n  \"seller\": {\n    \"companyId\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"licenseNumber\": \"<string>\"\n  },\n  \"buyer\": {\n    \"companyId\": \"<string>\",\n    \"locationId\": \"<string>\",\n    \"name\": \"<string>\",\n    \"address\": {\n      \"line1\": \"<string>\",\n      \"line2\": \"<string>\",\n      \"city\": \"<string>\",\n      \"region\": \"<string>\",\n      \"postalCode\": \"<string>\",\n      \"country\": \"<string>\"\n    },\n    \"licenseNumber\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "011287cf-0f6f-4481-bcc2-4c6e0cc05e96",
+              "name": "Tax determination results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "TaxDetermination"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"effectiveDate\": \"<date>\",\n  \"transactionLines\": [\n    {\n      \"lineNumber\": \"string\",\n      \"productCode\": \"string\",\n      \"unitOfMeasure\": \"LTR\",\n      \"quantity\": 2581.588656580609,\n      \"amount\": 902.2736832701162,\n      \"origin\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"destination\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"billOfLadingNumber\": \"string\",\n      \"carrierName\": \"string\",\n      \"modeOfTransport\": \"Pipeline\"\n    },\n    {\n      \"lineNumber\": \"string\",\n      \"productCode\": \"string\",\n      \"unitOfMeasure\": \"GAL\",\n      \"quantity\": 2586.8116640360527,\n      \"amount\": 6226.864223703996,\n      \"origin\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"destination\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"billOfLadingNumber\": \"string\",\n      \"carrierName\": \"string\",\n      \"modeOfTransport\": \"Truck\"\n    }\n  ],\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceDate\": \"<date>\",\n  \"titleTransferCode\": \"<string>\",\n  \"transactionType\": \"<string>\",\n  \"seller\": {\n    \"companyId\": \"string\",\n    \"locationId\": \"string\",\n    \"name\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    \"licenseNumber\": \"string\"\n  },\n  \"buyer\": {\n    \"companyId\": \"string\",\n    \"locationId\": \"string\",\n    \"name\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    \"licenseNumber\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"Partial\",\n  \"transactionLines\": [\n    {\n      \"lineNumber\": \"string\",\n      \"productCode\": \"string\",\n      \"taxes\": [\n        {\n          \"taxType\": \"string\",\n          \"jurisdiction\": \"string\",\n          \"taxRate\": 2889.034616294578,\n          \"taxAmount\": 1324.1436596665756,\n          \"taxableAmount\": 3700.859325480745,\n          \"exemptAmount\": 4404.615181277306,\n          \"rateType\": \"Percentage\"\n        },\n        {\n          \"taxType\": \"string\",\n          \"jurisdiction\": \"string\",\n          \"taxRate\": 8267.783190706243,\n          \"taxAmount\": 9370.946805991429,\n          \"taxableAmount\": 6111.28327126465,\n          \"exemptAmount\": 9959.545592281487,\n          \"rateType\": \"PerUnit\"\n        }\n      ],\n      \"totalTax\": 7551.034613788054\n    },\n    {\n      \"lineNumber\": \"string\",\n      \"productCode\": \"string\",\n      \"taxes\": [\n        {\n          \"taxType\": \"string\",\n          \"jurisdiction\": \"string\",\n          \"taxRate\": 1854.4283163300256,\n          \"taxAmount\": 7951.743500494311,\n          \"taxableAmount\": 8608.010336479148,\n          \"exemptAmount\": 6435.103257574033,\n          \"rateType\": \"Percentage\"\n        },\n        {\n          \"taxType\": \"string\",\n          \"jurisdiction\": \"string\",\n          \"taxRate\": 9108.088521546033,\n          \"taxAmount\": 8747.072530581108,\n          \"taxableAmount\": 7397.913803953922,\n          \"exemptAmount\": 5689.556829015295,\n          \"rateType\": \"PerUnit\"\n        }\n      ],\n      \"totalTax\": 4391.883543148908\n    }\n  ],\n  \"totalTaxAmount\": 7128.881209571674\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ea84ba01-6976-4ea3-b408-4bb2b06f71f7",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "TaxDetermination"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"effectiveDate\": \"<date>\",\n  \"transactionLines\": [\n    {\n      \"lineNumber\": \"string\",\n      \"productCode\": \"string\",\n      \"unitOfMeasure\": \"LTR\",\n      \"quantity\": 2581.588656580609,\n      \"amount\": 902.2736832701162,\n      \"origin\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"destination\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"billOfLadingNumber\": \"string\",\n      \"carrierName\": \"string\",\n      \"modeOfTransport\": \"Pipeline\"\n    },\n    {\n      \"lineNumber\": \"string\",\n      \"productCode\": \"string\",\n      \"unitOfMeasure\": \"GAL\",\n      \"quantity\": 2586.8116640360527,\n      \"amount\": 6226.864223703996,\n      \"origin\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"destination\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"billOfLadingNumber\": \"string\",\n      \"carrierName\": \"string\",\n      \"modeOfTransport\": \"Truck\"\n    }\n  ],\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceDate\": \"<date>\",\n  \"titleTransferCode\": \"<string>\",\n  \"transactionType\": \"<string>\",\n  \"seller\": {\n    \"companyId\": \"string\",\n    \"locationId\": \"string\",\n    \"name\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    \"licenseNumber\": \"string\"\n  },\n  \"buyer\": {\n    \"companyId\": \"string\",\n    \"locationId\": \"string\",\n    \"name\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    \"licenseNumber\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3622b2f2-1ae2-4965-9e9e-608c53b98e24",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "TaxDetermination"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"effectiveDate\": \"<date>\",\n  \"transactionLines\": [\n    {\n      \"lineNumber\": \"string\",\n      \"productCode\": \"string\",\n      \"unitOfMeasure\": \"LTR\",\n      \"quantity\": 2581.588656580609,\n      \"amount\": 902.2736832701162,\n      \"origin\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"destination\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"billOfLadingNumber\": \"string\",\n      \"carrierName\": \"string\",\n      \"modeOfTransport\": \"Pipeline\"\n    },\n    {\n      \"lineNumber\": \"string\",\n      \"productCode\": \"string\",\n      \"unitOfMeasure\": \"GAL\",\n      \"quantity\": 2586.8116640360527,\n      \"amount\": 6226.864223703996,\n      \"origin\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"destination\": {\n        \"line1\": \"string\",\n        \"line2\": \"string\",\n        \"city\": \"string\",\n        \"region\": \"string\",\n        \"postalCode\": \"string\",\n        \"country\": \"string\"\n      },\n      \"billOfLadingNumber\": \"string\",\n      \"carrierName\": \"string\",\n      \"modeOfTransport\": \"Truck\"\n    }\n  ],\n  \"invoiceNumber\": \"<string>\",\n  \"invoiceDate\": \"<date>\",\n  \"titleTransferCode\": \"<string>\",\n  \"transactionType\": \"<string>\",\n  \"seller\": {\n    \"companyId\": \"string\",\n    \"locationId\": \"string\",\n    \"name\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    \"licenseNumber\": \"string\"\n  },\n  \"buyer\": {\n    \"companyId\": \"string\",\n    \"locationId\": \"string\",\n    \"name\": \"string\",\n    \"address\": {\n      \"line1\": \"string\",\n      \"line2\": \"string\",\n      \"city\": \"string\",\n      \"region\": \"string\",\n      \"postalCode\": \"string\",\n      \"country\": \"string\"\n    },\n    \"licenseNumber\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://exciseapi.avalara.com/api/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aee0a8db-62d1-4900-ad05-a66f530c269c",
+    "name": "Avalara Excise Platform Tax Determination API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara Excise Platform API provides an external programmatic interface for excise tax determination on fuel, tobacco, alcohol, and other excise products. It supports tax calculation, business entity management, location configuration, and transaction processing for excise tax compliance across US federal and state jurisdictions.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

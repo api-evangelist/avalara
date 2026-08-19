@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Excise Platform Products API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara List Registered Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://exciseapi.avalara.com/api/v1/Products"
+          },
+          "docs": "Avalara List Registered Products"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

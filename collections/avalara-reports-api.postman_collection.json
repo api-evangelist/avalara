@@ -1,0 +1,646 @@
+{
+  "item": [
+    {
+      "id": "c9b77691-41ed-49cf-ba06-71cce6b6731d",
+      "name": "Reports",
+      "description": {
+        "content": "Generate and retrieve tax reports",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "155ad3a0-90dd-40fe-8176-ea57379987bc",
+          "name": "Avalara List Reports for a Company",
+          "request": {
+            "name": "Avalara List Reports for a Company",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "reports"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-reports-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "companyId",
+                  "description": "(Required) The numeric ID of the company"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "723c0ef6-1aed-41d9-b4e6-ec333eba8e94",
+              "name": "List of reports",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-reports-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "companyId",
+                      "description": "(Required) The numeric ID of the company"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cb7ae56-05a3-4e1e-b2de-a765fbda4f5e",
+          "name": "Avalara Retrieve a Single Report",
+          "request": {
+            "name": "Avalara Retrieve a Single Report",
+            "description": {},
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                ":id"
+              ],
+              "host": [
+                "{{api-v2-reports-id-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "28d02571-3c2c-4555-b87d-2983df3b1155",
+              "name": "Report details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{api-v2-reports-id-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a4c621d-9c8e-4801-914b-5c6e2aafacc8",
+          "name": "Avalara DownloadReport",
+          "request": {
+            "name": "Avalara DownloadReport",
+            "description": {
+              "content": "This API downloads the file associated with a report.\n            \nIf the report is not yet complete, you will receive a `ReportNotFinished` error.  To check if a report is complete,\nuse the `GetReport` API.\n            \nReports are run as asynchronous report tasks on the server.  When complete, the report file will be available for download\nfor up to 30 days after completion.  To run an asynchronous report, you should follow these steps:\n            \n* Begin a report by calling the report's Initiate API.  There is a separate initiate API call for each report type.\n* In the result of the Initiate API, you receive back a report's `id` value.\n* Check the status of a report by calling `GetReport` and passing in the report's `id` value.\n* When a report's status is `Completed`, call `DownloadReport` to retrieve the file.\n            \n* We throttle this API. You can only call this API up to 5 times in a minute.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports",
+                ":id",
+                "attachment"
+              ],
+              "host": [
+                "{{api-v2-reports-id-attachment-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c509a266-0729-4897-b6d1-a9706c92df36",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports",
+                    ":id",
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{api-v2-reports-id-attachment-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e39e1b83-5859-47ca-9ec3-16b51ecf8a27",
+          "name": "Avalara InitiateExportDocumentLineReport",
+          "request": {
+            "name": "Avalara InitiateExportDocumentLineReport",
+            "description": {
+              "content": "Begins running an `ExportDocumentLine` report task and returns the identity of the report.\n            \nReports are run as asynchronous report tasks on the server.  When complete, the report file will be available for download\nfor up to 30 days after completion.  To run an asynchronous report, you should follow these steps:\n            \n* Begin a report by calling the report's Initiate API.  There is a separate initiate API call for each report type.\n* In the result of the Initiate API, you receive back a report's `id` value.\n* Check the status of a report by calling `GetReport` and passing in the report's `id` value.\n* When a report's status is `Completed`, call `DownloadReport` to retrieve the file.\n            \nThe `ExportDocumentLine` report produces information about invoice lines recorded within your account.\n            \nTo split large reports into multiple smaller partitions, use the numberOfPartitions and partition properties on ExportDocumentLineModel.\n            \nExample - split a report into three partitions\n            \n* Follow the steps above with numberOfPartitions = 3 and partition = 0\n* Follow the steps above with numberOfPartitions = 3 and partition = 1\n* Follow the steps above with numberOfPartitions = 3 and partition = 2\n* Once all three reports are downloaded merge the files on the client side.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "companies",
+                ":companyId",
+                "reports",
+                "exportdocumentline",
+                "initiate"
+              ],
+              "host": [
+                "{{api-v2-companies-companyId-reports-exportdocumentline-initiate-Url}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "companyId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "caedc297-991b-48e8-aedc-dc08884f1d08",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "companies",
+                    ":companyId",
+                    "reports",
+                    "exportdocumentline",
+                    "initiate"
+                  ],
+                  "host": [
+                    "{{api-v2-companies-companyId-reports-exportdocumentline-initiate-Url}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "companyId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "description": ""
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"format\": \"CSV\",\n  \"startDate\": \"2023-07-13T00:00:00+00:00\",\n  \"endDate\": \"2023-08-13T00:00:00+00:00\",\n  \"country\": \"US\",\n  \"state\": \"All\",\n  \"dateFilter\": \"DocumentDate\",\n  \"docType\": \"Sales\",\n  \"currencyCode\": \"USD\",\n  \"numberOfPartitions\": 10,\n  \"partition\": 0,\n  \"isLocked\": true,\n  \"merchantSellerIdentifier\": \"abc,xyz\",\n  \"documentStatus\": \"Committed\",\n  \"isModifiedDateSameAsDocumentDate\": false,\n  \"taxGroup\": \"Alcohol\",\n  \"taxName\": \"VAT\",\n  \"taxCode\": \"123\",\n  \"taxSubType\": \"Prepared Food and Beverage\",\n  \"reportSource\": \"SNOWFLAKE\",\n  \"compression\": \"NONE\",\n  \"includeDocumentLineDetails\": false\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "95c4824d-e5d5-44e7-a978-c1e7a3c81656",
+          "name": "Avalara ListReports",
+          "request": {
+            "name": "Avalara ListReports",
+            "description": {
+              "content": "List all report tasks for your account.\n            \nReports are run as asynchronous report tasks on the server.  When complete, the report file will be available for download\nfor up to 30 days after completion.  To run an asynchronous report, you should follow these steps:\n            \n* Begin a report by calling the report's Initiate API.  There is a separate initiate API call for each report type.\n* In the result of the Initiate API, you receive back a report's `id` value.\n* Check the status of a report by calling `GetReport` and passing in the report's `id` value.\n* When a report's status is `Completed`, call `DownloadReport` to retrieve the file.\n            \nThis API call returns information about all report types across your entire account.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "v2",
+                "reports"
+              ],
+              "host": [
+                "{{api-v2-reports-Url}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                "key": "X-Avalara-Client",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "{{basicAuthUsername}}"
+                },
+                {
+                  "key": "password",
+                  "value": "{{basicAuthPassword}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b86ac251-e480-4c5a-ba07-d0485ab84e17",
+              "name": "Successful response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "v2",
+                    "reports"
+                  ],
+                  "host": [
+                    "{{api-v2-reports-Url}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Identifies the software you are using to call this API. For more information on the client header, see [Client Headers](https://developer.avalara.com/avatax/client-headers/).",
+                    "key": "X-Avalara-Client",
+                    "value": "AvaTax Postman Collection"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "baseUrl"
+    },
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "api-v2-companies-companyId-reports-Url"
+    },
+    {
+      "type": "string",
+      "value": "https://rest.avatax.com",
+      "key": "api-v2-reports-id-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-reports-id-attachment-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-companies-companyId-reports-exportdocumentline-initiate-Url"
+    },
+    {
+      "type": "string",
+      "value": "http://{{baseurl}}",
+      "key": "api-v2-reports-Url"
+    }
+  ],
+  "info": {
+    "_postman_id": "3f41feb5-60d6-457a-b48a-9b318161b294",
+    "name": "Avalara Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Operations tagged Reports across 2 of this provider's published API definitions: avalara-avatax-rest-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.",
+      "type": "text/plain"
+    }
+  }
+}

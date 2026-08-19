@@ -1,0 +1,247 @@
+{
+  "item": [
+    {
+      "id": "19ca7a61-95e8-40fa-808d-b986b9b510c6",
+      "name": "HS Codes",
+      "description": {
+        "content": "Retrieve HS Code classification results",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8c15650d-e6a4-44e6-ad7a-fc698865ca35",
+          "name": "Avalara Get Classification Results",
+          "request": {
+            "name": "Avalara Get Classification Results",
+            "description": {
+              "content": "Retrieves the HS Code classification results for a completed classification request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "classification-requests",
+                ":requestId",
+                "results"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "requestId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08d2261e-7c44-43d9-af58-7ee0f741c7b8",
+              "name": "Classification results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "classification-requests",
+                    ":requestId",
+                    "results"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "requestId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"value\": [\n    {\n      \"itemCode\": \"string\",\n      \"description\": \"string\",\n      \"hsCode\": \"string\",\n      \"hsCodeDescription\": \"string\",\n      \"confidence\": 1618.7099371718227,\n      \"country\": \"string\"\n    },\n    {\n      \"itemCode\": \"string\",\n      \"description\": \"string\",\n      \"hsCode\": \"string\",\n      \"hsCodeDescription\": \"string\",\n      \"confidence\": 494.2880442684472,\n      \"country\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6d7adaf1-2d05-4171-8d88-7d3c205a2213",
+          "name": "Avalara Get HS Code Details",
+          "request": {
+            "name": "Avalara Get HS Code Details",
+            "description": {
+              "content": "Retrieves detailed information for a specific HS Code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hs-codes",
+                ":hsCode"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "ISO 3166-1 alpha-2 country code for country-specific details"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hsCode",
+                  "description": "(Required) The HS Code to look up"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7e0f4eb-c57f-42bd-a060-bf7a99684e5e",
+              "name": "HS Code details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hs-codes",
+                    ":hsCode"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hsCode",
+                      "description": "(Required) The HS Code to look up"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"hsCode\": \"string\",\n  \"description\": \"string\",\n  \"chapter\": \"string\",\n  \"section\": \"string\",\n  \"parentCode\": \"string\",\n  \"dutyRate\": \"string\",\n  \"unitOfMeasure\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.avalara.com/classification/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "26899def-64c9-4f3d-b4a1-321d73d79fdc",
+    "name": "Avalara Item Classification HS Codes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Avalara Item Classification API allows businesses subscribed to the Item Classification service to submit products for automated classification, retrieve corresponding HS Codes, and manage classification requests. It supports both storage and non-storage subscription models for product classification across international trade jurisdictions.\n\nContact Support:\n Name: Avalara Developer Relations\n Email: developer.relations@avalara.com",
+      "type": "text/plain"
+    }
+  }
+}

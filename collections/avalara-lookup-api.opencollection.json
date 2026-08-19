@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Avalara Communications Tax Lookup API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Lookup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Avalara Get PCode Jurisdiction Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/PCode/:pcode",
+            "params": [
+              {
+                "name": "pcode",
+                "value": "",
+                "type": "path",
+                "description": "The PCode to look up"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed jurisdiction information for a given PCode (proprietary jurisdiction code)."
+        },
+        {
+          "info": {
+            "name": "Avalara List Transaction/service Type Pairs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/tspairs"
+          },
+          "docs": "Returns all valid transaction type and service type pairs that can be used for tax calculations."
+        },
+        {
+          "info": {
+            "name": "Avalara Get Tax Type Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/taxtype/:taxType",
+            "params": [
+              {
+                "name": "taxType",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieves details for a specific tax type identifier."
+        },
+        {
+          "info": {
+            "name": "Avalara Get Service Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://communicationsua.avalara.net/api/v2/afc/serviceinfo"
+          },
+          "docs": "Returns version and status information for the Communications API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
