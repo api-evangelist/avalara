@@ -12,8 +12,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: avataxApi
-  url: ../openapi/avalara-avatax-rest-openapi.yml
+- name: transactionsApi
+  url: ../openapi/avalara-transactions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: quick-tax-quote

@@ -12,8 +12,8 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: avataxApi
-  url: ../openapi/avalara-avatax-rest-openapi.yml
+- name: reportsApi
+  url: ../openapi/avalara-reports-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: retrieve-company-report

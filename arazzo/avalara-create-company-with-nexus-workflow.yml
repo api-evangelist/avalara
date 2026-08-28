@@ -11,8 +11,11 @@ info:
     and executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: avataxApi
-  url: ../openapi/avalara-avatax-rest-openapi.yml
+- name: companiesApi
+  url: ../openapi/avalara-companies-api-openapi.yml
+  type: openapi
+- name: nexusApi
+  url: ../openapi/avalara-nexus-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-company-with-nexus

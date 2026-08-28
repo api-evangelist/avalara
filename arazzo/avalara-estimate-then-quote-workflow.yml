@@ -12,8 +12,11 @@ info:
     opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: avataxApi
-  url: ../openapi/avalara-avatax-rest-openapi.yml
+- name: freeApi
+  url: ../openapi/avalara-free-api-openapi.yml
+  type: openapi
+- name: transactionsApi
+  url: ../openapi/avalara-transactions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: estimate-then-quote

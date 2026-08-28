@@ -12,8 +12,14 @@ info:
     executed without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: avataxApi
-  url: ../openapi/avalara-avatax-rest-openapi.yml
+- name: addressesApi
+  url: ../openapi/avalara-addresses-api-openapi.yml
+  type: openapi
+- name: taxCalculationApi
+  url: ../openapi/avalara-tax-calculation-api-openapi.yml
+  type: openapi
+- name: transactionsApi
+  url: ../openapi/avalara-transactions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: calculate-and-commit-transaction

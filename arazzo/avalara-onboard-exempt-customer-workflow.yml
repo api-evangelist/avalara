@@ -11,8 +11,11 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: avataxApi
-  url: ../openapi/avalara-avatax-rest-openapi.yml
+- name: certificatesApi
+  url: ../openapi/avalara-certificates-api-openapi.yml
+  type: openapi
+- name: customersApi
+  url: ../openapi/avalara-customers-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: onboard-exempt-customer

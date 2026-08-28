@@ -12,8 +12,14 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: avataxApi
-  url: ../openapi/avalara-avatax-rest-openapi.yml
+- name: definitionsApi
+  url: ../openapi/avalara-definitions-api-openapi.yml
+  type: openapi
+- name: itemsApi
+  url: ../openapi/avalara-items-api-openapi.yml
+  type: openapi
+- name: transactionsApi
+  url: ../openapi/avalara-transactions-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: classify-item-and-test-tax
