@@ -2826,6 +2826,18 @@ name: Avalara
 tags:
 - Taxes
 type: Index
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
@@ -2842,6 +2854,9 @@ accessModel:
 image: https://www.avalara.com/us/en/about/newsroom/media-kit/_jcr_content/root/responsivegrid/responsivegrid/columncontrol/par2/image.coreimg.svg/1614712826993/avalara-logo.svg
 access: 3rd-Party
 common:
+- type: CapabilityMap
+  url: capabilities/avalara-capability-edges.yml
+  name: Avalara Business Capability Map
 - type: AgenticAccess
   url: agentic-access/avalara-agentic-access.yml
 - type: DomainSecurity
