@@ -4,7 +4,6 @@ generated_by: planning/capability-mapping/scripts/classify_capabilities.py
 model: claude-opus-5
 frame:
 - Banking & Capital Markets
-- Software & Technology
 min_confidence: 0.7
 capability_model:
   source: https://github.com/vincentmakes/turbo-ea-capabilities
@@ -12,224 +11,288 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 22
+edge_count: 28
 edges:
+- tag: Returns
+  spec_file: avalara-returns-api-openapi.yml
+  capability_id: BC-220.40
+  capability_id_l1: BC-220
+  capability_name: Tax Reporting & Compliance
+  confidence: 0.95
+  evidence: POST /returns/{returnId}/submit submitReturn Avalara Submit a VAT Return for Filing; schema
+    VATReturn
+  reason: Operations list, retrieve and submit VAT returns for filing — squarely tax returns and statutory
+    tax filing, i.e. Tax Reporting & Compliance.
+- tag: Nexus
+  spec_file: avalara-nexus-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.9
+  evidence: POST /api/v2/companies/{companyId}/nexus/byaddress  Avalara DeclareNexusByAddress
+  reason: Nexus declarations define where a company has sales-tax collection obligations by jurisdiction
+    — a core indirect tax compliance concept.
 - tag: Tax Calculation
   spec_file: avalara-tax-calculation-api-openapi.yml
   capability_id: BC-220.20
   capability_id_l1: BC-220
   capability_name: Indirect Tax Management
   confidence: 0.9
-  evidence: '"Calculate Brazilian Taxes", "Calculate Taxes on a Transaction", schemas CalcTaxesRequest,
-    BrazilTaxDetail'
-  reason: Operations compute transaction-level indirect tax (Brazilian and communications taxes) on invoices
-    and commit the results, which is indirect tax determination.
-- tag: Tax Determination
-  spec_file: avalara-tax-determination-api-openapi.yml
-  capability_id: BC-220.20
-  capability_id_l1: BC-220
-  capability_name: Indirect Tax Management
-  confidence: 0.9
-  evidence: '"Calculate Excise Taxes" — "excise tax determination on fuel, tobacco, alcohol"; schema TaxDeterminationRequest'
-  reason: A single operation that determines excise tax on transaction lines; excise/consumption tax determination
-    falls squarely under indirect tax management.
-- tag: Returns
-  spec_file: avalara-returns-api-openapi.yml
-  capability_id: BC-220.40
-  capability_id_l1: BC-220
-  capability_name: Tax Reporting & Compliance
-  confidence: 0.88
-  evidence: POST /returns/{returnId}/submit — 'Submit a VAT Return for Filing'; schema 'VATReturn'; 'filing
-    of VAT Returns, EC Listings, Intrastat'
-  reason: Preparation and submission of statutory VAT returns is squarely tax return filing and compliance.
+  evidence: POST /calculations calculateTax Avalara Calculate Brazilian Taxes; POST /api/v2/afc/CalcTaxes
+    calcTaxes Calculate Taxes on a Transaction
+  reason: Operations compute transaction-level indirect taxes (Brazilian tax, communications tax) and
+    commit transactions — indirect tax determination, the core of BC-220.20.
 - tag: 1099 Forms
   spec_file: avalara-1099-forms-api-openapi.yml
   capability_id: BC-220.40
   capability_id_l1: BC-220
   capability_name: Tax Reporting & Compliance
-  confidence: 0.85
-  evidence: automates collection, validation, and e-filing of IRS forms including 1099 variants (1099-NEC,
-    1099-MISC...)
-  reason: CRUD and filing of IRS information returns is tax reporting and compliance filing.
+  confidence: 0.88
+  evidence: '"automates collection, validation, and e-filing of IRS forms including 1099 variants"; POST
+    /forms/1099 create1099Form'
+  reason: Creation, management and filing of IRS information returns is tax return preparation and statutory
+    tax reporting.
 - tag: Filing
   spec_file: avalara-filing-api-openapi.yml
   capability_id: BC-220.40
   capability_id_l1: BC-220
   capability_name: Tax Reporting & Compliance
   confidence: 0.85
-  evidence: '"automates collection, validation, and e-filing of IRS forms including 1099 variants ...
-    W-2, and 1042-S"; "Submit Forms for E-filing", "Get Filing Status"'
-  reason: Operations submit statutory information returns to the tax authority and track filing status
-    — plainly tax return filing and compliance reporting.
+  evidence: '"automates collection, validation, and e-filing of IRS forms including 1099 variants"; POST
+    /filing/submit submitFiling "Submit Forms for E-filing"'
+  reason: Operations submit statutory information returns to the IRS and track filing status — plainly
+    tax return filing and compliance reporting.
+- tag: JurisdictionOverrides
+  spec_file: avalara-jurisdictionoverrides-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.85
+  evidence: POST /api/v2/accounts/{accountId}/jurisdictionoverrides  Avalara CreateJurisdictionOverrides
+  reason: Jurisdiction overrides configure which tax jurisdiction applies to an address in AvaTax sales
+    tax determination — squarely indirect tax (sales/VAT) configuration.
+- tag: MultiDocument
+  spec_file: avalara-multidocument-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.85
+  evidence: POST /api/v2/multidocument/transactions/create  Avalara Create a Multi-document Transaction;
+    .../refund; .../void
+  reason: Creates, commits, adjusts, refunds and voids multi-document tax transactions in AvaTax — sales/use
+    tax calculation and document handling, i.e. indirect tax management.
+- tag: Obligations
+  spec_file: avalara-obligations-api-openapi.yml
+  capability_id: BC-220.40
+  capability_id_l1: BC-220
+  capability_name: Tax Reporting & Compliance
+  confidence: 0.85
+  evidence: GET /properties/{propertyId}/obligations  Avalara Get Filing Obligations for a Property; schema
+    FilingObligation
+  reason: Returns lodging/sales tax filing obligations for a property — tax filing obligation and compliance
+    reporting.
+- tag: Tax Determination
+  spec_file: avalara-tax-determination-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.85
+  evidence: '"POST /TaxDetermination calculateExciseTax Avalara Calculate Excise Taxes" — "excise tax
+    determination on fuel, tobacco, alcohol"'
+  reason: Operations calculate excise/consumption taxes on transactions, which is indirect tax determination
+    and compliance (BC-220.20 covers VAT/GST/sales tax/duties).
 - tag: Certificates
   spec_file: avalara-certificates-api-openapi.yml
   capability_id: BC-220.20
   capability_id_l1: BC-220
   capability_name: Indirect Tax Management
   confidence: 0.8
-  evidence: '''document management for tax-exempt sales, including managing exemption certificates'';
-    POST /certificates createCertificate; GET /certificates/{certificateId}/attachment ''Download Certificate
-    Attachment''; schema CertificateModel'
-  reason: Full lifecycle management of sales-tax exemption certificates (creation, validation, expiry,
-    attachments). This is squarely indirect/sales tax compliance, not security certificates.
-- tag: Filing Calendar
-  spec_file: avalara-filing-calendar-api-openapi.yml
-  capability_id: BC-220.40
-  capability_id_l1: BC-220
-  capability_name: Tax Reporting & Compliance
-  confidence: 0.8
-  evidence: '"List Filing Calendar Obligations"; API "orchestrates end-to-end VAT compliance workflows
-    including ... filing of VAT Returns, EC Listings, Intrastat"'
-  reason: Exposes VAT filing obligations and due-date calendar, which is tax return/compliance management.
-    Single read operation keeps confidence short of certainty on the exact sub-capability (could also
-    be indirect tax management).
-- tag: MultiDocument
-  spec_file: avalara-multidocument-api-openapi.yml
+  evidence: '''Create a New Certificate'', ''Upload Certificate Attachment'', schemas ''CertificateModel'',
+    ''CertAttribute'', ''CertCaptureCustomer'''
+  reason: 'This is exemption-certificate lifecycle management (CertCapture), a core sales/use-tax (indirect
+    tax) compliance activity. Not a security certificate: schemas reference exempt reasons and customers,
+    not TLS/PKI.'
+- tag: Lookup
+  spec_file: avalara-lookup-api-openapi.yml
   capability_id: BC-220.20
   capability_id_l1: BC-220
   capability_name: Indirect Tax Management
   confidence: 0.8
-  evidence: POST /api/v2/multidocument/transactions/create Create a Multi-document Transaction; AdjustMultiDocumentTransaction;
-    RefundMultiDocumentTransaction; VoidMultiDocumentTransaction
-  reason: Creation, adjustment, commit, refund and void of AvaTax sales/use tax transaction documents
-    is core indirect tax calculation and document management.
+  evidence: GET /api/v2/afc/PCode/{pcode}  Avalara Get PCode Jurisdiction Information; GET /api/v2/afc/taxtype/{taxType}  Get
+    Tax Type Details
+  reason: Communications tax jurisdiction and tax-type reference lookups supporting transaction tax calculation
+    — indirect tax determination reference data.
+- tag: Shipping Verification
+  spec_file: avalara-shipping-verification-api-openapi.yml
+  capability_id: BC-130.10
+  capability_id_l1: BC-130
+  capability_name: Regulatory Compliance Management
+  confidence: 0.8
+  evidence: '"Evaluates a transaction against a set of direct-to-consumer shipping regulations"; registerShipmentIfCompliant'
+  reason: Operations evaluate transactions against direct-to-consumer beverage alcohol shipping regulations
+    and register only if compliant — sector-specific regulatory compliance checking rather than tax calculation
+    or logistics.
 - tag: Tax Rates
   spec_file: avalara-tax-rates-api-openapi.yml
   capability_id: BC-220.20
   capability_id_l1: BC-220
   capability_name: Indirect Tax Management
   confidence: 0.8
-  evidence: '"Get Lodging Tax Rates"; "sales and lodging tax compliance for short-term property rentals";
-    schema LodgingTaxRateResponse'
-  reason: Rate lookup supporting sales/lodging tax obligations — transaction tax content, i.e. indirect
-    tax management. Thin surface (one GET) so confidence is moderate.
+  evidence: '"GET /tax-rates getLodgingTaxRates Avalara Get Lodging Tax Rates" — "sales and lodging tax
+    compliance for short-term property rentals"'
+  reason: Rate lookup for sales/lodging tax obligations is indirect tax management, not a technical utility.
+- tag: W-9 Forms
+  spec_file: avalara-w-9-forms-api-openapi.yml
+  capability_id: BC-220.40
+  capability_id_l1: BC-220
+  capability_name: Tax Reporting & Compliance
+  confidence: 0.8
+  evidence: '"POST /w9/requests createW9Request Avalara Create a W-9 Collection Request" — "automates
+    collection, validation, and e-filing of IRS forms"'
+  reason: Collection and retrieval of W-9 forms supporting IRS information-return filing is tax reporting
+    and compliance.
+- tag: Filing Calendar
+  spec_file: avalara-filing-calendar-api-openapi.yml
+  capability_id: BC-220.40
+  capability_id_l1: BC-220
+  capability_name: Tax Reporting & Compliance
+  confidence: 0.78
+  evidence: GET /filing-calendars listFilingCalendars "List Filing Calendar Obligations"; "filing of VAT
+    Returns, EC Listings, Intrastat, and transaction reporting across multiple jurisdictions"
+  reason: The single operation lists VAT filing obligations and due dates, which is tax return/compliance
+    obligation management; could alternatively sit under indirect tax management, hence not maximal confidence.
+- tag: Classification
+  spec_file: avalara-classification-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.75
+  evidence: '''The Avalara HSCode and AvaTax Code Classification API classifies products into Harmonized
+    System Codes (HS Codes) and Avalara Tax Codes. It provides tariff code predictions'''
+  reason: Tariff/HS code classification drives customs duty and tax code determination, which falls under
+    Indirect Tax Management (VAT, GST, sales tax, customs duties). Some residual ambiguity as classification
+    also touches product master data.
+- tag: Licenses
+  spec_file: avalara-licenses-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.75
+  evidence: GET /Licenses  listLicenses  Avalara List Excise Licenses; schema ExciseLicense
+  reason: Excise licenses held by entities for excise tax determination on fuel/tobacco/alcohol; excise
+    duties fall under indirect tax management. Thin surface (one operation) so moderate confidence.
+- tag: Mandates
+  spec_file: avalara-mandates-api-openapi.yml
+  capability_id: BC-220.40
+  capability_id_l1: BC-220
+  capability_name: Tax Reporting & Compliance
+  confidence: 0.75
+  evidence: GET /mandates  listMandates  Avalara List E-invoicing Mandates
+  reason: Lists tax-authority e-invoicing mandates that govern compliance obligations per jurisdiction
+    — tax reporting/compliance reference. Single read-only operation limits confidence.
 - tag: TaxContent
   spec_file: avalara-taxcontent-api-openapi.yml
   capability_id: BC-220.20
   capability_id_l1: BC-220
   capability_name: Indirect Tax Management
-  confidence: 0.8
-  evidence: '"BuildTaxContentFile", "DownloadTaxRatesByZipCode", "TaxRatesByAddress", "TaxRatesByPostalCode"'
-  reason: Produces and retrieves sales-tax rate content by address/postal code for point-of-sale use —
-    indirect tax rate content management.
-- tag: TaxRules
-  spec_file: avalara-taxrules-api-openapi.yml
-  capability_id: BC-220.20
-  capability_id_l1: BC-220
-  capability_name: Indirect Tax Management
-  confidence: 0.8
-  evidence: '"Create Tax Rules for a Company", "UpdateTaxRule", "ListCountryCoefficients"; schema TaxRuleModel'
-  reason: Maintains company-specific tax rules and country coefficients that override or refine transaction
-    tax determination — indirect tax configuration.
-- tag: Users
-  spec_file: avalara-users-api-openapi.yml
-  capability_id: BC-620.20
-  capability_id_l1: BC-620
-  capability_name: Identity & Access Management
-  confidence: 0.8
-  evidence: '"ChangePassword", "CreateUsers", "DeleteUser", "GetUserEntitlements"'
-  reason: Lifecycle of user accounts under an account, password change and entitlement retrieval — identity
-    and access administration for the platform.
-- tag: HS Codes
-  spec_file: avalara-hs-codes-api-openapi.yml
-  capability_id: BC-220.20
-  capability_id_l1: BC-220
-  capability_name: Indirect Tax Management
-  confidence: 0.78
-  evidence: '"submit products for automated classification, retrieve corresponding HS Codes" ... "across
-    international trade jurisdictions"; GET /hs-codes/{hsCode} Get HS Code Details'
-  reason: HS code classification of products drives customs duties and cross-border indirect tax determination,
-    which is Indirect Tax Management.
-- tag: Obligations
-  spec_file: avalara-obligations-api-openapi.yml
-  capability_id: BC-220.40
-  capability_id_l1: BC-220
-  capability_name: Tax Reporting & Compliance
   confidence: 0.75
-  evidence: GET /properties/{propertyId}/obligations — 'Get Filing Obligations for a Property'; schema
-    'FilingObligation'; 'filing obligation information' for lodging tax compliance
-  reason: Surfaces tax filing obligations for a taxpayer's properties — tax reporting/compliance determination,
-    part of indirect (lodging/sales) tax management.
-- tag: Shipping Verification
-  spec_file: avalara-shipping-verification-api-openapi.yml
-  capability_id: BC-130.10
-  capability_id_l1: BC-130
-  capability_name: Regulatory Compliance Management
-  confidence: 0.75
-  evidence: '"Evaluates a transaction against a set of direct-to-consumer shipping regulations" — API
-    for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations'
-  reason: The operations check whether a shipment complies with sector-specific (alcohol DTC) shipping
-    regulations and register compliant shipments, which is regulatory compliance checking rather than
-    tax calculation or logistics execution.
+  evidence: '"GET /api/v2/taxratesbyzipcode/download/{date}" and "GET /api/v2/taxrates/byaddress Avalara
+    TaxRatesByAddress"'
+  reason: Provides sales tax rate content and point-of-sale tax data by address/postal code — indirect
+    tax determination content.
 - tag: Transactions
   spec_file: avalara-transactions-api-openapi.yml
   capability_id: BC-220.20
   capability_id_l1: BC-220
   capability_name: Indirect Tax Management
   confidence: 0.75
-  evidence: '"Create a New Transaction", "Adjust a Committed Transaction", "Void a Transaction", "Submit
-    VAT Transactions"; schemas VATTransaction, ExciseTransaction'
-  reason: Transaction documents here are the taxed sales/VAT/excise records that AvaTax calculates and
-    commits for indirect tax compliance; some operations (VAT submission) lean towards tax reporting,
-    so the L2 is asserted at moderate confidence.
-- tag: W-9 Forms
-  spec_file: avalara-w-9-forms-api-openapi.yml
-  capability_id: BC-220.40
-  capability_id_l1: BC-220
-  capability_name: Tax Reporting & Compliance
-  confidence: 0.75
-  evidence: POST /w9/requests  createW9Request  Avalara Create a W-9 Collection Request; "Get a Completed
-    W-9 Form"; schema W9Form
-  reason: Collection and retrieval of IRS W-9 tax forms as part of an information-return (1099) filing
-    platform is tax compliance/reporting documentation, not a technical concern.
-- tag: Nexus
-  spec_file: avalara-nexus-api-openapi.yml
+  evidence: '"POST /transactions submitTransactions Avalara Submit VAT Transactions", "POST /api/v2/companies/{companyCode}/transactions/{transactionCode}/commit
+    Avalara Commit a Transaction"'
+  reason: Transaction documents here are taxable sales/VAT/excise documents created, adjusted, committed
+    and voided for tax calculation and reporting — indirect tax management, not payment processing.
+- tag: HS Codes
+  spec_file: avalara-hs-codes-api-openapi.yml
   capability_id: BC-220.20
   capability_id_l1: BC-220
   capability_name: Indirect Tax Management
   confidence: 0.72
-  evidence: POST /api/v2/companies/{companyId}/nexus/byaddress DeclareNexusByAddress; List Nexus for a
-    Company; NexusModel
-  reason: Nexus declaration defines where a company has sales/use tax obligations — an indirect tax management
-    concern.
-- tag: Classification
-  spec_file: avalara-classification-api-openapi.yml
-  capability_id: BC-220.20
-  capability_id_l1: BC-220
-  capability_name: Indirect Tax Management
-  confidence: 0.7
-  evidence: '''classifies products into Harmonized System Codes (HS Codes) and Avalara Tax Codes ... tariff
-    code predictions based on product information and destination country''; POST /classify classifyProduct'
-  reason: HS/tariff code assignment drives customs duty and cross-border tax determination, which falls
-    under indirect tax (customs duties). Some ambiguity as it could also be read as product master data
-    enrichment.
+  evidence: '"submit products for automated classification, retrieve corresponding HS Codes"; GET /hs-codes/{hsCode}
+    getHSCodeDetails'
+  reason: HS code classification drives customs duties and cross-border indirect tax treatment, which
+    the indirect tax sub-capability explicitly covers ("VAT, GST, sales tax, customs duties"); could arguably
+    be product data classification, hence not higher.
 - tag: Classification Requests
   spec_file: avalara-classification-requests-api-openapi.yml
   capability_id: BC-220.20
   capability_id_l1: BC-220
   capability_name: Indirect Tax Management
   confidence: 0.7
-  evidence: '''submit products for automated classification, retrieve corresponding HS Codes, and manage
-    classification requests ... across international trade jurisdictions''; POST /classification-requests'
-  reason: Request workflow for obtaining HS codes on products, feeding customs duty/indirect tax determination.
-    Same reasoning as the Classification tag; the surface is request orchestration around that outcome.
-- tag: JurisdictionOverrides
-  spec_file: avalara-jurisdictionoverrides-api-openapi.yml
+  evidence: '''Submit Products for Classification'' ... ''allows businesses ... to submit products for
+    automated classification, retrieve corresponding HS Codes'''
+  reason: Same HS-code/tariff classification capability exposed as an asynchronous request workflow; classification
+    for customs/indirect tax determination. Slightly lower confidence because the tag is largely request-status
+    plumbing around the classification service.
+- tag: Customization
+  spec_file: avalara-customization-api-openapi.yml
   capability_id: BC-220.20
   capability_id_l1: BC-220
   capability_name: Indirect Tax Management
   confidence: 0.7
-  evidence: POST /api/v2/accounts/{accountId}/jurisdictionoverrides CreateJurisdictionOverrides; "REST
-    interface to Avalara's enterprise tax service, AvaTax"
-  reason: Managing overrides to tax jurisdiction assignment is configuration of sales/use tax determination,
-    i.e. indirect tax management.
-- tag: TaxCodes
-  spec_file: avalara-taxcodes-api-openapi.yml
+  evidence: '''List Tax Profiles'', ''Create a Tax Exclusion'', schemas ''TaxProfile'', ''Exclusion'';
+    description: ''provides communications tax calculations for telecom, VoIP, internet ... customizable
+    tax profiles'''
+  reason: Configures tax profiles and exclusions used for communications (transaction) tax calculation
+    — an indirect tax compliance capability. Some ambiguity as it is configuration of the calculation
+    engine rather than filing.
+- tag: Documents
+  spec_file: avalara-documents-api-openapi.yml
+  capability_id: BC-220.40
+  capability_id_l1: BC-220
+  capability_name: Tax Reporting & Compliance
+  confidence: 0.7
+  evidence: '"submission, validation, and management of e-invoices in compliance with mandates from tax
+    authorities worldwide"; POST /documents submitDocument "Submit an E-invoice Document"'
+  reason: Operations submit and track statutory e-invoice documents to tax authorities, which is tax compliance
+    reporting rather than AR invoicing per se; some ambiguity between tax reporting and indirect tax sub-capabilities.
+- tag: Items
+  spec_file: avalara-items-api-openapi.yml
   capability_id: BC-220.20
   capability_id_l1: BC-220
   capability_name: Indirect Tax Management
   confidence: 0.7
-  evidence: '"CreateTaxCodes", "ListTaxCodesByCompany", "UpdateTaxCode" under /companies/{companyId}/taxcodes'
-  reason: CRUD over a company's tax codes, the taxability classifications AvaTax uses to determine sales/use
-    tax; supports indirect tax determination. Could also be read as master-data maintenance, hence moderate
-    confidence.
+  evidence: POST /api/v2/companies/{companyId}/items/{itemId}/classifications  Avalara CreateItemClassifications;
+    ItemModel
+  reason: Avalara items are tax-classified product records (item tax codes, classifications, parameters)
+    used to drive sales/VAT tax determination. This is indirect tax master data rather than generic product
+    master, so Indirect Tax Management is the honest mapping; some ambiguity vs Master Data Management
+    keeps confidence moderate.
+- tag: Onboarding
+  spec_file: avalara-onboarding-api-openapi.yml
+  capability_id: BC-220.40
+  capability_id_l1: BC-220
+  capability_name: Tax Reporting & Compliance
+  confidence: 0.7
+  evidence: POST /onboarding  onboardCompany  Avalara Onboard a Company for VAT Reporting
+  reason: Onboards a company into the VAT reporting/filing service; the object of onboarding is VAT return
+    compliance, so tax reporting & compliance is the best fit, though the operation is a single setup
+    call.
+- tag: TaxRules
+  spec_file: avalara-taxrules-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.7
+  evidence: '"GET /api/v2/companies/{companyId}/taxrules listTaxRules Avalara List Tax Rules for a Company",
+    schema "TaxRuleModel"'
+  reason: Company-specific tax rules and country coefficients configure how transaction (sales/VAT) tax
+    is computed — indirect tax compliance configuration.
+- tag: Users
+  spec_file: avalara-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.7
+  evidence: '"PUT /api/v2/passwords Avalara ChangePassword", "GET /api/v2/accounts/{accountId}/users/{id}/entitlements
+    Avalara GetUserEntitlements"'
+  reason: Administration of application user accounts, passwords and entitlements is identity and access
+    management; it is not a tax capability.
