@@ -778,7 +778,7 @@ apis:
   description: The DataSources API from Avalara — 3 operation(s) for datasources.
   humanURL: ' https://developer.avalara.com/'
   tags:
-  - Data Sources
+  - DataSources
   tags_raw:
   - DataSources
   properties:
@@ -2434,7 +2434,7 @@ apis:
   description: The TaxCodes API from Avalara — 3 operation(s) for taxcodes.
   humanURL: ' https://developer.avalara.com/'
   tags:
-  - Tax Codes
+  - TaxCodes
   tags_raw:
   - TaxCodes
   properties:
