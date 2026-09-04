@@ -3252,7 +3252,7 @@ common:
   url: https://developer.avalara.com/llms.txt
 created: '2025-11-19'
 modified: '2026-06-20'
-position: Consumer
+position: Consuming
 description: Avalara helps businesses of all sizes get tax compliance right. We deliver
   cloud-based solutions that work with existing business applications to calculate
   tax accurately and file returns automatically.
