@@ -4,6 +4,8 @@ apis:
 - aid: avalara:avalara
   name: Avalara
   tags:
+  - Tax
+  tags_raw:
   - Taxes
   humanURL: ' https://developer.avalara.com/'
   properties:
@@ -15,6 +17,9 @@ apis:
 - aid: avalara:avatax-soap-api
   name: AvaTax SOAP API
   tags:
+  - SOAP
+  - Tax
+  tags_raw:
   - SOAP
   - Taxes
   humanURL: https://developer.avalara.com/api-reference/avatax/soap/
@@ -29,7 +34,7 @@ apis:
   tags:
   - Point-of-Sale
   - Retail
-  - Taxes
+  - Tax
   tags_raw:
   - Point of Sale
   - Retail
@@ -46,6 +51,10 @@ apis:
   name: Self-Serve Tariff Classification API
   tags:
   - Cross-Border
+  - Tariffs
+  - Tax
+  tags_raw:
+  - Cross-Border
   - Tariff
   - Taxes
   humanURL: >-
@@ -61,6 +70,10 @@ apis:
 - aid: avalara:license-guidance-order-api
   name: License Guidance Order API
   tags:
+  - Licensing
+  - Registration
+  - Tax
+  tags_raw:
   - Licensing
   - Registration
   - Taxes
@@ -1481,6 +1494,8 @@ apis:
   description: Manage company locations and jurisdictions
   humanURL: ' https://developer.avalara.com/'
   tags:
+  - Location
+  tags_raw:
   - Locations
   properties:
   - type: OpenAPI
@@ -2782,6 +2797,8 @@ apis:
   description: Manage tax rules and overrides for companies
   humanURL: ' https://developer.avalara.com/'
   tags:
+  - TaxRules
+  tags_raw:
   - Tax Rules
   properties:
   - type: OpenAPI
@@ -2820,8 +2837,11 @@ apis:
     url: https://developer.avalara.com/api-reference/avalara1099/avalara1099/
 name: Avalara
 tags:
+- Tax
+tags_raw:
 - Taxes
 - Avalara
+- Taxes
 type: Index
 deliveryModel:
   model: saas
