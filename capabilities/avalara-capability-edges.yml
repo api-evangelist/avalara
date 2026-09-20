@@ -11,7 +11,7 @@ capability_model:
   attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
     CC BY 4.0
   notice: NOTICE
-edge_count: 28
+edge_count: 29
 edges:
 - tag: Returns
   spec_file: avalara-returns-api-openapi.yml
@@ -276,6 +276,18 @@ edges:
   reason: Onboards a company into the VAT reporting/filing service; the object of onboarding is VAT return
     compliance, so tax reporting & compliance is the best fit, though the operation is a single setup
     call.
+- tag: TaxCodes
+  spec_file: avalara-tax-codes-api-openapi.yml
+  capability_id: BC-220.20
+  capability_id_l1: BC-220
+  capability_name: Indirect Tax Management
+  confidence: 0.7
+  evidence: '"CreateTaxCodes", "ListTaxCodesByCompany", "UpdateTaxCode" under /companies/{companyId}/taxcodes'
+  reason: CRUD over a company's tax codes, the taxability classifications AvaTax uses to determine sales/use
+    tax; supports indirect tax determination. Could also be read as master-data maintenance, hence moderate
+    confidence.
+  recovered_from: capability-edges-sweep.json
+  reanchored_from: avalara-taxcodes-api-openapi.yml
 - tag: TaxRules
   spec_file: avalara-tax-rules-api-openapi.yml
   reanchored_from: avalara-taxrules-api-openapi.yml
