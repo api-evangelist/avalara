@@ -1,146 +1,42 @@
-specification: API Commons Plans
-specificationVersion: '0.1'
-schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
-provider: Avalara
-providerId: avalara
-created: '2026-05-04'
-# Provenance stamped 2026-08-11: this artifact was written by the API Evangelist
-# bulk sweep dated 2026-05-04, not harvested from the provider. See roadmap#35.
-method: generated
-modified: '2026-05-05'
-reconciled: false
-notes: Avalara does not publicly post per-product prices. Pricing is determined by transaction volume,
-  jurisdictional footprint (US states, countries), and product mix. There is a free trial; a sales
-  quote is required for any production deployment.
-tags:
-  - Tax Compliance
-  - Sales Tax
-  - VAT
-  - GST
-  - E-Invoicing
-  - Customs
-  - Returns
-description: Avalara sells a portfolio of tax-compliance products (AvaTax, Returns, Exemption Certificate
-  Management, E-Invoicing, AvaTax for AP, Business Licenses, Tariff Code Classification, Cross-Border).
-  Pricing is volume-based and quote-driven — not posted publicly. AvaTax is metered by transaction
-  count and jurisdiction footprint; Returns is metered per filing; E-Invoicing is metered per document.
+# Pricing transcribed from the provider's own page — see provenance. Numbers are quoted, not derived.
+generated: '2026-09-20'
+method: searched
+source: https://www.avalara.com/us/en/products/pricing.html
 sources:
-  - https://www.avalara.com/us/en/products.html
-  - https://www.avalara.com/us/en/products/calculations/avatax.html
-  - https://www.avalara.com/us/en/get-started.html
+- https://www.avalara.com/us/en/products/pricing.html
+provenance:
+  tool: planning/api-economics/harvest_pricing.py
+  run: 20260920T124425
+  grounding: every price_text was found verbatim in the fetched page text
+audience: business-product
+pricing_basis: tiered-subscription
+published: true
+note: Overview pricing page; states most products use volume-based pricing that varies by products purchased,
+  integrations, monthly transaction volume, jurisdictions, and SST enrollment. Only a few set/starting
+  prices shown; otherwise directs to contact sales.
+plan_count: 4
+currency: USD
 plans:
-  - id: avalara-avatax
-    name: AvaTax
-    type: usage-based
-    description: Real-time tax calculation across sales, use, VAT, GST, customs, and import duties.
-      Priced by transaction count plus jurisdiction footprint; quote-based.
-    entries:
-      - label: Tax Calculation Transaction
-        name: avatax_transaction
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-      - label: Jurisdiction Add-on
-        name: jurisdiction_addon
-        type: subscription
-        metric: jurisdiction
-        limit: -1
-        timeFrame: year
-        geo: global
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: Real-time rooftop sales-tax calculation
-      - name: VAT / GST / customs duty calculation
-      - name: Address validation / rooftop accuracy
-      - name: ERP & ecommerce connectors
-  - id: avalara-returns
-    name: Avalara Returns
-    type: usage-based
-    description: Sales tax return preparation, e-filing, and remittance. Priced per return and per
-      jurisdiction; quote-based.
-    entries:
-      - label: Tax Return Filing
-        name: returns_filing
-        type: metered
-        metric: filing
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: Automated return prep
-      - name: E-filing & remittance
-      - name: Notice management
-      - name: Multi-jurisdiction support
-  - id: avalara-exemption-certificate-management
-    name: Exemption Certificate Management (CertCapture)
-    type: subscription
-    description: Document management for tax-exempt sales certificates. Quote-based subscription with
-      tiered storage.
-    entries:
-      - label: Certificate Storage Subscription
-        name: certificate_subscription
-        type: subscription
-        metric: month
-        limit: -1
-        timeFrame: month
-        geo: global
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: Certificate capture & validation
-      - name: Audit-ready storage
-      - name: Customer self-service portal
-  - id: avalara-e-invoicing
-    name: E-Invoicing and Live Reporting
-    type: usage-based
-    description: International e-invoicing compliance (peppol, country mandates). Metered per document.
-      Quote-based.
-    entries:
-      - label: E-Invoice Document
-        name: e_invoice_document
-        type: metered
-        metric: document
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: PEPPOL
-      - name: Country mandate compliance
-      - name: Real-time tax authority reporting
-  - id: avalara-cross-border
-    name: Cross-Border / Tariff Classification
-    type: usage-based
-    description: HS code classification, customs and import duty calculation, and landed-cost
-      determination. Quote-based per-transaction pricing.
-    entries:
-      - label: Cross-Border Transaction
-        name: cross_border_transaction
-        type: metered
-        metric: transaction
-        limit: -1
-        timeFrame: usage
-        geo: global
-        unit: 1
-        price: contact sales
-        userMultiplied: false
-    elements:
-      - name: Tariff classification
-      - name: Customs duty calculation
-      - name: Landed cost
-maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- name: Avalara Select
+  price_text: Sales tax and returns plans starting at $69/mo
+  price: 69
+  currency: USD
+  period: month
+  included_quota: Sales tax and returns plans
+- name: Tax Calculation and Returns Compliance Package
+  price_text: Pricing starts at $699
+  price: 699
+  currency: USD
+  period: none
+  included_quota: Tax calculations (AvaTax); Returns and Reporting
+- name: Business Licenses (License Guidance)
+  price_text: Find license guidance for as low as $119
+  price: 119
+  currency: USD
+  period: none
+- name: Sales Tax Registration
+  price_text: Register your business for $403 per location
+  price: 403
+  currency: USD
+  period: one-time
+  unit: per location
