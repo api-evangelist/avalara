@@ -277,7 +277,8 @@ edges:
     compliance, so tax reporting & compliance is the best fit, though the operation is a single setup
     call.
 - tag: TaxRules
-  spec_file: avalara-taxrules-api-openapi.yml
+  spec_file: avalara-tax-rules-api-openapi.yml
+  reanchored_from: avalara-taxrules-api-openapi.yml
   capability_id: BC-220.20
   capability_id_l1: BC-220
   capability_name: Indirect Tax Management
