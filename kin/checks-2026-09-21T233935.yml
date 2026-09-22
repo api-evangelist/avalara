@@ -2,16 +2,16 @@
 kin_checks:
   slug: avalara
   schema_version: 0.22.0
-  scored_at: '2026-09-19'
-  run_ts: 2026-09-19T193153
+  scored_at: '2026-09-21'
+  run_ts: 2026-09-21T233935
   note: Actionable checks (missed + partial) in `checks`, plus the ids that did not
     apply in `na`. Everything else in rubric/scoring-0.22.0.yml was earned; counts
     below let you verify that.
   counts:
     total: 136
-    earned: 55
-    partial: 23
-    missed: 36
+    earned: 58
+    partial: 21
+    missed: 35
     na: 22
   checks:
   - id: tags_present
@@ -61,8 +61,6 @@ kin_checks:
   - id: cli_present
     status: missed
   - id: agent_skill_present
-    status: missed
-  - id: pricing_link
     status: missed
   - id: reg_vulnerability_disclosure
     status: missed
@@ -137,12 +135,6 @@ kin_checks:
   - id: rate_limits_documented
     status: partial
     earned: 2.0
-  - id: plans_present
-    status: partial
-    earned: 2.0
-  - id: plans_multiple
-    status: partial
-    earned: 1.0
   - id: agentic_access
     status: partial
     earned: 2.5
