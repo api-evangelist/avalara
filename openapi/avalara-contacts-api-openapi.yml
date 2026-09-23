@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Avalara Contacts API
   version: '1.0'
@@ -12,9 +12,6 @@ tags:
   description: Manage company contacts
 paths:
   /companies/{companyId}/contacts:
-    servers:
-    - url: https://api.avalara.com/shared/v1
-      description: Shared Company Service Production
     get:
       operationId: listContacts
       summary: Avalara List Contacts for a Company
@@ -59,9 +56,10 @@ paths:
           description: Contact created
       security:
       - bearerAuth: []
-  /api/v2/companies/{companyId}/contacts:
     servers:
-    - url: http://{{baseurl}}
+    - url: https://api.avalara.com/shared/v1
+      description: Shared Company Service Production
+  /api/v2/companies/{companyId}/contacts:
     post:
       tags:
       - Contacts
@@ -76,9 +74,7 @@ paths:
         ### Security Policies
 
 
-        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, SSTAdmin, TechnicalSupportAdmin.
-
-        '
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, SSTAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -122,11 +118,24 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: postApiV2CompaniesByCompanyIdContacts
+      x-operation-id-source: derived
     get:
       tags:
       - Contacts
       summary: Avalara ListContactsByCompany
-      description: "List all contact objects assigned to this company.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: 'List all contact objects assigned to this company.
+
+
+        Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on Filtering in REST .
+
+        Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -146,9 +155,11 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/companies/{companyId}/contacts/{id}:
+      operationId: getApiV2CompaniesByCompanyIdContacts
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/companies/{companyId}/contacts/{id}:
     delete:
       tags:
       - Contacts
@@ -159,9 +170,7 @@ paths:
         ### Security Policies
 
 
-        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, SSTAdmin, TechnicalSupportAdmin.
-
-        '
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, SSTAdmin, TechnicalSupportAdmin.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -186,6 +195,8 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: deleteApiV2CompaniesByCompanyIdContactsById
+      x-operation-id-source: derived
     get:
       tags:
       - Contacts
@@ -200,9 +211,7 @@ paths:
         ### Security Policies
 
 
-        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.
-
-        '
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -227,6 +236,8 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: getApiV2CompaniesByCompanyIdContactsById
+      x-operation-id-source: derived
     put:
       tags:
       - Contacts
@@ -245,9 +256,7 @@ paths:
         ### Security Policies
 
 
-        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, SSTAdmin, TechnicalSupportAdmin.
-
-        '
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, SSTAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -296,14 +305,31 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/contacts:
+      operationId: putApiV2CompaniesByCompanyIdContactsById
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/contacts:
     get:
       tags:
       - Contacts
       summary: Avalara QueryContacts
-      description: "Get multiple contact objects across all companies.\nA 'contact' is a person associated with a company who is designated to handle certain responsibilities of\na tax collecting and filing entity.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: 'Get multiple contact objects across all companies.
+
+        A ''contact'' is a person associated with a company who is designated to handle certain responsibilities of
+
+        a tax collecting and filing entity.
+
+
+        Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on Filtering in REST .
+
+        Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, FirmAdmin, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -318,6 +344,10 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: getApiV2Contacts
+      x-operation-id-source: derived
+    servers:
+    - url: http://{{baseurl}}
 components:
   schemas:
     SharedContact:

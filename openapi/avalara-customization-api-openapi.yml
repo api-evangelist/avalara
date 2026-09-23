@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Avalara Communications Tax Customization API
   description: The Avalara Communications Tax API (AFC SaasPro) provides communications tax calculations for telecom, VoIP, internet, and other communications services. It supports tax calculations using transaction/service pairs, jurisdiction determination via geocoding, and customizable tax profiles for accurate communications tax compliance.
@@ -71,18 +71,6 @@ paths:
           description: Exclusion created
 components:
   schemas:
-    Exclusion:
-      type: object
-      properties:
-        excl:
-          type: integer
-          description: Exclusion type
-        ctry:
-          type: string
-        st:
-          type: string
-        excl_name:
-          type: string
     TaxProfile:
       type: object
       properties:
@@ -101,6 +89,18 @@ components:
                 type: integer
               bundleName:
                 type: string
+    Exclusion:
+      type: object
+      properties:
+        excl:
+          type: integer
+          description: Exclusion type
+        ctry:
+          type: string
+        st:
+          type: string
+        excl_name:
+          type: string
   securitySchemes:
     basicAuth:
       type: http

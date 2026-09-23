@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   title: Avalara AvaTax Provisioning API
-  description: "Welcome to the AvaTax API Postman Collection! \n                \nThis collection provides a REST interface to Avalara's enterprise tax service, AvaTax. You can use this collection to interact with the AvaTax APIs while building your integration. \n\nWhile using this collection, we recommend following along with our Developer Implementation Guide: https://developer.avalara.com/avatax/dev-guide/   \n\nAPI requests are grouped into folders to help you navigate through the collection easily. Each request includes a description of the operation and its associated URL, method, headers, and example request body (if applicable). \n\nThe collection uses Postman environment variables for the API base URL and credentials, making it easy to switch between the sandbox and production environments.\n\nTo get started, ensure you have the necessary credentials. Then, update the 'username' and 'password' variables in the 'Authorization' or 'Variables' section with your credentials if you prefer username and password authentication. Alternatively, you can use the 'account_id' and 'license_key' variables for authentication using an account ID and license key.\n\nWe recommend starting with the Ping API, located within the Utilities folder, to test your connectivity and ensure your authentication credentials are valid. The Ping API is a simple way to check if you can successfully communicate with AvaTax.\n\nCollection Variables:\n- Base URL: The base URL for the API. By default, it is set to the sandbox URL - https://sandbox-rest.avatax.com. \n    - Change this variable to switch between sandbox and production environments:\n        - Sandbox URL: https://sandbox-rest.avatax.com\n\t\t- Production URL: https://rest.avatax.com\n- Username: If you are using username and password authentication, enter your username for AvaTax.\n- Password: If you are using username and password authentication, enter your password for AvaTax.\n- Account ID: If you are using account ID and license key authentication, enter your AvaTax account ID. \n    - Be sure to also replace the username variable in the authorization tab with account_id.\n- License Key: If you are using account ID and license key authentication, enter your AvaTax license key.\n    - Be sure to also replace the password variable in the authorization tab with license_key.\n\nHappy testing with AvaTax APIs!"
+  description: Welcome to the AvaTax API Postman Collection!
   version: 1.0.0
 servers:
 - url: http://{{baseurl}}
@@ -15,7 +15,40 @@ paths:
       tags:
       - Provisioning
       summary: Avalara RequestNewAccount
-      description: "This API is for use by partner provisioning services customers only.\n            \nAvalara invites select partners to refer new customers to the AvaTax service using the onboarding features\nof AvaTax.  These partners can create accounts for new customers using this API.\n            \nCalling this API creates an account with the specified product subscriptions, but does not configure billing.\nThe customer will receive information from Avalara about how to configure billing for their account.\nYou should call this API when a customer has requested to begin using Avalara services.\n            \nIf the newly created account owner wishes, they can confirm that they have read and agree to the Avalara\nterms and conditions.  If they do so, they can receive a license key as part of this API and their\nAPI will be created in `Active` status.  If the customer has not yet read and accepted these terms and\nconditions, the account will be created in `New` status and they can receive a license key by logging\nonto the AvaTax website and reviewing terms and conditions online.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n* This API is available by invitation only.\n* This API is available by invitation only.  To request access to this feature, please speak to a business development manager and request access to [Provisioning:RequestNewAccount].\n"
+      description: 'This API is for use by partner provisioning services customers only.
+
+
+        Avalara invites select partners to refer new customers to the AvaTax service using the onboarding features
+
+        of AvaTax. These partners can create accounts for new customers using this API.
+
+
+        Calling this API creates an account with the specified product subscriptions, but does not configure billing.
+
+        The customer will receive information from Avalara about how to configure billing for their account.
+
+        You should call this API when a customer has requested to begin using Avalara services.
+
+
+        If the newly created account owner wishes, they can confirm that they have read and agree to the Avalara
+
+        terms and conditions. If they do so, they can receive a license key as part of this API and their
+
+        API will be created in `Active` status. If the customer has not yet read and accepted these terms and
+
+        conditions, the account will be created in `New` status and they can receive a license key by logging
+
+        onto the AvaTax website and reviewing terms and conditions online.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.
+
+        * This API is available by invitation only.
+
+        * This API is available by invitation only. To request access to this feature, please speak to a business development manager and request access to [Provisioning:RequestNewAccount].'
       requestBody:
         content:
           application/json:
@@ -62,6 +95,8 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: postApiV2AccountsRequest
+      x-operation-id-source: derived
   /api/v2/accounts/{id}/entitlements/{offer}:
     post:
       tags:
@@ -79,9 +114,7 @@ paths:
 
         * This API is available by invitation only.
 
-        * This API is available by invitation only.  To request access to this feature, please speak to a business development manager and request access to [Provisioning:RequestNewAccount].
-
-        '
+        * This API is available by invitation only. To request access to this feature, please speak to a business development manager and request access to [Provisioning:RequestNewAccount].'
       requestBody:
         content:
           application/json:
@@ -110,6 +143,8 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: postApiV2AccountsByIdEntitlementsByOffer
+      x-operation-id-source: derived
 components:
   securitySchemes:
     basicAuth:

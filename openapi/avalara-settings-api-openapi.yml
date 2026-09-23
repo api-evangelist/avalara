@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Avalara Settings API
   version: '1.0'
@@ -14,11 +14,6 @@ tags:
   description: Manage company settings
 paths:
   /api/v2/companies/{companyId}/settings:
-    servers:
-    - url: https://rest.avatax.com
-      description: AvaTax Production
-    - url: https://sandbox-rest.avatax.com
-      description: AvaTax Sandbox
     get:
       operationId: listSettings
       summary: Avalara List Settings for a Company
@@ -39,7 +34,37 @@ paths:
       tags:
       - Settings
       summary: Avalara CreateSettings
-      description: "Create one or more new setting objects attached to this company.\n            \nThe company settings system is a metadata system that you can use to store extra information\nabout a company.  Your integration or connector could use this data storage to keep track of\npreference information, reminders, or any other storage that would need to persist even if\nthe customer uninstalls your application.\n            \nA setting can refer to any type of data you need to remember about this company object.\nWhen creating this object, you may define your own `set`, `name`, and `value` parameters.\nTo define your own values, please choose a `set` name that begins with `X-` to indicate an extension.\n            \nUse Set = Transactions, Name = TaxCodePrioritization/HSCodePrioritization and Value = Transaction/ItemMaster for prioritizing which TaxCodes/HsCodes should be used for calculating taxes.\n            \nExample: To prioritize TaxCodes passed in a Transaction over values stored with Items when calculating tax, use\nSet = Transactions, Name = TaxCodePrioritization, Value = Transaction\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      description: 'Create one or more new setting objects attached to this company.
+
+
+        The company settings system is a metadata system that you can use to store extra information
+
+        about a company. Your integration or connector could use this data storage to keep track of
+
+        preference information, reminders, or any other storage that would need to persist even if
+
+        the customer uninstalls your application.
+
+
+        A setting can refer to any type of data you need to remember about this company object.
+
+        When creating this object, you may define your own `set`, `name`, and `value` parameters.
+
+        To define your own values, please choose a `set` name that begins with `X-` to indicate an extension.
+
+
+        Use Set = Transactions, Name = TaxCodePrioritization/HSCodePrioritization and Value = Transaction/ItemMaster for prioritizing which TaxCodes/HsCodes should be used for calculating taxes.
+
+
+        Example: To prioritize TaxCodes passed in a Transaction over values stored with Items when calculating tax, use
+
+        Set = Transactions, Name = TaxCodePrioritization, Value = Transaction
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -76,14 +101,41 @@ paths:
       security:
       - basicAuth: []
       - bearerAuth: []
-  /api/v2/companies/{companyId}/settings/{id}:
+      operationId: postApiV2CompaniesByCompanyIdSettings
+      x-operation-id-source: derived
     servers:
-    - url: http://{{baseurl}}
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
+  /api/v2/companies/{companyId}/settings/{id}:
     delete:
       tags:
       - Settings
       summary: Avalara DeleteSetting
-      description: "Mark the setting object at this URL as deleted.\n            \nThe company settings system is a metadata system that you can use to store extra information\nabout a company.  Your integration or connector could use this data storage to keep track of\npreference information, reminders, or any other storage that would need to persist even if\nthe customer uninstalls your application.\n            \nA setting can refer to any type of data you need to remember about this company object.\nWhen creating this object, you may define your own `set`, `name`, and `value` parameters.\nTo define your own values, please choose a `set` name that begins with `X-` to indicate an extension.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      description: 'Mark the setting object at this URL as deleted.
+
+
+        The company settings system is a metadata system that you can use to store extra information
+
+        about a company. Your integration or connector could use this data storage to keep track of
+
+        preference information, reminders, or any other storage that would need to persist even if
+
+        the customer uninstalls your application.
+
+
+        A setting can refer to any type of data you need to remember about this company object.
+
+        When creating this object, you may define your own `set`, `name`, and `value` parameters.
+
+        To define your own values, please choose a `set` name that begins with `X-` to indicate an extension.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -108,11 +160,35 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: deleteApiV2CompaniesByCompanyIdSettingsById
+      x-operation-id-source: derived
     get:
       tags:
       - Settings
       summary: Avalara GetSetting
-      description: "Get a single setting object by its unique ID.\n            \nThe company settings system is a metadata system that you can use to store extra information\nabout a company.  Your integration or connector could use this data storage to keep track of\npreference information, reminders, or any other storage that would need to persist even if\nthe customer uninstalls your application.\n            \nA setting can refer to any type of data you need to remember about this company object.\nWhen creating this object, you may define your own `set`, `name`, and `value` parameters.\nTo define your own values, please choose a `set` name that begins with `X-` to indicate an extension.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'Get a single setting object by its unique ID.
+
+
+        The company settings system is a metadata system that you can use to store extra information
+
+        about a company. Your integration or connector could use this data storage to keep track of
+
+        preference information, reminders, or any other storage that would need to persist even if
+
+        the customer uninstalls your application.
+
+
+        A setting can refer to any type of data you need to remember about this company object.
+
+        When creating this object, you may define your own `set`, `name`, and `value` parameters.
+
+        To define your own values, please choose a `set` name that begins with `X-` to indicate an extension.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -137,11 +213,41 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: getApiV2CompaniesByCompanyIdSettingsById
+      x-operation-id-source: derived
     put:
       tags:
       - Settings
       summary: Avalara UpdateSetting
-      description: "Replace the existing setting object at this URL with an updated object.\n            \nThe company settings system is a metadata system that you can use to store extra information\nabout a company.  Your integration or connector could use this data storage to keep track of\npreference information, reminders, or any other storage that would need to persist even if\nthe customer uninstalls your application.\n            \nA setting can refer to any type of data you need to remember about this company object.\nWhen creating this object, you may define your own `set`, `name`, and `value` parameters.\nTo define your own values, please choose a `set` name that begins with `X-` to indicate an extension.\n            \nAll data from the existing object will be replaced with data in the object you `PUT`.\n            \nTo set a field's value to `null`, you may either set its value to `null` or omit that field from the object when calling update.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      description: 'Replace the existing setting object at this URL with an updated object.
+
+
+        The company settings system is a metadata system that you can use to store extra information
+
+        about a company. Your integration or connector could use this data storage to keep track of
+
+        preference information, reminders, or any other storage that would need to persist even if
+
+        the customer uninstalls your application.
+
+
+        A setting can refer to any type of data you need to remember about this company object.
+
+        When creating this object, you may define your own `set`, `name`, and `value` parameters.
+
+        To define your own values, please choose a `set` name that begins with `X-` to indicate an extension.
+
+
+        All data from the existing object will be replaced with data in the object you `PUT`.
+
+
+        To set a field''s value to `null`, you may either set its value to `null` or omit that field from the object when calling update.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, ProStoresOperator, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -182,14 +288,43 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/settings:
+      operationId: putApiV2CompaniesByCompanyIdSettingsById
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/settings:
     get:
       tags:
       - Settings
       summary: Avalara QuerySettings
-      description: "Get multiple setting objects across all companies.\n            \nThe company settings system is a metadata system that you can use to store extra information\nabout a company.  Your integration or connector could use this data storage to keep track of\npreference information, reminders, or any other storage that would need to persist even if\nthe customer uninstalls your application.\n            \nA setting can refer to any type of data you need to remember about this company object.\nWhen creating this object, you may define your own `set`, `name`, and `value` parameters.\nTo define your own values, please choose a `set` name that begins with `X-` to indicate an extension.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'Get multiple setting objects across all companies.
+
+
+        The company settings system is a metadata system that you can use to store extra information
+
+        about a company. Your integration or connector could use this data storage to keep track of
+
+        preference information, reminders, or any other storage that would need to persist even if
+
+        the customer uninstalls your application.
+
+
+        A setting can refer to any type of data you need to remember about this company object.
+
+        When creating this object, you may define your own `set`, `name`, and `value` parameters.
+
+        To define your own values, please choose a `set` name that begins with `X-` to indicate an extension.
+
+
+        Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on Filtering in REST .
+
+        Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, ECMAccountUser, ECMCompanyUser, FirmAdmin, FirmUser, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -204,15 +339,12 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: getApiV2Settings
+      x-operation-id-source: derived
+    servers:
+    - url: http://{{baseurl}}
 components:
   parameters:
-    companyId:
-      name: companyId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The numeric ID of the company
     skip:
       name: $skip
       in: query
@@ -226,6 +358,13 @@ components:
       schema:
         type: string
       description: OData filter expression for result filtering
+    companyId:
+      name: companyId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The numeric ID of the company
     top:
       name: $top
       in: query

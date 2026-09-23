@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Avalara Reports API
   version: '1.0'
@@ -14,11 +14,6 @@ tags:
   description: Generate and retrieve tax reports
 paths:
   /api/v2/companies/{companyId}/reports:
-    servers:
-    - url: https://rest.avatax.com
-      description: AvaTax Production
-    - url: https://sandbox-rest.avatax.com
-      description: AvaTax Sandbox
     get:
       operationId: listReports
       summary: Avalara List Reports for a Company
@@ -32,12 +27,12 @@ paths:
       security:
       - basicAuth: []
       - bearerAuth: []
-  /api/v2/reports/{id}:
     servers:
     - url: https://rest.avatax.com
       description: AvaTax Production
     - url: https://sandbox-rest.avatax.com
       description: AvaTax Sandbox
+  /api/v2/reports/{id}:
     get:
       operationId: getReport
       summary: Avalara Retrieve a Single Report
@@ -55,14 +50,45 @@ paths:
       security:
       - basicAuth: []
       - bearerAuth: []
-  /api/v2/reports/{id}/attachment:
     servers:
-    - url: http://{{baseurl}}
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
+  /api/v2/reports/{id}/attachment:
     get:
       tags:
       - Reports
       summary: Avalara DownloadReport
-      description: "This API downloads the file associated with a report.\n            \nIf the report is not yet complete, you will receive a `ReportNotFinished` error.  To check if a report is complete,\nuse the `GetReport` API.\n            \nReports are run as asynchronous report tasks on the server.  When complete, the report file will be available for download\nfor up to 30 days after completion.  To run an asynchronous report, you should follow these steps:\n            \n* Begin a report by calling the report's Initiate API.  There is a separate initiate API call for each report type.\n* In the result of the Initiate API, you receive back a report's `id` value.\n* Check the status of a report by calling `GetReport` and passing in the report's `id` value.\n* When a report's status is `Completed`, call `DownloadReport` to retrieve the file.\n            \n* We throttle this API. You can only call this API up to 5 times in a minute.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'This API downloads the file associated with a report.
+
+
+        If the report is not yet complete, you will receive a `ReportNotFinished` error. To check if a report is complete,
+
+        use the `GetReport` API.
+
+
+        Reports are run as asynchronous report tasks on the server. When complete, the report file will be available for download
+
+        for up to 30 days after completion. To run an asynchronous report, you should follow these steps:
+
+
+        * Begin a report by calling the report''s Initiate API. There is a separate initiate API call for each report type.
+
+        * In the result of the Initiate API, you receive back a report''s `id` value.
+
+        * Check the status of a report by calling `GetReport` and passing in the report''s `id` value.
+
+        * When a report''s status is `Completed`, call `DownloadReport` to retrieve the file.
+
+
+        * We throttle this API. You can only call this API up to 5 times in a minute.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -82,14 +108,54 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/companies/{companyId}/reports/exportdocumentline/initiate:
+      operationId: getApiV2ReportsByIdAttachment
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/companies/{companyId}/reports/exportdocumentline/initiate:
     post:
       tags:
       - Reports
       summary: Avalara InitiateExportDocumentLineReport
-      description: "Begins running an `ExportDocumentLine` report task and returns the identity of the report.\n            \nReports are run as asynchronous report tasks on the server.  When complete, the report file will be available for download\nfor up to 30 days after completion.  To run an asynchronous report, you should follow these steps:\n            \n* Begin a report by calling the report's Initiate API.  There is a separate initiate API call for each report type.\n* In the result of the Initiate API, you receive back a report's `id` value.\n* Check the status of a report by calling `GetReport` and passing in the report's `id` value.\n* When a report's status is `Completed`, call `DownloadReport` to retrieve the file.\n            \nThe `ExportDocumentLine` report produces information about invoice lines recorded within your account.\n            \nTo split large reports into multiple smaller partitions, use the numberOfPartitions and partition properties on ExportDocumentLineModel.\n            \nExample - split a report into three partitions\n            \n* Follow the steps above with numberOfPartitions = 3 and partition = 0\n* Follow the steps above with numberOfPartitions = 3 and partition = 1\n* Follow the steps above with numberOfPartitions = 3 and partition = 2\n* Once all three reports are downloaded merge the files on the client side.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'Begins running an `ExportDocumentLine` report task and returns the identity of the report.
+
+
+        Reports are run as asynchronous report tasks on the server. When complete, the report file will be available for download
+
+        for up to 30 days after completion. To run an asynchronous report, you should follow these steps:
+
+
+        * Begin a report by calling the report''s Initiate API. There is a separate initiate API call for each report type.
+
+        * In the result of the Initiate API, you receive back a report''s `id` value.
+
+        * Check the status of a report by calling `GetReport` and passing in the report''s `id` value.
+
+        * When a report''s status is `Completed`, call `DownloadReport` to retrieve the file.
+
+
+        The `ExportDocumentLine` report produces information about invoice lines recorded within your account.
+
+
+        To split large reports into multiple smaller partitions, use the numberOfPartitions and partition properties on ExportDocumentLineModel.
+
+
+        Example - split a report into three partitions
+
+
+        * Follow the steps above with numberOfPartitions = 3 and partition = 0
+
+        * Follow the steps above with numberOfPartitions = 3 and partition = 1
+
+        * Follow the steps above with numberOfPartitions = 3 and partition = 2
+
+        * Once all three reports are downloaded merge the files on the client side.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       requestBody:
         content:
           application/json:
@@ -141,14 +207,39 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/reports:
+      operationId: postApiV2CompaniesByCompanyIdReportsExportdocumentlineInitiate
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/reports:
     get:
       tags:
       - Reports
       summary: Avalara ListReports
-      description: "List all report tasks for your account.\n            \nReports are run as asynchronous report tasks on the server.  When complete, the report file will be available for download\nfor up to 30 days after completion.  To run an asynchronous report, you should follow these steps:\n            \n* Begin a report by calling the report's Initiate API.  There is a separate initiate API call for each report type.\n* In the result of the Initiate API, you receive back a report's `id` value.\n* Check the status of a report by calling `GetReport` and passing in the report's `id` value.\n* When a report's status is `Completed`, call `DownloadReport` to retrieve the file.\n            \nThis API call returns information about all report types across your entire account.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'List all report tasks for your account.
+
+
+        Reports are run as asynchronous report tasks on the server. When complete, the report file will be available for download
+
+        for up to 30 days after completion. To run an asynchronous report, you should follow these steps:
+
+
+        * Begin a report by calling the report''s Initiate API. There is a separate initiate API call for each report type.
+
+        * In the result of the Initiate API, you receive back a report''s `id` value.
+
+        * Check the status of a report by calling `GetReport` and passing in the report''s `id` value.
+
+        * When a report''s status is `Completed`, call `DownloadReport` to retrieve the file.
+
+
+        This API call returns information about all report types across your entire account.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -163,6 +254,10 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: getApiV2Reports
+      x-operation-id-source: derived
+    servers:
+    - url: http://{{baseurl}}
 components:
   parameters:
     companyId:

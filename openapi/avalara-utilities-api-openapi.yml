@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Avalara Utilities API
   version: '1.0'
@@ -14,11 +14,6 @@ tags:
   description: Utility endpoints including ping and health checks
 paths:
   /api/v2/utilities/ping:
-    servers:
-    - url: https://rest.avatax.com
-      description: AvaTax Production
-    - url: https://sandbox-rest.avatax.com
-      description: AvaTax Sandbox
     get:
       operationId: ping
       summary: Avalara Test Connectivity and Authentication
@@ -33,12 +28,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/PingResultModel'
-  /api/v2/utilities/subscriptions:
     servers:
     - url: https://rest.avatax.com
       description: AvaTax Production
     - url: https://sandbox-rest.avatax.com
       description: AvaTax Sandbox
+  /api/v2/utilities/subscriptions:
     get:
       operationId: listMySubscriptions
       summary: Avalara List Subscriptions for the Current Account
@@ -50,14 +45,29 @@ paths:
       security:
       - basicAuth: []
       - bearerAuth: []
-  /api/v2/utilities/subscriptions/{serviceTypeId}:
     servers:
-    - url: http://{{baseurl}}
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
+  /api/v2/utilities/subscriptions/{serviceTypeId}:
     get:
       tags:
       - Utilities
       summary: Avalara GetMySubscription
-      description: "Returns a subscription object for the current account, or 404 Not Found if this subscription is not enabled for this account.\n            \nThis API will return an error if it is called with invalid authentication credentials.\n            \nThis API is intended to help you determine whether you have the necessary subscription to use certain API calls\nwithin AvaTax.  You can examine the subscriptions returned from this API call to look for a particular product\nor subscription to provide useful information to the current user as to whether they are entitled to use\nspecific features of AvaTax."
+      description: 'Returns a subscription object for the current account, or 404 Not Found if this subscription is not enabled for this account.
+
+
+        This API will return an error if it is called with invalid authentication credentials.
+
+
+        This API is intended to help you determine whether you have the necessary subscription to use certain API calls
+
+        within AvaTax. You can examine the subscriptions returned from this API call to look for a particular product
+
+        or subscription to provide useful information to the current user as to whether they are entitled to use
+
+        specific features of AvaTax.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -77,6 +87,10 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: getApiV2UtilitiesSubscriptionsByServiceTypeId
+      x-operation-id-source: derived
+    servers:
+    - url: http://{{baseurl}}
 components:
   schemas:
     PingResultModel:

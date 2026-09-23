@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Avalara Free API
   version: '1.0'
@@ -14,11 +14,6 @@ tags:
   description: Free tax rate lookup endpoints
 paths:
   /api/v2/taxrates/byaddress:
-    servers:
-    - url: https://rest.avatax.com
-      description: AvaTax Production
-    - url: https://sandbox-rest.avatax.com
-      description: AvaTax Sandbox
     get:
       operationId: taxRatesByAddress
       summary: Avalara Get Tax Rates by Address
@@ -63,12 +58,12 @@ paths:
       security:
       - basicAuth: []
       - bearerAuth: []
-  /api/v2/taxrates/bypostalcode:
     servers:
     - url: https://rest.avatax.com
       description: AvaTax Production
     - url: https://sandbox-rest.avatax.com
       description: AvaTax Sandbox
+  /api/v2/taxrates/bypostalcode:
     get:
       operationId: taxRatesByPostalCode
       summary: Avalara Get Tax Rates by Postal Code
@@ -96,14 +91,38 @@ paths:
       security:
       - basicAuth: []
       - bearerAuth: []
-  /api/v2/accounts/freetrials/request:
     servers:
-    - url: http://{{baseurl}}
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
+  /api/v2/accounts/freetrials/request:
     post:
       tags:
       - Free
       summary: Avalara RequestFreeTrial
-      description: "Call this API to obtain a free AvaTax account.\n            \nThis API is free to use.  No authentication credentials are required to call this API. You must read and\naccept [Avalara's terms and conditions](https://www1.avalara.com/us/en/legal/terms.html) for the account to be\ncreated.\n            \nIf all conditions are met, this API will grant a free trial version of AvaTax.  For a list of functionality\navailable in the free trial and its limitations, please see the [AvaTax Developer Website Free Trial page](https://developer.avalara.com/avatax/signup/).\n            \nAfter your free trial concludes, you will still be able to use the [Free AvaTax API Suite](https://developer.avalara.com/api-reference/avatax/rest/v2/methods/Free/).\n\n### Security Policies\n\n* This API may be called without providing authentication credentials.\n"
+      description: 'Call this API to obtain a free AvaTax account.
+
+
+        This API is free to use. No authentication credentials are required to call this API. You must read and
+
+        accept Avalara''s terms and conditions for the account to be
+
+        created.
+
+
+        If all conditions are met, this API will grant a free trial version of AvaTax. For a list of functionality
+
+        available in the free trial and its limitations, please see the AvaTax Developer Website Free Trial page.
+
+
+        After your free trial concludes, you will still be able to use the Free AvaTax API Suite.
+
+
+        ### Security Policies
+
+
+        * This API may be called without providing authentication credentials.'
       requestBody:
         content:
           application/json:
@@ -143,6 +162,10 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: postApiV2AccountsFreetrialsRequest
+      x-operation-id-source: derived
+    servers:
+    - url: http://{{baseurl}}
 components:
   schemas:
     TaxRateModel:

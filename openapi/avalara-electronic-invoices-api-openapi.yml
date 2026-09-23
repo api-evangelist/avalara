@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Avalara AvaTax Brazil Electronic Invoices API
   description: The AvaTax Brazil API provides tax calculation, electronic invoice (NF-e, NFS-e, NFC-e) issuance, and transaction management for businesses with a physical presence in Brazil. It supports Brazilian federal, state, and municipal taxes including ICMS, IPI, PIS, COFINS, ISS, and more.
@@ -123,6 +123,25 @@ paths:
           description: Invoice cancelled
 components:
   schemas:
+    InvoiceLine:
+      type: object
+      properties:
+        lineNumber:
+          type: integer
+        itemCode:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: number
+          format: double
+        unitPrice:
+          type: number
+          format: double
+        ncmCode:
+          type: string
+        cfopCode:
+          type: string
     BrazilParty:
       type: object
       properties:
@@ -163,25 +182,6 @@ components:
               type: string
             country:
               type: string
-    InvoiceLine:
-      type: object
-      properties:
-        lineNumber:
-          type: integer
-        itemCode:
-          type: string
-        description:
-          type: string
-        quantity:
-          type: number
-          format: double
-        unitPrice:
-          type: number
-          format: double
-        ncmCode:
-          type: string
-        cfopCode:
-          type: string
     InvoiceResponse:
       type: object
       properties:

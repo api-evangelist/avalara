@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   title: Avalara AvaTax Registrar API
-  description: "Welcome to the AvaTax API Postman Collection! \n                \nThis collection provides a REST interface to Avalara's enterprise tax service, AvaTax. You can use this collection to interact with the AvaTax APIs while building your integration. \n\nWhile using this collection, we recommend following along with our Developer Implementation Guide: https://developer.avalara.com/avatax/dev-guide/   \n\nAPI requests are grouped into folders to help you navigate through the collection easily. Each request includes a description of the operation and its associated URL, method, headers, and example request body (if applicable). \n\nThe collection uses Postman environment variables for the API base URL and credentials, making it easy to switch between the sandbox and production environments.\n\nTo get started, ensure you have the necessary credentials. Then, update the 'username' and 'password' variables in the 'Authorization' or 'Variables' section with your credentials if you prefer username and password authentication. Alternatively, you can use the 'account_id' and 'license_key' variables for authentication using an account ID and license key.\n\nWe recommend starting with the Ping API, located within the Utilities folder, to test your connectivity and ensure your authentication credentials are valid. The Ping API is a simple way to check if you can successfully communicate with AvaTax.\n\nCollection Variables:\n- Base URL: The base URL for the API. By default, it is set to the sandbox URL - https://sandbox-rest.avatax.com. \n    - Change this variable to switch between sandbox and production environments:\n        - Sandbox URL: https://sandbox-rest.avatax.com\n\t\t- Production URL: https://rest.avatax.com\n- Username: If you are using username and password authentication, enter your username for AvaTax.\n- Password: If you are using username and password authentication, enter your password for AvaTax.\n- Account ID: If you are using account ID and license key authentication, enter your AvaTax account ID. \n    - Be sure to also replace the username variable in the authorization tab with account_id.\n- License Key: If you are using account ID and license key authentication, enter your AvaTax license key.\n    - Be sure to also replace the password variable in the authorization tab with license_key.\n\nHappy testing with AvaTax APIs!"
+  description: Welcome to the AvaTax API Postman Collection!
   version: 1.0.0
 servers:
 - url: http://{{baseurl}}
@@ -15,7 +15,20 @@ paths:
       tags:
       - Registrar
       summary: Avalara DeleteAccount
-      description: "# For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nDelete an account.\nDeleting an account will delete all companies, all account level users and license keys attached to this account.\n\n### Security Policies\n\n* This API requires the user role SystemAdmin.\n"
+      description: '# For Registrar Use Only
+
+        This API is for use by Avalara Registrar administrative users only.
+
+
+        Delete an account.
+
+        Deleting an account will delete all companies, all account level users and license keys attached to this account.
+
+
+        ### Security Policies
+
+
+        * This API requires the user role SystemAdmin.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -33,11 +46,24 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: deleteApiV2AccountsById
+      x-operation-id-source: derived
     put:
       tags:
       - Registrar
       summary: Avalara UpdateAccount
-      description: "# For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nReplace an existing account object with an updated account object.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      description: '# For Registrar Use Only
+
+        This API is for use by Avalara Registrar administrative users only.
+
+
+        Replace an existing account object with an updated account object.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -72,12 +98,27 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: putApiV2AccountsById
+      x-operation-id-source: derived
   /api/v2/accounts:
     post:
       tags:
       - Registrar
       summary: Avalara CreateAccount
-      description: "# For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nCreate a single new account object.\nWhen creating an account object you may attach subscriptions and users as part of the 'Create' call.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      description: '# For Registrar Use Only
+
+        This API is for use by Avalara Registrar administrative users only.
+
+
+        Create a single new account object.
+
+        When creating an account object you may attach subscriptions and users as part of the ''Create'' call.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -107,12 +148,37 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: postApiV2Accounts
+      x-operation-id-source: derived
   /api/v2/notifications/{id}:
     delete:
       tags:
       - Registrar
       summary: Avalara DeleteNotification
-      description: "This API is available by invitation only.\n            \nDelete the existing notification identified by this URL.\n            \nA notification is a message from Avalara that may have relevance to your business.  You may want\nto regularly review notifications and then dismiss them when you are certain that you have addressed\nany relevant concerns raised by this notification.\n            \nAn example of a notification would be a message about new software, or a change to AvaTax that may\naffect you, or a potential issue with your company's tax profile.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n* This API is available by invitation only.  To request access to this feature, please speak to a business development manager and request access to [NotificationsAPI:Create].\n"
+      description: 'This API is available by invitation only.
+
+
+        Delete the existing notification identified by this URL.
+
+
+        A notification is a message from Avalara that may have relevance to your business. You may want
+
+        to regularly review notifications and then dismiss them when you are certain that you have addressed
+
+        any relevant concerns raised by this notification.
+
+
+        An example of a notification would be a message about new software, or a change to AvaTax that may
+
+        affect you, or a potential issue with your company''s tax profile.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.
+
+        * This API is available by invitation only. To request access to this feature, please speak to a business development manager and request access to [NotificationsAPI:Create].'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -130,11 +196,36 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: deleteApiV2NotificationsById
+      x-operation-id-source: derived
     put:
       tags:
       - Registrar
       summary: Avalara UpdateNotification
-      description: "This API is available by invitation only.\n            \nReplaces the notification identified by this URL with a new notification.\n            \nA notification is a message from Avalara that may have relevance to your business.  You may want\nto regularly review notifications and then dismiss them when you are certain that you have addressed\nany relevant concerns raised by this notification.\n            \nAn example of a notification would be a message about new software, or a change to AvaTax that may\naffect you, or a potential issue with your company's tax profile.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n* This API is available by invitation only.  To request access to this feature, please speak to a business development manager and request access to [NotificationsAPI:Create].\n"
+      description: 'This API is available by invitation only.
+
+
+        Replaces the notification identified by this URL with a new notification.
+
+
+        A notification is a message from Avalara that may have relevance to your business. You may want
+
+        to regularly review notifications and then dismiss them when you are certain that you have addressed
+
+        any relevant concerns raised by this notification.
+
+
+        An example of a notification would be a message about new software, or a change to AvaTax that may
+
+        affect you, or a potential issue with your company''s tax profile.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.
+
+        * This API is available by invitation only. To request access to this feature, please speak to a business development manager and request access to [NotificationsAPI:Create].'
       requestBody:
         content:
           application/json:
@@ -180,12 +271,42 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: putApiV2NotificationsById
+      x-operation-id-source: derived
   /api/v2/notifications:
     post:
       tags:
       - Registrar
       summary: Avalara CreateNotifications
-      description: "This API is available by invitation only.\n            \nCreate a single notification.\n            \nA notification is a message from Avalara that may have relevance to your business.  You may want\nto regularly review notifications and then dismiss them when you are certain that you have addressed\nany relevant concerns raised by this notification.\n            \nA Global notification is a message which is directed to all the accounts and is set to expire within\na certain time and cannot be dismissed by the user. Make accountId and companyId null to create a global notification.\n            \nAn example of a notification would be a message about new software, or a change to AvaTax that may\naffect you, or a potential issue with your company's tax profile.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n* This API is available by invitation only.  To request access to this feature, please speak to a business development manager and request access to [NotificationsAPI:Create].\n"
+      description: 'This API is available by invitation only.
+
+
+        Create a single notification.
+
+
+        A notification is a message from Avalara that may have relevance to your business. You may want
+
+        to regularly review notifications and then dismiss them when you are certain that you have addressed
+
+        any relevant concerns raised by this notification.
+
+
+        A Global notification is a message which is directed to all the accounts and is set to expire within
+
+        a certain time and cannot be dismissed by the user. Make accountId and companyId null to create a global notification.
+
+
+        An example of a notification would be a message about new software, or a change to AvaTax that may
+
+        affect you, or a potential issue with your company''s tax profile.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: BatchServiceAdmin, FirmAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.
+
+        * This API is available by invitation only. To request access to this feature, please speak to a business development manager and request access to [NotificationsAPI:Create].'
       requestBody:
         content:
           application/json:
@@ -226,12 +347,27 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: postApiV2Notifications
+      x-operation-id-source: derived
   /api/v2/accounts/{accountId}/subscriptions:
     post:
       tags:
       - Registrar
       summary: Avalara CreateSubscriptions
-      description: "This API is for use by Avalara Registrar administrative users only.\n            \nCreate one or more new subscription objects attached to this account.\nA 'subscription' indicates a licensed subscription to a named Avalara service.\nTo request or remove subscriptions, please contact Avalara sales or your customer account manager.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      description: 'This API is for use by Avalara Registrar administrative users only.
+
+
+        Create one or more new subscription objects attached to this account.
+
+        A ''subscription'' indicates a licensed subscription to a named Avalara service.
+
+        To request or remove subscriptions, please contact Avalara sales or your customer account manager.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -265,12 +401,25 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: postApiV2AccountsByAccountIdSubscriptions
+      x-operation-id-source: derived
   /api/v2/accounts/{accountId}/subscriptions/{id}:
     delete:
       tags:
       - Registrar
       summary: Avalara DeleteSubscription
-      description: "# For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nMark the existing account identified by this URL as deleted.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      description: '# For Registrar Use Only
+
+        This API is for use by Avalara Registrar administrative users only.
+
+
+        Mark the existing account identified by this URL as deleted.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -293,11 +442,32 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: deleteApiV2AccountsByAccountIdSubscriptionsById
+      x-operation-id-source: derived
     put:
       tags:
       - Registrar
       summary: Avalara UpdateSubscription
-      description: "# For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nReplace the existing subscription object at this URL with an updated object.\nA 'subscription' indicates a licensed subscription to a named Avalara service.\nTo request or remove subscriptions, please contact Avalara sales or your customer account manager.\nAll data from the existing object will be replaced with data in the object you PUT.\nTo set a field's value to null, you may either set its value to null or omit that field from the object you post.\n\n### Security Policies\n\n* This API requires one of the following user roles: BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.\n"
+      description: '# For Registrar Use Only
+
+        This API is for use by Avalara Registrar administrative users only.
+
+
+        Replace the existing subscription object at this URL with an updated object.
+
+        A ''subscription'' indicates a licensed subscription to a named Avalara service.
+
+        To request or remove subscriptions, please contact Avalara sales or your customer account manager.
+
+        All data from the existing object will be replaced with data in the object you PUT.
+
+        To set a field''s value to null, you may either set its value to null or omit that field from the object you post.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: BatchServiceAdmin, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -336,12 +506,31 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: putApiV2AccountsByAccountIdSubscriptionsById
+      x-operation-id-source: derived
   /api/v2/servicetypes/servicetypes:
     get:
       tags:
       - Registrar
       summary: Avalara ListServiceTypes
-      description: "For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nReturns the full list of Avalara-supported subscription types.\nThis API is intended to be useful for identifying which features you have added to your account.\nYou may always contact Avalara's sales department for information on available products or services.\nYou cannot change your subscriptions/service directly through the API.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n"
+      description: 'For Registrar Use Only
+
+        This API is for use by Avalara Registrar administrative users only.
+
+
+        Returns the full list of Avalara-supported subscription types.
+
+        This API is intended to be useful for identifying which features you have added to your account.
+
+        You may always contact Avalara''s sales department for information on available products or services.
+
+        You cannot change your subscriptions/service directly through the API.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -354,12 +543,31 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: getApiV2ServicetypesServicetypes
+      x-operation-id-source: derived
   /api/v2/passwords/{userId}/reset:
     post:
       tags:
       - Registrar
       summary: Avalara ResetPassword
-      description: "# For Registrar Use Only\nThis API is for use by Avalara Registrar administrative users only.\n            \nAllows a system admin to reset the password for a specific user via the API.\nThis API is only available for Avalara Registrar Admins, and can be used to reset the password of any\nuser based on internal Avalara business processes.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPTester, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.\n* This API is available to Avalara system-level (registrar-level) users only.\n"
+      description: '# For Registrar Use Only
+
+        This API is for use by Avalara Registrar administrative users only.
+
+
+        Allows a system admin to reset the password for a specific user via the API.
+
+        This API is only available for Avalara Registrar Admins, and can be used to reset the password of any
+
+        user based on internal Avalara business processes.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPTester, FirmAdmin, FirmUser, Registrar, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser, TreasuryAdmin, TreasuryUser.
+
+        * This API is available to Avalara system-level (registrar-level) users only.'
       requestBody:
         content:
           application/json:
@@ -390,6 +598,8 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: postApiV2PasswordsByUserIdReset
+      x-operation-id-source: derived
 components:
   securitySchemes:
     basicAuth:

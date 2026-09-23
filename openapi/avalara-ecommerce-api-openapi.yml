@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Avalara CertCapture eCommerce API
+  title: Avalara CertCapture E Commerce API
   description: The Avalara CertCapture RESTful API provides document management for tax-exempt sales, including managing exemption certificates, customer records, custom attributes, authentication tokens, and eCommerce token generation. It supports the full certificate lifecycle from creation through validation and expiry tracking.
   version: '2.0'
   contact:
@@ -17,7 +17,7 @@ servers:
 security:
 - basicAuth: []
 tags:
-- name: eCommerce
+- name: Ecommerce
   description: eCommerce token generation for certificate collection
 paths:
   /ecommerce/token:
@@ -26,7 +26,7 @@ paths:
       summary: Avalara Generate ECommerce Token
       description: Generates a token for embedding the CertCapture certificate collection widget in eCommerce checkout flows.
       tags:
-      - eCommerce
+      - Ecommerce
       requestBody:
         required: true
         content:

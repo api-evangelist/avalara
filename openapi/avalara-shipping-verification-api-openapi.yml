@@ -1,11 +1,9 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
   description: 'API for evaluating transactions against direct-to-consumer Beverage Alcohol shipping regulations.
 
 
-    This API is currently in beta.
-
-    '
+    This API is currently in beta.'
   title: Avalara Shipping Verification API
   version: 3.1.0
 servers:
@@ -62,7 +60,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorDetails'
           description: Invalid Transaction
-      summary: Removes the transaction from consideration when evaluating regulations that span multiple transactions.
+      summary: Removes the transaction from consideration when evaluating regulations that…
       tags:
       - Shipping Verification
       x-accepts: application/json
@@ -111,7 +109,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorDetails'
           description: Invalid Transaction
-      summary: Registers the transaction so that it may be included when evaluating regulations that span multiple transactions.
+      summary: Registers the transaction so that it may be included when evaluating…
       tags:
       - Shipping Verification
       x-accepts: application/json
@@ -165,7 +163,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorDetails'
           description: Invalid Transaction
-      summary: Evaluates a transaction against a set of direct-to-consumer shipping regulations and, if compliant, registers the transaction so that it may be included when evaluating regulations that span multiple transactions.
+      summary: Evaluates a transaction against a set of direct-to-consumer shipping…
       tags:
       - Shipping Verification
       x-accepts: application/json
@@ -248,12 +246,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorDetails'
           description: Invalid Transaction
-      summary: Evaluates a transaction against a set of direct-to-consumer shipping regulations.
+      summary: Evaluates a transaction against a set of direct-to-consumer shipping regulations
       tags:
       - Shipping Verification
       x-accepts: application/json
 components:
   schemas:
+    ErrorDetails:
+      description: Message Object
+      example:
+        error:
+          code: InvalidAddress
+          message: The address is not deliverable.
+          details:
+          - code: InvalidAddress
+            number: 309
+            message: The address is not deliverable.
+            description: The physical location exists but there are no homes on this street. One reason might be railroad tracks or rivers running alongside this street, as they would prevent construction of homes in this location.
+            faultCode: Client
+            helpLink: http://developer.avalara.com/avatax/errors/InvalidAddress
+            severity: Error
+      properties:
+        error:
+          $ref: '#/components/schemas/ErrorDetails_error'
+      type: object
     ErrorDetails_error:
       description: An object holding details about the error.
       properties:
@@ -376,24 +392,6 @@ components:
             - InvalidDate
             type: string
           type: array
-      type: object
-    ErrorDetails:
-      description: Message Object
-      example:
-        error:
-          code: InvalidAddress
-          message: The address is not deliverable.
-          details:
-          - code: InvalidAddress
-            number: 309
-            message: The address is not deliverable.
-            description: The physical location exists but there are no homes on this street. One reason might be railroad tracks or rivers running alongside this street, as they would prevent construction of homes in this location.
-            faultCode: Client
-            helpLink: http://developer.avalara.com/avatax/errors/InvalidAddress
-            severity: Error
-      properties:
-        error:
-          $ref: '#/components/schemas/ErrorDetails_error'
       type: object
     ErrorDetails_error_details:
       description: Message Details Object

@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Avalara Authentication API
   contact:
@@ -21,9 +21,6 @@ tags:
   description: Token management and authentication
 paths:
   /auth/token:
-    servers:
-    - url: https://api.certcapture.com/v2
-      description: CertCapture API Production
     post:
       operationId: getAuthToken
       summary: Avalara Get Authentication Token
@@ -58,10 +55,10 @@ paths:
                   expiresAt:
                     type: string
                     format: date-time
-  /connect/token:
     servers:
-    - url: https://identity.avalara.com
-      description: Avalara Identity Production
+    - url: https://api.certcapture.com/v2
+      description: CertCapture API Production
+  /connect/token:
     post:
       operationId: getToken
       summary: Avalara Obtain an Access Token
@@ -123,10 +120,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/OAuthError'
-  /connect/authorize:
     servers:
     - url: https://identity.avalara.com
       description: Avalara Identity Production
+  /connect/authorize:
     get:
       operationId: authorize
       summary: Avalara Authorization Endpoint
@@ -162,10 +159,10 @@ paths:
       responses:
         '302':
           description: Redirect to login page
-  /connect/revocation:
     servers:
     - url: https://identity.avalara.com
       description: Avalara Identity Production
+  /connect/revocation:
     post:
       operationId: revokeToken
       summary: Avalara Revoke a Token
@@ -195,6 +192,9 @@ paths:
       responses:
         '200':
           description: Token revoked
+    servers:
+    - url: https://identity.avalara.com
+      description: Avalara Identity Production
 components:
   schemas:
     OAuthError:

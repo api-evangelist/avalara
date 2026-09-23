@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Avalara MultiDocument API
+  title: Avalara Multi Document API
   version: '1.0'
   description: 'Operations tagged MultiDocument across 2 of this provider''s published API definitions: avalara-avatax-rest-openapi.yml, avatax-apis-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
@@ -14,11 +14,6 @@ tags:
   description: Multi-document transaction management
 paths:
   /api/v2/multidocument/transactions/create:
-    servers:
-    - url: https://rest.avatax.com
-      description: AvaTax Production
-    - url: https://sandbox-rest.avatax.com
-      description: AvaTax Sandbox
     post:
       operationId: createMultiDocumentTransaction
       summary: Avalara Create a Multi-document Transaction
@@ -37,14 +32,54 @@ paths:
       security:
       - basicAuth: []
       - bearerAuth: []
-  /api/v2/transactions/multidocument/{code}/type/{type}/adjust:
     servers:
-    - url: http://{{baseurl}}
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
+  /api/v2/transactions/multidocument/{code}/type/{type}/adjust:
     post:
       tags:
       - MultiDocument
       summary: Avalara AdjustMultiDocumentTransaction
-      description: "Adjusts the current MultiDocument transaction uniquely identified by this URL.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nWhen you adjust a transaction, that transaction's status is recorded as `Adjusted`.\n            \nBoth the revisions will be available for retrieval based on their code and ID numbers. Only transactions in Committed status can be reported on a tax filing by Avalara's Managed Returns Service.\n            \nTransactions that have been previously reported to a tax authority by Avalara Managed Returns are considered locked and are no longer available for adjustments.\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      description: 'Adjusts the current MultiDocument transaction uniquely identified by this URL.
+
+
+        A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
+
+        sales, purchases, inventory transfer, and returns (also called refunds).
+
+
+        When you adjust a transaction, that transaction''s status is recorded as `Adjusted`.
+
+
+        Both the revisions will be available for retrieval based on their code and ID numbers. Only transactions in Committed status can be reported on a tax filing by Avalara''s Managed Returns Service.
+
+
+        Transactions that have been previously reported to a tax authority by Avalara Managed Returns are considered locked and are no longer available for adjustments.
+
+
+        NOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:
+
+        * Replace ''/'' with ''\_-ava2f-\_'' For example: document/Code becomes document_-ava2f-_Code
+
+        * Replace ''+'' with ''\_-ava2b-\_'' For example: document+Code becomes document_-ava2b-_Code
+
+        * Replace ''?'' with ''\_-ava3f-\_'' For example: document?Code becomes document_-ava3f-_Code
+
+        * Replace ''%'' with ''\_-ava25-\_'' For example: document%Code becomes document_-ava25-_Code
+
+        * Replace ''#'' with ''\_-ava23-\_'' For example: document#Code becomes document_-ava23-_Code
+
+        * Replace '' '' with ''%20'' For example: document Code becomes document%20Code
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountOperator, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.
+
+        * This API depends on the following active services:*Required* (all): AvaTaxPro.'
       requestBody:
         content:
           application/json:
@@ -107,14 +142,62 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/transactions/multidocument/{code}/type/{type}/audit:
+      operationId: postApiV2TransactionsMultidocumentByCodeTypeByTypeAdjust
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/transactions/multidocument/{code}/type/{type}/audit:
     get:
       tags:
       - MultiDocument
       summary: Avalara AuditMultiDocumentTransaction
-      description: "Retrieve audit information about a MultiDocument transaction stored in AvaTax.\n            \nThe audit API retrieves audit information related to a specific MultiDocument transaction.  This audit\ninformation includes the following:\n            \n* The `code` of the MultiDocument transaction\n* The `type` of the MultiDocument transaction\n* The server timestamp representing the exact server time when the transaction was created\n* The server duration - how long it took to process this transaction\n* Whether exact API call details were logged\n* A reconstructed API call showing what the original create call looked like\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      description: 'Retrieve audit information about a MultiDocument transaction stored in AvaTax.
+
+
+        The audit API retrieves audit information related to a specific MultiDocument transaction. This audit
+
+        information includes the following:
+
+
+        * The `code` of the MultiDocument transaction
+
+        * The `type` of the MultiDocument transaction
+
+        * The server timestamp representing the exact server time when the transaction was created
+
+        * The server duration - how long it took to process this transaction
+
+        * Whether exact API call details were logged
+
+        * A reconstructed API call showing what the original create call looked like
+
+
+        A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
+
+        sales, purchases, inventory transfer, and returns (also called refunds).
+
+
+        NOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:
+
+        * Replace ''/'' with ''\_-ava2f-\_'' For example: document/Code becomes document_-ava2f-_Code
+
+        * Replace ''+'' with ''\_-ava2b-\_'' For example: document+Code becomes document_-ava2b-_Code
+
+        * Replace ''?'' with ''\_-ava3f-\_'' For example: document?Code becomes document_-ava3f-_Code
+
+        * Replace ''%'' with ''\_-ava25-\_'' For example: document%Code becomes document_-ava25-_Code
+
+        * Replace ''#'' with ''\_-ava23-\_'' For example: document#Code becomes document_-ava23-_Code
+
+        * Replace '' '' with ''%20'' For example: document Code becomes document%20Code
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.
+
+        * This API depends on the following active services:*Required* (all): AvaTaxPro.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -139,14 +222,50 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/transactions/multidocument/commit:
+      operationId: getApiV2TransactionsMultidocumentByCodeTypeByTypeAudit
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/transactions/multidocument/commit:
     post:
       tags:
       - MultiDocument
       summary: Avalara CommitMultiDocumentTransaction
-      description: "Marks a list of transactions by changing its status to `Committed`.\n            \nTransactions that are committed are available to be reported to a tax authority by Avalara Managed Returns.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nAny changes made to a committed transaction will generate a transaction history.\n\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, ProStoresOperator, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      description: 'Marks a list of transactions by changing its status to `Committed`.
+
+
+        Transactions that are committed are available to be reported to a tax authority by Avalara Managed Returns.
+
+
+        A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
+
+        sales, purchases, inventory transfer, and returns (also called refunds).
+
+
+        Any changes made to a committed transaction will generate a transaction history.
+
+
+        NOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:
+
+        * Replace ''/'' with ''\_-ava2f-\_'' For example: document/Code becomes document_-ava2f-_Code
+
+        * Replace ''+'' with ''\_-ava2b-\_'' For example: document+Code becomes document_-ava2b-_Code
+
+        * Replace ''?'' with ''\_-ava3f-\_'' For example: document?Code becomes document_-ava3f-_Code
+
+        * Replace ''%'' with ''\_-ava25-\_'' For example: document%Code becomes document_-ava25-_Code
+
+        * Replace ''#'' with ''\_-ava23-\_'' For example: document#Code becomes document_-ava23-_Code
+
+        * Replace '' '' with ''%20'' For example: document Code becomes document%20Code
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, ProStoresOperator, SSTAdmin, TechnicalSupportAdmin.
+
+        * This API depends on the following active services:*Required* (all): AvaTaxPro.'
       requestBody:
         content:
           application/json:
@@ -175,14 +294,93 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/transactions/multidocument:
+      operationId: postApiV2TransactionsMultidocumentCommit
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/transactions/multidocument:
     post:
       tags:
       - MultiDocument
       summary: Avalara CreateMultiDocumentTransaction
-      description: "Records a new MultiDocument transaction in AvaTax.\n            \nA traditional transaction requires exactly two parties: a seller and a buyer.  MultiDocument transactions can\ninvolve a marketplace of vendors, each of which contributes some portion of the final transaction.  Within\na MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate\ndocument.  This separation of documents allows each seller to file their taxes separately.\n            \nThis API will report an error if you attempt to create a transaction when one already exists with the specified `code`.\nIf you would like the API to automatically update the transaction when it already exists, please set the `allowAdjust`\nvalue to `true`.\n            \nTo generate a refund for a transaction, use the `RefundTransaction` API.\n            \nThe field `type` identifies the kind of transaction - for example, a sale, purchase, or refund.  If you do not specify\na `type` value, you will receive an estimate of type `SalesOrder`, which will not be recorded.\n            \nThe origin and destination locations for a transaction must be identified by either address or geocode.  For address-based transactions, please\nprovide addresses in the fields `line`, `city`, `region`, `country` and `postalCode`.  For geocode-based transactions, please provide the geocode\ninformation in the fields `latitude` and `longitude`.  If either `latitude` or `longitude` or both are null, the transaction will be calculated\nusing the best available address location information.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* Lines\n* Details (implies lines)\n* Summary (implies details)\n* Addresses\n* SummaryOnly (omit lines and details - reduces API response size)\n* LinesOnly (omit details - reduces API response size)\n* ForceTimeout - Simulates a timeout.  This adds a 30 second delay and error to your API call.  This can be used to test your code to ensure it can respond correctly in the case of a dropped connection.\n            \nIf you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      description: 'Records a new MultiDocument transaction in AvaTax.
+
+
+        A traditional transaction requires exactly two parties: a seller and a buyer. MultiDocument transactions can
+
+        involve a marketplace of vendors, each of which contributes some portion of the final transaction. Within
+
+        a MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate
+
+        document. This separation of documents allows each seller to file their taxes separately.
+
+
+        This API will report an error if you attempt to create a transaction when one already exists with the specified `code`.
+
+        If you would like the API to automatically update the transaction when it already exists, please set the `allowAdjust`
+
+        value to `true`.
+
+
+        To generate a refund for a transaction, use the `RefundTransaction` API.
+
+
+        The field `type` identifies the kind of transaction - for example, a sale, purchase, or refund. If you do not specify
+
+        a `type` value, you will receive an estimate of type `SalesOrder`, which will not be recorded.
+
+
+        The origin and destination locations for a transaction must be identified by either address or geocode. For address-based transactions, please
+
+        provide addresses in the fields `line`, `city`, `region`, `country` and `postalCode`. For geocode-based transactions, please provide the geocode
+
+        information in the fields `latitude` and `longitude`. If either `latitude` or `longitude` or both are null, the transaction will be calculated
+
+        using the best available address location information.
+
+
+        You may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:
+
+
+        * Lines
+
+        * Details (implies lines)
+
+        * Summary (implies details)
+
+        * Addresses
+
+        * SummaryOnly (omit lines and details - reduces API response size)
+
+        * LinesOnly (omit details - reduces API response size)
+
+        * ForceTimeout - Simulates a timeout. This adds a 30 second delay and error to your API call. This can be used to test your code to ensure it can respond correctly in the case of a dropped connection.
+
+
+        If you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.
+
+
+        NOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:
+
+        * Replace ''/'' with ''\_-ava2f-\_'' For example: document/Code becomes document_-ava2f-_Code
+
+        * Replace ''+'' with ''\_-ava2b-\_'' For example: document+Code becomes document_-ava2b-_Code
+
+        * Replace ''?'' with ''\_-ava3f-\_'' For example: document?Code becomes document_-ava3f-_Code
+
+        * Replace ''%'' with ''\_-ava25-\_'' For example: document%Code becomes document_-ava25-_Code
+
+        * Replace ''#'' with ''\_-ava23-\_'' For example: document#Code becomes document_-ava23-_Code
+
+        * Replace '' '' with ''%20'' For example: document Code becomes document%20Code
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.
+
+        * This API depends on the following active services:*Required* (all): AvaTaxPro.'
       requestBody:
         content:
           application/json:
@@ -232,11 +430,67 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: postApiV2TransactionsMultidocument
+      x-operation-id-source: derived
     get:
       tags:
       - MultiDocument
       summary: Avalara ListMultiDocumentTransactions
-      description: "List all MultiDocument transactions within this account.\n            \nThis endpoint is limited to returning 1,000 MultiDocument transactions at a time.  To retrieve more than 1,000 MultiDocument\ntransactions, please use the pagination features of the API.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* Lines\n* Details (implies lines)\n* Summary (implies details)\n* Addresses\n* SummaryOnly (omit lines and details - reduces API response size)\n* LinesOnly (omit details - reduces API response size)\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      description: 'List all MultiDocument transactions within this account.
+
+
+        This endpoint is limited to returning 1,000 MultiDocument transactions at a time. To retrieve more than 1,000 MultiDocument
+
+        transactions, please use the pagination features of the API.
+
+
+        A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
+
+        sales, purchases, inventory transfer, and returns (also called refunds).
+
+
+        Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on Filtering in REST .
+
+        Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
+
+
+        You may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:
+
+
+        * Lines
+
+        * Details (implies lines)
+
+        * Summary (implies details)
+
+        * Addresses
+
+        * SummaryOnly (omit lines and details - reduces API response size)
+
+        * LinesOnly (omit details - reduces API response size)
+
+
+        NOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:
+
+        * Replace ''/'' with ''\_-ava2f-\_'' For example: document/Code becomes document_-ava2f-_Code
+
+        * Replace ''+'' with ''\_-ava2b-\_'' For example: document+Code becomes document_-ava2b-_Code
+
+        * Replace ''?'' with ''\_-ava3f-\_'' For example: document?Code becomes document_-ava3f-_Code
+
+        * Replace ''%'' with ''\_-ava25-\_'' For example: document%Code becomes document_-ava25-_Code
+
+        * Replace ''#'' with ''\_-ava23-\_'' For example: document#Code becomes document_-ava23-_Code
+
+        * Replace '' '' with ''%20'' For example: document Code becomes document%20Code
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.
+
+        * This API depends on the following active services:*Required* (all): AvaTaxPro.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -251,14 +505,58 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/transactions/multidocument/{code}/type/{type}:
+      operationId: getApiV2TransactionsMultidocument
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/transactions/multidocument/{code}/type/{type}:
     get:
       tags:
       - MultiDocument
       summary: Avalara GetMultiDocumentTransactionByCodeAndType
-      description: "Get the current MultiDocument transaction identified by this URL.\n            \nIf this transaction was adjusted, the return value of this API will be the current transaction with this code.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* Lines\n* Details (implies lines)\n* Summary (implies details)\n* Addresses\n* SummaryOnly (omit lines and details - reduces API response size)\n* LinesOnly (omit details - reduces API response size)\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      description: 'Get the current MultiDocument transaction identified by this URL.
+
+
+        If this transaction was adjusted, the return value of this API will be the current transaction with this code.
+
+
+        You may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:
+
+
+        * Lines
+
+        * Details (implies lines)
+
+        * Summary (implies details)
+
+        * Addresses
+
+        * SummaryOnly (omit lines and details - reduces API response size)
+
+        * LinesOnly (omit details - reduces API response size)
+
+
+        NOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:
+
+        * Replace ''/'' with ''\_-ava2f-\_'' For example: document/Code becomes document_-ava2f-_Code
+
+        * Replace ''+'' with ''\_-ava2b-\_'' For example: document+Code becomes document_-ava2b-_Code
+
+        * Replace ''?'' with ''\_-ava3f-\_'' For example: document?Code becomes document_-ava3f-_Code
+
+        * Replace ''%'' with ''\_-ava25-\_'' For example: document%Code becomes document_-ava25-_Code
+
+        * Replace ''#'' with ''\_-ava23-\_'' For example: document#Code becomes document_-ava23-_Code
+
+        * Replace '' '' with ''%20'' For example: document Code becomes document%20Code
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.
+
+        * This API depends on the following active services:*Required* (all): AvaTaxPro.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -283,14 +581,74 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/transactions/multidocument/{id}:
+      operationId: getApiV2TransactionsMultidocumentByCodeTypeByType
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/transactions/multidocument/{id}:
     get:
       tags:
       - MultiDocument
       summary: Avalara GetMultiDocumentTransactionById
-      description: "Get the unique MultiDocument transaction identified by this URL.\n            \nA traditional transaction requires exactly two parties: a seller and a buyer.  MultiDocument transactions can\ninvolve a marketplace of vendors, each of which contributes some portion of the final transaction.  Within\na MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate\ndocument.  This separation of documents allows each seller to file their taxes separately.\n            \nThis endpoint retrieves the exact transaction identified by this ID number even if that transaction was later adjusted\nby using the `AdjustTransaction` endpoint.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* Lines\n* Details (implies lines)\n* Summary (implies details)\n* Addresses\n* SummaryOnly (omit lines and details - reduces API response size)\n* LinesOnly (omit details - reduces API response size)\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      description: 'Get the unique MultiDocument transaction identified by this URL.
+
+
+        A traditional transaction requires exactly two parties: a seller and a buyer. MultiDocument transactions can
+
+        involve a marketplace of vendors, each of which contributes some portion of the final transaction. Within
+
+        a MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate
+
+        document. This separation of documents allows each seller to file their taxes separately.
+
+
+        This endpoint retrieves the exact transaction identified by this ID number even if that transaction was later adjusted
+
+        by using the `AdjustTransaction` endpoint.
+
+
+        A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
+
+        sales, purchases, inventory transfer, and returns (also called refunds).
+
+
+        You may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:
+
+
+        * Lines
+
+        * Details (implies lines)
+
+        * Summary (implies details)
+
+        * Addresses
+
+        * SummaryOnly (omit lines and details - reduces API response size)
+
+        * LinesOnly (omit details - reduces API response size)
+
+
+        NOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:
+
+        * Replace ''/'' with ''\_-ava2f-\_'' For example: document/Code becomes document_-ava2f-_Code
+
+        * Replace ''+'' with ''\_-ava2b-\_'' For example: document+Code becomes document_-ava2b-_Code
+
+        * Replace ''?'' with ''\_-ava3f-\_'' For example: document?Code becomes document_-ava3f-_Code
+
+        * Replace ''%'' with ''\_-ava25-\_'' For example: document%Code becomes document_-ava25-_Code
+
+        * Replace ''#'' with ''\_-ava23-\_'' For example: document#Code becomes document_-ava23-_Code
+
+        * Replace '' '' with ''%20'' For example: document Code becomes document%20Code
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.
+
+        * This API depends on the following active services:*Required* (all): AvaTaxPro.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -310,14 +668,100 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/transactions/multidocument/{code}/type/{type}/refund:
+      operationId: getApiV2TransactionsMultidocumentById
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/transactions/multidocument/{code}/type/{type}/refund:
     post:
       tags:
       - MultiDocument
       summary: Avalara RefundMultiDocumentTransaction
-      description: "Create a refund for a MultiDocument transaction.\n            \nA traditional transaction requires exactly two parties: a seller and a buyer.  MultiDocument transactions can\ninvolve a marketplace of vendors, each of which contributes some portion of the final transaction.  Within\na MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate\ndocument.  This separation of documents allows each seller to file their taxes separately.\n            \nThe `RefundTransaction` API allows you to quickly and easily create a `ReturnInvoice` representing a refund\nfor a previously created `SalesInvoice` transaction.  You can choose to create a full or partial refund, and\nspecify individual line items from the original sale for refund.\n            \nThe `RefundTransaction` API ensures that the tax amount you refund to the customer exactly matches the tax that\nwas calculated during the original transaction, regardless of any changes to your company's configuration, rules,\nnexus, or any other setting.\n            \nThis API is intended to be a shortcut to allow you to quickly and accurately generate a refund for the following\ncommon refund scenarios:\n            \n* A full refund of a previous sale\n* Refunding the tax that was charged on a previous sale, when the customer provides an exemption certificate after the purchase\n* Refunding one or more items (lines) from a previous sale\n* Granting a customer a percentage refund of a previous sale\n            \nFor more complex scenarios than the ones above, please use `CreateTransaction` with document type `ReturnInvoice` to\ncreate a custom refund transaction.\n            \nYou may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:\n            \n* Lines\n* Details (implies lines)\n* Summary (implies details)\n* Addresses\n* SummaryOnly (omit lines and details - reduces API response size)\n* LinesOnly (omit details - reduces API response size)\n            \nIf you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.\n\nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      description: 'Create a refund for a MultiDocument transaction.
+
+
+        A traditional transaction requires exactly two parties: a seller and a buyer. MultiDocument transactions can
+
+        involve a marketplace of vendors, each of which contributes some portion of the final transaction. Within
+
+        a MultiDocument transaction, each individual buyer and seller pair are matched up and converted to a separate
+
+        document. This separation of documents allows each seller to file their taxes separately.
+
+
+        The `RefundTransaction` API allows you to quickly and easily create a `ReturnInvoice` representing a refund
+
+        for a previously created `SalesInvoice` transaction. You can choose to create a full or partial refund, and
+
+        specify individual line items from the original sale for refund.
+
+
+        The `RefundTransaction` API ensures that the tax amount you refund to the customer exactly matches the tax that
+
+        was calculated during the original transaction, regardless of any changes to your company''s configuration, rules,
+
+        nexus, or any other setting.
+
+
+        This API is intended to be a shortcut to allow you to quickly and accurately generate a refund for the following
+
+        common refund scenarios:
+
+
+        * A full refund of a previous sale
+
+        * Refunding the tax that was charged on a previous sale, when the customer provides an exemption certificate after the purchase
+
+        * Refunding one or more items (lines) from a previous sale
+
+        * Granting a customer a percentage refund of a previous sale
+
+
+        For more complex scenarios than the ones above, please use `CreateTransaction` with document type `ReturnInvoice` to
+
+        create a custom refund transaction.
+
+
+        You may specify one or more of the following values in the `$include` parameter to fetch additional nested data, using commas to separate multiple values:
+
+
+        * Lines
+
+        * Details (implies lines)
+
+        * Summary (implies details)
+
+        * Addresses
+
+        * SummaryOnly (omit lines and details - reduces API response size)
+
+        * LinesOnly (omit details - reduces API response size)
+
+
+        If you omit the `$include` parameter, the API will assume you want `Summary,Addresses`.
+
+
+        NOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:
+
+        * Replace ''/'' with ''\_-ava2f-\_'' For example: document/Code becomes document_-ava2f-_Code
+
+        * Replace ''+'' with ''\_-ava2b-\_'' For example: document+Code becomes document_-ava2b-_Code
+
+        * Replace ''?'' with ''\_-ava3f-\_'' For example: document?Code becomes document_-ava3f-_Code
+
+        * Replace ''%'' with ''\_-ava25-\_'' For example: document%Code becomes document_-ava25-_Code
+
+        * Replace ''#'' with ''\_-ava23-\_'' For example: document#Code becomes document_-ava23-_Code
+
+        * Replace '' '' with ''%20'' For example: document Code becomes document%20Code
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.
+
+        * This API depends on the following active services:*Required* (all): AvaTaxPro.'
       requestBody:
         content:
           application/json:
@@ -357,14 +801,47 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/transactions/multidocument/verify:
+      operationId: postApiV2TransactionsMultidocumentByCodeTypeByTypeRefund
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/transactions/multidocument/verify:
     post:
       tags:
       - MultiDocument
       summary: Avalara VerifyMultiDocumentTransaction
-      description: "Verifies that the MultiDocument transaction uniquely identified by this URL matches certain expected values.\n            \nIf the transaction does not match these expected values, this API will return an error code indicating which value did not match.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      description: 'Verifies that the MultiDocument transaction uniquely identified by this URL matches certain expected values.
+
+
+        If the transaction does not match these expected values, this API will return an error code indicating which value did not match.
+
+
+        A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
+
+        sales, purchases, inventory transfer, and returns (also called refunds).
+
+
+        NOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:
+
+        * Replace ''/'' with ''\_-ava2f-\_'' For example: document/Code becomes document_-ava2f-_Code
+
+        * Replace ''+'' with ''\_-ava2b-\_'' For example: document+Code becomes document_-ava2b-_Code
+
+        * Replace ''?'' with ''\_-ava3f-\_'' For example: document?Code becomes document_-ava3f-_Code
+
+        * Replace ''%'' with ''\_-ava25-\_'' For example: document%Code becomes document_-ava25-_Code
+
+        * Replace ''#'' with ''\_-ava23-\_'' For example: document#Code becomes document_-ava23-_Code
+
+        * Replace '' '' with ''%20'' For example: document Code becomes document%20Code
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, ProStoresOperator, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.
+
+        * This API depends on the following active services:*Required* (all): AvaTaxPro.'
       requestBody:
         content:
           application/json:
@@ -392,14 +869,52 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/transactions/multidocument/{code}/type/{type}/void:
+      operationId: postApiV2TransactionsMultidocumentVerify
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/transactions/multidocument/{code}/type/{type}/void:
     post:
       tags:
       - MultiDocument
       summary: Avalara VoidMultiDocumentTransaction
-      description: "Voids the current transaction uniquely identified by this URL.\n            \nA transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like\nsales, purchases, inventory transfer, and returns (also called refunds).\n            \nWhen you void a transaction, that transaction's status is recorded as `DocVoided`.\n            \nTransactions that have been previously reported to a tax authority by Avalara Managed Returns Service are considered `locked`,\nand they are no longer available to be voided.\n            \nNOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:\n* Replace '/' with '\\_-ava2f-\\_'  For example: document/Code becomes document_-ava2f-_Code\n* Replace '+' with '\\_-ava2b-\\_'  For example: document+Code becomes document_-ava2b-_Code\n* Replace '?' with '\\_-ava3f-\\_'  For example: document?Code becomes document_-ava3f-_Code\n* Replace '%' with '\\_-ava25-\\_'  For example: document%Code becomes document_-ava25-_Code\n* Replace '#' with '\\_-ava23-\\_'  For example: document#Code becomes document_-ava23-_Code\n* Replace ' ' with '%20'  For example: document Code becomes document%20Code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, BatchServiceAdmin, CompanyAdmin, CSPTester, ProStoresOperator, SSTAdmin, TechnicalSupportAdmin.\n* This API depends on the following active services:*Required* (all):  AvaTaxPro.\n"
+      description: 'Voids the current transaction uniquely identified by this URL.
+
+
+        A transaction represents a unique potentially taxable action that your company has recorded, and transactions include actions like
+
+        sales, purchases, inventory transfer, and returns (also called refunds).
+
+
+        When you void a transaction, that transaction''s status is recorded as `DocVoided`.
+
+
+        Transactions that have been previously reported to a tax authority by Avalara Managed Returns Service are considered `locked`,
+
+        and they are no longer available to be voided.
+
+
+        NOTE: If your companyCode or transactionCode contains any of these characters /, +, ? or a space please use the following encoding before making a request:
+
+        * Replace ''/'' with ''\_-ava2f-\_'' For example: document/Code becomes document_-ava2f-_Code
+
+        * Replace ''+'' with ''\_-ava2b-\_'' For example: document+Code becomes document_-ava2b-_Code
+
+        * Replace ''?'' with ''\_-ava3f-\_'' For example: document?Code becomes document_-ava3f-_Code
+
+        * Replace ''%'' with ''\_-ava25-\_'' For example: document%Code becomes document_-ava25-_Code
+
+        * Replace ''#'' with ''\_-ava23-\_'' For example: document#Code becomes document_-ava23-_Code
+
+        * Replace '' '' with ''%20'' For example: document Code becomes document%20Code
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountOperator, BatchServiceAdmin, CompanyAdmin, CSPTester, ProStoresOperator, SSTAdmin, TechnicalSupportAdmin.
+
+        * This API depends on the following active services:*Required* (all): AvaTaxPro.'
       requestBody:
         content:
           application/json:
@@ -436,6 +951,10 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: postApiV2TransactionsMultidocumentByCodeTypeByTypeVoid
+      x-operation-id-source: derived
+    servers:
+    - url: http://{{baseurl}}
 components:
   schemas:
     AddressInfo:
@@ -468,6 +987,15 @@ components:
         longitude:
           type: number
           format: double
+    CreateMultiDocumentModel:
+      type: object
+      properties:
+        code:
+          type: string
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/MultiDocumentLineItemModel'
     MultiDocumentLineItemModel:
       type: object
       properties:
@@ -492,15 +1020,6 @@ components:
               $ref: '#/components/schemas/AddressInfo'
             shipTo:
               $ref: '#/components/schemas/AddressInfo'
-    CreateMultiDocumentModel:
-      type: object
-      properties:
-        code:
-          type: string
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/MultiDocumentLineItemModel'
   securitySchemes:
     basicAuth:
       type: http

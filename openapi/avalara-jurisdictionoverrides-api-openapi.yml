@@ -1,7 +1,7 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Avalara AvaTax JurisdictionOverrides API
-  description: "Welcome to the AvaTax API Postman Collection! \n                \nThis collection provides a REST interface to Avalara's enterprise tax service, AvaTax. You can use this collection to interact with the AvaTax APIs while building your integration. \n\nWhile using this collection, we recommend following along with our Developer Implementation Guide: https://developer.avalara.com/avatax/dev-guide/   \n\nAPI requests are grouped into folders to help you navigate through the collection easily. Each request includes a description of the operation and its associated URL, method, headers, and example request body (if applicable). \n\nThe collection uses Postman environment variables for the API base URL and credentials, making it easy to switch between the sandbox and production environments.\n\nTo get started, ensure you have the necessary credentials. Then, update the 'username' and 'password' variables in the 'Authorization' or 'Variables' section with your credentials if you prefer username and password authentication. Alternatively, you can use the 'account_id' and 'license_key' variables for authentication using an account ID and license key.\n\nWe recommend starting with the Ping API, located within the Utilities folder, to test your connectivity and ensure your authentication credentials are valid. The Ping API is a simple way to check if you can successfully communicate with AvaTax.\n\nCollection Variables:\n- Base URL: The base URL for the API. By default, it is set to the sandbox URL - https://sandbox-rest.avatax.com. \n    - Change this variable to switch between sandbox and production environments:\n        - Sandbox URL: https://sandbox-rest.avatax.com\n\t\t- Production URL: https://rest.avatax.com\n- Username: If you are using username and password authentication, enter your username for AvaTax.\n- Password: If you are using username and password authentication, enter your password for AvaTax.\n- Account ID: If you are using account ID and license key authentication, enter your AvaTax account ID. \n    - Be sure to also replace the username variable in the authorization tab with account_id.\n- License Key: If you are using account ID and license key authentication, enter your AvaTax license key.\n    - Be sure to also replace the password variable in the authorization tab with license_key.\n\nHappy testing with AvaTax APIs!"
+  title: Avalara AvaTax Jurisdiction Overrides API
+  description: Welcome to the AvaTax API Postman Collection!
   version: 1.0.0
 servers:
 - url: http://{{baseurl}}
@@ -15,7 +15,22 @@ paths:
       tags:
       - JurisdictionOverrides
       summary: Avalara CreateJurisdictionOverrides
-      description: "Creates one or more jurisdiction override objects for this account.\n            \nA Jurisdiction Override is a configuration setting that allows you to select the taxing\njurisdiction for a specific address.  If you encounter an address that is on the boundary\nbetween two different jurisdictions, you can choose to set up a jurisdiction override\nto switch this address to use different taxing jurisdictions.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      description: 'Creates one or more jurisdiction override objects for this account.
+
+
+        A Jurisdiction Override is a configuration setting that allows you to select the taxing
+
+        jurisdiction for a specific address. If you encounter an address that is on the boundary
+
+        between two different jurisdictions, you can choose to set up a jurisdiction override
+
+        to switch this address to use different taxing jurisdictions.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -66,11 +81,33 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: postApiV2AccountsByAccountIdJurisdictionoverrides
+      x-operation-id-source: derived
     get:
       tags:
       - JurisdictionOverrides
       summary: Avalara ListJurisdictionOverridesByAccount
-      description: "List all jurisdiction override objects defined for this account.\n            \nA Jurisdiction Override is a configuration setting that allows you to select the taxing\njurisdiction for a specific address.  If you encounter an address that is on the boundary\nbetween two different jurisdictions, you can choose to set up a jurisdiction override\nto switch this address to use different taxing jurisdictions.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'List all jurisdiction override objects defined for this account.
+
+
+        A Jurisdiction Override is a configuration setting that allows you to select the taxing
+
+        jurisdiction for a specific address. If you encounter an address that is on the boundary
+
+        between two different jurisdictions, you can choose to set up a jurisdiction override
+
+        to switch this address to use different taxing jurisdictions.
+
+
+        Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on Filtering in REST .
+
+        Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -88,6 +125,8 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: getApiV2AccountsByAccountIdJurisdictionoverrides
+      x-operation-id-source: derived
   /api/v2/accounts/{accountId}/jurisdictionoverrides/{id}:
     delete:
       tags:
@@ -99,9 +138,7 @@ paths:
         ### Security Policies
 
 
-        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.
-
-        '
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -124,11 +161,28 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: deleteApiV2AccountsByAccountIdJurisdictionoverridesById
+      x-operation-id-source: derived
     get:
       tags:
       - JurisdictionOverrides
       summary: Avalara GetJurisdictionOverride
-      description: "Get the item object identified by this URL.\n            \nA Jurisdiction Override is a configuration setting that allows you to select the taxing\njurisdiction for a specific address.  If you encounter an address that is on the boundary\nbetween two different jurisdictions, you can choose to set up a jurisdiction override\nto switch this address to use different taxing jurisdictions.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'Get the item object identified by this URL.
+
+
+        A Jurisdiction Override is a configuration setting that allows you to select the taxing
+
+        jurisdiction for a specific address. If you encounter an address that is on the boundary
+
+        between two different jurisdictions, you can choose to set up a jurisdiction override
+
+        to switch this address to use different taxing jurisdictions.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -151,6 +205,8 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: getApiV2AccountsByAccountIdJurisdictionoverridesById
+      x-operation-id-source: derived
     put:
       tags:
       - JurisdictionOverrides
@@ -161,9 +217,7 @@ paths:
         ### Security Policies
 
 
-        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.
-
-        '
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -219,12 +273,34 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: putApiV2AccountsByAccountIdJurisdictionoverridesById
+      x-operation-id-source: derived
   /api/v2/jurisdictionoverrides:
     get:
       tags:
       - JurisdictionOverrides
       summary: Avalara QueryJurisdictionOverrides
-      description: "Get multiple jurisdiction override objects across all companies.\n            \nA Jurisdiction Override is a configuration setting that allows you to select the taxing\njurisdiction for a specific address.  If you encounter an address that is on the boundary\nbetween two different jurisdictions, you can choose to set up a jurisdiction override\nto switch this address to use different taxing jurisdictions.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'Get multiple jurisdiction override objects across all companies.
+
+
+        A Jurisdiction Override is a configuration setting that allows you to select the taxing
+
+        jurisdiction for a specific address. If you encounter an address that is on the boundary
+
+        between two different jurisdictions, you can choose to set up a jurisdiction override
+
+        to switch this address to use different taxing jurisdictions.
+
+
+        Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on Filtering in REST .
+
+        Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPAdmin, CSPTester, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -237,6 +313,8 @@ paths:
           description: Successful response
           content:
             application/json: {}
+      operationId: getApiV2Jurisdictionoverrides
+      x-operation-id-source: derived
 components:
   securitySchemes:
     basicAuth:

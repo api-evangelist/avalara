@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Avalara Nexus API
   version: '1.0'
@@ -14,11 +14,6 @@ tags:
   description: Manage tax nexus declarations for companies
 paths:
   /api/v2/companies/{companyId}/nexus:
-    servers:
-    - url: https://rest.avatax.com
-      description: AvaTax Production
-    - url: https://sandbox-rest.avatax.com
-      description: AvaTax Sandbox
     get:
       operationId: listNexusByCompany
       summary: Avalara List Nexus for a Company
@@ -67,14 +62,37 @@ paths:
       security:
       - basicAuth: []
       - bearerAuth: []
-  /api/v2/companies/{companyId}/nexus/{nexusId}/parameters:
     servers:
-    - url: http://{{baseurl}}
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
+  /api/v2/companies/{companyId}/nexus/{nexusId}/parameters:
     post:
       tags:
       - Nexus
       summary: Avalara CreateNexusParameters
-      description: "Add parameters to the nexus.\nSome tax calculation and reporting are different depending on the properties of the nexus, such as isRemoteSeller. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to an nexus will be used by default in tax calculation but will not show on the transaction line referencing the nexus.\n            \nA parameter specified on a transaction line will override an nexus parameter if they share the same parameter name.\n            \nTo see available parameters for this item, call `/api/v2/definitions/parameters?$filter=attributeType eq Nexus`\n            \nSome parameters are only available for use if you have subscribed to specific AvaTax services. To see which parameters you are able to use, add the query parameter \"$showSubscribed=true\" to the parameter definition call above.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      description: 'Add parameters to the nexus.
+
+        Some tax calculation and reporting are different depending on the properties of the nexus, such as isRemoteSeller. In AvaTax, these tax-affecting properties are called "parameters".
+
+
+        A parameter added to an nexus will be used by default in tax calculation but will not show on the transaction line referencing the nexus.
+
+
+        A parameter specified on a transaction line will override an nexus parameter if they share the same parameter name.
+
+
+        To see available parameters for this item, call `/api/v2/definitions/parameters?$filter=attributeType eq Nexus`
+
+
+        Some parameters are only available for use if you have subscribed to specific AvaTax services. To see which parameters you are able to use, add the query parameter "$showSubscribed=true" to the parameter definition call above.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -113,11 +131,27 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: postApiV2CompaniesByCompanyIdNexusByNexusIdParameters
+      x-operation-id-source: derived
     delete:
       tags:
       - Nexus
       summary: Avalara DeleteNexusParameters
-      description: "Delete all the parameters for a given nexus.\nSome tax calculation and reporting are different depending on the properties of the nexus, such as isRemoteSeller. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to an nexus will be used by default in tax calculation but will not show on the transaction line referencing the nexus.\n            \nA parameter specified on a transaction line will override an nexus parameter if they share the same parameter name.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      description: 'Delete all the parameters for a given nexus.
+
+        Some tax calculation and reporting are different depending on the properties of the nexus, such as isRemoteSeller. In AvaTax, these tax-affecting properties are called "parameters".
+
+
+        A parameter added to an nexus will be used by default in tax calculation but will not show on the transaction line referencing the nexus.
+
+
+        A parameter specified on a transaction line will override an nexus parameter if they share the same parameter name.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -142,11 +176,32 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: deleteApiV2CompaniesByCompanyIdNexusByNexusIdParameters
+      x-operation-id-source: derived
     get:
       tags:
       - Nexus
       summary: Avalara ListNexusParameters
-      description: "List parameters for a nexus.\nSome tax calculation and reporting are different depending on the properties of the nexus, such as isRemoteSeller. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to an nexus will be used by default in tax calculation but will not show on the transaction line referencing the nexus.\n            \nA parameter specified on a transaction line will override an nexus parameter if they share the same parameter name. \n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'List parameters for a nexus.
+
+        Some tax calculation and reporting are different depending on the properties of the nexus, such as isRemoteSeller. In AvaTax, these tax-affecting properties are called "parameters".
+
+
+        A parameter added to an nexus will be used by default in tax calculation but will not show on the transaction line referencing the nexus.
+
+
+        A parameter specified on a transaction line will override an nexus parameter if they share the same parameter name.
+
+
+        Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on Filtering in REST .
+
+        Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -171,14 +226,46 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/companies/{companyId}/nexus/byaddress:
+      operationId: getApiV2CompaniesByCompanyIdNexusByNexusIdParameters
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/companies/{companyId}/nexus/byaddress:
     post:
       tags:
       - Nexus
       summary: Avalara DeclareNexusByAddress
-      description: "This call is intended to simplify adding all applicable nexus to a company, for an address or addresses. Calling this\nAPI declares nexus for this company, for the list of addresses provided,\nfor the date range provided. You may also use this API to extend effective date on an already-declared nexus.\n            \nThe concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional\ntaxes.  The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your\naccountant or lawyer prior to declaring nexus.\n            \nNote that not all fields within a nexus can be updated; Avalara publishes a list of all defined nexus at the\n'/api/v2/definitions/nexus' endpoint.\n            \nYou may only define nexus matching the official list of declared nexus.\n            \nPlease note that nexus changes may not take effect immediately and you should plan to update your nexus settings in advance\nof calculating tax for a location.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      description: 'This call is intended to simplify adding all applicable nexus to a company, for an address or addresses. Calling this
+
+        API declares nexus for this company, for the list of addresses provided,
+
+        for the date range provided. You may also use this API to extend effective date on an already-declared nexus.
+
+
+        The concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional
+
+        taxes. The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your
+
+        accountant or lawyer prior to declaring nexus.
+
+
+        Note that not all fields within a nexus can be updated; Avalara publishes a list of all defined nexus at the
+
+        ''/api/v2/definitions/nexus'' endpoint.
+
+
+        You may only define nexus matching the official list of declared nexus.
+
+
+        Please note that nexus changes may not take effect immediately and you should plan to update your nexus settings in advance
+
+        of calculating tax for a location.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -216,14 +303,34 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/companies/{companyId}/nexus/{id}:
+      operationId: postApiV2CompaniesByCompanyIdNexusByaddress
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/companies/{companyId}/nexus/{id}:
     delete:
       tags:
       - Nexus
       summary: Avalara DeleteNexus
-      description: "Marks the existing nexus object at this URL as deleted.\n            \nThe concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional\ntaxes.  The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your\naccountant or lawyer prior to declaring nexus.\n            \nPlease note that nexus changes may not take effect immediately and you should plan to update your nexus settings in advance\nof calculating tax for a location.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      description: 'Marks the existing nexus object at this URL as deleted.
+
+
+        The concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional
+
+        taxes. The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your
+
+        accountant or lawyer prior to declaring nexus.
+
+
+        Please note that nexus changes may not take effect immediately and you should plan to update your nexus settings in advance
+
+        of calculating tax for a location.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -248,11 +355,31 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: deleteApiV2CompaniesByCompanyIdNexusById
+      x-operation-id-source: derived
     get:
       tags:
       - Nexus
       summary: Avalara GetNexus
-      description: "Get the nexus object identified by this URL.\n            \nThe concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional\ntaxes.  The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your\naccountant or lawyer prior to declaring nexus.\nYou may specify one or more of the following values in the '$include' parameter to fetch additional nested data, using commas to separate multiple values:\n            \n * Parameters\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'Get the nexus object identified by this URL.
+
+
+        The concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional
+
+        taxes. The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your
+
+        accountant or lawyer prior to declaring nexus.
+
+        You may specify one or more of the following values in the ''$include'' parameter to fetch additional nested data, using commas to separate multiple values:
+
+
+        * Parameters
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -277,11 +404,50 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: getApiV2CompaniesByCompanyIdNexusById
+      x-operation-id-source: derived
     put:
       tags:
       - Nexus
       summary: Avalara UpdateNexus
-      description: "Replace the existing nexus declaration object at this URL with an updated object.\n            \nThe concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional\ntaxes.  The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your\naccountant or lawyer prior to declaring nexus.\n            \nTo create a nexus declaration for your company, you must first call the Definitions API `ListNexus` to obtain a\nlist of Avalara-defined nexus.  Once you have determined which nexus you wish to declare, you should customize\nonly the user-selectable fields in this object.\n            \nThe user selectable fields for the nexus object are `companyId`, `effectiveDate`, `endDate`, `localNexusTypeId`,\n`taxId`, `nexusTypeId`, `hasPermanentEstablishment`, and `isSellerImporterOfRecord`.\n            \nWhen calling `CreateNexus` or `UpdateNexus`, all values in your nexus object except for the user-selectable fields\nmust match an Avalara-defined system nexus object.  You can retrieve a list of Avalara-defined system nexus objects\nby calling `ListNexus`.  If any data does not match, AvaTax may not recognize your nexus declaration.\n            \nPlease note that nexus changes may not take effect immediately and you should plan to update your nexus settings in advance\nof calculating tax for a location.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      description: 'Replace the existing nexus declaration object at this URL with an updated object.
+
+
+        The concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional
+
+        taxes. The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your
+
+        accountant or lawyer prior to declaring nexus.
+
+
+        To create a nexus declaration for your company, you must first call the Definitions API `ListNexus` to obtain a
+
+        list of Avalara-defined nexus. Once you have determined which nexus you wish to declare, you should customize
+
+        only the user-selectable fields in this object.
+
+
+        The user selectable fields for the nexus object are `companyId`, `effectiveDate`, `endDate`, `localNexusTypeId`,
+
+        `taxId`, `nexusTypeId`, `hasPermanentEstablishment`, and `isSellerImporterOfRecord`.
+
+
+        When calling `CreateNexus` or `UpdateNexus`, all values in your nexus object except for the user-selectable fields
+
+        must match an Avalara-defined system nexus object. You can retrieve a list of Avalara-defined system nexus objects
+
+        by calling `ListNexus`. If any data does not match, AvaTax may not recognize your nexus declaration.
+
+
+        Please note that nexus changes may not take effect immediately and you should plan to update your nexus settings in advance
+
+        of calculating tax for a location.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -340,14 +506,30 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/companies/{companyId}/nexus/{nexusId}/parameters/{id}:
+      operationId: putApiV2CompaniesByCompanyIdNexusById
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/companies/{companyId}/nexus/{nexusId}/parameters/{id}:
     delete:
       tags:
       - Nexus
       summary: Avalara DeleteNexusParameter
-      description: "Delete a single nexus parameter.\nSome tax calculation and reporting are different depending on the properties of the nexus, such as isRemoteSeller. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to an nexus will be used by default in tax calculation but will not show on the transaction line referencing the nexus.\n            \nA parameter specified on a transaction line will override an nexus parameter if they share the same parameter name.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      description: 'Delete a single nexus parameter.
+
+        Some tax calculation and reporting are different depending on the properties of the nexus, such as isRemoteSeller. In AvaTax, these tax-affecting properties are called "parameters".
+
+
+        A parameter added to an nexus will be used by default in tax calculation but will not show on the transaction line referencing the nexus.
+
+
+        A parameter specified on a transaction line will override an nexus parameter if they share the same parameter name.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -377,11 +559,27 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: deleteApiV2CompaniesByCompanyIdNexusByNexusIdParametersById
+      x-operation-id-source: derived
     get:
       tags:
       - Nexus
       summary: Avalara GetNexusParameter
-      description: "Retrieve a single nexus parameter.\nSome tax calculation and reporting are different depending on the properties of the nexus, such as isRemoteSeller.In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to an nexus will be used by default in tax calculation but will not show on the transaction line referencing the nexus.\n            \nA parameter specified on a transaction line will override an nexus parameter if they share the same parameter name.\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'Retrieve a single nexus parameter.
+
+        Some tax calculation and reporting are different depending on the properties of the nexus, such as isRemoteSeller.In AvaTax, these tax-affecting properties are called "parameters".
+
+
+        A parameter added to an nexus will be used by default in tax calculation but will not show on the transaction line referencing the nexus.
+
+
+        A parameter specified on a transaction line will override an nexus parameter if they share the same parameter name.
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -411,11 +609,28 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: getApiV2CompaniesByCompanyIdNexusByNexusIdParametersById
+      x-operation-id-source: derived
     put:
       tags:
       - Nexus
       summary: Avalara UpdateNexusParameter
-      description: "Update an nexus parameter.\n            \nSome tax calculation and reporting are different depending on the properties of the nexus, such as isRemoteSeller. In AvaTax, these tax-affecting properties are called \"parameters\".\n            \nA parameter added to a nexus will be used in tax calculation based on the locationcode and parameter value the transaction state line might have lines added.\n            \nA parameter specified on a transaction line will override an item parameter if they share the same parameter name.????? I dont know about this?\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.\n"
+      description: 'Update an nexus parameter.
+
+
+        Some tax calculation and reporting are different depending on the properties of the nexus, such as isRemoteSeller. In AvaTax, these tax-affecting properties are called "parameters".
+
+
+        A parameter added to a nexus will be used in tax calculation based on the locationcode and parameter value the transaction state line might have lines added.
+
+
+        A parameter specified on a transaction line will override an item parameter if they share the same parameter name.????? I dont know about this?
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, BatchServiceAdmin, CompanyAdmin, CSPTester, SSTAdmin, TechnicalSupportAdmin.'
       requestBody:
         content:
           application/json:
@@ -459,14 +674,41 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/companies/{companyId}/nexus/byform/{formCode}:
+      operationId: putApiV2CompaniesByCompanyIdNexusByNexusIdParametersById
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/companies/{companyId}/nexus/byform/{formCode}:
     get:
       tags:
       - Nexus
       summary: Avalara GetNexusByFormCode
-      description: "Retrieves a list of nexus related to a tax form.\n            \nThe concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional\ntaxes.  The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your\naccountant or lawyer prior to declaring nexus.\n            \nThis API is intended to provide useful information when examining a tax form.  If you are about to begin filing\na tax form, you may want to know whether you have declared nexus in all the jurisdictions related to that tax\nform in order to better understand how the form will be filled out.\nYou may specify one or more of the following values in the '$include' parameter to fetch additional nested data, using commas to separate multiple values:\n            \n * Parameters\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'Retrieves a list of nexus related to a tax form.
+
+
+        The concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional
+
+        taxes. The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your
+
+        accountant or lawyer prior to declaring nexus.
+
+
+        This API is intended to provide useful information when examining a tax form. If you are about to begin filing
+
+        a tax form, you may want to know whether you have declared nexus in all the jurisdictions related to that tax
+
+        form in order to better understand how the form will be filled out.
+
+        You may specify one or more of the following values in the ''$include'' parameter to fetch additional nested data, using commas to separate multiple values:
+
+
+        * Parameters
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -491,14 +733,39 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/companies/{companyId}/nexus/byTaxTypeGroup/{taxTypeGroup}:
+      operationId: getApiV2CompaniesByCompanyIdNexusByformByFormCode
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/companies/{companyId}/nexus/byTaxTypeGroup/{taxTypeGroup}:
     get:
       tags:
       - Nexus
       summary: Avalara ListNexusByCompanyAndTaxTypeGroup
-      description: "List all nexus objects defined for this company filtered by TaxTypeGroup.\n            \nThe concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional\ntaxes.  The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your\naccountant or lawyer prior to declaring nexus.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\nYou may specify one or more of the following values in the '$include' parameter to fetch additional nested data, using commas to separate multiple values:\n            \n * Parameters\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'List all nexus objects defined for this company filtered by TaxTypeGroup.
+
+
+        The concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional
+
+        taxes. The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your
+
+        accountant or lawyer prior to declaring nexus.
+
+
+        Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on Filtering in REST .
+
+        Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
+
+        You may specify one or more of the following values in the ''$include'' parameter to fetch additional nested data, using commas to separate multiple values:
+
+
+        * Parameters
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -523,14 +790,39 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
-  /api/v2/nexus:
+      operationId: getApiV2CompaniesByCompanyIdNexusByTaxTypeGroupByTaxTypeGroup
+      x-operation-id-source: derived
     servers:
     - url: http://{{baseurl}}
+  /api/v2/nexus:
     get:
       tags:
       - Nexus
       summary: Avalara QueryNexus
-      description: "Get multiple nexus objects across all companies.\n            \nThe concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional\ntaxes.  The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your\naccountant or lawyer prior to declaring nexus.\n            \nSearch for specific objects using the criteria in the `$filter` parameter; full documentation is available on [Filtering in REST](http://developer.avalara.com/avatax/filtering-in-rest/) .\nPaginate your results using the `$top`, `$skip`, and `$orderby` parameters.\nYou may specify one or more of the following values in the '$include' parameter to fetch additional nested data, using commas to separate multiple values:\n            \n * Parameters\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n"
+      description: 'Get multiple nexus objects across all companies.
+
+
+        The concept of Nexus indicates a place where your company is legally obligated to collect and remit transactional
+
+        taxes. The legal requirements for nexus may vary per country and per jurisdiction; please seek advice from your
+
+        accountant or lawyer prior to declaring nexus.
+
+
+        Search for specific objects using the criteria in the `$filter` parameter; full documentation is available on Filtering in REST .
+
+        Paginate your results using the `$top`, `$skip`, and `$orderby` parameters.
+
+        You may specify one or more of the following values in the ''$include'' parameter to fetch additional nested data, using commas to separate multiple values:
+
+
+        * Parameters
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, Compliance Root User, ComplianceAdmin, ComplianceUser, CSPAdmin, CSPTester, FirmAdmin, FirmUser, SiteAdmin, SSTAdmin, SystemAdmin, TechnicalSupportAdmin, TechnicalSupportUser.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -545,35 +837,11 @@ paths:
             application/json: {}
       security:
       - basicAuth: []
+      operationId: getApiV2Nexus
+      x-operation-id-source: derived
+    servers:
+    - url: http://{{baseurl}}
 components:
-  parameters:
-    top:
-      name: $top
-      in: query
-      schema:
-        type: integer
-        default: 1000
-      description: Maximum number of results to return
-    filter:
-      name: $filter
-      in: query
-      schema:
-        type: string
-      description: OData filter expression for result filtering
-    companyId:
-      name: companyId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The numeric ID of the company
-    skip:
-      name: $skip
-      in: query
-      schema:
-        type: integer
-        default: 0
-      description: Number of results to skip for pagination
   schemas:
     FetchResult_NexusModel:
       type: object
@@ -627,6 +895,34 @@ components:
           - SSTNonVolunteer
         hasLocalNexus:
           type: boolean
+  parameters:
+    companyId:
+      name: companyId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The numeric ID of the company
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
   securitySchemes:
     basicAuth:
       type: http

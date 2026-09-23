@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Avalara Addresses API
   version: '1.0'
@@ -14,11 +14,6 @@ tags:
   description: Validate and resolve addresses for tax jurisdiction determination
 paths:
   /api/v2/addresses/resolve:
-    servers:
-    - url: https://rest.avatax.com
-      description: AvaTax Production
-    - url: https://sandbox-rest.avatax.com
-      description: AvaTax Sandbox
     post:
       operationId: resolveAddress
       summary: Avalara Resolve and Validate an Address
@@ -45,7 +40,34 @@ paths:
       tags:
       - Addresses
       summary: Avalara ResolveAddress
-      description: "Resolve an address against Avalara's address-validation system.  If the address can be resolved, this API\nprovides the latitude and longitude of the resolved location.  The value 'resolutionQuality' can be used\nto identify how closely this address can be located.  If the address cannot be clearly located, use the\n'messages' structure to learn more about problems with this address.\nThis is the same API as the POST /api/v2/addresses/resolve endpoint.\nBoth verbs are supported to provide for flexible implementation.\n            \nIn order to get any evaluation for an address, please provide at least one of the following fields/pairs:\n1. postal code\n2. line1 + city + region\n3. line1 + postal code\n\n### Security Policies\n\n* This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.\n* This API depends on the following active services:*Required* (all):  AutoAddress.\n"
+      description: 'Resolve an address against Avalara''s address-validation system. If the address can be resolved, this API
+
+        provides the latitude and longitude of the resolved location. The value ''resolutionQuality'' can be used
+
+        to identify how closely this address can be located. If the address cannot be clearly located, use the
+
+        ''messages'' structure to learn more about problems with this address.
+
+        This is the same API as the POST /api/v2/addresses/resolve endpoint.
+
+        Both verbs are supported to provide for flexible implementation.
+
+
+        In order to get any evaluation for an address, please provide at least one of the following fields/pairs:
+
+        1. postal code
+
+        2. line1 + city + region
+
+        3. line1 + postal code
+
+
+        ### Security Policies
+
+
+        * This API requires one of the following user roles: AccountAdmin, AccountOperator, AccountUser, BatchServiceAdmin, CompanyAdmin, CompanyUser, CSPTester, SSTAdmin, TechnicalSupportAdmin, TechnicalSupportUser.
+
+        * This API depends on the following active services:*Required* (all): AutoAddress.'
       parameters:
       - name: X-Avalara-Client
         in: header
@@ -61,8 +83,51 @@ paths:
       security:
       - basicAuth: []
       - bearerAuth: []
+      operationId: getApiV2AddressesResolve
+      x-operation-id-source: derived
+    servers:
+    - url: https://rest.avatax.com
+      description: AvaTax Production
+    - url: https://sandbox-rest.avatax.com
+      description: AvaTax Sandbox
 components:
   schemas:
+    AddressResolutionModel:
+      type: object
+      properties:
+        address:
+          $ref: '#/components/schemas/AddressInfo'
+        validatedAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressInfo'
+        coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+              format: double
+            longitude:
+              type: number
+              format: double
+        resolutionQuality:
+          type: string
+          enum:
+          - NotCoded
+          - External
+          - CountryCentroid
+          - RegionCentroid
+          - PartialCentroid
+          - PostalCentroidGood
+          - PostalCentroidBetter
+          - PostalCentroidBest
+          - Intersection
+          - Interpolated
+          - Rooftop
+        taxAuthorities:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxAuthorityInfo'
     AddressInfo:
       type: object
       properties:
@@ -104,42 +169,6 @@ components:
           type: string
         signatureCode:
           type: string
-    AddressResolutionModel:
-      type: object
-      properties:
-        address:
-          $ref: '#/components/schemas/AddressInfo'
-        validatedAddresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/AddressInfo'
-        coordinates:
-          type: object
-          properties:
-            latitude:
-              type: number
-              format: double
-            longitude:
-              type: number
-              format: double
-        resolutionQuality:
-          type: string
-          enum:
-          - NotCoded
-          - External
-          - CountryCentroid
-          - RegionCentroid
-          - PartialCentroid
-          - PostalCentroidGood
-          - PostalCentroidBetter
-          - PostalCentroidBest
-          - Intersection
-          - Interpolated
-          - Rooftop
-        taxAuthorities:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxAuthorityInfo'
     AddressValidationInfo:
       type: object
       properties:

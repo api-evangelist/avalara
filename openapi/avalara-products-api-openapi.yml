@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Avalara Excise Platform Products API
   description: The Avalara Excise Platform API provides an external programmatic interface for excise tax determination on fuel, tobacco, alcohol, and other excise products. It supports tax calculation, business entity management, location configuration, and transaction processing for excise tax compliance across US federal and state jurisdictions.

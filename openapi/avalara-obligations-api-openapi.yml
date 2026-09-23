@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Avalara MyLodgeTax Obligations API
   description: The MyLodgeTax API provides sales and lodging tax compliance for short-term property rentals. It offers partners access to summarized tax responsibilities for property owners by marketplace, including direct listings and marketplace bookings, with tax rate lookups and filing obligation information.
