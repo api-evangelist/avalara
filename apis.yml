@@ -7,10 +7,8 @@ apis:
   - Tax
   tags_raw:
   - Taxes
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   properties:
-  - url: graphql/avalara-graphql.md
-    type: GraphQL
   description: >-
     Automate compliance with Avalara MCP servers for AI-driven tax workflows and APIs. Have your agent
     call our agent.
@@ -90,7 +88,7 @@ apis:
 - aid: avalara:avalara-1099-forms-api
   name: Avalara 1099 Forms API
   description: Create and manage 1099 information returns
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - 1099 Forms
   properties:
@@ -131,7 +129,7 @@ apis:
 - aid: avalara:avalara-accounts-api
   name: Avalara Accounts API
   description: Manage AvaTax accounts and license keys
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Account
   tags_raw:
@@ -174,7 +172,7 @@ apis:
 - aid: avalara:avalara-addresses-api
   name: Avalara Addresses API
   description: Validate and resolve addresses for tax jurisdiction determination
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Addresses
   properties:
@@ -215,7 +213,7 @@ apis:
 - aid: avalara:avalara-advancedrules-api
   name: Avalara AdvancedRules API
   description: The AdvancedRules API from Avalara — 2 operation(s) for advancedrules.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - AdvancedRules
   properties:
@@ -256,7 +254,7 @@ apis:
 - aid: avalara:avalara-attributes-api
   name: Avalara Attributes API
   description: Manage certificate attributes and custom fields
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Attributes
   properties:
@@ -297,7 +295,7 @@ apis:
 - aid: avalara:avalara-authentication-api
   name: Avalara Authentication API
   description: Token management and authentication
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Authentication
   properties:
@@ -338,7 +336,7 @@ apis:
 - aid: avalara:avalara-avafileforms-api
   name: Avalara AvaFileForms API
   description: The AvaFileForms API from Avalara — 2 operation(s) for avafileforms.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - AvaFileForms
   properties:
@@ -379,7 +377,7 @@ apis:
 - aid: avalara:avalara-batches-api
   name: Avalara Batches API
   description: Submit and manage batch transaction processing
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Batches
   properties:
@@ -420,7 +418,7 @@ apis:
 - aid: avalara:avalara-business-entities-api
   name: Avalara Business Entities API
   description: Manage business entity records
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Business Entities
   properties:
@@ -461,7 +459,7 @@ apis:
 - aid: avalara:avalara-certexpressinvites-api
   name: Avalara CertExpressInvites API
   description: The CertExpressInvites API from Avalara — 3 operation(s) for certexpressinvites.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - CertExpressInvites
   properties:
@@ -502,7 +500,7 @@ apis:
 - aid: avalara:avalara-certificates-api
   name: Avalara Certificates API
   description: Manage exemption certificates and CertExpress invitations
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Certificates
   properties:
@@ -543,7 +541,7 @@ apis:
 - aid: avalara:avalara-classification-api
   name: Avalara Classification API
   description: Classify products into HS Codes and tax codes
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Classification
   properties:
@@ -584,7 +582,7 @@ apis:
 - aid: avalara:avalara-classification-requests-api
   name: Avalara Classification Requests API
   description: Submit and manage product classification requests
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Classification Requests
   properties:
@@ -625,7 +623,7 @@ apis:
 - aid: avalara:avalara-companies-api
   name: Avalara Companies API
   description: Manage payer company records
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Companies
   properties:
@@ -666,7 +664,7 @@ apis:
 - aid: avalara:avalara-contacts-api
   name: Avalara Contacts API
   description: Manage company contacts
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Contacts
   properties:
@@ -707,7 +705,7 @@ apis:
 - aid: avalara:avalara-customers-api
   name: Avalara Customers API
   description: Manage customer records and their certificate associations
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Customers
   properties:
@@ -748,7 +746,7 @@ apis:
 - aid: avalara:avalara-customization-api
   name: Avalara Customization API
   description: Manage tax profiles, exemptions, and overrides
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Customization
   properties:
@@ -789,7 +787,7 @@ apis:
 - aid: avalara:avalara-definitions-api
   name: Avalara Definitions API
   description: Query tax content definitions, rates, and jurisdictions
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Definitions
   properties:
@@ -830,7 +828,7 @@ apis:
 - aid: avalara:avalara-distancethresholds-api
   name: Avalara DistanceThresholds API
   description: The DistanceThresholds API from Avalara — 3 operation(s) for distancethresholds.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - DistanceThresholds
   properties:
@@ -871,7 +869,7 @@ apis:
 - aid: avalara:avalara-documents-api
   name: Avalara Documents API
   description: Submit and manage e-invoice documents
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Documents
   properties:
@@ -912,7 +910,7 @@ apis:
 - aid: avalara:avalara-ecommerce-api
   name: Avalara eCommerce API
   description: eCommerce token generation for certificate collection
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - E-Commerce
   tags_raw:
@@ -955,7 +953,7 @@ apis:
 - aid: avalara:avalara-ecommercetoken-api
   name: Avalara ECommerceToken API
   description: The ECommerceToken API from Avalara — 1 operation(s) for ecommercetoken.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - ECommerceToken
   properties:
@@ -996,7 +994,7 @@ apis:
 - aid: avalara:avalara-electronic-invoices-api
   name: Avalara Electronic Invoices API
   description: Issue and manage electronic fiscal documents
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Electronic Invoices
   properties:
@@ -1037,7 +1035,7 @@ apis:
 - aid: avalara:avalara-filing-api
   name: Avalara Filing API
   description: E-file forms with the IRS
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Filings
   tags_raw:
@@ -1080,7 +1078,7 @@ apis:
 - aid: avalara:avalara-filing-calendar-api
   name: Avalara Filing Calendar API
   description: Manage VAT filing obligations and calendars
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Filing Calendar
   properties:
@@ -1121,7 +1119,7 @@ apis:
 - aid: avalara:avalara-firmclientlinkages-api
   name: Avalara FirmClientLinkages API
   description: The FirmClientLinkages API from Avalara — 7 operation(s) for firmclientlinkages.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - FirmClientLinkages
   properties:
@@ -1162,7 +1160,7 @@ apis:
 - aid: avalara:avalara-free-api
   name: Avalara Free API
   description: Free tax rate lookup endpoints
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Free
   properties:
@@ -1203,7 +1201,7 @@ apis:
 - aid: avalara:avalara-fundingrequests-api
   name: Avalara FundingRequests API
   description: The FundingRequests API from Avalara — 2 operation(s) for fundingrequests.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - FundingRequests
   properties:
@@ -1244,7 +1242,7 @@ apis:
 - aid: avalara:avalara-geocoding-api
   name: Avalara Geocoding API
   description: Determine tax jurisdictions from addresses
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Geocoding
   properties:
@@ -1285,7 +1283,7 @@ apis:
 - aid: avalara:avalara-hs-codes-api
   name: Avalara HS Codes API
   description: Retrieve HS Code classification results
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - HS Codes
   properties:
@@ -1326,7 +1324,7 @@ apis:
 - aid: avalara:avalara-interop-api
   name: Avalara Interop API
   description: Interoperability and network exchange
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Interop
   properties:
@@ -1367,7 +1365,7 @@ apis:
 - aid: avalara:avalara-items-api
   name: Avalara Items API
   description: Manage product items and their tax classification
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Item
   tags_raw:
@@ -1410,7 +1408,7 @@ apis:
 - aid: avalara:avalara-jurisdictionoverrides-api
   name: Avalara JurisdictionOverrides API
   description: The JurisdictionOverrides API from Avalara — 3 operation(s) for jurisdictionoverrides.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - JurisdictionOverrides
   properties:
@@ -1451,7 +1449,7 @@ apis:
 - aid: avalara:avalara-licenses-api
   name: Avalara Licenses API
   description: Manage excise licenses
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Licenses
   properties:
@@ -1492,7 +1490,7 @@ apis:
 - aid: avalara:avalara-locations-api
   name: Avalara Locations API
   description: Manage company locations and jurisdictions
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Location
   tags_raw:
@@ -1535,7 +1533,7 @@ apis:
 - aid: avalara:avalara-lookup-api
   name: Avalara Lookup API
   description: Look up service and transaction type information
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Lookup
   properties:
@@ -1576,7 +1574,7 @@ apis:
 - aid: avalara:avalara-mandates-api
   name: Avalara Mandates API
   description: Query e-invoicing mandate definitions
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Mandates
   properties:
@@ -1617,7 +1615,7 @@ apis:
 - aid: avalara:avalara-multidocument-api
   name: Avalara MultiDocument API
   description: Multi-document transaction management
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - MultiDocument
   properties:
@@ -1658,7 +1656,7 @@ apis:
 - aid: avalara:avalara-nexus-api
   name: Avalara Nexus API
   description: Manage tax nexus declarations for companies
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Nexus
   properties:
@@ -1699,7 +1697,7 @@ apis:
 - aid: avalara:avalara-notices-api
   name: Avalara Notices API
   description: The Notices API from Avalara — 4 operation(s) for notices.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Notices
   properties:
@@ -1740,7 +1738,7 @@ apis:
 - aid: avalara:avalara-notifications-api
   name: Avalara Notifications API
   description: The Notifications API from Avalara — 3 operation(s) for notifications.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Notification
   tags_raw:
@@ -1783,7 +1781,7 @@ apis:
 - aid: avalara:avalara-obligations-api
   name: Avalara Obligations API
   description: View filing obligations and tax responsibilities
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Obligations
   properties:
@@ -1824,7 +1822,7 @@ apis:
 - aid: avalara:avalara-onboarding-api
   name: Avalara Onboarding API
   description: Onboard companies for VAT reporting
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Onboarding
   properties:
@@ -1865,7 +1863,7 @@ apis:
 - aid: avalara:avalara-orders-api
   name: Avalara Orders API
   description: Create and manage sales orders for Avalara services
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Order
   tags_raw:
@@ -1908,7 +1906,7 @@ apis:
 - aid: avalara:avalara-products-api
   name: Avalara Products API
   description: Manage product registrations
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Product
   tags_raw:
@@ -1951,7 +1949,7 @@ apis:
 - aid: avalara:avalara-properties-api
   name: Avalara Properties API
   description: Manage rental property registrations
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Properties
   properties:
@@ -1992,7 +1990,7 @@ apis:
 - aid: avalara:avalara-provisioning-api
   name: Avalara Provisioning API
   description: The Provisioning API from Avalara — 2 operation(s) for provisioning.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Provisioning
   properties:
@@ -2033,7 +2031,7 @@ apis:
 - aid: avalara:avalara-registrar-api
   name: Avalara Registrar API
   description: The Registrar API from Avalara — 8 operation(s) for registrar.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Registrar
   properties:
@@ -2074,7 +2072,7 @@ apis:
 - aid: avalara:avalara-registrations-api
   name: Avalara Registrations API
   description: Manage partner registrations
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Registrations
   properties:
@@ -2115,7 +2113,7 @@ apis:
 - aid: avalara:avalara-reports-api
   name: Avalara Reports API
   description: Generate and retrieve tax reports
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Reports
   properties:
@@ -2156,7 +2154,7 @@ apis:
 - aid: avalara:avalara-returns-api
   name: Avalara Returns API
   description: Manage and file VAT returns
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Returns
   properties:
@@ -2197,7 +2195,7 @@ apis:
 - aid: avalara:avalara-settings-api
   name: Avalara Settings API
   description: Manage company settings
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Settings
   properties:
@@ -2238,7 +2236,7 @@ apis:
 - aid: avalara:avalara-subscriptions-api
   name: Avalara Subscriptions API
   description: Query account subscriptions
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Subscription
   tags_raw:
@@ -2281,7 +2279,7 @@ apis:
 - aid: avalara:avalara-tax-calculation-api
   name: Avalara Tax Calculation API
   description: Calculate Brazilian taxes on transactions
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Tax Calculation
   properties:
@@ -2322,7 +2320,7 @@ apis:
 - aid: avalara:avalara-tax-determination-api
   name: Avalara Tax Determination API
   description: Calculate excise taxes on transactions
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Tax Determination
   properties:
@@ -2363,7 +2361,7 @@ apis:
 - aid: avalara:avalara-tax-rates-api
   name: Avalara Tax Rates API
   description: Look up lodging tax rates by location
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Tax Rates
   properties:
@@ -2404,7 +2402,7 @@ apis:
 - aid: avalara:avalara-taxcontent-api
   name: Avalara TaxContent API
   description: The TaxContent API from Avalara — 5 operation(s) for taxcontent.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - TaxContent
   properties:
@@ -2445,7 +2443,7 @@ apis:
 - aid: avalara:avalara-transactions-api
   name: Avalara Transactions API
   description: Manage tax transactions
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Transaction
   tags_raw:
@@ -2488,7 +2486,7 @@ apis:
 - aid: avalara:avalara-upcs-api
   name: Avalara Upcs API
   description: The Upcs API from Avalara — 3 operation(s) for upcs.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Upcs
   properties:
@@ -2529,7 +2527,7 @@ apis:
 - aid: avalara:avalara-userdefinedfields-api
   name: Avalara UserDefinedFields API
   description: The UserDefinedFields API from Avalara — 2 operation(s) for userdefinedfields.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - UserDefinedFields
   properties:
@@ -2570,7 +2568,7 @@ apis:
 - aid: avalara:avalara-users-api
   name: Avalara Users API
   description: The Users API from Avalara — 5 operation(s) for users.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - User
   tags_raw:
@@ -2613,7 +2611,7 @@ apis:
 - aid: avalara:avalara-utilities-api
   name: Avalara Utilities API
   description: Utility endpoints including ping and health checks
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Utilities
   properties:
@@ -2654,7 +2652,7 @@ apis:
 - aid: avalara:avalara-w-9-forms-api
   name: Avalara W-9 Forms API
   description: Collect and manage W-9 forms
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - W-9 Forms
   properties:
@@ -2695,7 +2693,7 @@ apis:
 - aid: avalara:avalara-age-verification-api
   name: Avalara Age Verification API
   description: The Age Verification API from Avalara — 1 operation(s) for age verification.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Age Verification
   properties:
@@ -2704,7 +2702,7 @@ apis:
 - aid: avalara:avalara-shipping-verification-api
   name: Avalara Shipping Verification API
   description: The Shipping Verification API from Avalara — 3 operation(s) for shipping verification.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Shipping Verification
   properties:
@@ -2713,7 +2711,7 @@ apis:
 - aid: avalara:avalara-data-sources-api
   name: Avalara Data Sources API
   description: The Data Sources API from Avalara — 3 operation(s) for data sources.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Data Sources
   properties:
@@ -2754,7 +2752,7 @@ apis:
 - aid: avalara:avalara-tax-codes-api
   name: Avalara Tax Codes API
   description: The Tax Codes API from Avalara — 3 operation(s) for tax codes.
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - Tax Codes
   properties:
@@ -2795,7 +2793,7 @@ apis:
 - aid: avalara:avalara-tax-rules-api
   name: Avalara Tax Rules API
   description: Manage tax rules and overrides for companies
-  humanURL: ' https://developer.avalara.com/'
+  humanURL: https://developer.avalara.com/
   tags:
   - TaxRules
   tags_raw:
@@ -2839,10 +2837,12 @@ name: Avalara
 tags:
 - Tax
 - Avalara
+- Accounting
 tags_raw:
 - Taxes
 - Avalara
 - Taxes
+- Accounting
 type: Index
 deliveryModel:
   model: saas
