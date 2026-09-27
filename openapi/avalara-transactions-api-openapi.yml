@@ -269,7 +269,7 @@ paths:
       description: AvaTax Sandbox
   /Transactions:
     get:
-      operationId: listTransactions
+      operationId: getTransactions
       summary: Avalara List Excise Transactions
       description: Retrieves a list of excise tax transactions.
       tags:
@@ -300,8 +300,10 @@ paths:
           description: List of transactions
       security:
       - bearerAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: listTransactions
     post:
-      operationId: createTransaction
+      operationId: postTransactions
       summary: Avalara Create an Excise Transaction
       tags:
       - Transactions
@@ -320,6 +322,8 @@ paths:
                 $ref: '#/components/schemas/ExciseTransaction'
       security:
       - bearerAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: createTransaction
     servers:
     - url: https://exciseapi.avalara.com/api/v1
       description: Excise API Production
@@ -1925,93 +1929,6 @@ paths:
     - url: http://{{baseurl}}
 components:
   schemas:
-    ErrorResult:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-              description: Machine-readable error code
-            message:
-              type: string
-              description: Human-readable error message
-            target:
-              type: string
-              description: The component that generated the error
-            details:
-              type: array
-              items:
-                type: object
-                properties:
-                  code:
-                    type: string
-                  number:
-                    type: integer
-                  message:
-                    type: string
-                  description:
-                    type: string
-                  faultCode:
-                    type: string
-                  helpLink:
-                    type: string
-                  severity:
-                    type: string
-                    enum:
-                    - Error
-                    - Warning
-                    - Exception
-    TransactionSummary:
-      type: object
-      properties:
-        country:
-          type: string
-        region:
-          type: string
-        jurisType:
-          type: string
-        jurisCode:
-          type: string
-        jurisName:
-          type: string
-        taxType:
-          type: string
-        rate:
-          type: number
-          format: double
-        tax:
-          type: number
-          format: double
-        taxable:
-          type: number
-          format: double
-        exempt:
-          type: number
-          format: double
-    VoidTransactionModel:
-      type: object
-      required:
-      - code
-      properties:
-        code:
-          type: string
-          enum:
-          - Unspecified
-          - PostFailed
-          - DocDeleted
-          - DocVoided
-          - AdjustmentCancelled
-          description: Reason for voiding the transaction
-    CommitTransactionModel:
-      type: object
-      required:
-      - commit
-      properties:
-        commit:
-          type: boolean
-          description: Set to true to commit the transaction
     CreateTransactionModel:
       type: object
       required:
@@ -2064,30 +1981,33 @@ components:
           items:
             $ref: '#/components/schemas/LineItemModel'
           description: Line items for the transaction
-    TransactionLineModel:
+    TransactionSummary:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        lineNumber:
+        country:
           type: string
-        lineAmount:
+        region:
+          type: string
+        jurisType:
+          type: string
+        jurisCode:
+          type: string
+        jurisName:
+          type: string
+        taxType:
+          type: string
+        rate:
           type: number
           format: double
         tax:
           type: number
           format: double
-        taxableAmount:
+        taxable:
           type: number
           format: double
-        exemptAmount:
+        exempt:
           type: number
           format: double
-        taxCode:
-          type: string
-        itemCode:
-          type: string
     RefundTransactionModel:
       type: object
       required:
@@ -2114,6 +2034,50 @@ components:
           type: array
           items:
             type: string
+    VoidTransactionModel:
+      type: object
+      required:
+      - code
+      properties:
+        code:
+          type: string
+          enum:
+          - Unspecified
+          - PostFailed
+          - DocDeleted
+          - DocVoided
+          - AdjustmentCancelled
+          description: Reason for voiding the transaction
+    AddressInfo:
+      type: object
+      properties:
+        line1:
+          type: string
+          description: Street address line 1
+        line2:
+          type: string
+          description: Street address line 2
+        line3:
+          type: string
+          description: Street address line 3
+        city:
+          type: string
+          description: City name
+        region:
+          type: string
+          description: State, province, or region code
+        postalCode:
+          type: string
+          description: Postal code or ZIP code
+        country:
+          type: string
+          description: Two-character ISO 3166 country code
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
     LineItemModel:
       type: object
       required:
@@ -2150,58 +2114,6 @@ components:
         exemptionCode:
           type: string
           description: Exemption code for tax-exempt purchases
-    AddressInfo:
-      type: object
-      properties:
-        line1:
-          type: string
-          description: Street address line 1
-        line2:
-          type: string
-          description: Street address line 2
-        line3:
-          type: string
-          description: Street address line 3
-        city:
-          type: string
-          description: City name
-        region:
-          type: string
-          description: State, province, or region code
-        postalCode:
-          type: string
-          description: Postal code or ZIP code
-        country:
-          type: string
-          description: Two-character ISO 3166 country code
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
-    TransactionAddressModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        line1:
-          type: string
-        city:
-          type: string
-        region:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
     TransactionModel:
       type: object
       properties:
@@ -2260,6 +2172,52 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TransactionSummary'
+    TransactionLineModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        lineNumber:
+          type: string
+        lineAmount:
+          type: number
+          format: double
+        tax:
+          type: number
+          format: double
+        taxableAmount:
+          type: number
+          format: double
+        exemptAmount:
+          type: number
+          format: double
+        taxCode:
+          type: string
+        itemCode:
+          type: string
+    TransactionAddressModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        line1:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
     AdjustTransactionModel:
       type: object
       required:
@@ -2282,6 +2240,52 @@ components:
           type: string
         newTransaction:
           $ref: '#/components/schemas/CreateTransactionModel'
+    ErrorResult:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+              description: Machine-readable error code
+            message:
+              type: string
+              description: Human-readable error message
+            target:
+              type: string
+              description: The component that generated the error
+            details:
+              type: array
+              items:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  number:
+                    type: integer
+                  message:
+                    type: string
+                  description:
+                    type: string
+                  faultCode:
+                    type: string
+                  helpLink:
+                    type: string
+                  severity:
+                    type: string
+                    enum:
+                    - Error
+                    - Warning
+                    - Exception
+    CommitTransactionModel:
+      type: object
+      required:
+      - commit
+      properties:
+        commit:
+          type: boolean
+          description: Set to true to commit the transaction
     ExciseTransaction:
       type: object
       properties:
@@ -2351,14 +2355,6 @@ components:
           format: double
         currency:
           type: string
-  parameters:
-    companyCode:
-      name: companyCode
-      in: path
-      required: true
-      schema:
-        type: string
-      description: The company code identifying the company
   responses:
     NotFound:
       description: Requested resource not found
@@ -2378,6 +2374,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResult'
+  parameters:
+    companyCode:
+      name: companyCode
+      in: path
+      required: true
+      schema:
+        type: string
+      description: The company code identifying the company
   securitySchemes:
     bearerAuth:
       type: http

@@ -123,25 +123,28 @@ paths:
           description: Invoice cancelled
 components:
   schemas:
-    InvoiceLine:
+    InvoiceRequest:
       type: object
       properties:
-        lineNumber:
-          type: integer
-        itemCode:
+        invoiceType:
           type: string
-        description:
+          enum:
+          - NF-e
+          - NFS-e
+          - NFC-e
+          - CT-e
+          description: Electronic document type
+        companyId:
           type: string
-        quantity:
-          type: number
-          format: double
-        unitPrice:
-          type: number
-          format: double
-        ncmCode:
+        transactionDate:
           type: string
-        cfopCode:
-          type: string
+          format: date-time
+        buyer:
+          $ref: '#/components/schemas/BrazilParty'
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceLine'
     BrazilParty:
       type: object
       properties:
@@ -206,28 +209,25 @@ components:
         issuanceDate:
           type: string
           format: date-time
-    InvoiceRequest:
+    InvoiceLine:
       type: object
       properties:
-        invoiceType:
+        lineNumber:
+          type: integer
+        itemCode:
           type: string
-          enum:
-          - NF-e
-          - NFS-e
-          - NFC-e
-          - CT-e
-          description: Electronic document type
-        companyId:
+        description:
           type: string
-        transactionDate:
+        quantity:
+          type: number
+          format: double
+        unitPrice:
+          type: number
+          format: double
+        ncmCode:
           type: string
-          format: date-time
-        buyer:
-          $ref: '#/components/schemas/BrazilParty'
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvoiceLine'
+        cfopCode:
+          type: string
   securitySchemes:
     bearerAuth:
       type: http

@@ -96,7 +96,7 @@ paths:
       description: Business API Production
   /accounts/{accountId}:
     get:
-      operationId: getAccount
+      operationId: getAccountsByAccountId
       summary: Avalara Get Account Details
       tags:
       - Accounts
@@ -115,6 +115,8 @@ paths:
                 $ref: '#/components/schemas/AccountResponse'
       security:
       - bearerAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: getAccount
     servers:
     - url: https://api.avalara.com/business/v1
       description: Business API Production
@@ -611,27 +613,6 @@ paths:
     servers:
     - url: http://{{baseurl}}
 components:
-  parameters:
-    skip:
-      name: $skip
-      in: query
-      schema:
-        type: integer
-        default: 0
-      description: Number of results to skip for pagination
-    top:
-      name: $top
-      in: query
-      schema:
-        type: integer
-        default: 1000
-      description: Maximum number of results to return
-    filter:
-      name: $filter
-      in: query
-      schema:
-        type: string
-      description: OData filter expression for result filtering
   schemas:
     AccountModel:
       type: object
@@ -719,6 +700,27 @@ components:
         createdDate:
           type: string
           format: date-time
+  parameters:
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
   responses:
     BadRequest:
       description: Invalid request

@@ -64,22 +64,21 @@ paths:
                 $ref: '#/components/schemas/FilingStatus'
 components:
   schemas:
-    FilingResponse:
+    FilingSubmission:
       type: object
+      required:
+      - taxYear
+      - formIds
       properties:
-        filingId:
-          type: string
-        status:
-          type: string
-          enum:
-          - Accepted
-          - Processing
-          - Rejected
-        formCount:
+        taxYear:
           type: integer
-        submittedDate:
-          type: string
-          format: date-time
+        formIds:
+          type: array
+          items:
+            type: string
+        corrected:
+          type: boolean
+          default: false
     FilingStatus:
       type: object
       properties:
@@ -107,21 +106,22 @@ components:
                 type: string
               message:
                 type: string
-    FilingSubmission:
+    FilingResponse:
       type: object
-      required:
-      - taxYear
-      - formIds
       properties:
-        taxYear:
+        filingId:
+          type: string
+        status:
+          type: string
+          enum:
+          - Accepted
+          - Processing
+          - Rejected
+        formCount:
           type: integer
-        formIds:
-          type: array
-          items:
-            type: string
-        corrected:
-          type: boolean
-          default: false
+        submittedDate:
+          type: string
+          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

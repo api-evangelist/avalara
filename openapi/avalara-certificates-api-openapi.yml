@@ -110,7 +110,7 @@ paths:
       security:
       - basicAuth: []
     post:
-      operationId: createCertificate
+      operationId: postCertificates
       summary: Avalara Create a Certificate
       description: Creates a new exemption certificate record.
       tags:
@@ -132,6 +132,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
       security:
       - basicAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: createCertificate
     servers:
     - url: https://api.certcapture.com/v2
       description: CertCapture API Production
@@ -1237,29 +1239,15 @@ components:
         modifiedDate:
           type: string
           format: date-time
-    CertCaptureCustomer:
+    CertificateListResponse:
       type: object
       properties:
-        id:
-          type: string
-        customerCode:
-          type: string
-        name:
-          type: string
-        line1:
-          type: string
-        city:
-          type: string
-        region:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        emailAddress:
-          type: string
-        phoneNumber:
-          type: string
+        totalCount:
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Certificate'
     ErrorResponse:
       type: object
       properties:
@@ -1270,33 +1258,6 @@ components:
               type: string
             message:
               type: string
-    CertificateCreateRequest:
-      type: object
-      required:
-      - exemptionReason
-      - exposureZone
-      properties:
-        exemptionNumber:
-          type: string
-        exemptionReason:
-          type: string
-        exposureZone:
-          type: string
-        signedDate:
-          type: string
-          format: date
-        expirationDate:
-          type: string
-          format: date
-        exemptPercentage:
-          type: number
-          format: double
-        customerCode:
-          type: string
-        attributes:
-          type: array
-          items:
-            $ref: '#/components/schemas/CertAttribute'
     Certificate:
       type: object
       properties:
@@ -1335,6 +1296,29 @@ components:
         modifiedDate:
           type: string
           format: date-time
+    CertCaptureCustomer:
+      type: object
+      properties:
+        id:
+          type: string
+        customerCode:
+          type: string
+        name:
+          type: string
+        line1:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        emailAddress:
+          type: string
+        phoneNumber:
+          type: string
     CertAttribute:
       type: object
       properties:
@@ -1346,16 +1330,41 @@ components:
           type: string
         isSystemCode:
           type: boolean
-    CertificateListResponse:
+    CertificateCreateRequest:
       type: object
+      required:
+      - exemptionReason
+      - exposureZone
       properties:
-        totalCount:
-          type: integer
-        value:
+        exemptionNumber:
+          type: string
+        exemptionReason:
+          type: string
+        exposureZone:
+          type: string
+        signedDate:
+          type: string
+          format: date
+        expirationDate:
+          type: string
+          format: date
+        exemptPercentage:
+          type: number
+          format: double
+        customerCode:
+          type: string
+        attributes:
           type: array
           items:
-            $ref: '#/components/schemas/Certificate'
+            $ref: '#/components/schemas/CertAttribute'
   parameters:
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
     companyId:
       name: companyId
       in: path
@@ -1376,13 +1385,6 @@ components:
       schema:
         type: string
       description: OData filter expression for result filtering
-    top:
-      name: $top
-      in: query
-      schema:
-        type: integer
-        default: 1000
-      description: Maximum number of results to return
   responses:
     NotFound:
       description: Resource not found

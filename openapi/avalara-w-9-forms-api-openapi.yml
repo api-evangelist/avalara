@@ -137,24 +137,6 @@ components:
           - Valid
           - Expired
           - Revoked
-    W9Request:
-      type: object
-      required:
-      - payeeEmail
-      - payeeName
-      properties:
-        payeeEmail:
-          type: string
-          format: email
-        payeeName:
-          type: string
-        companyId:
-          type: string
-        expirationDays:
-          type: integer
-          default: 30
-        message:
-          type: string
     ErrorResponse:
       type: object
       properties:
@@ -180,6 +162,24 @@ components:
         expirationDate:
           type: string
           format: date-time
+    W9Request:
+      type: object
+      required:
+      - payeeEmail
+      - payeeName
+      properties:
+        payeeEmail:
+          type: string
+          format: email
+        payeeName:
+          type: string
+        companyId:
+          type: string
+        expirationDays:
+          type: integer
+          default: 30
+        message:
+          type: string
   responses:
     BadRequest:
       description: Invalid request

@@ -51,6 +51,22 @@ paths:
                 $ref: '#/components/schemas/DocumentSubmissionResponse'
 components:
   schemas:
+    DocumentSubmissionResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Document submission ID
+        status:
+          type: string
+          enum:
+          - Pending
+          - Accepted
+          - Rejected
+          - Error
+        statusDate:
+          type: string
+          format: date-time
     InteropDocumentRequest:
       type: object
       required:
@@ -68,22 +84,6 @@ components:
         recipientIdentifierScheme:
           type: string
           description: Identifier scheme (e.g., peppol)
-    DocumentSubmissionResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Document submission ID
-        status:
-          type: string
-          enum:
-          - Pending
-          - Accepted
-          - Rejected
-          - Error
-        statusDate:
-          type: string
-          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

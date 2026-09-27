@@ -270,26 +270,6 @@ components:
         error:
           $ref: '#/components/schemas/ErrorDetails_error'
       type: object
-    ErrorDetails_error:
-      description: An object holding details about the error.
-      properties:
-        code:
-          description: Name of the error or message.
-          enum:
-          - AuthenticationException
-          - SubscriptionRequired
-          - ServerConfiguration
-          - InvalidAddress
-          - EntityNotFoundError
-          example: InvalidAddress
-          type: string
-        message:
-          description: Concise summary of the message, suitable for display in the caption of an alert box.
-          example: The address is not deliverable.
-          type: string
-        details:
-          $ref: '#/components/schemas/ErrorDetails_error_details'
-      type: object
     ShippingVerifyResult:
       description: The Response of the /shippingverify endpoint. Describes the result of checking all applicable shipping rules against each line in the transaction.
       example:
@@ -392,6 +372,26 @@ components:
             - InvalidDate
             type: string
           type: array
+      type: object
+    ErrorDetails_error:
+      description: An object holding details about the error.
+      properties:
+        code:
+          description: Name of the error or message.
+          enum:
+          - AuthenticationException
+          - SubscriptionRequired
+          - ServerConfiguration
+          - InvalidAddress
+          - EntityNotFoundError
+          example: InvalidAddress
+          type: string
+        message:
+          description: Concise summary of the message, suitable for display in the caption of an alert box.
+          example: The address is not deliverable.
+          type: string
+        details:
+          $ref: '#/components/schemas/ErrorDetails_error_details'
       type: object
     ErrorDetails_error_details:
       description: Message Details Object

@@ -8,7 +8,7 @@ apis:
   tags_raw:
   - Taxes
   humanURL: https://developer.avalara.com/
-  properties:
+  properties: null
   description: >-
     Automate compliance with Avalara MCP servers for AI-driven tax workflows and APIs. Have your agent
     call our agent.
@@ -2795,8 +2795,6 @@ apis:
   description: Manage tax rules and overrides for companies
   humanURL: https://developer.avalara.com/
   tags:
-  - TaxRules
-  tags_raw:
   - Tax Rules
   properties:
   - type: OpenAPI
@@ -3127,7 +3125,7 @@ common:
   name: Buy | Avalara
   type: Signup
   description: 'null'
-- url: https://legal.avalara.com/compliance?_gl=1*1hevp4p*_gcl_au*MTM1NDY3OTg2MC4xNzYzNjY2Njc5LjEzNjM2NTU5NjEuMTc2MzY2ODQ1OC4xNzYzNjY4NzA3
+- url: https://legal.avalara.com/compliance
   name: Avalara Legal Center
   type: Compliance
   description: 'null'

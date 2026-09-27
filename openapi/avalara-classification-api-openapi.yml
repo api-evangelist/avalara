@@ -127,41 +127,6 @@ paths:
                   $ref: '#/components/schemas/HSCodeInfo'
 components:
   schemas:
-    HSCodeInfo:
-      type: object
-      properties:
-        hsCode:
-          type: string
-        description:
-          type: string
-        level:
-          type: string
-          enum:
-          - Section
-          - Chapter
-          - Heading
-          - Subheading
-          - TariffLine
-        parentCode:
-          type: string
-        dutyRate:
-          type: string
-        unitOfMeasure:
-          type: string
-    ClassifyResponse:
-      type: object
-      properties:
-        itemCode:
-          type: string
-        description:
-          type: string
-        predictions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClassificationPrediction'
-        avataxCode:
-          type: string
-          description: Recommended Avalara tax code
     ClassifyRequest:
       type: object
       required:
@@ -209,6 +174,41 @@ components:
           format: double
           description: Confidence score (0-1)
         parentCode:
+          type: string
+    ClassifyResponse:
+      type: object
+      properties:
+        itemCode:
+          type: string
+        description:
+          type: string
+        predictions:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationPrediction'
+        avataxCode:
+          type: string
+          description: Recommended Avalara tax code
+    HSCodeInfo:
+      type: object
+      properties:
+        hsCode:
+          type: string
+        description:
+          type: string
+        level:
+          type: string
+          enum:
+          - Section
+          - Chapter
+          - Heading
+          - Subheading
+          - TariffLine
+        parentCode:
+          type: string
+        dutyRate:
+          type: string
+        unitOfMeasure:
           type: string
   responses:
     BadRequest:

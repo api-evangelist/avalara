@@ -130,18 +130,6 @@ paths:
       description: Communications API Production
 components:
   schemas:
-    CalculationResultLine:
-      type: object
-      properties:
-        lineCode:
-          type: string
-        taxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/BrazilTaxDetail'
-        totalTax:
-          type: number
-          format: double
     CalculationRequest:
       type: object
       required:
@@ -173,37 +161,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CalculationLine'
-    BrazilTaxDetail:
-      type: object
-      properties:
-        taxType:
-          type: string
-          enum:
-          - ICMS
-          - ICMS_ST
-          - IPI
-          - PIS
-          - COFINS
-          - ISS
-          - CSLL
-          - IRRF
-          - INSS
-          - IOF
-          description: Brazilian tax type
-        taxBase:
-          type: number
-          format: double
-        taxRate:
-          type: number
-          format: double
-        taxAmount:
-          type: number
-          format: double
-        exemptAmount:
-          type: number
-          format: double
-        cstCode:
-          type: string
     CalculationResponse:
       type: object
       properties:
@@ -258,6 +215,110 @@ components:
         destinationState:
           type: string
           description: Destination state code (UF)
+    BrazilTaxDetail:
+      type: object
+      properties:
+        taxType:
+          type: string
+          enum:
+          - ICMS
+          - ICMS_ST
+          - IPI
+          - PIS
+          - COFINS
+          - ISS
+          - CSLL
+          - IRRF
+          - INSS
+          - IOF
+          description: Brazilian tax type
+        taxBase:
+          type: number
+          format: double
+        taxRate:
+          type: number
+          format: double
+        taxAmount:
+          type: number
+          format: double
+        exemptAmount:
+          type: number
+          format: double
+        cstCode:
+          type: string
+    CalculationResultLine:
+      type: object
+      properties:
+        lineCode:
+          type: string
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/BrazilTaxDetail'
+        totalTax:
+          type: number
+          format: double
+    CompanyData:
+      type: object
+      properties:
+        bscl:
+          type: integer
+          description: Business class (0=ILEC, 1=CLEC, etc.)
+        svcl:
+          type: integer
+          description: Service class (0=Primary Local, 1=Primary Long Distance)
+        fclt:
+          type: boolean
+          description: Facilities-based indicator
+        frch:
+          type: boolean
+          description: Franchise indicator
+        reg:
+          type: boolean
+          description: Regulated indicator
+    LineItem:
+      type: object
+      properties:
+        ref:
+          type: string
+          description: Line item reference
+        from:
+          $ref: '#/components/schemas/Location'
+        to:
+          $ref: '#/components/schemas/Location'
+        chg:
+          type: number
+          format: double
+          description: Charge amount
+        line:
+          type: integer
+          description: Number of lines
+        loc:
+          type: integer
+          description: Number of locations
+        min:
+          type: number
+          format: double
+          description: Minutes
+        sale:
+          type: integer
+          description: Sale type (0=Wholesale, 1=Retail, 2=Consumed)
+        tran:
+          type: integer
+          description: Transaction type
+        serv:
+          type: integer
+          description: Service type
+    LineItemResult:
+      type: object
+      properties:
+        ref:
+          type: string
+          description: Line item reference
+        txs:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxResult'
     Location:
       type: object
       properties:
@@ -338,88 +399,11 @@ components:
         tid:
           type: integer
           description: Tax type ID
-    CalcTaxesResponse:
-      type: object
-      properties:
-        inv:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvoiceResult'
     CommitResponse:
       type: object
       properties:
         ok:
           type: boolean
-    LineItemResult:
-      type: object
-      properties:
-        ref:
-          type: string
-          description: Line item reference
-        txs:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxResult'
-    CompanyData:
-      type: object
-      properties:
-        bscl:
-          type: integer
-          description: Business class (0=ILEC, 1=CLEC, etc.)
-        svcl:
-          type: integer
-          description: Service class (0=Primary Local, 1=Primary Long Distance)
-        fclt:
-          type: boolean
-          description: Facilities-based indicator
-        frch:
-          type: boolean
-          description: Franchise indicator
-        reg:
-          type: boolean
-          description: Regulated indicator
-    LineItem:
-      type: object
-      properties:
-        ref:
-          type: string
-          description: Line item reference
-        from:
-          $ref: '#/components/schemas/Location'
-        to:
-          $ref: '#/components/schemas/Location'
-        chg:
-          type: number
-          format: double
-          description: Charge amount
-        line:
-          type: integer
-          description: Number of lines
-        loc:
-          type: integer
-          description: Number of locations
-        min:
-          type: number
-          format: double
-          description: Minutes
-        sale:
-          type: integer
-          description: Sale type (0=Wholesale, 1=Retail, 2=Consumed)
-        tran:
-          type: integer
-          description: Transaction type
-        serv:
-          type: integer
-          description: Service type
-    CommitRequest:
-      type: object
-      properties:
-        doc:
-          type: string
-          description: Document code to commit
-        cmmt:
-          type: boolean
-          description: Commit flag (true to commit)
     CalcAdjRequest:
       type: object
       properties:
@@ -450,6 +434,32 @@ components:
                 type: integer
               msg:
                 type: string
+    InvoiceResult:
+      type: object
+      properties:
+        doc:
+          type: string
+          description: Document code
+        itms:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemResult'
+    CommitRequest:
+      type: object
+      properties:
+        doc:
+          type: string
+          description: Document code to commit
+        cmmt:
+          type: boolean
+          description: Commit flag (true to commit)
+    CalcTaxesResponse:
+      type: object
+      properties:
+        inv:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceResult'
     Invoice:
       type: object
       properties:
@@ -486,16 +496,6 @@ components:
           items:
             $ref: '#/components/schemas/Invoice'
           description: Array of invoices to calculate taxes for
-    InvoiceResult:
-      type: object
-      properties:
-        doc:
-          type: string
-          description: Document code
-        itms:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItemResult'
   responses:
     Unauthorized:
       description: Authentication failed

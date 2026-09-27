@@ -70,13 +70,6 @@ paths:
                 $ref: '#/components/schemas/HSCodeDetail'
 components:
   schemas:
-    ClassificationResultList:
-      type: object
-      properties:
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClassificationResult'
     HSCodeDetail:
       type: object
       properties:
@@ -112,6 +105,13 @@ components:
           description: Classification confidence score (0-1)
         country:
           type: string
+    ClassificationResultList:
+      type: object
+      properties:
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationResult'
   securitySchemes:
     bearerAuth:
       type: http

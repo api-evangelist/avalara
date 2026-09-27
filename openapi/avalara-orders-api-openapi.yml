@@ -61,6 +61,23 @@ paths:
                 $ref: '#/components/schemas/OrderResponse'
 components:
   schemas:
+    OrderResponse:
+      type: object
+      properties:
+        orderId:
+          type: string
+        accountId:
+          type: string
+        status:
+          type: string
+          enum:
+          - Pending
+          - Confirmed
+          - Completed
+          - Cancelled
+        createdDate:
+          type: string
+          format: date-time
     SalesOrder:
       type: object
       required:
@@ -80,23 +97,6 @@ components:
                 type: integer
         campaignId:
           type: string
-    OrderResponse:
-      type: object
-      properties:
-        orderId:
-          type: string
-        accountId:
-          type: string
-        status:
-          type: string
-          enum:
-          - Pending
-          - Confirmed
-          - Completed
-          - Cancelled
-        createdDate:
-          type: string
-          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

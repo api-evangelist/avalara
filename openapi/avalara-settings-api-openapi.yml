@@ -345,6 +345,13 @@ paths:
     - url: http://{{baseurl}}
 components:
   parameters:
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
     skip:
       name: $skip
       in: query
@@ -365,13 +372,6 @@ components:
       schema:
         type: integer
       description: The numeric ID of the company
-    top:
-      name: $top
-      in: query
-      schema:
-        type: integer
-        default: 1000
-      description: Maximum number of results to return
   securitySchemes:
     basicAuth:
       type: http

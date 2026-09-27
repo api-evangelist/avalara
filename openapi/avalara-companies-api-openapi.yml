@@ -207,7 +207,7 @@ paths:
       description: AvaTax Sandbox
   /companies/{companyId}:
     get:
-      operationId: getCompany
+      operationId: getCompaniesByCompanyId
       summary: Avalara Get a Company by ID
       tags:
       - Companies
@@ -226,8 +226,10 @@ paths:
                 $ref: '#/components/schemas/SharedCompany'
       security:
       - bearerAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: getCompany
     put:
-      operationId: updateCompany
+      operationId: putCompaniesByCompanyId
       summary: Avalara Update a Company Record
       tags:
       - Companies
@@ -248,8 +250,10 @@ paths:
           description: Company updated
       security:
       - bearerAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: updateCompany
     delete:
-      operationId: deleteCompany
+      operationId: deleteCompaniesByCompanyId
       summary: Avalara Delete a Company Record
       tags:
       - Companies
@@ -264,6 +268,8 @@ paths:
           description: Company deleted
       security:
       - bearerAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: deleteCompany
     servers:
     - url: https://api.avalara.com/shared/v1
       description: Shared Company Service Production
@@ -1187,50 +1193,6 @@ components:
           - LucroReal
         state:
           type: string
-    CompanyInitializationModel:
-      type: object
-      required:
-      - name
-      - companyCode
-      - taxpayerIdNumber
-      - line1
-      - city
-      - region
-      - postalCode
-      - country
-      properties:
-        name:
-          type: string
-        companyCode:
-          type: string
-        taxpayerIdNumber:
-          type: string
-        line1:
-          type: string
-        line2:
-          type: string
-        line3:
-          type: string
-        city:
-          type: string
-        region:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        firstName:
-          type: string
-        lastName:
-          type: string
-        title:
-          type: string
-        email:
-          type: string
-        phoneNumber:
-          type: string
-        mobileNumber:
-          type: string
     FetchResult_CompanyModel:
       type: object
       properties:
@@ -1286,6 +1248,50 @@ components:
         modifiedDate:
           type: string
           format: date-time
+    CompanyInitializationModel:
+      type: object
+      required:
+      - name
+      - companyCode
+      - taxpayerIdNumber
+      - line1
+      - city
+      - region
+      - postalCode
+      - country
+      properties:
+        name:
+          type: string
+        companyCode:
+          type: string
+        taxpayerIdNumber:
+          type: string
+        line1:
+          type: string
+        line2:
+          type: string
+        line3:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        title:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: string
+        mobileNumber:
+          type: string
     CompanyList:
       type: object
       properties:
@@ -1336,6 +1342,13 @@ components:
           type: string
           format: date-time
   parameters:
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
     skip:
       name: $skip
       in: query
@@ -1355,13 +1368,6 @@ components:
       schema:
         type: string
       description: OData filter expression for result filtering
-    top:
-      name: $top
-      in: query
-      schema:
-        type: integer
-        default: 1000
-      description: Maximum number of results to return
   securitySchemes:
     bearerAuth:
       type: http

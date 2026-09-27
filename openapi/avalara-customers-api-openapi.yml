@@ -87,7 +87,7 @@ paths:
       security:
       - basicAuth: []
     post:
-      operationId: createCustomer
+      operationId: postCustomers
       summary: Avalara Create a Customer
       tags:
       - Customers
@@ -102,6 +102,8 @@ paths:
           description: Customer created
       security:
       - basicAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: createCustomer
     servers:
     - url: https://api.certcapture.com/v2
       description: CertCapture API Production
@@ -993,31 +995,6 @@ paths:
     - url: http://{{baseurl}}
 components:
   schemas:
-    CustomerModel:
-      type: object
-      properties:
-        id:
-          type: integer
-        companyId:
-          type: integer
-        customerCode:
-          type: string
-        name:
-          type: string
-        line1:
-          type: string
-        city:
-          type: string
-        region:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        emailAddress:
-          type: string
-        phoneNumber:
-          type: string
     FetchResult_CustomerModel:
       type: object
       properties:
@@ -1027,11 +1004,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CustomerModel'
-    CertCaptureCustomer:
+    CustomerModel:
       type: object
       properties:
         id:
-          type: string
+          type: integer
+        companyId:
+          type: integer
         customerCode:
           type: string
         name:
@@ -1059,7 +1038,37 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CertCaptureCustomer'
+    CertCaptureCustomer:
+      type: object
+      properties:
+        id:
+          type: string
+        customerCode:
+          type: string
+        name:
+          type: string
+        line1:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        emailAddress:
+          type: string
+        phoneNumber:
+          type: string
   parameters:
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
     companyId:
       name: companyId
       in: path
@@ -1080,13 +1089,6 @@ components:
       schema:
         type: string
       description: OData filter expression for result filtering
-    top:
-      name: $top
-      in: query
-      schema:
-        type: integer
-        default: 1000
-      description: Maximum number of results to return
   securitySchemes:
     basicAuth:
       type: http

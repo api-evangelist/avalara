@@ -1749,7 +1749,42 @@ paths:
     servers:
     - url: http://{{baseurl}}
 components:
+  schemas:
+    ItemModel:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        companyId:
+          type: integer
+        itemCode:
+          type: string
+          description: Unique code for this item
+        taxCode:
+          type: string
+          description: Avalara tax code for this item
+        description:
+          type: string
+        category:
+          type: string
+    FetchResult_ItemModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ItemModel'
   parameters:
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
     companyId:
       name: companyId
       in: path
@@ -1770,41 +1805,6 @@ components:
       schema:
         type: string
       description: OData filter expression for result filtering
-    top:
-      name: $top
-      in: query
-      schema:
-        type: integer
-        default: 1000
-      description: Maximum number of results to return
-  schemas:
-    FetchResult_ItemModel:
-      type: object
-      properties:
-        '@recordsetCount':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ItemModel'
-    ItemModel:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        companyId:
-          type: integer
-        itemCode:
-          type: string
-          description: Unique code for this item
-        taxCode:
-          type: string
-          description: Avalara tax code for this item
-        description:
-          type: string
-        category:
-          type: string
   securitySchemes:
     basicAuth:
       type: http

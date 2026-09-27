@@ -957,6 +957,30 @@ paths:
     - url: http://{{baseurl}}
 components:
   schemas:
+    MultiDocumentLineItemModel:
+      type: object
+      properties:
+        companyCode:
+          type: string
+        reportingLocationCode:
+          type: string
+        number:
+          type: string
+        quantity:
+          type: number
+          format: double
+        amount:
+          type: number
+          format: double
+        taxCode:
+          type: string
+        addresses:
+          type: object
+          properties:
+            shipFrom:
+              $ref: '#/components/schemas/AddressInfo'
+            shipTo:
+              $ref: '#/components/schemas/AddressInfo'
     AddressInfo:
       type: object
       properties:
@@ -996,30 +1020,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MultiDocumentLineItemModel'
-    MultiDocumentLineItemModel:
-      type: object
-      properties:
-        companyCode:
-          type: string
-        reportingLocationCode:
-          type: string
-        number:
-          type: string
-        quantity:
-          type: number
-          format: double
-        amount:
-          type: number
-          format: double
-        taxCode:
-          type: string
-        addresses:
-          type: object
-          properties:
-            shipFrom:
-              $ref: '#/components/schemas/AddressInfo'
-            shipTo:
-              $ref: '#/components/schemas/AddressInfo'
   securitySchemes:
     basicAuth:
       type: http

@@ -92,42 +92,29 @@ paths:
       description: AvaTax Sandbox
 components:
   schemas:
-    AddressResolutionModel:
+    AddressValidationInfo:
       type: object
       properties:
-        address:
-          $ref: '#/components/schemas/AddressInfo'
-        validatedAddresses:
-          type: array
-          items:
-            $ref: '#/components/schemas/AddressInfo'
-        coordinates:
-          type: object
-          properties:
-            latitude:
-              type: number
-              format: double
-            longitude:
-              type: number
-              format: double
-        resolutionQuality:
+        line1:
+          type: string
+        line2:
+          type: string
+        line3:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        textCase:
           type: string
           enum:
-          - NotCoded
-          - External
-          - CountryCentroid
-          - RegionCentroid
-          - PartialCentroid
-          - PostalCentroidGood
-          - PostalCentroidBetter
-          - PostalCentroidBest
-          - Intersection
-          - Interpolated
-          - Rooftop
-        taxAuthorities:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxAuthorityInfo'
+          - Default
+          - Upper
+          - Mixed
     AddressInfo:
       type: object
       properties:
@@ -169,29 +156,42 @@ components:
           type: string
         signatureCode:
           type: string
-    AddressValidationInfo:
+    AddressResolutionModel:
       type: object
       properties:
-        line1:
-          type: string
-        line2:
-          type: string
-        line3:
-          type: string
-        city:
-          type: string
-        region:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        textCase:
+        address:
+          $ref: '#/components/schemas/AddressInfo'
+        validatedAddresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddressInfo'
+        coordinates:
+          type: object
+          properties:
+            latitude:
+              type: number
+              format: double
+            longitude:
+              type: number
+              format: double
+        resolutionQuality:
           type: string
           enum:
-          - Default
-          - Upper
-          - Mixed
+          - NotCoded
+          - External
+          - CountryCentroid
+          - RegionCentroid
+          - PartialCentroid
+          - PostalCentroidGood
+          - PostalCentroidBetter
+          - PostalCentroidBest
+          - Intersection
+          - Interpolated
+          - Rooftop
+        taxAuthorities:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxAuthorityInfo'
   securitySchemes:
     basicAuth:
       type: http

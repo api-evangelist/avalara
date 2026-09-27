@@ -896,6 +896,13 @@ components:
         hasLocalNexus:
           type: boolean
   parameters:
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
     companyId:
       name: companyId
       in: path
@@ -916,13 +923,6 @@ components:
       schema:
         type: string
       description: OData filter expression for result filtering
-    top:
-      name: $top
-      in: query
-      schema:
-        type: integer
-        default: 1000
-      description: Maximum number of results to return
   securitySchemes:
     basicAuth:
       type: http
