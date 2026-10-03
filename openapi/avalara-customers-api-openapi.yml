@@ -994,6 +994,34 @@ paths:
     servers:
     - url: http://{{baseurl}}
 components:
+  parameters:
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
+    companyId:
+      name: companyId
+      in: path
+      required: true
+      schema:
+        type: integer
+      description: The numeric ID of the company
   schemas:
     FetchResult_CustomerModel:
       type: object
@@ -1029,15 +1057,6 @@ components:
           type: string
         phoneNumber:
           type: string
-    CustomerListResponse:
-      type: object
-      properties:
-        totalCount:
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/CertCaptureCustomer'
     CertCaptureCustomer:
       type: object
       properties:
@@ -1061,34 +1080,15 @@ components:
           type: string
         phoneNumber:
           type: string
-  parameters:
-    top:
-      name: $top
-      in: query
-      schema:
-        type: integer
-        default: 1000
-      description: Maximum number of results to return
-    companyId:
-      name: companyId
-      in: path
-      required: true
-      schema:
-        type: integer
-      description: The numeric ID of the company
-    skip:
-      name: $skip
-      in: query
-      schema:
-        type: integer
-        default: 0
-      description: Number of results to skip for pagination
-    filter:
-      name: $filter
-      in: query
-      schema:
-        type: string
-      description: OData filter expression for result filtering
+    CustomerListResponse:
+      type: object
+      properties:
+        totalCount:
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/CertCaptureCustomer'
   securitySchemes:
     basicAuth:
       type: http

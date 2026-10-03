@@ -130,91 +130,6 @@ paths:
       description: Communications API Production
 components:
   schemas:
-    CalculationRequest:
-      type: object
-      required:
-      - header
-      - lines
-      properties:
-        header:
-          type: object
-          properties:
-            transactionType:
-              type: string
-              enum:
-              - Sale
-              - Purchase
-              - Return
-              - Transfer
-            companyLocation:
-              type: string
-              description: Company establishment code
-            documentCode:
-              type: string
-            transactionDate:
-              type: string
-              format: date
-            currency:
-              type: string
-              default: BRL
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/CalculationLine'
-    CalculationResponse:
-      type: object
-      properties:
-        header:
-          type: object
-          properties:
-            transactionId:
-              type: string
-            status:
-              type: string
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/CalculationResultLine'
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-    CalculationLine:
-      type: object
-      properties:
-        lineCode:
-          type: string
-        itemCode:
-          type: string
-        numberOfItems:
-          type: number
-          format: double
-        lineAmount:
-          type: number
-          format: double
-        itemDescription:
-          type: string
-        ncmCode:
-          type: string
-          description: NCM (Nomenclatura Comum do Mercosul) code
-        cstCode:
-          type: string
-          description: CST (Codigo de Situacao Tributaria) code
-        cfopCode:
-          type: string
-          description: CFOP (Codigo Fiscal de Operacoes e Prestacoes) code
-        originState:
-          type: string
-          description: Origin state code (UF)
-        destinationState:
-          type: string
-          description: Destination state code (UF)
     BrazilTaxDetail:
       type: object
       properties:
@@ -246,6 +161,81 @@ components:
           format: double
         cstCode:
           type: string
+    CalculationResponse:
+      type: object
+      properties:
+        header:
+          type: object
+          properties:
+            transactionId:
+              type: string
+            status:
+              type: string
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalculationResultLine'
+    CalculationRequest:
+      type: object
+      required:
+      - header
+      - lines
+      properties:
+        header:
+          type: object
+          properties:
+            transactionType:
+              type: string
+              enum:
+              - Sale
+              - Purchase
+              - Return
+              - Transfer
+            companyLocation:
+              type: string
+              description: Company establishment code
+            documentCode:
+              type: string
+            transactionDate:
+              type: string
+              format: date
+            currency:
+              type: string
+              default: BRL
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/CalculationLine'
+    CalculationLine:
+      type: object
+      properties:
+        lineCode:
+          type: string
+        itemCode:
+          type: string
+        numberOfItems:
+          type: number
+          format: double
+        lineAmount:
+          type: number
+          format: double
+        itemDescription:
+          type: string
+        ncmCode:
+          type: string
+          description: NCM (Nomenclatura Comum do Mercosul) code
+        cstCode:
+          type: string
+          description: CST (Codigo de Situacao Tributaria) code
+        cfopCode:
+          type: string
+          description: CFOP (Codigo Fiscal de Operacoes e Prestacoes) code
+        originState:
+          type: string
+          description: Origin state code (UF)
+        destinationState:
+          type: string
+          description: Destination state code (UF)
     CalculationResultLine:
       type: object
       properties:
@@ -258,24 +248,29 @@ components:
         totalTax:
           type: number
           format: double
-    CompanyData:
+    ErrorResponse:
       type: object
       properties:
-        bscl:
-          type: integer
-          description: Business class (0=ILEC, 1=CLEC, etc.)
-        svcl:
-          type: integer
-          description: Service class (0=Primary Local, 1=Primary Long Distance)
-        fclt:
-          type: boolean
-          description: Facilities-based indicator
-        frch:
-          type: boolean
-          description: Franchise indicator
-        reg:
-          type: boolean
-          description: Regulated indicator
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+    CalcTaxesRequest:
+      type: object
+      required:
+      - cmpn
+      - inv
+      properties:
+        cmpn:
+          $ref: '#/components/schemas/CompanyData'
+        inv:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+          description: Array of invoices to calculate taxes for
     LineItem:
       type: object
       properties:
@@ -309,6 +304,94 @@ components:
         serv:
           type: integer
           description: Service type
+    InvoiceResult:
+      type: object
+      properties:
+        doc:
+          type: string
+          description: Document code
+        itms:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItemResult'
+    Invoice:
+      type: object
+      properties:
+        doc:
+          type: string
+          description: Document code
+        cmmt:
+          type: boolean
+          description: Commit indicator
+        bill:
+          $ref: '#/components/schemas/Location'
+        cust:
+          type: integer
+          description: Customer type
+        date:
+          type: string
+          format: date-time
+          description: Invoice date
+        itms:
+          type: array
+          items:
+            $ref: '#/components/schemas/LineItem'
+          description: Line items on the invoice
+    CalcAdjRequest:
+      type: object
+      properties:
+        cmpn:
+          $ref: '#/components/schemas/CompanyData'
+        inv:
+          type: array
+          items:
+            $ref: '#/components/schemas/Invoice'
+        adj:
+          type: object
+          properties:
+            disc:
+              type: integer
+              description: Discount type
+            adj:
+              type: integer
+              description: Adjustment method
+    CalcTaxesResponse:
+      type: object
+      properties:
+        inv:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceResult'
+    CompanyData:
+      type: object
+      properties:
+        bscl:
+          type: integer
+          description: Business class (0=ILEC, 1=CLEC, etc.)
+        svcl:
+          type: integer
+          description: Service class (0=Primary Local, 1=Primary Long Distance)
+        fclt:
+          type: boolean
+          description: Facilities-based indicator
+        frch:
+          type: boolean
+          description: Franchise indicator
+        reg:
+          type: boolean
+          description: Regulated indicator
+    ErrorResponse_2:
+      type: object
+      properties:
+        err:
+          type: array
+          items:
+            type: object
+            properties:
+              code:
+                type: integer
+              msg:
+                type: string
     LineItemResult:
       type: object
       properties:
@@ -319,6 +402,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TaxResult'
+    CommitRequest:
+      type: object
+      properties:
+        doc:
+          type: string
+          description: Document code to commit
+        cmmt:
+          type: boolean
+          description: Commit flag (true to commit)
+    CommitResponse:
+      type: object
+      properties:
+        ok:
+          type: boolean
     Location:
       type: object
       properties:
@@ -399,112 +496,15 @@ components:
         tid:
           type: integer
           description: Tax type ID
-    CommitResponse:
-      type: object
-      properties:
-        ok:
-          type: boolean
-    CalcAdjRequest:
-      type: object
-      properties:
-        cmpn:
-          $ref: '#/components/schemas/CompanyData'
-        inv:
-          type: array
-          items:
-            $ref: '#/components/schemas/Invoice'
-        adj:
-          type: object
-          properties:
-            disc:
-              type: integer
-              description: Discount type
-            adj:
-              type: integer
-              description: Adjustment method
-    ErrorResponse_2:
-      type: object
-      properties:
-        err:
-          type: array
-          items:
-            type: object
-            properties:
-              code:
-                type: integer
-              msg:
-                type: string
-    InvoiceResult:
-      type: object
-      properties:
-        doc:
-          type: string
-          description: Document code
-        itms:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItemResult'
-    CommitRequest:
-      type: object
-      properties:
-        doc:
-          type: string
-          description: Document code to commit
-        cmmt:
-          type: boolean
-          description: Commit flag (true to commit)
-    CalcTaxesResponse:
-      type: object
-      properties:
-        inv:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvoiceResult'
-    Invoice:
-      type: object
-      properties:
-        doc:
-          type: string
-          description: Document code
-        cmmt:
-          type: boolean
-          description: Commit indicator
-        bill:
-          $ref: '#/components/schemas/Location'
-        cust:
-          type: integer
-          description: Customer type
-        date:
-          type: string
-          format: date-time
-          description: Invoice date
-        itms:
-          type: array
-          items:
-            $ref: '#/components/schemas/LineItem'
-          description: Line items on the invoice
-    CalcTaxesRequest:
-      type: object
-      required:
-      - cmpn
-      - inv
-      properties:
-        cmpn:
-          $ref: '#/components/schemas/CompanyData'
-        inv:
-          type: array
-          items:
-            $ref: '#/components/schemas/Invoice'
-          description: Array of invoices to calculate taxes for
   responses:
-    Unauthorized:
-      description: Authentication failed
+    BadRequest:
+      description: Invalid request
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request
+    Unauthorized:
+      description: Authentication failed
       content:
         application/json:
           schema:

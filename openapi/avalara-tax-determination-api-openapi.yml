@@ -45,7 +45,132 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    TaxDeterminationLine:
+      type: object
+      properties:
+        lineNumber:
+          type: string
+        productCode:
+          type: string
+        taxes:
+          type: array
+          items:
+            $ref: '#/components/schemas/ExciseTaxDetail'
+        totalTax:
+          type: number
+          format: double
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+    TransactionParty:
+      type: object
+      properties:
+        companyId:
+          type: string
+        locationId:
+          type: string
+        name:
+          type: string
+        address:
+          $ref: '#/components/schemas/ExciseAddress'
+        licenseNumber:
+          type: string
+    TaxDeterminationRequest:
+      type: object
+      required:
+      - effectiveDate
+      - transactionLines
+      properties:
+        effectiveDate:
+          type: string
+          format: date
+          description: Date for tax determination
+        invoiceNumber:
+          type: string
+        invoiceDate:
+          type: string
+          format: date
+        titleTransferCode:
+          type: string
+          enum:
+          - Origin
+          - Destination
+          description: Title transfer point
+        transactionType:
+          type: string
+          description: Type of excise transaction
+        seller:
+          $ref: '#/components/schemas/TransactionParty'
+        buyer:
+          $ref: '#/components/schemas/TransactionParty'
+        transactionLines:
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionLine'
+    ExciseAddress:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+          description: State or province code
+        postalCode:
+          type: string
+        country:
+          type: string
+          description: ISO 3166 country code
+    ExciseTaxDetail:
+      type: object
+      properties:
+        taxType:
+          type: string
+          description: Type of excise tax
+        jurisdiction:
+          type: string
+          description: Taxing jurisdiction
+        taxRate:
+          type: number
+          format: double
+        taxAmount:
+          type: number
+          format: double
+        taxableAmount:
+          type: number
+          format: double
+        exemptAmount:
+          type: number
+          format: double
+        rateType:
+          type: string
+          enum:
+          - PerUnit
+          - Percentage
     TransactionLine:
       type: object
       properties:
@@ -86,72 +211,6 @@ components:
           - Pipeline
           - Rail
           - Vessel
-    ExciseTaxDetail:
-      type: object
-      properties:
-        taxType:
-          type: string
-          description: Type of excise tax
-        jurisdiction:
-          type: string
-          description: Taxing jurisdiction
-        taxRate:
-          type: number
-          format: double
-        taxAmount:
-          type: number
-          format: double
-        taxableAmount:
-          type: number
-          format: double
-        exemptAmount:
-          type: number
-          format: double
-        rateType:
-          type: string
-          enum:
-          - PerUnit
-          - Percentage
-    TransactionParty:
-      type: object
-      properties:
-        companyId:
-          type: string
-        locationId:
-          type: string
-        name:
-          type: string
-        address:
-          $ref: '#/components/schemas/ExciseAddress'
-        licenseNumber:
-          type: string
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-    ExciseAddress:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type: string
-        city:
-          type: string
-        region:
-          type: string
-          description: State or province code
-        postalCode:
-          type: string
-        country:
-          type: string
-          description: ISO 3166 country code
     TaxDeterminationResponse:
       type: object
       properties:
@@ -168,65 +227,6 @@ components:
         totalTaxAmount:
           type: number
           format: double
-    TaxDeterminationLine:
-      type: object
-      properties:
-        lineNumber:
-          type: string
-        productCode:
-          type: string
-        taxes:
-          type: array
-          items:
-            $ref: '#/components/schemas/ExciseTaxDetail'
-        totalTax:
-          type: number
-          format: double
-    TaxDeterminationRequest:
-      type: object
-      required:
-      - effectiveDate
-      - transactionLines
-      properties:
-        effectiveDate:
-          type: string
-          format: date
-          description: Date for tax determination
-        invoiceNumber:
-          type: string
-        invoiceDate:
-          type: string
-          format: date
-        titleTransferCode:
-          type: string
-          enum:
-          - Origin
-          - Destination
-          description: Title transfer point
-        transactionType:
-          type: string
-          description: Type of excise transaction
-        seller:
-          $ref: '#/components/schemas/TransactionParty'
-        buyer:
-          $ref: '#/components/schemas/TransactionParty'
-        transactionLines:
-          type: array
-          items:
-            $ref: '#/components/schemas/TransactionLine'
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     bearerAuth:
       type: http

@@ -119,15 +119,6 @@ components:
           description: The value should be ISO-8601 compliant (e.g. 2020-07-21).
           type: string
       type: object
-    AgeVerifyFailureCode:
-      enum:
-      - not_found
-      - dob_unverifiable
-      - under_age
-      - suspected_fraud
-      - deceased
-      - unknown_error
-      type: string
     AgeVerifyResult:
       description: The Result of a call to the /ageVerification/verify endpoint.
       example:
@@ -145,6 +136,15 @@ components:
             $ref: '#/components/schemas/AgeVerifyResult'
           type: array
       type: object
+    AgeVerifyFailureCode:
+      enum:
+      - not_found
+      - dob_unverifiable
+      - under_age
+      - suspected_fraud
+      - deceased
+      - unknown_error
+      type: string
   securitySchemes:
     BasicAuth:
       scheme: basic

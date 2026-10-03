@@ -957,30 +957,15 @@ paths:
     - url: http://{{baseurl}}
 components:
   schemas:
-    MultiDocumentLineItemModel:
+    CreateMultiDocumentModel:
       type: object
       properties:
-        companyCode:
+        code:
           type: string
-        reportingLocationCode:
-          type: string
-        number:
-          type: string
-        quantity:
-          type: number
-          format: double
-        amount:
-          type: number
-          format: double
-        taxCode:
-          type: string
-        addresses:
-          type: object
-          properties:
-            shipFrom:
-              $ref: '#/components/schemas/AddressInfo'
-            shipTo:
-              $ref: '#/components/schemas/AddressInfo'
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/MultiDocumentLineItemModel'
     AddressInfo:
       type: object
       properties:
@@ -1011,15 +996,30 @@ components:
         longitude:
           type: number
           format: double
-    CreateMultiDocumentModel:
+    MultiDocumentLineItemModel:
       type: object
       properties:
-        code:
+        companyCode:
           type: string
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/MultiDocumentLineItemModel'
+        reportingLocationCode:
+          type: string
+        number:
+          type: string
+        quantity:
+          type: number
+          format: double
+        amount:
+          type: number
+          format: double
+        taxCode:
+          type: string
+        addresses:
+          type: object
+          properties:
+            shipFrom:
+              $ref: '#/components/schemas/AddressInfo'
+            shipTo:
+              $ref: '#/components/schemas/AddressInfo'
   securitySchemes:
     basicAuth:
       type: http

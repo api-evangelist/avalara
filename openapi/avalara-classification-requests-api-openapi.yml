@@ -101,8 +101,8 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Resource not found
+    BadRequest:
+      description: Invalid request
       content:
         application/json:
           schema:
@@ -113,22 +113,47 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ClassificationRequestList:
+    ClassificationRequestSummary:
       type: object
       properties:
-        '@recordSetCount':
+        requestId:
+          type: string
+        status:
+          type: string
+        itemCount:
           type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/ClassificationRequestSummary'
+        submittedDate:
+          type: string
+          format: date-time
+        completedDate:
+          type: string
+          format: date-time
+    ClassificationItem:
+      type: object
+      required:
+      - description
+      properties:
+        itemCode:
+          type: string
+          description: Unique item identifier
+        description:
+          type: string
+          description: Product description for classification
+        summary:
+          type: string
+          description: Short product summary
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
+          description: Additional product attributes for classification
     ErrorResponse:
       type: object
       properties:
@@ -139,6 +164,15 @@ components:
               type: string
             message:
               type: string
+    ClassificationRequestList:
+      type: object
+      properties:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/ClassificationRequestSummary'
     ClassificationRequestResponse:
       type: object
       properties:
@@ -166,21 +200,6 @@ components:
         destinationCountry:
           type: string
           description: ISO 3166-1 alpha-2 destination country code
-    ClassificationRequestSummary:
-      type: object
-      properties:
-        requestId:
-          type: string
-        status:
-          type: string
-        itemCount:
-          type: integer
-        submittedDate:
-          type: string
-          format: date-time
-        completedDate:
-          type: string
-          format: date-time
     ClassificationRequestDetail:
       type: object
       properties:
@@ -203,25 +222,6 @@ components:
         completedDate:
           type: string
           format: date-time
-    ClassificationItem:
-      type: object
-      required:
-      - description
-      properties:
-        itemCode:
-          type: string
-          description: Unique item identifier
-        description:
-          type: string
-          description: Product description for classification
-        summary:
-          type: string
-          description: Short product summary
-        attributes:
-          type: object
-          additionalProperties:
-            type: string
-          description: Additional product attributes for classification
   securitySchemes:
     bearerAuth:
       type: http

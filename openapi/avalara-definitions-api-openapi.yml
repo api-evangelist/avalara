@@ -2314,6 +2314,12 @@ components:
         type: integer
         default: 1000
       description: Maximum number of results to return
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
     skip:
       name: $skip
       in: query
@@ -2321,22 +2327,7 @@ components:
         type: integer
         default: 0
       description: Number of results to skip for pagination
-    filter:
-      name: $filter
-      in: query
-      schema:
-        type: string
-      description: OData filter expression for result filtering
   schemas:
-    FetchResult_TaxCodeModel:
-      type: object
-      properties:
-        '@recordsetCount':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/TaxCodeModel'
     TaxCodeModel:
       type: object
       properties:
@@ -2354,6 +2345,15 @@ components:
           type: boolean
         isActive:
           type: boolean
+    FetchResult_TaxCodeModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/TaxCodeModel'
   securitySchemes:
     basicAuth:
       type: http

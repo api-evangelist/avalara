@@ -252,6 +252,26 @@ paths:
       x-accepts: application/json
 components:
   schemas:
+    ErrorDetails_error:
+      description: An object holding details about the error.
+      properties:
+        code:
+          description: Name of the error or message.
+          enum:
+          - AuthenticationException
+          - SubscriptionRequired
+          - ServerConfiguration
+          - InvalidAddress
+          - EntityNotFoundError
+          example: InvalidAddress
+          type: string
+        message:
+          description: Concise summary of the message, suitable for display in the caption of an alert box.
+          example: The address is not deliverable.
+          type: string
+        details:
+          $ref: '#/components/schemas/ErrorDetails_error_details'
+      type: object
     ErrorDetails:
       description: Message Object
       example:
@@ -269,6 +289,45 @@ components:
       properties:
         error:
           $ref: '#/components/schemas/ErrorDetails_error'
+      type: object
+    ShippingVerifyResult_lines:
+      properties:
+        resultCode:
+          description: Describes whether the line is compliant or not. In cases where a determination could not be made, resultCode will provide the reason why.
+          enum:
+          - Compliant
+          - NotCompliant
+          - UnsupportedTaxCode
+          - UnsupportedAddress
+          - InvalidLine
+          type: string
+        lineNumber:
+          description: The lineNumber of the line evaluated.
+          type: string
+        message:
+          description: A short description of the result of the checks made against this line.
+          type: string
+        successMessages:
+          description: A detailed description of the result of each of the passed checks made against this line.
+          type: string
+        failureMessages:
+          description: A detailed description of the result of each of the failed checks made against this line.
+          type: string
+        failureCodes:
+          description: An enumeration of all the failure codes received for this line.
+          items:
+            enum:
+            - BelowLegalDrinkingAge
+            - ShippingProhibitedToAddress
+            - MissingRequiredLicense
+            - VolumeLimitExceeded
+            - InvalidFieldValue
+            - MissingRequiredField
+            - InvalidFieldType
+            - InvalidFormat
+            - InvalidDate
+            type: string
+          type: array
       type: object
     ShippingVerifyResult:
       description: The Response of the /shippingverify endpoint. Describes the result of checking all applicable shipping rules against each line in the transaction.
@@ -333,65 +392,6 @@ components:
           items:
             $ref: '#/components/schemas/ShippingVerifyResult_lines'
           type: array
-      type: object
-    ShippingVerifyResult_lines:
-      properties:
-        resultCode:
-          description: Describes whether the line is compliant or not. In cases where a determination could not be made, resultCode will provide the reason why.
-          enum:
-          - Compliant
-          - NotCompliant
-          - UnsupportedTaxCode
-          - UnsupportedAddress
-          - InvalidLine
-          type: string
-        lineNumber:
-          description: The lineNumber of the line evaluated.
-          type: string
-        message:
-          description: A short description of the result of the checks made against this line.
-          type: string
-        successMessages:
-          description: A detailed description of the result of each of the passed checks made against this line.
-          type: string
-        failureMessages:
-          description: A detailed description of the result of each of the failed checks made against this line.
-          type: string
-        failureCodes:
-          description: An enumeration of all the failure codes received for this line.
-          items:
-            enum:
-            - BelowLegalDrinkingAge
-            - ShippingProhibitedToAddress
-            - MissingRequiredLicense
-            - VolumeLimitExceeded
-            - InvalidFieldValue
-            - MissingRequiredField
-            - InvalidFieldType
-            - InvalidFormat
-            - InvalidDate
-            type: string
-          type: array
-      type: object
-    ErrorDetails_error:
-      description: An object holding details about the error.
-      properties:
-        code:
-          description: Name of the error or message.
-          enum:
-          - AuthenticationException
-          - SubscriptionRequired
-          - ServerConfiguration
-          - InvalidAddress
-          - EntityNotFoundError
-          example: InvalidAddress
-          type: string
-        message:
-          description: Concise summary of the message, suitable for display in the caption of an alert box.
-          example: The address is not deliverable.
-          type: string
-        details:
-          $ref: '#/components/schemas/ErrorDetails_error_details'
       type: object
     ErrorDetails_error_details:
       description: Message Details Object

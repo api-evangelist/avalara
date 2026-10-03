@@ -172,8 +172,8 @@ paths:
                 $ref: '#/components/schemas/DocumentStatus'
 components:
   responses:
-    NotFound:
-      description: Resource not found
+    BadRequest:
+      description: Invalid request
       content:
         application/json:
           schema:
@@ -184,65 +184,33 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    Party:
-      type: object
-      properties:
-        name:
-          type: string
-        identifier:
-          type: string
-          description: Tax identification number
-        identifierScheme:
-          type: string
-          description: Identifier scheme (e.g., VAT)
-        address:
-          type: object
-          properties:
-            line1:
-              type: string
-            city:
-              type: string
-            region:
-              type: string
-            postalCode:
-              type: string
-            countryCode:
-              type: string
-    DocumentSubmissionResponse:
+    DocumentSummary:
       type: object
       properties:
         id:
           type: string
-          description: Document submission ID
         status:
           type: string
-          enum:
-          - Pending
-          - Accepted
-          - Rejected
-          - Error
-        statusDate:
+        documentType:
+          type: string
+        invoiceNumber:
+          type: string
+        senderName:
+          type: string
+        recipientName:
+          type: string
+        submissionDate:
           type: string
           format: date-time
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            target:
-              type: string
+        countryCode:
+          type: string
     DocumentDetail:
       type: object
       properties:
@@ -277,31 +245,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DocumentEvent'
-    DocumentSummary:
+    DocumentSubmissionResponse:
       type: object
       properties:
         id:
           type: string
-        status:
-          type: string
-        documentType:
-          type: string
-        invoiceNumber:
-          type: string
-        senderName:
-          type: string
-        recipientName:
-          type: string
-        submissionDate:
-          type: string
-          format: date-time
-        countryCode:
-          type: string
-    DocumentStatus:
-      type: object
-      properties:
-        id:
-          type: string
+          description: Document submission ID
         status:
           type: string
           enum:
@@ -312,19 +261,28 @@ components:
         statusDate:
           type: string
           format: date-time
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentEvent'
-    DocumentList:
+    ErrorResponse:
       type: object
       properties:
-        '@recordSetCount':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentSummary'
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
+            target:
+              type: string
+    DocumentEvent:
+      type: object
+      properties:
+        eventDate:
+          type: string
+          format: date-time
+        eventType:
+          type: string
+        message:
+          type: string
     SubmitDocumentRequest:
       type: object
       required:
@@ -356,16 +314,58 @@ components:
             countryMandate:
               type: string
               description: Country mandate identifier
-    DocumentEvent:
+    DocumentStatus:
       type: object
       properties:
-        eventDate:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - Pending
+          - Accepted
+          - Rejected
+          - Error
+        statusDate:
           type: string
           format: date-time
-        eventType:
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentEvent'
+    DocumentList:
+      type: object
+      properties:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentSummary'
+    Party:
+      type: object
+      properties:
+        name:
           type: string
-        message:
+        identifier:
           type: string
+          description: Tax identification number
+        identifierScheme:
+          type: string
+          description: Identifier scheme (e.g., VAT)
+        address:
+          type: object
+          properties:
+            line1:
+              type: string
+            city:
+              type: string
+            region:
+              type: string
+            postalCode:
+              type: string
+            countryCode:
+              type: string
   securitySchemes:
     bearerAuth:
       type: http

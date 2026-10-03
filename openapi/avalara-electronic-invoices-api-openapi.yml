@@ -123,68 +123,6 @@ paths:
           description: Invoice cancelled
 components:
   schemas:
-    InvoiceRequest:
-      type: object
-      properties:
-        invoiceType:
-          type: string
-          enum:
-          - NF-e
-          - NFS-e
-          - NFC-e
-          - CT-e
-          description: Electronic document type
-        companyId:
-          type: string
-        transactionDate:
-          type: string
-          format: date-time
-        buyer:
-          $ref: '#/components/schemas/BrazilParty'
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvoiceLine'
-    BrazilParty:
-      type: object
-      properties:
-        name:
-          type: string
-        cnpj:
-          type: string
-          description: Company tax ID (CNPJ)
-        cpf:
-          type: string
-          description: Individual tax ID (CPF)
-        stateRegistration:
-          type: string
-          description: Inscricao Estadual
-        municipalRegistration:
-          type: string
-          description: Inscricao Municipal
-        address:
-          type: object
-          properties:
-            street:
-              type: string
-            number:
-              type: string
-            complement:
-              type: string
-            neighborhood:
-              type: string
-            city:
-              type: string
-            cityCode:
-              type: string
-              description: IBGE city code
-            state:
-              type: string
-              description: State code (UF)
-            postalCode:
-              type: string
-            country:
-              type: string
     InvoiceResponse:
       type: object
       properties:
@@ -228,6 +166,68 @@ components:
           type: string
         cfopCode:
           type: string
+    BrazilParty:
+      type: object
+      properties:
+        name:
+          type: string
+        cnpj:
+          type: string
+          description: Company tax ID (CNPJ)
+        cpf:
+          type: string
+          description: Individual tax ID (CPF)
+        stateRegistration:
+          type: string
+          description: Inscricao Estadual
+        municipalRegistration:
+          type: string
+          description: Inscricao Municipal
+        address:
+          type: object
+          properties:
+            street:
+              type: string
+            number:
+              type: string
+            complement:
+              type: string
+            neighborhood:
+              type: string
+            city:
+              type: string
+            cityCode:
+              type: string
+              description: IBGE city code
+            state:
+              type: string
+              description: State code (UF)
+            postalCode:
+              type: string
+            country:
+              type: string
+    InvoiceRequest:
+      type: object
+      properties:
+        invoiceType:
+          type: string
+          enum:
+          - NF-e
+          - NFS-e
+          - NFC-e
+          - CT-e
+          description: Electronic document type
+        companyId:
+          type: string
+        transactionDate:
+          type: string
+          format: date-time
+        buyer:
+          $ref: '#/components/schemas/BrazilParty'
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceLine'
   securitySchemes:
     bearerAuth:
       type: http

@@ -1193,15 +1193,6 @@ components:
           - LucroReal
         state:
           type: string
-    FetchResult_CompanyModel:
-      type: object
-      properties:
-        '@recordsetCount':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/CompanyModel'
     CompanyModel:
       type: object
       properties:
@@ -1292,15 +1283,15 @@ components:
           type: string
         mobileNumber:
           type: string
-    CompanyList:
+    FetchResult_CompanyModel:
       type: object
       properties:
-        '@recordSetCount':
+        '@recordsetCount':
           type: integer
         value:
           type: array
           items:
-            $ref: '#/components/schemas/SharedCompany'
+            $ref: '#/components/schemas/CompanyModel'
     SharedCompany:
       type: object
       properties:
@@ -1341,7 +1332,22 @@ components:
         modifiedDate:
           type: string
           format: date-time
+    CompanyList:
+      type: object
+      properties:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/SharedCompany'
   parameters:
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
     top:
       name: $top
       in: query
@@ -1362,12 +1368,6 @@ components:
       schema:
         type: string
       description: Field name for sorting results
-    filter:
-      name: $filter
-      in: query
-      schema:
-        type: string
-      description: OData filter expression for result filtering
   securitySchemes:
     bearerAuth:
       type: http
