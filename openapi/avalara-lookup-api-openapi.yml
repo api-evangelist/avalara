@@ -86,6 +86,14 @@ paths:
                 $ref: '#/components/schemas/ServiceInfo'
 components:
   schemas:
+    ServiceInfo:
+      type: object
+      properties:
+        serverTime:
+          type: string
+          format: date-time
+        buildVersion:
+          type: string
     TSPairModel:
       type: object
       properties:
@@ -98,14 +106,6 @@ components:
           type: integer
           description: Service type ID
         ServiceTypeDescription:
-          type: string
-    ServiceInfo:
-      type: object
-      properties:
-        serverTime:
-          type: string
-          format: date-time
-        buildVersion:
           type: string
   securitySchemes:
     basicAuth:

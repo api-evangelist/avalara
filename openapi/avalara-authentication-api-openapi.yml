@@ -197,20 +197,6 @@ paths:
       description: Avalara Identity Production
 components:
   schemas:
-    OAuthError:
-      type: object
-      properties:
-        error:
-          type: string
-          enum:
-          - invalid_request
-          - invalid_client
-          - invalid_grant
-          - unauthorized_client
-          - unsupported_grant_type
-          - invalid_scope
-        error_description:
-          type: string
     TokenResponse:
       type: object
       properties:
@@ -230,6 +216,20 @@ components:
         refresh_token:
           type: string
           description: Refresh token (if applicable)
+    OAuthError:
+      type: object
+      properties:
+        error:
+          type: string
+          enum:
+          - invalid_request
+          - invalid_client
+          - invalid_grant
+          - unauthorized_client
+          - unsupported_grant_type
+          - invalid_scope
+        error_description:
+          type: string
   securitySchemes:
     basicAuth:
       type: http

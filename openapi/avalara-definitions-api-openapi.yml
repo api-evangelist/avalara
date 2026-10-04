@@ -2306,27 +2306,6 @@ paths:
     servers:
     - url: http://{{baseurl}}
 components:
-  parameters:
-    top:
-      name: $top
-      in: query
-      schema:
-        type: integer
-        default: 1000
-      description: Maximum number of results to return
-    filter:
-      name: $filter
-      in: query
-      schema:
-        type: string
-      description: OData filter expression for result filtering
-    skip:
-      name: $skip
-      in: query
-      schema:
-        type: integer
-        default: 0
-      description: Number of results to skip for pagination
   schemas:
     TaxCodeModel:
       type: object
@@ -2354,6 +2333,27 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TaxCodeModel'
+  parameters:
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
   securitySchemes:
     basicAuth:
       type: http

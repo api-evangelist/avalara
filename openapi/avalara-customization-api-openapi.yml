@@ -71,18 +71,6 @@ paths:
           description: Exclusion created
 components:
   schemas:
-    Exclusion:
-      type: object
-      properties:
-        excl:
-          type: integer
-          description: Exclusion type
-        ctry:
-          type: string
-        st:
-          type: string
-        excl_name:
-          type: string
     TaxProfile:
       type: object
       properties:
@@ -101,6 +89,18 @@ components:
                 type: integer
               bundleName:
                 type: string
+    Exclusion:
+      type: object
+      properties:
+        excl:
+          type: integer
+          description: Exclusion type
+        ctry:
+          type: string
+        st:
+          type: string
+        excl_name:
+          type: string
   securitySchemes:
     basicAuth:
       type: http

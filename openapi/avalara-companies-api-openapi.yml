@@ -1239,6 +1239,15 @@ components:
         modifiedDate:
           type: string
           format: date-time
+    FetchResult_CompanyModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/CompanyModel'
     CompanyInitializationModel:
       type: object
       required:
@@ -1283,15 +1292,6 @@ components:
           type: string
         mobileNumber:
           type: string
-    FetchResult_CompanyModel:
-      type: object
-      properties:
-        '@recordsetCount':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/CompanyModel'
     SharedCompany:
       type: object
       properties:
@@ -1348,6 +1348,12 @@ components:
       schema:
         type: string
       description: OData filter expression for result filtering
+    orderBy:
+      name: $orderBy
+      in: query
+      schema:
+        type: string
+      description: Field name for sorting results
     top:
       name: $top
       in: query
@@ -1362,12 +1368,6 @@ components:
         type: integer
         default: 0
       description: Number of results to skip for pagination
-    orderBy:
-      name: $orderBy
-      in: query
-      schema:
-        type: string
-      description: Field name for sorting results
   securitySchemes:
     bearerAuth:
       type: http

@@ -78,6 +78,15 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    RegistrationList:
+      type: object
+      properties:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/Registration'
     Registration:
       type: object
       properties:
@@ -108,15 +117,6 @@ components:
         createdDate:
           type: string
           format: date-time
-    RegistrationList:
-      type: object
-      properties:
-        '@recordSetCount':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/Registration'
     ErrorResponse:
       type: object
       properties:

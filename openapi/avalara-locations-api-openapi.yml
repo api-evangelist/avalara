@@ -655,6 +655,15 @@ paths:
     - url: http://{{baseurl}}
 components:
   schemas:
+    FetchResult_LocationModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/LocationModel'
     LocationModel:
       type: object
       properties:
@@ -690,15 +699,6 @@ components:
           type: string
         country:
           type: string
-    FetchResult_LocationModel:
-      type: object
-      properties:
-        '@recordsetCount':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/LocationModel'
     ExciseLocation:
       type: object
       properties:
@@ -750,13 +750,6 @@ components:
         type: integer
         default: 1000
       description: Maximum number of results to return
-    skip:
-      name: $skip
-      in: query
-      schema:
-        type: integer
-        default: 0
-      description: Number of results to skip for pagination
     companyId:
       name: companyId
       in: path
@@ -764,6 +757,13 @@ components:
       schema:
         type: integer
       description: The numeric ID of the company
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
   securitySchemes:
     basicAuth:
       type: http

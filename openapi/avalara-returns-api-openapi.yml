@@ -107,6 +107,15 @@ paths:
                 $ref: '#/components/schemas/VATReturn'
 components:
   schemas:
+    ReturnList:
+      type: object
+      properties:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/VATReturn'
     VATReturn:
       type: object
       properties:
@@ -152,15 +161,6 @@ components:
           format: date-time
         currency:
           type: string
-    ReturnList:
-      type: object
-      properties:
-        '@recordSetCount':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/VATReturn'
   securitySchemes:
     bearerAuth:
       type: http

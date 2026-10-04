@@ -2795,8 +2795,6 @@ apis:
   description: Manage tax rules and overrides for companies
   humanURL: https://developer.avalara.com/
   tags:
-  - TaxRules
-  tags_raw:
   - Tax Rules
   properties:
   - type: OpenAPI

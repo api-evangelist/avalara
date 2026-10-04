@@ -856,13 +856,6 @@ components:
         type: integer
         default: 1000
       description: Maximum number of results to return
-    skip:
-      name: $skip
-      in: query
-      schema:
-        type: integer
-        default: 0
-      description: Number of results to skip for pagination
     companyId:
       name: companyId
       in: path
@@ -870,6 +863,13 @@ components:
       schema:
         type: integer
       description: The numeric ID of the company
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
   schemas:
     FetchResult_NexusModel:
       type: object

@@ -115,6 +115,17 @@ components:
           - Default
           - Upper
           - Mixed
+    TaxAuthorityInfo:
+      type: object
+      properties:
+        avalaraId:
+          type: string
+        jurisdictionName:
+          type: string
+        jurisdictionType:
+          type: string
+        signatureCode:
+          type: string
     AddressInfo:
       type: object
       properties:
@@ -145,17 +156,6 @@ components:
         longitude:
           type: number
           format: double
-    TaxAuthorityInfo:
-      type: object
-      properties:
-        avalaraId:
-          type: string
-        jurisdictionName:
-          type: string
-        jurisdictionType:
-          type: string
-        signatureCode:
-          type: string
     AddressResolutionModel:
       type: object
       properties:

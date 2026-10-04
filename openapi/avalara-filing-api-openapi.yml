@@ -79,6 +79,22 @@ components:
         corrected:
           type: boolean
           default: false
+    FilingResponse:
+      type: object
+      properties:
+        filingId:
+          type: string
+        status:
+          type: string
+          enum:
+          - Accepted
+          - Processing
+          - Rejected
+        formCount:
+          type: integer
+        submittedDate:
+          type: string
+          format: date-time
     FilingStatus:
       type: object
       properties:
@@ -106,22 +122,6 @@ components:
                 type: string
               message:
                 type: string
-    FilingResponse:
-      type: object
-      properties:
-        filingId:
-          type: string
-        status:
-          type: string
-          enum:
-          - Accepted
-          - Processing
-          - Rejected
-        formCount:
-          type: integer
-        submittedDate:
-          type: string
-          format: date-time
   securitySchemes:
     bearerAuth:
       type: http

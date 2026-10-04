@@ -511,6 +511,12 @@ paths:
     - url: http://{{baseurl}}
 components:
   parameters:
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
     top:
       name: $top
       in: query
@@ -518,19 +524,6 @@ components:
         type: integer
         default: 1000
       description: Maximum number of results to return
-    filter:
-      name: $filter
-      in: query
-      schema:
-        type: string
-      description: OData filter expression for result filtering
-    skip:
-      name: $skip
-      in: query
-      schema:
-        type: integer
-        default: 0
-      description: Number of results to skip for pagination
     companyId:
       name: companyId
       in: path
@@ -538,6 +531,13 @@ components:
       schema:
         type: integer
       description: The numeric ID of the company
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
   schemas:
     BatchModel:
       type: object

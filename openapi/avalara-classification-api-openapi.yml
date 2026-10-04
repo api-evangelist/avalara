@@ -134,6 +134,29 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ClassifyRequest:
+      type: object
+      required:
+      - description
+      - destinationCountry
+      properties:
+        description:
+          type: string
+          description: Product description for classification
+        destinationCountry:
+          type: string
+          description: ISO 3166-1 alpha-2 destination country
+        originCountry:
+          type: string
+          description: ISO 3166-1 alpha-2 origin country
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
+          description: Additional product attributes
+        itemCode:
+          type: string
+          description: Product identifier
     ClassificationPrediction:
       type: object
       properties:
@@ -148,6 +171,27 @@ components:
           format: double
           description: Confidence score (0-1)
         parentCode:
+          type: string
+    HSCodeInfo:
+      type: object
+      properties:
+        hsCode:
+          type: string
+        description:
+          type: string
+        level:
+          type: string
+          enum:
+          - Section
+          - Chapter
+          - Heading
+          - Subheading
+          - TariffLine
+        parentCode:
+          type: string
+        dutyRate:
+          type: string
+        unitOfMeasure:
           type: string
     ErrorResponse:
       type: object
@@ -173,50 +217,6 @@ components:
         avataxCode:
           type: string
           description: Recommended Avalara tax code
-    ClassifyRequest:
-      type: object
-      required:
-      - description
-      - destinationCountry
-      properties:
-        description:
-          type: string
-          description: Product description for classification
-        destinationCountry:
-          type: string
-          description: ISO 3166-1 alpha-2 destination country
-        originCountry:
-          type: string
-          description: ISO 3166-1 alpha-2 origin country
-        attributes:
-          type: object
-          additionalProperties:
-            type: string
-          description: Additional product attributes
-        itemCode:
-          type: string
-          description: Product identifier
-    HSCodeInfo:
-      type: object
-      properties:
-        hsCode:
-          type: string
-        description:
-          type: string
-        level:
-          type: string
-          enum:
-          - Section
-          - Chapter
-          - Heading
-          - Subheading
-          - TariffLine
-        parentCode:
-          type: string
-        dutyRate:
-          type: string
-        unitOfMeasure:
-          type: string
   securitySchemes:
     bearerAuth:
       type: http

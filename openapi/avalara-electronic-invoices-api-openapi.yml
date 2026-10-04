@@ -123,6 +123,47 @@ paths:
           description: Invoice cancelled
 components:
   schemas:
+    InvoiceRequest:
+      type: object
+      properties:
+        invoiceType:
+          type: string
+          enum:
+          - NF-e
+          - NFS-e
+          - NFC-e
+          - CT-e
+          description: Electronic document type
+        companyId:
+          type: string
+        transactionDate:
+          type: string
+          format: date-time
+        buyer:
+          $ref: '#/components/schemas/BrazilParty'
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/InvoiceLine'
+    InvoiceLine:
+      type: object
+      properties:
+        lineNumber:
+          type: integer
+        itemCode:
+          type: string
+        description:
+          type: string
+        quantity:
+          type: number
+          format: double
+        unitPrice:
+          type: number
+          format: double
+        ncmCode:
+          type: string
+        cfopCode:
+          type: string
     InvoiceResponse:
       type: object
       properties:
@@ -147,25 +188,6 @@ components:
         issuanceDate:
           type: string
           format: date-time
-    InvoiceLine:
-      type: object
-      properties:
-        lineNumber:
-          type: integer
-        itemCode:
-          type: string
-        description:
-          type: string
-        quantity:
-          type: number
-          format: double
-        unitPrice:
-          type: number
-          format: double
-        ncmCode:
-          type: string
-        cfopCode:
-          type: string
     BrazilParty:
       type: object
       properties:
@@ -206,28 +228,6 @@ components:
               type: string
             country:
               type: string
-    InvoiceRequest:
-      type: object
-      properties:
-        invoiceType:
-          type: string
-          enum:
-          - NF-e
-          - NFS-e
-          - NFC-e
-          - CT-e
-          description: Electronic document type
-        companyId:
-          type: string
-        transactionDate:
-          type: string
-          format: date-time
-        buyer:
-          $ref: '#/components/schemas/BrazilParty'
-        lines:
-          type: array
-          items:
-            $ref: '#/components/schemas/InvoiceLine'
   securitySchemes:
     bearerAuth:
       type: http

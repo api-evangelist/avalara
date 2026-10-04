@@ -345,13 +345,6 @@ paths:
     - url: http://{{baseurl}}
 components:
   parameters:
-    skip:
-      name: $skip
-      in: query
-      schema:
-        type: integer
-        default: 0
-      description: Number of results to skip for pagination
     top:
       name: $top
       in: query
@@ -359,6 +352,13 @@ components:
         type: integer
         default: 1000
       description: Maximum number of results to return
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
     filter:
       name: $filter
       in: query

@@ -614,13 +614,6 @@ paths:
     - url: http://{{baseurl}}
 components:
   parameters:
-    skip:
-      name: $skip
-      in: query
-      schema:
-        type: integer
-        default: 0
-      description: Number of results to skip for pagination
     top:
       name: $top
       in: query
@@ -628,6 +621,13 @@ components:
         type: integer
         default: 1000
       description: Maximum number of results to return
+    skip:
+      name: $skip
+      in: query
+      schema:
+        type: integer
+        default: 0
+      description: Number of results to skip for pagination
     filter:
       name: $filter
       in: query
@@ -661,16 +661,6 @@ components:
         modifiedDate:
           type: string
           format: date-time
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
     AccountResponse:
       type: object
       properties:
@@ -721,6 +711,16 @@ components:
               type: string
         partnerCode:
           type: string
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: string
   responses:
     BadRequest:
       description: Invalid request
