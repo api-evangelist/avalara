@@ -105,7 +105,7 @@ workflows:
       Create a sales invoice transaction with a single line item, calculating
       tax for the resolved ship-to address. The transaction is created
       uncommitted so it can be committed in the next step.
-    operationId: createTransaction
+    operationId: postTransactions
     requestBody:
       contentType: application/json
       payload:

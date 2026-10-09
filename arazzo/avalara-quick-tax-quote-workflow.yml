@@ -81,7 +81,7 @@ workflows:
     description: >-
       Create an uncommitted SalesOrder transaction so AvaTax calculates tax as a
       non-binding quote.
-    operationId: createTransaction
+    operationId: postTransactions
     requestBody:
       contentType: application/json
       payload:

@@ -81,7 +81,7 @@ workflows:
   - stepId: createCustomer
     description: >-
       Create the customer record under the company.
-    operationId: createCustomer
+    operationId: postCustomers
     parameters:
     - name: companyId
       in: path
@@ -102,7 +102,7 @@ workflows:
     description: >-
       Attach an exemption certificate to the company so the exempt customer's
       sales can be treated as tax-exempt.
-    operationId: createCertificate
+    operationId: postCertificates
     parameters:
     - name: companyId
       in: path

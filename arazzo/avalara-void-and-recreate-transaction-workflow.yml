@@ -121,7 +121,7 @@ workflows:
   - stepId: recreate
     description: >-
       Create a corrected SalesInvoice transaction to replace the voided one.
-    operationId: createTransaction
+    operationId: postTransactions
     requestBody:
       contentType: application/json
       payload:

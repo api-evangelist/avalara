@@ -44,3 +44,39 @@ plans:
   currency: USD
   period: one-time
   unit: per location
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - subscription
+  units: []
+  plans:
+  - name: Avalara Select
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - month
+  - name: Tax Calculation and Returns Compliance Package
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Business Licenses (License Guidance)
+    access: other
+    model: subscription
+    model_how: derived
+    units: []
+    periods:
+    - none
+  - name: Sales Tax Registration
+    access: other
+    model: subscription
+    model_how: derived
+    units:
+    - other
+    periods:
+    - one-time
