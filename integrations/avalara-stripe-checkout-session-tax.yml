@@ -1,0 +1,103 @@
+arazzo: 1.0.1
+info:
+  title: Avalara Stripe Checkout session tax calculation
+  summary: Calculate Avalara AvaTax on a completed Stripe Checkout session
+  description: Reads a Stripe Checkout session and its line items, then records an AvaTax sales transaction for the session total and shipping address. AvaTax cannot write the tax back into an existing Stripe session, so this computes and records the tax alongside the sale.
+  version: 1.0.0
+sourceDescriptions:
+- name: stripeCheckout
+  url: https://raw.githubusercontent.com/api-evangelist/stripe/refs/heads/main/openapi/stripe-checkout-api-openapi.yml
+  type: openapi
+- name: avalaraTransactions
+  url: https://raw.githubusercontent.com/api-evangelist/avalara/refs/heads/main/openapi/avalara-transactions-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: stripe-checkout-session-avatax
+  summary: Calculate AvaTax for a Stripe Checkout session
+  description: Retrieve a Stripe Checkout session, read its line items, and create an AvaTax SalesInvoice transaction for it.
+  inputs:
+    type: object
+    required: [sessionId, companyCode]
+    properties:
+      sessionId:
+        type: string
+        description: Stripe Checkout session id
+      companyCode:
+        type: string
+        description: AvaTax company code
+      itemTaxCode:
+        type: string
+        description: AvaTax tax code for the goods sold
+  steps:
+  - stepId: get-session
+    description: Retrieve the Stripe Checkout session.
+    operationId: $sourceDescriptions.stripeCheckout.GetCheckoutSessionsSession
+    parameters:
+    - name: session
+      in: path
+      value: $inputs.sessionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      amountTotal: $response.body#/amount_total
+      currency: $response.body#/currency
+      customerEmail: $response.body#/customer_details/email
+      line1: $response.body#/customer_details/address/line1
+      city: $response.body#/customer_details/address/city
+      region: $response.body#/customer_details/address/state
+      postalCode: $response.body#/customer_details/address/postal_code
+      country: $response.body#/customer_details/address/country
+  - stepId: get-line-items
+    description: Read the session line items.
+    operationId: $sourceDescriptions.stripeCheckout.GetCheckoutSessionsSessionLineItems
+    parameters:
+    - name: session
+      in: path
+      value: $inputs.sessionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstItemDescription: $response.body#/data/0/description
+      firstItemAmount: $response.body#/data/0/amount_total
+  - stepId: create-transaction
+    description: Create the AvaTax sales transaction for the session.
+    operationId: $sourceDescriptions.avalaraTransactions.createTransaction
+    requestBody:
+      contentType: application/json
+      payload:
+        type: SalesInvoice
+        companyCode: $inputs.companyCode
+        code: $inputs.sessionId
+        customerCode: $steps.get-session.outputs.customerEmail
+        currencyCode: $steps.get-session.outputs.currency
+        addresses:
+          shipTo:
+            line1: $steps.get-session.outputs.line1
+            city: $steps.get-session.outputs.city
+            region: $steps.get-session.outputs.region
+            postalCode: $steps.get-session.outputs.postalCode
+            country: $steps.get-session.outputs.country
+        lines:
+        - number: '1'
+          amount: $steps.get-session.outputs.amountTotal
+          description: $steps.get-line-items.outputs.firstItemDescription
+          taxCode: $inputs.itemTaxCode
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transactionId: $response.body#/id
+      totalTax: $response.body#/totalTax
+  outputs:
+    transactionId: $steps.create-transaction.outputs.transactionId
+    totalTax: $steps.create-transaction.outputs.totalTax
+x-integration:
+  partner: stripe
+  edge_evidence: null
+  edge_type: null
+  method: generated
+  generated: '2026-10-13'
+  generator: claude-opus-5.5 market-workflows
+  guessed_steps:
+  - step: create-transaction
+    cause: provider-contract
+    why: Stripe amount_total is in minor units while AvaTax line amount is decimal; the conversion and the TransactionModel id/totalTax paths are assumed, and the whole session is sent as one line

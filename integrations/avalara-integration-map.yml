@@ -1,0 +1,61 @@
+# DERIVED by derive-integration-map.py (roadmap#949): each integration workflow, step by step,
+# resolved to spec file -> tag -> business capability (Turbo EA, CC BY 4.0) and the operation's
+# phrasing intent. Read from our own files; an unmapped link says why.
+slug: avalara
+workflows:
+- file: avalara-stripe-checkout-session-tax.yml
+  title: Avalara Stripe Checkout session tax calculation
+  partner: stripe
+  template: null
+  repos:
+  - stripe
+  - avalara
+  steps:
+  - step: get-session
+    repo: stripe
+    spec_file: stripe-checkout-api-openapi.yml
+    operationId: GetCheckoutSessionsSession
+    tag: Checkout
+    capability_id: BC-1340.10
+    capability: Payment Initiation Management
+    capability_l1: BC-1340
+    intent: Retrieve a Checkout Session
+    effect: read
+    unmapped: null
+  - step: get-line-items
+    repo: stripe
+    spec_file: stripe-checkout-api-openapi.yml
+    operationId: GetCheckoutSessionsSessionLineItems
+    tag: Checkout
+    capability_id: BC-1340.10
+    capability: Payment Initiation Management
+    capability_l1: BC-1340
+    intent: List a Checkout Session's line items
+    effect: read
+    unmapped: null
+  - step: create-transaction
+    repo: avalara
+    spec_file: avalara-transactions-api-openapi.yml
+    operationId: createTransaction
+    tag: Transactions
+    capability_id: BC-220.20
+    capability: Indirect Tax Management
+    capability_l1: BC-220
+    intent: Calculate tax by creating a sales transaction
+    effect: write
+    unmapped: null
+  connects:
+    stripe:
+      capabilities:
+      - BC-1340.10
+      tags:
+      - Checkout
+    avalara:
+      capabilities:
+      - BC-220.20
+      tags:
+      - Transactions
+  intents:
+  - Retrieve a Checkout Session
+  - List a Checkout Session's line items
+  - Calculate tax by creating a sales transaction

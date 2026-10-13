@@ -10,8 +10,8 @@
   use_case: Before creating a Stripe Checkout Session, call AvaTax createTransaction to compute the correct tax
     line and attach it to the session totals.
   source: curated
-  status: pending-generation
-  arazzo: null
+  status: arazzo
+  arazzo: avalara-stripe-checkout-session-tax.yml
 - slug: avalara-shopify
   label: Calculate Avalara sales tax for Shopify orders
   partner: shopify
