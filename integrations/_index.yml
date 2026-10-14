@@ -145,3 +145,16 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
+- slug: avalara-workday-own
+  label: Workday (own)
+  partner: workday
+  partner_name: Workday (own)
+  category: Region & Country
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.workday.com/apps/452509/avalara-e-invoicing-and-live-reporting
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null

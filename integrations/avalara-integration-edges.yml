@@ -3,6 +3,7 @@ method: searched
 checked:
 - https://aws.amazon.com/marketplace/
 - https://azuremarketplace.microsoft.com/
+- workday/integrations/workday-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: AWS Marketplace
@@ -37,3 +38,24 @@ edges:
   seller_name: Avalara
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: Workday (own)
+  partner: workday
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.workday.com/apps/452509/avalara-e-invoicing-and-live-reporting
+  mirror_of: workday/integrations/workday-integration-edges.yml
+  apps:
+  - Avalara E-Invoicing and Live Reporting
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Region & Country
+  badges:
+  - Built on Workday
+source:
+- workday/integrations/workday-integration-edges.yml
