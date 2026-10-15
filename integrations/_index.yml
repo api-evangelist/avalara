@@ -12,6 +12,8 @@
   source: curated
   status: arazzo
   arazzo: avalara-stripe-checkout-session-tax.yml
+  evidence: https://marketplace.stripe.com/apps/avalara-avatax
+  type: marketplace
 - slug: avalara-shopify
   label: Calculate Avalara sales tax for Shopify orders
   partner: shopify
@@ -46,7 +48,9 @@
   use_case: For each WooCommerce order, call AvaTax createTransaction to compute the correct sales tax and write
     it back to the order before payment capture.
   source: curated
-  status: pending-generation
+  status: not-a-workflow
+  evidence: https://woocommerce.com/products/woocommerce-avatax/
+  type: marketplace
   arazzo: null
 - slug: avalara-salesforce-cpq
   label: Tax-aware quotes in Salesforce CPQ via Avalara
