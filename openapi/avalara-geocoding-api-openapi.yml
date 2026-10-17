@@ -42,6 +42,26 @@ paths:
                 $ref: '#/components/schemas/GeocodeResult'
 components:
   schemas:
+    GeocodeRequest:
+      type: object
+      properties:
+        ref:
+          type: string
+          description: Reference ID
+        cass:
+          type: boolean
+          description: Whether to return CASS-certified address
+        addr:
+          type: string
+          description: Street address
+        city:
+          type: string
+        st:
+          type: string
+          description: State abbreviation
+        zip:
+          type: string
+          description: ZIP code
     GeocodeResult:
       type: object
       properties:
@@ -82,26 +102,6 @@ components:
         fips:
           type: string
           description: FIPS code
-    GeocodeRequest:
-      type: object
-      properties:
-        ref:
-          type: string
-          description: Reference ID
-        cass:
-          type: boolean
-          description: Whether to return CASS-certified address
-        addr:
-          type: string
-          description: Street address
-        city:
-          type: string
-        st:
-          type: string
-          description: State abbreviation
-        zip:
-          type: string
-          description: ZIP code
   securitySchemes:
     basicAuth:
       type: http

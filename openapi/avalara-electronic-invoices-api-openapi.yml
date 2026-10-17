@@ -123,6 +123,30 @@ paths:
           description: Invoice cancelled
 components:
   schemas:
+    InvoiceResponse:
+      type: object
+      properties:
+        invoiceId:
+          type: string
+        accessKey:
+          type: string
+          description: 44-digit NF-e access key
+        invoiceNumber:
+          type: integer
+        series:
+          type: integer
+        status:
+          type: string
+          enum:
+          - Authorized
+          - Cancelled
+          - Denied
+          - Pending
+        protocolNumber:
+          type: string
+        issuanceDate:
+          type: string
+          format: date-time
     InvoiceRequest:
       type: object
       properties:
@@ -164,30 +188,6 @@ components:
           type: string
         cfopCode:
           type: string
-    InvoiceResponse:
-      type: object
-      properties:
-        invoiceId:
-          type: string
-        accessKey:
-          type: string
-          description: 44-digit NF-e access key
-        invoiceNumber:
-          type: integer
-        series:
-          type: integer
-        status:
-          type: string
-          enum:
-          - Authorized
-          - Cancelled
-          - Denied
-          - Pending
-        protocolNumber:
-          type: string
-        issuanceDate:
-          type: string
-          format: date-time
     BrazilParty:
       type: object
       properties:

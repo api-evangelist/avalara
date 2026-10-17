@@ -1342,12 +1342,6 @@ components:
           items:
             $ref: '#/components/schemas/SharedCompany'
   parameters:
-    filter:
-      name: $filter
-      in: query
-      schema:
-        type: string
-      description: OData filter expression for result filtering
     orderBy:
       name: $orderBy
       in: query
@@ -1361,6 +1355,12 @@ components:
         type: integer
         default: 1000
       description: Maximum number of results to return
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
     skip:
       name: $skip
       in: query

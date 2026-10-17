@@ -92,70 +92,6 @@ paths:
       description: AvaTax Sandbox
 components:
   schemas:
-    AddressValidationInfo:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type: string
-        line3:
-          type: string
-        city:
-          type: string
-        region:
-          type: string
-        postalCode:
-          type: string
-        country:
-          type: string
-        textCase:
-          type: string
-          enum:
-          - Default
-          - Upper
-          - Mixed
-    TaxAuthorityInfo:
-      type: object
-      properties:
-        avalaraId:
-          type: string
-        jurisdictionName:
-          type: string
-        jurisdictionType:
-          type: string
-        signatureCode:
-          type: string
-    AddressInfo:
-      type: object
-      properties:
-        line1:
-          type: string
-          description: Street address line 1
-        line2:
-          type: string
-          description: Street address line 2
-        line3:
-          type: string
-          description: Street address line 3
-        city:
-          type: string
-          description: City name
-        region:
-          type: string
-          description: State, province, or region code
-        postalCode:
-          type: string
-          description: Postal code or ZIP code
-        country:
-          type: string
-          description: Two-character ISO 3166 country code
-        latitude:
-          type: number
-          format: double
-        longitude:
-          type: number
-          format: double
     AddressResolutionModel:
       type: object
       properties:
@@ -192,6 +128,70 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TaxAuthorityInfo'
+    TaxAuthorityInfo:
+      type: object
+      properties:
+        avalaraId:
+          type: string
+        jurisdictionName:
+          type: string
+        jurisdictionType:
+          type: string
+        signatureCode:
+          type: string
+    AddressValidationInfo:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        line3:
+          type: string
+        city:
+          type: string
+        region:
+          type: string
+        postalCode:
+          type: string
+        country:
+          type: string
+        textCase:
+          type: string
+          enum:
+          - Default
+          - Upper
+          - Mixed
+    AddressInfo:
+      type: object
+      properties:
+        line1:
+          type: string
+          description: Street address line 1
+        line2:
+          type: string
+          description: Street address line 2
+        line3:
+          type: string
+          description: Street address line 3
+        city:
+          type: string
+          description: City name
+        region:
+          type: string
+          description: State, province, or region code
+        postalCode:
+          type: string
+          description: Postal code or ZIP code
+        country:
+          type: string
+          description: Two-character ISO 3166 country code
+        latitude:
+          type: number
+          format: double
+        longitude:
+          type: number
+          format: double
   securitySchemes:
     basicAuth:
       type: http

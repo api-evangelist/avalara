@@ -843,19 +843,6 @@ paths:
     - url: http://{{baseurl}}
 components:
   parameters:
-    filter:
-      name: $filter
-      in: query
-      schema:
-        type: string
-      description: OData filter expression for result filtering
-    top:
-      name: $top
-      in: query
-      schema:
-        type: integer
-        default: 1000
-      description: Maximum number of results to return
     companyId:
       name: companyId
       in: path
@@ -863,6 +850,19 @@ components:
       schema:
         type: integer
       description: The numeric ID of the company
+    top:
+      name: $top
+      in: query
+      schema:
+        type: integer
+        default: 1000
+      description: Maximum number of results to return
+    filter:
+      name: $filter
+      in: query
+      schema:
+        type: string
+      description: OData filter expression for result filtering
     skip:
       name: $skip
       in: query
@@ -871,15 +871,6 @@ components:
         default: 0
       description: Number of results to skip for pagination
   schemas:
-    FetchResult_NexusModel:
-      type: object
-      properties:
-        '@recordsetCount':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/NexusModel'
     NexusModel:
       type: object
       properties:
@@ -923,6 +914,15 @@ components:
           - SSTNonVolunteer
         hasLocalNexus:
           type: boolean
+    FetchResult_NexusModel:
+      type: object
+      properties:
+        '@recordsetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/NexusModel'
   securitySchemes:
     basicAuth:
       type: http

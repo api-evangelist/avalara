@@ -78,6 +78,41 @@ paths:
       x-accepts: application/json
 components:
   schemas:
+    AgeVerifyRequest_address:
+      properties:
+        line1:
+          type: string
+        city:
+          type: string
+        region:
+          description: The state code of the address.
+          type: string
+        country:
+          description: The country code of the address.
+          enum:
+          - US
+          - USA
+          type: string
+        postalCode:
+          type: string
+      type: object
+    AgeVerifyResult:
+      description: The Result of a call to the /ageVerification/verify endpoint.
+      example:
+        isOfAge: false
+        failureCodes:
+        - deceased
+        - dob_unverifiable
+      properties:
+        isOfAge:
+          description: Describes whether the individual meets or exceeds the minimum legal drinking age.
+          type: boolean
+        failureCodes:
+          description: A list of failure codes describing why a *false* age determination was made.
+          items:
+            $ref: '#/components/schemas/AgeVerifyResult'
+          type: array
+      type: object
     AgeVerifyRequest:
       description: The Request for the /ageVerification/verify endpoint. Describes information about the person whose age is being verified.
       example:
@@ -110,41 +145,6 @@ components:
       - deceased
       - unknown_error
       type: string
-    AgeVerifyResult:
-      description: The Result of a call to the /ageVerification/verify endpoint.
-      example:
-        isOfAge: false
-        failureCodes:
-        - deceased
-        - dob_unverifiable
-      properties:
-        isOfAge:
-          description: Describes whether the individual meets or exceeds the minimum legal drinking age.
-          type: boolean
-        failureCodes:
-          description: A list of failure codes describing why a *false* age determination was made.
-          items:
-            $ref: '#/components/schemas/AgeVerifyResult'
-          type: array
-      type: object
-    AgeVerifyRequest_address:
-      properties:
-        line1:
-          type: string
-        city:
-          type: string
-        region:
-          description: The state code of the address.
-          type: string
-        country:
-          description: The country code of the address.
-          enum:
-          - US
-          - USA
-          type: string
-        postalCode:
-          type: string
-      type: object
   securitySchemes:
     BasicAuth:
       scheme: basic

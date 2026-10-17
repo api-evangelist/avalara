@@ -172,82 +172,6 @@ paths:
                 $ref: '#/components/schemas/DocumentStatus'
 components:
   schemas:
-    DocumentStatus:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-          enum:
-          - Pending
-          - Accepted
-          - Rejected
-          - Error
-        statusDate:
-          type: string
-          format: date-time
-        events:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentEvent'
-    DocumentSummary:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        documentType:
-          type: string
-        invoiceNumber:
-          type: string
-        senderName:
-          type: string
-        recipientName:
-          type: string
-        submissionDate:
-          type: string
-          format: date-time
-        countryCode:
-          type: string
-    DocumentSubmissionResponse:
-      type: object
-      properties:
-        id:
-          type: string
-          description: Document submission ID
-        status:
-          type: string
-          enum:
-          - Pending
-          - Accepted
-          - Rejected
-          - Error
-        statusDate:
-          type: string
-          format: date-time
-    ErrorResponse:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: string
-            target:
-              type: string
-    DocumentList:
-      type: object
-      properties:
-        '@recordSetCount':
-          type: integer
-        value:
-          type: array
-          items:
-            $ref: '#/components/schemas/DocumentSummary'
     Party:
       type: object
       properties:
@@ -272,6 +196,86 @@ components:
               type: string
             countryCode:
               type: string
+    DocumentSummary:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        documentType:
+          type: string
+        invoiceNumber:
+          type: string
+        senderName:
+          type: string
+        recipientName:
+          type: string
+        submissionDate:
+          type: string
+          format: date-time
+        countryCode:
+          type: string
+    SubmitDocumentRequest:
+      type: object
+      required:
+      - dataFormat
+      - data
+      properties:
+        dataFormat:
+          type: string
+          enum:
+          - ubl-invoice
+          - ubl-creditnote
+          - cii
+          description: Format of the e-invoice document
+        dataFormatVersion:
+          type: string
+          description: Version of the data format
+        data:
+          type: string
+          description: Base64-encoded document content or raw UBL/CII XML
+        metadata:
+          type: object
+          properties:
+            workflowId:
+              type: string
+              description: Workflow identifier for the mandate
+            countryCode:
+              type: string
+              description: ISO 3166-1 alpha-2 country code
+            countryMandate:
+              type: string
+              description: Country mandate identifier
+    DocumentEvent:
+      type: object
+      properties:
+        eventDate:
+          type: string
+          format: date-time
+        eventType:
+          type: string
+        message:
+          type: string
+    DocumentStatus:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum:
+          - Pending
+          - Accepted
+          - Rejected
+          - Error
+        statusDate:
+          type: string
+          format: date-time
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentEvent'
     DocumentDetail:
       type: object
       properties:
@@ -306,50 +310,46 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DocumentEvent'
-    DocumentEvent:
+    DocumentList:
       type: object
       properties:
-        eventDate:
-          type: string
-          format: date-time
-        eventType:
-          type: string
-        message:
-          type: string
-    SubmitDocumentRequest:
+        '@recordSetCount':
+          type: integer
+        value:
+          type: array
+          items:
+            $ref: '#/components/schemas/DocumentSummary'
+    DocumentSubmissionResponse:
       type: object
-      required:
-      - dataFormat
-      - data
       properties:
-        dataFormat:
+        id:
+          type: string
+          description: Document submission ID
+        status:
           type: string
           enum:
-          - ubl-invoice
-          - ubl-creditnote
-          - cii
-          description: Format of the e-invoice document
-        dataFormatVersion:
+          - Pending
+          - Accepted
+          - Rejected
+          - Error
+        statusDate:
           type: string
-          description: Version of the data format
-        data:
-          type: string
-          description: Base64-encoded document content or raw UBL/CII XML
-        metadata:
+          format: date-time
+    ErrorResponse:
+      type: object
+      properties:
+        error:
           type: object
           properties:
-            workflowId:
+            code:
               type: string
-              description: Workflow identifier for the mandate
-            countryCode:
+            message:
               type: string
-              description: ISO 3166-1 alpha-2 country code
-            countryMandate:
+            target:
               type: string
-              description: Country mandate identifier
   responses:
-    BadRequest:
-      description: Invalid request
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
@@ -360,8 +360,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    BadRequest:
+      description: Invalid request
       content:
         application/json:
           schema:
