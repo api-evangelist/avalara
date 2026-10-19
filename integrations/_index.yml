@@ -292,3 +292,96 @@
     builder: unknown (not in the directory record)
   status: not-a-workflow
   arazzo: null
+- slug: avalara-nuget-gallery
+  label: NuGet Gallery
+  partner: nuget
+  partner_name: NuGet Gallery
+  category: official SDK (.NET)
+  type: register
+  channel: package-registry
+  evidence: https://www.nuget.org/packages/Avalara.AvaTax
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: NuGet Gallery (public registry JSON)
+    spec_file: null
+    language: .NET
+    packages:
+    - name: Avalara.AvaTax
+      version: 26.10.0
+      released: '2026-10-13'
+      released_field: published
+      lapsed: false
+      page: https://www.nuget.org/packages/Avalara.AvaTax
+      repo_leg: domain:avalara.com
+      publisher_leg: org:avalara
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: avalara-pypi
+  label: PyPI
+  partner: pypi
+  partner_name: PyPI
+  category: official SDK (Python)
+  type: register
+  channel: package-registry
+  evidence: https://pypi.org/project/Avalara/
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: PyPI (public registry JSON)
+    spec_file: null
+    language: Python
+    packages:
+    - name: Avalara
+      version: 26.10.0
+      released: '2026-10-13'
+      released_field: upload_time
+      lapsed: false
+      page: https://pypi.org/project/Avalara/
+      repo_leg: github-org:avadev
+      publisher_leg: email:avalara.com
+      matched_by: domain
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: avalara-rubygems
+  label: RubyGems
+  partner: rubygems
+  partner_name: RubyGems
+  category: official SDK (Ruby)
+  type: register
+  channel: package-registry
+  evidence: https://rubygems.org/gems/avatax
+  source: edge
+  relationship: distribution-channel
+  contract_reference:
+    register: RubyGems (public registry JSON)
+    spec_file: null
+    language: Ruby
+    packages:
+    - name: avatax
+      version: 26.10.0
+      released: '2026-10-13'
+      released_field: version_created_at
+      lapsed: false
+      page: https://rubygems.org/gems/avatax
+      repo_leg: github-org:avadev
+      publisher_leg: org:avalara
+      matched_by: github-org
+    current: true
+    signal_note: 'an official package on the registry: distribution, not an integration; lapsed = no release in
+      24 months'
+    detected_by: sweep-official-sdks.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
