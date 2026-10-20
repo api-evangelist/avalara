@@ -162,111 +162,6 @@
   relationship: platform-app
   status: not-a-workflow
   arazzo: null
-- slug: avalara-mcp-registry
-  label: MCP Registry
-  partner: mcp
-  partner_name: MCP Registry
-  type: register
-  channel: standard-directory
-  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=com.avalara
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: registry.modelcontextprotocol.io
-    spec_file: null
-    role: mcp-server-listing
-    registered_name: com.avalara/atc
-    register_id: com.avalara/atc
-    detected_by: sweep-agent-tools.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
-- slug: avalara-openpeppol-certified-service-providers
-  label: OpenPeppol (certified service providers)
-  partner_name: OpenPeppol (certified service providers)
-  category: Peppol service provider
-  type: register
-  channel: standard-directory
-  evidence: https://peppol.org/members/peppol-certified-service-providers/
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: OpenPeppol certified service providers (peppol.org/members/peppol-certified-service-providers)
-    spec_file: null
-    standard: Peppol
-    role: peppol-certified-service-provider
-    registered_name: Avalara Europe
-    legal_name: Avalara Europe
-    matched_domain: avalara.com
-    matched_by: domain
-    domain_source: contact email domain
-    peppol_authorities:
-    - OpenPeppol
-    countries:
-    - UK
-    certified_products:
-    - product: Access Point
-      lapsed: false
-    signal_note: certified_products = one entry per Peppol-certified SERVICE (Access Point, SMP); authorities and
-      countries are context, never read
-    detected_by: sweep-einvoicing-tax.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
-- slug: avalara-dgfip-plateformes-agreees-france-e-invoicing-reform
-  label: DGFiP plateformes agreees (France e-invoicing reform)
-  partner_name: DGFiP plateformes agreees (France e-invoicing reform)
-  category: French e-invoicing platform
-  type: register
-  channel: standard-directory
-  evidence: https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: DGFiP liste des plateformes agreees (impots.gouv.fr)
-    spec_file: null
-    standard: France e-invoicing (plateforme agreee)
-    role: plateforme-agreee
-    registered_name: AVALARA
-    website: https://www.avalara.com/eu/fr
-    matched_domain: avalara.com
-    matched_by: domain
-    certified_products:
-    - product: plateforme agreee (PA)
-      lapsed: false
-      registered: '2025-12-18'
-    signal_note: certified_products = the immatriculation (one per operator); an operator awaiting the interop tests
-      is participation only
-    detected_by: sweep-einvoicing-tax.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
-- slug: avalara-streamlined-sales-tax-governing-board-certified-service-providers
-  label: Streamlined Sales Tax Governing Board (Certified Service Providers)
-  partner_name: Streamlined Sales Tax Governing Board (Certified Service Providers)
-  category: SST Certified Service Provider
-  type: register
-  channel: standard-directory
-  evidence: https://www.streamlinedsalestax.org/certified-service-providers/certified-service-providers-list/avalara
-  source: edge
-  relationship: standard-participant
-  contract_reference:
-    register: Streamlined Sales Tax Certified Service Providers list
-    spec_file: null
-    standard: Streamlined Sales Tax CSP
-    role: certified-service-provider
-    registered_name: Avalara for Streamlined Sales Tax
-    website: https://www.avalara.com/us/en/products/ai-compliance.html?campaignID=701Uz00001GP9cgIAD&amp;utm_campaign=AMER_PROS_Web-Referral_Web-Visit_06_2026_SST-CSP-Profile-Inbound&amp;marketing_program=Product&amp;parent_campaign_name=AMER_EMG-SMB-MM_PROS_FULL-FUN_SST_1M-500M&amp;marketing_channel=web_referral&amp;vendor=sst_governing_board&amp;paid_unpaid=unpaid&amp;target_audience=prospect
-    matched_domain: avalara.com
-    matched_by: domain
-    certified_products:
-    - product: CSP
-      lapsed: false
-    signal_note: one certification; holding it is the signal
-    detected_by: sweep-einvoicing-tax.py
-    detected: '2026-10-15'
-  status: not-a-workflow
-  arazzo: null
 - slug: avalara-zapier
   label: Zapier
   partner: zapier
@@ -383,5 +278,110 @@
       24 months'
     detected_by: sweep-official-sdks.py
     detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
+- slug: avalara-mcp-registry
+  label: MCP Registry
+  partner: mcp
+  partner_name: MCP Registry
+  type: register
+  channel: standard-directory
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=com.avalara
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: com.avalara/atc
+    register_id: com.avalara/atc
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: avalara-openpeppol-certified-service-providers
+  label: OpenPeppol (certified service providers)
+  partner_name: OpenPeppol (certified service providers)
+  category: Peppol service provider
+  type: register
+  channel: standard-directory
+  evidence: https://peppol.org/members/peppol-certified-service-providers/
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: OpenPeppol certified service providers (peppol.org/members/peppol-certified-service-providers)
+    spec_file: null
+    standard: Peppol
+    role: peppol-certified-service-provider
+    registered_name: Avalara Europe
+    legal_name: Avalara Europe
+    matched_domain: avalara.com
+    matched_by: domain
+    domain_source: contact email domain
+    peppol_authorities:
+    - OpenPeppol
+    countries:
+    - UK
+    certified_products:
+    - product: Access Point
+      lapsed: false
+    signal_note: certified_products = one entry per Peppol-certified SERVICE (Access Point, SMP); authorities and
+      countries are context, never read
+    detected_by: sweep-einvoicing-tax.py
+    detected: '2026-10-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: avalara-dgfip-plateformes-agreees-france-e-invoicing-reform
+  label: DGFiP plateformes agreees (France e-invoicing reform)
+  partner_name: DGFiP plateformes agreees (France e-invoicing reform)
+  category: French e-invoicing platform
+  type: register
+  channel: standard-directory
+  evidence: https://www.impots.gouv.fr/je-consulte-la-liste-des-plateformes-agreees
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: DGFiP liste des plateformes agreees (impots.gouv.fr)
+    spec_file: null
+    standard: France e-invoicing (plateforme agreee)
+    role: plateforme-agreee
+    registered_name: AVALARA
+    website: https://www.avalara.com/eu/fr
+    matched_domain: avalara.com
+    matched_by: domain
+    certified_products:
+    - product: plateforme agreee (PA)
+      lapsed: false
+      registered: '2025-12-18'
+    signal_note: certified_products = the immatriculation (one per operator); an operator awaiting the interop tests
+      is participation only
+    detected_by: sweep-einvoicing-tax.py
+    detected: '2026-10-19'
+  status: not-a-workflow
+  arazzo: null
+- slug: avalara-streamlined-sales-tax-governing-board-certified-service-providers
+  label: Streamlined Sales Tax Governing Board (Certified Service Providers)
+  partner_name: Streamlined Sales Tax Governing Board (Certified Service Providers)
+  category: SST Certified Service Provider
+  type: register
+  channel: standard-directory
+  evidence: https://www.streamlinedsalestax.org/certified-service-providers/certified-service-providers-list/avalara
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: Streamlined Sales Tax Certified Service Providers list
+    spec_file: null
+    standard: Streamlined Sales Tax CSP
+    role: certified-service-provider
+    registered_name: Avalara for Streamlined Sales Tax
+    website: https://www.avalara.com/us/en/products/ai-compliance.html?campaignID=701Uz00001GP9cgIAD&amp;utm_campaign=AMER_PROS_Web-Referral_Web-Visit_06_2026_SST-CSP-Profile-Inbound&amp;marketing_program=Product&amp;parent_campaign_name=AMER_EMG-SMB-MM_PROS_FULL-FUN_SST_1M-500M&amp;marketing_channel=web_referral&amp;vendor=sst_governing_board&amp;paid_unpaid=unpaid&amp;target_audience=prospect
+    matched_domain: avalara.com
+    matched_by: domain
+    certified_products:
+    - product: CSP
+      lapsed: false
+    signal_note: one certification; holding it is the signal
+    detected_by: sweep-einvoicing-tax.py
+    detected: '2026-10-19'
   status: not-a-workflow
   arazzo: null
