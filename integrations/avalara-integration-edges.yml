@@ -31,6 +31,7 @@ checked:
 - https://www.indexventures.com/companies/
 - https://www.sequoiacap.com/our-companies/
 - https://www.sequoiacap.com/sitemap.xml
+- wix/integrations/wix-integration-edges.yml
 summary: null
 marketplace_apps:
 - marketplace: zapier
@@ -75,59 +76,6 @@ edges:
   seller_name: Avalara
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
-- partner_name: Stripe (own)
-  partner: stripe
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://marketplace.stripe.com/apps/avalara-avatax
-  mirror_of: stripe/integrations/stripe-integration-edges.yml
-  apps:
-  - Avalara AvaTax
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: tax
-- partner_name: WooCommerce (own)
-  partner: woocommerce
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://woocommerce.com/products/woocommerce-avatax/
-  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
-  apps:
-  - Avalara
-  listing_count: 1
-  detected: '2026-10-15'
-  detected_by: mirror-platform-listings.py
-  category: extension
-- partner_name: Workday (own)
-  partner: workday
-  partner_match: mirror
-  mirror_match: domain
-  type: marketplace
-  relationship: platform-app
-  direction: third-party
-  channel: partner-built
-  marketplace: own
-  evidence: https://marketplace.workday.com/apps/452509/avalara-e-invoicing-and-live-reporting
-  mirror_of: workday/integrations/workday-integration-edges.yml
-  apps:
-  - Avalara E-Invoicing and Live Reporting
-  listing_count: 1
-  detected: '2026-10-14'
-  detected_by: mirror-platform-listings.py
-  category: Region & Country
-  badges:
-  - Built on Workday
 - partner_name: Zapier
   partner: zapier
   partner_match: aggregator
@@ -418,4 +366,74 @@ edges:
     status: 'NYSE: AVLR'
   detected_by: sweep-vc-portfolios.py
   first_seen: '2026-10-21'
+- partner_name: Stripe (own)
+  partner: stripe
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.stripe.com/apps/avalara-avatax
+  mirror_of: stripe/integrations/stripe-integration-edges.yml
+  apps:
+  - Avalara AvaTax
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: tax
+- partner_name: WooCommerce (own)
+  partner: woocommerce
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://woocommerce.com/products/woocommerce-avatax/
+  mirror_of: woocommerce/integrations/woocommerce-integration-edges.yml
+  apps:
+  - Avalara
+  listing_count: 1
+  detected: '2026-10-15'
+  detected_by: mirror-platform-listings.py
+  category: extension
+- partner_name: Workday (own)
+  partner: workday
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://marketplace.workday.com/apps/452509/avalara-e-invoicing-and-live-reporting
+  mirror_of: workday/integrations/workday-integration-edges.yml
+  apps:
+  - Avalara E-Invoicing and Live Reporting
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Region & Country
+  badges:
+  - Built on Workday
+- partner_name: Wix (own)
+  partner: wix
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.wix.com/app-market/developer/avalara
+  mirror_of: wix/integrations/wix-integration-edges.yml
+  apps:
+  - 'Avalara Extractor for Returns '
+  listing_count: 1
+  detected: '2026-10-22'
+  detected_by: mirror-platform-listings.py
+  category: Wix app
 templates: []

@@ -149,19 +149,6 @@
   relationship: distribution-channel
   status: not-a-workflow
   arazzo: null
-- slug: avalara-workday-own
-  label: Workday (own)
-  partner: workday
-  partner_name: Workday (own)
-  category: Region & Country
-  type: marketplace
-  marketplace: own
-  channel: partner-built
-  evidence: https://marketplace.workday.com/apps/452509/avalara-e-invoicing-and-live-reporting
-  source: edge
-  relationship: platform-app
-  status: not-a-workflow
-  arazzo: null
 - slug: avalara-zapier
   label: Zapier
   partner: zapier
@@ -411,5 +398,31 @@
     detected_by: sweep-vc-portfolios.py
     detected: '2026-10-21'
     status: 'NYSE: AVLR'
+  status: not-a-workflow
+  arazzo: null
+- slug: avalara-workday-own
+  label: Workday (own)
+  partner: workday
+  partner_name: Workday (own)
+  category: Region & Country
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://marketplace.workday.com/apps/452509/avalara-e-invoicing-and-live-reporting
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
+- slug: avalara-wix-own
+  label: Wix (own)
+  partner: wix
+  partner_name: Wix (own)
+  category: Wix app
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://www.wix.com/app-market/developer/avalara
+  source: edge
+  relationship: platform-app
   status: not-a-workflow
   arazzo: null
