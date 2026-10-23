@@ -7,41 +7,41 @@ artifacts:
     method: generated
     evidence: declared in the artifact
   arazzo/avalara-adjust-committed-transaction-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/avalara-calculate-and-commit-transaction-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/avalara-classify-item-and-test-tax-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/avalara-create-company-with-nexus-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/avalara-estimate-then-quote-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/avalara-initialize-company-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/avalara-onboard-exempt-customer-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/avalara-quick-tax-quote-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/avalara-refund-transaction-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/avalara-retrieve-company-report-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/avalara-submit-transaction-batch-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   arazzo/avalara-void-and-recreate-transaction-workflow.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: derived
+    evidence: Arazzo whose sourceDescriptions are our split specs (../openapi/)
   asyncapi/avalara-certcapture-sqs-asyncapi.yml:
     method: unknown
     evidence: no authorship recorded
@@ -988,12 +988,18 @@ artifacts:
     method: unknown
     evidence: no authorship recorded
   integrations/_index.yml:
-    method: unknown
-    evidence: no authorship recorded
+    method: generated
+    evidence: carries an API Evangelist house phrase
   integrations/avalara-bigcommerce.yaml:
     method: unknown
     evidence: no authorship recorded
   integrations/avalara-certcapture-salesforce.yaml:
+    method: unknown
+    evidence: no authorship recorded
+  integrations/avalara-integration-edges.yml:
+    method: searched
+    evidence: declared in the artifact
+  integrations/avalara-integration-map.yml:
     method: unknown
     evidence: no authorship recorded
   integrations/avalara-magento.yaml:
@@ -1020,6 +1026,9 @@ artifacts:
   integrations/avalara-shopify.yaml:
     method: unknown
     evidence: no authorship recorded
+  integrations/avalara-stripe-checkout-session-tax.yml:
+    method: generated
+    evidence: declared in the artifact
   integrations/avalara-stripe.yaml:
     method: unknown
     evidence: no authorship recorded
@@ -2250,127 +2259,7 @@ artifacts:
   json-structure/vat-reporting-vat-transaction-structure.json:
     method: unknown
     evidence: no authorship recorded
-  kin/checks-2026-09-24T161608.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T125852.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T133943.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T143147.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-25T154045.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-26T215308.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T094438.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T103455.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T123021.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T132314.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-27T140727.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-28T221322.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T213958.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-29T230545.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T203505.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-30T220315.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-08-31T223420.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T063623.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T210448.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-01T222808.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-02T224043.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T161828.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-03T174231.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T062714.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T212454.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-04T224856.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T055819.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T072335.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T144739.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T195450.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-05T211839.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T011047.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T211804.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-06T224210.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T200636.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-07T213054.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T214843.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-08T232836.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T204815.yml:
-    method: generated
-    evidence: Kin Score snapshot written by score.rb
-  kin/score-2026-09-10T222408.yml:
+  kin/checks-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-12T062655.yml:
@@ -2452,6 +2341,21 @@ artifacts:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   kin/score-2026-09-24T161608.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T210408.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-09-25T232841.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T000835.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-03T024842.yml:
+    method: generated
+    evidence: Kin Score snapshot written by score.rb
+  kin/score-2026-10-11T110117.yml:
     method: generated
     evidence: Kin Score snapshot written by score.rb
   lifecycle/avalara-lifecycle.yml:
@@ -2738,52 +2642,256 @@ artifacts:
   openapi/avalara-w-9-forms-api-openapi.yml:
     method: derived
     evidence: paths are a subset of openapi/_original/ (split from the harvested spec)
+  overlays/avalara-1099-forms-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
   overlays/avalara-1099-w9-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-accounts-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/avalara-activation-service-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-addresses-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-advancedrules-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-age-verification-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-attributes-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-authentication-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-avafileforms-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/avalara-avatax-apis-overlay.yaml:
-    method: generated
-    evidence: declared in the artifact
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
   overlays/avalara-avatax-brazil-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-avatax-rest-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-batches-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
-  overlays/avalara-avatax-rest-overlay.yaml:
+  overlays/avalara-business-entities-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/avalara-business-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-certcapture-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-certexpressinvites-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
-  overlays/avalara-certcapture-overlay.yaml:
+  overlays/avalara-certificates-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-classification-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-classification-requests-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/avalara-communications-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-companies-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-contacts-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-customers-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-customization-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-data-sources-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-definitions-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-distancethresholds-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-documents-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/avalara-e-invoicing-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-ecommerce-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-ecommercetoken-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-electronic-invoices-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/avalara-excise-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-filing-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-filing-calendar-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-firmclientlinkages-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-free-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-fundingrequests-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-geocoding-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/avalara-hs-code-classification-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-hs-codes-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-interop-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/avalara-item-classification-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-items-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-jurisdictionoverrides-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-licenses-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-locations-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-lookup-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-mandates-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-multidocument-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/avalara-mylodgetax-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-nexus-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-notices-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-notifications-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-obligations-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-onboarding-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-orders-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/avalara-portal-oauth-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-products-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-properties-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-provisioning-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-registrar-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-registrations-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-reports-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-returns-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-settings-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/avalara-shared-company-service-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-shipping-verification-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-subscriptions-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-tax-calculation-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-tax-codes-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-tax-determination-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-tax-rates-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-tax-rules-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-taxcontent-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-transactions-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-upcs-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-userdefinedfields-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-users-api-phrasing-overlay.yaml:
+    method: generated
+    evidence: declared in the artifact
+  overlays/avalara-utilities-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   overlays/avalara-vat-reporting-overlay.yaml:
+    method: derived
+    evidence: an API Evangelist overlay (title) over the provider's contract
+  overlays/avalara-w-9-forms-api-phrasing-overlay.yaml:
     method: generated
     evidence: declared in the artifact
   packages/avalara-packages.yml:
